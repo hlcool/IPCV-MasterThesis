@@ -74,7 +74,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
-        label->setText(QApplication::translate("MainWindow", "Display and OpenCV Image", Q_NULLPTR));
+        label->setText(QApplication::translate("MainWindow", "Display an OpenCV Image", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "Exit", Q_NULLPTR));
     } // retranslateUi
 
