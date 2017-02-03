@@ -42,7 +42,7 @@ void MainWindow::on_actionOpen_file_triggered()
 
     if (ProgramFlag) {
         // Get a filename to open
-        QString filePath = QFileDialog::getOpenFileName(this, tr("Open Image"), GlobalPath, tr("Video Files (*.mpg)"));
+        QString filePath = QFileDialog::getOpenFileName(this, tr("Open Image"), GlobalPath, tr("Video Files (*.mpg ;; *.avi)"));
         // Convert QString to std::string
         InputVideo = filePath.toStdString();
     }
@@ -90,17 +90,17 @@ void MainWindow::ProcessVideo(){
     int Height = ui->CVWidget->height();
     int Width  = ui->CVWidget->width();
 
-    cv::resize(ActualFrame, ActualFrame, {Height, Width} );
+    // Resize the video for displaying to the size of the widget
+    cv::resize(ActualFrame, ActualFrame, {Width, Height}, INTER_LANCZOS4);
 
     // Extract Frame number
     stringstream ss;
     ss << cap.get(CAP_PROP_POS_FRAMES);
-    putText(ActualFrame, ss.str().c_str(), cv::Point(15, 15),FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 0, 255)); //text in red
+    putText(ActualFrame, ss.str().c_str(), cv::Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255)); //text in red
     //cout << endl << "Processing frame " << ss.str() << endl;
-
 
     ui->CVWidget->showImage(ActualFrame);
     // Pause to control the frame rate of the video
-    //waitKey(30);
+    waitKey(40);
 
 }

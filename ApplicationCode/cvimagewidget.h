@@ -38,7 +38,7 @@ public slots:
         // has three bytes.
         qImage = QImage(tmpImage.data, tmpImage.cols, tmpImage.rows, tmpImage.cols*3, QImage::Format_RGB888);
 
-        this->setFixedSize(image.cols, image.rows);
+        //this->setFixedSize(image.cols, image.rows);
 
         repaint();
     }

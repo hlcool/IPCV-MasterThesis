@@ -18,7 +18,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 #include <cvimagewidget.h>
 
@@ -34,7 +33,6 @@ public:
     CVImageWidget *CVWidget;
     QMenuBar *menuBar;
     QMenu *menuFile;
-    QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -49,11 +47,11 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(280, 30, 165, 16));
+        label->setGeometry(QRect(289, 30, 160, 16));
         CVWidget = new CVImageWidget(centralWidget);
         CVWidget->setObjectName(QStringLiteral("CVWidget"));
-        CVWidget->setGeometry(QRect(210, 80, 300, 300));
-        CVWidget->setMaximumSize(QSize(481, 311));
+        CVWidget->setGeometry(QRect(90, 80, 561, 381));
+        CVWidget->setMaximumSize(QSize(800, 800));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -61,9 +59,6 @@ public:
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         MainWindow->setMenuBar(menuBar);
-        statusBar = new QStatusBar(MainWindow);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        MainWindow->setStatusBar(statusBar);
 
         menuBar->addAction(menuFile->menuAction());
         menuFile->addAction(actionOpen_file);
