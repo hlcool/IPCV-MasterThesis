@@ -87,7 +87,7 @@ void MainWindow::ProcessVideo(){
     }
 
 
-    /* MAIN ALGORITHM*/
+        /* MAIN ALGORITHM*/
     /* -----------------------*/
 
 
@@ -104,16 +104,15 @@ void MainWindow::ProcessVideo(){
     stringstream ss;
     ss << cap.get(CAP_PROP_POS_FRAMES);
     putText(ActualFrame, ss.str().c_str(), cv::Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255)); //text in red
-    //cout << endl << "Processing frame " << ss.str() << endl;
 
 
     ui->CVWidget->showImage(ActualFrame);
     // Pause to control the frame rate of the video
-    waitKey(40);
+    //waitKey(40);
 
     // Compute the processing time per frame
     clock_t end = clock();
     double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-    cout << "The processing time is " << setprecision(10) << elapsed_secs << endl;
+    cout << "Frame " << ss.str() << ". Processing time = " << setprecision(4) << elapsed_secs << " s."  << endl;
 
 }
