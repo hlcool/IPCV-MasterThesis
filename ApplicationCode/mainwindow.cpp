@@ -73,7 +73,7 @@ void MainWindow::on_actionOpen_file_triggered()
 
 void MainWindow::ProcessVideo(){
 
-    //Start the clock
+    // Start the clock for measuring frame consumption
     clock_t begin = clock();
 
     Mat ActualFrame;
@@ -111,6 +111,7 @@ void MainWindow::ProcessVideo(){
     // Pause to control the frame rate of the video
     waitKey(40);
 
+    // Compute the processing time per frame
     clock_t end = clock();
     double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
     cout << "The processing time is " << setprecision(10) << elapsed_secs << endl;
