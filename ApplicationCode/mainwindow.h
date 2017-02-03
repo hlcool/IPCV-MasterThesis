@@ -23,6 +23,8 @@ private:
 
 public slots:
     void ProcessVideo();
+private slots:
+    void on_actionOpen_file_triggered();
 };
 
 #endif // MAINWINDOW_H

@@ -1203,7 +1203,14 @@ mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		/Applications/QT/5.8/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Applications/QT/5.8/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		/usr/local/include/opencv2/imgproc/imgproc.hpp \
-		/usr/local/include/opencv2/highgui/highgui.hpp
+		/usr/local/include/opencv2/highgui/highgui.hpp \
+		../cvimagewidget.h \
+		/Applications/QT/5.8/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Applications/QT/5.8/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Applications/QT/5.8/clang_64/lib/QtGui.framework/Headers/QImage \
+		/Applications/QT/5.8/clang_64/lib/QtGui.framework/Headers/qimage.h \
+		/Applications/QT/5.8/clang_64/lib/QtGui.framework/Headers/QPainter \
+		/Applications/QT/5.8/clang_64/lib/QtGui.framework/Headers/qpainter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../mainwindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
