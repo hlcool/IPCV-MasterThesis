@@ -42,7 +42,7 @@ void MainWindow::on_actionOpen_file_triggered()
 
     if (ProgramFlag) {
         // Get a filename to open
-        QString filePath = QFileDialog::getOpenFileName(this, tr("Open Image"), GlobalPath, tr("Video Files (*.mpg ;; *.avi)"));
+        QString filePath = QFileDialog::getOpenFileName(this, tr("Open Image"), GlobalPath, tr("Video Files (*.mpg *.avi)"));
         // Convert QString to std::string
         InputVideo = filePath.toStdString();
     }
@@ -65,6 +65,7 @@ void MainWindow::on_actionOpen_file_triggered()
     connect(imageTimer, SIGNAL(timeout()), this, SLOT(ProcessVideo()));
     imageTimer->start();
 
+
 }
 
 
@@ -76,6 +77,7 @@ void MainWindow::ProcessVideo(){
     // Check if we achieved the end of the file (e.g. ActualFrame.data is empty)
     if (!ActualFrame.data){
         cout << "The processing has finished" << endl;
+        imageTimer->blockSignals(true);
         return;
     }
 
@@ -99,8 +101,9 @@ void MainWindow::ProcessVideo(){
     putText(ActualFrame, ss.str().c_str(), cv::Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255)); //text in red
     //cout << endl << "Processing frame " << ss.str() << endl;
 
+
     ui->CVWidget->showImage(ActualFrame);
     // Pause to control the frame rate of the video
-    waitKey(40);
+    //waitKey(40);
 
 }
