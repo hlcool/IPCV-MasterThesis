@@ -16,12 +16,13 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    QTimer* imageTimer;
 
 private:
     Ui::MainWindow *ui;
 
 public slots:
-    void DisplayVideo();
+    void ProcessVideo();
 };
 
 #endif // MAINWINDOW_H

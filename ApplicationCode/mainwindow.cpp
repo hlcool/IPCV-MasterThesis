@@ -7,10 +7,12 @@
 #include <opencv2/opencv.hpp>
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
+#include "cvimagewidget.h"
 
 
 using namespace std;
 using namespace cv;
+
 
 VideoCapture cap;
 
@@ -25,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // VIDEO
     string inputvideo   = GlobalPath + "/Inputs/Vid1.mpg";
 
+
     // Open the videofile to check if it exists
     cap.open(inputvideo);
     if (!cap.isOpened()) {
@@ -32,11 +35,10 @@ MainWindow::MainWindow(QWidget *parent) :
         return;
     }
 
-    // Timer to control the frame rate of the video
-    QTimer *imageTimer;
+    // Timer to launch the Process Video slot
     imageTimer = new QTimer(this);
-    connect(imageTimer, SIGNAL(timeout()), this, SLOT(DisplayVideo()));
-    imageTimer->start(4);
+    connect(imageTimer, SIGNAL(timeout()), this, SLOT(ProcessVideo()));
+    imageTimer->start();
 
 }
 
@@ -45,9 +47,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::DisplayVideo(){
+void MainWindow::ProcessVideo(){
 
-    Mat ActualFrame;
+    Mat ActualFrame;    
     cap >> ActualFrame; // Get first video frame
 
     // Check if we achieved the end of the file (e.g. ActualFrame.data is empty)
@@ -55,6 +57,14 @@ void MainWindow::DisplayVideo(){
         cout << "The processing has finished" << endl;
         return;
     }
+
+
+        /* MAIN ALGORITHM*/
+    /* -----------------------*/
+
+
+    /* -----------------------*/
+
 
     int Height = ui->CVWidget->height();
     int Width  = ui->CVWidget->width();
@@ -68,8 +78,8 @@ void MainWindow::DisplayVideo(){
     cout << endl << "Processing frame " << ss.str() << endl;
 
 
-
     ui->CVWidget->showImage(ActualFrame);
+    // Pause to control the frame rate of the video
+    //waitKey(30);
 
 }
-

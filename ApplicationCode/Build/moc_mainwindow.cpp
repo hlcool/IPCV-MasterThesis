@@ -32,11 +32,11 @@ struct qt_meta_stringdata_MainWindow_t {
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
-QT_MOC_LITERAL(1, 11, 12), // "DisplayVideo"
+QT_MOC_LITERAL(1, 11, 12), // "ProcessVideo"
 QT_MOC_LITERAL(2, 24, 0) // ""
 
     },
-    "MainWindow\0DisplayVideo\0"
+    "MainWindow\0ProcessVideo\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -68,7 +68,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         MainWindow *_t = static_cast<MainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->DisplayVideo(); break;
+        case 0: _t->ProcessVideo(); break;
         default: ;
         }
     }
