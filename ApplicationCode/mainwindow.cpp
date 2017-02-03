@@ -3,7 +3,9 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <iomanip>
 #include <QTimer>
+#include <ctime>
 #include <opencv2/opencv.hpp>
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -71,6 +73,9 @@ void MainWindow::on_actionOpen_file_triggered()
 
 void MainWindow::ProcessVideo(){
 
+    //Start the clock
+    clock_t begin = clock();
+
     Mat ActualFrame;
     cap >> ActualFrame; // Get first video frame
 
@@ -104,6 +109,10 @@ void MainWindow::ProcessVideo(){
 
     ui->CVWidget->showImage(ActualFrame);
     // Pause to control the frame rate of the video
-    //waitKey(40);
+    waitKey(40);
+
+    clock_t end = clock();
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+    cout << "The processing time is " << setprecision(10) << elapsed_secs << endl;
 
 }
