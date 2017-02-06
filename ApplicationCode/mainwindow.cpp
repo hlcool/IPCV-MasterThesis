@@ -89,16 +89,16 @@ void MainWindow::ProcessVideo(){
 
 
 
-    int Height = ui->CVWidget->height();
-    int Width  = ui->CVWidget->width();
+    WidgetHeight = ui->CVWidget->height();
+    WidgetWidth  = ui->CVWidget->width();
 
     // Resize the video for displaying to the size of the widget
-    cv::resize(ActualFrame, ActualFrame, {Width, Height}, INTER_LANCZOS4);
+    cv::resize(ActualFrame, ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
 
-    // Extract Frame number
+    // Extract Frame number and write it in red
     stringstream ss;
     ss << Video.cap.get(CAP_PROP_POS_FRAMES);
-    putText(ActualFrame, ss.str().c_str(), Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255)); //text in red
+    putText(ActualFrame, ss.str().c_str(), Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
 
 
     ui->CVWidget->showImage(ActualFrame);

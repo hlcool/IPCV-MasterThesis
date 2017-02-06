@@ -21,6 +21,9 @@ public:
     // 1 - Enables the QFileDialog
     int ProgramFlag = 0;
 
+    // CVWidget size
+    int WidgetHeight, WidgetWidth;
+
 private:
     Ui::MainWindow *ui;
     QTimer* imageTimer;
