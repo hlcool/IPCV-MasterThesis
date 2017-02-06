@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>746</width>
-    <height>522</height>
+    <width>626</width>
+    <height>488</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>289</x>
-      <y>30</y>
+      <x>239</x>
+      <y>20</y>
       <width>160</width>
       <height>16</height>
      </rect>
@@ -30,10 +30,10 @@
    <widget class="CVImageWidget" name="CVWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>80</y>
-      <width>561</width>
-      <height>381</height>
+      <x>20</x>
+      <y>50</y>
+      <width>581</width>
+      <height>401</height>
      </rect>
     </property>
     <property name="maximumSize">
@@ -49,7 +49,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>746</width>
+     <width>626</width>
      <height>22</height>
     </rect>
    </property>
