@@ -1,6 +1,7 @@
 #ifndef VIDEOFILE_H
 #define VIDEOFILE_H
 
+#include <fstream>
 #include <string>
 #include <opencv2/opencv.hpp>
 #include "opencv2/imgproc/imgproc.hpp"
@@ -22,6 +23,7 @@ public:
     VideoCapture cap;
     void VideoOpenning(string InputPath);
 
+    ofstream VideoStatsFile;
 };
 
 #endif // VIDEOFILE_H

@@ -19,6 +19,7 @@ using namespace cv;
 
 VideoFile Video;
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -54,8 +55,11 @@ void MainWindow::on_actionOpen_file_triggered()
 
     cout << "Video processing starts" << endl;
 
+    // Create and open the statistics file
+    Video.VideoStatsFile.open(GlobalPath.toStdString() + "/VideoProcessingStats.txt");
+    Video.VideoStatsFile << "Frame  Computational Time" << endl;
 
-    // Timer to launch the Process Video slot
+    // Timer to launch the ProcessVideo() slot
     imageTimer = new QTimer(this);
     connect(imageTimer, SIGNAL(timeout()), this, SLOT(ProcessVideo()));
     imageTimer->start();
@@ -76,6 +80,7 @@ void MainWindow::ProcessVideo(){
     // Check if we achieved the end of the file (e.g. ActualFrame.data is empty)
     if (!ActualFrame.data){
         cout << "The processing has finished" << endl;
+        Video.VideoStatsFile.close();
         imageTimer->blockSignals(true);
         return;
     }
@@ -108,7 +113,9 @@ void MainWindow::ProcessVideo(){
     // Compute the processing time per frame
     clock_t end = clock();
     double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-    //cout << "Frame " << ss.str() << ". Processing time = " << setprecision(4) << elapsed_secs << " s."  << endl;
+
+    // Save measures to .txt file
+    Video.VideoStatsFile << ss.str() << "       " << elapsed_secs << endl;
 
 
 }
