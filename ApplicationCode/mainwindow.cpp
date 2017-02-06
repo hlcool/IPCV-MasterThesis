@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "videofile.h"
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -16,7 +17,7 @@
 using namespace std;
 using namespace cv;
 
-VideoCapture cap;
+VideoFile Video;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -33,34 +34,26 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionOpen_file_triggered()
 {
-    // Flag used to enable the QFile dialog or just select always the same video
-    // 0 - Automatically selects the video from the path
-    // 1 - Enables the QFileDialog
-    int ProgramFlag = 0;
 
     // Global Path variable should be change if used in other computer
     QString GlobalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode";
-    string InputVideo;
 
     if (ProgramFlag) {
         // Get a filename to open
         QString filePath = QFileDialog::getOpenFileName(this, tr("Open Image"), GlobalPath, tr("Video Files (*.mpg *.avi)"));
         // Convert QString to std::string
-        InputVideo = filePath.toStdString();
+        Video.InputPath = filePath.toStdString();
     }
     else {
-        InputVideo = GlobalPath.toStdString() + "/Inputs/Vid1.mpg";
+        Video.InputPath = GlobalPath.toStdString() + "/Inputs/Vid1.mpg";
     }
 
-    // Open the videofile to check if it exists
-    cap.open(InputVideo);
-    if (!cap.isOpened()) {
-        cout << "Could not open video file " << InputVideo << endl;
-        return;
-    }
+    Video.VideoOpenning(Video.InputPath);
 
     cout << "Video opened correctly" << endl;
+
     cout << "Video processing starts" << endl;
+
 
     // Timer to launch the Process Video slot
     imageTimer = new QTimer(this);
@@ -73,11 +66,12 @@ void MainWindow::on_actionOpen_file_triggered()
 
 void MainWindow::ProcessVideo(){
 
+
     // Start the clock for measuring frame consumption
     clock_t begin = clock();
 
     Mat ActualFrame;
-    cap >> ActualFrame; // Get first video frame
+    Video.cap >> ActualFrame; // Get first video frame
 
     // Check if we achieved the end of the file (e.g. ActualFrame.data is empty)
     if (!ActualFrame.data){
@@ -94,6 +88,7 @@ void MainWindow::ProcessVideo(){
     /* -----------------------*/
 
 
+
     int Height = ui->CVWidget->height();
     int Width  = ui->CVWidget->width();
 
@@ -102,8 +97,8 @@ void MainWindow::ProcessVideo(){
 
     // Extract Frame number
     stringstream ss;
-    ss << cap.get(CAP_PROP_POS_FRAMES);
-    putText(ActualFrame, ss.str().c_str(), cv::Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255)); //text in red
+    ss << Video.cap.get(CAP_PROP_POS_FRAMES);
+    putText(ActualFrame, ss.str().c_str(), Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255)); //text in red
 
 
     ui->CVWidget->showImage(ActualFrame);
@@ -113,6 +108,8 @@ void MainWindow::ProcessVideo(){
     // Compute the processing time per frame
     clock_t end = clock();
     double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-    cout << "Frame " << ss.str() << ". Processing time = " << setprecision(4) << elapsed_secs << " s."  << endl;
+    //cout << "Frame " << ss.str() << ". Processing time = " << setprecision(4) << elapsed_secs << " s."  << endl;
+
 
 }
+

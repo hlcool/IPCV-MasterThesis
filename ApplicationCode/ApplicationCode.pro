@@ -24,10 +24,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    videofile.cpp
 
 HEADERS  += mainwindow.h \
-    cvimagewidget.h
+    cvimagewidget.h \
+    videofile.h
 
 FORMS    += mainwindow.ui
 

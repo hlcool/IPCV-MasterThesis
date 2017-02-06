@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTimer>
 
 namespace Ui {
 class MainWindow;
@@ -14,10 +15,15 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    QTimer* imageTimer;
+
+    // Flag used to enable the QFile dialog or just select always the same video
+    // 0 - Automatically selects the video from the path
+    // 1 - Enables the QFileDialog
+    int ProgramFlag = 0;
 
 private:
     Ui::MainWindow *ui;
+    QTimer* imageTimer;
 
 public slots:
     void ProcessVideo();
