@@ -19,7 +19,6 @@ using namespace cv;
 
 VideoFile Video;
 
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -51,8 +50,7 @@ void MainWindow::on_actionOpen_file_triggered()
 
     Video.VideoOpenning(Video.InputPath);
 
-    cout << "Video opened correctly" << endl;
-
+    cout << "Video opened correctly"  << endl;
     cout << "Video processing starts" << endl;
 
     // Create and open the statistics file
@@ -63,7 +61,6 @@ void MainWindow::on_actionOpen_file_triggered()
     imageTimer = new QTimer(this);
     connect(imageTimer, SIGNAL(timeout()), this, SLOT(ProcessVideo()));
     imageTimer->start();
-
 
 }
 
@@ -90,9 +87,8 @@ void MainWindow::ProcessVideo(){
     /* -----------------------*/
 
 
+
     /* -----------------------*/
-
-
 
     WidgetHeight = ui->CVWidget->height();
     WidgetWidth  = ui->CVWidget->width();
@@ -105,10 +101,11 @@ void MainWindow::ProcessVideo(){
     ss << Video.cap.get(CAP_PROP_POS_FRAMES);
     putText(ActualFrame, ss.str().c_str(), Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
 
-
     ui->CVWidget->showImage(ActualFrame);
-    // Pause to control the frame rate of the video
-    //waitKey(40);
+
+    // Pause to control the frame rate of the video when the option button is checked
+    if (ui->RealTimeButton->isChecked())
+        waitKey(30);
 
     // Compute the processing time per frame
     clock_t end = clock();
@@ -117,6 +114,4 @@ void MainWindow::ProcessVideo(){
     // Save measures to .txt file
     Video.VideoStatsFile << ss.str() << "       " << elapsed_secs << endl;
 
-
 }
-
