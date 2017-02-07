@@ -83,7 +83,7 @@ void MainWindow::ProcessVideo(){
     }
 
 
-        /* MAIN ALGORITHM*/
+        /* MAIN ALGORITHM */
     /* -----------------------*/
 
 

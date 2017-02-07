@@ -20,7 +20,7 @@ void VideoFile::VideoOpenning(string InputPath)
     Width = cap.get(CV_CAP_PROP_FRAME_WIDTH);
     Height = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
     FrameRate = cap.get(CV_CAP_PROP_FPS);
-    FrameNumber= cap.get(CV_CAP_PROP_FRAME_COUNT);
+    FrameNumber = cap.get(CV_CAP_PROP_FRAME_COUNT);
 
     // Display information
     cout << "The video to process has the following information:" << endl;
