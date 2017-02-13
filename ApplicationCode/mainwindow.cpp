@@ -40,12 +40,13 @@ void MainWindow::on_actionOpen_file_triggered()
 
     if (ProgramFlag) {
         // Get a filename to open
-        QString filePath = QFileDialog::getOpenFileName(this, tr("Open Image"), GlobalPath, tr("Video Files (*.mpg *.avi)"));
+        QString filePath = QFileDialog::getOpenFileName(this, tr("Open Image"), GlobalPath, tr("Video Files (*.mpg *.avi *.m4v *.ts)"));
         // Convert QString to std::string
         Video.InputPath = filePath.toStdString();
     }
     else {
-        Video.InputPath = GlobalPath.toStdString() + "/Inputs/Vid1.mpg";
+        //Video.InputPath = GlobalPath.toStdString() + "/Inputs/Vid1.mpg";
+        Video.InputPath = "/Users/alex/Desktop/Hall1.mpg";
     }
 
     Video.VideoOpenning(Video.InputPath);
@@ -71,11 +72,10 @@ void MainWindow::ProcessVideo(){
     // Start the clock for measuring frame consumption
     clock_t begin = clock();
 
-    Mat ActualFrame;
-    Video.cap >> ActualFrame; // Get first video frame
+    Video.cap >> Video.ActualFrame; // Get first video frame
 
     // Check if we achieved the end of the file (e.g. ActualFrame.data is empty)
-    if (!ActualFrame.data){
+    if (!Video.ActualFrame.data){
         cout << "The processing has finished" << endl;
         Video.VideoStatsFile.close();
         imageTimer->blockSignals(true);
@@ -86,22 +86,27 @@ void MainWindow::ProcessVideo(){
         /* MAIN ALGORITHM */
     /* -----------------------*/
 
+    // Frame Enhancement
+    Video.imageEnhancement(Video.ActualFrame);
+
+    // People detection
+    Video.HOGPeopleDetection(Video.ActualFrame);
 
 
     /* -----------------------*/
 
+    // Resize the video for displaying to the size of the widget
     WidgetHeight = ui->CVWidget->height();
     WidgetWidth  = ui->CVWidget->width();
+    cv::resize(Video.ActualFrame, Video.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
 
-    // Resize the video for displaying to the size of the widget
-    cv::resize(ActualFrame, ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
-
-    // Extract Frame number and write it in red
+    // Extract Frame number and write it on the frame
     stringstream ss;
     ss << Video.cap.get(CAP_PROP_POS_FRAMES);
-    putText(ActualFrame, ss.str().c_str(), Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
+    putText(Video.ActualFrame, ss.str().c_str(), Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
 
-    ui->CVWidget->showImage(ActualFrame);
+    // Method to display the frame in the CVWidget
+    ui->CVWidget->showImage(Video.ActualFrame);
 
     // Pause to control the frame rate of the video when the option button is checked
     if (ui->RealTimeButton->isChecked())

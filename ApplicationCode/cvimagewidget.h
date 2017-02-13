@@ -37,9 +37,6 @@ public slots:
         // (http://qt-project.org/doc/qt-4.8/qimage.html#QImage-6) is 3*width because each pixel
         // has three bytes.
         qImage = QImage(tmpImage.data, tmpImage.cols, tmpImage.rows, tmpImage.cols*3, QImage::Format_RGB888);
-
-        //this->setFixedSize(image.cols, image.rows);
-
         repaint();
     }
 

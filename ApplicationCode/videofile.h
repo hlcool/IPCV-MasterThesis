@@ -22,8 +22,16 @@ public:
 
     VideoCapture cap;
     void VideoOpenning(string InputPath);
+    // Mat to store the frame to process
+    Mat ActualFrame;
 
+    // Txt file to extract and save information
     ofstream VideoStatsFile;
+
+    void imageEnhancement(Mat ActuaFrame);
+    void HOGPeopleDetection(Mat ActualFrame);
+    void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh);
+
 };
 
 #endif // VIDEOFILE_H
