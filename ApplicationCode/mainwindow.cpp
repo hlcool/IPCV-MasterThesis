@@ -86,12 +86,16 @@ void MainWindow::ProcessVideo(){
         /* MAIN ALGORITHM */
     /* -----------------------*/
 
+    // Compute Background Mask
+    Video.pMOG2->apply(Video.ActualFrame, Video.BackgroundMask);
+    // Improve the mask
+    Video.maskEnhancement(Video.BackgroundMask);
+
+
     // Frame Enhancement
     Video.imageEnhancement(Video.ActualFrame);
-
     // People detection
     Video.HOGPeopleDetection(Video.ActualFrame);
-
 
     /* -----------------------*/
 
@@ -99,6 +103,7 @@ void MainWindow::ProcessVideo(){
     WidgetHeight = ui->CVWidget->height();
     WidgetWidth  = ui->CVWidget->width();
     cv::resize(Video.ActualFrame, Video.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
+    cv::resize(Video.BackgroundMask, Video.BackgroundMask, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
 
     // Extract Frame number and write it on the frame
     stringstream ss;
@@ -107,6 +112,7 @@ void MainWindow::ProcessVideo(){
 
     // Method to display the frame in the CVWidget
     ui->CVWidget->showImage(Video.ActualFrame);
+    ui->CVWidget2->showImage(Video.BackgroundMask);
 
     // Pause to control the frame rate of the video when the option button is checked
     if (ui->RealTimeButton->isChecked())

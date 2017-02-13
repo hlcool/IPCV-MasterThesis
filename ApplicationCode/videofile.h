@@ -24,10 +24,15 @@ public:
     void VideoOpenning(string InputPath);
     // Mat to store the frame to process
     Mat ActualFrame;
+    Mat BackgroundMask;
 
     // Txt file to extract and save information
     ofstream VideoStatsFile;
 
+    // Mixture Of Gaussians Background Substractor
+    Ptr<BackgroundSubtractor> pMOG2 = createBackgroundSubtractorMOG2();
+
+    void maskEnhancement(Mat BackgroundMask);
     void imageEnhancement(Mat ActuaFrame);
     void HOGPeopleDetection(Mat ActualFrame);
     void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh);

@@ -35,14 +35,6 @@ void VideoFile::VideoOpenning(string InputPath)
 
 }
 
-void VideoFile::imageEnhancement(Mat ActuaFrame)
-{
-    // Increase video size
-    cv::resize(ActualFrame, ActualFrame, {ActualFrame.cols*2, ActualFrame.rows*2}, INTER_LANCZOS4);
-    // Remove artifacts by a low-pass filtering
-    cv::GaussianBlur(ActualFrame, ActualFrame, Size(1,1), 15);
-}
-
 void VideoFile::HOGPeopleDetection(Mat ActualFrame)
 {
 
@@ -119,4 +111,25 @@ void VideoFile::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &r
     }
 }
 
+void VideoFile::maskEnhancement(Mat BackgroundMask)
+{
+    // Dilatation and Erosion kernels
+    Mat kernel_di = getStructuringElement(MORPH_ELLIPSE, Size(3, 3), Point(-1, -1));
+    Mat kernel_ero = getStructuringElement(MORPH_ELLIPSE, Size(2, 2), Point(-1, -1));
+
+    // Remove shadows from the mask. Only foreground
+    threshold(BackgroundMask, BackgroundMask, 250, 255, THRESH_BINARY);
+
+    // Opening operation
+    erode(BackgroundMask, BackgroundMask, kernel_ero, Point(-1, -1));
+    dilate(BackgroundMask, BackgroundMask, kernel_di, Point(-1, -1));
+}
+
+void VideoFile::imageEnhancement(Mat ActuaFrame)
+{
+    // Increase video size
+    cv::resize(ActualFrame, ActualFrame, {ActualFrame.cols*2, ActualFrame.rows*2}, INTER_LANCZOS4);
+    // Remove artifacts by a low-pass filtering
+    cv::GaussianBlur(ActualFrame, ActualFrame, Size(1,1), 15);
+}
 
