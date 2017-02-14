@@ -37,6 +37,9 @@ public:
     void HOGPeopleDetection(Mat ActualFrame);
     void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh);
 
+    // Flag to cout only once
+    int FlagCOUT = 1;
+
 };
 
 #endif // VIDEOFILE_H

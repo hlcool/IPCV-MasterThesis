@@ -14,7 +14,6 @@ using namespace cv;
 
 void VideoFile::VideoOpenning(string InputPath)
 {
-
     // Open the videofile to check if it exists
     cap.open(InputPath);
     if (!cap.isOpened()) {
@@ -32,15 +31,23 @@ void VideoFile::VideoOpenning(string InputPath)
     cout << "The video to process has the following information:" << endl;
     cout << "Width: " << Width << ". Heigth: " << Height << ". Frames/second: " << FrameRate << endl;
     cout << "The total number of frames is: " << FrameNumber << endl;
-
 }
 
 void VideoFile::HOGPeopleDetection(Mat ActualFrame)
 {
-
     // initialize the HOG descriptor/person detector
     HOGDescriptor HOG;
     HOG.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
+
+    // Display information about HOG parameters
+    if (FlagCOUT == 1){
+        cout << "Hog block size: " << HOG.blockSize << endl;
+        cout << "Hog cell size: " << HOG.cellSize << endl;
+        cout << "Hog number of levels: " << HOG.nlevels << endl;
+        cout << "Hog number of bins: " << HOG.nbins << endl;
+        cout << "Hog window size: " << HOG.winSize << endl;
+        FlagCOUT = 0;
+    }
 
     vector<Rect> BoundingBoxes;
     vector<Rect> BoundingBoxesNMS;
@@ -60,7 +67,6 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
         r.height = cvRound(r.height*0.8);
         rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
     }
-
 }
 
 void VideoFile::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh)
@@ -131,5 +137,12 @@ void VideoFile::imageEnhancement(Mat ActuaFrame)
     cv::resize(ActualFrame, ActualFrame, {ActualFrame.cols*2, ActualFrame.rows*2}, INTER_LANCZOS4);
     // Remove artifacts by a low-pass filtering
     cv::GaussianBlur(ActualFrame, ActualFrame, Size(1,1), 15);
+
+    Width = ActualFrame.cols;
+    Height = ActualFrame.rows;
+    if (FlagCOUT == 1){
+        cout << "The video has been resize to:" << endl;
+        cout << "Width: " << Width << ". Heigth: " << Height << endl;
+    }
 }
 
