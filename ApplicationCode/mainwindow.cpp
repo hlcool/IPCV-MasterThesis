@@ -73,6 +73,7 @@ void MainWindow::ProcessVideo(){
     clock_t begin = clock();
 
     Video.cap >> Video.ActualFrame; // Get first video frame
+    Video.ActualFrame.copyTo(Video.ActualFrame2);
 
     // Check if we achieved the end of the file (e.g. ActualFrame.data is empty)
     if (!Video.ActualFrame.data){
@@ -96,6 +97,7 @@ void MainWindow::ProcessVideo(){
     Video.imageEnhancement(Video.ActualFrame);
     // People detection
     Video.HOGPeopleDetection(Video.ActualFrame);
+    Video.HaarPeopleDetection(Video.ActualFrame2);
 
     /* -----------------------*/
 
@@ -103,6 +105,7 @@ void MainWindow::ProcessVideo(){
     WidgetHeight = ui->CVWidget->height();
     WidgetWidth  = ui->CVWidget->width();
     cv::resize(Video.ActualFrame, Video.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
+    cv::resize(Video.ActualFrame2, Video.ActualFrame2, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
     cv::resize(Video.BackgroundMask, Video.BackgroundMask, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
 
     // Extract Frame number and write it on the frame
@@ -112,7 +115,9 @@ void MainWindow::ProcessVideo(){
 
     // Method to display the frame in the CVWidget
     ui->CVWidget->showImage(Video.ActualFrame);
+    ui->CVWidget3->showImage(Video.ActualFrame2);
     ui->CVWidget2->showImage(Video.BackgroundMask);
+
 
     // Pause to control the frame rate of the video when the option button is checked
     if (ui->RealTimeButton->isChecked())

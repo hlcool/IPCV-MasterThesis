@@ -45,8 +45,7 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
         cout << "Hog cell size: " << HOG.cellSize << endl;
         cout << "Hog number of levels: " << HOG.nlevels << endl;
         cout << "Hog number of bins: " << HOG.nbins << endl;
-        cout << "Hog window size: " << HOG.winSize << endl;
-        FlagCOUT = 0;
+        cout << "Hog window size: " << HOG.winSize << endl;FlagCOUT = 0;
     }
 
     vector<Rect> BoundingBoxes;
@@ -55,7 +54,6 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
     HOG.detectMultiScale(ActualFrame, BoundingBoxes, 0, Size(8, 8), Size(32, 32), 1.1, 2);
     non_max_suppresion(BoundingBoxes, BoundingBoxesNMS, 0.65);
 
-    //cout << "Numero de BB encontrados: " << BoundingBoxes.size()  << endl;
     for (size_t i = 0; i < BoundingBoxesNMS.size(); i++)
     {
         Rect r = BoundingBoxesNMS[i];
@@ -67,6 +65,39 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
         r.height = cvRound(r.height*0.8);
         rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
     }
+}
+
+void VideoFile::HaarPeopleDetection(Mat ActualFrame)
+{
+    // Prepare cascadeClassifier
+    CascadeClassifier detectorBody;
+    string cascadeFile = "haarcascade_fullbody.xml";
+    bool loaded1 = detectorBody.load(cascadeFile);
+
+    if (!loaded1) {
+        cout << cascadeFile << " file could not be opened" << endl;
+        return;
+    }
+
+    vector<Rect> BoundingBoxes;
+    vector<Rect> BoundingBoxesNMS;
+
+    detectorBody.detectMultiScale(ActualFrame, BoundingBoxes, 1.1, 2, 0 | 1, Size(40,70), Size(80, 300));
+    non_max_suppresion(BoundingBoxes, BoundingBoxesNMS, 0.65);
+
+    for (size_t i = 0; i < BoundingBoxesNMS.size(); i++)
+    {
+        Rect r = BoundingBoxesNMS[i];
+        // The HOG detector returns slightly larger rectangles than the real objects.
+        // so we slightly shrink the rectangles to get a nicer output.
+        r.x += cvRound(r.width*0.1);
+        r.width = cvRound(r.width*0.8);
+        r.y += cvRound(r.height*0.07);
+        r.height = cvRound(r.height*0.8);
+        rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
+    }
+
+
 }
 
 void VideoFile::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh)
