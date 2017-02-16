@@ -24,6 +24,7 @@ public:
     void VideoOpenning(string InputPath);
     // Mat to store the frame to process
     Mat ActualFrame;
+    Mat ActualFrameRCNN;
     Mat BackgroundMask;
 
     // Txt file to extract and save information

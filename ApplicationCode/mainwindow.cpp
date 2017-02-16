@@ -72,6 +72,10 @@ void MainWindow::ProcessVideo(){
     clock_t begin = clock();
 
     Video.cap >> Video.ActualFrame; // Get first video frame
+    Video.ActualFrame.copyTo(Video.ActualFrameRCNN);
+
+    stringstream ss;
+    ss << Video.cap.get(CAP_PROP_POS_FRAMES);
 
     // Check if we achieved the end of the file (e.g. ActualFrame.data is empty)
     if (!Video.ActualFrame.data){
@@ -101,6 +105,8 @@ void MainWindow::ProcessVideo(){
 
 
     // FastRCNN Detector
+    Video.FastRCNNPeopleDetection(Video.ActualFrameRCNN, ss.str());
+
     /* -----------------------*/
 
     // Resize the video for displaying to the size of the widget
@@ -110,8 +116,6 @@ void MainWindow::ProcessVideo(){
     cv::resize(Video.BackgroundMask, Video.BackgroundMask, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
 
     // Extract Frame number and write it on the frame
-    stringstream ss;
-    ss << Video.cap.get(CAP_PROP_POS_FRAMES);
     putText(Video.ActualFrame, ss.str().c_str(), Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
 
     // Method to display the frame in the CVWidget
