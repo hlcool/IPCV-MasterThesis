@@ -32,7 +32,7 @@ public:
     // Mixture Of Gaussians Background Substractor
     Ptr<BackgroundSubtractor> pMOG2 = createBackgroundSubtractorMOG2();
 
-    // Vector to store the read bounding boxes and its scores
+    // Vector to store the read FastRCNN bounding boxes and its scores
     vector<Rect> RCNNBoundingBoxes;
     vector<double> RCNNScores;
 
@@ -40,6 +40,7 @@ public:
     void maskEnhancement(Mat BackgroundMask);
     void imageEnhancement(Mat ActuaFrame);
     void HOGPeopleDetection(Mat ActualFrame);
+    void FastRCNNPeopleDetection(Mat ActualFrame, string FrameNumber);
     void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh);
 
     // Flag to cout only once

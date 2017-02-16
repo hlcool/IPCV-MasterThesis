@@ -148,7 +148,7 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
     for (size_t i = 0; i < BoundingBoxesNMS.size(); i++)
     {
         Rect r = BoundingBoxesNMS[i];
-        // the HOG detector returns slightly larger rectangles than the real objects.
+        // The HOG detector returns slightly larger rectangles than the real objects.
         // so we slightly shrink the rectangles to get a nicer output.
         r.x += cvRound(r.width*0.1);
         r.width = cvRound(r.width*0.8);
@@ -156,6 +156,26 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
         r.height = cvRound(r.height*0.8);
         rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
     }
+}
+
+void VideoFile::FastRCNNPeopleDetection(Mat ActualFrame, string FrameNumber)
+{
+    // Decode de txt file for the desired frame number
+    string FileName;
+    decodeBlobFile(FileName, FrameNumber);
+
+    // Filter blobs by score //
+
+    vector<Rect> BoundingBoxesNMS;
+    non_max_suppresion(RCNNBoundingBoxes, BoundingBoxesNMS, 0.65);
+
+    for (size_t i = 0; i < BoundingBoxesNMS.size(); i++)
+    {
+        Rect r = BoundingBoxesNMS[i];
+        rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
+    }
+
+
 }
 
 void VideoFile::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh)
