@@ -1,7 +1,7 @@
 function [ ] = ExportDetections( fid, Detections, FrameNumber )
 % Function to write into a txt file (fid) the detections for a frame
 
-fprintf( fid, '%i', FrameNumber);
+fprintf( fid, 'Frame%i', FrameNumber);
 for Blob = 1 : size(Detections, 1)
     x1 = Detections(Blob,1);
     y1 = Detections(Blob,2);
