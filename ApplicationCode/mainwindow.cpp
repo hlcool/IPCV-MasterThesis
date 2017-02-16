@@ -68,7 +68,6 @@ void MainWindow::on_actionOpen_file_triggered()
 
 void MainWindow::ProcessVideo(){
 
-
     // Start the clock for measuring frame consumption
     clock_t begin = clock();
 
@@ -86,17 +85,22 @@ void MainWindow::ProcessVideo(){
         /* MAIN ALGORITHM */
     /* -----------------------*/
 
+    // BACKGROUND SUBSTRACTION //
+
     // Compute Background Mask
     Video.pMOG2->apply(Video.ActualFrame, Video.BackgroundMask);
     // Improve the mask
     Video.maskEnhancement(Video.BackgroundMask);
 
+    // PEOPLE DETECTION //
 
     // Frame Enhancement
     Video.imageEnhancement(Video.ActualFrame);
-    // People detection
+    // HOG Detector
     Video.HOGPeopleDetection(Video.ActualFrame);
 
+
+    // FastRCNN Detector
     /* -----------------------*/
 
     // Resize the video for displaying to the size of the widget

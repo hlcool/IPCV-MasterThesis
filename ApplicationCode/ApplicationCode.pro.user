@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.2.1, 2017-02-06T12:59:21. -->
+<!-- Written by QtCreator 4.2.1, 2017-02-16T11:08:51. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -306,7 +306,7 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes">
      <value type="QString">DYLD_LIBRARY_PATH</value>
-     <value type="QString">DYLD_FRAMEWORK_PATH=/Applications/QT/5.8/clang_64/lib:/usr/local/lib:/usr/local/bin/pkg-config</value>
+     <value type="QString">DYLD_FRAMEWORK_PATH=/Applications/QT/5.8/clang_64/lib:/usr/local/lib:/usr/local/bin/pkg-config:/usr/local/bin</value>
     </valuelist>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">ApplicationCode</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>

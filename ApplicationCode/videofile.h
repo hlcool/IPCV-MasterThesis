@@ -32,6 +32,11 @@ public:
     // Mixture Of Gaussians Background Substractor
     Ptr<BackgroundSubtractor> pMOG2 = createBackgroundSubtractorMOG2();
 
+    // Vector to store the read bounding boxes and its scores
+    vector<Rect> RCNNBoundingBoxes;
+    vector<double> RCNNScores;
+
+    void decodeBlobFile(string FileName, string FrameNumber);
     void maskEnhancement(Mat BackgroundMask);
     void imageEnhancement(Mat ActuaFrame);
     void HOGPeopleDetection(Mat ActualFrame);

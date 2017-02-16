@@ -2,15 +2,19 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <stdio.h>
+#include <stdlib.h>
 #include <opencv2/opencv.hpp>
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/objdetect/objdetect.hpp"
+#include <boost/lexical_cast.hpp>
 
 VideoFile::VideoFile(){}
 VideoFile::~VideoFile(){}
 
 using namespace cv;
+using namespace std;
 
 void VideoFile::VideoOpenning(string InputPath)
 {
@@ -31,6 +35,91 @@ void VideoFile::VideoOpenning(string InputPath)
     cout << "The video to process has the following information:" << endl;
     cout << "Width: " << Width << ". Heigth: " << Height << ". Frames/second: " << FrameRate << endl;
     cout << "The total number of frames is: " << FrameNumber << endl;
+}
+
+void VideoFile::decodeBlobFile(string FileName, string FrameNumber)
+{
+    std::ifstream input(FileName);
+
+    // Auxiliary variables to store the information
+    string AuxString;
+    int x2, y2;
+    double Score;
+    Rect RectAux;
+    size_t found;
+    int Counter = 0;
+    int LineCounter = 0;
+
+    // Start decoding the file
+    while (input >> AuxString){
+
+        if (AuxString.find("Frame") != std::string::npos)
+        {
+            // Check if the desired line has been read and so
+            // exit the function
+            if (LineCounter == atoi(FrameNumber.c_str()))
+                return;
+
+            LineCounter++;
+        }
+
+        if (LineCounter == atoi(FrameNumber.c_str()))
+        {
+            //cout << AuxString << endl;
+            switch(Counter)
+            {
+            case 0:
+                Counter++;
+                break;
+            case 1:
+                // Case for x1
+                found = AuxString.find(',');
+                AuxString = AuxString.substr(1, found - 1 );
+                RectAux.x = atoi(AuxString.c_str());
+                Counter++;
+                break;
+            case 2:
+                // Case for y1
+                found = AuxString.find(',');
+                AuxString = AuxString.substr(0, found);
+                RectAux.y = atoi(AuxString.c_str());
+                Counter++;
+                break;
+            case 3:
+                // Case for x2
+                found = AuxString.find(',');
+                AuxString = AuxString.substr(0, found);
+                x2 = atoi(AuxString.c_str());
+                Counter++;
+                break;
+            case 4:
+                // Case for y2
+                found = AuxString.find(']');
+                AuxString = AuxString.substr(0, found);
+                y2 = atoi(AuxString.c_str());
+                Counter++;
+                break;
+            case 5:
+                // Case for "Score:"
+                Counter++;
+                break;
+            case 6:
+                // Case for score
+                Score = boost::lexical_cast<double>(AuxString);
+
+                // Save blob information into class variables
+                RectAux.width = x2 - RectAux.x;
+                RectAux.height = y2 - RectAux.y;
+                RCNNBoundingBoxes.push_back(RectAux);
+                RCNNScores.push_back(Score);
+
+                // Restart the couter to read another blob
+                Counter = 1;
+                break;
+
+            }
+        }
+    }
 }
 
 void VideoFile::HOGPeopleDetection(Mat ActualFrame)
@@ -141,8 +230,7 @@ void VideoFile::imageEnhancement(Mat ActuaFrame)
     Width = ActualFrame.cols;
     Height = ActualFrame.rows;
     if (FlagCOUT == 1){
-        cout << "The video has been resize to:" << endl;
-        cout << "Width: " << Width << ". Heigth: " << Height << endl;
+        cout << "The video has been resize to " << "Width: " << Width << ". Heigth: " << Height << endl;
     }
 }
 
