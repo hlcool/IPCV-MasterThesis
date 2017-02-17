@@ -22,7 +22,7 @@ void VideoFile::VideoOpenning(string InputPath)
     cap.open(InputPath);
     if (!cap.isOpened()) {
         cout << "Could not open video file " << InputPath << endl;
-        return;
+        exit(EXIT_FAILURE);
     }
 
     // Extract information from VideoCapture
@@ -40,6 +40,12 @@ void VideoFile::VideoOpenning(string InputPath)
 void VideoFile::decodeBlobFile(string FileName, string FrameNumber)
 {
     ifstream input(FileName);
+
+    if (!input) {
+      // The file does not exists
+        cout << "The file containing the FastRCNN blobs does not exist" << endl;
+        exit(EXIT_FAILURE);
+    }
 
     // Auxiliary variables to store the information
     string AuxString;
@@ -167,10 +173,7 @@ void VideoFile::FastRCNNPeopleDetection(Mat ActualFrame, string FrameNumber)
     // Filter blobs by score //
 
     vector<Rect> BoundingBoxesNMS;
-    BoundingBoxesNMS = RCNNBoundingBoxes;
-    //non_max_suppresion(RCNNBoundingBoxes, BoundingBoxesNMS, 0.65);
-
-    cout << "RCNN blobs: " << BoundingBoxesNMS.size() << endl;
+    non_max_suppresion(RCNNBoundingBoxes, BoundingBoxesNMS, 0.65);
 
     for (size_t i = 0; i < BoundingBoxesNMS.size(); i++)
     {
@@ -236,10 +239,10 @@ void VideoFile::maskEnhancement(Mat BackgroundMask)
     Mat kernel_di = getStructuringElement(MORPH_ELLIPSE, Size(3, 3), Point(-1, -1));
     Mat kernel_ero = getStructuringElement(MORPH_ELLIPSE, Size(2, 2), Point(-1, -1));
 
-    // Remove shadows from the mask. Only foreground
+    // Remove shadows from the mask. Only foreground is saved
     threshold(BackgroundMask, BackgroundMask, 250, 255, THRESH_BINARY);
 
-    // Opening operation
+    // Opening morphological operation
     erode(BackgroundMask, BackgroundMask, kernel_ero, Point(-1, -1));
     dilate(BackgroundMask, BackgroundMask, kernel_di, Point(-1, -1));
 }
@@ -248,7 +251,7 @@ void VideoFile::imageEnhancement(Mat ActuaFrame)
 {
     // Increase video size
     cv::resize(ActualFrame, ActualFrame, {ActualFrame.cols*2, ActualFrame.rows*2}, INTER_LANCZOS4);
-    // Remove artifacts by a low-pass filtering
+    // Remove interpolation artifacts by a low-pass filtering
     cv::GaussianBlur(ActualFrame, ActualFrame, Size(1,1), 15);
 
     Width = ActualFrame.cols;

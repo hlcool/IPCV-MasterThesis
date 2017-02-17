@@ -45,8 +45,7 @@ void MainWindow::on_actionOpen_file_triggered()
         Video.InputPath = filePath.toStdString();
     }
     else {
-        //Video.InputPath = GlobalPath.toStdString() + "/Inputs/Vid1.mpg";
-        Video.InputPath = "/Users/alex/Desktop/Hall1.mpg";
+        Video.InputPath = GlobalPath.toStdString() + "/Inputs/HallCutted.mpg";
     }
 
     Video.VideoOpenning(Video.InputPath);
@@ -72,7 +71,7 @@ void MainWindow::ProcessVideo(){
     clock_t begin = clock();
 
     Video.cap >> Video.ActualFrame; // Get first video frame
-    Video.ActualFrame.copyTo(Video.ActualFrameRCNN);
+
 
     stringstream ss;
     ss << Video.cap.get(CAP_PROP_POS_FRAMES);
@@ -86,33 +85,42 @@ void MainWindow::ProcessVideo(){
     }
 
 
+    /* -----------------------*/
         /* MAIN ALGORITHM */
     /* -----------------------*/
 
+    // ----------------------- //
     // BACKGROUND SUBSTRACTION //
+    // ----------------------- //
 
     // Compute Background Mask
     Video.pMOG2->apply(Video.ActualFrame, Video.BackgroundMask);
-    // Improve the mask
+    // Improve Background Mask
     Video.maskEnhancement(Video.BackgroundMask);
 
-    // PEOPLE DETECTION //
+    // ----------------------- //
+    //     PEOPLE DETECTION    //
+    // ----------------------- //
 
-    // Frame Enhancement
+    // Frames Enhancement
     Video.imageEnhancement(Video.ActualFrame);
+    Video.ActualFrame.copyTo(Video.ActualFrameRCNN);
+
     // HOG Detector
     Video.HOGPeopleDetection(Video.ActualFrame);
-
 
     // FastRCNN Detector
     Video.FastRCNNPeopleDetection(Video.ActualFrameRCNN, ss.str());
 
     /* -----------------------*/
+    /* -----------------------*/
+
 
     // Resize the video for displaying to the size of the widget
     WidgetHeight = ui->CVWidget->height();
     WidgetWidth  = ui->CVWidget->width();
     cv::resize(Video.ActualFrame, Video.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
+    cv::resize(Video.ActualFrameRCNN, Video.ActualFrameRCNN, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
     cv::resize(Video.BackgroundMask, Video.BackgroundMask, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
 
     // Extract Frame number and write it on the frame
@@ -120,6 +128,7 @@ void MainWindow::ProcessVideo(){
 
     // Method to display the frame in the CVWidget
     ui->CVWidget->showImage(Video.ActualFrame);
+    ui->CVWidget3->showImage(Video.ActualFrameRCNN);
     ui->CVWidget2->showImage(Video.BackgroundMask);
 
     // Pause to control the frame rate of the video when the option button is checked
