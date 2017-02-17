@@ -39,7 +39,7 @@ void VideoFile::VideoOpenning(string InputPath)
 
 void VideoFile::decodeBlobFile(string FileName, string FrameNumber)
 {
-    std::ifstream input(FileName);
+    ifstream input(FileName);
 
     // Auxiliary variables to store the information
     string AuxString;
@@ -65,7 +65,7 @@ void VideoFile::decodeBlobFile(string FileName, string FrameNumber)
 
         if (LineCounter == atoi(FrameNumber.c_str()))
         {
-            //cout << AuxString << endl;
+            //cout << "Line Counter " << LineCounter << ". Frame number: " << atoi(FrameNumber.c_str()) << endl;
             switch(Counter)
             {
             case 0:
@@ -148,7 +148,7 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
     for (size_t i = 0; i < BoundingBoxesNMS.size(); i++)
     {
         Rect r = BoundingBoxesNMS[i];
-        // the HOG detector returns slightly larger rectangles than the real objects.
+        // The HOG detector returns slightly larger rectangles than the real objects.
         // so we slightly shrink the rectangles to get a nicer output.
         r.x += cvRound(r.width*0.1);
         r.width = cvRound(r.width*0.8);
@@ -156,6 +156,30 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
         r.height = cvRound(r.height*0.8);
         rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
     }
+}
+
+void VideoFile::FastRCNNPeopleDetection(Mat ActualFrame, string FrameNumber)
+{
+    // Decode de txt file for the desired frame number
+    string FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/FastRCNNBB.txt";
+    decodeBlobFile(FileName, FrameNumber);
+
+    // Filter blobs by score //
+
+    vector<Rect> BoundingBoxesNMS;
+    BoundingBoxesNMS = RCNNBoundingBoxes;
+    //non_max_suppresion(RCNNBoundingBoxes, BoundingBoxesNMS, 0.65);
+
+    cout << "RCNN blobs: " << BoundingBoxesNMS.size() << endl;
+
+    for (size_t i = 0; i < BoundingBoxesNMS.size(); i++)
+    {
+        Rect r = BoundingBoxesNMS[i];
+        rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
+    }
+
+    RCNNBoundingBoxes.clear();
+    RCNNScores.clear();
 }
 
 void VideoFile::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh)
