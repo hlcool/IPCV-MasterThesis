@@ -5,7 +5,7 @@ close all;
 
 tic
 
-VideoFile = VideoReader('Hall.avi');
+VideoFile = VideoReader('Hall1.mpg');
 
 % Open txt file to save the blobs
 fid = fopen( 'FastRCNNBB.txt', 'wt' );
@@ -19,9 +19,6 @@ while hasFrame(VideoFile)
         
         Image = imresize(Image, 2, 'lanczos3');
         Image = imgaussfilt(Image, 1);
-        
-        figure(1)
-        imshow(Image)
         
         [ Proposals ] = ProposalExtractor( Image );
         

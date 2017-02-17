@@ -52,7 +52,7 @@ end
 sf_model = loadvar(fullfile(mcg_root, 'datasets', 'models', 'sf_modelFinal.mat'),'model');
 
 % Level of overlap to erase duplicates
-J_th = 0.95;
+J_th = 0.85;
 
 % Max margin parameter
 theta = 0.7;

@@ -1,4 +1,4 @@
-function fast_rcnn_mod(Image, Proposals, varargin)
+function fast_rcnn_demo(varargin)
 %FAST_RCNN_DEMO  Demonstrates Fast-RCNN
 %
 % Copyright (C) 2016 Abhishek Dutta and Hakan Bilen.
@@ -47,10 +47,10 @@ net.vars(net.getVarIndex('cls_prob')).precious = 1 ;
 net.vars(net.getVarIndex('bbox_pred')).precious = 1 ;
 
 % Load a test image and candidate bounding boxes.
-im = single(Image) ;
+im = single(imread('000004.jpg')) ;
 imo = im; % keep original image
-boxes = Proposals ;
-boxes = single(boxes') + 1 ;
+boxes = load('000004_boxes.mat') ;
+boxes = single(boxes.boxes') + 1 ;
 boxeso = boxes - 1; % keep original boxes
 
 % Resize images and boxes to a size compatible with the network.

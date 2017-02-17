@@ -1,4 +1,4 @@
-function fast_rcnn_demo(varargin)
+function [Detections] = fast_rcnn_mod(Image, Proposals, varargin)
 %FAST_RCNN_DEMO  Demonstrates Fast-RCNN
 %
 % Copyright (C) 2016 Abhishek Dutta and Hakan Bilen.
@@ -13,9 +13,9 @@ run(fullfile(fileparts(mfilename('fullpath')), ...
 addpath(fullfile(vl_rootnn,'examples','fast_rcnn','bbox_functions')) ;
 
 opts.modelPath = '' ;
-opts.classes = {'car'} ;
+opts.classes = {'person'} ;
 opts.gpu = [] ;
-opts.confThreshold = 0.5 ;
+opts.confThreshold = 0.1 ;
 opts.nmsThreshold = 0.3 ;
 opts = vl_argparse(opts, varargin) ;
 
@@ -47,10 +47,10 @@ net.vars(net.getVarIndex('cls_prob')).precious = 1 ;
 net.vars(net.getVarIndex('bbox_pred')).precious = 1 ;
 
 % Load a test image and candidate bounding boxes.
-im = single(imread('000004.jpg')) ;
+im = single(Image) ;
 imo = im; % keep original image
-boxes = load('000004_boxes.mat') ;
-boxes = single(boxes.boxes') + 1 ;
+boxes = Proposals ;
+boxes = single(boxes') + 1 ;
 boxeso = boxes - 1; % keep original boxes
 
 % Resize images and boxes to a size compatible with the network.
@@ -97,6 +97,8 @@ for i = 1:numel(opts.classes)
   cls_dets = cls_dets(keep, :) ;
 
   sel_boxes = find(cls_dets(:,end) >= opts.confThreshold) ;
+  
+  Detections = cls_dets(sel_boxes,:);
 
   imo = bbox_draw(imo/255,cls_dets(sel_boxes,:));
   title(sprintf('Detections for class ''%s''', opts.classes{i})) ;
