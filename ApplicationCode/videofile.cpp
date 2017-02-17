@@ -42,7 +42,7 @@ void VideoFile::decodeBlobFile(string FileName, string FrameNumber)
     ifstream input(FileName);
 
     if (!input) {
-      // The file does not exists
+        // The file does not exists
         cout << "The file containing the FastRCNN blobs does not exist" << endl;
         exit(EXIT_FAILURE);
     }
@@ -171,14 +171,18 @@ void VideoFile::FastRCNNPeopleDetection(Mat ActualFrame, string FrameNumber)
     decodeBlobFile(FileName, FrameNumber);
 
     // Filter blobs by score //
+    double average = accumulate( RCNNScores.begin(), RCNNScores.end(), 0.0) / RCNNScores.size();
 
     vector<Rect> BoundingBoxesNMS;
-    non_max_suppresion(RCNNBoundingBoxes, BoundingBoxesNMS, 0.65);
+    non_max_suppresion(RCNNBoundingBoxes, BoundingBoxesNMS, 0.6);
 
     for (size_t i = 0; i < BoundingBoxesNMS.size(); i++)
     {
-        Rect r = BoundingBoxesNMS[i];
-        rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
+        if (RCNNScores[i] >= (average - (average * 0.05)) )
+        {
+            Rect r = BoundingBoxesNMS[i];
+            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
+        }
     }
 
     RCNNBoundingBoxes.clear();
