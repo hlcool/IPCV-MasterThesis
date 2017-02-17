@@ -100,15 +100,15 @@ for i = 1:numel(opts.classes)
   
   Detections = cls_dets(sel_boxes,:);
 
-  imo = bbox_draw(imo/255,cls_dets(sel_boxes,:));
-  title(sprintf('Detections for class ''%s''', opts.classes{i})) ;
-
-  fprintf('Detections for category ''%s'':\n', opts.classes{i});
-  for j=1:size(sel_boxes,1)
-    bbox_id = sel_boxes(j,1);
-    fprintf('\t(%.1f,%.1f)\t(%.1f,%.1f)\tprobability=%.6f\n', ...
-            cls_dets(bbox_id,1), cls_dets(bbox_id,2), ...
-            cls_dets(bbox_id,3), cls_dets(bbox_id,4), ...
-            cls_dets(bbox_id,end));
-  end
+%   imo = bbox_draw(imo/255,cls_dets(sel_boxes,:));
+%   title(sprintf('Detections for class ''%s''', opts.classes{i})) ;
+% 
+%   fprintf('Detections for category ''%s'':\n', opts.classes{i});
+%   for j=1:size(sel_boxes,1)
+%     bbox_id = sel_boxes(j,1);
+%     fprintf('\t(%.1f,%.1f)\t(%.1f,%.1f)\tprobability=%.6f\n', ...
+%             cls_dets(bbox_id,1), cls_dets(bbox_id,2), ...
+%             cls_dets(bbox_id,3), cls_dets(bbox_id,4), ...
+%             cls_dets(bbox_id,end));
+%   end
 end

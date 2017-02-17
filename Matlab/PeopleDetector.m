@@ -11,8 +11,8 @@ VideoFile = VideoReader('Hall1.mpg');
 fid = fopen( 'FastRCNNBB.txt', 'wt' );
 FrameNumber = 1;
 while hasFrame(VideoFile)
+    tic
     
-    disp(['Computing frame ' num2str(FrameNumber)]);
     Image = readFrame(VideoFile);
     
     if FrameNumber > 950
@@ -30,6 +30,7 @@ while hasFrame(VideoFile)
         ExportDetections( fid, Detections, FrameNumber );
     end
     FrameNumber = FrameNumber + 1;
+    disp(['Computed frame ' num2str(FrameNumber) ' in ' num2str(toc) ' seconds.']);
 end
 toc
 
