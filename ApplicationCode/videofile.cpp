@@ -40,7 +40,7 @@ void VideoFile::VideoOpenning(string InputPath)
 
 void VideoFile::paintBoundingBoxes(Mat ActualFrame, string Method)
 {
-    if (Method.compare("HOG")) {
+    if (!Method.compare("HOG")) {
         for (size_t i = 0; i < HOGBoundingBoxesNMS.size(); i++) {
             Rect r = HOGBoundingBoxesNMS[i];
             // The HOG detector returns slightly larger rectangles than the real objects.
@@ -55,7 +55,7 @@ void VideoFile::paintBoundingBoxes(Mat ActualFrame, string Method)
         HOGBoundingBoxes.clear();
     }
 
-    else if (Method.compare("FastRCNN")) {
+    else if (!Method.compare("FastRCNN")) {
         for (size_t i = 0; i < RCNNBoundingBoxesNMS.size(); i++) {
             Rect r = RCNNBoundingBoxesNMS[i];
             rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
@@ -264,3 +264,27 @@ void VideoFile::imageEnhancement(Mat ActuaFrame)
     }
 }
 
+void VideoFile::computeHomography(Mat CenitalPlane, Mat CameraFrame)
+{
+
+    // Camera Frame
+    // Four points in the camera frame
+    vector<Point2f> pts_src;
+    pts_src.push_back(Point2f(223, 373));
+    pts_src.push_back(Point2f(558, 393));
+    pts_src.push_back(Point2f(335, 226));
+    pts_src.push_back(Point2f(26, 229));
+
+
+    // Cenital Plane Frame
+    // Four same points in the Cenital Plane
+    vector<Point2f> pts_dst;
+    pts_dst.push_back(Point2f(617, 379));
+    pts_dst.push_back(Point2f(692, 430));
+    pts_dst.push_back(Point2f(776, 335));
+    pts_dst.push_back(Point2f(709, 199));
+
+    // Calculate Homography
+    Homography = findHomography(pts_src, pts_dst);
+
+}

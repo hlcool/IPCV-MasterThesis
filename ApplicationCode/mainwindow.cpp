@@ -95,6 +95,7 @@ void MainWindow::ProcessVideo(){
 
     // Frames Enhancement
     Video.imageEnhancement(Video.ActualFrame);
+    Video.ActualFrame.copyTo(Video.ActualFrame2);
     Video.ActualFrame.copyTo(Video.ActualFrameRCNN);
 
     // ----------------------- //
@@ -119,6 +120,16 @@ void MainWindow::ProcessVideo(){
     // Paint blobs
     Video.paintBoundingBoxes(Video.ActualFrame, "HOG");
     Video.paintBoundingBoxes(Video.ActualFrameRCNN, "FastRCNN");
+
+    // ----------------------- //
+    //     HOMOGRAPHY & IW     //
+    // ----------------------- //
+    Video.computeHomography(Video.CenitalPlane, Video.ActualFrame2);
+    warpPerspective(Video.ActualFrame2, Video.ImageWarping, Video.Homography, Video.ImageWarping.size());
+
+    Mat aux = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/CenitalView.png");
+    imshow("Warped Image", Video.ImageWarping);
+    imshow("Cenital Image", aux);
 
     /* -----------------------*/
     /* -----------------------*/

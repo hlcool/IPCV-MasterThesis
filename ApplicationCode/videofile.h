@@ -25,6 +25,7 @@ public:
 
     // Mat to store the frame to process
     Mat ActualFrame;
+    Mat ActualFrame2;
     Mat ActualFrameRCNN;
 
     // Enhancement methods
@@ -34,6 +35,12 @@ public:
     // Mixture Of Gaussians Background Substractor
     Mat BackgroundMask;
     Ptr<BackgroundSubtractor> pMOG2 = createBackgroundSubtractorMOG2();
+
+    // Hmography and Image Wrapping
+    Mat CenitalPlane;
+    Mat Homography;
+    Mat ImageWarping;
+    void computeHomography(Mat CenitalPlane, Mat CameraFrame);
 
     // HOG People Detection
     vector<Rect> HOGBoundingBoxes;
