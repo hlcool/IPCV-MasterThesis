@@ -3,11 +3,17 @@ clc;
 clear all;
 close all;
 
-VideoFile = VideoReader('HallCutted.mpg');
+% Parameters
+VideoName = 'HallCutted.mpg';
+Method = 'accurate';
+
+% Videofile Structure
+VideoFile = VideoReader(VideoName);
 
 % Open txt file to save the blobs
-fid = fopen( 'FastRCNNBB.txt', 'wt' );
+fid = fopen( [VideoName(1:strfind(VideoName, '.') - 1) Method '.txt'], 'wt' );
 FrameNumber = 1;
+
 while hasFrame(VideoFile)
     tic
     
@@ -15,7 +21,7 @@ while hasFrame(VideoFile)
     Image = imresize(Image, 2, 'lanczos3');
     Image = imgaussfilt(Image, 1);
     
-    [ Proposals ] = ProposalExtractor( Image );
+    [ Proposals ] = ProposalExtractor( Image, Method );
     
     % FAST_ RCNN
     % [x1, y1, x2, y2]

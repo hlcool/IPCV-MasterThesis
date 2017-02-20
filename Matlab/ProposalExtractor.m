@@ -1,8 +1,8 @@
-function [ ProposalMGCFixed ] = ProposalExtractor( Image )
+function [ ProposalMGCFixed ] = ProposalExtractor( Image, Method )
 
 % OBJECT PROPOSAL EXTRACTION
 % MGC
-[proposals, ~, ~] = im2mcg(Image,'accurate');
+[proposals, ~, ~] = im2mcg(Image, Method);
 % [y1, x1, y2, x2]
 ProposalMGC = proposals.bboxes;
 
