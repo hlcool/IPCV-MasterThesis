@@ -110,7 +110,11 @@ void MainWindow::ProcessVideo(){
     Video.HOGPeopleDetection(Video.ActualFrame);
 
     // FastRCNN Detector
-    Video.FastRCNNPeopleDetection(Video.ActualFrameRCNN, ss.str());
+    Video.FastRCNNPeopleDetection(ss.str());
+
+    // Paint blobs
+    Video.paintBoundingBoxes(Video.ActualFrame, "HOG");
+    Video.paintBoundingBoxes(Video.ActualFrameRCNN, "FastRCNN");
 
     /* -----------------------*/
     /* -----------------------*/
@@ -125,6 +129,7 @@ void MainWindow::ProcessVideo(){
 
     // Extract Frame number and write it on the frame
     putText(Video.ActualFrame, ss.str().c_str(), Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
+    putText(Video.ActualFrameRCNN, ss.str().c_str(), Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
 
     // Method to display the frame in the CVWidget
     ui->CVWidget->showImage(Video.ActualFrame);

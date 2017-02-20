@@ -17,32 +17,42 @@ public:
     VideoFile();
     ~VideoFile();
 
-    int Width, Height, FrameRate, FrameNumber;
+    // Video Variables
     string InputPath;
-
     VideoCapture cap;
+    int Width, Height, FrameRate, FrameNumber;
     void VideoOpenning(string InputPath);
+
     // Mat to store the frame to process
     Mat ActualFrame;
     Mat ActualFrameRCNN;
+
+    // Enhancement methods
+    void maskEnhancement(Mat BackgroundMask);
+    void imageEnhancement(Mat ActuaFrame);
+
+    // Mixture Of Gaussians Background Substractor
     Mat BackgroundMask;
+    Ptr<BackgroundSubtractor> pMOG2 = createBackgroundSubtractorMOG2();
+
+    // HOG People Detection
+    vector<Rect> HOGBoundingBoxes;
+    vector<Rect> HOGBoundingBoxesNMS;
+    void HOGPeopleDetection(Mat ActualFrame);
+
+    // Fast RCNN People Detection
+    vector<Rect> RCNNBoundingBoxes;
+    vector<Rect> RCNNBoundingBoxesNMS;
+    vector<double> RCNNScores;
+    void decodeBlobFile(string FileName, string FrameNumber);
+    void FastRCNNPeopleDetection(string FrameNumber);
+
+    // Common methods People Detection
+    void paintBoundingBoxes(Mat ActualFrame, string Method);
+    void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh);
 
     // Txt file to extract and save information
     ofstream VideoStatsFile;
-
-    // Mixture Of Gaussians Background Substractor
-    Ptr<BackgroundSubtractor> pMOG2 = createBackgroundSubtractorMOG2();
-
-    // Vector to store the read FastRCNN bounding boxes and its scores
-    vector<Rect> RCNNBoundingBoxes;
-    vector<double> RCNNScores;
-
-    void decodeBlobFile(string FileName, string FrameNumber);
-    void maskEnhancement(Mat BackgroundMask);
-    void imageEnhancement(Mat ActuaFrame);
-    void HOGPeopleDetection(Mat ActualFrame);
-    void FastRCNNPeopleDetection(Mat ActualFrame, string FrameNumber);
-    void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh);
 
     // Flag to cout only once
     int FlagCOUT = 1;

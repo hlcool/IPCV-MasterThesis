@@ -38,6 +38,34 @@ void VideoFile::VideoOpenning(string InputPath)
     cout << "The total number of frames is: " << FrameNumber << endl;
 }
 
+void VideoFile::paintBoundingBoxes(Mat ActualFrame, string Method)
+{
+    if (Method.compare("HOG")) {
+        for (size_t i = 0; i < HOGBoundingBoxesNMS.size(); i++) {
+            Rect r = HOGBoundingBoxesNMS[i];
+            // The HOG detector returns slightly larger rectangles than the real objects.
+            // so we slightly shrink the rectangles to get a nicer output.
+            r.x += cvRound(r.width*0.1);
+            r.width = cvRound(r.width*0.8);
+            r.y += cvRound(r.height*0.07);
+            r.height = cvRound(r.height*0.8);
+            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
+        }
+
+        HOGBoundingBoxes.clear();
+    }
+
+    else if (Method.compare("FastRCNN")) {
+        for (size_t i = 0; i < RCNNBoundingBoxesNMS.size(); i++) {
+            Rect r = RCNNBoundingBoxesNMS[i];
+            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
+        }
+
+        RCNNBoundingBoxes.clear();
+        RCNNScores.clear();
+    }
+}
+
 void VideoFile::decodeBlobFile(string FileName, string FrameNumber)
 {
     ifstream input(FileName);
@@ -60,8 +88,7 @@ void VideoFile::decodeBlobFile(string FileName, string FrameNumber)
     // Start decoding the file
     while (input >> AuxString){
 
-        if (AuxString.find("Frame") != std::string::npos)
-        {
+        if (AuxString.find("Frame") != std::string::npos) {
             // Check if the desired line has been read and so
             // exit the function
             if (LineCounter == atoi(FrameNumber.c_str()))
@@ -70,8 +97,7 @@ void VideoFile::decodeBlobFile(string FileName, string FrameNumber)
             LineCounter++;
         }
 
-        if (LineCounter == atoi(FrameNumber.c_str()))
-        {
+        if (LineCounter == atoi(FrameNumber.c_str())) {
             //cout << "Line Counter " << LineCounter << ". Frame number: " << atoi(FrameNumber.c_str()) << endl;
             switch(Counter)
             {
@@ -136,7 +162,7 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
     HOG.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
 
     // Display information about HOG parameters
-    if (FlagCOUT == 1){
+    if (FlagCOUT == 1) {
         cout << "Hog block size: " << HOG.blockSize << endl;
         cout << "Hog cell size: " << HOG.cellSize << endl;
         cout << "Hog number of levels: " << HOG.nlevels << endl;
@@ -145,49 +171,26 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
         FlagCOUT = 0;
     }
 
-    vector<Rect> BoundingBoxes;
-    vector<Rect> BoundingBoxesNMS;
-
-    HOG.detectMultiScale(ActualFrame, BoundingBoxes, 0, Size(8, 8), Size(32, 32), 1.1, 2);
-    non_max_suppresion(BoundingBoxes, BoundingBoxesNMS, 0.65);
-
-    //cout << "Numero de BB encontrados: " << BoundingBoxes.size()  << endl;
-    for (size_t i = 0; i < BoundingBoxesNMS.size(); i++)
-    {
-        Rect r = BoundingBoxesNMS[i];
-        // The HOG detector returns slightly larger rectangles than the real objects.
-        // so we slightly shrink the rectangles to get a nicer output.
-        r.x += cvRound(r.width*0.1);
-        r.width = cvRound(r.width*0.8);
-        r.y += cvRound(r.height*0.07);
-        r.height = cvRound(r.height*0.8);
-        rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
-    }
+    HOG.detectMultiScale(ActualFrame, HOGBoundingBoxes, 0, Size(8, 8), Size(32, 32), 1.1, 2);
+    non_max_suppresion(HOGBoundingBoxes, HOGBoundingBoxesNMS, 0.65);
 }
 
-void VideoFile::FastRCNNPeopleDetection(Mat ActualFrame, string FrameNumber)
+void VideoFile::FastRCNNPeopleDetection(string FrameNumber)
 {
     // Decode de txt file for the desired frame number
     string FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/FastRCNNBB.txt";
     decodeBlobFile(FileName, FrameNumber);
 
+    non_max_suppresion(RCNNBoundingBoxes, RCNNBoundingBoxesNMS, 0.6);
+
     // Filter blobs by score //
     double average = accumulate( RCNNScores.begin(), RCNNScores.end(), 0.0) / RCNNScores.size();
 
-    vector<Rect> BoundingBoxesNMS;
-    non_max_suppresion(RCNNBoundingBoxes, BoundingBoxesNMS, 0.6);
-
-    for (size_t i = 0; i < BoundingBoxesNMS.size(); i++)
-    {
-        if (RCNNScores[i] >= (average - (average * 0.05)) )
-        {
-            Rect r = BoundingBoxesNMS[i];
-            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
+    for (size_t i = 0; i < RCNNBoundingBoxesNMS.size(); i++) {
+        if (RCNNScores[i] <= (average - (average * 0.05)) ) {
+            RCNNBoundingBoxesNMS.erase(RCNNBoundingBoxesNMS.begin() + i);
         }
     }
-
-    RCNNBoundingBoxes.clear();
-    RCNNScores.clear();
 }
 
 void VideoFile::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh)
@@ -200,14 +203,12 @@ void VideoFile::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &r
 
     // Sort the bounding boxes by the bottom - right y - coordinate of the bounding box
     multimap<int, size_t> idxs;
-    for (size_t i = 0; i < size; ++i)
-    {
+    for (size_t i = 0; i < size; ++i) {
         idxs.insert(pair<int, size_t>(srcRects[i].br().y, i));
     }
 
     // keep looping while some indexes still remain in the indexes list
-    while (idxs.size() > 0)
-    {
+    while (idxs.size() > 0) {
         // grab the last rectangle
         auto lastElem = --end(idxs);
         const Rect& rect1 = srcRects[lastElem->second];
@@ -216,8 +217,7 @@ void VideoFile::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &r
 
         idxs.erase(lastElem);
 
-        for (auto pos = begin(idxs); pos != end(idxs); )
-        {
+        for (auto pos = begin(idxs); pos != end(idxs); ) {
             // grab the current rectangle
             const Rect& rect2 = srcRects[pos->second];
 
@@ -226,12 +226,10 @@ void VideoFile::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &r
             float overlap = intArea / unionArea;
 
             // if there is sufficient overlap, suppress the current bounding box
-            if (overlap > thresh)
-            {
+            if (overlap > thresh) {
                 pos = idxs.erase(pos);
             }
-            else
-            {
+            else {
                 ++pos;
             }
         }
@@ -261,7 +259,7 @@ void VideoFile::imageEnhancement(Mat ActuaFrame)
 
     Width = ActualFrame.cols;
     Height = ActualFrame.rows;
-    if (FlagCOUT == 1){
+    if (FlagCOUT == 1) {
         cout << "The video has been resize to " << "Width: " << Width << ". Heigth: " << Height << endl;
     }
 }
