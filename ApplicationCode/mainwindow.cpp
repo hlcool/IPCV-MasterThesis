@@ -90,6 +90,14 @@ void MainWindow::ProcessVideo(){
     /* -----------------------*/
 
     // ----------------------- //
+    //       ENHANCEMENT       //
+    // ----------------------- //
+
+    // Frames Enhancement
+    Video.imageEnhancement(Video.ActualFrame);
+    Video.ActualFrame.copyTo(Video.ActualFrameRCNN);
+
+    // ----------------------- //
     // BACKGROUND SUBSTRACTION //
     // ----------------------- //
 
@@ -101,10 +109,6 @@ void MainWindow::ProcessVideo(){
     // ----------------------- //
     //     PEOPLE DETECTION    //
     // ----------------------- //
-
-    // Frames Enhancement
-    Video.imageEnhancement(Video.ActualFrame);
-    Video.ActualFrame.copyTo(Video.ActualFrameRCNN);
 
     // HOG Detector
     Video.HOGPeopleDetection(Video.ActualFrame);
