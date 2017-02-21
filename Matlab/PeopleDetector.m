@@ -4,7 +4,7 @@ clear all;
 close all;
 
 % Parameters
-VideoName = 'HallCutted.mpg';
+VideoName = 'Hall1.mpg';
 Method = 'fast';
 
 % Videofile Structure
