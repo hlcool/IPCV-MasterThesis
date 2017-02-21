@@ -172,6 +172,7 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
     }
 
     HOG.detectMultiScale(ActualFrame, HOGBoundingBoxes, HOGScores, 0, Size(8, 8), Size(32, 32), 1.1, 2);
+    HOGBoundingBoxesNMS = HOGBoundingBoxes;
     //non_max_suppresion(HOGBoundingBoxes, HOGBoundingBoxesNMS, 0.65);
 }
 
@@ -191,6 +192,7 @@ void VideoFile::FastRCNNPeopleDetection(string FrameNumber)
             RCNNScores.erase(RCNNScores.begin() + i);
         }
     }
+    RCNNBoundingBoxesNMS = RCNNBoundingBoxes;
     //non_max_suppresion(RCNNBoundingBoxes, RCNNBoundingBoxesNMS, 0.65);
 }
 

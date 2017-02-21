@@ -122,7 +122,7 @@ void MainWindow::ProcessVideo(){
     //     HOMOGRAPHY & IW     //
     // ----------------------- //
 
-    Video.computeHomography(Video.CenitalPlane, Video.ActualFrame2);
+    Video.computeHomography();
     Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography);
     //warpPerspective(Video.ActualFrame2, Video.ImageWarping, Video.Homography, Video.ImageWarping.size());
     //imshow("Warped Image", Video.ImageWarping);

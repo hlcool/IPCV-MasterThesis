@@ -41,7 +41,7 @@ public:
     Mat Homography;
     Mat ImageWarping;
     vector<Point2f> ProjectedPoints;
-    void computeHomography(Mat CenitalPlane, Mat CameraFrame);
+    void computeHomography();
     void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography);
 
     // HOG People Detection
