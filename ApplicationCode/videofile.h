@@ -40,7 +40,9 @@ public:
     Mat CenitalPlane;
     Mat Homography;
     Mat ImageWarping;
+    vector<Point2f> ProjectedPoints;
     void computeHomography(Mat CenitalPlane, Mat CameraFrame);
+    void projectBlobs(vector<Rect> BoundingBoxes, Mat Homography);
 
     // HOG People Detection
     vector<Rect> HOGBoundingBoxes;
@@ -54,7 +56,7 @@ public:
     void decodeBlobFile(string FileName, string FrameNumber);
     void FastRCNNPeopleDetection(string FrameNumber);
 
-    // Common methods People Detection
+    // Common methods for People Detection
     void paintBoundingBoxes(Mat ActualFrame, string Method);
     void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh);
 

@@ -290,3 +290,30 @@ void VideoFile::computeHomography(Mat CenitalPlane, Mat CameraFrame)
     // Calculate Homography
     Homography = findHomography(pts_src, pts_dst);
 }
+
+void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, Mat Homography)
+{
+    vector<Point2f> AuxPointVector;
+    for (size_t i = 0; i < BoundingBoxes.size(); i++) {
+        // Extract the corresponding rectangle
+        Rect r = BoundingBoxes[i];
+        Point2f Point;
+
+        // Bottom midle point of the blob
+        Point.x = cvRound(r.x + r.width/2);
+        Point.y = cvRound(r.y + r.height);
+
+        // Store project Point in vector
+        AuxPointVector.push_back(Point);
+    }
+    // Apply Homography to vector of Points to find the projection
+    perspectiveTransform(AuxPointVector, ProjectedPoints, Homography);
+
+    CenitalPlane = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/CenitalView.png");
+
+    for (size_t i = 0; i < ProjectedPoints.size(); i++) {
+        Point2f center = ProjectedPoints[i];
+        circle(CenitalPlane, center, 4, Scalar(0, 255, 0), 5);
+    }
+    imshow("Projected points", CenitalPlane);
+}

@@ -127,8 +127,9 @@ void MainWindow::ProcessVideo(){
     // ----------------------- //
 
     Video.computeHomography(Video.CenitalPlane, Video.ActualFrame2);
-    warpPerspective(Video.ActualFrame2, Video.ImageWarping, Video.Homography, Video.ImageWarping.size());
-    imshow("Warped Image", Video.ImageWarping);
+    Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.Homography);
+    //warpPerspective(Video.ActualFrame2, Video.ImageWarping, Video.Homography, Video.ImageWarping.size());
+    //imshow("Warped Image", Video.ImageWarping);
 
     /* -----------------------*/
     /* -----------------------*/
