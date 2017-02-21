@@ -275,6 +275,8 @@ void VideoFile::computeHomography(Mat CenitalPlane, Mat CameraFrame)
     pts_src.push_back(Point2f(34, 231));
     pts_src.push_back(Point2f(76, 180));
     pts_src.push_back(Point2f(55, 261));
+    pts_src.push_back(Point2f(192, 271));
+    pts_src.push_back(Point2f(220, 216));
 
 
     // Cenital Plane Frame
@@ -286,9 +288,11 @@ void VideoFile::computeHomography(Mat CenitalPlane, Mat CameraFrame)
     pts_dst.push_back(Point2f(707, 198));
     pts_dst.push_back(Point2f(774, 173));
     pts_dst.push_back(Point2f(692, 268));
+    pts_dst.push_back(Point2f(707, 323));
+    pts_dst.push_back(Point2f(761, 240));
 
     // Calculate Homography
-    Homography = findHomography(pts_src, pts_dst);
+    Homography = findHomography(pts_src, pts_dst, CV_LMEDS);
 }
 
 void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, Mat Homography)
