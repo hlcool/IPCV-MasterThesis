@@ -171,26 +171,27 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
         FlagCOUT = 0;
     }
 
-    HOG.detectMultiScale(ActualFrame, HOGBoundingBoxes, 0, Size(8, 8), Size(32, 32), 1.1, 2);
+    HOG.detectMultiScale(ActualFrame, HOGBoundingBoxes, HOGScores, 0, Size(8, 8), Size(32, 32), 1.1, 2);
     non_max_suppresion(HOGBoundingBoxes, HOGBoundingBoxesNMS, 0.65);
 }
 
 void VideoFile::FastRCNNPeopleDetection(string FrameNumber)
 {
     // Decode de txt file for the desired frame number
-    string FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/FastRCNNBB.txt";
+    string FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/HallCuttedfast.txt";
     decodeBlobFile(FileName, FrameNumber);
 
-    non_max_suppresion(RCNNBoundingBoxes, RCNNBoundingBoxesNMS, 0.6);
-
-    // Filter blobs by score //
+    // Score average
     double average = accumulate( RCNNScores.begin(), RCNNScores.end(), 0.0) / RCNNScores.size();
 
-    for (size_t i = 0; i < RCNNBoundingBoxesNMS.size(); i++) {
+    // Filter blobs by average
+    for (size_t i = 0; i < RCNNBoundingBoxes.size(); i++) {
         if (RCNNScores[i] <= (average - (average * 0.05)) ) {
-            RCNNBoundingBoxesNMS.erase(RCNNBoundingBoxesNMS.begin() + i);
+            RCNNBoundingBoxes.erase(RCNNBoundingBoxes.begin() + i);
+            RCNNScores.erase(RCNNScores.begin() + i);
         }
     }
+    non_max_suppresion(RCNNBoundingBoxes, RCNNBoundingBoxesNMS, 0.65);
 }
 
 void VideoFile::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh)
@@ -295,7 +296,7 @@ void VideoFile::computeHomography(Mat CenitalPlane, Mat CameraFrame)
     Homography = findHomography(pts_src, pts_dst, CV_LMEDS);
 }
 
-void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, Mat Homography)
+void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography)
 {
     vector<Point2f> AuxPointVector;
     for (size_t i = 0; i < BoundingBoxes.size(); i++) {
@@ -317,7 +318,9 @@ void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, Mat Homography)
 
     for (size_t i = 0; i < ProjectedPoints.size(); i++) {
         Point2f center = ProjectedPoints[i];
-        circle(CenitalPlane, center, 4, Scalar(0, 255, 0), 5);
+        double score = scores[i];
+        score = 15 * score;
+        circle(CenitalPlane, center, score, Scalar(0, 255, 0), 2);
     }
     imshow("Projected points", CenitalPlane);
 }

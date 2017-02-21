@@ -118,18 +118,18 @@ void MainWindow::ProcessVideo(){
     // FastRCNN Detector
     Video.FastRCNNPeopleDetection(ss.str());
 
-    // Paint blobs
-    Video.paintBoundingBoxes(Video.ActualFrame, "HOG");
-    Video.paintBoundingBoxes(Video.ActualFrameRCNN, "FastRCNN");
-
     // ----------------------- //
     //     HOMOGRAPHY & IW     //
     // ----------------------- //
 
     Video.computeHomography(Video.CenitalPlane, Video.ActualFrame2);
-    Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.Homography);
+    Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography);
     //warpPerspective(Video.ActualFrame2, Video.ImageWarping, Video.Homography, Video.ImageWarping.size());
     //imshow("Warped Image", Video.ImageWarping);
+
+    // Paint blobs
+    Video.paintBoundingBoxes(Video.ActualFrame, "HOG");
+    Video.paintBoundingBoxes(Video.ActualFrameRCNN, "FastRCNN");
 
     /* -----------------------*/
     /* -----------------------*/

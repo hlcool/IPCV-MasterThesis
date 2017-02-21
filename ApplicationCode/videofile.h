@@ -42,11 +42,12 @@ public:
     Mat ImageWarping;
     vector<Point2f> ProjectedPoints;
     void computeHomography(Mat CenitalPlane, Mat CameraFrame);
-    void projectBlobs(vector<Rect> BoundingBoxes, Mat Homography);
+    void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography);
 
     // HOG People Detection
     vector<Rect> HOGBoundingBoxes;
     vector<Rect> HOGBoundingBoxesNMS;
+    vector<double> HOGScores;
     void HOGPeopleDetection(Mat ActualFrame);
 
     // Fast RCNN People Detection
