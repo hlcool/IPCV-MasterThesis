@@ -97,6 +97,7 @@ void MainWindow::ProcessVideo(){
     Video.imageEnhancement(Video.ActualFrame);
     Video.ActualFrame.copyTo(Video.ActualFrame2);
     Video.ActualFrame.copyTo(Video.ActualFrameRCNN);
+    Video.ImageWarping = Mat::zeros(480, 1280, CV_64F);
 
     // ----------------------- //
     // BACKGROUND SUBSTRACTION //
@@ -124,12 +125,10 @@ void MainWindow::ProcessVideo(){
     // ----------------------- //
     //     HOMOGRAPHY & IW     //
     // ----------------------- //
+
     Video.computeHomography(Video.CenitalPlane, Video.ActualFrame2);
     warpPerspective(Video.ActualFrame2, Video.ImageWarping, Video.Homography, Video.ImageWarping.size());
-
-    Mat aux = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/CenitalView.png");
     imshow("Warped Image", Video.ImageWarping);
-    imshow("Cenital Image", aux);
 
     /* -----------------------*/
     /* -----------------------*/

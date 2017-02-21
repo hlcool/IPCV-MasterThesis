@@ -266,25 +266,27 @@ void VideoFile::imageEnhancement(Mat ActuaFrame)
 
 void VideoFile::computeHomography(Mat CenitalPlane, Mat CameraFrame)
 {
-
     // Camera Frame
     // Four points in the camera frame
     vector<Point2f> pts_src;
-    pts_src.push_back(Point2f(223, 373));
-    pts_src.push_back(Point2f(558, 393));
-    pts_src.push_back(Point2f(335, 226));
-    pts_src.push_back(Point2f(26, 229));
+    pts_src.push_back(Point2f(224, 376));
+    pts_src.push_back(Point2f(557, 393));
+    pts_src.push_back(Point2f(334, 225));
+    pts_src.push_back(Point2f(34, 231));
+    pts_src.push_back(Point2f(76, 180));
+    pts_src.push_back(Point2f(55, 261));
 
 
     // Cenital Plane Frame
     // Four same points in the Cenital Plane
     vector<Point2f> pts_dst;
-    pts_dst.push_back(Point2f(617, 379));
-    pts_dst.push_back(Point2f(692, 430));
-    pts_dst.push_back(Point2f(776, 335));
-    pts_dst.push_back(Point2f(709, 199));
+    pts_dst.push_back(Point2f(636, 375));
+    pts_dst.push_back(Point2f(690, 430));
+    pts_dst.push_back(Point2f(777, 335));
+    pts_dst.push_back(Point2f(707, 198));
+    pts_dst.push_back(Point2f(774, 173));
+    pts_dst.push_back(Point2f(692, 268));
 
     // Calculate Homography
     Homography = findHomography(pts_src, pts_dst);
-
 }
