@@ -97,7 +97,7 @@ void MainWindow::ProcessVideo(){
     Video.imageEnhancement(Video.ActualFrame);
     Video.ActualFrame.copyTo(Video.ActualFrame2);
     Video.ActualFrame.copyTo(Video.ActualFrameRCNN);
-    Video.ImageWarping = Mat::zeros(480, 1280, CV_64F);
+
 
     // ----------------------- //
     // BACKGROUND SUBSTRACTION //
@@ -124,6 +124,7 @@ void MainWindow::ProcessVideo(){
 
     Video.computeHomography();
     Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography);
+    //Video.ImageWarping = Mat::zeros(480, 1280, CV_64F);
     //warpPerspective(Video.ActualFrame2, Video.ImageWarping, Video.Homography, Video.ImageWarping.size());
     //imshow("Warped Image", Video.ImageWarping);
 

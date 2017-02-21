@@ -269,7 +269,7 @@ void VideoFile::imageEnhancement(Mat ActuaFrame)
     }
 }
 
-void VideoFile::computeHomography(Mat CenitalPlane, Mat CameraFrame)
+void VideoFile::computeHomography()
 {
     // Camera Frame
     // Four points in the camera frame
