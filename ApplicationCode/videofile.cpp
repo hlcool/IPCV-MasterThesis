@@ -183,11 +183,11 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
 
     // Display information about HOG parameters
     if (FlagCOUT == 1) {
-        cout << "Hog block size: " << HOG.blockSize << endl;
-        cout << "Hog cell size: " << HOG.cellSize << endl;
-        cout << "Hog number of levels: " << HOG.nlevels << endl;
-        cout << "Hog number of bins: " << HOG.nbins << endl;
-        cout << "Hog window size: " << HOG.winSize << endl;
+        //cout << "Hog block size: " << HOG.blockSize << endl;
+        //cout << "Hog cell size: " << HOG.cellSize << endl;
+        //cout << "Hog number of levels: " << HOG.nlevels << endl;
+        //cout << "Hog number of bins: " << HOG.nbins << endl;
+        //cout << "Hog window size: " << HOG.winSize << endl;
         FlagCOUT = 0;
     }
 
@@ -203,6 +203,7 @@ void VideoFile::FastRCNNPeopleDetection(string FrameNumber)
     size_t point = InputPath.find_last_of(".");
     string FileName = InputPath.substr(slash + 1, point - slash - 1);
     FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/" + FileName + "fast.txt";
+    //FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/" + FileName + "Accurate.txt";
 
     decodeBlobFile(FileName, FrameNumber);
 
