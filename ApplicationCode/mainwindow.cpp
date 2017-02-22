@@ -118,6 +118,10 @@ void MainWindow::ProcessVideo(){
     // ----------------------- //
 
     String CBOption = ui->PeopleDetectorCB->currentText().toStdString();
+    if (ui->FastButton->isChecked())
+        Video.FastRCNNMethod = "fast";
+    else if (ui->AccurateButton->isChecked())
+        Video.FastRCNNMethod = "accurate";
 
     if (!CBOption.compare("Histogram of Oriented Gradients")){
         // HOG Detector
@@ -126,7 +130,7 @@ void MainWindow::ProcessVideo(){
     }
     else if(!CBOption.compare("FastRCNN")){
         // FastRCNN Detector
-        Video.FastRCNNPeopleDetection(ss.str());
+        Video.FastRCNNPeopleDetection(ss.str(), Video.FastRCNNMethod);
         Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography, "RED");
     }
     else{
@@ -135,7 +139,7 @@ void MainWindow::ProcessVideo(){
         Video.projectBlobs(Video.HOGBoundingBoxesNMS, Video.HOGScores, Video.Homography, "GREEN");
 
         // FastRCNN Detector
-        Video.FastRCNNPeopleDetection(ss.str());
+        Video.FastRCNNPeopleDetection(ss.str(), Video.FastRCNNMethod);
         Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography, "RED");
     }
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1113</width>
-    <height>563</height>
+    <height>593</height>
    </rect>
   </property>
   <property name="palette">
@@ -432,9 +432,9 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>239</x>
+      <x>490</x>
       <y>20</y>
-      <width>160</width>
+      <width>130</width>
       <height>16</height>
      </rect>
     </property>
@@ -447,8 +447,8 @@
      <rect>
       <x>20</x>
       <y>40</y>
-      <width>601</width>
-      <height>81</height>
+      <width>551</width>
+      <height>121</height>
      </rect>
     </property>
     <property name="title">
@@ -458,7 +458,7 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>37</y>
+       <y>60</y>
        <width>151</width>
        <height>20</height>
       </rect>
@@ -467,37 +467,79 @@
       <string>Real Time Displaying</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="PeopleDetectorCB">
+    <widget class="QGroupBox" name="PeopleDetectionBox">
      <property name="geometry">
       <rect>
-       <x>210</x>
-       <y>33</y>
-       <width>151</width>
-       <height>30</height>
+       <x>190</x>
+       <y>22</y>
+       <width>351</width>
+       <height>91</height>
       </rect>
      </property>
-     <item>
-      <property name="text">
-       <string>HOG &amp; FastRCNN</string>
+     <property name="title">
+      <string>People Detection</string>
+     </property>
+     <widget class="QComboBox" name="PeopleDetectorCB">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>43</y>
+        <width>151</width>
+        <height>30</height>
+       </rect>
       </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Histogram of Oriented Gradients</string>
+      <item>
+       <property name="text">
+        <string>HOG &amp; FastRCNN</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Histogram of Oriented Gradients</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FastRCNN</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>23</y>
+        <width>101</width>
+        <height>61</height>
+       </rect>
       </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>FastRCNN</string>
-      </property>
-     </item>
+      <layout class="QVBoxLayout" name="MethodLayout">
+       <item>
+        <widget class="QRadioButton" name="FastButton">
+         <property name="text">
+          <string>Fast</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="AccurateButton">
+         <property name="text">
+          <string>Accurate</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </widget>
    <widget class="QGroupBox" name="Camera1">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>130</y>
+      <y>160</y>
       <width>521</width>
       <height>391</height>
      </rect>
@@ -593,7 +635,7 @@
     <property name="geometry">
      <rect>
       <x>570</x>
-      <y>130</y>
+      <y>160</y>
       <width>521</width>
       <height>391</height>
      </rect>

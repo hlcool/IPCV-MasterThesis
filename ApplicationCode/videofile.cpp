@@ -196,14 +196,17 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
     //non_max_suppresion(HOGBoundingBoxes, HOGBoundingBoxesNMS, 0.65);
 }
 
-void VideoFile::FastRCNNPeopleDetection(string FrameNumber)
+void VideoFile::FastRCNNPeopleDetection(string FrameNumber, string Method)
 {
     // Decode de txt file for the desired frame number
     size_t slash = InputPath.find_last_of("/");
     size_t point = InputPath.find_last_of(".");
     string FileName = InputPath.substr(slash + 1, point - slash - 1);
-    FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/" + FileName + "fast.txt";
-    //FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/" + FileName + "Accurate.txt";
+
+    if (!Method.compare("fast"))
+        FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/" + FileName + "fast.txt";
+    else if (!Method.compare("accurate"))
+        FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/" + FileName + "Accurate.txt";
 
     decodeBlobFile(FileName, FrameNumber);
 

@@ -49,11 +49,12 @@ public:
     void HOGPeopleDetection(Mat ActualFrame);
 
     // Fast RCNN People Detection
+    string FastRCNNMethod;
     vector<Rect> RCNNBoundingBoxes;
     vector<Rect> RCNNBoundingBoxesNMS;
     vector<double> RCNNScores;
     void decodeBlobFile(string FileName, string FrameNumber);
-    void FastRCNNPeopleDetection(string FrameNumber);
+    void FastRCNNPeopleDetection(string FrameNumber, string Method);
 
     // Common methods for People Detection
     void paintBoundingBoxes(Mat ActualFrame, string Method);
