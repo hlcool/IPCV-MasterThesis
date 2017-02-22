@@ -179,7 +179,7 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
 void VideoFile::FastRCNNPeopleDetection(string FrameNumber)
 {
     // Decode de txt file for the desired frame number
-    string FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/HallCuttedfast.txt";
+    string FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Hall1fast.txt";
     decodeBlobFile(FileName, FrameNumber);
 
     // Score average
@@ -302,6 +302,9 @@ void VideoFile::computeHomography()
 
 void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography)
 {
+    if (BoundingBoxes.empty())
+        return;
+
     vector<Point2f> AuxPointVector;
     for (size_t i = 0; i < BoundingBoxes.size(); i++) {
         // Extract the corresponding rectangle
