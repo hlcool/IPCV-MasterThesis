@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1113</width>
-    <height>963</height>
+    <height>563</height>
    </rect>
   </property>
   <property name="palette">
@@ -468,7 +468,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="VideoHog">
+   <widget class="QGroupBox" name="Camera1">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -478,7 +478,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>Video + HOG</string>
+     <string>Camera 1</string>
     </property>
     <widget class="CVImageWidget" name="CVWidget" native="true">
      <property name="geometry">
@@ -660,107 +660,10 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="VideoRCNN">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>530</y>
-      <width>521</width>
-      <height>391</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Video + FastRCNN</string>
-    </property>
-    <widget class="CVImageWidget" name="CVWidget3" native="true">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>500</width>
-       <height>350</height>
-      </rect>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>800</width>
-       <height>800</height>
-      </size>
-     </property>
-     <property name="palette">
-      <palette>
-       <active>
-        <colorrole role="Base">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>255</red>
-           <green>255</green>
-           <blue>255</blue>
-          </color>
-         </brush>
-        </colorrole>
-        <colorrole role="Window">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>33</red>
-           <green>33</green>
-           <blue>33</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </active>
-       <inactive>
-        <colorrole role="Base">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>255</red>
-           <green>255</green>
-           <blue>255</blue>
-          </color>
-         </brush>
-        </colorrole>
-        <colorrole role="Window">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>33</red>
-           <green>33</green>
-           <blue>33</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </inactive>
-       <disabled>
-        <colorrole role="Base">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>33</red>
-           <green>33</green>
-           <blue>33</blue>
-          </color>
-         </brush>
-        </colorrole>
-        <colorrole role="Window">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>33</red>
-           <green>33</green>
-           <blue>33</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </disabled>
-      </palette>
-     </property>
-     <property name="autoFillBackground">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </widget>
    <zorder>BKGSubs</zorder>
-   <zorder>VideoHog</zorder>
+   <zorder>Camera1</zorder>
    <zorder>OptionsBox</zorder>
    <zorder>label</zorder>
-   <zorder>VideoRCNN</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

@@ -25,8 +25,6 @@ public:
 
     // Mat to store the frame to process
     Mat ActualFrame;
-    Mat ActualFrame2;
-    Mat ActualFrameRCNN;
 
     // Enhancement methods
     void maskEnhancement(Mat BackgroundMask);
@@ -42,7 +40,7 @@ public:
     Mat ImageWarping;
     vector<Point2f> ProjectedPoints;
     void computeHomography();
-    void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography);
+    void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color);
 
     // HOG People Detection
     vector<Rect> HOGBoundingBoxes;
@@ -66,7 +64,6 @@ public:
 
     // Flag to cout only once
     int FlagCOUT = 1;
-
 };
 
 #endif // VIDEOFILE_H

@@ -64,6 +64,26 @@ void VideoFile::paintBoundingBoxes(Mat ActualFrame, string Method)
         RCNNBoundingBoxes.clear();
         RCNNScores.clear();
     }
+    else if (!Method.compare("HOG&FastRCNN")) {
+        for (size_t i = 0; i < HOGBoundingBoxesNMS.size(); i++) {
+            Rect r = HOGBoundingBoxesNMS[i];
+            // The HOG detector returns slightly larger rectangles than the real objects.
+            // so we slightly shrink the rectangles to get a nicer output.
+            r.x += cvRound(r.width*0.1);
+            r.width = cvRound(r.width*0.8);
+            r.y += cvRound(r.height*0.07);
+            r.height = cvRound(r.height*0.8);
+            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
+        }
+        for (size_t i = 0; i < RCNNBoundingBoxesNMS.size(); i++) {
+            Rect r = RCNNBoundingBoxesNMS[i];
+            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 0, 255), 1);
+        }
+
+        HOGBoundingBoxes.clear();
+        RCNNBoundingBoxes.clear();
+        RCNNScores.clear();
+    }
 }
 
 void VideoFile::decodeBlobFile(string FileName, string FrameNumber)
@@ -283,7 +303,6 @@ void VideoFile::computeHomography()
     pts_src.push_back(Point2f(192, 271));
     pts_src.push_back(Point2f(220, 216));
 
-
     // Cenital Plane Frame
     // Four same points in the Cenital Plane
     vector<Point2f> pts_dst;
@@ -298,9 +317,12 @@ void VideoFile::computeHomography()
 
     // Calculate Homography
     Homography = findHomography(pts_src, pts_dst, CV_LMEDS);
+
+    // Clean previous cenital view
+    CenitalPlane = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/CenitalView.png");
 }
 
-void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography)
+void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color)
 {
     if (BoundingBoxes.empty())
         return;
@@ -321,13 +343,13 @@ void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, 
     // Apply Homography to vector of Points to find the projection
     perspectiveTransform(AuxPointVector, ProjectedPoints, Homography);
 
-    CenitalPlane = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/CenitalView.png");
-
     for (size_t i = 0; i < ProjectedPoints.size(); i++) {
         Point2f center = ProjectedPoints[i];
         double score = scores[i];
         score = 15 * score;
-        circle(CenitalPlane, center, score, Scalar(0, 255, 0), 2);
+        if (!Color.compare("RED"))
+            circle(CenitalPlane, center, score, Scalar(0, 0, 255), 2);
+        else if (!Color.compare("GREEN"))
+            circle(CenitalPlane, center, score, Scalar(0, 255, 0), 2);
     }
-    imshow("Projected points", CenitalPlane);
 }

@@ -72,7 +72,6 @@ void MainWindow::ProcessVideo(){
 
     Video.cap >> Video.ActualFrame; // Get first video frame
 
-
     stringstream ss;
     ss << Video.cap.get(CAP_PROP_POS_FRAMES);
 
@@ -95,9 +94,6 @@ void MainWindow::ProcessVideo(){
 
     // Frames Enhancement
     Video.imageEnhancement(Video.ActualFrame);
-    Video.ActualFrame.copyTo(Video.ActualFrame2);
-    Video.ActualFrame.copyTo(Video.ActualFrameRCNN);
-
 
     // ----------------------- //
     // BACKGROUND SUBSTRACTION //
@@ -123,14 +119,16 @@ void MainWindow::ProcessVideo(){
     // ----------------------- //
 
     Video.computeHomography();
-    Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography);
+    Video.projectBlobs(Video.HOGBoundingBoxesNMS, Video.HOGScores, Video.Homography, "GREEN");
+    Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography, "RED");
+    imshow("Projected points", Video.CenitalPlane);
+
     //Video.ImageWarping = Mat::zeros(480, 1280, CV_64F);
     //warpPerspective(Video.ActualFrame2, Video.ImageWarping, Video.Homography, Video.ImageWarping.size());
     //imshow("Warped Image", Video.ImageWarping);
 
     // Paint blobs
-    Video.paintBoundingBoxes(Video.ActualFrame, "HOG");
-    Video.paintBoundingBoxes(Video.ActualFrameRCNN, "FastRCNN");
+    Video.paintBoundingBoxes(Video.ActualFrame, "HOG&FastRCNN");
 
     /* -----------------------*/
     /* -----------------------*/
@@ -140,16 +138,13 @@ void MainWindow::ProcessVideo(){
     WidgetHeight = ui->CVWidget->height();
     WidgetWidth  = ui->CVWidget->width();
     cv::resize(Video.ActualFrame, Video.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
-    cv::resize(Video.ActualFrameRCNN, Video.ActualFrameRCNN, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
     cv::resize(Video.BackgroundMask, Video.BackgroundMask, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
 
     // Extract Frame number and write it on the frame
     putText(Video.ActualFrame, ss.str().c_str(), Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
-    putText(Video.ActualFrameRCNN, ss.str().c_str(), Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
 
     // Method to display the frame in the CVWidget
     ui->CVWidget->showImage(Video.ActualFrame);
-    ui->CVWidget3->showImage(Video.ActualFrameRCNN);
     ui->CVWidget2->showImage(Video.BackgroundMask);
 
     // Pause to control the frame rate of the video when the option button is checked
