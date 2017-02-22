@@ -199,7 +199,11 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
 void VideoFile::FastRCNNPeopleDetection(string FrameNumber)
 {
     // Decode de txt file for the desired frame number
-    string FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Hall1fast.txt";
+    size_t slash = InputPath.find_last_of("/");
+    size_t point = InputPath.find_last_of(".");
+    string FileName = InputPath.substr(slash + 1, point - slash - 1);
+    FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/" + FileName + "fast.txt";
+
     decodeBlobFile(FileName, FrameNumber);
 
     // Score average
