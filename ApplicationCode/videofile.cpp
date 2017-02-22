@@ -40,7 +40,7 @@ void VideoFile::VideoOpenning(string InputPath)
 
 void VideoFile::paintBoundingBoxes(Mat ActualFrame, string Method)
 {
-    if (!Method.compare("HOG")) {
+    if (!Method.compare("Histogram of Oriented Gradients")) {
         for (size_t i = 0; i < HOGBoundingBoxesNMS.size(); i++) {
             Rect r = HOGBoundingBoxesNMS[i];
             // The HOG detector returns slightly larger rectangles than the real objects.
@@ -58,13 +58,13 @@ void VideoFile::paintBoundingBoxes(Mat ActualFrame, string Method)
     else if (!Method.compare("FastRCNN")) {
         for (size_t i = 0; i < RCNNBoundingBoxesNMS.size(); i++) {
             Rect r = RCNNBoundingBoxesNMS[i];
-            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
+            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 0, 255), 1);
         }
 
         RCNNBoundingBoxes.clear();
         RCNNScores.clear();
     }
-    else if (!Method.compare("HOG&FastRCNN")) {
+    else {
         for (size_t i = 0; i < HOGBoundingBoxesNMS.size(); i++) {
             Rect r = HOGBoundingBoxesNMS[i];
             // The HOG detector returns slightly larger rectangles than the real objects.

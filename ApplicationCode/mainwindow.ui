@@ -458,7 +458,7 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>38</y>
+       <y>37</y>
        <width>151</width>
        <height>20</height>
       </rect>
@@ -466,6 +466,31 @@
      <property name="text">
       <string>Real Time Displaying</string>
      </property>
+    </widget>
+    <widget class="QComboBox" name="PeopleDetectorCB">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>33</y>
+       <width>151</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>HOG &amp; FastRCNN</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Histogram of Oriented Gradients</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FastRCNN</string>
+      </property>
+     </item>
     </widget>
    </widget>
    <widget class="QGroupBox" name="Camera1">

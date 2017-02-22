@@ -85,7 +85,7 @@ void MainWindow::ProcessVideo(){
 
 
     /* -----------------------*/
-        /* MAIN ALGORITHM */
+    /*      MAIN ALGORITHM    */
     /* -----------------------*/
 
     // ----------------------- //
@@ -105,30 +105,49 @@ void MainWindow::ProcessVideo(){
     Video.maskEnhancement(Video.BackgroundMask);
 
     // ----------------------- //
-    //     PEOPLE DETECTION    //
-    // ----------------------- //
-
-    // HOG Detector
-    Video.HOGPeopleDetection(Video.ActualFrame);
-
-    // FastRCNN Detector
-    Video.FastRCNNPeopleDetection(ss.str());
-
-    // ----------------------- //
     //     HOMOGRAPHY & IW     //
     // ----------------------- //
 
     Video.computeHomography();
-    Video.projectBlobs(Video.HOGBoundingBoxesNMS, Video.HOGScores, Video.Homography, "GREEN");
-    Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography, "RED");
-    imshow("Projected points", Video.CenitalPlane);
-
     //Video.ImageWarping = Mat::zeros(480, 1280, CV_64F);
     //warpPerspective(Video.ActualFrame2, Video.ImageWarping, Video.Homography, Video.ImageWarping.size());
     //imshow("Warped Image", Video.ImageWarping);
 
+    // ----------------------- //
+    //     PEOPLE DETECTION    //
+    // ----------------------- //
+
+    String CBOption = ui->PeopleDetectorCB->currentText().toStdString();
+
+    if (!CBOption.compare("Histogram of Oriented Gradients")){
+        // HOG Detector
+        Video.HOGPeopleDetection(Video.ActualFrame);
+        Video.projectBlobs(Video.HOGBoundingBoxesNMS, Video.HOGScores, Video.Homography, "GREEN");
+    }
+    else if(!CBOption.compare("FastRCNN")){
+        // FastRCNN Detector
+        Video.FastRCNNPeopleDetection(ss.str());
+        Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography, "RED");
+    }
+    else{
+        // HOG Detector
+        Video.HOGPeopleDetection(Video.ActualFrame);
+        Video.projectBlobs(Video.HOGBoundingBoxesNMS, Video.HOGScores, Video.Homography, "GREEN");
+
+        // FastRCNN Detector
+        Video.FastRCNNPeopleDetection(ss.str());
+        Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography, "RED");
+    }
+
+    // ----------------------- //
+    //         DISPLAY         //
+    // ----------------------- //
+
     // Paint blobs
-    Video.paintBoundingBoxes(Video.ActualFrame, "HOG&FastRCNN");
+    Video.paintBoundingBoxes(Video.ActualFrame, CBOption);
+
+    // Display projected points
+    imshow("Projected points", Video.CenitalPlane);
 
     /* -----------------------*/
     /* -----------------------*/
