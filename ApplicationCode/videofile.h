@@ -68,7 +68,7 @@ public:
     void DPMPeopleDetection(Mat ActualFrame);
 
     // Common methods for People Detection
-    void paintBoundingBoxes(Mat ActualFrame, string Method);
+    void paintBoundingBoxes(Mat ActualFrame, string Method, vector<Rect> BoundingBoxes, Scalar Color, int Thickness);
     void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh);
 
     // Txt file to extract and save information

@@ -96,8 +96,6 @@ void MainWindow::ProcessVideo(){
 
     // Frames Enhancement
     Video.imageEnhancement(Video.ActualFrame);
-    Mat DPMDetections = Video.ActualFrame.clone();
-    Mat DPMFrame = Video.ActualFrame.clone();
 
     // ----------------------- //
     //     BKG SUBSTRACTION    //
@@ -131,25 +129,30 @@ void MainWindow::ProcessVideo(){
     if (!CBOption.compare("HOG")){
         // HOG Detector
         Video.HOGPeopleDetection(Video.ActualFrame);
+        Video.paintBoundingBoxes(Video.ActualFrame, CBOption, Video.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
         Video.projectBlobs(Video.HOGBoundingBoxesNMS, Video.HOGScores, Video.Homography, "GREEN");
     }
     else if(!CBOption.compare("FastRCNN")){
         // FastRCNN Detector
         Video.FastRCNNPeopleDetection(ss.str(), Video.FastRCNNMethod);
+        Video.paintBoundingBoxes(Video.ActualFrame, CBOption, Video.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
         Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography, "RED");
     }
     else if(!CBOption.compare("DPM")){
         // DPM Detector
         Video.DPMPeopleDetection(Video.ActualFrame);
+        Video.paintBoundingBoxes(Video.ActualFrame, CBOption, Video.DPMBoundingBoxes, Scalar (255, 0, 0), 1);
         Video.projectBlobs(Video.DPMBoundingBoxes, Video.DPMScores, Video.Homography, "BLUE");
     }
     else{
         // HOG Detector
         Video.HOGPeopleDetection(Video.ActualFrame);
+        Video.paintBoundingBoxes(Video.ActualFrame, CBOption, Video.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
         Video.projectBlobs(Video.HOGBoundingBoxesNMS, Video.HOGScores, Video.Homography, "GREEN");
 
         // FastRCNN Detector
         Video.FastRCNNPeopleDetection(ss.str(), Video.FastRCNNMethod);
+        Video.paintBoundingBoxes(Video.ActualFrame, CBOption, Video.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
         Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography, "RED");
     }
 
@@ -158,10 +161,7 @@ void MainWindow::ProcessVideo(){
     //         DISPLAY         //
     // ----------------------- //
 
-    // Paint blobs
-    Video.paintBoundingBoxes(Video.ActualFrame, CBOption);
-
-    // Display projected points
+    // Display projected points into Cenital Plane
     imshow("Projected points", Video.CenitalPlane);
 
     /* -----------------------*/

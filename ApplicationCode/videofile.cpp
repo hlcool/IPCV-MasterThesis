@@ -40,6 +40,10 @@ void VideoFile::VideoOpenning(string InputPath)
 
 void VideoFile::HOGPeopleDetection(Mat ActualFrame)
 {
+    // Clear vectors
+    HOGBoundingBoxes.clear();
+    HOGBoundingBoxesNMS.clear();
+
     // Initialice the SVM
     HOG.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
     // HOG Detector
@@ -50,6 +54,11 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
 
 void VideoFile::FastRCNNPeopleDetection(string FrameNumber, string Method)
 {
+    // Clear vectors
+    RCNNBoundingBoxes.clear();
+    RCNNBoundingBoxesNMS.clear();
+    RCNNScores.clear();
+
     // Decode de txt file for the desired frame number
     size_t slash = InputPath.find_last_of("/");
     size_t point = InputPath.find_last_of(".");
@@ -167,6 +176,8 @@ void VideoFile::decodeBlobFile(string FileName, string FrameNumber)
 
 void VideoFile::DPMPeopleDetection(Mat ActualFrame)
 {
+    DPMBoundingBoxes.clear();
+
     // Local detection vector
     vector<DPMDetector::ObjectDetection> DPMBoundingBoxesAux;
     // DPM detector with NMS
@@ -224,58 +235,19 @@ void VideoFile::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &r
     }
 }
 
-void VideoFile::paintBoundingBoxes(Mat ActualFrame, string Method)
+void VideoFile::paintBoundingBoxes(Mat ActualFrame, string Method, vector<Rect> BoundingBoxes, Scalar Color, int Thickness)
 {
-    if (!Method.compare("HOG")) {
-        for (size_t i = 0; i < HOGBoundingBoxesNMS.size(); i++) {
-            Rect r = HOGBoundingBoxesNMS[i];
+    for (size_t i = 0; i < BoundingBoxes.size(); i++) {
+        Rect r = BoundingBoxes[i];
+        if (!Method.compare("HOG")) {
             // The HOG detector returns slightly larger rectangles than the real objects.
             // so we slightly shrink the rectangles to get a nicer output.
             r.x += cvRound(r.width*0.1);
             r.width = cvRound(r.width*0.8);
             r.y += cvRound(r.height*0.07);
             r.height = cvRound(r.height*0.8);
-            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
         }
-
-        HOGBoundingBoxes.clear();
-    }
-    else if (!Method.compare("FastRCNN")) {
-        for (size_t i = 0; i < RCNNBoundingBoxesNMS.size(); i++) {
-            Rect r = RCNNBoundingBoxesNMS[i];
-            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 0, 255), 1);
-        }
-
-        RCNNBoundingBoxes.clear();
-        RCNNScores.clear();
-    }
-    else if (!Method.compare("DPM")) {
-        for (size_t i = 0; i < DPMBoundingBoxes.size(); i++) {
-            Rect r = DPMBoundingBoxes[i];
-            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(255, 0, 0), 1);
-        }
-
-        DPMBoundingBoxes.clear();
-    }
-    else {
-        for (size_t i = 0; i < HOGBoundingBoxesNMS.size(); i++) {
-            Rect r = HOGBoundingBoxesNMS[i];
-            // The HOG detector returns slightly larger rectangles than the real objects.
-            // so we slightly shrink the rectangles to get a nicer output.
-            r.x += cvRound(r.width*0.1);
-            r.width = cvRound(r.width*0.8);
-            r.y += cvRound(r.height*0.07);
-            r.height = cvRound(r.height*0.8);
-            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
-        }
-        for (size_t i = 0; i < RCNNBoundingBoxesNMS.size(); i++) {
-            Rect r = RCNNBoundingBoxesNMS[i];
-            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 0, 255), 1);
-        }
-
-        HOGBoundingBoxes.clear();
-        RCNNBoundingBoxes.clear();
-        RCNNScores.clear();
+        rectangle(ActualFrame, r.tl(), r.br(), Color, Thickness);
     }
 }
 
