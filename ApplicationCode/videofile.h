@@ -7,6 +7,7 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include <DPM/dpm.hpp>
+#include "opencv2/objdetect/objdetect.hpp"
 
 using namespace std;
 using namespace cv;
@@ -46,6 +47,7 @@ public:
     void projectSemantic();
 
     // HOG People Detection
+    HOGDescriptor HOG;
     vector<Rect> HOGBoundingBoxes;
     vector<Rect> HOGBoundingBoxesNMS;
     vector<double> HOGScores;

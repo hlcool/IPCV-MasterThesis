@@ -128,7 +128,7 @@ void MainWindow::ProcessVideo(){
     else if (ui->AccurateButton->isChecked())
         Video.FastRCNNMethod = "accurate";
 
-    if (!CBOption.compare("Histogram of Oriented Gradients")){
+    if (!CBOption.compare("HOG")){
         // HOG Detector
         Video.HOGPeopleDetection(Video.ActualFrame);
         Video.projectBlobs(Video.HOGBoundingBoxesNMS, Video.HOGScores, Video.Homography, "GREEN");

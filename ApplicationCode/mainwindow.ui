@@ -490,17 +490,17 @@
       </property>
       <item>
        <property name="text">
-        <string>HOG &amp; FastRCNN</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Histogram of Oriented Gradients</string>
+        <string>HOG</string>
        </property>
       </item>
       <item>
        <property name="text">
         <string>FastRCNN</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>HOG &amp; FastRCNN</string>
        </property>
       </item>
       <item>

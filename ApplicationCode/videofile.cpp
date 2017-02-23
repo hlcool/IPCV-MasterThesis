@@ -40,7 +40,7 @@ void VideoFile::VideoOpenning(string InputPath)
 
 void VideoFile::paintBoundingBoxes(Mat ActualFrame, string Method)
 {
-    if (!Method.compare("Histogram of Oriented Gradients")) {
+    if (!Method.compare("HOG")) {
         for (size_t i = 0; i < HOGBoundingBoxesNMS.size(); i++) {
             Rect r = HOGBoundingBoxesNMS[i];
             // The HOG detector returns slightly larger rectangles than the real objects.
@@ -184,10 +184,9 @@ void VideoFile::decodeBlobFile(string FileName, string FrameNumber)
 
 void VideoFile::HOGPeopleDetection(Mat ActualFrame)
 {
-    // initialize the HOG descriptor/person detector
-    HOGDescriptor HOG;
+    // Initialice the SVM
     HOG.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
-
+    // HOG Detector
     HOG.detectMultiScale(ActualFrame, HOGBoundingBoxes, HOGScores, 0, Size(8, 8), Size(32, 32), 1.1, 2);
     HOGBoundingBoxesNMS = HOGBoundingBoxes;
     //non_max_suppresion(HOGBoundingBoxes, HOGBoundingBoxesNMS, 0.65);
