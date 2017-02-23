@@ -12,10 +12,12 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "cvimagewidget.h"
 #include <QFileDialog>
+#include <DPM/dpm.hpp>
 
 
 using namespace std;
 using namespace cv;
+using namespace cv::dpm;
 
 VideoFile Video;
 
@@ -72,6 +74,8 @@ void MainWindow::ProcessVideo(){
 
     Video.cap >> Video.ActualFrame; // Get first video frame
 
+
+
     stringstream ss;
     ss << Video.cap.get(CAP_PROP_POS_FRAMES);
 
@@ -94,6 +98,8 @@ void MainWindow::ProcessVideo(){
 
     // Frames Enhancement
     Video.imageEnhancement(Video.ActualFrame);
+    Mat DPMDetections = Video.ActualFrame.clone();
+    Mat DPMFrame = Video.ActualFrame.clone();
 
     // ----------------------- //
     // BACKGROUND SUBSTRACTION //
@@ -143,6 +149,21 @@ void MainWindow::ProcessVideo(){
         Video.FastRCNNPeopleDetection(ss.str(), Video.FastRCNNMethod);
         Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography, "RED");
     }
+
+
+    cv::Ptr<DPMDetector> detector = DPMDetector::create(vector<string>(1, "/Users/alex/Desktop/inriaperson.xml"));
+    vector<DPMDetector::ObjectDetection> ds;
+
+    // DPM detection
+    detector->detect(DPMDetections, ds);
+    for (unsigned int i = 0; i < ds.size(); i++)
+    {
+        rectangle(DPMFrame, ds[i].rect, (0, 255, 255), 2);
+    }
+
+    // show detections
+    imshow("DPM Cascade Detection", DPMFrame);
+
 
     // ----------------------- //
     //         DISPLAY         //
