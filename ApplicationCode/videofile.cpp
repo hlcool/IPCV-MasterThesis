@@ -361,3 +361,34 @@ void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, 
             circle(CenitalPlane, center, score, Scalar(0, 255, 0), 2);
     }
 }
+
+void VideoFile::projectSemantic()
+{
+    // Four floor points
+    Mat overlay;
+    double alpha = 0.3;
+    vector<Point2f> FloorPoints;
+    vector<Point2f> ProjectedFloor;
+
+    FloorPoints.push_back(Point2f(14, 186));
+    FloorPoints.push_back(Point2f(1, 511));
+    FloorPoints.push_back(Point2f(639, 512));
+    FloorPoints.push_back(Point2f(630, 300));
+    FloorPoints.push_back(Point2f(331, 243));
+    FloorPoints.push_back(Point2f(230, 222));
+    FloorPoints.push_back(Point2f(501, 274));
+
+    // Apply Homography to vector of Points to find the projection
+    perspectiveTransform(FloorPoints, ProjectedFloor, Homography);
+
+    // Convert vector of points into array of points
+    Point ArrayProjectedPoints[6];
+    copy(ProjectedFloor.begin(), ProjectedFloor.end(), ArrayProjectedPoints);
+
+    // Copy the cenital image to an overlay
+    CenitalPlane.copyTo(overlay);
+
+    // Create the poligon and add transparency
+    fillConvexPoly( overlay, ArrayProjectedPoints, 4, Scalar(0,255,0) );
+    addWeighted(overlay, alpha, CenitalPlane, 1 - alpha, 0, CenitalPlane);
+}

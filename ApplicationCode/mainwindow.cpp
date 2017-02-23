@@ -109,6 +109,7 @@ void MainWindow::ProcessVideo(){
     // ----------------------- //
 
     Video.computeHomography();
+    Video.projectSemantic();
     //Video.ImageWarping = Mat::zeros(480, 1280, CV_64F);
     //warpPerspective(Video.ActualFrame2, Video.ImageWarping, Video.Homography, Video.ImageWarping.size());
     //imshow("Warped Image", Video.ImageWarping);
