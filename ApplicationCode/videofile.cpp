@@ -54,7 +54,6 @@ void VideoFile::paintBoundingBoxes(Mat ActualFrame, string Method)
 
         HOGBoundingBoxes.clear();
     }
-
     else if (!Method.compare("FastRCNN")) {
         for (size_t i = 0; i < RCNNBoundingBoxesNMS.size(); i++) {
             Rect r = RCNNBoundingBoxesNMS[i];
@@ -63,6 +62,14 @@ void VideoFile::paintBoundingBoxes(Mat ActualFrame, string Method)
 
         RCNNBoundingBoxes.clear();
         RCNNScores.clear();
+    }
+    else if (!Method.compare("DPM")) {
+        for (size_t i = 0; i < DPMBoundingBoxes.size(); i++) {
+            Rect r = DPMBoundingBoxes[i];
+            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(255, 0, 0), 1);
+        }
+
+        DPMBoundingBoxes.clear();
     }
     else {
         for (size_t i = 0; i < HOGBoundingBoxesNMS.size(); i++) {
@@ -181,16 +188,6 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
     HOGDescriptor HOG;
     HOG.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
 
-    // Display information about HOG parameters
-    if (FlagCOUT == 1) {
-        //cout << "Hog block size: " << HOG.blockSize << endl;
-        //cout << "Hog cell size: " << HOG.cellSize << endl;
-        //cout << "Hog number of levels: " << HOG.nlevels << endl;
-        //cout << "Hog number of bins: " << HOG.nbins << endl;
-        //cout << "Hog window size: " << HOG.winSize << endl;
-        FlagCOUT = 0;
-    }
-
     HOG.detectMultiScale(ActualFrame, HOGBoundingBoxes, HOGScores, 0, Size(8, 8), Size(32, 32), 1.1, 2);
     HOGBoundingBoxesNMS = HOGBoundingBoxes;
     //non_max_suppresion(HOGBoundingBoxes, HOGBoundingBoxesNMS, 0.65);
@@ -222,6 +219,20 @@ void VideoFile::FastRCNNPeopleDetection(string FrameNumber, string Method)
     }
     RCNNBoundingBoxesNMS = RCNNBoundingBoxes;
     //non_max_suppresion(RCNNBoundingBoxes, RCNNBoundingBoxesNMS, 0.65);
+}
+
+void VideoFile::DPMPeopleDetection(Mat ActualFrame)
+{
+    // Local detection vector
+    vector<DPMDetector::ObjectDetection> DPMBoundingBoxesAux;
+    // DPM detector with NMS
+    DPMdetector->detect(ActualFrame, DPMBoundingBoxesAux);
+
+    // Convert from vector<ObjectDetection> to vector<Rect>
+    for (unsigned int i = 0; i < DPMBoundingBoxesAux.size(); i++){
+        Rect Aux1 = DPMBoundingBoxesAux[i].rect;
+        DPMBoundingBoxes.push_back(Aux1);
+    }
 }
 
 void VideoFile::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh)
@@ -294,6 +305,7 @@ void VideoFile::imageEnhancement(Mat ActuaFrame)
     Height = ActualFrame.rows;
     if (FlagCOUT == 1) {
         cout << "The video has been resize to " << "Width: " << Width << ". Heigth: " << Height << endl;
+        FlagCOUT = 0;
     }
 }
 
@@ -335,6 +347,8 @@ void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, 
     if (BoundingBoxes.empty())
         return;
 
+    double score;
+
     vector<Point2f> AuxPointVector;
     for (size_t i = 0; i < BoundingBoxes.size(); i++) {
         // Extract the corresponding rectangle
@@ -353,12 +367,18 @@ void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, 
 
     for (size_t i = 0; i < ProjectedPoints.size(); i++) {
         Point2f center = ProjectedPoints[i];
-        double score = scores[i];
-        score = 15 * score;
+        if(!scores.empty()){
+            score = 15 * scores[i];
+        }
+        else{
+            score = 5;
+        }
         if (!Color.compare("RED"))
             circle(CenitalPlane, center, score, Scalar(0, 0, 255), 2);
         else if (!Color.compare("GREEN"))
             circle(CenitalPlane, center, score, Scalar(0, 255, 0), 2);
+        else if (!Color.compare("BLUE"))
+            circle(CenitalPlane, center, score, Scalar(255, 0, 0), 2);
     }
 }
 

@@ -503,8 +503,13 @@
         <string>FastRCNN</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>DPM</string>
+       </property>
+      </item>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>200</x>

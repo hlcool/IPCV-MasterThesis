@@ -160,7 +160,8 @@ vector< vector<double> > DPMCascade::detect(Mat &image)
 
     // non-maximum suppression
     NonMaximumSuppression nms;
-    nms.process(detections, 0.5);
+    // The less the threshold the less Bounding Boxes
+    nms.process(detections, 0.35);
 
     return detections;
 }

@@ -74,8 +74,6 @@ void MainWindow::ProcessVideo(){
 
     Video.cap >> Video.ActualFrame; // Get first video frame
 
-
-
     stringstream ss;
     ss << Video.cap.get(CAP_PROP_POS_FRAMES);
 
@@ -102,7 +100,7 @@ void MainWindow::ProcessVideo(){
     Mat DPMFrame = Video.ActualFrame.clone();
 
     // ----------------------- //
-    // BACKGROUND SUBSTRACTION //
+    //     BKG SUBSTRACTION    //
     // ----------------------- //
 
     // Compute Background Mask
@@ -140,6 +138,11 @@ void MainWindow::ProcessVideo(){
         Video.FastRCNNPeopleDetection(ss.str(), Video.FastRCNNMethod);
         Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography, "RED");
     }
+    else if(!CBOption.compare("DPM")){
+        // DPM Detector
+        Video.DPMPeopleDetection(Video.ActualFrame);
+        Video.projectBlobs(Video.DPMBoundingBoxes, Video.DPMScores, Video.Homography, "BLUE");
+    }
     else{
         // HOG Detector
         Video.HOGPeopleDetection(Video.ActualFrame);
@@ -149,20 +152,6 @@ void MainWindow::ProcessVideo(){
         Video.FastRCNNPeopleDetection(ss.str(), Video.FastRCNNMethod);
         Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography, "RED");
     }
-
-
-    cv::Ptr<DPMDetector> detector = DPMDetector::create(vector<string>(1, "/Users/alex/Desktop/inriaperson.xml"));
-    vector<DPMDetector::ObjectDetection> ds;
-
-    // DPM detection
-    detector->detect(DPMDetections, ds);
-    for (unsigned int i = 0; i < ds.size(); i++)
-    {
-        rectangle(DPMFrame, ds[i].rect, (0, 255, 255), 2);
-    }
-
-    // show detections
-    imshow("DPM Cascade Detection", DPMFrame);
 
 
     // ----------------------- //

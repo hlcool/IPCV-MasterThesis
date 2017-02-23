@@ -6,9 +6,11 @@
 #include <opencv2/opencv.hpp>
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
+#include <DPM/dpm.hpp>
 
 using namespace std;
 using namespace cv;
+using namespace cv::dpm;
 
 class VideoFile
 {
@@ -56,6 +58,12 @@ public:
     vector<double> RCNNScores;
     void decodeBlobFile(string FileName, string FrameNumber);
     void FastRCNNPeopleDetection(string FrameNumber, string Method);
+
+    // DPM People Detection
+    cv::Ptr<DPMDetector> DPMdetector = DPMDetector::create(vector<string>(1, "/Users/alex/Desktop/inriaperson.xml"));
+    vector<Rect> DPMBoundingBoxes;
+    vector<double> DPMScores;
+    void DPMPeopleDetection(Mat ActualFrame);
 
     // Common methods for People Detection
     void paintBoundingBoxes(Mat ActualFrame, string Method);
