@@ -38,59 +38,42 @@ void VideoFile::VideoOpenning(string InputPath)
     cout << "The total number of frames is: " << FrameNumber << endl;
 }
 
-void VideoFile::paintBoundingBoxes(Mat ActualFrame, string Method)
+void VideoFile::HOGPeopleDetection(Mat ActualFrame)
 {
-    if (!Method.compare("HOG")) {
-        for (size_t i = 0; i < HOGBoundingBoxesNMS.size(); i++) {
-            Rect r = HOGBoundingBoxesNMS[i];
-            // The HOG detector returns slightly larger rectangles than the real objects.
-            // so we slightly shrink the rectangles to get a nicer output.
-            r.x += cvRound(r.width*0.1);
-            r.width = cvRound(r.width*0.8);
-            r.y += cvRound(r.height*0.07);
-            r.height = cvRound(r.height*0.8);
-            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
-        }
+    // Initialice the SVM
+    HOG.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
+    // HOG Detector
+    HOG.detectMultiScale(ActualFrame, HOGBoundingBoxes, HOGScores, 0, Size(8, 8), Size(32, 32), 1.1, 2);
+    HOGBoundingBoxesNMS = HOGBoundingBoxes;
+    //non_max_suppresion(HOGBoundingBoxes, HOGBoundingBoxesNMS, 0.65);
+}
 
-        HOGBoundingBoxes.clear();
-    }
-    else if (!Method.compare("FastRCNN")) {
-        for (size_t i = 0; i < RCNNBoundingBoxesNMS.size(); i++) {
-            Rect r = RCNNBoundingBoxesNMS[i];
-            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 0, 255), 1);
-        }
+void VideoFile::FastRCNNPeopleDetection(string FrameNumber, string Method)
+{
+    // Decode de txt file for the desired frame number
+    size_t slash = InputPath.find_last_of("/");
+    size_t point = InputPath.find_last_of(".");
+    string FileName = InputPath.substr(slash + 1, point - slash - 1);
 
-        RCNNBoundingBoxes.clear();
-        RCNNScores.clear();
-    }
-    else if (!Method.compare("DPM")) {
-        for (size_t i = 0; i < DPMBoundingBoxes.size(); i++) {
-            Rect r = DPMBoundingBoxes[i];
-            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(255, 0, 0), 1);
-        }
+    if (!Method.compare("fast"))
+        FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/" + FileName + "fast.txt";
+    else if (!Method.compare("accurate"))
+        FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/" + FileName + "Accurate.txt";
 
-        DPMBoundingBoxes.clear();
-    }
-    else {
-        for (size_t i = 0; i < HOGBoundingBoxesNMS.size(); i++) {
-            Rect r = HOGBoundingBoxesNMS[i];
-            // The HOG detector returns slightly larger rectangles than the real objects.
-            // so we slightly shrink the rectangles to get a nicer output.
-            r.x += cvRound(r.width*0.1);
-            r.width = cvRound(r.width*0.8);
-            r.y += cvRound(r.height*0.07);
-            r.height = cvRound(r.height*0.8);
-            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
-        }
-        for (size_t i = 0; i < RCNNBoundingBoxesNMS.size(); i++) {
-            Rect r = RCNNBoundingBoxesNMS[i];
-            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 0, 255), 1);
-        }
+    decodeBlobFile(FileName, FrameNumber);
 
-        HOGBoundingBoxes.clear();
-        RCNNBoundingBoxes.clear();
-        RCNNScores.clear();
+    // Score average
+    double average = accumulate( RCNNScores.begin(), RCNNScores.end(), 0.0) / RCNNScores.size();
+
+    // Filter blobs by average
+    for (size_t i = 0; i < RCNNBoundingBoxes.size(); i++) {
+        if (RCNNScores[i] <= (average - (average * 0.05)) ) {
+            RCNNBoundingBoxes.erase(RCNNBoundingBoxes.begin() + i);
+            RCNNScores.erase(RCNNScores.begin() + i);
+        }
     }
+    RCNNBoundingBoxesNMS = RCNNBoundingBoxes;
+    //non_max_suppresion(RCNNBoundingBoxes, RCNNBoundingBoxesNMS, 0.65);
 }
 
 void VideoFile::decodeBlobFile(string FileName, string FrameNumber)
@@ -182,44 +165,6 @@ void VideoFile::decodeBlobFile(string FileName, string FrameNumber)
     }
 }
 
-void VideoFile::HOGPeopleDetection(Mat ActualFrame)
-{
-    // Initialice the SVM
-    HOG.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
-    // HOG Detector
-    HOG.detectMultiScale(ActualFrame, HOGBoundingBoxes, HOGScores, 0, Size(8, 8), Size(32, 32), 1.1, 2);
-    HOGBoundingBoxesNMS = HOGBoundingBoxes;
-    //non_max_suppresion(HOGBoundingBoxes, HOGBoundingBoxesNMS, 0.65);
-}
-
-void VideoFile::FastRCNNPeopleDetection(string FrameNumber, string Method)
-{
-    // Decode de txt file for the desired frame number
-    size_t slash = InputPath.find_last_of("/");
-    size_t point = InputPath.find_last_of(".");
-    string FileName = InputPath.substr(slash + 1, point - slash - 1);
-
-    if (!Method.compare("fast"))
-        FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/" + FileName + "fast.txt";
-    else if (!Method.compare("accurate"))
-        FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/" + FileName + "Accurate.txt";
-
-    decodeBlobFile(FileName, FrameNumber);
-
-    // Score average
-    double average = accumulate( RCNNScores.begin(), RCNNScores.end(), 0.0) / RCNNScores.size();
-
-    // Filter blobs by average
-    for (size_t i = 0; i < RCNNBoundingBoxes.size(); i++) {
-        if (RCNNScores[i] <= (average - (average * 0.05)) ) {
-            RCNNBoundingBoxes.erase(RCNNBoundingBoxes.begin() + i);
-            RCNNScores.erase(RCNNScores.begin() + i);
-        }
-    }
-    RCNNBoundingBoxesNMS = RCNNBoundingBoxes;
-    //non_max_suppresion(RCNNBoundingBoxes, RCNNBoundingBoxesNMS, 0.65);
-}
-
 void VideoFile::DPMPeopleDetection(Mat ActualFrame)
 {
     // Local detection vector
@@ -276,6 +221,61 @@ void VideoFile::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &r
                 ++pos;
             }
         }
+    }
+}
+
+void VideoFile::paintBoundingBoxes(Mat ActualFrame, string Method)
+{
+    if (!Method.compare("HOG")) {
+        for (size_t i = 0; i < HOGBoundingBoxesNMS.size(); i++) {
+            Rect r = HOGBoundingBoxesNMS[i];
+            // The HOG detector returns slightly larger rectangles than the real objects.
+            // so we slightly shrink the rectangles to get a nicer output.
+            r.x += cvRound(r.width*0.1);
+            r.width = cvRound(r.width*0.8);
+            r.y += cvRound(r.height*0.07);
+            r.height = cvRound(r.height*0.8);
+            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
+        }
+
+        HOGBoundingBoxes.clear();
+    }
+    else if (!Method.compare("FastRCNN")) {
+        for (size_t i = 0; i < RCNNBoundingBoxesNMS.size(); i++) {
+            Rect r = RCNNBoundingBoxesNMS[i];
+            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 0, 255), 1);
+        }
+
+        RCNNBoundingBoxes.clear();
+        RCNNScores.clear();
+    }
+    else if (!Method.compare("DPM")) {
+        for (size_t i = 0; i < DPMBoundingBoxes.size(); i++) {
+            Rect r = DPMBoundingBoxes[i];
+            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(255, 0, 0), 1);
+        }
+
+        DPMBoundingBoxes.clear();
+    }
+    else {
+        for (size_t i = 0; i < HOGBoundingBoxesNMS.size(); i++) {
+            Rect r = HOGBoundingBoxesNMS[i];
+            // The HOG detector returns slightly larger rectangles than the real objects.
+            // so we slightly shrink the rectangles to get a nicer output.
+            r.x += cvRound(r.width*0.1);
+            r.width = cvRound(r.width*0.8);
+            r.y += cvRound(r.height*0.07);
+            r.height = cvRound(r.height*0.8);
+            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 255, 0), 1);
+        }
+        for (size_t i = 0; i < RCNNBoundingBoxesNMS.size(); i++) {
+            Rect r = RCNNBoundingBoxesNMS[i];
+            rectangle(ActualFrame, r.tl(), r.br(), cv::Scalar(0, 0, 255), 1);
+        }
+
+        HOGBoundingBoxes.clear();
+        RCNNBoundingBoxes.clear();
+        RCNNScores.clear();
     }
 }
 
