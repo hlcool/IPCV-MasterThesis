@@ -355,13 +355,25 @@ void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, 
     // Mesgrid function
     meshgrid(X, Y, CenitalPlane.rows, CenitalPlane.cols);
 
+    // Extract the maximum score from the vector
+    double MaxScore = *max_element(scores.begin(), scores.end());
+
     // Extract projected points and create Gaussians
     for (size_t i = 0; i < ProjectedPoints.size(); i++) {
         Point2f center = ProjectedPoints[i];
-        if(!scores.empty()){
-            score = 15 * scores[i];
+        if (!scores.empty()) {
+            if (MaxScore > 1){
+                //cout << "Score: " << scores[i]/MaxScore;
+                score = ((exp(-(scores[i]/MaxScore)))/0.02) - 15;
+                //cout << ". STD: " << score << endl;
+            }
+            else {
+                //cout << "Score: " << scores[i];
+                score = ((exp(-scores[i]))/0.02) - 15;
+                //cout << ". STD: " << score << endl;
+            }
         }
-        else{
+        else {
             score = 5;
         }
 
