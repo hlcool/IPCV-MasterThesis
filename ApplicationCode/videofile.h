@@ -42,10 +42,14 @@ public:
     Mat Homography;
     Mat ImageWarping;
     vector<Point2f> ProjectedPoints;
-    Mat GaussianImage;
     void computeHomography();
     void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color);
     void projectSemantic();
+
+    // Gaussians creation
+    Mat GaussianImage;
+    void meshgrid(Mat &X, Mat &Y, int rows, int cols);
+    void gaussianFunction(Mat &Gaussian3C, Mat X, Mat Y, Point2f center, double score);
 
     // HOG People Detection
     HOGDescriptor HOG;
