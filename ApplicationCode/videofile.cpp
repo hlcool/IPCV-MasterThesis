@@ -318,9 +318,20 @@ void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, 
     if (BoundingBoxes.empty())
         return;
 
+    Mat R = Mat::zeros(CenitalPlane.rows, CenitalPlane.cols, CV_64F);
+    Mat C = Mat::zeros(CenitalPlane.rows, CenitalPlane.cols, CV_64F);
     double score;
+    Scalar SColor;
+
+    if (!Color.compare("RED"))
+        SColor = Scalar(0, 0, 255);
+    else if (!Color.compare("GREEN"))
+        SColor = Scalar(0, 255, 0);
+    else if (!Color.compare("BLUE"))
+        SColor = Scalar(255, 0, 0);
 
     vector<Point2f> AuxPointVector;
+
     for (size_t i = 0; i < BoundingBoxes.size(); i++) {
         // Extract the corresponding rectangle
         Rect r = BoundingBoxes[i];
@@ -336,6 +347,11 @@ void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, 
     // Apply Homography to vector of Points to find the projection
     perspectiveTransform(AuxPointVector, ProjectedPoints, Homography);
 
+
+    // Initialice Gaussian Image
+    GaussianImage = Mat::zeros(CenitalPlane.rows, CenitalPlane.cols, CV_32FC1);
+    //CenitalPlane.copyTo(GaussianImage);
+
     for (size_t i = 0; i < ProjectedPoints.size(); i++) {
         Point2f center = ProjectedPoints[i];
         if(!scores.empty()){
@@ -344,12 +360,58 @@ void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, 
         else{
             score = 5;
         }
-        if (!Color.compare("RED"))
-            circle(CenitalPlane, center, score, Scalar(0, 0, 255), 2);
-        else if (!Color.compare("GREEN"))
-            circle(CenitalPlane, center, score, Scalar(0, 255, 0), 2);
-        else if (!Color.compare("BLUE"))
-            circle(CenitalPlane, center, score, Scalar(255, 0, 0), 2);
+
+        // Draws a circle on the cenital plane
+        //circle(CenitalPlane, center, score, SColor, 2);
+
+        // Mesgrid function
+        Mat X, Y;
+        X = Mat::zeros(1, CenitalPlane.cols, CV_32FC1);
+        Y = Mat::zeros(CenitalPlane.rows, 1, CV_32FC1);
+
+        for (int i = 0; i < CenitalPlane.cols; i++)
+            X.at<float>(0,i) = i;
+
+        for (int i = 0; i < CenitalPlane.rows; i++)
+            Y.at<float>(i,0) = i;
+
+        X = repeat(X, CenitalPlane.rows, 1);
+        Y = repeat(Y, 1, CenitalPlane.cols);
+
+        // Draw a Gaussian of mean = center and std = score
+
+        Mat Gaussian;
+        Mat Aux;
+        Mat Fra1, Fra2, Powx1, Powx2, Powy1, Powy2;
+        double A = 1;
+        double MeanX;
+        double MeanY;
+        double sigmaX;
+        double sigmaY;
+
+        MeanX = center.x;
+        MeanY = center.y;
+        sigmaX = score;
+        sigmaY = score;
+
+        // X Equation
+        pow((X - MeanX), 2, Powx1);
+        pow(sigmaX, 2, Powx2);
+        Powx2 = 2*Powx2;
+        divide(Powx1, Powx2, Fra1);
+
+        // Y Equation
+        pow((Y - MeanY), 2, Powy1);
+        pow(sigmaY, 2, Powy2);
+        Powy2 = 2*Powy2;
+        divide(Powy1, Powy2, Fra2);
+
+        Aux = -(Fra1 + Fra2);
+        exp(Aux, Gaussian);
+        Gaussian = A*Gaussian;
+
+        GaussianImage = GaussianImage + Gaussian;
+        imshow("Gaussian", GaussianImage);
     }
 }
 
