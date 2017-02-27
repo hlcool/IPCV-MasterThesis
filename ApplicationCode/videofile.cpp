@@ -344,14 +344,28 @@ void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, 
         // Store project Point in vector
         AuxPointVector.push_back(Point);
     }
+
     // Apply Homography to vector of Points to find the projection
     perspectiveTransform(AuxPointVector, ProjectedPoints, Homography);
 
+    // Convert CenitalPlane to flaoting point mat to add the Gaussians
+    CenitalPlane.convertTo(CenitalPlane, CV_32FC3, 1/255.0);
 
-    // Initialice Gaussian Image
-    GaussianImage = Mat::zeros(CenitalPlane.rows, CenitalPlane.cols, CV_32FC1);
-    //CenitalPlane.copyTo(GaussianImage);
+    // Mesgrid function
+    Mat X, Y;
+    X = Mat::zeros(1, CenitalPlane.cols, CV_32FC1);
+    Y = Mat::zeros(CenitalPlane.rows, 1, CV_32FC1);
 
+    for (int i = 0; i < CenitalPlane.cols; i++)
+        X.at<float>(0,i) = i;
+
+    for (int i = 0; i < CenitalPlane.rows; i++)
+        Y.at<float>(i,0) = i;
+
+    X = repeat(X, CenitalPlane.rows, 1);
+    Y = repeat(Y, 1, CenitalPlane.cols);
+
+    // Extract projected points and create Gaussians
     for (size_t i = 0; i < ProjectedPoints.size(); i++) {
         Point2f center = ProjectedPoints[i];
         if(!scores.empty()){
@@ -361,25 +375,7 @@ void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, 
             score = 5;
         }
 
-        // Draws a circle on the cenital plane
-        //circle(CenitalPlane, center, score, SColor, 2);
-
-        // Mesgrid function
-        Mat X, Y;
-        X = Mat::zeros(1, CenitalPlane.cols, CV_32FC1);
-        Y = Mat::zeros(CenitalPlane.rows, 1, CV_32FC1);
-
-        for (int i = 0; i < CenitalPlane.cols; i++)
-            X.at<float>(0,i) = i;
-
-        for (int i = 0; i < CenitalPlane.rows; i++)
-            Y.at<float>(i,0) = i;
-
-        X = repeat(X, CenitalPlane.rows, 1);
-        Y = repeat(Y, 1, CenitalPlane.cols);
-
         // Draw a Gaussian of mean = center and std = score
-
         Mat Gaussian;
         Mat Aux;
         Mat Fra1, Fra2, Powx1, Powx2, Powy1, Powy2;
@@ -410,8 +406,16 @@ void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, 
         exp(Aux, Gaussian);
         Gaussian = A*Gaussian;
 
-        GaussianImage = GaussianImage + Gaussian;
-        imshow("Gaussian", GaussianImage);
+        // Convert Gaussian to 3-channel matrix
+        vector<cv::Mat> GaussianChannels(3);
+        Mat Gaussian3C;
+        GaussianChannels.at(0) = Gaussian;
+        GaussianChannels.at(1) = Gaussian;
+        GaussianChannels.at(2) = Gaussian;
+
+        merge(GaussianChannels, Gaussian3C);
+
+        add(Gaussian3C, CenitalPlane, CenitalPlane);
     }
 }
 
