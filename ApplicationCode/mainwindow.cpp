@@ -36,7 +36,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionOpen_file_triggered()
 {
-
     // Global Path variable should be change if used in other computer
     QString GlobalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode";
 
@@ -59,16 +58,17 @@ void MainWindow::on_actionOpen_file_triggered()
     Video.VideoStatsFile.open(GlobalPath.toStdString() + "/VideoProcessingStats.txt");
     Video.VideoStatsFile << "Frame  Computational Time" << endl;
 
+    // Homography calculation
+    Video.computeHomography();
+
     // Timer to launch the ProcessVideo() slot
     imageTimer = new QTimer(this);
     connect(imageTimer, SIGNAL(timeout()), this, SLOT(ProcessVideo()));
     imageTimer->start();
-
 }
 
-
-void MainWindow::ProcessVideo(){
-
+void MainWindow::ProcessVideo()
+{
     // Start the clock for measuring frame consumption
     clock_t begin = clock();
 
@@ -110,7 +110,6 @@ void MainWindow::ProcessVideo(){
     //     HOMOGRAPHY & IW     //
     // ----------------------- //
 
-    Video.computeHomography();
     Video.projectSemantic();
     //Video.ImageWarping = Mat::zeros(480, 1280, CV_64F);
     //warpPerspective(Video.ActualFrame2, Video.ImageWarping, Video.Homography, Video.ImageWarping.size());

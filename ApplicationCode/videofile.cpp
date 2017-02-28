@@ -284,10 +284,6 @@ void VideoFile::computeHomography()
 {
     if (!UserSelectedPoints){
 
-        // Erase vectors
-        pts_src.erase(pts_src.begin(), pts_src.end());
-        pts_dst.erase(pts_dst.begin(), pts_dst.end());
-
         // Precomputed points if the user has not selected
         // Camera Frame
         pts_src.push_back(Point2f(224, 376));
@@ -312,9 +308,6 @@ void VideoFile::computeHomography()
 
     // Calculate Homography
     Homography = findHomography(pts_src, pts_dst, CV_LMEDS);
-
-    // Clean previous cenital view
-    CenitalPlane = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/CenitalView.png");
 }
 
 void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color)
@@ -412,6 +405,8 @@ void VideoFile::projectSemantic()
     Point ArrayProjectedPoints[6];
     copy(ProjectedFloor.begin(), ProjectedFloor.end(), ArrayProjectedPoints);
 
+    // Clean previous cenital view
+    CenitalPlane = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/CenitalView.png");
     // Copy the cenital image to an overlay
     CenitalPlane.copyTo(overlay);
 
