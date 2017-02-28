@@ -32,6 +32,7 @@ public slots:
     void ProcessVideo();
 private slots:
     void on_actionOpen_file_triggered();
+    void on_actionSet_Homography_triggered();
 };
 
 #endif // MAINWINDOW_H

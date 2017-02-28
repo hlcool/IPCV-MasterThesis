@@ -42,6 +42,8 @@ public:
     Mat Homography;
     Mat ImageWarping;
     vector<Point2f> ProjectedPoints;
+    vector<Point2f> pts_src, pts_dst;
+    bool UserSelectedPoints = 0;
     void computeHomography();
     void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color);
     void projectSemantic();

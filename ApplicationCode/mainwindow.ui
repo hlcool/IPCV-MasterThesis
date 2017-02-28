@@ -751,6 +751,7 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen_file"/>
+    <addaction name="actionSet_Homography"/>
     <addaction name="actionCloseWindow"/>
    </widget>
    <addaction name="menuFile"/>
@@ -771,6 +772,11 @@
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionSet_Homography">
+   <property name="text">
+    <string>Set Homography...</string>
    </property>
   </action>
  </widget>

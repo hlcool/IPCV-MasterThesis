@@ -282,29 +282,33 @@ void VideoFile::imageEnhancement(Mat ActuaFrame)
 
 void VideoFile::computeHomography()
 {
-    // Camera Frame
-    // Four points in the camera frame
-    vector<Point2f> pts_src;
-    pts_src.push_back(Point2f(224, 376));
-    pts_src.push_back(Point2f(557, 393));
-    pts_src.push_back(Point2f(334, 225));
-    pts_src.push_back(Point2f(34, 231));
-    pts_src.push_back(Point2f(76, 180));
-    pts_src.push_back(Point2f(55, 261));
-    pts_src.push_back(Point2f(192, 271));
-    pts_src.push_back(Point2f(220, 216));
+    if (!UserSelectedPoints){
 
-    // Cenital Plane Frame
-    // Four same points in the Cenital Plane
-    vector<Point2f> pts_dst;
-    pts_dst.push_back(Point2f(636, 375));
-    pts_dst.push_back(Point2f(690, 430));
-    pts_dst.push_back(Point2f(777, 335));
-    pts_dst.push_back(Point2f(707, 198));
-    pts_dst.push_back(Point2f(774, 173));
-    pts_dst.push_back(Point2f(692, 268));
-    pts_dst.push_back(Point2f(707, 323));
-    pts_dst.push_back(Point2f(761, 240));
+        // Erase vectors
+        pts_src.erase(pts_src.begin(), pts_src.end());
+        pts_dst.erase(pts_dst.begin(), pts_dst.end());
+
+        // Precomputed points if the user has not selected
+        // Camera Frame
+        pts_src.push_back(Point2f(224, 376));
+        pts_src.push_back(Point2f(557, 393));
+        pts_src.push_back(Point2f(334, 225));
+        pts_src.push_back(Point2f(34, 231));
+        pts_src.push_back(Point2f(76, 180));
+        pts_src.push_back(Point2f(55, 261));
+        pts_src.push_back(Point2f(192, 271));
+        pts_src.push_back(Point2f(220, 216));
+
+        // Cenital Plane Frame
+        pts_dst.push_back(Point2f(636, 375));
+        pts_dst.push_back(Point2f(690, 430));
+        pts_dst.push_back(Point2f(777, 335));
+        pts_dst.push_back(Point2f(707, 198));
+        pts_dst.push_back(Point2f(774, 173));
+        pts_dst.push_back(Point2f(692, 268));
+        pts_dst.push_back(Point2f(707, 323));
+        pts_dst.push_back(Point2f(761, 240));
+    }
 
     // Calculate Homography
     Homography = findHomography(pts_src, pts_dst, CV_LMEDS);

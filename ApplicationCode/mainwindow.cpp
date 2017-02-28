@@ -193,3 +193,46 @@ void MainWindow::ProcessVideo(){
     Video.VideoStatsFile << ss.str() << "       " << elapsed_secs << endl;
 
 }
+
+void onMouse1(int evt, int x, int y, int, void*)
+{
+    if(evt == CV_EVENT_LBUTTONDOWN) {
+        Point pt = Point(x,y);
+        cout << "Cenital Frame x = " << pt.x << " y = " << pt.y << endl;
+        Video.pts_dst.push_back(pt);
+    }
+}
+
+void onMouse2(int evt, int x, int y, int, void*)
+{
+    if(evt == CV_EVENT_LBUTTONDOWN) {
+        Point pt = Point(x,y);
+        cout << "Camera Frame x = " << pt.x << " y = " << pt.y << endl;
+        Video.pts_src.push_back(pt);
+    }
+}
+
+void MainWindow::on_actionSet_Homography_triggered()
+{
+    // Load the cenital plane
+    Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/CenitalView.png");
+    Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/EmptyHall.png");
+    cv::resize(CameraFrame, CameraFrame, {CameraFrame.cols*2, CameraFrame.rows*2}, INTER_LANCZOS4);
+
+    String CenitalWindow = "Cenital Frame";
+    namedWindow(CenitalWindow);
+    setMouseCallback(CenitalWindow, onMouse1, 0);
+    imshow(CenitalWindow, CenitalFrame);
+
+    String FrameWindow = "Camera Frame";
+    namedWindow(FrameWindow);
+    setMouseCallback(FrameWindow, onMouse2, 0);
+    imshow(FrameWindow, CameraFrame);
+
+    if(waitKey()==27) {
+        Video.UserSelectedPoints = 1;
+        destroyWindow(CenitalWindow);
+        destroyWindow(FrameWindow);
+        return;
+    }
+}
