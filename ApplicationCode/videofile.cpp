@@ -186,6 +186,8 @@ void VideoFile::DPMPeopleDetection(Mat ActualFrame)
     // Convert from vector<ObjectDetection> to vector<Rect>
     for (unsigned int i = 0; i < DPMBoundingBoxesAux.size(); i++){
         Rect Aux1 = DPMBoundingBoxesAux[i].rect;
+        float score = DPMBoundingBoxesAux[i].score;
+        DPMScores.push_back(score);
         DPMBoundingBoxes.push_back(Aux1);
     }
 }
