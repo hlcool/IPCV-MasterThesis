@@ -4,8 +4,11 @@
 #include <QPainter>
 #include <opencv2/opencv.hpp>
 #include <unistd.h>
+#include <QMouseEvent>
+#include "mainwindow.h"
 
 using namespace cv;
+using namespace std;
 
 class CVImageWidget : public QWidget
 {
@@ -17,6 +20,9 @@ public:
 
     QSize sizeHint() const { return qImage.size(); }
     QSize minimumSizeHint() const { return qImage.size(); }
+
+    // Vector to store the coordinates introduced by the user with the mouse
+    vector<int> x, y;
 
 public slots:
 
@@ -38,6 +44,13 @@ public slots:
         // has three bytes.
         qImage = QImage(tmpImage.data, tmpImage.cols, tmpImage.rows, tmpImage.cols*3, QImage::Format_RGB888);
         repaint();
+    }
+
+    void mousePressEvent(QMouseEvent *event) {
+        QPoint lastMousePosition = event->pos();
+        x.push_back(lastMousePosition.x());
+        y.push_back(lastMousePosition.x());
+        //cout << "Position X: " << lastMousePosition.x() << endl;
     }
 
 protected:

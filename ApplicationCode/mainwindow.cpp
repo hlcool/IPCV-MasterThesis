@@ -214,9 +214,15 @@ void onMouse2(int evt, int x, int y, int, void*)
 
 void MainWindow::on_actionSet_Homography_triggered()
 {
-    pointsselectwindow PointSelectionWindow;
+    pointsselectwindow PointSelectionWindow(this);
     PointSelectionWindow.setModal(true);
     PointSelectionWindow.exec();
+
+    cout << "hola" << endl;
+    for(size_t j = 0; j < PointSelectionWindow.x.size(); j++){
+        cout << "Position X: " << PointSelectionWindow.x[j];
+        cout << "Position Y: " << PointSelectionWindow.y[j]<< endl;
+    }
 
     /*
     // Load the cenital plane

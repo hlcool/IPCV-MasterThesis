@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+using namespace std;
+
 namespace Ui {
 class pointsselectwindow;
 }
@@ -17,6 +19,7 @@ public:
 
     // CVWidget size
     int PointsWidgetHeight, PointsWidgetWidth;
+    vector<int> x, y;
 
 private:
     Ui::pointsselectwindow *ui;

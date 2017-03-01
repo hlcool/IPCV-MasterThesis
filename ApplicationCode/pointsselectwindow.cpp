@@ -27,10 +27,15 @@ pointsselectwindow::pointsselectwindow(QWidget *parent) :
     cv::resize(CenitalFrame, CenitalFrame, {PointsWidgetWidth, PointsWidgetHeight}, INTER_LANCZOS4);
 
     ui->CVWidgetPoints->showImage(CenitalFrame);
+    cout << "holdsaldsa" << endl;
 }
 
 pointsselectwindow::~pointsselectwindow()
 {
+    x = ui->CVWidgetPoints->x;
+    y = ui->CVWidgetPoints->y;
+    cout << "Number of points in widget " << ui->CVWidgetPoints->x.size() << endl;
+    cout << "Number of points in window " << x.size() << endl;
     delete ui;
 }
 
