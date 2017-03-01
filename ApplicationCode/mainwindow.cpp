@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "pointsselectwindow.h"
 #include "videofile.h"
 #include <fstream>
 #include <iostream>
@@ -213,6 +214,11 @@ void onMouse2(int evt, int x, int y, int, void*)
 
 void MainWindow::on_actionSet_Homography_triggered()
 {
+    pointsselectwindow PointSelectionWindow;
+    PointSelectionWindow.setModal(true);
+    PointSelectionWindow.exec();
+
+    /*
     // Load the cenital plane
     Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/CenitalView.png");
     Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/EmptyHall.png");
@@ -234,4 +240,5 @@ void MainWindow::on_actionSet_Homography_triggered()
         destroyWindow(FrameWindow);
         return;
     }
+    */
 }
