@@ -552,7 +552,7 @@
     <property name="title">
      <string>Camera 1</string>
     </property>
-    <widget class="CVImageWidget" name="CVWidget" native="true">
+    <widget class="CVImageWidget" name="CVWidget1" native="true">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -636,7 +636,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="BKGSubs">
+   <widget class="QGroupBox" name="Camera2">
     <property name="geometry">
      <rect>
       <x>570</x>
@@ -646,7 +646,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>Background Subtraction</string>
+     <string>Camera 2</string>
     </property>
     <widget class="CVImageWidget" name="CVWidget2" native="true">
      <property name="geometry">
@@ -732,7 +732,7 @@
      </property>
     </widget>
    </widget>
-   <zorder>BKGSubs</zorder>
+   <zorder>Camera2</zorder>
    <zorder>Camera1</zorder>
    <zorder>OptionsBox</zorder>
    <zorder>label</zorder>

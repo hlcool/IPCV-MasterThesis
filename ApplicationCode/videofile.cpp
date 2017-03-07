@@ -33,9 +33,11 @@ void VideoFile::VideoOpenning(string InputPath)
     FrameNumber = cap.get(CV_CAP_PROP_FRAME_COUNT);
 
     // Display information
+    cout << "Camera " << CameraNumber << " opened correctly"  << endl;
     cout << "The video to process has the following information:" << endl;
     cout << "Width: " << Width << ". Heigth: " << Height << ". Frames/second: " << FrameRate << endl;
     cout << "The total number of frames is: " << FrameNumber << endl;
+    cout << "" << endl;
 }
 
 void VideoFile::HOGPeopleDetection(Mat ActualFrame)
@@ -285,27 +287,52 @@ void VideoFile::imageEnhancement(Mat ActuaFrame)
 void VideoFile::computeHomography()
 {
     if (!UserSelectedPoints){
+        if(CameraNumber == 1){
+            // Precomputed points for camera 1 if the user has not selected
+            // Camera Frame (x,y)
+            pts_src.push_back(Point2f(245, 146));
+            pts_src.push_back(Point2f(423, 147));
+            pts_src.push_back(Point2f(334, 332));
+            pts_src.push_back(Point2f(333, 199));
+            pts_src.push_back(Point2f(142, 241));
+            pts_src.push_back(Point2f(525, 250));
+            pts_src.push_back(Point2f(337, 480));
+            pts_src.push_back(Point2f(69, 67));
 
-        // Precomputed points if the user has not selected
-        // Camera Frame
-        pts_src.push_back(Point2f(224, 376));
-        pts_src.push_back(Point2f(557, 393));
-        pts_src.push_back(Point2f(334, 225));
-        pts_src.push_back(Point2f(34, 231));
-        pts_src.push_back(Point2f(76, 180));
-        pts_src.push_back(Point2f(55, 261));
-        pts_src.push_back(Point2f(192, 271));
-        pts_src.push_back(Point2f(220, 216));
+            // Cenital Plane Frame (x,y)
+            pts_dst.push_back(Point2f(314, 2));
+            pts_dst.push_back(Point2f(433, 3));
+            pts_dst.push_back(Point2f(378, 273));
+            pts_dst.push_back(Point2f(375, 90));
+            pts_dst.push_back(Point2f(247, 177));
+            pts_dst.push_back(Point2f(485, 349));
+            pts_dst.push_back(Point2f(381, 444));
+            pts_dst.push_back(Point2f(38, 422));
+        }
+        if(CameraNumber == 2){
+            // Precomputed points for camera 2 if the user has not selected
+            // Camera Frame (x,y)
+            pts_src.push_back(Point2f(238, 70));
+            pts_src.push_back(Point2f(416, 68));
+            pts_src.push_back(Point2f(328, 101));
+            pts_src.push_back(Point2f(513, 154));
+            pts_src.push_back(Point2f(138, 155));
+            pts_src.push_back(Point2f(331, 222));
+            pts_src.push_back(Point2f(2, 477));
+            pts_src.push_back(Point2f(637, 476));
+            pts_src.push_back(Point2f(335, 480));
 
-        // Cenital Plane Frame
-        pts_dst.push_back(Point2f(636, 375));
-        pts_dst.push_back(Point2f(690, 430));
-        pts_dst.push_back(Point2f(777, 335));
-        pts_dst.push_back(Point2f(707, 198));
-        pts_dst.push_back(Point2f(774, 173));
-        pts_dst.push_back(Point2f(692, 268));
-        pts_dst.push_back(Point2f(707, 323));
-        pts_dst.push_back(Point2f(761, 240));
+            // Cenital Plane Frame (x,y)
+            pts_dst.push_back(Point2f(39, 336));
+            pts_dst.push_back(Point2f(39, 199));
+            pts_dst.push_back(Point2f(121, 264));
+            pts_dst.push_back(Point2f(251, 177));
+            pts_dst.push_back(Point2f(248, 351));
+            pts_dst.push_back(Point2f(390, 267));
+            pts_dst.push_back(Point2f(686, 357));
+            pts_dst.push_back(Point2f(683, 171));
+            pts_dst.push_back(Point2f(709, 267));
+        }
     }
 
     // Calculate Homography
@@ -392,19 +419,28 @@ void VideoFile::projectSemantic()
     vector<Point2f> FloorPoints;
     vector<Point2f> ProjectedFloor;
 
-    FloorPoints.push_back(Point2f(14, 186));
-    FloorPoints.push_back(Point2f(1, 511));
-    FloorPoints.push_back(Point2f(639, 512));
-    FloorPoints.push_back(Point2f(630, 300));
-    FloorPoints.push_back(Point2f(331, 243));
-    FloorPoints.push_back(Point2f(230, 222));
-    FloorPoints.push_back(Point2f(501, 274));
+    if (CameraNumber == 1){
+        // Floor points preselected (x,y) for Camera1
+        FloorPoints.push_back(Point2f(3, 149));
+        FloorPoints.push_back(Point2f(638, 148));
+        FloorPoints.push_back(Point2f(637, 477));
+        FloorPoints.push_back(Point2f(5, 477));
+
+    }
+    if (CameraNumber == 2){
+        // Floor points preselected (x,y) for Camera2
+        FloorPoints.push_back(Point2f(42, 72));
+        FloorPoints.push_back(Point2f(638, 73));
+        FloorPoints.push_back(Point2f(638, 478));
+        FloorPoints.push_back(Point2f(3, 477));
+
+    }
 
     // Apply Homography to vector of Points to find the projection
     perspectiveTransform(FloorPoints, ProjectedFloor, Homography);
 
     // Convert vector of points into array of points
-    Point ArrayProjectedPoints[6];
+    Point ArrayProjectedPoints[4];
     copy(ProjectedFloor.begin(), ProjectedFloor.end(), ArrayProjectedPoints);
 
     // Clean previous cenital view

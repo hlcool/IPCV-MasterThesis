@@ -19,14 +19,15 @@ using namespace std;
 using namespace cv;
 using namespace cv::dpm;
 
-VideoFile Video;
+VideoFile Camera1;
+VideoFile Camera2;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    cout << "Open a video file" << endl;
+    cout << "Open video files from the cameras" << endl;
 }
 
 MainWindow::~MainWindow()
@@ -36,30 +37,45 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionOpen_file_triggered()
 {
+    // Assign cameras a number
+    Camera1.CameraNumber = 1;
+    Camera2.CameraNumber = 2;
+
     // Global Path variable should be change if used in other computer
     QString GlobalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode";
 
     if (ProgramFlag) {
+        // CAMERA 1
         // Get a filename to open
-        QString filePath = QFileDialog::getOpenFileName(this, tr("Open Image"), GlobalPath, tr("Video Files (*.mpg *.avi *.m4v *.ts *.m2v)"));
+        QString filePath = QFileDialog::getOpenFileName(this, tr("Open VideoFile Camera 1"), GlobalPath, tr("Video Files (*.mpg *.avi *.m4v *.ts *.m2v)"));
         // Convert QString to std::string
-        Video.InputPath = filePath.toStdString();
+        Camera1.InputPath = filePath.toStdString();
+
+        // CAMERA 2
+        // Get a filename to open
+        filePath = QFileDialog::getOpenFileName(this, tr("Open VideoFile Camera 2"), GlobalPath, tr("Video Files (*.mpg *.avi *.m4v *.ts *.m2v)"));
+        // Convert QString to std::string
+        Camera2.InputPath = filePath.toStdString();
     }
     else {
-        Video.InputPath = GlobalPath.toStdString() + "/Inputs/HallCutted.mpg";
+        Camera1.InputPath = "/Users/alex/Desktop/Videos Sincronizados/Camera1Sync.m2v";
+        Camera2.InputPath = "/Users/alex/Desktop/Videos Sincronizados/Camera2Sync.m2v";
     }
 
-    Video.VideoOpenning(Video.InputPath);
+    // Open Video Streams
+    Camera1.VideoOpenning(Camera1.InputPath);
+    Camera2.VideoOpenning(Camera2.InputPath);
 
-    cout << "Video opened correctly"  << endl;
     cout << "Video processing starts" << endl;
 
     // Create and open the statistics file
-    Video.VideoStatsFile.open(GlobalPath.toStdString() + "/VideoProcessingStats.txt");
-    Video.VideoStatsFile << "Frame  Computational Time" << endl;
+    Camera1.VideoStatsFile.open(GlobalPath.toStdString() + "/VideoProcessingStats.txt");
+    Camera1.VideoStatsFile << "Frame  Computational Time" << endl;
 
-    // Homography calculation
-    Video.computeHomography();
+    // Homography calculation for all the cameras
+    Camera1.computeHomography();
+    // Homography camera 2
+    Camera2.computeHomography();
 
     // Timer to launch the ProcessVideo() slot
     imageTimer = new QTimer(this);
@@ -72,15 +88,17 @@ void MainWindow::ProcessVideo()
     // Start the clock for measuring frame consumption
     clock_t begin = clock();
 
-    Video.cap >> Video.ActualFrame; // Get first video frame
+    Camera1.cap >> Camera1.ActualFrame; // Get first video frame
+    Camera2.cap >> Camera2.ActualFrame; // Get first video frame
 
+    // Get frame number
     stringstream ss;
-    ss << Video.cap.get(CAP_PROP_POS_FRAMES);
+    ss << Camera1.cap.get(CAP_PROP_POS_FRAMES);
 
     // Check if we achieved the end of the file (e.g. ActualFrame.data is empty)
-    if (!Video.ActualFrame.data){
+    if (!Camera1.ActualFrame.data){
         cout << "The processing has finished" << endl;
-        Video.VideoStatsFile.close();
+        Camera1.VideoStatsFile.close();
         imageTimer->blockSignals(true);
         return;
     }
@@ -91,29 +109,19 @@ void MainWindow::ProcessVideo()
     /* -----------------------*/
 
     // ----------------------- //
-    //       ENHANCEMENT       //
-    // ----------------------- //
-
-    // Frames Enhancement
-    //Video.imageEnhancement(Video.ActualFrame);
-
-    // ----------------------- //
     //     BKG SUBSTRACTION    //
     // ----------------------- //
 
     // Compute Background Mask
-    Video.pMOG2->apply(Video.ActualFrame, Video.BackgroundMask);
+    //Camera1.pMOG2->apply(Camera1.ActualFrame, Camera1.BackgroundMask);
     // Improve Background Mask
-    Video.maskEnhancement(Video.BackgroundMask);
+    //Camera1.maskEnhancement(Camera1.BackgroundMask);
 
     // ----------------------- //
-    //     HOMOGRAPHY & IW     //
+    //   SEMANTIC PROJECTION   //
     // ----------------------- //
-
-    Video.projectSemantic();
-    //Video.ImageWarping = Mat::zeros(480, 1280, CV_64F);
-    //warpPerspective(Video.ActualFrame2, Video.ImageWarping, Video.Homography, Video.ImageWarping.size());
-    //imshow("Warped Image", Video.ImageWarping);
+    Camera1.projectSemantic();
+    Camera2.projectSemantic();
 
     // ----------------------- //
     //     PEOPLE DETECTION    //
@@ -121,38 +129,50 @@ void MainWindow::ProcessVideo()
 
     String CBOption = ui->PeopleDetectorCB->currentText().toStdString();
     if (ui->FastButton->isChecked())
-        Video.FastRCNNMethod = "fast";
+        Camera1.FastRCNNMethod = "fast";
     else if (ui->AccurateButton->isChecked())
-        Video.FastRCNNMethod = "accurate";
+        Camera1.FastRCNNMethod = "accurate";
 
     if (!CBOption.compare("HOG")){
         // HOG Detector
-        Video.HOGPeopleDetection(Video.ActualFrame);
-        Video.paintBoundingBoxes(Video.ActualFrame, CBOption, Video.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
-        Video.projectBlobs(Video.HOGBoundingBoxesNMS, Video.HOGScores, Video.Homography, "GREEN");
+        // Camera 1
+        Camera1.HOGPeopleDetection(Camera1.ActualFrame);
+        Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
+        Camera1.projectBlobs(Camera1.HOGBoundingBoxesNMS, Camera1.HOGScores, Camera1.Homography, "GREEN");
+
+        // Camera 2
+        Camera2.HOGPeopleDetection(Camera2.ActualFrame);
+        Camera2.paintBoundingBoxes(Camera2.ActualFrame, CBOption, Camera2.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
+        Camera2.projectBlobs(Camera2.HOGBoundingBoxesNMS, Camera2.HOGScores, Camera2.Homography, "GREEN");
     }
     else if(!CBOption.compare("FastRCNN")){
         // FastRCNN Detector
-        Video.FastRCNNPeopleDetection(ss.str(), Video.FastRCNNMethod);
-        Video.paintBoundingBoxes(Video.ActualFrame, CBOption, Video.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
-        Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography, "RED");
+        Camera1.FastRCNNPeopleDetection(ss.str(), Camera1.FastRCNNMethod);
+        Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
+        //Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED");
     }
     else if(!CBOption.compare("DPM")){
         // DPM Detector
-        Video.DPMPeopleDetection(Video.ActualFrame);
-        Video.paintBoundingBoxes(Video.ActualFrame, CBOption, Video.DPMBoundingBoxes, Scalar (255, 0, 0), 1);
-        Video.projectBlobs(Video.DPMBoundingBoxes, Video.DPMScores, Video.Homography, "BLUE");
+        // Camera 1
+        Camera1.DPMPeopleDetection(Camera1.ActualFrame);
+        Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.DPMBoundingBoxes, Scalar (255, 0, 0), 1);
+        //Camera1.projectBlobs(Camera1.DPMBoundingBoxes, Camera1.DPMScores, Camera1.Homography, "BLUE");
+
+        // Camera 2
+        Camera2.HOGPeopleDetection(Camera2.ActualFrame);
+        Camera2.paintBoundingBoxes(Camera2.ActualFrame, CBOption, Camera2.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
+        //Camera2.projectBlobs(Camera2.HOGBoundingBoxesNMS, Camera2.HOGScores, Camera2.Homography, "GREEN");
     }
     else{
         // HOG Detector
-        Video.HOGPeopleDetection(Video.ActualFrame);
-        Video.paintBoundingBoxes(Video.ActualFrame, CBOption, Video.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
-        Video.projectBlobs(Video.HOGBoundingBoxesNMS, Video.HOGScores, Video.Homography, "GREEN");
+        Camera1.HOGPeopleDetection(Camera1.ActualFrame);
+        Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
+        //Camera1.projectBlobs(Camera1.HOGBoundingBoxesNMS, Camera1.HOGScores, Camera1.Homography, "GREEN");
 
         // FastRCNN Detector
-        Video.FastRCNNPeopleDetection(ss.str(), Video.FastRCNNMethod);
-        Video.paintBoundingBoxes(Video.ActualFrame, CBOption, Video.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
-        Video.projectBlobs(Video.RCNNBoundingBoxesNMS, Video.RCNNScores, Video.Homography, "RED");
+        Camera1.FastRCNNPeopleDetection(ss.str(), Camera1.FastRCNNMethod);
+        Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
+        //Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED");
     }
 
 
@@ -161,35 +181,36 @@ void MainWindow::ProcessVideo()
     // ----------------------- //
 
     // Display projected points into Cenital Plane
-    imshow("Projected points", Video.CenitalPlane);
-
-    /* -----------------------*/
-    /* -----------------------*/
-
+    imshow("Projected points Camera 1", Camera1.CenitalPlane);
+    imshow("Projected points Camera 2", Camera2.CenitalPlane);
 
     // Resize the video for displaying to the size of the widget
-    WidgetHeight = ui->CVWidget->height();
-    WidgetWidth  = ui->CVWidget->width();
-    cv::resize(Video.ActualFrame, Video.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
-    cv::resize(Video.BackgroundMask, Video.BackgroundMask, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
+    WidgetHeight = ui->CVWidget1->height();
+    WidgetWidth  = ui->CVWidget1->width();
+    cv::resize(Camera1.ActualFrame, Camera1.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
+    cv::resize(Camera2.ActualFrame, Camera2.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
 
     // Extract Frame number and write it on the frame
-    putText(Video.ActualFrame, ss.str().c_str(), Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
+    putText(Camera1.ActualFrame, ss.str().c_str(), Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
+    putText(Camera2.ActualFrame, ss.str().c_str(), Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
 
     // Method to display the frame in the CVWidget
-    ui->CVWidget->showImage(Video.ActualFrame);
-    ui->CVWidget2->showImage(Video.BackgroundMask);
+    ui->CVWidget1->showImage(Camera1.ActualFrame);
+    ui->CVWidget2->showImage(Camera2.ActualFrame);
 
     // Pause to control the frame rate of the video when the option button is checked
     if (ui->RealTimeButton->isChecked())
         waitKey(30);
+
+    /* -----------------------*/
+    /* -----------------------*/
 
     // Compute the processing time per frame
     clock_t end = clock();
     double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
 
     // Save measures to .txt file
-    Video.VideoStatsFile << ss.str() << "       " << elapsed_secs << endl;
+    Camera1.VideoStatsFile << ss.str() << "       " << elapsed_secs << endl;
 
 }
 
@@ -198,7 +219,7 @@ void onMouse1(int evt, int x, int y, int, void*)
     if(evt == CV_EVENT_LBUTTONDOWN) {
         Point pt = Point(x,y);
         cout << "Cenital Frame x = " << pt.x << " y = " << pt.y << endl;
-        Video.pts_dst.push_back(pt);
+        Camera1.pts_dst.push_back(pt);
     }
 }
 
@@ -207,7 +228,7 @@ void onMouse2(int evt, int x, int y, int, void*)
     if(evt == CV_EVENT_LBUTTONDOWN) {
         Point pt = Point(x,y);
         cout << "Camera Frame x = " << pt.x << " y = " << pt.y << endl;
-        Video.pts_src.push_back(pt);
+        Camera1.pts_src.push_back(pt);
     }
 }
 
@@ -229,7 +250,7 @@ void MainWindow::on_actionSet_Homography_triggered()
     imshow(FrameWindow, CameraFrame);
 
     if(waitKey()==27) {
-        Video.UserSelectedPoints = 1;
+        Camera1.UserSelectedPoints = 1;
         destroyWindow(CenitalWindow);
         destroyWindow(FrameWindow);
         return;

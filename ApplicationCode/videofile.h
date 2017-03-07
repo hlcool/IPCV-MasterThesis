@@ -24,6 +24,7 @@ public:
     string InputPath;
     VideoCapture cap;
     int Width, Height, FrameRate, FrameNumber;
+    int CameraNumber;
     void VideoOpenning(string InputPath);
 
     // Mat to store the frame to process
