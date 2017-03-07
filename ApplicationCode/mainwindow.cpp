@@ -41,7 +41,7 @@ void MainWindow::on_actionOpen_file_triggered()
 
     if (ProgramFlag) {
         // Get a filename to open
-        QString filePath = QFileDialog::getOpenFileName(this, tr("Open Image"), GlobalPath, tr("Video Files (*.mpg *.avi *.m4v *.ts)"));
+        QString filePath = QFileDialog::getOpenFileName(this, tr("Open Image"), GlobalPath, tr("Video Files (*.mpg *.avi *.m4v *.ts *.m2v)"));
         // Convert QString to std::string
         Video.InputPath = filePath.toStdString();
     }
@@ -95,7 +95,7 @@ void MainWindow::ProcessVideo()
     // ----------------------- //
 
     // Frames Enhancement
-    Video.imageEnhancement(Video.ActualFrame);
+    //Video.imageEnhancement(Video.ActualFrame);
 
     // ----------------------- //
     //     BKG SUBSTRACTION    //
