@@ -35,6 +35,28 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::DisplayImages(string FrameNumber)
+{
+    // Display projected points into Cenital Plane
+    imshow("Projected points Camera 1", Camera1.CenitalPlane);
+    imshow("Projected points Camera 2", Camera2.CenitalPlane);
+
+    // Resize the video for displaying to the size of the widget
+    WidgetHeight = ui->CVWidget1->height();
+    WidgetWidth  = ui->CVWidget1->width();
+    cv::resize(Camera1.ActualFrame, Camera1.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
+    cv::resize(Camera2.ActualFrame, Camera2.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
+
+    // Extract Frame number and write it on the frame
+    putText(Camera1.ActualFrame, FrameNumber, Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
+    putText(Camera2.ActualFrame, FrameNumber, Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
+
+    // Method to display the frame in the CVWidget
+    ui->CVWidget1->showImage(Camera1.ActualFrame);
+    ui->CVWidget2->showImage(Camera2.ActualFrame);
+
+}
+
 void MainWindow::on_actionOpen_file_triggered()
 {
     // Assign cameras a number
@@ -94,6 +116,7 @@ void MainWindow::ProcessVideo()
     // Get frame number
     stringstream ss;
     ss << Camera1.cap.get(CAP_PROP_POS_FRAMES);
+    string FrameNumber = ss.str().c_str();
 
     // Check if we achieved the end of the file (e.g. ActualFrame.data is empty)
     if (!Camera1.ActualFrame.data){
@@ -147,56 +170,39 @@ void MainWindow::ProcessVideo()
     }
     else if(!CBOption.compare("FastRCNN")){
         // FastRCNN Detector
-        Camera1.FastRCNNPeopleDetection(ss.str(), Camera1.FastRCNNMethod);
+        Camera1.FastRCNNPeopleDetection(FrameNumber, Camera1.FastRCNNMethod);
         Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
-        //Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED");
+        Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED");
     }
     else if(!CBOption.compare("DPM")){
         // DPM Detector
         // Camera 1
         Camera1.DPMPeopleDetection(Camera1.ActualFrame);
         Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.DPMBoundingBoxes, Scalar (255, 0, 0), 1);
-        //Camera1.projectBlobs(Camera1.DPMBoundingBoxes, Camera1.DPMScores, Camera1.Homography, "BLUE");
+        Camera1.projectBlobs(Camera1.DPMBoundingBoxes, Camera1.DPMScores, Camera1.Homography, "BLUE");
 
         // Camera 2
         Camera2.HOGPeopleDetection(Camera2.ActualFrame);
         Camera2.paintBoundingBoxes(Camera2.ActualFrame, CBOption, Camera2.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
-        //Camera2.projectBlobs(Camera2.HOGBoundingBoxesNMS, Camera2.HOGScores, Camera2.Homography, "GREEN");
+        Camera2.projectBlobs(Camera2.HOGBoundingBoxesNMS, Camera2.HOGScores, Camera2.Homography, "GREEN");
     }
     else{
         // HOG Detector
         Camera1.HOGPeopleDetection(Camera1.ActualFrame);
         Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
-        //Camera1.projectBlobs(Camera1.HOGBoundingBoxesNMS, Camera1.HOGScores, Camera1.Homography, "GREEN");
+        Camera1.projectBlobs(Camera1.HOGBoundingBoxesNMS, Camera1.HOGScores, Camera1.Homography, "GREEN");
 
         // FastRCNN Detector
-        Camera1.FastRCNNPeopleDetection(ss.str(), Camera1.FastRCNNMethod);
+        Camera1.FastRCNNPeopleDetection(FrameNumber, Camera1.FastRCNNMethod);
         Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
-        //Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED");
+        Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED");
     }
 
 
     // ----------------------- //
     //         DISPLAY         //
     // ----------------------- //
-
-    // Display projected points into Cenital Plane
-    imshow("Projected points Camera 1", Camera1.CenitalPlane);
-    imshow("Projected points Camera 2", Camera2.CenitalPlane);
-
-    // Resize the video for displaying to the size of the widget
-    WidgetHeight = ui->CVWidget1->height();
-    WidgetWidth  = ui->CVWidget1->width();
-    cv::resize(Camera1.ActualFrame, Camera1.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
-    cv::resize(Camera2.ActualFrame, Camera2.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
-
-    // Extract Frame number and write it on the frame
-    putText(Camera1.ActualFrame, ss.str().c_str(), Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
-    putText(Camera2.ActualFrame, ss.str().c_str(), Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
-
-    // Method to display the frame in the CVWidget
-    ui->CVWidget1->showImage(Camera1.ActualFrame);
-    ui->CVWidget2->showImage(Camera2.ActualFrame);
+    DisplayImages(FrameNumber);
 
     // Pause to control the frame rate of the video when the option button is checked
     if (ui->RealTimeButton->isChecked())
@@ -210,7 +216,7 @@ void MainWindow::ProcessVideo()
     double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
 
     // Save measures to .txt file
-    Camera1.VideoStatsFile << ss.str() << "       " << elapsed_secs << endl;
+    Camera1.VideoStatsFile << FrameNumber << "       " << elapsed_secs << endl;
 
 }
 

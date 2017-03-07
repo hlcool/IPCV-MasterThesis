@@ -3,6 +3,10 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <iostream>
+#include <string>
+
+using namespace std;
 
 namespace Ui {
 class MainWindow;
@@ -23,6 +27,8 @@ public:
 
     // CVWidget size
     int WidgetHeight, WidgetWidth;
+
+    void DisplayImages(string FrameNumber);
 
 private:
     Ui::MainWindow *ui;
