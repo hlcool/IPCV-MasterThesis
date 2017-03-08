@@ -37,15 +37,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::DisplayImages(string FrameNumber)
 {
-    // Display projected points into Cenital Plane
-    imshow("Projected points Camera 1", Camera1.CenitalPlane);
-    imshow("Projected points Camera 2", Camera2.CenitalPlane);
+
 
     // Resize the video for displaying to the size of the widget
     WidgetHeight = ui->CVWidget1->height();
     WidgetWidth  = ui->CVWidget1->width();
+    ProjWidgetHeight = ui->CVWidgetCenital->height();
+    ProjWidgetWidth  = ui->CVWidgetCenital->width();
+
     cv::resize(Camera1.ActualFrame, Camera1.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
     cv::resize(Camera2.ActualFrame, Camera2.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
+    cv::resize(CenitalPlane, CenitalPlane, {ProjWidgetWidth, ProjWidgetHeight}, INTER_LANCZOS4);
 
     // Extract Frame number and write it on the frame
     putText(Camera1.ActualFrame, FrameNumber, Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
@@ -54,6 +56,11 @@ void MainWindow::DisplayImages(string FrameNumber)
     // Method to display the frame in the CVWidget
     ui->CVWidget1->showImage(Camera1.ActualFrame);
     ui->CVWidget2->showImage(Camera2.ActualFrame);
+
+    // Convert Cenital Plane to 8-bit image
+    CenitalPlane.convertTo(CenitalPlane, CV_8UC3, 255.0);
+    // Display projected points into Cenital Plane Widget
+    ui->CVWidgetCenital->showImage(CenitalPlane);
 
 }
 
@@ -142,8 +149,8 @@ void MainWindow::ProcessVideo()
     // ----------------------- //
     //   SEMANTIC PROJECTION   //
     // ----------------------- //
-    Camera1.projectSemantic();
-    Camera2.projectSemantic();
+    Camera1.projectSemantic(CenitalPlane);
+    Camera2.projectSemantic(CenitalPlane);
 
     // ----------------------- //
     //     PEOPLE DETECTION    //
@@ -160,41 +167,41 @@ void MainWindow::ProcessVideo()
         // Camera 1
         Camera1.HOGPeopleDetection(Camera1.ActualFrame);
         Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
-        Camera1.projectBlobs(Camera1.HOGBoundingBoxesNMS, Camera1.HOGScores, Camera1.Homography, "GREEN");
+        Camera1.projectBlobs(Camera1.HOGBoundingBoxesNMS, Camera1.HOGScores, Camera1.Homography, "GREEN", CenitalPlane);
 
         // Camera 2
         Camera2.HOGPeopleDetection(Camera2.ActualFrame);
         Camera2.paintBoundingBoxes(Camera2.ActualFrame, CBOption, Camera2.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
-        Camera2.projectBlobs(Camera2.HOGBoundingBoxesNMS, Camera2.HOGScores, Camera2.Homography, "GREEN");
+        Camera2.projectBlobs(Camera2.HOGBoundingBoxesNMS, Camera2.HOGScores, Camera2.Homography, "GREEN", CenitalPlane);
     }
     else if(!CBOption.compare("FastRCNN")){
         // FastRCNN Detector
         Camera1.FastRCNNPeopleDetection(FrameNumber, Camera1.FastRCNNMethod);
         Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
-        Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED");
+        Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED", CenitalPlane);
     }
     else if(!CBOption.compare("DPM")){
         // DPM Detector
         // Camera 1
         Camera1.DPMPeopleDetection(Camera1.ActualFrame);
         Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.DPMBoundingBoxes, Scalar (255, 0, 0), 1);
-        Camera1.projectBlobs(Camera1.DPMBoundingBoxes, Camera1.DPMScores, Camera1.Homography, "BLUE");
+        Camera1.projectBlobs(Camera1.DPMBoundingBoxes, Camera1.DPMScores, Camera1.Homography, "BLUE", CenitalPlane);
 
         // Camera 2
         Camera2.HOGPeopleDetection(Camera2.ActualFrame);
         Camera2.paintBoundingBoxes(Camera2.ActualFrame, CBOption, Camera2.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
-        Camera2.projectBlobs(Camera2.HOGBoundingBoxesNMS, Camera2.HOGScores, Camera2.Homography, "GREEN");
+        Camera2.projectBlobs(Camera2.HOGBoundingBoxesNMS, Camera2.HOGScores, Camera2.Homography, "GREEN", CenitalPlane);
     }
     else{
         // HOG Detector
         Camera1.HOGPeopleDetection(Camera1.ActualFrame);
         Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
-        Camera1.projectBlobs(Camera1.HOGBoundingBoxesNMS, Camera1.HOGScores, Camera1.Homography, "GREEN");
+        Camera1.projectBlobs(Camera1.HOGBoundingBoxesNMS, Camera1.HOGScores, Camera1.Homography, "GREEN", CenitalPlane);
 
         // FastRCNN Detector
         Camera1.FastRCNNPeopleDetection(FrameNumber, Camera1.FastRCNNMethod);
         Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
-        Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED");
+        Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED", CenitalPlane);
     }
 
 

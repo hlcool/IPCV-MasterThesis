@@ -6,8 +6,11 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp"
 
 using namespace std;
+using namespace cv;
 
 namespace Ui {
 class MainWindow;
@@ -26,8 +29,14 @@ public:
     // 1 - Enables the QFileDialog
     int ProgramFlag = 0;
 
-    // CVWidget size
+    // CVWidget size for cameras
     int WidgetHeight, WidgetWidth;
+
+    // CVWidget size for cenital projection
+    int ProjWidgetHeight, ProjWidgetWidth;
+
+    // Cenital Plane image
+    Mat CenitalPlane;
 
     void DisplayImages(string FrameNumber);
 

@@ -39,13 +39,12 @@ public:
     Ptr<BackgroundSubtractor> pMOG2 = createBackgroundSubtractorMOG2();
 
     // Homography and Image Wrapping
-    Mat CenitalPlane;
     Mat Homography;
     Mat ImageWarping;
     vector<Point2f> ProjectedPoints;
     void computeHomography();
-    void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color);
-    void projectSemantic();
+    void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color, Mat& CenitalPlane);
+    void projectSemantic(Mat& CenitalPlane);
 
     // Homogrpahy Points Saving
     ofstream PtsDstFile;

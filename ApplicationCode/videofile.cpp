@@ -286,7 +286,6 @@ void VideoFile::imageEnhancement()
 
 void VideoFile::computeHomography()
 {
-
     vector<Point2f> pts_src, pts_dst;
     string XCoord, YCoord;
 
@@ -337,7 +336,7 @@ void VideoFile::computeHomography()
     Homography = findHomography(pts_src, pts_dst, CV_LMEDS);
 }
 
-void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color)
+void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color, Mat &CenitalPlane)
 {
     if (BoundingBoxes.empty())
         return;
@@ -374,7 +373,7 @@ void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, 
     perspectiveTransform(AuxPointVector, ProjectedPoints, Homography);
 
     // Convert CenitalPlane to flaoting point mat to add the Gaussians
-    CenitalPlane.convertTo(CenitalPlane, CV_32FC3, 1/255.0);
+    //CenitalPlane.convertTo(CenitalPlane, CV_32FC3, 1/255.0);
 
     // Mesgrid function
     meshgrid(X, Y, CenitalPlane.rows, CenitalPlane.cols);
@@ -409,7 +408,7 @@ void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, 
     }
 }
 
-void VideoFile::projectSemantic()
+void VideoFile::projectSemantic(Mat &CenitalPlane)
 {
     // Four floor points
     Mat overlay;
@@ -440,8 +439,11 @@ void VideoFile::projectSemantic()
     copy(ProjectedFloor.begin(), ProjectedFloor.end(), ArrayProjectedPoints);
 
     // Clean previous cenital view
-    string CenitalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalView.png";
-    CenitalPlane = imread(CenitalPath);
+    string CenitalPath;
+    CenitalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalView.png";
+    if (CameraNumber == 1){
+        CenitalPlane = imread(CenitalPath);
+    }
 
     if(!CenitalPlane.data ){
         cout <<  "Could not open or find the image " << CenitalPath << std::endl ;
@@ -454,6 +456,10 @@ void VideoFile::projectSemantic()
     // Create the poligon and add transparency
     fillConvexPoly( overlay, ArrayProjectedPoints, 4, Scalar(0,255,0) );
     addWeighted(overlay, alpha, CenitalPlane, 1 - alpha, 0, CenitalPlane);
+
+    if (CameraNumber == 2){
+        CenitalPlane.convertTo(CenitalPlane, CV_32FC3, 1/255.0);
+    }
 }
 
 void VideoFile::meshgrid(Mat &X, Mat &Y, int rows, int cols)

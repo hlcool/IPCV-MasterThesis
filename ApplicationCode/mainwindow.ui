@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1113</width>
-    <height>593</height>
+    <width>1111</width>
+    <height>964</height>
    </rect>
   </property>
   <property name="palette">
@@ -426,27 +426,14 @@
    </palette>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Alex Master Application</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>20</y>
-      <width>130</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>OpenCV Video Player</string>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="OptionsBox">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>40</y>
+      <y>10</y>
       <width>521</width>
       <height>121</height>
      </rect>
@@ -544,7 +531,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>160</y>
+      <y>130</y>
       <width>521</width>
       <height>391</height>
      </rect>
@@ -640,7 +627,7 @@
     <property name="geometry">
      <rect>
       <x>570</x>
-      <y>160</y>
+      <y>130</y>
       <width>521</width>
       <height>391</height>
      </rect>
@@ -732,17 +719,113 @@
      </property>
     </widget>
    </widget>
+   <widget class="QGroupBox" name="CenitalProjection">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>530</y>
+      <width>571</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Cenital Projection</string>
+    </property>
+    <widget class="CVImageWidget" name="CVWidgetCenital" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>550</width>
+       <height>350</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>800</width>
+       <height>800</height>
+      </size>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Base">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>33</red>
+           <green>33</green>
+           <blue>33</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+       <inactive>
+        <colorrole role="Base">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>33</red>
+           <green>33</green>
+           <blue>33</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </inactive>
+       <disabled>
+        <colorrole role="Base">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>33</red>
+           <green>33</green>
+           <blue>33</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>33</red>
+           <green>33</green>
+           <blue>33</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </disabled>
+      </palette>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
    <zorder>Camera2</zorder>
    <zorder>Camera1</zorder>
    <zorder>OptionsBox</zorder>
-   <zorder>label</zorder>
+   <zorder>CenitalProjection</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1113</width>
+     <width>1111</width>
      <height>22</height>
     </rect>
    </property>
