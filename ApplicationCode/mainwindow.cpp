@@ -126,7 +126,6 @@ void MainWindow::ProcessVideo()
         return;
     }
 
-
     /* -----------------------*/
     /*      MAIN ALGORITHM    */
     /* -----------------------*/
@@ -220,43 +219,104 @@ void MainWindow::ProcessVideo()
 
 }
 
-void onMouse1(int evt, int x, int y, int, void*)
+// ---------------------------------------- //
+//        HOMOGRAPHY POINTS SELECTION       //
+// ---------------------------------------- //
+
+void onMouseCamera1Cenital(int evt, int x, int y, int, void*)
 {
     if(evt == CV_EVENT_LBUTTONDOWN) {
         Point pt = Point(x,y);
         cout << "Cenital Frame x = " << pt.x << " y = " << pt.y << endl;
-        Camera1.pts_dst.push_back(pt);
+        // Save Points into txt file
+        Camera1.PtsDstFile << pt.x << " " << pt.y << endl;
     }
 }
 
-void onMouse2(int evt, int x, int y, int, void*)
+void onMouseCamera1Frame(int evt, int x, int y, int, void*)
 {
     if(evt == CV_EVENT_LBUTTONDOWN) {
         Point pt = Point(x,y);
-        cout << "Camera Frame x = " << pt.x << " y = " << pt.y << endl;
-        Camera1.pts_src.push_back(pt);
+        cout << "Camera 1 Frame x = " << pt.x << " y = " << pt.y << endl;
+        // Save points into txt
+        Camera1.PtsSrcFile << pt.x << " " << pt.y << endl;
     }
 }
 
-void MainWindow::on_actionSet_Homography_triggered()
+void MainWindow::on_actionCamera_1_triggered()
 {
     // Load the cenital plane
-    Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/CenitalView.png");
-    Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/EmptyHall.png");
-    cv::resize(CameraFrame, CameraFrame, {CameraFrame.cols*2, CameraFrame.rows*2}, INTER_LANCZOS4);
+    Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalView.png");
+    Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/EmptyCamera1.png");
+
+    // Open files
+    Camera1.PtsDstFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Camera1PtsDstFile.txt");
+    Camera1.PtsSrcFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Camera1PtsSrcFile.txt");
 
     String CenitalWindow = "Cenital Frame";
     namedWindow(CenitalWindow);
-    setMouseCallback(CenitalWindow, onMouse1, 0);
+    setMouseCallback(CenitalWindow, onMouseCamera1Cenital, 0);
     imshow(CenitalWindow, CenitalFrame);
 
-    String FrameWindow = "Camera Frame";
+    String FrameWindow = "Camera 1 Frame";
     namedWindow(FrameWindow);
-    setMouseCallback(FrameWindow, onMouse2, 0);
+    setMouseCallback(FrameWindow, onMouseCamera1Frame, 0);
     imshow(FrameWindow, CameraFrame);
 
     if(waitKey()==27) {
-        Camera1.UserSelectedPoints = 1;
+        //Camera1.UserSelectedPoints = 1;
+        Camera1.PtsDstFile.close();
+        Camera1.PtsSrcFile.close();
+        destroyWindow(CenitalWindow);
+        destroyWindow(FrameWindow);
+        return;
+    }
+}
+
+void onMouseCamera2Cenital(int evt, int x, int y, int, void*)
+{
+    if(evt == CV_EVENT_LBUTTONDOWN) {
+        Point pt = Point(x,y);
+        cout << "Cenital Frame x = " << pt.x << " y = " << pt.y << endl;
+        // Save Points into txt file
+        Camera2.PtsDstFile << pt.x << " " << pt.y << endl;
+    }
+}
+
+void onMouseCamera2Frame(int evt, int x, int y, int, void*)
+{
+    if(evt == CV_EVENT_LBUTTONDOWN) {
+        Point pt = Point(x,y);
+        cout << "Camera 2 Frame x = " << pt.x << " y = " << pt.y << endl;
+        // Save points into txt
+        Camera2.PtsSrcFile << pt.x << " " << pt.y << endl;
+    }
+}
+
+void MainWindow::on_actionCamera_2_triggered()
+{
+    // Load the cenital plane
+    Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalView.png");
+    Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/EmptyCamera2.png");
+
+    // Open files
+    Camera2.PtsDstFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Camera2PtsDstFile.txt");
+    Camera2.PtsSrcFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Camera2PtsSrcFile.txt");
+
+    String CenitalWindow = "Cenital Frame";
+    namedWindow(CenitalWindow);
+    setMouseCallback(CenitalWindow, onMouseCamera2Cenital, 0);
+    imshow(CenitalWindow, CenitalFrame);
+
+    String FrameWindow = "Camera 2 Frame";
+    namedWindow(FrameWindow);
+    setMouseCallback(FrameWindow, onMouseCamera2Frame, 0);
+    imshow(FrameWindow, CameraFrame);
+
+    if(waitKey()==27) {
+        //Camera1.UserSelectedPoints = 1;
+        Camera2.PtsDstFile.close();
+        Camera2.PtsSrcFile.close();
         destroyWindow(CenitalWindow);
         destroyWindow(FrameWindow);
         return;

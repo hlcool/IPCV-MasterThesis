@@ -3,8 +3,9 @@
 
 #include <QMainWindow>
 #include <QTimer>
-#include <iostream>
 #include <string>
+#include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -38,7 +39,8 @@ public slots:
     void ProcessVideo();
 private slots:
     void on_actionOpen_file_triggered();
-    void on_actionSet_Homography_triggered();
+    void on_actionCamera_1_triggered();
+    void on_actionCamera_2_triggered();
 };
 
 #endif // MAINWINDOW_H

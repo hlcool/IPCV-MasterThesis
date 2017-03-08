@@ -67,9 +67,9 @@ void VideoFile::FastRCNNPeopleDetection(string FrameNumber, string Method)
     string FileName = InputPath.substr(slash + 1, point - slash - 1);
 
     if (!Method.compare("fast"))
-        FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/" + FileName + "fast.txt";
+        FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/People Detection/" + FileName + "fast.txt";
     else if (!Method.compare("accurate"))
-        FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/" + FileName + "Accurate.txt";
+        FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/People Detection/" + FileName + "Accurate.txt";
 
     decodeBlobFile(FileName, FrameNumber);
 
@@ -269,7 +269,7 @@ void VideoFile::maskEnhancement(Mat BackgroundMask)
     dilate(BackgroundMask, BackgroundMask, kernel_di, Point(-1, -1));
 }
 
-void VideoFile::imageEnhancement(Mat ActuaFrame)
+void VideoFile::imageEnhancement()
 {
     // Increase video size
     cv::resize(ActualFrame, ActualFrame, {ActualFrame.cols*2, ActualFrame.rows*2}, INTER_LANCZOS4);
@@ -286,53 +286,51 @@ void VideoFile::imageEnhancement(Mat ActuaFrame)
 
 void VideoFile::computeHomography()
 {
-    if (!UserSelectedPoints){
-        if(CameraNumber == 1){
-            // Precomputed points for camera 1 if the user has not selected
-            // Camera Frame (x,y)
-            pts_src.push_back(Point2f(245, 146));
-            pts_src.push_back(Point2f(423, 147));
-            pts_src.push_back(Point2f(334, 332));
-            pts_src.push_back(Point2f(333, 199));
-            pts_src.push_back(Point2f(142, 241));
-            pts_src.push_back(Point2f(525, 250));
-            pts_src.push_back(Point2f(337, 480));
-            pts_src.push_back(Point2f(69, 67));
 
-            // Cenital Plane Frame (x,y)
-            pts_dst.push_back(Point2f(314, 2));
-            pts_dst.push_back(Point2f(433, 3));
-            pts_dst.push_back(Point2f(378, 273));
-            pts_dst.push_back(Point2f(375, 90));
-            pts_dst.push_back(Point2f(247, 177));
-            pts_dst.push_back(Point2f(485, 349));
-            pts_dst.push_back(Point2f(381, 444));
-            pts_dst.push_back(Point2f(38, 422));
-        }
-        if(CameraNumber == 2){
-            // Precomputed points for camera 2 if the user has not selected
-            // Camera Frame (x,y)
-            pts_src.push_back(Point2f(238, 70));
-            pts_src.push_back(Point2f(416, 68));
-            pts_src.push_back(Point2f(328, 101));
-            pts_src.push_back(Point2f(513, 154));
-            pts_src.push_back(Point2f(138, 155));
-            pts_src.push_back(Point2f(331, 222));
-            pts_src.push_back(Point2f(2, 477));
-            pts_src.push_back(Point2f(637, 476));
-            pts_src.push_back(Point2f(335, 480));
+    vector<Point2f> pts_src, pts_dst;
+    string XCoord, YCoord;
 
-            // Cenital Plane Frame (x,y)
-            pts_dst.push_back(Point2f(39, 336));
-            pts_dst.push_back(Point2f(39, 199));
-            pts_dst.push_back(Point2f(121, 264));
-            pts_dst.push_back(Point2f(251, 177));
-            pts_dst.push_back(Point2f(248, 351));
-            pts_dst.push_back(Point2f(390, 267));
-            pts_dst.push_back(Point2f(686, 357));
-            pts_dst.push_back(Point2f(683, 171));
-            pts_dst.push_back(Point2f(709, 267));
-        }
+    // CAMERA FRAME POINTS
+    string FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Camera" + to_string(CameraNumber) + "PtsSrcFile.txt";
+    ifstream input(FileName);
+
+    if (!input) {
+        // The file does not exists
+        cout << "The file that should contain homography points for Camera " + to_string(CameraNumber) + " Frame do not exist" << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    // Start decoding the file with src points
+    while (input >> XCoord){
+        input >> YCoord;
+        Point2f pt;
+        pt.x = atoi(XCoord.c_str());
+        pt.y = atoi(YCoord.c_str());
+        pts_src.push_back(pt);
+    }
+
+    // CENITAL FRAME POINTS
+    FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Camera" + to_string(CameraNumber) + "PtsDstFile.txt";
+    ifstream input2(FileName);
+
+    if (!input2) {
+        // The file does not exists
+        cout << "The file that should contain homography points for Cenital Frame for camera " + to_string(CameraNumber) + " do not exist" << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    // Start decoding the file with dst points
+    while (input2 >> XCoord){
+        input2 >> YCoord;
+        Point2f pt;
+        pt.x = atoi(XCoord.c_str());
+        pt.y = atoi(YCoord.c_str());
+        pts_dst.push_back(pt);
+    }
+
+    if (pts_dst.size() != pts_src.size()){
+        cout << "The number of homography points for Camera " + to_string(CameraNumber) + " is not the same in source and destiny" << endl;
+        exit(EXIT_FAILURE);
     }
 
     // Calculate Homography
@@ -421,19 +419,17 @@ void VideoFile::projectSemantic()
 
     if (CameraNumber == 1){
         // Floor points preselected (x,y) for Camera1
-        FloorPoints.push_back(Point2f(3, 149));
-        FloorPoints.push_back(Point2f(638, 148));
+        FloorPoints.push_back(Point2f(1, 149));
+        FloorPoints.push_back(Point2f(639, 148));
         FloorPoints.push_back(Point2f(637, 477));
-        FloorPoints.push_back(Point2f(5, 477));
-
+        FloorPoints.push_back(Point2f(2, 477));
     }
     if (CameraNumber == 2){
         // Floor points preselected (x,y) for Camera2
-        FloorPoints.push_back(Point2f(42, 72));
-        FloorPoints.push_back(Point2f(638, 73));
-        FloorPoints.push_back(Point2f(638, 478));
-        FloorPoints.push_back(Point2f(3, 477));
-
+        FloorPoints.push_back(Point2f(25, 82));
+        FloorPoints.push_back(Point2f(617, 80));
+        FloorPoints.push_back(Point2f(621, 459));
+        FloorPoints.push_back(Point2f(25, 460));
     }
 
     // Apply Homography to vector of Points to find the projection
@@ -444,7 +440,14 @@ void VideoFile::projectSemantic()
     copy(ProjectedFloor.begin(), ProjectedFloor.end(), ArrayProjectedPoints);
 
     // Clean previous cenital view
-    CenitalPlane = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/CenitalView.png");
+    string CenitalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalView.png";
+    CenitalPlane = imread(CenitalPath);
+
+    if(!CenitalPlane.data ){
+        cout <<  "Could not open or find the image " << CenitalPath << std::endl ;
+        exit(EXIT_FAILURE);
+    }
+
     // Copy the cenital image to an overlay
     CenitalPlane.copyTo(overlay);
 

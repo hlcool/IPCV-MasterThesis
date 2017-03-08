@@ -32,7 +32,7 @@ public:
 
     // Enhancement methods
     void maskEnhancement(Mat BackgroundMask);
-    void imageEnhancement(Mat ActuaFrame);
+    void imageEnhancement();
 
     // Mixture Of Gaussians Background Substractor
     Mat BackgroundMask;
@@ -43,11 +43,13 @@ public:
     Mat Homography;
     Mat ImageWarping;
     vector<Point2f> ProjectedPoints;
-    vector<Point2f> pts_src, pts_dst;
-    bool UserSelectedPoints = 0;
     void computeHomography();
     void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color);
     void projectSemantic();
+
+    // Homogrpahy Points Saving
+    ofstream PtsDstFile;
+    ofstream PtsSrcFile;
 
     // Gaussians creation
     Mat GaussianImage;
@@ -70,7 +72,7 @@ public:
     void FastRCNNPeopleDetection(string FrameNumber, string Method);
 
     // DPM People Detection
-    cv::Ptr<DPMDetector> DPMdetector = DPMDetector::create(vector<string>(1, "/Users/alex/Desktop/inriaperson.xml"));
+    cv::Ptr<DPMDetector> DPMdetector = DPMDetector::create(vector<string>(1, "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/People Detection/inriaperson.xml"));
     vector<Rect> DPMBoundingBoxes;
     vector<double> DPMScores;
     void DPMPeopleDetection(Mat ActualFrame);
