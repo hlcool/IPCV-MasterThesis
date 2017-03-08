@@ -207,10 +207,6 @@ void MainWindow::ProcessVideo()
     // ----------------------- //
     DisplayImages(FrameNumber);
 
-    // Pause to control the frame rate of the video when the option button is checked
-    if (ui->RealTimeButton->isChecked())
-        waitKey(30);
-
     /* -----------------------*/
     /* -----------------------*/
 
@@ -323,5 +319,17 @@ void MainWindow::on_actionCamera_2_triggered()
         destroyWindow(CenitalWindow);
         destroyWindow(FrameWindow);
         return;
+    }
+}
+
+void MainWindow::on_PauseCheckBox_clicked(bool checked)
+{
+    if (checked) {
+        //ui->textBrowser->append("Paused");
+        imageTimer->blockSignals(true);
+    }
+    else {
+        //ui->textBrowser->append("Resumed");
+        imageTimer->blockSignals(false);
     }
 }

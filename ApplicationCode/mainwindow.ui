@@ -441,19 +441,6 @@
     <property name="title">
      <string>Options</string>
     </property>
-    <widget class="QRadioButton" name="RealTimeButton">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>60</y>
-       <width>151</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Real Time Displaying</string>
-     </property>
-    </widget>
     <widget class="QGroupBox" name="PeopleDetectionBox">
      <property name="geometry">
       <rect>
@@ -525,6 +512,19 @@
        </item>
       </layout>
      </widget>
+    </widget>
+    <widget class="QCheckBox" name="PauseCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>60</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Pause Processing</string>
+     </property>
     </widget>
    </widget>
    <widget class="QGroupBox" name="Camera1">
