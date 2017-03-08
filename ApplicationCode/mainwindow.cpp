@@ -37,8 +37,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::DisplayImages(string FrameNumber)
 {
-
-
     // Resize the video for displaying to the size of the widget
     WidgetHeight = ui->CVWidget1->height();
     WidgetWidth  = ui->CVWidget1->width();
@@ -61,7 +59,6 @@ void MainWindow::DisplayImages(string FrameNumber)
     CenitalPlane.convertTo(CenitalPlane, CV_8UC3, 255.0);
     // Display projected points into Cenital Plane Widget
     ui->CVWidgetCenital->showImage(CenitalPlane);
-
 }
 
 void MainWindow::on_actionOpen_file_triggered()
@@ -223,7 +220,6 @@ void MainWindow::ProcessVideo()
 
     // Save measures to .txt file
     Camera1.VideoStatsFile << FrameNumber << "       " << elapsed_secs << endl;
-
 }
 
 // ---------------------------------------- //
