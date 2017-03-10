@@ -167,6 +167,10 @@ void MainWindow::ProcessVideo()
     Camera2.projectSemantic(CenitalPlane);
     Camera3.projectSemantic(CenitalPlane);
 
+    Camera1.saveWrapImages(Camera1.ActualFrame, Camera1.Homography, FrameNumber);
+    Camera2.saveWrapImages(Camera2.ActualFrame, Camera2.Homography, FrameNumber);
+    Camera3.saveWrapImages(Camera3.ActualFrame, Camera3.Homography, FrameNumber);
+
     // ----------------------- //
     //     PEOPLE DETECTION    //
     // ----------------------- //

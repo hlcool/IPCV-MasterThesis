@@ -336,6 +336,20 @@ void VideoFile::computeHomography()
     Homography = findHomography(pts_src, pts_dst, CV_LMEDS);
 }
 
+void VideoFile::saveWrapImages(Mat ActualFrame, Mat Homography, String FrameNumber)
+{
+    // Extract image warping
+    Mat ImageWarping;
+    ImageWarping = Mat::zeros(600, 1500, CV_64F);
+    warpPerspective(ActualFrame, ImageWarping, Homography, ImageWarping.size());
+    //String WindowName = "Wrapped Camera " + to_string(CameraNumber);
+    //imshow(WindowName, ImageWarping);
+
+    String ImageName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Wrapped Images/Camera " + to_string(CameraNumber) + "/Frame" + FrameNumber + ".png";
+
+    imwrite(ImageName, ImageWarping);
+}
+
 void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color, Mat &CenitalPlane)
 {
     if (BoundingBoxes.empty())
