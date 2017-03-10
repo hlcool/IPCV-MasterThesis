@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1666</width>
-    <height>964</height>
+    <height>1003</height>
    </rect>
   </property>
   <property name="palette">
@@ -435,7 +435,7 @@
       <x>20</x>
       <y>10</y>
       <width>521</width>
-      <height>121</height>
+      <height>141</height>
      </rect>
     </property>
     <property name="title">
@@ -531,7 +531,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>130</y>
+      <y>170</y>
       <width>521</width>
       <height>391</height>
      </rect>
@@ -627,7 +627,7 @@
     <property name="geometry">
      <rect>
       <x>570</x>
-      <y>130</y>
+      <y>170</y>
       <width>521</width>
       <height>391</height>
      </rect>
@@ -723,7 +723,7 @@
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>530</y>
+      <y>570</y>
       <width>581</width>
       <height>391</height>
      </rect>
@@ -819,7 +819,7 @@
     <property name="geometry">
      <rect>
       <x>1120</x>
-      <y>130</y>
+      <y>170</y>
       <width>521</width>
       <height>391</height>
      </rect>
@@ -911,11 +911,22 @@
      </property>
     </widget>
    </widget>
+   <widget class="QTextBrowser" name="textBrowser">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>30</y>
+      <width>521</width>
+      <height>121</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>Camera2</zorder>
    <zorder>Camera1</zorder>
    <zorder>OptionsBox</zorder>
    <zorder>CenitalProjection</zorder>
    <zorder>Camera3</zorder>
+   <zorder>textBrowser</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

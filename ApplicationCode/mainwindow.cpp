@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    cout << "Open video files from the cameras" << endl;
+    ui->textBrowser->append("Open video files from the cameras");
 }
 
 MainWindow::~MainWindow()
@@ -105,7 +105,7 @@ void MainWindow::on_actionOpen_file_triggered()
     Camera2.VideoOpenning(Camera2.InputPath);
     Camera3.VideoOpenning(Camera3.InputPath);
 
-    cout << "Video processing starts" << endl;
+    ui->textBrowser->append("Video processing starts");
 
     // Create and open the statistics file
     Camera1.VideoStatsFile.open(GlobalPath.toStdString() + "/VideoProcessingStats.txt");
@@ -400,11 +400,11 @@ void MainWindow::on_actionCamera_3_triggered()
 void MainWindow::on_PauseCheckBox_clicked(bool checked)
 {
     if (checked) {
-        //ui->textBrowser->append("Paused");
+        ui->textBrowser->append("Paused");
         imageTimer->blockSignals(true);
     }
     else {
-        //ui->textBrowser->append("Resumed");
+        ui->textBrowser->append("Resumed");
         imageTimer->blockSignals(false);
     }
 }
