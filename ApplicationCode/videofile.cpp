@@ -522,9 +522,18 @@ void VideoFile::gaussianFunction(Mat &Gaussian3C, Mat X, Mat Y, Point2f center, 
 
     // Convert Gaussian to 3-channel matrix
     vector<cv::Mat> GaussianChannels(3);
-    GaussianChannels.at(0) = Gaussian;
-    GaussianChannels.at(1) = Gaussian;
-    GaussianChannels.at(2) = Gaussian;
+    GaussianChannels.at(0) = Mat::zeros(X.rows, X.cols, CV_32FC1);
+    GaussianChannels.at(1) = Mat::zeros(X.rows, X.cols, CV_32FC1);
+    GaussianChannels.at(2) = Mat::zeros(X.rows, X.cols, CV_32FC1);
+
+    if (CameraNumber == 1)
+        GaussianChannels.at(1) = Gaussian;
+
+    if (CameraNumber == 2)
+        GaussianChannels.at(0) = Gaussian;
+
+    if (CameraNumber == 3)
+        GaussianChannels.at(2) = Gaussian;
 
     merge(GaussianChannels, Gaussian3C);
 }
