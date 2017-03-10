@@ -415,6 +415,7 @@ void VideoFile::projectSemantic(Mat &CenitalPlane)
     double alpha = 0.3;
     vector<Point2f> FloorPoints;
     vector<Point2f> ProjectedFloor;
+    Scalar Color;
 
     if (CameraNumber == 1){
         // Floor points preselected (x,y) for Camera1
@@ -422,6 +423,7 @@ void VideoFile::projectSemantic(Mat &CenitalPlane)
         FloorPoints.push_back(Point2f(639, 148));
         FloorPoints.push_back(Point2f(637, 477));
         FloorPoints.push_back(Point2f(2, 477));
+        Color = Scalar(0,255,0);
     }
     if (CameraNumber == 2){
         // Floor points preselected (x,y) for Camera2
@@ -429,6 +431,15 @@ void VideoFile::projectSemantic(Mat &CenitalPlane)
         FloorPoints.push_back(Point2f(617, 80));
         FloorPoints.push_back(Point2f(621, 459));
         FloorPoints.push_back(Point2f(25, 460));
+        Color = Scalar(255,0,0);
+    }
+    if (CameraNumber == 3){
+        // Floor points preselected (x,y) for Camera3
+        FloorPoints.push_back(Point2f(15, 75));
+        FloorPoints.push_back(Point2f(604, 75));
+        FloorPoints.push_back(Point2f(633, 469));
+        FloorPoints.push_back(Point2f(10, 467));
+        Color = Scalar(0,0,255);
     }
 
     // Apply Homography to vector of Points to find the projection
@@ -454,10 +465,10 @@ void VideoFile::projectSemantic(Mat &CenitalPlane)
     CenitalPlane.copyTo(overlay);
 
     // Create the poligon and add transparency
-    fillConvexPoly( overlay, ArrayProjectedPoints, 4, Scalar(0,255,0) );
+    fillConvexPoly( overlay, ArrayProjectedPoints, 4, Color );
     addWeighted(overlay, alpha, CenitalPlane, 1 - alpha, 0, CenitalPlane);
 
-    if (CameraNumber == 2){
+    if (CameraNumber == 3){
         CenitalPlane.convertTo(CenitalPlane, CV_32FC3, 1/255.0);
     }
 }

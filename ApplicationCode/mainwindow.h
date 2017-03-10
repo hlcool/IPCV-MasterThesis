@@ -50,6 +50,7 @@ private slots:
     void on_actionOpen_file_triggered();
     void on_actionCamera_1_triggered();
     void on_actionCamera_2_triggered();
+    void on_actionCamera_3_triggered();
     void on_PauseCheckBox_clicked(bool checked);
 };
 

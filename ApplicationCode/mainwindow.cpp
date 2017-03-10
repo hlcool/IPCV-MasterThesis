@@ -21,6 +21,7 @@ using namespace cv::dpm;
 
 VideoFile Camera1;
 VideoFile Camera2;
+VideoFile Camera3;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -45,15 +46,18 @@ void MainWindow::DisplayImages(string FrameNumber)
 
     cv::resize(Camera1.ActualFrame, Camera1.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
     cv::resize(Camera2.ActualFrame, Camera2.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
+    cv::resize(Camera3.ActualFrame, Camera3.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
     cv::resize(CenitalPlane, CenitalPlane, {ProjWidgetWidth, ProjWidgetHeight}, INTER_LANCZOS4);
 
     // Extract Frame number and write it on the frame
     putText(Camera1.ActualFrame, FrameNumber, Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
     putText(Camera2.ActualFrame, FrameNumber, Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
+    putText(Camera3.ActualFrame, FrameNumber, Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
 
-    // Method to display the frame in the CVWidget
+    // Display images into UI CVWidgets
     ui->CVWidget1->showImage(Camera1.ActualFrame);
     ui->CVWidget2->showImage(Camera2.ActualFrame);
+    ui->CVWidget3->showImage(Camera3.ActualFrame);
 
     // Convert Cenital Plane to 8-bit image
     CenitalPlane.convertTo(CenitalPlane, CV_8UC3, 255.0);
@@ -66,6 +70,7 @@ void MainWindow::on_actionOpen_file_triggered()
     // Assign cameras a number
     Camera1.CameraNumber = 1;
     Camera2.CameraNumber = 2;
+    Camera3.CameraNumber = 3;
 
     // Global Path variable should be change if used in other computer
     QString GlobalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode";
@@ -82,15 +87,23 @@ void MainWindow::on_actionOpen_file_triggered()
         filePath = QFileDialog::getOpenFileName(this, tr("Open VideoFile Camera 2"), GlobalPath, tr("Video Files (*.mpg *.avi *.m4v *.ts *.m2v)"));
         // Convert QString to std::string
         Camera2.InputPath = filePath.toStdString();
+
+        // CAMERA 3
+        // Get a filename to open
+        filePath = QFileDialog::getOpenFileName(this, tr("Open VideoFile Camera 3"), GlobalPath, tr("Video Files (*.mpg *.avi *.m4v *.ts *.m2v)"));
+        // Convert QString to std::string
+        Camera3.InputPath = filePath.toStdString();
     }
     else {
         Camera1.InputPath = "/Users/alex/Desktop/Videos Sincronizados/Camera1Sync.m2v";
         Camera2.InputPath = "/Users/alex/Desktop/Videos Sincronizados/Camera2Sync.m2v";
+        Camera3.InputPath = "/Users/alex/Desktop/Videos Sincronizados/Camera3Sync.m2v";
     }
 
     // Open Video Streams
     Camera1.VideoOpenning(Camera1.InputPath);
     Camera2.VideoOpenning(Camera2.InputPath);
+    Camera3.VideoOpenning(Camera3.InputPath);
 
     cout << "Video processing starts" << endl;
 
@@ -99,9 +112,12 @@ void MainWindow::on_actionOpen_file_triggered()
     Camera1.VideoStatsFile << "Frame  Computational Time" << endl;
 
     // Homography calculation for all the cameras
+    // Camera 1
     Camera1.computeHomography();
-    // Homography camera 2
+    // Camera 2
     Camera2.computeHomography();
+    // Camera 3
+    Camera3.computeHomography();
 
     // Timer to launch the ProcessVideo() slot
     imageTimer = new QTimer(this);
@@ -116,6 +132,7 @@ void MainWindow::ProcessVideo()
 
     Camera1.cap >> Camera1.ActualFrame; // Get first video frame
     Camera2.cap >> Camera2.ActualFrame; // Get first video frame
+    Camera3.cap >> Camera3.ActualFrame; // Get first video frame
 
     // Get frame number
     stringstream ss;
@@ -148,6 +165,7 @@ void MainWindow::ProcessVideo()
     // ----------------------- //
     Camera1.projectSemantic(CenitalPlane);
     Camera2.projectSemantic(CenitalPlane);
+    Camera3.projectSemantic(CenitalPlane);
 
     // ----------------------- //
     //     PEOPLE DETECTION    //
@@ -168,26 +186,36 @@ void MainWindow::ProcessVideo()
 
         // Camera 2
         Camera2.HOGPeopleDetection(Camera2.ActualFrame);
-        Camera2.paintBoundingBoxes(Camera2.ActualFrame, CBOption, Camera2.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
-        Camera2.projectBlobs(Camera2.HOGBoundingBoxesNMS, Camera2.HOGScores, Camera2.Homography, "GREEN", CenitalPlane);
+        Camera2.paintBoundingBoxes(Camera2.ActualFrame, CBOption, Camera2.HOGBoundingBoxesNMS, Scalar (255, 0, 0), 1);
+        Camera2.projectBlobs(Camera2.HOGBoundingBoxesNMS, Camera2.HOGScores, Camera2.Homography, "BLUE", CenitalPlane);
+
+        // Camera 3
+        Camera3.HOGPeopleDetection(Camera3.ActualFrame);
+        Camera3.paintBoundingBoxes(Camera3.ActualFrame, CBOption, Camera3.HOGBoundingBoxesNMS, Scalar (0, 0, 255), 1);
+        Camera3.projectBlobs(Camera3.HOGBoundingBoxesNMS, Camera3.HOGScores, Camera3.Homography, "RED", CenitalPlane);
     }
     else if(!CBOption.compare("FastRCNN")){
         // FastRCNN Detector
-        Camera1.FastRCNNPeopleDetection(FrameNumber, Camera1.FastRCNNMethod);
-        Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
-        Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED", CenitalPlane);
+        //Camera1.FastRCNNPeopleDetection(FrameNumber, Camera1.FastRCNNMethod);
+        //Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
+        //Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED", CenitalPlane);
     }
     else if(!CBOption.compare("DPM")){
         // DPM Detector
         // Camera 1
         Camera1.DPMPeopleDetection(Camera1.ActualFrame);
-        Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.DPMBoundingBoxes, Scalar (255, 0, 0), 1);
-        Camera1.projectBlobs(Camera1.DPMBoundingBoxes, Camera1.DPMScores, Camera1.Homography, "BLUE", CenitalPlane);
+        Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.DPMBoundingBoxes, Scalar (0, 255, 0), 1);
+        Camera1.projectBlobs(Camera1.DPMBoundingBoxes, Camera1.DPMScores, Camera1.Homography, "GREEN", CenitalPlane);
 
         // Camera 2
-        Camera2.HOGPeopleDetection(Camera2.ActualFrame);
-        Camera2.paintBoundingBoxes(Camera2.ActualFrame, CBOption, Camera2.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
-        Camera2.projectBlobs(Camera2.HOGBoundingBoxesNMS, Camera2.HOGScores, Camera2.Homography, "GREEN", CenitalPlane);
+        Camera2.DPMPeopleDetection(Camera2.ActualFrame);
+        Camera2.paintBoundingBoxes(Camera2.ActualFrame, CBOption, Camera2.HOGBoundingBoxesNMS, Scalar (255, 0, 0), 1);
+        Camera2.projectBlobs(Camera2.HOGBoundingBoxesNMS, Camera2.HOGScores, Camera2.Homography, "BLUE", CenitalPlane);
+
+        // Camera 3
+        Camera3.DPMPeopleDetection(Camera3.ActualFrame);
+        Camera3.paintBoundingBoxes(Camera3.ActualFrame, CBOption, Camera3.HOGBoundingBoxesNMS, Scalar (0, 0, 255), 1);
+        Camera3.projectBlobs(Camera3.HOGBoundingBoxesNMS, Camera3.HOGScores, Camera3.Homography, "RED", CenitalPlane);
     }
     else{
         // HOG Detector
@@ -196,9 +224,9 @@ void MainWindow::ProcessVideo()
         Camera1.projectBlobs(Camera1.HOGBoundingBoxesNMS, Camera1.HOGScores, Camera1.Homography, "GREEN", CenitalPlane);
 
         // FastRCNN Detector
-        Camera1.FastRCNNPeopleDetection(FrameNumber, Camera1.FastRCNNMethod);
-        Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
-        Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED", CenitalPlane);
+        //Camera1.FastRCNNPeopleDetection(FrameNumber, Camera1.FastRCNNMethod);
+        //Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
+        //Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED", CenitalPlane);
     }
 
 
@@ -263,7 +291,6 @@ void MainWindow::on_actionCamera_1_triggered()
     imshow(FrameWindow, CameraFrame);
 
     if(waitKey()==27) {
-        //Camera1.UserSelectedPoints = 1;
         Camera1.PtsDstFile.close();
         Camera1.PtsSrcFile.close();
         destroyWindow(CenitalWindow);
@@ -313,9 +340,57 @@ void MainWindow::on_actionCamera_2_triggered()
     imshow(FrameWindow, CameraFrame);
 
     if(waitKey()==27) {
-        //Camera1.UserSelectedPoints = 1;
         Camera2.PtsDstFile.close();
         Camera2.PtsSrcFile.close();
+        destroyWindow(CenitalWindow);
+        destroyWindow(FrameWindow);
+        return;
+    }
+}
+
+void onMouseCamera3Cenital(int evt, int x, int y, int, void*)
+{
+    if(evt == CV_EVENT_LBUTTONDOWN) {
+        Point pt = Point(x,y);
+        cout << "Cenital Frame x = " << pt.x << " y = " << pt.y << endl;
+        // Save Points into txt file
+        Camera3.PtsDstFile << pt.x << " " << pt.y << endl;
+    }
+}
+
+void onMouseCamera3Frame(int evt, int x, int y, int, void*)
+{
+    if(evt == CV_EVENT_LBUTTONDOWN) {
+        Point pt = Point(x,y);
+        cout << "Camera 3 Frame x = " << pt.x << " y = " << pt.y << endl;
+        // Save points into txt
+        Camera3.PtsSrcFile << pt.x << " " << pt.y << endl;
+    }
+}
+
+void MainWindow::on_actionCamera_3_triggered()
+{
+    // Load the cenital plane
+    Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalView.png");
+    Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/EmptyCamera3.png");
+
+    // Open files
+    Camera3.PtsDstFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Camera3PtsDstFile.txt");
+    Camera3.PtsSrcFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Camera3PtsSrcFile.txt");
+
+    String CenitalWindow = "Cenital Frame";
+    namedWindow(CenitalWindow);
+    setMouseCallback(CenitalWindow, onMouseCamera3Cenital, 0);
+    imshow(CenitalWindow, CenitalFrame);
+
+    String FrameWindow = "Camera 3 Frame";
+    namedWindow(FrameWindow);
+    setMouseCallback(FrameWindow, onMouseCamera3Frame, 0);
+    imshow(FrameWindow, CameraFrame);
+
+    if(waitKey()==27) {
+        Camera3.PtsDstFile.close();
+        Camera3.PtsSrcFile.close();
         destroyWindow(CenitalWindow);
         destroyWindow(FrameWindow);
         return;
