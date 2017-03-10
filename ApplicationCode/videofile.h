@@ -84,7 +84,7 @@ public:
     ofstream VideoStatsFile;
 
     // Flag to cout only once
-    int FlagCOUT = 1;
+    //int FlagCOUT = 1;
 };
 
 #endif // VIDEOFILE_H

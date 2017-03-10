@@ -38,6 +38,9 @@ public:
     // Cenital Plane image
     Mat CenitalPlane;
 
+    // Flag to display text once
+    bool FlagText = 1;
+
     void DisplayImages(string FrameNumber);
 
 private:

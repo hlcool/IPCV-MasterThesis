@@ -278,10 +278,6 @@ void VideoFile::imageEnhancement()
 
     Width = ActualFrame.cols;
     Height = ActualFrame.rows;
-    if (FlagCOUT == 1) {
-        cout << "The video has been resize to " << "Width: " << Width << ". Heigth: " << Height << endl;
-        FlagCOUT = 0;
-    }
 }
 
 void VideoFile::computeHomography()

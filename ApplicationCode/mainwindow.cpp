@@ -105,7 +105,7 @@ void MainWindow::on_actionOpen_file_triggered()
     Camera2.VideoOpenning(Camera2.InputPath);
     Camera3.VideoOpenning(Camera3.InputPath);
 
-    ui->textBrowser->append("Video processing starts");
+    ui->textBrowser->append("Videos correctly openned");
 
     // Create and open the statistics file
     Camera1.VideoStatsFile.open(GlobalPath.toStdString() + "/VideoProcessingStats.txt");
@@ -118,6 +118,9 @@ void MainWindow::on_actionOpen_file_triggered()
     Camera2.computeHomography();
     // Camera 3
     Camera3.computeHomography();
+
+    ui->textBrowser->append("Homographies for cameras correctly calculated");
+    ui->textBrowser->append("Processing starts");
 
     // Timer to launch the ProcessVideo() slot
     imageTimer = new QTimer(this);
@@ -171,9 +174,9 @@ void MainWindow::ProcessVideo()
     Camera2.saveWrapImages(Camera2.ActualFrame, Camera2.Homography, FrameNumber);
     Camera3.saveWrapImages(Camera3.ActualFrame, Camera3.Homography, FrameNumber);
 
-    // ----------------------- //
-    //     PEOPLE DETECTION    //
-    // ----------------------- //
+    // ------------------------------------------- //
+    //     PEOPLE DETECTION & BLOBS PROJECTION     //
+    // ------------------------------------------- //
 
     String CBOption = ui->PeopleDetectorCB->currentText().toStdString();
     if (ui->FastButton->isChecked())
@@ -183,6 +186,9 @@ void MainWindow::ProcessVideo()
 
     if (!CBOption.compare("HOG")){
         // HOG Detector
+        if (FlagText)
+            ui->textBrowser->append("HOG Detector in use");
+
         // Camera 1
         Camera1.HOGPeopleDetection(Camera1.ActualFrame);
         Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
@@ -200,12 +206,19 @@ void MainWindow::ProcessVideo()
     }
     else if(!CBOption.compare("FastRCNN")){
         // FastRCNN Detector
+        if (FlagText)
+            ui->textBrowser->append("FastRCNN method is not supported until the video is process by Matlab");
+
+        // FastRCNN Detector
         //Camera1.FastRCNNPeopleDetection(FrameNumber, Camera1.FastRCNNMethod);
         //Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
         //Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED", CenitalPlane);
     }
     else if(!CBOption.compare("DPM")){
         // DPM Detector
+        if (FlagText)
+            ui->textBrowser->append("DPM Detector in use");
+
         // Camera 1
         Camera1.DPMPeopleDetection(Camera1.ActualFrame);
         Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.DPMBoundingBoxes, Scalar (0, 255, 0), 1);
@@ -228,6 +241,9 @@ void MainWindow::ProcessVideo()
         Camera1.projectBlobs(Camera1.HOGBoundingBoxesNMS, Camera1.HOGScores, Camera1.Homography, "GREEN", CenitalPlane);
 
         // FastRCNN Detector
+        if (FlagText)
+            ui->textBrowser->append("FastRCNN method is not supported until the video is process by Matlab");
+
         //Camera1.FastRCNNPeopleDetection(FrameNumber, Camera1.FastRCNNMethod);
         //Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
         //Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED", CenitalPlane);
@@ -248,6 +264,9 @@ void MainWindow::ProcessVideo()
 
     // Save measures to .txt file
     Camera1.VideoStatsFile << FrameNumber << "       " << elapsed_secs << endl;
+
+    // Turn off message display
+    FlagText = 0;
 }
 
 // ---------------------------------------- //
