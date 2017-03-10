@@ -46,7 +46,7 @@
 	</data>
 </PCAcoeff>
 <PCADim>6</PCADim>
-<ScoreThreshold>-0.5000000000000000</ScoreThreshold>
+<ScoreThreshold>-0.85000000000000000</ScoreThreshold>
 <Bias>
 -6.659495 -6.659495 
 </Bias>

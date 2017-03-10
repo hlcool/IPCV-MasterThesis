@@ -14,3 +14,6 @@ pts_src.push_back(Point2f(76, 180));
 pts_src.push_back(Point2f(55, 261));
 pts_src.push_back(Point2f(192, 271));
 pts_src.push_back(Point2f(220, 216));
+
+// Threshold Original del modelo DPM person.xml
+<ScoreThreshold>-1.4423741965421475</ScoreThreshold>

@@ -400,14 +400,10 @@ void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, 
         Point2f center = ProjectedPoints[i];
         if (!scores.empty()) {
             if (MaxScore > 1){
-                //cout << "Score: " << scores[i]/MaxScore;
                 score = ((exp(-(scores[i]/MaxScore)))/0.02) - 15;
-                //cout << ". STD: " << score << endl;
             }
             else {
-                //cout << "Score: " << scores[i];
                 score = ((exp(-scores[i]))/0.02) - 15;
-                //cout << ". STD: " << score << endl;
             }
         }
         else {
