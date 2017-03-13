@@ -76,23 +76,13 @@ void MainWindow::on_actionOpen_file_triggered()
     QString GlobalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode";
 
     if (ProgramFlag) {
-        // CAMERA 1
-        // Get a filename to open
-        QString filePath = QFileDialog::getOpenFileName(this, tr("Open VideoFile Camera 1"), GlobalPath, tr("Video Files (*.mpg *.avi *.m4v *.ts *.m2v)"));
-        // Convert QString to std::string
-        Camera1.InputPath = filePath.toStdString();
+        // Opens the QFileDialog
+        QStringList filenames = QFileDialog::getOpenFileNames(this, tr("Open video files for the cameras"), GlobalPath, tr("Video Files (*.mpg *.avi *.m4v *.ts *.m2v)"));
 
-        // CAMERA 2
-        // Get a filename to open
-        filePath = QFileDialog::getOpenFileName(this, tr("Open VideoFile Camera 2"), GlobalPath, tr("Video Files (*.mpg *.avi *.m4v *.ts *.m2v)"));
-        // Convert QString to std::string
-        Camera2.InputPath = filePath.toStdString();
-
-        // CAMERA 3
-        // Get a filename to open
-        filePath = QFileDialog::getOpenFileName(this, tr("Open VideoFile Camera 3"), GlobalPath, tr("Video Files (*.mpg *.avi *.m4v *.ts *.m2v)"));
-        // Convert QString to std::string
-        Camera3.InputPath = filePath.toStdString();
+        // Save cameras paths
+        Camera1.InputPath = filenames.at(Camera1.CameraNumber - 1).toStdString();
+        Camera2.InputPath = filenames.at(Camera2.CameraNumber - 1).toStdString();
+        Camera3.InputPath = filenames.at(Camera3.CameraNumber - 1).toStdString();
     }
     else {
         Camera1.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Camera1Sync.m2v";
