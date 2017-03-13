@@ -25,24 +25,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    videofile.cpp \
     DPM/dpm_cascade_detector.cpp \
     DPM/dpm_cascade.cpp \
     DPM/dpm_convolution.cpp \
     DPM/dpm_feature.cpp \
     DPM/dpm_model.cpp \
-    DPM/dpm_nms.cpp
+    DPM/dpm_nms.cpp \
+    camerastream.cpp
 
 HEADERS  += mainwindow.h \
     cvimagewidget.h \
-    videofile.h \
     DPM/dpm_cascade.hpp \
     DPM/dpm_convolution.hpp \
     DPM/dpm_feature.hpp \
     DPM/dpm_model.hpp \
     DPM/dpm_nms.hpp \
     DPM/dpm.hpp \
-    DPM/precomp.hpp
+    DPM/precomp.hpp \
+    camerastream.h
 
 FORMS    += mainwindow.ui
 

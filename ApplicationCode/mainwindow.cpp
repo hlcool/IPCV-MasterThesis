@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "videofile.h"
+#include "camerastream.h"
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -19,9 +19,9 @@ using namespace std;
 using namespace cv;
 using namespace cv::dpm;
 
-VideoFile Camera1;
-VideoFile Camera2;
-VideoFile Camera3;
+CameraStream Camera1;
+CameraStream Camera2;
+CameraStream Camera3;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

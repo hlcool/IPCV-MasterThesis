@@ -1,4 +1,4 @@
-#include "videofile.h"
+#include "camerastream.h"
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -11,13 +11,13 @@
 #include "opencv2/objdetect/objdetect.hpp"
 #include <boost/lexical_cast.hpp>
 
-VideoFile::VideoFile(){}
-VideoFile::~VideoFile(){}
+CameraStream::CameraStream(){}
+CameraStream::~CameraStream(){}
 
 using namespace cv;
 using namespace std;
 
-void VideoFile::VideoOpenning(string InputPath)
+void CameraStream::VideoOpenning(string InputPath)
 {
     // Open the videofile to check if it exists
     cap.open(InputPath);
@@ -40,7 +40,7 @@ void VideoFile::VideoOpenning(string InputPath)
     cout << "" << endl;
 }
 
-void VideoFile::HOGPeopleDetection(Mat ActualFrame)
+void CameraStream::HOGPeopleDetection(Mat ActualFrame)
 {
     // Clear vectors
     HOGBoundingBoxes.clear();
@@ -54,7 +54,7 @@ void VideoFile::HOGPeopleDetection(Mat ActualFrame)
     //non_max_suppresion(HOGBoundingBoxes, HOGBoundingBoxesNMS, 0.65);
 }
 
-void VideoFile::FastRCNNPeopleDetection(string FrameNumber, string Method)
+void CameraStream::FastRCNNPeopleDetection(string FrameNumber, string Method)
 {
     // Clear vectors
     RCNNBoundingBoxes.clear();
@@ -87,7 +87,7 @@ void VideoFile::FastRCNNPeopleDetection(string FrameNumber, string Method)
     //non_max_suppresion(RCNNBoundingBoxes, RCNNBoundingBoxesNMS, 0.65);
 }
 
-void VideoFile::decodeBlobFile(string FileName, string FrameNumber)
+void CameraStream::decodeBlobFile(string FileName, string FrameNumber)
 {
     ifstream input(FileName);
 
@@ -176,7 +176,7 @@ void VideoFile::decodeBlobFile(string FileName, string FrameNumber)
     }
 }
 
-void VideoFile::DPMPeopleDetection(Mat ActualFrame)
+void CameraStream::DPMPeopleDetection(Mat ActualFrame)
 {
     DPMBoundingBoxes.clear();
 
@@ -194,7 +194,7 @@ void VideoFile::DPMPeopleDetection(Mat ActualFrame)
     }
 }
 
-void VideoFile::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh)
+void CameraStream::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh)
 {
     resRects.clear();
 
@@ -239,7 +239,7 @@ void VideoFile::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &r
     }
 }
 
-void VideoFile::paintBoundingBoxes(Mat ActualFrame, string Method, vector<Rect> BoundingBoxes, Scalar Color, int Thickness)
+void CameraStream::paintBoundingBoxes(Mat ActualFrame, string Method, vector<Rect> BoundingBoxes, Scalar Color, int Thickness)
 {
     for (size_t i = 0; i < BoundingBoxes.size(); i++) {
         Rect r = BoundingBoxes[i];
@@ -255,7 +255,7 @@ void VideoFile::paintBoundingBoxes(Mat ActualFrame, string Method, vector<Rect> 
     }
 }
 
-void VideoFile::maskEnhancement(Mat BackgroundMask)
+void CameraStream::maskEnhancement(Mat BackgroundMask)
 {
     // Dilatation and Erosion kernels
     Mat kernel_di = getStructuringElement(MORPH_ELLIPSE, Size(3, 3), Point(-1, -1));
@@ -269,7 +269,7 @@ void VideoFile::maskEnhancement(Mat BackgroundMask)
     dilate(BackgroundMask, BackgroundMask, kernel_di, Point(-1, -1));
 }
 
-void VideoFile::imageEnhancement()
+void CameraStream::imageEnhancement()
 {
     // Increase video size
     cv::resize(ActualFrame, ActualFrame, {ActualFrame.cols*2, ActualFrame.rows*2}, INTER_LANCZOS4);
@@ -280,7 +280,7 @@ void VideoFile::imageEnhancement()
     Height = ActualFrame.rows;
 }
 
-void VideoFile::computeHomography()
+void CameraStream::computeHomography()
 {
     vector<Point2f> pts_src, pts_dst;
     string XCoord, YCoord;
@@ -332,7 +332,7 @@ void VideoFile::computeHomography()
     Homography = findHomography(pts_src, pts_dst, CV_LMEDS);
 }
 
-void VideoFile::saveWrapImages(Mat ActualFrame, Mat Homography, String FrameNumber)
+void CameraStream::saveWrapImages(Mat ActualFrame, Mat Homography, String FrameNumber)
 {
     // Extract image warping
     Mat ImageWarping;
@@ -346,7 +346,7 @@ void VideoFile::saveWrapImages(Mat ActualFrame, Mat Homography, String FrameNumb
     imwrite(ImageName, ImageWarping);
 }
 
-void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color, Mat &CenitalPlane)
+void CameraStream::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color, Mat &CenitalPlane)
 {
     if (BoundingBoxes.empty())
         return;
@@ -414,7 +414,7 @@ void VideoFile::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, 
     }
 }
 
-void VideoFile::projectSemantic(Mat &CenitalPlane)
+void CameraStream::projectSemantic(Mat &CenitalPlane)
 {
     // Four floor points
     Mat overlay;
@@ -479,7 +479,7 @@ void VideoFile::projectSemantic(Mat &CenitalPlane)
     }
 }
 
-void VideoFile::meshgrid(Mat &X, Mat &Y, int rows, int cols)
+void CameraStream::meshgrid(Mat &X, Mat &Y, int rows, int cols)
 {
     X = Mat::zeros(1, cols, CV_32FC1);
     Y = Mat::zeros(rows, 1, CV_32FC1);
@@ -496,7 +496,7 @@ void VideoFile::meshgrid(Mat &X, Mat &Y, int rows, int cols)
     Y = repeat(Y, 1, cols);
 }
 
-void VideoFile::gaussianFunction(Mat &Gaussian3C, Mat X, Mat Y, Point2f center, double score)
+void CameraStream::gaussianFunction(Mat &Gaussian3C, Mat X, Mat Y, Point2f center, double score)
 {
     Mat Gaussian;
     Mat Fra1, Fra2, Powx1, Powx2, Powy1, Powy2;

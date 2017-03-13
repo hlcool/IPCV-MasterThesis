@@ -1,5 +1,5 @@
-#ifndef VIDEOFILE_H
-#define VIDEOFILE_H
+#ifndef CAMERASTREAM_H
+#define CAMERASTREAM_H
 
 #include <fstream>
 #include <string>
@@ -13,12 +13,12 @@ using namespace std;
 using namespace cv;
 using namespace cv::dpm;
 
-class VideoFile
+class CameraStream
 {
 
 public:
-    VideoFile();
-    ~VideoFile();
+    CameraStream();
+    ~CameraStream();
 
     // Video Variables
     string InputPath;
@@ -87,4 +87,4 @@ public:
     //int FlagCOUT = 1;
 };
 
-#endif // VIDEOFILE_H
+#endif // CAMERASTREAM_H
