@@ -95,9 +95,9 @@ void MainWindow::on_actionOpen_file_triggered()
         Camera3.InputPath = filePath.toStdString();
     }
     else {
-        Camera1.InputPath = "/Users/alex/Desktop/Videos Sincronizados/Camera1Sync.m2v";
-        Camera2.InputPath = "/Users/alex/Desktop/Videos Sincronizados/Camera2Sync.m2v";
-        Camera3.InputPath = "/Users/alex/Desktop/Videos Sincronizados/Camera3Sync.m2v";
+        Camera1.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Camera1Sync.m2v";
+        Camera2.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Camera2Sync.m2v";
+        Camera3.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Camera3Sync.m2v";
     }
 
     // Open Video Streams
