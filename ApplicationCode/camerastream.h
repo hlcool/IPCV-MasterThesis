@@ -44,7 +44,7 @@ public:
     void computeHomography();
     void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color, Mat& CenitalPlane);
     void projectSemantic(Mat& CenitalPlane);
-    void saveWrapImages(Mat ActualFrame, Mat Homography, String FrameNumber);
+    void saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber);
 
     // Homogrpahy Points Saving
     ofstream PtsDstFile;

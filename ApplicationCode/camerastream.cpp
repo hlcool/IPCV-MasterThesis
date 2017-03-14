@@ -332,7 +332,7 @@ void CameraStream::computeHomography()
     Homography = findHomography(pts_src, pts_dst, CV_LMEDS);
 }
 
-void CameraStream::saveWrapImages(Mat ActualFrame, Mat Homography, String FrameNumber)
+void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber)
 {
     // Extract image warping
     Mat ImageWarping;
