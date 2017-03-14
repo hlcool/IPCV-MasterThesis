@@ -12,6 +12,5 @@ for Blob = 1 : size(Detections, 1)
 end
 fprintf(fid, '\n');
 
-
 end
 

@@ -13,6 +13,5 @@ ProposalMGCFixed(:,2) = ProposalMGC(:,1);
 ProposalMGCFixed(:,3) = ProposalMGC(:,4);
 ProposalMGCFixed(:,4) = ProposalMGC(:,3);
 
-
 end
 
