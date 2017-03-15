@@ -15,7 +15,6 @@ using namespace cv::dpm;
 
 class CameraStream
 {
-
 public:
     CameraStream();
     ~CameraStream();
@@ -55,12 +54,10 @@ public:
     void meshgrid(Mat &X, Mat &Y, int rows, int cols);
     void gaussianFunction(Mat &Gaussian3C, Mat X, Mat Y, Point2f center, double score);
 
-    // HOG People Detection
-    HOGDescriptor HOG;
+    // HOG
     vector<Rect> HOGBoundingBoxes;
     vector<Rect> HOGBoundingBoxesNMS;
     vector<double> HOGScores;
-    void HOGPeopleDetection(Mat ActualFrame);
 
     // Fast RCNN People Detection
     string FastRCNNMethod;

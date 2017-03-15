@@ -40,19 +40,7 @@ void CameraStream::VideoOpenning(string InputPath)
     cout << "" << endl;
 }
 
-void CameraStream::HOGPeopleDetection(Mat ActualFrame)
-{
-    // Clear vectors
-    HOGBoundingBoxes.clear();
-    HOGBoundingBoxesNMS.clear();
 
-    // Initialice the SVM
-    HOG.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
-    // HOG Detector
-    HOG.detectMultiScale(ActualFrame, HOGBoundingBoxes, HOGScores, 0, Size(8, 8), Size(32, 32), 1.1, 2);
-    HOGBoundingBoxesNMS = HOGBoundingBoxes;
-    //non_max_suppresion(HOGBoundingBoxes, HOGBoundingBoxesNMS, 0.65);
-}
 
 void CameraStream::FastRCNNPeopleDetection(string FrameNumber, string Method)
 {

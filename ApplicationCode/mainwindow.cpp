@@ -13,6 +13,7 @@
 #include "cvimagewidget.h"
 #include <QFileDialog>
 #include <DPM/dpm.hpp>
+#include "peopledetector.h"
 
 
 using namespace std;
@@ -22,6 +23,7 @@ using namespace cv::dpm;
 CameraStream Camera1;
 CameraStream Camera2;
 CameraStream Camera3;
+PeopleDetector PeopleDetec;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -182,17 +184,17 @@ void MainWindow::ProcessVideo()
             ui->textBrowser->append("HOG Detector in use");
 
         // Camera 1
-        Camera1.HOGPeopleDetection(Camera1.ActualFrame);
+        PeopleDetec.HOGPeopleDetection(Camera1);
         Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
         Camera1.projectBlobs(Camera1.HOGBoundingBoxesNMS, Camera1.HOGScores, Camera1.Homography, "GREEN", CenitalPlane);
 
         // Camera 2
-        Camera2.HOGPeopleDetection(Camera2.ActualFrame);
+        PeopleDetec.HOGPeopleDetection(Camera2);
         Camera2.paintBoundingBoxes(Camera2.ActualFrame, CBOption, Camera2.HOGBoundingBoxesNMS, Scalar (255, 0, 0), 1);
         Camera2.projectBlobs(Camera2.HOGBoundingBoxesNMS, Camera2.HOGScores, Camera2.Homography, "BLUE", CenitalPlane);
 
         // Camera 3
-        Camera3.HOGPeopleDetection(Camera3.ActualFrame);
+        PeopleDetec.HOGPeopleDetection(Camera3);
         Camera3.paintBoundingBoxes(Camera3.ActualFrame, CBOption, Camera3.HOGBoundingBoxesNMS, Scalar (0, 0, 255), 1);
         Camera3.projectBlobs(Camera3.HOGBoundingBoxesNMS, Camera3.HOGScores, Camera3.Homography, "RED", CenitalPlane);
     }
@@ -225,20 +227,6 @@ void MainWindow::ProcessVideo()
         Camera3.DPMPeopleDetection(Camera3.ActualFrame);
         Camera3.paintBoundingBoxes(Camera3.ActualFrame, CBOption, Camera3.DPMBoundingBoxes, Scalar (0, 0, 255), 1);
         Camera3.projectBlobs(Camera3.DPMBoundingBoxes, Camera3.DPMScores, Camera3.Homography, "RED", CenitalPlane);
-    }
-    else{
-        // HOG Detector
-        Camera1.HOGPeopleDetection(Camera1.ActualFrame);
-        Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
-        Camera1.projectBlobs(Camera1.HOGBoundingBoxesNMS, Camera1.HOGScores, Camera1.Homography, "GREEN", CenitalPlane);
-
-        // FastRCNN Detector
-        if (FlagText)
-            ui->textBrowser->append("FastRCNN method is not supported until the video is process by Matlab");
-
-        //Camera1.FastRCNNPeopleDetection(FrameNumber, Camera1.FastRCNNMethod);
-        //Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
-        //Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED", CenitalPlane);
     }
 
 

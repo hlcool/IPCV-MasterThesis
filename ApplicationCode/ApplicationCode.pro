@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     DPM/dpm_feature.cpp \
     DPM/dpm_model.cpp \
     DPM/dpm_nms.cpp \
-    camerastream.cpp
+    camerastream.cpp \
+    peopledetector.cpp
 
 HEADERS  += mainwindow.h \
     cvimagewidget.h \
@@ -42,7 +43,8 @@ HEADERS  += mainwindow.h \
     DPM/dpm_nms.hpp \
     DPM/dpm.hpp \
     DPM/precomp.hpp \
-    camerastream.h
+    camerastream.h \
+    peopledetector.h
 
 FORMS    += mainwindow.ui
 
