@@ -457,7 +457,7 @@ void CameraStream::projectSemantic(Mat &CenitalPlane)
 
     // Clean previous cenital view
     string CenitalPath;
-    CenitalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalView.png";
+    CenitalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewRombo.png";
     if (CameraNumber == 1){
         CenitalPlane = imread(CenitalPath);
     }
