@@ -62,9 +62,6 @@ public:
     vector<Rect> DPMBoundingBoxes;
     vector<double> DPMScores;
 
-    // Common methods for People Detection
-
-
     // Txt file to extract and save information
     ofstream VideoStatsFile;
 };
