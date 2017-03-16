@@ -158,11 +158,12 @@ void MainWindow::ProcessVideo()
     // ----------------------- //
     //   SEMANTIC PROJECTION   //
     // ----------------------- //
+
     Camera1.projectSemantic(CenitalPlane);
     Camera2.projectSemantic(CenitalPlane);
     Camera3.projectSemantic(CenitalPlane);
 
-    if (atoi(FrameNumber.c_str()) < 30) {
+    if (atoi(FrameNumber.c_str()) == 1) {
         Camera1.saveWarpImages(Camera1.ActualFrame, Camera1.Homography, FrameNumber);
         Camera2.saveWarpImages(Camera2.ActualFrame, Camera2.Homography, FrameNumber);
         Camera3.saveWarpImages(Camera3.ActualFrame, Camera3.Homography, FrameNumber);
@@ -172,67 +173,25 @@ void MainWindow::ProcessVideo()
     //     PEOPLE DETECTION & BLOBS PROJECTION     //
     // ------------------------------------------- //
 
+    // Main Method
     String CBOption = ui->PeopleDetectorCB->currentText().toStdString();
+
+    // FastRCNN Method
     if (ui->FastButton->isChecked())
         Camera1.FastRCNNMethod = "fast";
     else if (ui->AccurateButton->isChecked())
         Camera1.FastRCNNMethod = "accurate";
 
-    if (!CBOption.compare("HOG")){
-        // HOG Detector
-        if (FlagText)
-            ui->textBrowser->append("HOG Detector in use");
+    if (FlagText)
+        ui->textBrowser->append(QString::fromStdString(CBOption) + " Detector in use");
 
-        // Camera 1
-        PeopleDetec.HOGPeopleDetection(Camera1);
-        Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
-        Camera1.projectBlobs(Camera1.HOGBoundingBoxesNMS, Camera1.HOGScores, Camera1.Homography, "GREEN", CenitalPlane);
-
-        // Camera 2
-        PeopleDetec.HOGPeopleDetection(Camera2);
-        Camera2.paintBoundingBoxes(Camera2.ActualFrame, CBOption, Camera2.HOGBoundingBoxesNMS, Scalar (255, 0, 0), 1);
-        Camera2.projectBlobs(Camera2.HOGBoundingBoxesNMS, Camera2.HOGScores, Camera2.Homography, "BLUE", CenitalPlane);
-
-        // Camera 3
-        PeopleDetec.HOGPeopleDetection(Camera3);
-        Camera3.paintBoundingBoxes(Camera3.ActualFrame, CBOption, Camera3.HOGBoundingBoxesNMS, Scalar (0, 0, 255), 1);
-        Camera3.projectBlobs(Camera3.HOGBoundingBoxesNMS, Camera3.HOGScores, Camera3.Homography, "RED", CenitalPlane);
-    }
-    else if(!CBOption.compare("FastRCNN")){
-        // FastRCNN Detector
-        if (FlagText)
-            ui->textBrowser->append("FastRCNN method is not supported until the video is process by Matlab");
-
-        // FastRCNN Detector
-        //Camera1.FastRCNNPeopleDetection(FrameNumber, Camera1.FastRCNNMethod);
-        //Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
-        //Camera1.projectBlobs(Camera1.RCNNBoundingBoxesNMS, Camera1.RCNNScores, Camera1.Homography, "RED", CenitalPlane);
-    }
-    else if(!CBOption.compare("DPM")){
-        // DPM Detector
-        if (FlagText)
-            ui->textBrowser->append("DPM Detector in use");
-
-        // Camera 1
-        Camera1.DPMPeopleDetection(Camera1.ActualFrame);
-        Camera1.paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.DPMBoundingBoxes, Scalar (0, 255, 0), 1);
-        Camera1.projectBlobs(Camera1.DPMBoundingBoxes, Camera1.DPMScores, Camera1.Homography, "GREEN", CenitalPlane);
-
-        // Camera 2
-        Camera2.DPMPeopleDetection(Camera2.ActualFrame);
-        Camera2.paintBoundingBoxes(Camera2.ActualFrame, CBOption, Camera2.DPMBoundingBoxes, Scalar (255, 0, 0), 1);
-        Camera2.projectBlobs(Camera2.DPMBoundingBoxes, Camera2.DPMScores, Camera2.Homography, "BLUE", CenitalPlane);
-
-        // Camera 3
-        Camera3.DPMPeopleDetection(Camera3.ActualFrame);
-        Camera3.paintBoundingBoxes(Camera3.ActualFrame, CBOption, Camera3.DPMBoundingBoxes, Scalar (0, 0, 255), 1);
-        Camera3.projectBlobs(Camera3.DPMBoundingBoxes, Camera3.DPMScores, Camera3.Homography, "RED", CenitalPlane);
-    }
+    PeopleDetec.MainPeopleDetection(Camera1, Camera2, Camera3, CBOption, CenitalPlane);
 
 
     // ----------------------- //
     //         DISPLAY         //
     // ----------------------- //
+
     DisplayImages(FrameNumber);
 
     /* -----------------------*/

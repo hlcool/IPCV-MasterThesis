@@ -6,12 +6,10 @@
 #include <opencv2/opencv.hpp>
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
-#include <DPM/dpm.hpp>
 #include "opencv2/objdetect/objdetect.hpp"
 
 using namespace std;
 using namespace cv;
-using namespace cv::dpm;
 
 class CameraStream
 {
@@ -22,9 +20,9 @@ public:
     // Video Variables
     string InputPath;
     VideoCapture cap;
+    void VideoOpenning(string InputPath);
     int Width, Height, FrameRate, FrameNumber;
     int CameraNumber;
-    void VideoOpenning(string InputPath);
 
     // Mat to store the frame to process
     Mat ActualFrame;
@@ -39,9 +37,7 @@ public:
 
     // Homography and Image Wrapping
     Mat Homography;
-    vector<Point2f> ProjectedPoints;
     void computeHomography();
-    void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color, Mat& CenitalPlane);
     void projectSemantic(Mat& CenitalPlane);
     void saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber);
 
@@ -49,17 +45,12 @@ public:
     ofstream PtsDstFile;
     ofstream PtsSrcFile;
 
-    // Gaussians creation
-    Mat GaussianImage;
-    void meshgrid(Mat &X, Mat &Y, int rows, int cols);
-    void gaussianFunction(Mat &Gaussian3C, Mat X, Mat Y, Point2f center, double score);
-
-    // HOG
+    // HOG Vectors
     vector<Rect> HOGBoundingBoxes;
     vector<Rect> HOGBoundingBoxesNMS;
     vector<double> HOGScores;
 
-    // Fast RCNN People Detection
+    // Fast RCNN Vectors
     string FastRCNNMethod;
     vector<Rect> RCNNBoundingBoxes;
     vector<Rect> RCNNBoundingBoxesNMS;
@@ -67,21 +58,15 @@ public:
     void decodeBlobFile(string FileName, string FrameNumber);
     void FastRCNNPeopleDetection(string FrameNumber, string Method);
 
-    // DPM People Detection
-    cv::Ptr<DPMDetector> DPMdetector = DPMDetector::create(vector<string>(1, "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/People Detection/inriaperson.xml"));
+    // DPM Vectors
     vector<Rect> DPMBoundingBoxes;
     vector<double> DPMScores;
-    void DPMPeopleDetection(Mat ActualFrame);
 
     // Common methods for People Detection
-    void paintBoundingBoxes(Mat ActualFrame, string Method, vector<Rect> BoundingBoxes, Scalar Color, int Thickness);
-    void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh);
+
 
     // Txt file to extract and save information
     ofstream VideoStatsFile;
-
-    // Flag to cout only once
-    //int FlagCOUT = 1;
 };
 
 #endif // CAMERASTREAM_H

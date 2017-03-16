@@ -14,6 +14,7 @@
 
 using namespace std;
 using namespace cv;
+using namespace cv::dpm;
 
 class PeopleDetector
 {
@@ -21,11 +22,25 @@ public:
     PeopleDetector();
     ~PeopleDetector();
 
+    // Main People Detection Function
+    void MainPeopleDetection(CameraStream &Camera1, CameraStream &Camera2, CameraStream &Camera3, String  CBOption, Mat &CenitalPlane);
+
     // HOG People Detection
     HOGDescriptor HOG;
     void HOGPeopleDetection(CameraStream &Camara);
 
+    // DPM People Detector
+    cv::Ptr<DPMDetector> DPMdetector = DPMDetector::create(vector<string>(1, "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/People Detection/inriaperson.xml"));
+    void DPMPeopleDetection(CameraStream &Camara);
+    void paintBoundingBoxes(Mat &ActualFrame, string Method, vector<Rect> BoundingBoxes, Scalar Color, int Thickness);
 
+    // Non-Maximum-Supression
+    void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh);
+
+    // Gaussians creation
+    void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color, Mat& CenitalPlane, int CameraNumber);
+    void meshgrid(Mat &X, Mat &Y, int rows, int cols);
+    void gaussianFunction(Mat &Gaussian3C, Mat X, Mat Y, Point2f center, double score, int CameraNumber);
 };
 
 #endif // PEOPLEDETECTOR_H

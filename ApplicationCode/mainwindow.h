@@ -27,7 +27,7 @@ public:
     // Flag used to enable the QFile dialog or just select always the same video
     // 0 - Automatically selects the video from the path
     // 1 - Enables the QFileDialog
-    int ProgramFlag = 1;
+    int ProgramFlag = 0;
 
     // CVWidget size for cameras
     int WidgetHeight, WidgetWidth;

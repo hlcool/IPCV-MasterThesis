@@ -469,17 +469,12 @@
       </item>
       <item>
        <property name="text">
-        <string>FastRCNN</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>HOG &amp; FastRCNN</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
         <string>DPM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FastRCNN</string>
        </property>
       </item>
      </widget>
