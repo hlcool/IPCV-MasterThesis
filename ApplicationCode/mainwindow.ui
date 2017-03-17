@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1416</width>
-    <height>960</height>
+    <width>1362</width>
+    <height>934</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="palette">
    <palette>
@@ -430,6 +436,9 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
+    <property name="topMargin">
+     <number>12</number>
+    </property>
     <item row="0" column="0">
      <widget class="QGroupBox" name="OptionsBox">
       <property name="sizePolicy">
@@ -448,6 +457,15 @@
        <string>Options</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
+       <property name="topMargin">
+        <number>12</number>
+       </property>
+       <property name="bottomMargin">
+        <number>12</number>
+       </property>
+       <property name="verticalSpacing">
+        <number>-1</number>
+       </property>
        <item row="0" column="0">
         <widget class="QCheckBox" name="PauseCheckBox">
          <property name="text">
@@ -458,10 +476,16 @@
        <item row="0" column="1">
         <widget class="QGroupBox" name="PeopleDetectionBox">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+          <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
          </property>
          <property name="title">
           <string>People Detection</string>
@@ -487,9 +511,15 @@
            </widget>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="MethodLayout">
-            <item>
+           <layout class="QGridLayout" name="gridLayout_12">
+            <item row="0" column="0">
              <widget class="QRadioButton" name="FastButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>Fast</string>
               </property>
@@ -498,8 +528,14 @@
               </property>
              </widget>
             </item>
-            <item>
+            <item row="1" column="0">
              <widget class="QRadioButton" name="AccurateButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>Accurate</string>
               </property>
@@ -511,28 +547,6 @@
         </widget>
        </item>
       </layout>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QTextBrowser" name="textBrowser">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>330</width>
-        <height>166</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>166</height>
-       </size>
-      </property>
      </widget>
     </item>
     <item row="4" column="1">
@@ -560,10 +574,10 @@
       </property>
       <layout class="QGridLayout" name="gridLayout_6">
        <property name="topMargin">
-        <number>16</number>
+        <number>12</number>
        </property>
        <property name="verticalSpacing">
-        <number>4</number>
+        <number>0</number>
        </property>
        <item row="0" column="0">
         <widget class="CVImageWidget" name="CVWidgetCenital" native="true">
@@ -646,111 +660,6 @@
       </layout>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QGroupBox" name="Camera1">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>330</width>
-        <height>300</height>
-       </size>
-      </property>
-      <property name="title">
-       <string>Camera 1</string>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <property name="topMargin">
-        <number>16</number>
-       </property>
-       <property name="verticalSpacing">
-        <number>4</number>
-       </property>
-       <item row="0" column="0">
-        <widget class="CVImageWidget" name="CVWidget1" native="true">
-         <property name="maximumSize">
-          <size>
-           <width>800</width>
-           <height>800</height>
-          </size>
-         </property>
-         <property name="palette">
-          <palette>
-           <active>
-            <colorrole role="Base">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>255</red>
-               <green>255</green>
-               <blue>255</blue>
-              </color>
-             </brush>
-            </colorrole>
-            <colorrole role="Window">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>33</red>
-               <green>33</green>
-               <blue>33</blue>
-              </color>
-             </brush>
-            </colorrole>
-           </active>
-           <inactive>
-            <colorrole role="Base">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>255</red>
-               <green>255</green>
-               <blue>255</blue>
-              </color>
-             </brush>
-            </colorrole>
-            <colorrole role="Window">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>33</red>
-               <green>33</green>
-               <blue>33</blue>
-              </color>
-             </brush>
-            </colorrole>
-           </inactive>
-           <disabled>
-            <colorrole role="Base">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>33</red>
-               <green>33</green>
-               <blue>33</blue>
-              </color>
-             </brush>
-            </colorrole>
-            <colorrole role="Window">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>33</red>
-               <green>33</green>
-               <blue>33</blue>
-              </color>
-             </brush>
-            </colorrole>
-           </disabled>
-          </palette>
-         </property>
-         <property name="autoFillBackground">
-          <bool>false</bool>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_2"/>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
     <item row="1" column="1">
      <widget class="QGroupBox" name="Camera2">
       <property name="sizePolicy">
@@ -770,10 +679,10 @@
       </property>
       <layout class="QGridLayout" name="gridLayout_10">
        <property name="topMargin">
-        <number>16</number>
+        <number>12</number>
        </property>
        <property name="verticalSpacing">
-        <number>4</number>
+        <number>0</number>
        </property>
        <item row="0" column="0">
         <widget class="CVImageWidget" name="CVWidget2" native="true">
@@ -881,10 +790,10 @@
       </property>
       <layout class="QGridLayout" name="gridLayout_8">
        <property name="topMargin">
-        <number>16</number>
+        <number>12</number>
        </property>
        <property name="verticalSpacing">
-        <number>4</number>
+        <number>0</number>
        </property>
        <item row="0" column="0">
         <widget class="CVImageWidget" name="CVWidget3" native="true">
@@ -999,6 +908,133 @@
       <layout class="QGridLayout" name="gridLayout_11"/>
      </widget>
     </item>
+    <item row="0" column="1">
+     <widget class="QTextBrowser" name="textBrowser">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>330</width>
+        <height>166</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>166</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="Camera1">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>330</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Camera 1</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <property name="topMargin">
+        <number>12</number>
+       </property>
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="CVImageWidget" name="CVWidget1" native="true">
+         <property name="maximumSize">
+          <size>
+           <width>800</width>
+           <height>800</height>
+          </size>
+         </property>
+         <property name="palette">
+          <palette>
+           <active>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Window">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>33</red>
+               <green>33</green>
+               <blue>33</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </active>
+           <inactive>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Window">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>33</red>
+               <green>33</green>
+               <blue>33</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </inactive>
+           <disabled>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>33</red>
+               <green>33</green>
+               <blue>33</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Window">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>33</red>
+               <green>33</green>
+               <blue>33</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </disabled>
+          </palette>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2"/>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -1006,7 +1042,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1416</width>
+     <width>1362</width>
      <height>22</height>
     </rect>
    </property>
