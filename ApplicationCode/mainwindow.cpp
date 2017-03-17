@@ -150,10 +150,27 @@ void MainWindow::ProcessVideo()
     //     BKG SUBSTRACTION    //
     // ----------------------- //
 
+    // CAMERA 1
     // Compute Background Mask
-    //Camera1.pMOG2->apply(Camera1.ActualFrame, Camera1.BackgroundMask);
+    Camera1.pMOG2->apply(Camera1.ActualFrame, Camera1.BackgroundMask);
     // Improve Background Mask
-    //Camera1.maskEnhancement(Camera1.BackgroundMask);
+    Camera1.maskEnhancement(Camera1.BackgroundMask);
+
+    // CAMERA 2
+    // Compute Background Mask
+    Camera2.pMOG2->apply(Camera2.ActualFrame, Camera2.BackgroundMask);
+    // Improve Background Mask
+    Camera2.maskEnhancement(Camera2.BackgroundMask);
+
+    // CAMERA 3
+    // Compute Background Mask
+    Camera3.pMOG2->apply(Camera3.ActualFrame, Camera3.BackgroundMask);
+    // Improve Background Mask
+    Camera3.maskEnhancement(Camera3.BackgroundMask);
+
+    imshow("Camera 1 BS", Camera1.BackgroundMask);
+    imshow("Camera 2 BS", Camera2.BackgroundMask);
+    imshow("Camera 3 BS", Camera3.BackgroundMask);
 
     // ----------------------- //
     //   SEMANTIC PROJECTION   //

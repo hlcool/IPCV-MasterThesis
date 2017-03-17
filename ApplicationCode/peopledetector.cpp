@@ -59,7 +59,9 @@ void PeopleDetector::MainPeopleDetection(CameraStream &Camera1, CameraStream &Ca
         DPMPeopleDetection(Camera3);
         paintBoundingBoxes(Camera3.ActualFrame, CBOption, Camera3.DPMBoundingBoxes, Scalar (0, 0, 255), 1);
         projectBlobs(Camera3.DPMBoundingBoxes, Camera3.DPMScores, Camera3.Homography, "RED", CenitalPlane, Camera3.CameraNumber);
-
+    }
+    else if(!CBOption.compare("None")){
+        return;
     }
 }
 
