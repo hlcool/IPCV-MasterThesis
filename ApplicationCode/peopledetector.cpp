@@ -130,29 +130,105 @@ void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> sco
     else if (!Color.compare("BLUE"))
         SColor = Scalar(255, 0, 0);
 
-    vector<Point2f> AuxPointVector;
-    vector<Point2f> ProjectedPoints;
+    vector<Point2f> LeftCornerVectors, RightCornerVectors;
+    vector<Point2f> ProjectedLeftPoints, ProjectedRightPoints;
 
-    // Extract bottom midle bounding box point
+    // Extract bottom bounding box segment
     for (size_t i = 0; i < BoundingBoxes.size(); i++) {
         // Extract the corresponding rectangle
         Rect r = BoundingBoxes[i];
-        Point2f Point;
+        Point2f LeftCorner, RightCorner;
 
-        // Bottom midle point of the blob
-        Point.x = cvRound(r.x + r.width/2);
-        Point.y = cvRound(r.y + r.height);
+        // Extract Coordinates of the bottom segment
+        LeftCorner.x = cvRound(r.x);
+        LeftCorner.y = cvRound(r.y + r.height);
+        RightCorner.x = cvRound(r.x + r.width);
+        RightCorner.y = cvRound(r.y + r.height);
 
-        // Store project Point in vector
-        AuxPointVector.push_back(Point);
+        // Same coordinates in vectors
+        LeftCornerVectors.push_back(LeftCorner);
+        RightCornerVectors.push_back(RightCorner);
     }
 
-    // Apply Homography to vector of Points to find the projection
-    perspectiveTransform(AuxPointVector, ProjectedPoints, Homography);
+    // Apply Homography to vectors of Points to find the projection
+    perspectiveTransform(LeftCornerVectors, ProjectedLeftPoints, Homography);
+    perspectiveTransform(RightCornerVectors, ProjectedRightPoints, Homography);
 
-    // Convert CenitalPlane to flaoting point mat to add the Gaussians
-    //CenitalPlane.convertTo(CenitalPlane, CV_32FC3, 1/255.0);
+    // Vector to save the coordinates of projected squares for gaussians
+    vector<Point2f> ProjectedPoints;
 
+    for (size_t i = 0; i < ProjectedLeftPoints.size(); i++) {
+        // Left Projected Point
+        Point2f LeftProjected = ProjectedLeftPoints[i];
+        // Rigth Projected Point
+        Point2f RightProjected = ProjectedRightPoints[i];
+
+        // Middle Segment Point
+        Point2f MiddleSegmentPoint;
+        MiddleSegmentPoint.x = cvRound((RightProjected.x + LeftProjected.x) / 2);
+        MiddleSegmentPoint.y = cvRound((RightProjected.y + LeftProjected.y) / 2);
+
+        // Direction Vector From Left Point to Rigth Point
+        Point2f VectorLeft2Rigth;
+        VectorLeft2Rigth.x = LeftProjected.x - RightProjected.x;
+        VectorLeft2Rigth.y = LeftProjected.y - RightProjected.y;
+
+        // Normalize Direction Vector
+        float mag = sqrt (VectorLeft2Rigth.x * VectorLeft2Rigth.x + VectorLeft2Rigth.y * VectorLeft2Rigth.y);
+        VectorLeft2Rigth.x = VectorLeft2Rigth.x / mag;
+        VectorLeft2Rigth.y = VectorLeft2Rigth.y / mag;
+
+        Point2f C;
+        Scalar PerpendicularColor;
+        float length;
+
+        // Depending on the camera the direction of the perpendicular line is
+        // different
+        if(CameraNumber == 1){
+            // Rotate direction vector 90º
+            float temp = VectorLeft2Rigth.x;
+            VectorLeft2Rigth.x = - VectorLeft2Rigth.y;
+            VectorLeft2Rigth.y = temp;
+
+            // Length of the new perpedicular line
+            length = (RightProjected.x - LeftProjected.x)/2;
+            PerpendicularColor = Scalar(255, 0, 255);
+        }
+        if(CameraNumber == 2){
+            // Rotate direction vector 90º
+            float temp = VectorLeft2Rigth.x;
+            VectorLeft2Rigth.x = VectorLeft2Rigth.y;
+            VectorLeft2Rigth.y = temp;
+
+            // Length of the new perpedicular line
+            length = (RightProjected.y - LeftProjected.y)/2;
+            PerpendicularColor = Scalar(0, 255, 255);
+        }
+        if(CameraNumber == 3){
+            // Rotate direction vector 90º
+            float temp = VectorLeft2Rigth.x;
+            VectorLeft2Rigth.x = - VectorLeft2Rigth.y;
+            VectorLeft2Rigth.y = temp;
+
+            // Length of the new perpedicular line
+            length = (RightProjected.y - LeftProjected.y)/2;
+            PerpendicularColor = Scalar(255, 255, 255);
+        }
+
+        // Center of the projected square
+        C.x = MiddleSegmentPoint.x + VectorLeft2Rigth.x * length;
+        C.y = MiddleSegmentPoint.y + VectorLeft2Rigth.y * length;
+
+        // Save projected square central point
+        ProjectedPoints.push_back(C);
+
+        // Projection Line
+        line(CenitalPlane, LeftProjected, RightProjected, SColor, 2);
+        // Perpendicular line. New line at C pointing direction of Direction Vector
+        line(CenitalPlane, MiddleSegmentPoint, C, PerpendicularColor, 2);
+    }
+
+    /*
     // Mesgrid function
     meshgrid(X, Y, CenitalPlane.rows, CenitalPlane.cols);
 
@@ -180,6 +256,7 @@ void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> sco
         // Add gaussian to CenitalPlane to display
         add(Gaussian, CenitalPlane, CenitalPlane);
     }
+    */
 }
 
 void PeopleDetector::meshgrid(Mat &X, Mat &Y, int rows, int cols)
