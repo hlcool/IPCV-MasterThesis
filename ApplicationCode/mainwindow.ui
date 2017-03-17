@@ -453,6 +453,11 @@
         <height>166</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
       <property name="title">
        <string>Options</string>
       </property>
@@ -464,7 +469,7 @@
         <number>12</number>
        </property>
        <property name="verticalSpacing">
-        <number>-1</number>
+        <number>0</number>
        </property>
        <item row="0" column="0">
         <widget class="QCheckBox" name="PauseCheckBox">
@@ -486,6 +491,11 @@
            <width>0</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
          </property>
          <property name="title">
           <string>People Detection</string>
@@ -568,6 +578,11 @@
         <width>16777215</width>
         <height>16777215</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
       </property>
       <property name="title">
        <string>Cenital Projection</string>
@@ -674,11 +689,19 @@
         <height>300</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
       <property name="title">
        <string>Camera 2</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_10">
        <property name="topMargin">
+        <number>12</number>
+       </property>
+       <property name="bottomMargin">
         <number>12</number>
        </property>
        <property name="verticalSpacing">
@@ -784,6 +807,11 @@
         <width>330</width>
         <height>300</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
       </property>
       <property name="title">
        <string>Camera 3</string>
@@ -943,6 +971,11 @@
         <width>330</width>
         <height>300</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
       </property>
       <property name="title">
        <string>Camera 1</string>
