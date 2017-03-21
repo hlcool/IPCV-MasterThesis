@@ -146,16 +146,19 @@ void MainWindow::ProcessVideo()
     /*      MAIN ALGORITHM    */
     /* -----------------------*/
 
-    // ----------------------- //
-    //     BKG SUBSTRACTION    //
-    // ----------------------- //
+    // ---------------------------------------- //
+    //     BKG SUBSTRACTION & BLOB EXTRACTION   //
+    // ---------------------------------------- //
 
     // CAMERA 1
     // Compute Background Mask
     Camera1.pMOG2->apply(Camera1.ActualFrame, Camera1.BackgroundMask);
     // Improve Background Mask
     Camera1.maskEnhancement(Camera1.BackgroundMask);
+    Camera1.extractFGBlobs(Camera1.BackgroundMask);
+    Camera1.ExtractFGImages(Camera1.ActualFrame, Camera1.FGBlobs);
 
+    /*
     // CAMERA 2
     // Compute Background Mask
     Camera2.pMOG2->apply(Camera2.ActualFrame, Camera2.BackgroundMask);
@@ -168,9 +171,11 @@ void MainWindow::ProcessVideo()
     // Improve Background Mask
     Camera3.maskEnhancement(Camera3.BackgroundMask);
 
-    imshow("Camera 1 BS", Camera1.BackgroundMask);
-    imshow("Camera 2 BS", Camera2.BackgroundMask);
-    imshow("Camera 3 BS", Camera3.BackgroundMask);
+    */
+
+    //imshow("Camera 1 BS", Camera1.BackgroundMask);
+    //imshow("Camera 2 BS", Camera2.BackgroundMask);
+    //imshow("Camera 3 BS", Camera3.BackgroundMask);
 
     // ----------------------- //
     //   SEMANTIC PROJECTION   //

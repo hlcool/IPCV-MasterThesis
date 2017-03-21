@@ -82,8 +82,34 @@ void PeopleDetector::HOGPeopleDetection(CameraStream &Camara)
 void PeopleDetector::DPMPeopleDetection(CameraStream &Camara)
 {
     Camara.DPMBoundingBoxes.clear();
+    Camara.DPMScores.clear();
+
+    /*
+    for (size_t i = 0; i < Camara.FGImages.size(); i++) {
+        // Auxiliar ActualFrame
+        Mat AuxiliarFrame = Camara.FGImages[i].clone();
+
+        imshow("Frame analizado DPM", AuxiliarFrame);
+
+        // Local detection vector
+        vector<DPMDetector::ObjectDetection> DPMBoundingBoxesAux;
+        // DPM detector with NMS
+        DPMdetector->detect(AuxiliarFrame, DPMBoundingBoxesAux);
+
+        // Convert from vector<ObjectDetection> to vector<Rect>
+        for (unsigned int i = 0; i < DPMBoundingBoxesAux.size(); i++){
+            Rect Aux1 = DPMBoundingBoxesAux[i].rect;
+            float score = DPMBoundingBoxesAux[i].score;
+            Camara.DPMScores.push_back(score);
+            Camara.DPMBoundingBoxes.push_back(Aux1);
+        }
+    }
+    */
+
     // Auxiliar ActualFrame
     Mat AuxiliarFrame = Camara.ActualFrame.clone();
+
+    //imshow("Frame analizado DPM", AuxiliarFrame);
 
     // Local detection vector
     vector<DPMDetector::ObjectDetection> DPMBoundingBoxesAux;

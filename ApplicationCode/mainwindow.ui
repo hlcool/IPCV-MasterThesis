@@ -505,22 +505,22 @@
            <widget class="QComboBox" name="PeopleDetectorCB">
             <item>
              <property name="text">
-              <string>HOG</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
               <string>DPM</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>FastRCNN</string>
+              <string>HOG</string>
              </property>
             </item>
             <item>
              <property name="text">
               <string>None</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>FastRCNN</string>
              </property>
             </item>
            </widget>

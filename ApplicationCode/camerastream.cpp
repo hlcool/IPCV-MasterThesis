@@ -317,3 +317,117 @@ void CameraStream::projectSemantic(Mat &CenitalPlane)
         CenitalPlane.convertTo(CenitalPlane, CV_32FC3, 1/255.0);
     }
 }
+
+void CameraStream::extractFGBlobs(Mat fgmask)
+{
+
+    // Required variables for connected component analysis
+    Point pt;
+    Rect RectangleOutput;
+    Scalar NewValue = 254;
+    Scalar MaxMin = 1;
+    int Flag = 8;
+
+    // Clear blob list (to fill with this function)
+    vector<Rect> bloblist;
+    vector<Rect> bloblist_joined;
+
+    bloblist.clear();
+    bloblist_joined.clear();
+
+    // Connected component analysis
+    // Scan the FG mask to find blob pixels
+    for (int x = 0; x < fgmask.rows; x++){
+        for (int y = 0; y < fgmask.cols; y++){
+
+            // Extract connected component (blob)
+            // We only analyze foreground pixels
+            if ((fgmask.at<uchar>(x,y)) == 255.0) {
+                pt.x = y;
+                pt.y = x;
+
+                // We use the function to obtain the blob.
+                floodFill(fgmask, pt, NewValue, &RectangleOutput, MaxMin, MaxMin, Flag);
+
+                // Increse Rectangle size
+                int PixelIncrease = 10;
+                RectangleOutput.x -= PixelIncrease;
+                RectangleOutput.y -= PixelIncrease;
+                RectangleOutput.width += PixelIncrease * 2;
+                RectangleOutput.height += PixelIncrease * 2;
+
+                // Include blob in 'bloblist'
+                bloblist.push_back(RectangleOutput);
+            }
+        }
+    }
+
+    // Iterate through nms until the number of blob do not change
+    vector<Rect> resRectsAux1, resRectsAux2;
+    resRectsAux1 = bloblist;
+
+    int SizeRectsAux1 = resRectsAux1.size();
+    int SizeRectsAux2 = resRectsAux2.size();
+
+    while(SizeRectsAux1 != SizeRectsAux2){
+        SizeRectsAux2 = resRectsAux2.size();
+        non_max_suppresion(resRectsAux1, resRectsAux2);
+        resRectsAux1 = resRectsAux2;
+        SizeRectsAux1 = resRectsAux1.size();
+    }
+
+    bloblist_joined = resRectsAux2;
+
+    vector<Rect> bloblist_joined_filtered;
+    // Suppress small boxes
+    for (size_t i = 0; i < bloblist_joined.size(); i++) {
+        Rect rect = bloblist_joined[i];
+        if (rect.area() > 700)
+            bloblist_joined_filtered.push_back(rect);
+    }
+
+    FGBlobs = bloblist_joined_filtered;
+    return;
+}
+
+void CameraStream::ExtractFGImages(Mat ActualFrame, vector<Rect> FGBlobs){
+
+    FGImages.clear();
+
+    if (FGBlobs.size() == 0)
+        return;
+
+    for (size_t i = 0; i < FGBlobs.size(); i++) {
+        Mat NewCamera = Mat::zeros(ActualFrame.rows, ActualFrame.cols, ActualFrame.type());
+        Rect r = FGBlobs[i];
+        NewCamera = ActualFrame(r);
+        FGImages.push_back(NewCamera);
+    }
+}
+
+void CameraStream::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects)
+{
+    vector<int> IntersectVector (srcRects.size(), 0);
+    resRects.clear();
+
+    for (size_t i = 0; i < srcRects.size(); i++) {
+        Rect rect1 = srcRects[i];
+        bool lonelyBlob = 1;
+        for (size_t j = 0; j < srcRects.size(); j++) {
+            Rect rect2 = srcRects[j];
+            if (i == j){
+
+            }
+            else if (((rect1 & rect2).area() > 0) && (IntersectVector[i] == 0) && (IntersectVector[j] == 0)) {
+                // They intersect, merge them.
+                Rect newrect = rect1 | rect2;
+                resRects.push_back(newrect);
+                IntersectVector[i] = 1;
+                IntersectVector[j] = 1;
+                lonelyBlob = 0;
+            }
+        }
+        if(lonelyBlob && IntersectVector[i] == 0)
+            resRects.push_back(rect1);
+    }
+}
