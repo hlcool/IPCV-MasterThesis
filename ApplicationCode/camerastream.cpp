@@ -382,10 +382,9 @@ void CameraStream::extractFGBlobs(Mat fgmask)
     // Suppress small boxes
     for (size_t i = 0; i < bloblist_joined.size(); i++) {
         Rect rect = bloblist_joined[i];
-        if (rect.area() > 700)
+        if (rect.area() > 5000)
             bloblist_joined_filtered.push_back(rect);
     }
-
     FGBlobs = bloblist_joined_filtered;
     return;
 }
