@@ -23,7 +23,7 @@ public:
     ~PeopleDetector();
 
     // Main People Detection Function
-    void MainPeopleDetection(CameraStream &Camera1, CameraStream &Camera2, CameraStream &Camera3, String  CBOption, bool PDFiltering, Mat &CenitalPlane);
+    void MainPeopleDetection(CameraStream &Camera1, CameraStream &Camera2, CameraStream &Camera3, String  CBOption, String RepresentationOption, bool PDFiltering, Mat &CenitalPlane);
 
     // HOG People Detection
     HOGDescriptor HOG;
@@ -38,7 +38,7 @@ public:
     void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh);
 
     // Gaussians creation
-    void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color, Mat& CenitalPlane, int CameraNumber);
+    void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color, Mat& CenitalPlane, int CameraNumber, String RepresentationOption);
     void meshgrid(Mat &X, Mat &Y, int rows, int cols);
     void gaussianFunction(Mat &Gaussian3C, Mat X, Mat Y, Point2f center, double score, int CameraNumber);
 };

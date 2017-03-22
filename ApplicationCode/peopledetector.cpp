@@ -15,7 +15,7 @@
 PeopleDetector::PeopleDetector(){}
 PeopleDetector::~PeopleDetector(){}
 
-void PeopleDetector::MainPeopleDetection(CameraStream &Camera1, CameraStream &Camera2, CameraStream &Camera3, String CBOption, bool PDFiltering, Mat &CenitalPlane)
+void PeopleDetector::MainPeopleDetection(CameraStream &Camera1, CameraStream &Camera2, CameraStream &Camera3, String CBOption, String RepresentationOption, bool PDFiltering, Mat &CenitalPlane)
 {
     if (!CBOption.compare("HOG")){
         // HOG Detector
@@ -23,17 +23,17 @@ void PeopleDetector::MainPeopleDetection(CameraStream &Camera1, CameraStream &Ca
         // Camera 1
         HOGPeopleDetection(Camera1);
         paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.HOGBoundingBoxesNMS, Scalar (0, 255, 0), 1);
-        projectBlobs(Camera1.HOGBoundingBoxesNMS, Camera1.HOGScores, Camera1.Homography, "GREEN", CenitalPlane, Camera1.CameraNumber);
+        projectBlobs(Camera1.HOGBoundingBoxesNMS, Camera1.HOGScores, Camera1.Homography, "GREEN", CenitalPlane, Camera1.CameraNumber, RepresentationOption);
 
         // Camera 2
         HOGPeopleDetection(Camera2);
         paintBoundingBoxes(Camera2.ActualFrame, CBOption, Camera2.HOGBoundingBoxesNMS, Scalar (255, 0, 0), 1);
-        projectBlobs(Camera2.HOGBoundingBoxesNMS, Camera2.HOGScores, Camera2.Homography, "BLUE", CenitalPlane, Camera2.CameraNumber);
+        projectBlobs(Camera2.HOGBoundingBoxesNMS, Camera2.HOGScores, Camera2.Homography, "BLUE", CenitalPlane, Camera2.CameraNumber, RepresentationOption);
 
         // Camera 3
         HOGPeopleDetection(Camera3);
         paintBoundingBoxes(Camera3.ActualFrame, CBOption, Camera3.HOGBoundingBoxesNMS, Scalar (0, 0, 255), 1);
-        projectBlobs(Camera3.HOGBoundingBoxesNMS, Camera3.HOGScores, Camera3.Homography, "RED", CenitalPlane, Camera3.CameraNumber);
+        projectBlobs(Camera3.HOGBoundingBoxesNMS, Camera3.HOGScores, Camera3.Homography, "RED", CenitalPlane, Camera3.CameraNumber, RepresentationOption);
     }
     else if(!CBOption.compare("FastRCNN")){
         // FastRCNN Detector
@@ -48,17 +48,17 @@ void PeopleDetector::MainPeopleDetection(CameraStream &Camera1, CameraStream &Ca
         // Camera 1
         DPMPeopleDetection(Camera1, PDFiltering);
         paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.DPMBoundingBoxes, Scalar (0, 255, 0), 1);
-        projectBlobs(Camera1.DPMBoundingBoxes, Camera1.DPMScores, Camera1.Homography, "GREEN", CenitalPlane, Camera1.CameraNumber);
+        projectBlobs(Camera1.DPMBoundingBoxes, Camera1.DPMScores, Camera1.Homography, "GREEN", CenitalPlane, Camera1.CameraNumber, RepresentationOption);
 
         // Camera 2
         DPMPeopleDetection(Camera2, PDFiltering);
         paintBoundingBoxes(Camera2.ActualFrame, CBOption, Camera2.DPMBoundingBoxes, Scalar (255, 0, 0), 1);
-        projectBlobs(Camera2.DPMBoundingBoxes, Camera2.DPMScores, Camera2.Homography, "BLUE", CenitalPlane, Camera2.CameraNumber);
+        projectBlobs(Camera2.DPMBoundingBoxes, Camera2.DPMScores, Camera2.Homography, "BLUE", CenitalPlane, Camera2.CameraNumber, RepresentationOption);
 
         // Camera 3
         DPMPeopleDetection(Camera3, PDFiltering);
         paintBoundingBoxes(Camera3.ActualFrame, CBOption, Camera3.DPMBoundingBoxes, Scalar (0, 0, 255), 1);
-        projectBlobs(Camera3.DPMBoundingBoxes, Camera3.DPMScores, Camera3.Homography, "RED", CenitalPlane, Camera3.CameraNumber);
+        projectBlobs(Camera3.DPMBoundingBoxes, Camera3.DPMScores, Camera3.Homography, "RED", CenitalPlane, Camera3.CameraNumber, RepresentationOption);
     }
     else if(!CBOption.compare("None")){
         return;
@@ -172,7 +172,7 @@ void PeopleDetector::paintBoundingBoxes(Mat &ActualFrame, string Method, vector<
     }
 }
 
-void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color, Mat &CenitalPlane, int CameraNumber)
+void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, string Color, Mat &CenitalPlane, int CameraNumber, String RepresentationOption)
 {
     if (BoundingBoxes.empty())
         return;
@@ -281,41 +281,43 @@ void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> sco
         // Save projected square central point
         ProjectedPoints.push_back(C);
 
-        // Projection Line
-        line(CenitalPlane, LeftProjected, RightProjected, SColor, 2);
-        // Perpendicular line. New line at C pointing direction of Direction Vector
-        line(CenitalPlane, MiddleSegmentPoint, C, PerpendicularColor, 2);
+        if (!RepresentationOption.compare("Lines")){
+            // Projection Line
+            line(CenitalPlane, LeftProjected, RightProjected, SColor, 2);
+            // Perpendicular line. New line at C pointing direction of Direction Vector
+            line(CenitalPlane, MiddleSegmentPoint, C, PerpendicularColor, 2);
+        }
     }
 
-    /*
-    // Mesgrid function
-    meshgrid(X, Y, CenitalPlane.rows, CenitalPlane.cols);
+    if (!RepresentationOption.compare("Gaussians")){
+        // Mesgrid function
+        meshgrid(X, Y, CenitalPlane.rows, CenitalPlane.cols);
 
-    // Extract the maximum score from the vector
-    double MaxScore = *max_element(scores.begin(), scores.end());
+        // Extract the maximum score from the vector
+        double MaxScore = *max_element(scores.begin(), scores.end());
 
-    // Extract projected points and create Gaussians
-    for (size_t i = 0; i < ProjectedPoints.size(); i++) {
-        Point2f center = ProjectedPoints[i];
-        if (!scores.empty()) {
-            if (MaxScore > 1){
-                score = ((exp(-(scores[i]/MaxScore)))/0.02) - 15;
+        // Extract projected points and create Gaussians
+        for (size_t i = 0; i < ProjectedPoints.size(); i++) {
+            Point2f center = ProjectedPoints[i];
+            if (!scores.empty()) {
+                if (MaxScore > 1){
+                    score = ((exp(-(scores[i]/MaxScore)))/0.02) - 15;
+                }
+                else {
+                    score = ((exp(-scores[i]))/0.02) - 15;
+                }
             }
             else {
-                score = ((exp(-scores[i]))/0.02) - 15;
+                score = 5;
             }
-        }
-        else {
-            score = 5;
-        }
 
-        // Draw a Gaussian of mean = center and std = score
-        gaussianFunction(Gaussian, X, Y, center, score, CameraNumber);
+            // Draw a Gaussian of mean = center and std = score
+            gaussianFunction(Gaussian, X, Y, center, score, CameraNumber);
 
-        // Add gaussian to CenitalPlane to display
-        add(Gaussian, CenitalPlane, CenitalPlane);
+            // Add gaussian to CenitalPlane to display
+            add(Gaussian, CenitalPlane, CenitalPlane);
+        }
     }
-    */
 }
 
 void PeopleDetector::meshgrid(Mat &X, Mat &Y, int rows, int cols)

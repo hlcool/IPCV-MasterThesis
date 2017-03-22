@@ -200,7 +200,8 @@ void MainWindow::ProcessVideo()
 
     // Main Method
     String CBOption = ui->PeopleDetectorCB->currentText().toStdString();
-
+    // Representation Method
+    String RepresentationOption = ui->RepresentationCB->currentText().toStdString();
     // Using or not Foreground filtering for PD
     bool PDFilteringOption = ui->PDFiltering->isChecked();
 
@@ -213,7 +214,7 @@ void MainWindow::ProcessVideo()
     if (FlagText)
         ui->textBrowser->append(QString::fromStdString(CBOption) + " Detector in use");
 
-    PeopleDetec.MainPeopleDetection(Camera1, Camera2, Camera3, CBOption, PDFilteringOption, CenitalPlane);
+    PeopleDetec.MainPeopleDetection(Camera1, Camera2, Camera3, CBOption, RepresentationOption, PDFilteringOption, CenitalPlane);
 
 
     // ----------------------- //
