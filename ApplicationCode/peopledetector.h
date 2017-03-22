@@ -23,7 +23,7 @@ public:
     ~PeopleDetector();
 
     // Main People Detection Function
-    void MainPeopleDetection(CameraStream &Camera1, CameraStream &Camera2, CameraStream &Camera3, String  CBOption, Mat &CenitalPlane);
+    void MainPeopleDetection(CameraStream &Camera1, CameraStream &Camera2, CameraStream &Camera3, String  CBOption, bool PDFiltering, Mat &CenitalPlane);
 
     // HOG People Detection
     HOGDescriptor HOG;
@@ -31,7 +31,7 @@ public:
 
     // DPM People Detector
     cv::Ptr<DPMDetector> DPMdetector = DPMDetector::create(vector<string>(1, "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/People Detection/inriaperson.xml"));
-    void DPMPeopleDetection(CameraStream &Camera);
+    void DPMPeopleDetection(CameraStream &Camera, bool PDFiltering);
     void paintBoundingBoxes(Mat &ActualFrame, string Method, vector<Rect> BoundingBoxes, Scalar Color, int Thickness);
 
     // Non-Maximum-Supression

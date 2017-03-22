@@ -15,7 +15,7 @@
 PeopleDetector::PeopleDetector(){}
 PeopleDetector::~PeopleDetector(){}
 
-void PeopleDetector::MainPeopleDetection(CameraStream &Camera1, CameraStream &Camera2, CameraStream &Camera3, String CBOption, Mat &CenitalPlane)
+void PeopleDetector::MainPeopleDetection(CameraStream &Camera1, CameraStream &Camera2, CameraStream &Camera3, String CBOption, bool PDFiltering, Mat &CenitalPlane)
 {
     if (!CBOption.compare("HOG")){
         // HOG Detector
@@ -46,17 +46,17 @@ void PeopleDetector::MainPeopleDetection(CameraStream &Camera1, CameraStream &Ca
         // DPM Detector
 
         // Camera 1
-        DPMPeopleDetection(Camera1);
+        DPMPeopleDetection(Camera1, PDFiltering);
         paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.DPMBoundingBoxes, Scalar (0, 255, 0), 1);
         projectBlobs(Camera1.DPMBoundingBoxes, Camera1.DPMScores, Camera1.Homography, "GREEN", CenitalPlane, Camera1.CameraNumber);
 
         // Camera 2
-        DPMPeopleDetection(Camera2);
+        DPMPeopleDetection(Camera2, PDFiltering);
         paintBoundingBoxes(Camera2.ActualFrame, CBOption, Camera2.DPMBoundingBoxes, Scalar (255, 0, 0), 1);
         projectBlobs(Camera2.DPMBoundingBoxes, Camera2.DPMScores, Camera2.Homography, "BLUE", CenitalPlane, Camera2.CameraNumber);
 
         // Camera 3
-        DPMPeopleDetection(Camera3);
+        DPMPeopleDetection(Camera3, PDFiltering);
         paintBoundingBoxes(Camera3.ActualFrame, CBOption, Camera3.DPMBoundingBoxes, Scalar (0, 0, 255), 1);
         projectBlobs(Camera3.DPMBoundingBoxes, Camera3.DPMScores, Camera3.Homography, "RED", CenitalPlane, Camera3.CameraNumber);
     }
@@ -79,7 +79,7 @@ void PeopleDetector::HOGPeopleDetection(CameraStream &Camera)
     //non_max_suppresion(HOGBoundingBoxes, HOGBoundingBoxesNMS, 0.65);
 }
 
-void PeopleDetector::DPMPeopleDetection(CameraStream &Camera)
+void PeopleDetector::DPMPeopleDetection(CameraStream &Camera, bool PDFiltering)
 {
     // Start the clock for measuring frame consumption
     //clock_t begin = clock();
@@ -87,46 +87,51 @@ void PeopleDetector::DPMPeopleDetection(CameraStream &Camera)
     Camera.DPMBoundingBoxes.clear();
     Camera.DPMScores.clear();
 
-    if (Camera.FGImages.size() > 0){
-        //cout << "Using BKG information" << endl;
-        for (size_t i = 0; i < Camera.FGImages.size(); i++) {
-            // Auxiliar ActualFrame
-            Mat AuxiliarFrame = Camera.FGImages[i].clone();
-            //Mat AuxiliarFrame2 = Camara.FGImages[i].clone();
-            Rect Offset = Camera.FGBlobs[i];
+    // PEOPLE DETECTION FILTERING
+    if (PDFiltering){
+        if (Camera.FGImages.size() > 0){
+            //cout << "Using BKG information" << endl;
+            for (size_t i = 0; i < Camera.FGImages.size(); i++) {
+                // Auxiliar ActualFrame
+                Mat AuxiliarFrame = Camera.FGImages[i].clone();
+                //Mat AuxiliarFrame2 = Camara.FGImages[i].clone();
+                Rect Offset = Camera.FGBlobs[i];
 
-            if (AuxiliarFrame.rows > 80 && AuxiliarFrame.cols > 80){
-                // Local detection vector
-                vector<DPMDetector::ObjectDetection> DPMBoundingBoxesAux;
-                // DPM detector with NMS. The function destroys the Frame
-                DPMdetector->detect(AuxiliarFrame, DPMBoundingBoxesAux);
+                if (AuxiliarFrame.rows > 80 && AuxiliarFrame.cols > 80){
+                    // Local detection vector
+                    vector<DPMDetector::ObjectDetection> DPMBoundingBoxesAux;
+                    // DPM detector with NMS. The function destroys the Frame
+                    DPMdetector->detect(AuxiliarFrame, DPMBoundingBoxesAux);
 
-                // Convert from vector<ObjectDetection> to vector<Rect>
-                for (unsigned int i = 0; i < DPMBoundingBoxesAux.size(); i++){
-                    Rect Aux1 = DPMBoundingBoxesAux[i].rect;
-                    float score = DPMBoundingBoxesAux[i].score;
+                    // Convert from vector<ObjectDetection> to vector<Rect>
+                    for (unsigned int i = 0; i < DPMBoundingBoxesAux.size(); i++){
+                        Rect Aux1 = DPMBoundingBoxesAux[i].rect;
+                        float score = DPMBoundingBoxesAux[i].score;
 
-                    //rectangle(AuxiliarFrame2, Aux1.tl(), Aux1.br(), Scalar(255, 0 , 0), 1);
-                    //imshow("BB", AuxiliarFrame2);
+                        //rectangle(AuxiliarFrame2, Aux1.tl(), Aux1.br(), Scalar(255, 0 , 0), 1);
+                        //imshow("BB", AuxiliarFrame2);
 
-                    // Convert top-left corner co-ordinates from small image to
-                    // complete frame reference
-                    Aux1.x = Aux1.x + Offset.x;
-                    Aux1.y = Aux1.y + Offset.y;
+                        // Convert top-left corner co-ordinates from small image to
+                        // complete frame reference
+                        Aux1.x = Aux1.x + Offset.x;
+                        Aux1.y = Aux1.y + Offset.y;
 
-                    Camera.DPMScores.push_back(score);
-                    Camera.DPMBoundingBoxes.push_back(Aux1);
+                        Camera.DPMScores.push_back(score);
+                        Camera.DPMBoundingBoxes.push_back(Aux1);
 
+                    }
                 }
             }
         }
+        else{
+            // If there is no information about the foregrouund nothing is done.
+            // If the following code is uncomment the program when no FG information
+            // is provided will search in all the frame
+            //cout << "No people searching due to FG information lack" << endl;
+        }
     }
+    // PEOPLE DETECTION WITHOUT FILTERING
     else{
-        // If there is no information about the foregrouund nothing is done.
-        // If the following code is uncomment the program when no FG information
-        // is provided will search in all the frame
-        //cout << "No people searching due to FG information lack" << endl;
-        /*
         // Auxiliar ActualFrame
         Mat AuxiliarFrame = Camera.ActualFrame.clone();
 
@@ -142,7 +147,6 @@ void PeopleDetector::DPMPeopleDetection(CameraStream &Camera)
             Camera.DPMScores.push_back(score);
             Camera.DPMBoundingBoxes.push_back(Aux1);
         }
-        */
     }
 
     // Compute the processing time per frame

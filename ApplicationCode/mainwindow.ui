@@ -527,6 +527,19 @@
           </item>
           <item>
            <layout class="QGridLayout" name="gridLayout_12">
+            <item row="3" column="0">
+             <widget class="QRadioButton" name="AccurateButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Accurate</string>
+              </property>
+             </widget>
+            </item>
             <item row="0" column="0">
              <widget class="QRadioButton" name="FastButton">
               <property name="sizePolicy">
@@ -543,16 +556,10 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="0">
-             <widget class="QRadioButton" name="AccurateButton">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
+            <item row="0" column="1">
+             <widget class="QCheckBox" name="PDFiltering">
               <property name="text">
-               <string>Accurate</string>
+               <string>FG Info</string>
               </property>
              </widget>
             </item>

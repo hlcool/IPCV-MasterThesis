@@ -201,6 +201,9 @@ void MainWindow::ProcessVideo()
     // Main Method
     String CBOption = ui->PeopleDetectorCB->currentText().toStdString();
 
+    // Using or not Foreground filtering for PD
+    bool PDFilteringOption = ui->PDFiltering->isChecked();
+
     // FastRCNN Method
     if (ui->FastButton->isChecked())
         Camera1.FastRCNNMethod = "fast";
@@ -210,7 +213,7 @@ void MainWindow::ProcessVideo()
     if (FlagText)
         ui->textBrowser->append(QString::fromStdString(CBOption) + " Detector in use");
 
-    PeopleDetec.MainPeopleDetection(Camera1, Camera2, Camera3, CBOption, CenitalPlane);
+    PeopleDetec.MainPeopleDetection(Camera1, Camera2, Camera3, CBOption, PDFilteringOption, CenitalPlane);
 
 
     // ----------------------- //
