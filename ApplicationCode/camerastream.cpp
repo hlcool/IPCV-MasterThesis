@@ -245,11 +245,8 @@ void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameN
     Mat ImageWarping;
     ImageWarping = Mat::zeros(600, 1500, CV_64F);
     warpPerspective(ActualFrame, ImageWarping, Homography, ImageWarping.size());
-    //String WindowName = "Wrapped Camera " + to_string(CameraNumber);
-    //imshow(WindowName, ImageWarping);
 
     String ImageName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Wrapped Images/Camera " + to_string(CameraNumber) + "/Frame" + FrameNumber + ".png";
-
     imwrite(ImageName, ImageWarping);
 }
 
@@ -320,7 +317,6 @@ void CameraStream::projectSemantic(Mat &CenitalPlane)
 
 void CameraStream::extractFGBlobs(Mat fgmask)
 {
-
     // Required variables for connected component analysis
     Point pt;
     Rect RectangleOutput;
@@ -397,9 +393,21 @@ void CameraStream::ExtractFGImages(Mat ActualFrame, vector<Rect> FGBlobs){
         return;
 
     for (size_t i = 0; i < FGBlobs.size(); i++) {
-        Mat NewCamera = Mat::zeros(ActualFrame.rows, ActualFrame.cols, ActualFrame.type());
         Rect r = FGBlobs[i];
-        NewCamera = ActualFrame(r);
+
+        // Check if the new rectangle goes out of the image
+        if (r.x < 0)
+            r.x = 0;
+        if (r.y < 0)
+            r.y = 0;
+        if ((r.x + r.width) > ActualFrame.cols){
+            r.width = ActualFrame.cols - r.x;
+        }
+        if ((r.y + r.height) > ActualFrame.rows){
+            r.height = ActualFrame.rows - r.y;
+        }
+
+        Mat NewCamera = ActualFrame(r);
         FGImages.push_back(NewCamera);
     }
 }
