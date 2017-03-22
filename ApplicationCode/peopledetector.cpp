@@ -47,10 +47,8 @@ void PeopleDetector::MainPeopleDetection(CameraStream &Camera1, CameraStream &Ca
 
         // Camera 1
         DPMPeopleDetection(Camera1);
-        /*
         paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.DPMBoundingBoxes, Scalar (0, 255, 0), 1);
         projectBlobs(Camera1.DPMBoundingBoxes, Camera1.DPMScores, Camera1.Homography, "GREEN", CenitalPlane, Camera1.CameraNumber);
-
 
         // Camera 2
         DPMPeopleDetection(Camera2);
@@ -61,41 +59,41 @@ void PeopleDetector::MainPeopleDetection(CameraStream &Camera1, CameraStream &Ca
         DPMPeopleDetection(Camera3);
         paintBoundingBoxes(Camera3.ActualFrame, CBOption, Camera3.DPMBoundingBoxes, Scalar (0, 0, 255), 1);
         projectBlobs(Camera3.DPMBoundingBoxes, Camera3.DPMScores, Camera3.Homography, "RED", CenitalPlane, Camera3.CameraNumber);
-        */
     }
     else if(!CBOption.compare("None")){
         return;
     }
 }
 
-void PeopleDetector::HOGPeopleDetection(CameraStream &Camara)
+void PeopleDetector::HOGPeopleDetection(CameraStream &Camera)
 {
     // Clear vectors
-    Camara.HOGBoundingBoxes.clear();
-    Camara.HOGBoundingBoxesNMS.clear();
+    Camera.HOGBoundingBoxes.clear();
+    Camera.HOGBoundingBoxesNMS.clear();
 
     // Initialice the SVM
     HOG.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
     // HOG Detector
-    HOG.detectMultiScale(Camara.ActualFrame, Camara.HOGBoundingBoxes, Camara.HOGScores, 0, Size(8, 8), Size(32, 32), 1.1, 2);
-    Camara.HOGBoundingBoxesNMS = Camara.HOGBoundingBoxes;
+    HOG.detectMultiScale(Camera.ActualFrame, Camera.HOGBoundingBoxes, Camera.HOGScores, 0, Size(8, 8), Size(32, 32), 1.1, 2);
+    Camera.HOGBoundingBoxesNMS = Camera.HOGBoundingBoxes;
     //non_max_suppresion(HOGBoundingBoxes, HOGBoundingBoxesNMS, 0.65);
 }
 
-void PeopleDetector::DPMPeopleDetection(CameraStream &Camara)
+void PeopleDetector::DPMPeopleDetection(CameraStream &Camera)
 {
     // Start the clock for measuring frame consumption
-    clock_t begin = clock();
+    //clock_t begin = clock();
 
-    Camara.DPMBoundingBoxes.clear();
-    Camara.DPMScores.clear();
+    Camera.DPMBoundingBoxes.clear();
+    Camera.DPMScores.clear();
 
-    if (Camara.FGImages.size() > 0){
-        cout << "Using BKG information" << endl;
-        for (size_t i = 0; i < Camara.FGImages.size(); i++) {
+    if (Camera.FGImages.size() > 0){
+        //cout << "Using BKG information" << endl;
+        for (size_t i = 0; i < Camera.FGImages.size(); i++) {
             // Auxiliar ActualFrame
-            Mat AuxiliarFrame = Camara.FGImages[i].clone();
-            Mat AuxiliarFrame2 = Camara.FGImages[i].clone();
+            Mat AuxiliarFrame = Camera.FGImages[i].clone();
+            //Mat AuxiliarFrame2 = Camara.FGImages[i].clone();
+            Rect Offset = Camera.FGBlobs[i];
 
             if (AuxiliarFrame.rows > 80 && AuxiliarFrame.cols > 80){
                 // Local detection vector
@@ -107,10 +105,18 @@ void PeopleDetector::DPMPeopleDetection(CameraStream &Camara)
                 for (unsigned int i = 0; i < DPMBoundingBoxesAux.size(); i++){
                     Rect Aux1 = DPMBoundingBoxesAux[i].rect;
                     float score = DPMBoundingBoxesAux[i].score;
-                    Camara.DPMScores.push_back(score);
-                    Camara.DPMBoundingBoxes.push_back(Aux1);
-                    rectangle(AuxiliarFrame2, Aux1.tl(), Aux1.br(), Scalar(255, 0 , 0), 1);
-                    imshow("BB", AuxiliarFrame2);
+
+                    //rectangle(AuxiliarFrame2, Aux1.tl(), Aux1.br(), Scalar(255, 0 , 0), 1);
+                    //imshow("BB", AuxiliarFrame2);
+
+                    // Convert top-left corner co-ordinates from small image to
+                    // complete frame reference
+                    Aux1.x = Aux1.x + Offset.x;
+                    Aux1.y = Aux1.y + Offset.y;
+
+                    Camera.DPMScores.push_back(score);
+                    Camera.DPMBoundingBoxes.push_back(Aux1);
+
                 }
             }
         }
@@ -119,10 +125,10 @@ void PeopleDetector::DPMPeopleDetection(CameraStream &Camara)
         // If there is no information about the foregrouund nothing is done.
         // If the following code is uncomment the program when no FG information
         // is provided will search in all the frame
-        cout << "No people searching due to FG information lack" << endl;
+        //cout << "No people searching due to FG information lack" << endl;
         /*
         // Auxiliar ActualFrame
-        Mat AuxiliarFrame = Camara.ActualFrame.clone();
+        Mat AuxiliarFrame = Camera.ActualFrame.clone();
 
         // Local detection vector
         vector<DPMDetector::ObjectDetection> DPMBoundingBoxesAux;
@@ -133,17 +139,17 @@ void PeopleDetector::DPMPeopleDetection(CameraStream &Camara)
         for (unsigned int i = 0; i < DPMBoundingBoxesAux.size(); i++){
             Rect Aux1 = DPMBoundingBoxesAux[i].rect;
             float score = DPMBoundingBoxesAux[i].score;
-            Camara.DPMScores.push_back(score);
-            Camara.DPMBoundingBoxes.push_back(Aux1);
+            Camera.DPMScores.push_back(score);
+            Camera.DPMBoundingBoxes.push_back(Aux1);
         }
         */
     }
 
     // Compute the processing time per frame
-    clock_t end = clock();
-    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+    //clock_t end = clock();
+    //double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
 
-    cout << "DPM Computed time for frame: " << elapsed_secs << endl;
+    //cout << "DPM Computed time for frame: " << elapsed_secs << endl;
 }
 
 void PeopleDetector::paintBoundingBoxes(Mat &ActualFrame, string Method, vector<Rect> BoundingBoxes, Scalar Color, int Thickness)

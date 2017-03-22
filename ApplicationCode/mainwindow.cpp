@@ -158,20 +158,23 @@ void MainWindow::ProcessVideo()
     Camera1.extractFGBlobs(Camera1.BackgroundMask);
     Camera1.ExtractFGImages(Camera1.ActualFrame, Camera1.FGBlobs);
 
-    /*
+
     // CAMERA 2
     // Compute Background Mask
     Camera2.pMOG2->apply(Camera2.ActualFrame, Camera2.BackgroundMask);
     // Improve Background Mask
     Camera2.maskEnhancement(Camera2.BackgroundMask);
+    Camera2.extractFGBlobs(Camera2.BackgroundMask);
+    Camera2.ExtractFGImages(Camera2.ActualFrame, Camera2.FGBlobs);
 
     // CAMERA 3
     // Compute Background Mask
     Camera3.pMOG2->apply(Camera3.ActualFrame, Camera3.BackgroundMask);
     // Improve Background Mask
     Camera3.maskEnhancement(Camera3.BackgroundMask);
+    Camera3.extractFGBlobs(Camera3.BackgroundMask);
+    Camera3.ExtractFGImages(Camera3.ActualFrame, Camera3.FGBlobs);
 
-    */
 
     //imshow("Camera 1 BS", Camera1.BackgroundMask);
     //imshow("Camera 2 BS", Camera2.BackgroundMask);
