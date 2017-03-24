@@ -87,9 +87,9 @@ void MainWindow::on_actionOpen_file_triggered()
         Camera3.InputPath = filenames.at(Camera3.CameraNumber - 1).toStdString();
     }
     else {
-        Camera1.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 2/Videos/Camera1Sync.m2v";
-        Camera2.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 2/Videos/Camera2Sync.m2v";
-        Camera3.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 2/Videos/Camera3Sync.m2v";
+        Camera1.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 1/Camera1Sync.m2v";
+        Camera2.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 1/Camera2Sync.m2v";
+        Camera3.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 1/Camera3Sync.m2v";
     }
 
     // Open Video Streams
@@ -158,7 +158,6 @@ void MainWindow::ProcessVideo()
     Camera1.extractFGBlobs(Camera1.BackgroundMask);
     Camera1.ExtractFGImages(Camera1.ActualFrame, Camera1.FGBlobs);
 
-
     // CAMERA 2
     // Compute Background Mask
     Camera2.pMOG2->apply(Camera2.ActualFrame, Camera2.BackgroundMask);
@@ -175,6 +174,9 @@ void MainWindow::ProcessVideo()
     Camera3.extractFGBlobs(Camera3.BackgroundMask);
     Camera3.ExtractFGImages(Camera3.ActualFrame, Camera3.FGBlobs);
 
+    cout << "Camera1 -> BKG 1(empty) 0(something): " << Camera1.EmptyBackground << endl;
+    cout << "Camera2 -> BKG 1(empty) 0(something): " << Camera2.EmptyBackground << endl;
+    cout << "Camera3 -> BKG 1(empty) 0(something): " << Camera3.EmptyBackground << endl;
 
     //imshow("Camera 1 BS", Camera1.BackgroundMask);
     //imshow("Camera 2 BS", Camera2.BackgroundMask);

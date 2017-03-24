@@ -80,7 +80,7 @@ class PyramidParameter
             binSize = 8;
             padx = 0;
             pady = 0;
-            sfactor = 1.0;
+            sfactor = 1.2;
             maxScale = 0;
         }
 

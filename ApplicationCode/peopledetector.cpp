@@ -81,9 +81,6 @@ void PeopleDetector::HOGPeopleDetection(CameraStream &Camera)
 
 void PeopleDetector::DPMPeopleDetection(CameraStream &Camera, bool PDFiltering)
 {
-    // Start the clock for measuring frame consumption
-    //clock_t begin = clock();
-
     Camera.DPMBoundingBoxes.clear();
     Camera.DPMScores.clear();
 
@@ -125,8 +122,6 @@ void PeopleDetector::DPMPeopleDetection(CameraStream &Camera, bool PDFiltering)
         }
         else{
             // If there is no information about the foregrouund nothing is done.
-            // If the following code is uncomment the program when no FG information
-            // is provided will search in all the frame
             //cout << "No people searching due to FG information lack" << endl;
         }
     }
@@ -148,12 +143,6 @@ void PeopleDetector::DPMPeopleDetection(CameraStream &Camera, bool PDFiltering)
             Camera.DPMBoundingBoxes.push_back(Aux1);
         }
     }
-
-    // Compute the processing time per frame
-    //clock_t end = clock();
-    //double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-
-    //cout << "DPM Computed time for frame: " << elapsed_secs << endl;
 }
 
 void PeopleDetector::paintBoundingBoxes(Mat &ActualFrame, string Method, vector<Rect> BoundingBoxes, Scalar Color, int Thickness)
