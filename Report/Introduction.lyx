@@ -121,10 +121,11 @@ Motivation
 \begin_layout Standard
 Nowadays, we live completely surrounded of electronic devices whose objective
  is to ensure the safety and security of the global population.
- From biometric systems to all kind of different sensors, not forgetting
- the wide range of video surveillance cameras.
+ From biometric systems to all kind of different electrical sensors, not
+ forgetting the wide range of, for example, video surveillance cameras.
  Those last are the ones that could be of real interest when working along
- with Image Processing and Computer Vision algorithms.
+ with Image Processing and Computer Vision algorithms in the video surveillance
+ scope.
  
 \end_layout
 
@@ -133,16 +134,17 @@ The combination of these two systems could lead to the automatization of
  tasks such as people detection, object detection and classification, scene
  recognition...
  etc.
- The automatization of all these processes permits a person to focus on
- the latests stages of video surveillance systems which should be the most
- critical ones, such as alarm raise when some event has occurred, letting
- the heavy computational part to computers.
+ The automatization of all these processes permits people working with them
+ to focus on the latests stages of video surveillance systems which should
+ be the most critical ones, such as alarm raise when some event has occurred,
+ letting the heavy and tedious computational part to computers.
 \end_layout
 
 \begin_layout Standard
 One of the automatization task that one could think when dealing with Computer
  Vision and multi video surveillance cameras is the analysis of public spaces
- which are often populated with crowds.
+ which are often populated with crowds and the combination of the data coming
+ from all of the camera instances.
  It could be from real interest to analyze people patrons and temporal area
  usage data in large spaces such as public shopping centers, universities,
  common building areas...
@@ -178,11 +180,15 @@ The main user interface should be able to visualize temporal statistical
 Algorithm
 \end_layout
 
+\begin_layout Standard
+The algorithm related objectives will be:
+\end_layout
+
 \begin_layout Enumerate
 Integrate an algorithm to perform contextual elements analysis in video
  sequences.
- The objective is detect and classify labels over the important frame elements
- such as doors, desks, corridors, floor...
+ The objective is detect and classify labels and its position over the important
+ frame elements such as doors, desks, corridors, floor...
 \end_layout
 
 \begin_deeper
@@ -230,7 +236,7 @@ reference "cha:Introduction"
 Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "cha:StateoftheArt"
+reference "cha:State Of the Art"
 
 \end_inset
 
