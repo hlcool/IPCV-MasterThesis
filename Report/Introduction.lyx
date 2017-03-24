@@ -118,8 +118,91 @@ name "cha:Introduction"
 Motivation
 \end_layout
 
+\begin_layout Standard
+Nowadays, we live completely surrounded of electronic devices whose objective
+ is to ensure the safety and security of the global population.
+ From biometric systems to all kind of different sensors, not forgetting
+ the wide range of video surveillance cameras.
+ Those last are the ones that could be of real interest when working along
+ with Image Processing and Computer Vision algorithms.
+ 
+\end_layout
+
+\begin_layout Standard
+The combination of these two systems could lead to the automatization of
+ tasks such as people detection, object detection and classification, scene
+ recognition...
+ etc.
+ The automatization of all these processes permits a person to focus on
+ the latests stages of video surveillance systems which should be the most
+ critical ones, such as alarm raise when some event has occurred, letting
+ the heavy computational part to computers.
+\end_layout
+
+\begin_layout Standard
+One of the automatization task that one could think when dealing with Computer
+ Vision and multi video surveillance cameras is the analysis of public spaces
+ which are often populated with crowds.
+ It could be from real interest to analyze people patrons and temporal area
+ usage data in large spaces such as public shopping centers, universities,
+ common building areas...
+ The analysis will come from a combination of algorithms of distinct scopes
+ such as semantic area classification in order to separate the space into
+ different locations or people and crowd detections.
+ 
+\end_layout
+
 \begin_layout Section
 Objectives
+\end_layout
+
+\begin_layout Standard
+This master thesis will embrace two different blocks of objectives that
+ will complement each other.
+ The first one will have to do with the performance of an user interface
+ application while the second block will deal with algorithm and investigation
+ related objectives.
+\end_layout
+
+\begin_layout Subsection*
+User Interface
+\end_layout
+
+\begin_layout Standard
+The main user interface should be able to visualize temporal statistical
+ usage data, in a user-friendly environment, either pre-generate or generated
+ in a real time constraint from different areas of a common space.
+\end_layout
+
+\begin_layout Subsection*
+Algorithm
+\end_layout
+
+\begin_layout Enumerate
+Integrate an algorithm to perform contextual elements analysis in video
+ sequences.
+ The objective is detect and classify labels over the important frame elements
+ such as doors, desks, corridors, floor...
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Identify the current state of all these elements in each of the processed
+ cameras.
+ The state should distinguish between visible or occluded.
+\end_layout
+
+\begin_layout Enumerate
+Identify usage rate of some important elements of the scene measured by
+ people per second.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Integrate people detection over the cameras frames using different algorithms
+ in addition to, combining all the detections to create a fusion so that
+ the information is transformed to common planes and the detector performance
+ is increased.
 \end_layout
 
 \begin_layout Section

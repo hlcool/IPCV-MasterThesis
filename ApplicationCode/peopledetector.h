@@ -30,7 +30,7 @@ public:
     void HOGPeopleDetection(CameraStream &Camera);
 
     // DPM People Detector
-    cv::Ptr<DPMDetector> DPMdetector = DPMDetector::create(vector<string>(1, "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/People Detection/inriaperson.xml"));
+    Ptr<DPMDetector> DPMdetector = DPMDetector::create(vector<string>(1, "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/People Detection/inriaperson.xml"));
     void DPMPeopleDetection(CameraStream &Camera, bool PDFiltering);
     void paintBoundingBoxes(Mat &ActualFrame, string Method, vector<Rect> BoundingBoxes, Scalar Color, int Thickness);
 

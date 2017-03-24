@@ -107,11 +107,150 @@ State of the Art
 
 \begin_inset CommandInset label
 LatexCommand label
-name "cha:StateoftheArt"
+name "cha:State Of the Art"
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+As explained during Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Introduction"
+
+\end_inset
+
+ the process of analysis of a common crowed space will join many algorithms
+ from different Computer Vision disciplines.
+ Throughout this Chapter we will summarize the actual and most used algorithms
+ in the different categories that we will use during the development of
+ the project as well as the hardware used to record the video sequences.
+\end_layout
+
+\begin_layout Section
+Video Recording
+\end_layout
+
+\begin_layout Standard
+This project has been developed in the Escuela Politécnica Superior (Universidad
+ Autónoma de Madrid).
+ Due to this fact, the testing environment has been the hall of the mentioned
+ engineering school which has a set up of three different Internet Protocol
+ Cameras (IP Cameras).
+ This type of cameras can send and receive data via a computer network and
+ the Internet which allows the user to set the configuration and receive
+ frames from the cameras.
+\end_layout
+
+\begin_layout Standard
+Specifically, the camera model used has been the Sony SNC-RZ50P PTZ Camera.
+ This is a PTZ camera which means that it will be able to have a pan range
+ of 340° and a tilt range of 115°, enabling users to monitor a wide area
+ over the scene (Figure ).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/State Of the Art/IPCamera Pan:Tilt.png
+	lyxscale 20
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sony SNC-RZ50P Pan/Tilt Range
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The specifications are detailed in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Sony-SNC-RZ50P-Specifications"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sony SNC-RZ50P Specifications 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Sony-SNC-RZ50P-Specifications"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Background Subtraction
+\end_layout
+
+\begin_layout Section
+People Detection
+\end_layout
+
+\begin_layout Section
+Semantic Object Detection
 \end_layout
 
 \end_body
