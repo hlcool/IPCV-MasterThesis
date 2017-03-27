@@ -201,7 +201,7 @@ vspace*{0.1cm}
 \series bold
 \size huge
 \noun on
-TITULO TO MOLON
+ONLINE CONTEXTUAL UPDATING IN MULTI-CAMERA SCENARIOS
 \end_layout
 
 \begin_layout Standard
@@ -215,7 +215,11 @@ Alejandro López Cifuentes
 \begin_inset Newline newline
 \end_inset
 
-Tutor: Marcos Escudero Viñolo
+Director: Marcos Escudero Viñolo
+\begin_inset Newline newline
+\end_inset
+
+Supervisor: Jesús Bescós Cano
 \end_layout
 
 \begin_layout Standard
@@ -361,7 +365,7 @@ thispagestyle{empty}
 \series bold
 \size huge
 \noun on
-TITULO MOLON
+ONLINE CONTEXTUAL UPDATING IN MULTI-CAMERA SCENARIOS
 \end_layout
 
 \begin_layout Standard
@@ -395,13 +399,15 @@ Alejandro López Cifuentes
 \align center
 
 \series bold
-Tutor: Marcos Escudero Viñolo
+Director: Marcos Escudero Viñolo
 \series default
 
 \begin_inset Newline newline
 \end_inset
 
 
+\series bold
+Supervisor: Jesús Bescós Cano
 \end_layout
 
 \begin_layout Standard
@@ -583,7 +589,7 @@ Keywords
 \end_layout
 
 \begin_layout Standard
-Automatic.
+Keywords.
 \end_layout
 
 \begin_layout Standard
