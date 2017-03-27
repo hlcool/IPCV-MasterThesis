@@ -121,32 +121,66 @@ Motivation
 \begin_layout Standard
 Nowadays, we live completely surrounded of electronic devices whose objective
  is to ensure the safety and security of the global population.
- From biometric systems to all kind of different electrical sensors, not
- forgetting the wide range of, for example, video surveillance cameras.
+ From biometric systems 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "jain1999multimodal"
+
+\end_inset
+
+ to all kind of different electrical sensors, not forgetting the wide range
+ of, for example, video surveillance cameras.
  Those last are the ones that could be of real interest when working along
  with Image Processing and Computer Vision algorithms in the video surveillance
- scope.
+ scope 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wang2013intelligent"
+
+\end_inset
+
+.
  
 \end_layout
 
 \begin_layout Standard
-The combination of these two systems could lead to the automatization of
- tasks such as people detection, object detection and classification, scene
- recognition...
+The combination of these two systems could lead to the automation of high-level
+ tasks such as people detection 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dollar2012pedestrian"
+
+\end_inset
+
+, object detection and classification 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "felzenszwalb2010object,ren2015faster"
+
+\end_inset
+
+, scene recognition 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zhao2016pyramid"
+
+\end_inset
+
+ ...
  etc.
- The automatization of all these processes permits people working with them
+ The automation of all these processes permits people working with them
  to focus on the latests stages of video surveillance systems which should
  be the most critical ones, such as alarm raise when some event has occurred,
  letting the heavy and tedious computational part to computers.
 \end_layout
 
 \begin_layout Standard
-One of the automatization task that one could think when dealing with Computer
+One of the automation task that one could think when dealing with Computer
  Vision and multi video surveillance cameras is the analysis of public spaces
  which are often populated with crowds and the combination of the data coming
  from all of the camera instances.
- It could be from real interest to analyze people patrons and temporal area
- usage data in large spaces such as public shopping centers, universities,
+ It could be from real interest to analyze people patrons and temporal area/spac
+e usage data in large spaces such as public shopping centers, universities,
  common building areas...
  The analysis will come from a combination of algorithms of distinct scopes
  such as semantic area classification in order to separate the space into
