@@ -155,11 +155,11 @@ key "dollar2012pedestrian"
 , object detection and classification 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "felzenszwalb2010object,ren2015faster"
+key "felzenszwalb2010object,ren2015faster,hosang2016makes"
 
 \end_inset
 
-, scene recognition 
+, contextual information extraction 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "zhao2016pyramid"
@@ -179,12 +179,26 @@ One of the automation task that could appear when dealing with Computer
  Vision and multi video surveillance cameras is the analysis of public spaces
  which are often populated with crowds and the combination of the data coming
  from all of the camera instances.
- It could be from real interest to analyze people patrons and temporal area/spac
-e usage data in large spaces such as public shopping centers, universities,
- common building areas...
- The analysis will come from a combination of algorithms of distinct scopes
- such as semantic area classification in order to separate the space into
- different locations or people and crowd detections.
+ It could be from real interest to analyze people patrons 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mazzon2013multi,turner2002encoding,scovanner2009learning"
+
+\end_inset
+
+ and temporal area/space usage data in large spaces such as public shopping
+ centers, universities, common building areas...
+ either to extract statistical measures or anomalous events 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "jiang2011anomalous"
+
+\end_inset
+
+.
+ This analysis will come from a combination of algorithms of distinct scopes
+ such as semantic area classification, people detection or crowd patron
+ analysis.
  
 \end_layout
 
@@ -239,12 +253,23 @@ Identify usage rate of some important elements of the scene measured by
 
 \end_deeper
 \begin_layout Enumerate
-Integrate people detection over the cameras frames using different algorithms
- in addition to, combining all the detections to create a fusion so that
- the information is transformed to common planes and the detector performance
+Integrate people detection over the cameras frames to :
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Create a fusion taking advantage of a multi-camera scenario so that the
+ information is transformed to common planes and the detector performance
  is increased.
 \end_layout
 
+\begin_layout Enumerate
+Analyze people and crowd patrons to, combined with contextual information,
+ create statistical measures about important areas of influence where particular
+ activities often occur.
+\end_layout
+
+\end_deeper
 \begin_layout Section
 Thesis Structure
 \end_layout
