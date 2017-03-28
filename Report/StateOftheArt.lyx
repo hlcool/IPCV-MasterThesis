@@ -130,11 +130,296 @@ reference "cha:Introduction"
 \end_layout
 
 \begin_layout Section
-Pedestrian Detection.
+Pedestrian detection and crowd patrons.
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Pedestrian-detection-and crowd patrons"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pedestrian detection has been a major issue in computer vision during the
+ past few years due to its potential uses for modern applications.
+ It keeps being a research area because of the large amount of datasets
+ with different video characteristics such as people occlusions, poses,
+ scales, illumination ranges...
+ Those datasets include Caltech 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dollar2009pedestrian"
+
+\end_inset
+
+, ETH 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ess2007depth"
+
+\end_inset
+
+, TUD 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wojek2009multi"
+
+\end_inset
+
+ or INRIA 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dalal2005histograms"
+
+\end_inset
+
+ among others.
+ As a result of this large amount of training and testing data, some detectors
+ perform better in terms of precision and time consumption than others depending
+ on the specific situations.
+\end_layout
+
+\begin_layout Standard
+Detectors such using Histograms of Oriented Gradients 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dalal2005histograms"
+
+\end_inset
+
+, Discriminative Part Models 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "felzenszwalb2008discriminatively"
+
+\end_inset
+
+ and Aggregate Channel Features 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dollar2014fast"
+
+\end_inset
+
+ have been used along this years with significant results depending on the
+ train and test dataset.
+ 
+\end_layout
+
+\begin_layout Standard
+However, new detectors based on deep Convolutional Networks have improve
+ notably the accuracy and time consumption of all the previous algorithms.
+ Examples such as ImageNet 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "krizhevsky2012imagenet"
+
+\end_inset
+
+ for image classification and Fast R-CNN 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "girshick2015fast"
+
+\end_inset
+
+ for object detection expose that deep convolutional networks outperform
+ the previous mentioned algorithms.
+\end_layout
+
+\begin_layout Standard
+In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dollar2012pedestrian"
+
+\end_inset
+
+ some research directions are proposed that could be of interest in the
+ scope of this work.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Context information should be added.
+ The ground plane assumption can reduce errors if the detection for both
+ the person and the floor are accurate.
+ This could be done by extracting contextual information from the scene
+ which is one of the objectives of the work.
+\end_layout
+
+\begin_layout Enumerate
+Occlusion treatment.
+ Performance degrades rapidly under even mild occlusion so, the use of a
+ multi-camera scenario with homographies to reproject detections in those
+ frames whose miss rates are high could solve partially the problem of occlusion
+s or at least improve the performance.
+ 
+\end_layout
+
+\begin_layout Standard
+Finally, there is many literature concerning pedestrian dynamics in the
+ real world such as the Social Force Model (SFM) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mazzon2013multi"
+
+\end_inset
+
+ or people behavior in a built environment 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "turner2002encoding"
+
+\end_inset
+
+.
+ The information coming from these algorithms will lead to predictions in
+ people behavior and the paths they could follow which could help us to
+ extract more accurate statistical data or even refine people detections.
 \end_layout
 
 \begin_layout Section
 Contextual Information.
+\end_layout
+
+\begin_layout Standard
+Contextual information can be described as the set of circumstances or facts
+ that one can extract from a scene.
+ All this information can often lead to low-level characteristics 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "manjunath2002introduction"
+
+\end_inset
+
+ such as global color or, on the other hand, it can describe an image by
+ the position and status of relevant objects 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "oh2010content"
+
+\end_inset
+
+ such as cars according to its moving paths and, what is more important
+ to our related work, concrete areas in a scene such as walls, corridors,
+ walking paths...
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zhao2016pyramid"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In other words, scene contextual or semantic segmentation will have the
+ goal to assign each pixel of an image a category label.
+ If the prediction is accurate, it will provide complete semantic understanding
+ from the scene (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Scene-parsing-on PSPNet"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/State Of the Art/PSPNet Image.png
+	lyxscale 20
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Scene parsing on ADE20K
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zhou2016semantic"
+
+\end_inset
+
+.
+ Image from 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zhao2016pyramid"
+
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Scene-parsing-on PSPNet"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Main difficulty of scene parsing is related to the type of scene and by
+ all means to the label variety that one can predict.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zhao2016pyramid"
+
+\end_inset
+
+ has dealt with this problems by using deep Convolutional Neural Network
+ and assigning relationships between different dataset labels, i.e.
+ a an airplane is likely to be in runway or fly in sky while not over a
+ road.
+\end_layout
+
+\begin_layout Standard
+As in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Pedestrian-detection-and crowd patrons"
+
+\end_inset
+
+, the inclusion of a multi-camera system will arise some benefits.
+ While a single-camera system could lead to misclassification of labels
+ in the image or even to represent an object with many classes, in a multi-camer
+a system one camera instance could help to refine the classes in another
+ one provided that, evidentially, they are analyzing the same common area.
 \end_layout
 
 \begin_layout Section
