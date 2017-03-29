@@ -36,6 +36,7 @@ public:
     Ptr<BackgroundSubtractor> pMOG2 = createBackgroundSubtractorMOG2();
     vector<Rect> FGBlobs;
     vector<Mat> FGImages;
+    bool EmptyBackground;
     void extractFGBlobs(Mat fgmask);
     void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects);
     void ExtractFGImages(Mat ActualFrame, vector<Rect> FGBlobs);

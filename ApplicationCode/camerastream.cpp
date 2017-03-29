@@ -389,8 +389,10 @@ void CameraStream::ExtractFGImages(Mat ActualFrame, vector<Rect> FGBlobs){
 
     FGImages.clear();
 
-    if (FGBlobs.size() == 0)
+    if (FGBlobs.size() == 0){
+        EmptyBackground = 1;
         return;
+    }
 
     for (size_t i = 0; i < FGBlobs.size(); i++) {
         Rect r = FGBlobs[i];
@@ -410,6 +412,7 @@ void CameraStream::ExtractFGImages(Mat ActualFrame, vector<Rect> FGBlobs){
         Mat NewCamera = ActualFrame(r);
         FGImages.push_back(NewCamera);
     }
+    EmptyBackground = 0;
 }
 
 void CameraStream::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects)
