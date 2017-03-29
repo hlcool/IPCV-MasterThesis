@@ -291,8 +291,8 @@ void CameraStream::ProjectFloorPoints()
 
     // Convert vector of points into array of points
     NumberFloorPoints = static_cast<int>(FloorPoints.size());
-    ArrayProjectedPoints = new Point[NumberFloorPoints];
-    copy(ProjectedFloor.begin(), ProjectedFloor.end(), ArrayProjectedPoints);
+    ArrayProjectedFloorPoints = new Point[NumberFloorPoints];
+    copy(ProjectedFloor.begin(), ProjectedFloor.end(), ArrayProjectedFloorPoints);
 }
 
 void CameraStream::drawSemantic(Mat &CenitalPlane)
@@ -324,7 +324,7 @@ void CameraStream::drawSemantic(Mat &CenitalPlane)
     CenitalPlane.copyTo(overlay);
 
     // Create the poligon and add transparency
-    fillConvexPoly(overlay, ArrayProjectedPoints, NumberFloorPoints, Color );
+    fillConvexPoly(overlay, ArrayProjectedFloorPoints, NumberFloorPoints, Color );
     addWeighted(overlay, alpha, CenitalPlane, 1 - alpha, 0, CenitalPlane);
 
     if (CameraNumber == 3){

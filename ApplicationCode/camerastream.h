@@ -48,7 +48,7 @@ public:
     void saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber);
 
     // Semantic Projection
-    Point* ArrayProjectedPoints;
+    Point* ArrayProjectedFloorPoints;
     int NumberFloorPoints;
     void ProjectFloorPoints();
     void drawSemantic(Mat& CenitalPlane);

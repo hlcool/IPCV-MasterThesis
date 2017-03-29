@@ -35,9 +35,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    delete [] Camera1.ArrayProjectedPoints;
-    delete [] Camera2.ArrayProjectedPoints;
-    delete [] Camera3.ArrayProjectedPoints;
+    // Memory free
+    delete [] Camera1.ArrayProjectedFloorPoints;
+    delete [] Camera2.ArrayProjectedFloorPoints;
+    delete [] Camera3.ArrayProjectedFloorPoints;
     delete ui;
 }
 
