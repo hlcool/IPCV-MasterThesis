@@ -43,9 +43,15 @@ public:
 
     // Homography and Image Wrapping
     Mat Homography;
+    Mat SemanticImage;
     void computeHomography();
-    void projectSemantic(Mat& CenitalPlane);
     void saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber);
+
+    // Semantic Projection
+    Point* ArrayProjectedPoints;
+    int NumberFloorPoints;
+    void ProjectFloorPoints();
+    void drawSemantic(Mat& CenitalPlane);
 
     // Homogrpahy Points Saving
     ofstream PtsDstFile;

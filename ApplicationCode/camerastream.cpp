@@ -38,6 +38,20 @@ void CameraStream::VideoOpenning(string InputPath)
     cout << "Width: " << Width << ". Heigth: " << Height << ". Frames/second: " << FrameRate << endl;
     cout << "The total number of frames is: " << FrameNumber << endl;
     cout << "" << endl;
+
+    // Load Semantic images for the camera
+    vector<size_t> characterLocations;
+    for(size_t i =0; i < InputPath.size(); i++){
+        if(InputPath[i] == '/')
+            characterLocations.push_back(i);
+    }
+
+    size_t Pos = characterLocations[characterLocations.size() - 2];
+    string ImagesPath = InputPath.substr(0, Pos);
+
+    ImagesPath = ImagesPath + "/Semantic Images/Camera " + to_string(CameraNumber) + ".png";
+    cout << ImagesPath << endl;
+    SemanticImage = imread(ImagesPath);
 }
 
 void CameraStream::FastRCNNPeopleDetection(string FrameNumber, string Method)
@@ -250,46 +264,49 @@ void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameN
     imwrite(ImageName, ImageWarping);
 }
 
-void CameraStream::projectSemantic(Mat &CenitalPlane)
+void CameraStream::ProjectFloorPoints()
 {
-    // Four floor points
-    Mat overlay;
-    double alpha = 0.3;
+    // Extract floor mask
+    Mat FloorMask;
+    Mat SemanticImageGray;
+
+    cvtColor(SemanticImage, SemanticImageGray , CV_BGR2GRAY);
+    compare(SemanticImageGray, 3, FloorMask, CMP_EQ);
+
     vector<Point2f> FloorPoints;
     vector<Point2f> ProjectedFloor;
-    Scalar Color;
 
-    if (CameraNumber == 1){
-        // Floor points preselected (x,y) for Camera1
-        FloorPoints.push_back(Point2f(1, 149));
-        FloorPoints.push_back(Point2f(639, 148));
-        FloorPoints.push_back(Point2f(637, 477));
-        FloorPoints.push_back(Point2f(2, 477));
-        Color = Scalar(0,255,0);
-    }
-    if (CameraNumber == 2){
-        // Floor points preselected (x,y) for Camera2
-        FloorPoints.push_back(Point2f(25, 82));
-        FloorPoints.push_back(Point2f(617, 80));
-        FloorPoints.push_back(Point2f(621, 459));
-        FloorPoints.push_back(Point2f(25, 460));
-        Color = Scalar(255,0,0);
-    }
-    if (CameraNumber == 3){
-        // Floor points preselected (x,y) for Camera3
-        FloorPoints.push_back(Point2f(15, 75));
-        FloorPoints.push_back(Point2f(604, 75));
-        FloorPoints.push_back(Point2f(633, 469));
-        FloorPoints.push_back(Point2f(10, 467));
-        Color = Scalar(0,0,255);
-    }
+    // output, locations of non-zero pixels
+    for (int i = 0; i < FloorMask.cols; i++ ) {
+            for (int j = 0; j < FloorMask.rows; j++) {
+                if (FloorMask.at<uchar>(j, i) == 255) {
+                    //cout << i << ", " << j << endl;
+                    FloorPoints.push_back(Point2f(j, i));
+                }
+            }
+        }
 
     // Apply Homography to vector of Points to find the projection
     perspectiveTransform(FloorPoints, ProjectedFloor, Homography);
 
     // Convert vector of points into array of points
-    Point ArrayProjectedPoints[4];
+    NumberFloorPoints = static_cast<int>(FloorPoints.size());
+    ArrayProjectedPoints = new Point[NumberFloorPoints];
     copy(ProjectedFloor.begin(), ProjectedFloor.end(), ArrayProjectedPoints);
+}
+
+void CameraStream::drawSemantic(Mat &CenitalPlane)
+{
+    Mat overlay;
+    double alpha = 0.3;
+    Scalar Color;
+
+    if (CameraNumber == 1)
+        Color = Scalar(0,255,0);
+    if (CameraNumber == 2)
+        Color = Scalar(255,0,0);
+    if (CameraNumber == 3)
+        Color = Scalar(0,0,255);
 
     // Clean previous cenital view
     string CenitalPath;
@@ -307,7 +324,7 @@ void CameraStream::projectSemantic(Mat &CenitalPlane)
     CenitalPlane.copyTo(overlay);
 
     // Create the poligon and add transparency
-    fillConvexPoly( overlay, ArrayProjectedPoints, 4, Color );
+    fillConvexPoly(overlay, ArrayProjectedPoints, NumberFloorPoints, Color );
     addWeighted(overlay, alpha, CenitalPlane, 1 - alpha, 0, CenitalPlane);
 
     if (CameraNumber == 3){

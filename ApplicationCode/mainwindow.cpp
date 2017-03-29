@@ -35,6 +35,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    delete [] Camera1.ArrayProjectedPoints;
+    delete [] Camera2.ArrayProjectedPoints;
+    delete [] Camera3.ArrayProjectedPoints;
     delete ui;
 }
 
@@ -87,9 +90,9 @@ void MainWindow::on_actionOpen_file_triggered()
         Camera3.InputPath = filenames.at(Camera3.CameraNumber - 1).toStdString();
     }
     else {
-        Camera1.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 1/Camera1Sync.m2v";
-        Camera2.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 1/Camera2Sync.m2v";
-        Camera3.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 1/Camera3Sync.m2v";
+        Camera1.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 1/Videos/Camera1Sync.m2v";
+        Camera2.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 1/Videos/Camera2Sync.m2v";
+        Camera3.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 1/Videos/Camera3Sync.m2v";
     }
 
     // Open Video Streams
@@ -104,12 +107,14 @@ void MainWindow::on_actionOpen_file_triggered()
     Camera1.VideoStatsFile << "Frame  Computational Time" << endl;
 
     // Homography calculation for all the cameras
-    // Camera 1
     Camera1.computeHomography();
-    // Camera 2
     Camera2.computeHomography();
-    // Camera 3
     Camera3.computeHomography();
+
+    // Project Floor Points
+    Camera1.ProjectFloorPoints();
+    Camera2.ProjectFloorPoints();
+    Camera3.ProjectFloorPoints();
 
     ui->textBrowser->append("Homographies for cameras correctly calculated");
     ui->textBrowser->append("Processing starts");
@@ -186,9 +191,9 @@ void MainWindow::ProcessVideo()
     //   SEMANTIC PROJECTION   //
     // ----------------------- //
 
-    Camera1.projectSemantic(CenitalPlane);
-    Camera2.projectSemantic(CenitalPlane);
-    Camera3.projectSemantic(CenitalPlane);
+    Camera1.drawSemantic(CenitalPlane);
+    Camera2.drawSemantic(CenitalPlane);
+    Camera3.drawSemantic(CenitalPlane);
 
     if (atoi(FrameNumber.c_str()) == 1) {
         Camera1.saveWarpImages(Camera1.ActualFrame, Camera1.Homography, FrameNumber);
