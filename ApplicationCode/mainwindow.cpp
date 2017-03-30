@@ -180,13 +180,15 @@ void MainWindow::ProcessVideo()
     Camera3.extractFGBlobs(Camera3.BackgroundMask);
     Camera3.ExtractFGImages(Camera3.ActualFrame, Camera3.FGBlobs);
 
+    /*
     cout << "Camera1 -> BKG 1(empty) 0(something): " << Camera1.EmptyBackground << endl;
     cout << "Camera2 -> BKG 1(empty) 0(something): " << Camera2.EmptyBackground << endl;
     cout << "Camera3 -> BKG 1(empty) 0(something): " << Camera3.EmptyBackground << endl;
 
-    //imshow("Camera 1 BS", Camera1.BackgroundMask);
-    //imshow("Camera 2 BS", Camera2.BackgroundMask);
-    //imshow("Camera 3 BS", Camera3.BackgroundMask);
+    imshow("Camera 1 BS", Camera1.BackgroundMask);
+    imshow("Camera 2 BS", Camera2.BackgroundMask);
+    imshow("Camera 3 BS", Camera3.BackgroundMask);
+    */
 
     // ----------------------- //
     //   SEMANTIC PROJECTION   //

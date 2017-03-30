@@ -269,27 +269,20 @@ void CameraStream::ProjectFloorPoints()
     // Extract floor mask
     Mat FloorMask;
     Mat SemanticImageGray;
-
-    cvtColor(SemanticImage, SemanticImageGray , CV_BGR2GRAY);
-    compare(SemanticImageGray, 3, FloorMask, CMP_EQ);
-
-    vector<Point2f> FloorPoints;
+    vector<Point> FloorPoints;
     vector<Point2f> ProjectedFloor;
 
-    // output, locations of non-zero pixels
-    for (int i = 0; i < FloorMask.cols; i++ ) {
-            for (int j = 0; j < FloorMask.rows; j++) {
-                if (FloorMask.at<uchar>(j, i) == 255) {
-                    //cout << i << ", " << j << endl;
-                    FloorPoints.push_back(Point2f(j, i));
-                }
-            }
-        }
+    // Find floor mask and extract floor coordinates
+    cvtColor(SemanticImage, SemanticImageGray , CV_BGR2GRAY);
+    compare(SemanticImageGray, 3, FloorMask, CMP_EQ);
+    findNonZero(FloorMask == 255, FloorPoints);
+
+    // Convert from Point to Point2f
+    vector<Point2f> FloorPoints2(FloorPoints.begin(), FloorPoints.end());
 
     // Apply Homography to vector of Points to find the projection
-    perspectiveTransform(FloorPoints, ProjectedFloor, Homography);
+    perspectiveTransform(FloorPoints2, ProjectedFloor, Homography);
 
-    // Convert vector of points into array of points
     NumberFloorPoints = static_cast<int>(FloorPoints.size());
     ArrayProjectedFloorPoints = new Point[NumberFloorPoints];
     copy(ProjectedFloor.begin(), ProjectedFloor.end(), ArrayProjectedFloorPoints);
