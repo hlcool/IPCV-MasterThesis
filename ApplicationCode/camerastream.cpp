@@ -266,23 +266,24 @@ void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameN
 
 void CameraStream::ProjectFloorPoints()
 {
-    // Extract floor mask
+
     Mat FloorMask;
     Mat SemanticImageGray;
     vector<Point> FloorPoints;
     vector<Point2f> ProjectedFloor;
 
-    // Find floor mask and extract floor coordinates
+    // Find floor mask and extract floor coordinates (Point format)
     cvtColor(SemanticImage, SemanticImageGray , CV_BGR2GRAY);
     compare(SemanticImageGray, 3, FloorMask, CMP_EQ);
     findNonZero(FloorMask == 255, FloorPoints);
 
-    // Convert from Point to Point2f
+    // Convert from Point to Point2f floor coordinates
     vector<Point2f> FloorPoints2(FloorPoints.begin(), FloorPoints.end());
 
-    // Apply Homography to vector of Points to find the projection
+    // Apply Homography to vector of Points2f to find the projection of the floor
     perspectiveTransform(FloorPoints2, ProjectedFloor, Homography);
 
+    // Convert vector of points2f to array of point (needed for fillConvexPoly to be Point)
     NumberFloorPoints = static_cast<int>(FloorPoints.size());
     ArrayProjectedFloorPoints = new Point[NumberFloorPoints];
     copy(ProjectedFloor.begin(), ProjectedFloor.end(), ArrayProjectedFloorPoints);
@@ -294,6 +295,7 @@ void CameraStream::drawSemantic(Mat &CenitalPlane)
     double alpha = 0.3;
     Scalar Color;
 
+    // Select color depending on the CameraNumber
     if (CameraNumber == 1)
         Color = Scalar(0,255,0);
     if (CameraNumber == 2)
@@ -313,13 +315,14 @@ void CameraStream::drawSemantic(Mat &CenitalPlane)
         exit(EXIT_FAILURE);
     }
 
-    // Copy the cenital image to an overlay
+    // Copy the cenital image to an overlay layer
     CenitalPlane.copyTo(overlay);
 
-    // Create the poligon and add transparency
+    // Create the convex poligon from array of Point and add transparency to the final image
     fillConvexPoly(overlay, ArrayProjectedFloorPoints, NumberFloorPoints, Color );
     addWeighted(overlay, alpha, CenitalPlane, 1 - alpha, 0, CenitalPlane);
 
+    // Last camera converts image to CV_32FC3
     if (CameraNumber == 3){
         CenitalPlane.convertTo(CenitalPlane, CV_32FC3, 1/255.0);
     }
