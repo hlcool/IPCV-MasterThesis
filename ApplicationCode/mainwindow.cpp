@@ -194,8 +194,6 @@ void MainWindow::ProcessVideo()
     Camera2.drawSemantic(CenitalPlane);
     Camera3.drawSemantic(CenitalPlane);
 
-    waitKey(1);
-
     if (atoi(FrameNumber.c_str()) == 1) {
         Camera1.saveWarpImages(Camera1.ActualFrame, Camera1.Homography, FrameNumber);
         Camera2.saveWarpImages(Camera2.ActualFrame, Camera2.Homography, FrameNumber);

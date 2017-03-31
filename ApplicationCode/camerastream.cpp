@@ -266,7 +266,6 @@ void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameN
 
 void CameraStream::ProjectFloorPoints()
 {
-
     Mat FloorMask;
     Mat SemanticImageGray;
     vector<Point> FloorPoints;
@@ -277,18 +276,59 @@ void CameraStream::ProjectFloorPoints()
     compare(SemanticImageGray, 3, FloorMask, CMP_EQ);
     findNonZero(FloorMask == 255, FloorPoints);
 
-    //String title = "Floor Mask" + to_string(CameraNumber);
-    //imshow(title, FloorMask);
-
-    // Convert from Point to Point2f floor coordinates
+    // Convert from Point to Point2f floor coordinates. Auxiliar vector.
     vector<Point2f> FloorPoints2(FloorPoints.begin(), FloorPoints.end());
 
     // Apply Homography to vector of Points2f to find the projection of the floor
     perspectiveTransform(FloorPoints2, ProjectedFloor, Homography);
-    ProjectedFloorVector = ProjectedFloor;
 
+    // Fill the global vector
+    ProjectedFloorVector = ProjectedFloor;
     // Extract number of Floor Points
     NumberFloorPoints = static_cast<int>(ProjectedFloorVector.size());
+
+    // Load cenital plane
+    string CenitalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewRombo.png";
+    Mat CenitalPlane = imread(CenitalPath);
+
+    // Extract projected floor mask
+    Mat ProjectedFloorMask = Mat::zeros(CenitalPlane.rows, CenitalPlane.cols, CV_8U);
+
+    for (int i = 0 ; i < NumberFloorPoints ; i++){
+        Point punto = ProjectedFloorVector[i];
+        if ((punto.y > 0 && punto.y < ProjectedFloorMask.rows) && (punto.x > 0 && punto.x < ProjectedFloorMask.cols)){
+            ProjectedFloorMask.at<uchar>(punto.y, punto.x) = 255;
+        }
+    }
+
+    // Create the mask that will be filled
+    Mat FilledFloorMask = Mat::zeros(CenitalPlane.rows, CenitalPlane.cols, CV_8U);
+
+    // Dilatation and Erosion kernels to fill the mask
+    Mat kernel_di = getStructuringElement(MORPH_ELLIPSE, Size(9, 9), Point(-1, -1));
+    Mat kernel_ero = getStructuringElement(MORPH_ELLIPSE, Size(9, 9), Point(-1, -1));
+
+    // First dilate to fill then erode to keep the original contour
+    dilate(ProjectedFloorMask, FilledFloorMask, kernel_di, Point(-1, -1));
+    erode(FilledFloorMask, FilledFloorMask, kernel_ero, Point(-1, -1));
+
+    // Erase previous points
+    FloorPoints.clear();
+    ProjectedFloor.clear();
+    ProjectedFloorVector.clear();
+
+    // Find floor mask and extract floor coordinates (Point format)
+    findNonZero(FilledFloorMask == 255, FloorPoints);
+
+    // Convert from Point to Point2f floor coordinates. Auxiliar vector.
+    vector<Point2f> FloorPoints3(FloorPoints.begin(), FloorPoints.end());
+
+    // Fill the global vector
+    ProjectedFloorVector = FloorPoints3;
+    // Extract number of Floor Points
+    NumberFloorPoints = static_cast<int>(ProjectedFloorVector.size());
+
+
 }
 
 void CameraStream::drawSemantic(Mat &CenitalPlane)
@@ -315,8 +355,7 @@ void CameraStream::drawSemantic(Mat &CenitalPlane)
     }
 
     // Clean previous cenital view
-    string CenitalPath;
-    CenitalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewRombo.png";
+    string CenitalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewRombo.png";
     if (CameraNumber == 1){
         CenitalPlane = imread(CenitalPath);
     }
@@ -335,8 +374,6 @@ void CameraStream::drawSemantic(Mat &CenitalPlane)
             overlay.at<Vec3b>(punto.y, punto.x) = Color;
         }
     }
-    //String title = "Projected floor mask" + to_string(CameraNumber);
-    //imshow(title, overlay);
 
     // Create the convex poligon from array of Point and add transparency to the final image
     addWeighted(overlay, alpha, CenitalPlane, 1 - alpha, 0, CenitalPlane);
