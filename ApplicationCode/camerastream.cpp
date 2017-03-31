@@ -277,31 +277,42 @@ void CameraStream::ProjectFloorPoints()
     compare(SemanticImageGray, 3, FloorMask, CMP_EQ);
     findNonZero(FloorMask == 255, FloorPoints);
 
+    //String title = "Floor Mask" + to_string(CameraNumber);
+    //imshow(title, FloorMask);
+
     // Convert from Point to Point2f floor coordinates
     vector<Point2f> FloorPoints2(FloorPoints.begin(), FloorPoints.end());
 
     // Apply Homography to vector of Points2f to find the projection of the floor
     perspectiveTransform(FloorPoints2, ProjectedFloor, Homography);
+    ProjectedFloorVector = ProjectedFloor;
 
-    // Convert vector of points2f to array of point (needed for fillConvexPoly to be Point)
-    NumberFloorPoints = static_cast<int>(FloorPoints.size());
-    ArrayProjectedFloorPoints = new Point[NumberFloorPoints];
-    copy(ProjectedFloor.begin(), ProjectedFloor.end(), ArrayProjectedFloorPoints);
+    // Extract number of Floor Points
+    NumberFloorPoints = static_cast<int>(ProjectedFloorVector.size());
 }
 
 void CameraStream::drawSemantic(Mat &CenitalPlane)
 {
     Mat overlay;
     double alpha = 0.3;
-    Scalar Color;
+    Vec3b Color;
 
     // Select color depending on the CameraNumber
-    if (CameraNumber == 1)
-        Color = Scalar(0,255,0);
-    if (CameraNumber == 2)
-        Color = Scalar(255,0,0);
-    if (CameraNumber == 3)
-        Color = Scalar(0,0,255);
+    if (CameraNumber == 1){
+        Color.val[0] = 0;
+        Color.val[1] = 255;
+        Color.val[2] = 0;
+    }
+    if (CameraNumber == 2){
+        Color.val[0] = 255;
+        Color.val[1] = 0;
+        Color.val[2] = 0;
+    }
+    if (CameraNumber == 3){
+        Color.val[0] = 0;
+        Color.val[1] = 0;
+        Color.val[2] = 255;
+    }
 
     // Clean previous cenital view
     string CenitalPath;
@@ -318,8 +329,16 @@ void CameraStream::drawSemantic(Mat &CenitalPlane)
     // Copy the cenital image to an overlay layer
     CenitalPlane.copyTo(overlay);
 
+    for (int i = 0 ; i < NumberFloorPoints ; i++){
+        Point punto = ProjectedFloorVector[i];
+        if ((punto.y > 0 && punto.y < overlay.rows) && (punto.x > 0 && punto.x < overlay.cols)){
+            overlay.at<Vec3b>(punto.y, punto.x) = Color;
+        }
+    }
+    //String title = "Projected floor mask" + to_string(CameraNumber);
+    //imshow(title, overlay);
+
     // Create the convex poligon from array of Point and add transparency to the final image
-    fillConvexPoly(overlay, ArrayProjectedFloorPoints, NumberFloorPoints, Color );
     addWeighted(overlay, alpha, CenitalPlane, 1 - alpha, 0, CenitalPlane);
 
     // Last camera converts image to CV_32FC3
