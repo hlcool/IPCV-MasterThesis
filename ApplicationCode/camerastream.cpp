@@ -288,7 +288,7 @@ void CameraStream::ProjectFloorPoints()
     NumberFloorPoints = static_cast<int>(ProjectedFloorVector.size());
 
     // Load cenital plane
-    string CenitalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewRombo.png";
+    string CenitalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png";
     Mat CenitalPlane = imread(CenitalPath);
 
     // Extract projected floor mask
@@ -355,7 +355,7 @@ void CameraStream::drawSemantic(Mat &CenitalPlane)
     }
 
     // Clean previous cenital view
-    string CenitalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewRombo.png";
+    string CenitalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png";
     if (CameraNumber == 1){
         CenitalPlane = imread(CenitalPath);
     }

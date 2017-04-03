@@ -271,7 +271,7 @@ void onMouseCamera1Frame(int evt, int x, int y, int, void*)
 void MainWindow::on_actionCamera_1_triggered()
 {
     // Load the cenital plane
-    Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewRombo.png");
+    Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
     Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/EmptyCamera1.png");
 
     // Open files
@@ -320,7 +320,7 @@ void onMouseCamera2Frame(int evt, int x, int y, int, void*)
 void MainWindow::on_actionCamera_2_triggered()
 {
     // Load the cenital plane
-    Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewRombo.png");
+    Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
     Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/EmptyCamera2.png");
 
     // Open files
@@ -369,7 +369,7 @@ void onMouseCamera3Frame(int evt, int x, int y, int, void*)
 void MainWindow::on_actionCamera_3_triggered()
 {
     // Load the cenital plane
-    Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewRombo.png");
+    Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
     Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/EmptyCamera3.png");
 
     // Open files
