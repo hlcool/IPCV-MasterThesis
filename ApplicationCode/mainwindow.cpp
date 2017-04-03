@@ -46,6 +46,14 @@ void MainWindow::DisplayImages(string FrameNumber)
     ProjWidgetHeight = ui->CVWidgetCenital->height();
     ProjWidgetWidth  = ui->CVWidgetCenital->width();
 
+    // Convert Cenital Plane to 8-bit image
+    CenitalPlane.convertTo(CenitalPlane, CV_8UC3, 255.0);
+
+    if (FrameNumber.compare("1")) {
+        String ImageName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/CenitalView.png";
+        imwrite(ImageName, CenitalPlane);
+    }
+
     cv::resize(Camera1.ActualFrame, Camera1.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
     cv::resize(Camera2.ActualFrame, Camera2.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
     cv::resize(Camera3.ActualFrame, Camera3.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
@@ -61,8 +69,6 @@ void MainWindow::DisplayImages(string FrameNumber)
     ui->CVWidget2->showImage(Camera2.ActualFrame);
     ui->CVWidget3->showImage(Camera3.ActualFrame);
 
-    // Convert Cenital Plane to 8-bit image
-    CenitalPlane.convertTo(CenitalPlane, CV_8UC3, 255.0);
     // Display projected points into Cenital Plane Widget
     ui->CVWidgetCenital->showImage(CenitalPlane);
 }
