@@ -103,6 +103,8 @@ void MainWindow::on_actionOpen_file_triggered()
     Camera1.VideoStatsFile.open(GlobalPath.toStdString() + "/VideoProcessingStats.txt");
     Camera1.VideoStatsFile << "Frame  Computational Time" << endl;
 
+    ui->textBrowser->append("Computing Homographies and projecting semantic");
+
     // Homography calculation for all the cameras
     Camera1.computeHomography();
     Camera2.computeHomography();
@@ -113,7 +115,6 @@ void MainWindow::on_actionOpen_file_triggered()
     Camera2.ProjectFloorPoints();
     Camera3.ProjectFloorPoints();
 
-    ui->textBrowser->append("Homographies for cameras correctly calculated");
     ui->textBrowser->append("Processing starts");
 
     // Timer to launch the ProcessVideo() slot
