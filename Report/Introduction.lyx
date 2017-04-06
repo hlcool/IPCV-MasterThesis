@@ -119,20 +119,21 @@ Motivation
 \end_layout
 
 \begin_layout Standard
-Nowadays, we live completely surrounded of electronic devices whose objective
- is to ensure the safety and security of the global population.
- From biometric systems 
+Nowadays, we live surrounded by electronic devices which objective is to
+ ensure the safety and security of the global population or to ease our
+ lives on everyday tasks.
+ These range from biometric systems
 \begin_inset CommandInset citation
 LatexCommand cite
 key "jain1999multimodal"
 
 \end_inset
 
- to all kind of different electrical sensors, not forgetting the wide range
- of, for example, video surveillance cameras.
- Those last are the ones that could be of real interest when working along
- with Image Processing and Computer Vision algorithms in the video surveillance
- scope 
+ to all kind of different electrical sensors, including video surveillance
+ cameras.
+ These cameras are the ones that are of real interest when developing Image
+ Processing and Computer Vision algorithms in the video surveillance scope
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "wang2013intelligent"
@@ -144,51 +145,51 @@ key "wang2013intelligent"
 \end_layout
 
 \begin_layout Standard
-The combination of these two systems could lead to the automation of high-level
- tasks such as people detection 
+The combination of these veins of research could lead to the automation
+ of high-level human semantic tasks such as people detection
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dollar2012pedestrian"
 
 \end_inset
 
-, object detection and classification 
+, object detection and recognition 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "felzenszwalb2010object,ren2015faster,hosang2016makes"
 
 \end_inset
 
-, contextual information extraction 
+and extraction of contextual information 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "zhao2016pyramid"
 
 \end_inset
 
- ...
- etc.
- The automation of all these processes permits people working with them
- to focus on the latests stages of video surveillance systems which should
- be the most critical ones, such as alarm raise when some event has occurred,
- letting the heavy and tedious computational part to computers.
+.
+ The automation of these processes permits end-users build on these information
+ sources to define the latest stages of video surveillance systems.
+ These are usually the critical ones, e.g.
+ alarm raising when some predefined event occurs.
 \end_layout
 
 \begin_layout Standard
-One of the automation task that could appear when dealing with Computer
- Vision and multi video surveillance cameras is the analysis of public spaces
- which are often populated with crowds and the combination of the data coming
- from all of the camera instances.
- It could be from real interest to analyze people patrons 
+Among Computer Vision applications running on a multi-camera scenario, a
+ pivotal field of research is the analysis of public spaces.
+ These are often crowd-populated scenarios which analysis requires the combinati
+on of the data obtained by all recording cameras.
+ It is of real interest to analyze people behavior patterns 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "mazzon2013multi,turner2002encoding,scovanner2009learning"
 
 \end_inset
 
- and temporal area/space usage data in large spaces such as public shopping
- centers, universities, common building areas...
- either to extract statistical measures or anomalous events 
+and temporal usage of a given area in large-scale scenarios such as shopping
+ malls, universities and, generally, in any public-use building, either
+ to extract statistical measures of behavior or to detect anomalous unexpected
+ events 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "jiang2011anomalous"
@@ -196,10 +197,9 @@ key "jiang2011anomalous"
 \end_inset
 
 .
- This analysis will come from a combination of algorithms of distinct scopes
- such as semantic area classification, people detection or crowd patron
+ This analysis will come from a combination of complementary algorithms
+ such as semantic area classification, people detection and crowd behavior
  analysis.
- 
 \end_layout
 
 \begin_layout Section
@@ -207,21 +207,26 @@ Objectives
 \end_layout
 
 \begin_layout Standard
-This master thesis will embrace two different blocks of objectives that
- will complement each other.
- The first one will have to do with the performance of an user interface
- application while the second block will deal with algorithm and investigation
- related objectives.
+The main objective of this master thesis is to extract a contextual description
+ about a populated large-scale scenario while extracting temporal statistical
+ usage data from relevant scene spaces using various cameras.
+ This should be supported with a GUI application.
+ To fulfill this objective, this work will embrace two different blocks
+ of objectives that will complement each other.
+ The first one will have to do with the design of a graphical user interface
+ (GUI) whereas the second block will deal with algorithm and research-related
+ objectives.
 \end_layout
 
 \begin_layout Subsection*
-User Interface
+Graphical User Interface
 \end_layout
 
 \begin_layout Standard
-The main user interface should be able to visualize temporal statistical
- usage data, in a user-friendly environment, either pre-generate or generated
- in a real time constraint from different areas of a common space.
+The main user interface should be able to visualize and dynamically arrange
+ usage statistics from different areas of interest in a public space either
+ pre-generated or generated under a real-time constraint, under a user-friendly
+ environment.
 \end_layout
 
 \begin_layout Subsection*
@@ -233,40 +238,44 @@ The algorithm related objectives will be:
 \end_layout
 
 \begin_layout Enumerate
-Integrate an algorithm to perform contextual elements analysis in video
- sequences.
- The objective is detect and classify labels and its position over the important
- frame elements such as doors, desks, corridors, floor...
+To integrate a semantic segmentation algorithm to perform contextual element
+ analysis in video sequences.
+ The objective is to detect and classify and determine the spatial extend
+ on each frame of the video of relevant elements such as doors, desks, corridors
+ and floor areas.
+ We aim to:
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
 Identify the current state of all these elements in each of the processed
  cameras.
- The state should distinguish between visible or occluded.
+ The state should distinguish between visible and occluded.
 \end_layout
 
 \begin_layout Enumerate
-Identify usage rate of some important elements of the scene measured by
- people per second.
+Identify the usage rate of some important elements of the scene measured
+ by number of people per time interval.
 \end_layout
 
 \end_deeper
 \begin_layout Enumerate
-Integrate people detection over the cameras frames to :
+To integrate state-of-the-art people detection algorithms results per view.
+ To this aim, we need to:
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
-Create a fusion taking advantage of a multi-camera scenario so that the
- information is transformed to common planes and the detector performance
- is increased.
+Create a fusion mechanism to take advantage of the multi-camera scenario.
+ The results from all the cameras are projected on a common space and combined
+ such that by result’s refinement the individual detector performances are
+ increased.
 \end_layout
 
 \begin_layout Enumerate
-Analyze people and crowd patrons to, combined with contextual information,
- create statistical measures about important areas of influence where particular
- activities often occur.
+Analyze people and crowd motion patterns to by combining them with contextual
+ information define usage statistical measures on predefined spaces where
+ specific activities take place.
 \end_layout
 
 \end_deeper

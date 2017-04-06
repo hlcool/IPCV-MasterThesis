@@ -277,7 +277,8 @@ key "turner2002encoding"
 .
  The information coming from these algorithms will lead to predictions in
  people behavior and the paths they could follow which could help us to
- extract more accurate statistical data or even refine people detections.
+ extract more accurate statistical data or even refine people detections
+ based on this previous behavior knowledge.
 \end_layout
 
 \begin_layout Section
@@ -302,9 +303,9 @@ key "oh2010content"
 
 \end_inset
 
- such as cars according to its moving paths and, what is more important
- to our related work, concrete areas in a scene such as walls, corridors,
- walking paths...
+ such as cars according to its moving paths or, what is more important to
+ our related work, concrete areas in a scene such as walls, corridors, walking
+ paths...
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -326,7 +327,7 @@ reference "fig:Scene-parsing-on PSPNet"
 
 \end_inset
 
-).
+) which means that one could have the position and label of some object..
 \end_layout
 
 \begin_layout Standard
@@ -352,7 +353,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Scene parsing on ADE20K
+Scene parsing on ADE20K 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "zhou2016semantic"
@@ -392,8 +393,8 @@ name "fig:Scene-parsing-on PSPNet"
 \end_layout
 
 \begin_layout Standard
-Main difficulty of scene parsing is related to the type of scene and by
- all means to the label variety that one can predict.
+The main difficulty of scene parsing is related to the type of scene and
+ by all means to the label variety that one can predict.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -404,7 +405,8 @@ key "zhao2016pyramid"
  has dealt with this problems by using deep Convolutional Neural Network
  and assigning relationships between different dataset labels, i.e.
  a an airplane is likely to be in runway or fly in sky while not over a
- road.
+ road which will reduce slightly the complexity of having large amounts
+ of labels to predict..
 \end_layout
 
 \begin_layout Standard
@@ -417,9 +419,10 @@ reference "sec:Pedestrian-detection-and crowd patrons"
 
 , the inclusion of a multi-camera system will arise some benefits.
  While a single-camera system could lead to misclassification of labels
- in the image or even to represent an object with many classes, in a multi-camer
-a system one camera instance could help to refine the classes in another
- one provided that, evidentially, they are analyzing the same common area.
+ in the image or even to represent an object with many classes due to for
+ example, camera capture problems, in a multi-camera system one camera instance
+ could help to refine the classes in another one provided that, evidentially,
+ they are analyzing the same common area.
 \end_layout
 
 \begin_layout Section

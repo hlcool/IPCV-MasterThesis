@@ -154,7 +154,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Sony SNC-RZ50P Pan/Tilt Range 
+Sony SNC-RZ50P Pan/Tilt Range diagram 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Sony-SNC-RZ50P-Pan/Tilt Range"
@@ -582,5 +582,160 @@ name "tab:Sony-SNC-RZ50P-Specifications"
 Camera User Interface (GUI)
 \end_layout
 
+\begin_layout Standard
+The camera comes with a built-in web interface that will help us to visualize
+ the visual range and set the different parameters that would change the
+ camera behavior.
+ The most important features that we will be able to tune are described
+ as follow:
+\end_layout
+
+\begin_layout Itemize
+Camera control: Through this interface one can control and set the position
+ of the camera in terms of pan, tilt and zoom (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Visualization and control menu"
+
+\end_inset
+
+).
+ Changes in this three variables will lead to different visualizations of
+ the scene.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Visualization and control menu 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Visualization and control menu"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Preset position: In this menu (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Preset-position-setting"
+
+\end_inset
+
+) one could save the position that has been set in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Visualization and control menu"
+
+\end_inset
+
+ in order to recover the same position if the camera has been moved precise
+ and easily.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Preset position setting menu 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Preset-position-setting"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Tour setting: One could apart from pointing the camera to a static point,
+ set it to describe a tour over the scene.
+ This process is done by setting two different preset positions from where
+ the camera will be moving from one to the other at a set speed.
+ The menu is displayed in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Tour setting menu"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tour setting menu 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Tour setting menu"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \end_body
 \end_document

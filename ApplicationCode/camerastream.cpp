@@ -114,12 +114,10 @@ void CameraStream::decodeBlobFile(string FileName, string FrameNumber)
             // exit the function
             if (LineCounter == atoi(FrameNumber.c_str()))
                 return;
-
             LineCounter++;
         }
 
         if (LineCounter == atoi(FrameNumber.c_str())) {
-            //cout << "Line Counter " << LineCounter << ". Frame number: " << atoi(FrameNumber.c_str()) << endl;
             switch(Counter)
             {
             case 0:
