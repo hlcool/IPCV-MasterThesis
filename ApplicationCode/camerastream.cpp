@@ -204,54 +204,66 @@ void CameraStream::imageEnhancement()
 
 void CameraStream::computeHomography()
 {
-    vector<Point2f> pts_src, pts_dst;
-    string XCoord, YCoord;
+    string MainPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Homography Points/Camera ";
 
-    // CAMERA FRAME POINTS
-    string FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Camera" + to_string(CameraNumber) + "PtsSrcFile.txt";
-    ifstream input(FileName);
+    for (int CameraView = 1; CameraView <= NViews; CameraView++){
+        vector<Point2f> pts_src, pts_dst;
+        string XCoord, YCoord;
 
-    if (!input) {
-        // The file does not exists
-        cout << "The file that should contain homography points for Camera " + to_string(CameraNumber) + " Frame do not exist" << endl;
-        exit(EXIT_FAILURE);
+        // CAMERA FRAME POINTS
+        string FileName = MainPath + to_string(CameraNumber) + "/Camera" + to_string(CameraNumber) + "_View" + to_string(CameraView) + "_PtsSrcFile.txt";
+        ifstream input(FileName);
+
+        if (!input) {
+            // The file does not exists
+            cout << "The file that should contain homography points for Camera " + to_string(CameraNumber) + " Frame do not exist" << endl;
+            exit(EXIT_FAILURE);
+        }
+
+        // Start decoding the file with src points
+        while (input >> XCoord){
+            input >> YCoord;
+            Point2f pt;
+            pt.x = atoi(XCoord.c_str());
+            pt.y = atoi(YCoord.c_str());
+            pts_src.push_back(pt);
+        }
+
+        // CENITAL FRAME POINTS
+        FileName = MainPath + to_string(CameraNumber) + "/Camera" + to_string(CameraNumber) + "_View" + to_string(CameraView) + "_PtsDstFile.txt";
+        ifstream input2(FileName);
+
+        if (!input2) {
+            // The file does not exists
+            cout << "The file that should contain homography points for Cenital Frame for camera " + to_string(CameraNumber) + " do not exist" << endl;
+            exit(EXIT_FAILURE);
+        }
+
+        // Start decoding the file with dst points
+        while (input2 >> XCoord){
+            input2 >> YCoord;
+            Point2f pt;
+            pt.x = atoi(XCoord.c_str());
+            pt.y = atoi(YCoord.c_str());
+            pts_dst.push_back(pt);
+        }
+
+        if (pts_dst.size() != pts_src.size()){
+            cout << "The number of homography points for Camera " + to_string(CameraNumber) + " is not the same in source and destiny" << endl;
+            exit(EXIT_FAILURE);
+        }
+
+        // Calculate Homography and store it in the vector
+        HomographyVector.push_back(findHomography(pts_src, pts_dst, CV_LMEDS));
     }
+}
 
-    // Start decoding the file with src points
-    while (input >> XCoord){
-        input >> YCoord;
-        Point2f pt;
-        pt.x = atoi(XCoord.c_str());
-        pt.y = atoi(YCoord.c_str());
-        pts_src.push_back(pt);
-    }
-
-    // CENITAL FRAME POINTS
-    FileName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Camera" + to_string(CameraNumber) + "PtsDstFile.txt";
-    ifstream input2(FileName);
-
-    if (!input2) {
-        // The file does not exists
-        cout << "The file that should contain homography points for Cenital Frame for camera " + to_string(CameraNumber) + " do not exist" << endl;
-        exit(EXIT_FAILURE);
-    }
-
-    // Start decoding the file with dst points
-    while (input2 >> XCoord){
-        input2 >> YCoord;
-        Point2f pt;
-        pt.x = atoi(XCoord.c_str());
-        pt.y = atoi(YCoord.c_str());
-        pts_dst.push_back(pt);
-    }
-
-    if (pts_dst.size() != pts_src.size()){
-        cout << "The number of homography points for Camera " + to_string(CameraNumber) + " is not the same in source and destiny" << endl;
-        exit(EXIT_FAILURE);
-    }
-
-    // Calculate Homography
-    Homography = findHomography(pts_src, pts_dst, CV_LMEDS);
+void CameraStream::HomogrpahySelection(vector<Mat> HomographyVector)
+{
+    // Compare Actual Frame with all the frames used to extract homographies with AKAZE
+    // Extract number of correspondant view to index the homography vectors
+    //Akaze(ActualFrame, ActualFrame);
+    Homography = HomographyVector[0];
 }
 
 void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber)

@@ -42,9 +42,12 @@ public:
     void ExtractFGImages(Mat ActualFrame, vector<Rect> FGBlobs);
 
     // Homography and Image Wrapping
+    int NViews = 1;
+    vector<Mat> HomographyVector;
     Mat Homography;
     Mat SemanticImage;
     void computeHomography();
+    void HomogrpahySelection(vector<Mat> HomographyVector);
     void saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber);
 
     // Semantic Projection

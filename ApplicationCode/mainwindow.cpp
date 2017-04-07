@@ -116,11 +116,6 @@ void MainWindow::on_actionOpen_file_triggered()
     Camera2.computeHomography();
     Camera3.computeHomography();
 
-    // Project Floor Points
-    Camera1.ProjectFloorPoints();
-    Camera2.ProjectFloorPoints();
-    Camera3.ProjectFloorPoints();
-
     ui->textBrowser->append("Processing starts");
 
     // Timer to launch the ProcessVideo() slot
@@ -151,9 +146,6 @@ void MainWindow::ProcessVideo()
         return;
     }
 
-    Camera1.Akaze(Camera1.ActualFrame, Camera1.ActualFrame);
-    Camera2.Akaze(Camera2.ActualFrame, Camera2.ActualFrame);
-    Camera3.Akaze(Camera3.ActualFrame, Camera3.ActualFrame);
 
     /* -----------------------*/
     /*      MAIN ALGORITHM    */
@@ -187,20 +179,26 @@ void MainWindow::ProcessVideo()
     Camera3.extractFGBlobs(Camera3.BackgroundMask);
     Camera3.ExtractFGImages(Camera3.ActualFrame, Camera3.FGBlobs);
 
-    /*
-    cout << "Camera1 -> BKG 1(empty) 0(something): " << Camera1.EmptyBackground << endl;
-    cout << "Camera2 -> BKG 1(empty) 0(something): " << Camera2.EmptyBackground << endl;
-    cout << "Camera3 -> BKG 1(empty) 0(something): " << Camera3.EmptyBackground << endl;
 
-    imshow("Camera 1 BS", Camera1.BackgroundMask);
-    imshow("Camera 2 BS", Camera2.BackgroundMask);
-    imshow("Camera 3 BS", Camera3.BackgroundMask);
-    */
+    // ----------------------- //
+    //   HOMOGRAPHY SELECTION  //
+    // ----------------------- //
+
+    Camera1.HomogrpahySelection(Camera1.HomographyVector);
+    Camera2.HomogrpahySelection(Camera2.HomographyVector);
+    Camera3.HomogrpahySelection(Camera3.HomographyVector);
+
 
     // ----------------------- //
     //   SEMANTIC PROJECTION   //
     // ----------------------- //
 
+    // Project Floor Points
+    Camera1.ProjectFloorPoints();
+    Camera2.ProjectFloorPoints();
+    Camera3.ProjectFloorPoints();
+
+    // Draw semantic projection
     Camera1.drawSemantic(CenitalPlane);
     Camera2.drawSemantic(CenitalPlane);
     Camera3.drawSemantic(CenitalPlane);
@@ -210,6 +208,7 @@ void MainWindow::ProcessVideo()
         Camera2.saveWarpImages(Camera2.ActualFrame, Camera2.Homography, FrameNumber);
         Camera3.saveWarpImages(Camera3.ActualFrame, Camera3.Homography, FrameNumber);
     }
+
 
     // ------------------------------------------- //
     //     PEOPLE DETECTION & BLOBS PROJECTION     //
@@ -280,31 +279,33 @@ void onMouseCamera1Frame(int evt, int x, int y, int, void*)
 
 void MainWindow::on_actionCamera_1_triggered()
 {
-    // Load the cenital plane
-    Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
-    Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/EmptyCamera1.png");
+    for(int i = 1; i <= Camera1.NViews; i++){
+        // Load the cenital plane
+        Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
+        Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/EmptyCamera1.png");
 
-    // Open files
-    Camera1.PtsDstFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Camera1PtsDstFile.txt");
-    Camera1.PtsSrcFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Camera1PtsSrcFile.txt");
+        // Open files
+        Camera1.PtsDstFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Homography Points/Camera 1/Camera1_View" + to_string(i) + "_PtsDstFile.txt");
+        Camera1.PtsSrcFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Homography Points/Camera 1/Camera1_View" + to_string(i) + "_PtsSrcFile.txt");
 
-    String CenitalWindow = "Cenital Frame";
-    namedWindow(CenitalWindow);
-    setMouseCallback(CenitalWindow, onMouseCamera1Cenital, 0);
-    imshow(CenitalWindow, CenitalFrame);
+        String CenitalWindow = "Cenital Frame";
+        namedWindow(CenitalWindow);
+        setMouseCallback(CenitalWindow, onMouseCamera1Cenital, 0);
+        imshow(CenitalWindow, CenitalFrame);
 
-    String FrameWindow = "Camera 1 Frame";
-    namedWindow(FrameWindow);
-    setMouseCallback(FrameWindow, onMouseCamera1Frame, 0);
-    imshow(FrameWindow, CameraFrame);
+        String FrameWindow = "Camera 1 Frame. View " + to_string(i);
+        namedWindow(FrameWindow);
+        setMouseCallback(FrameWindow, onMouseCamera1Frame, 0);
+        imshow(FrameWindow, CameraFrame);
 
-    if(waitKey()==27) {
-        Camera1.PtsDstFile.close();
-        Camera1.PtsSrcFile.close();
-        destroyWindow(CenitalWindow);
-        destroyWindow(FrameWindow);
-        return;
+        if(waitKey()==27) {
+            Camera1.PtsDstFile.close();
+            Camera1.PtsSrcFile.close();
+            destroyWindow(CenitalWindow);
+            destroyWindow(FrameWindow);
+        }
     }
+    return;
 }
 
 void onMouseCamera2Cenital(int evt, int x, int y, int, void*)
@@ -329,31 +330,33 @@ void onMouseCamera2Frame(int evt, int x, int y, int, void*)
 
 void MainWindow::on_actionCamera_2_triggered()
 {
-    // Load the cenital plane
-    Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
-    Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/EmptyCamera2.png");
+    for(int i = 1; i <= Camera2.NViews; i++){
+        // Load the cenital plane
+        Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
+        Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/EmptyCamera2.png");
 
-    // Open files
-    Camera2.PtsDstFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Camera2PtsDstFile.txt");
-    Camera2.PtsSrcFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Camera2PtsSrcFile.txt");
+        // Open files
+        Camera2.PtsDstFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Homography Points/Camera 2/Camera1_View" + to_string(i) + "_PtsDstFile.txt");
+        Camera2.PtsSrcFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Homography Points/Camera 2/Camera1_View" + to_string(i) + "_PtsSrcFile.txt");
 
-    String CenitalWindow = "Cenital Frame";
-    namedWindow(CenitalWindow);
-    setMouseCallback(CenitalWindow, onMouseCamera2Cenital, 0);
-    imshow(CenitalWindow, CenitalFrame);
+        String CenitalWindow = "Cenital Frame";
+        namedWindow(CenitalWindow);
+        setMouseCallback(CenitalWindow, onMouseCamera2Cenital, 0);
+        imshow(CenitalWindow, CenitalFrame);
 
-    String FrameWindow = "Camera 2 Frame";
-    namedWindow(FrameWindow);
-    setMouseCallback(FrameWindow, onMouseCamera2Frame, 0);
-    imshow(FrameWindow, CameraFrame);
+        String FrameWindow = "Camera 2 Frame. View " + to_string(i);
+        namedWindow(FrameWindow);
+        setMouseCallback(FrameWindow, onMouseCamera2Frame, 0);
+        imshow(FrameWindow, CameraFrame);
 
-    if(waitKey()==27) {
-        Camera2.PtsDstFile.close();
-        Camera2.PtsSrcFile.close();
-        destroyWindow(CenitalWindow);
-        destroyWindow(FrameWindow);
-        return;
+        if(waitKey() == 27) {
+            Camera2.PtsDstFile.close();
+            Camera2.PtsSrcFile.close();
+            destroyWindow(CenitalWindow);
+            destroyWindow(FrameWindow);
+        }
     }
+    return;
 }
 
 void onMouseCamera3Cenital(int evt, int x, int y, int, void*)
@@ -378,31 +381,33 @@ void onMouseCamera3Frame(int evt, int x, int y, int, void*)
 
 void MainWindow::on_actionCamera_3_triggered()
 {
-    // Load the cenital plane
-    Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
-    Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/EmptyCamera3.png");
+    for(int i = 1; i <= Camera3.NViews; i++){
+        // Load the cenital plane
+        Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
+        Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/EmptyCamera3.png");
 
-    // Open files
-    Camera3.PtsDstFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Camera3PtsDstFile.txt");
-    Camera3.PtsSrcFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Camera3PtsSrcFile.txt");
+        // Open files
+        Camera3.PtsDstFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Homography Points/Camera 3/Camera1_View" + to_string(i) + "_PtsDstFile.txt");
+        Camera3.PtsSrcFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Homography Points/Camera 3/Camera1_View" + to_string(i) + "_PtsSrcFile.txt");
 
-    String CenitalWindow = "Cenital Frame";
-    namedWindow(CenitalWindow);
-    setMouseCallback(CenitalWindow, onMouseCamera3Cenital, 0);
-    imshow(CenitalWindow, CenitalFrame);
+        String CenitalWindow = "Cenital Frame";
+        namedWindow(CenitalWindow);
+        setMouseCallback(CenitalWindow, onMouseCamera3Cenital, 0);
+        imshow(CenitalWindow, CenitalFrame);
 
-    String FrameWindow = "Camera 3 Frame";
-    namedWindow(FrameWindow);
-    setMouseCallback(FrameWindow, onMouseCamera3Frame, 0);
-    imshow(FrameWindow, CameraFrame);
+        String FrameWindow = "Camera 3 Frame. View " + to_string(i);
+        namedWindow(FrameWindow);
+        setMouseCallback(FrameWindow, onMouseCamera3Frame, 0);
+        imshow(FrameWindow, CameraFrame);
 
-    if(waitKey()==27) {
-        Camera3.PtsDstFile.close();
-        Camera3.PtsSrcFile.close();
-        destroyWindow(CenitalWindow);
-        destroyWindow(FrameWindow);
-        return;
+        if(waitKey() == 27) {
+            Camera3.PtsDstFile.close();
+            Camera3.PtsSrcFile.close();
+            destroyWindow(CenitalWindow);
+            destroyWindow(FrameWindow);
+        }
     }
+    return;
 }
 
 void MainWindow::on_PauseCheckBox_clicked(bool checked)
