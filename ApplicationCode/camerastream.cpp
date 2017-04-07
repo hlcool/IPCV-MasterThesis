@@ -254,12 +254,56 @@ void CameraStream::computeHomography()
 void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber)
 {
     // Extract image warping
-    Mat ImageWarping;
-    ImageWarping = Mat::zeros(600, 1500, CV_64F);
-    warpPerspective(ActualFrame, ImageWarping, Homography, ImageWarping.size());
+    if (CameraNumber == 2){
+        Mat ImageWarping;
+        ImageWarping = Mat::zeros(800, 1500, CV_64F);
 
-    String ImageName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Wrapped Images/Camera " + to_string(CameraNumber) + "/Frame" + FrameNumber + ".png";
-    imwrite(ImageName, ImageWarping);
+        Mat H3;
+        H3 = Mat::ones(3, 3, CV_64F);
+        H3.at<double>(1,0) = 0;
+        H3.at<double>(2,0) = 0;
+        H3.at<double>(2,1) = 0;
+
+        Mat H2;
+        H2 = Mat::zeros(3, 3, CV_64F);
+
+        //for(int i = 1; i < 10; i++){
+            /*
+            H3.at<double>(0,0) = i;
+            cout << H3 << endl;
+            */
+
+            // Puntos Suelo
+            vector<Point2f> pts_src_suelo;
+            pts_src_suelo.push_back(Point2f(456, 354));
+            pts_src_suelo.push_back(Point2f(284, 407));
+            pts_src_suelo.push_back(Point2f(454, 470));
+            pts_src_suelo.push_back(Point2f(619, 404));
+
+            vector<Point2f> pts_dst_sueloaltos;
+            pts_dst_sueloaltos.push_back(Point2f(456, 289));
+            pts_dst_sueloaltos.push_back(Point2f(284, 330));
+            pts_dst_sueloaltos.push_back(Point2f(454, 383));
+            pts_dst_sueloaltos.push_back(Point2f(619, 330));
+
+            Mat HomographyPrubea = findHomography(pts_src_suelo, pts_dst_sueloaltos, CV_LMEDS);
+
+            //multiply(Homography, HomographyPrubea.inv(DECOMP_SVD), H2);
+            H2 = Homography.mul(HomographyPrubea.inv(DECOMP_SVD));
+            //H2 = Homography.t()*HomographyPrubea.inv(DECOMP_SVD);
+
+            warpPerspective(ActualFrame, ImageWarping, H2, ImageWarping.size());
+            //String ImageName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Wrapped Images/Camera " + to_string(CameraNumber) + "/Frame" + FrameNumber + "-" + to_string(1) + ".png";
+            //imwrite(ImageName, ImageWarping);
+
+            imshow("WarpPerspective", ImageWarping);
+            waitKey(1);
+        //}
+    }
+
+    //warpPerspective(ActualFrame, ImageWarping, Homography, ImageWarping.size());
+    //String ImageName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Wrapped Images/Camera " + to_string(CameraNumber) + "/Frame" + FrameNumber + ".png";
+    //imwrite(ImageName, ImageWarping);
 }
 
 void CameraStream::ProjectFloorPoints()

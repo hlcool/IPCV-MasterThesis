@@ -2,7 +2,7 @@ clc;
 clear all;
 close all;
 
-Image = imread('EmptyCamera3.png');
+Image = imread('/Users/alex/Desktop/EmptyCamera2.png');
 
 fig = figure;
 imshow(Image)
