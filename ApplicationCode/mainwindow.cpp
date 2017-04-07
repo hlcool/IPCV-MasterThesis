@@ -151,6 +151,10 @@ void MainWindow::ProcessVideo()
         return;
     }
 
+    Camera1.Akaze(Camera1.ActualFrame, Camera1.ActualFrame);
+    Camera2.Akaze(Camera2.ActualFrame, Camera2.ActualFrame);
+    Camera3.Akaze(Camera3.ActualFrame, Camera3.ActualFrame);
+
     /* -----------------------*/
     /*      MAIN ALGORITHM    */
     /* -----------------------*/

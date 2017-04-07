@@ -5,11 +5,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <numeric>
+#include <boost/lexical_cast.hpp>
 #include <opencv2/opencv.hpp>
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/objdetect/objdetect.hpp"
-#include <boost/lexical_cast.hpp>
+#include "opencv2/features2d/features2d.hpp"
+
+
 
 CameraStream::CameraStream(){}
 CameraStream::~CameraStream(){}
@@ -380,6 +383,33 @@ void CameraStream::drawSemantic(Mat &CenitalPlane)
     if (CameraNumber == 3){
         CenitalPlane.convertTo(CenitalPlane, CV_32FC3, 1/255.0);
     }
+}
+
+void CameraStream::Akaze(Mat Image1, Mat Image2)
+{
+    vector<KeyPoint> kpts1, kpts2;
+    Mat desc1, desc2;
+
+    Ptr<AKAZE> akaze = AKAZE::create();
+    akaze->detectAndCompute(Image1, noArray(), kpts1, desc1);
+    akaze->detectAndCompute(Image2, noArray(), kpts2, desc2);
+
+    BFMatcher matcher(NORM_HAMMING);
+    vector< vector<DMatch> > nn_matches;
+    matcher.knnMatch(desc1, desc2, nn_matches, 2);
+
+    vector<cv::DMatch> good_matches;
+    for (size_t i = 0; i < nn_matches.size(); ++i) {
+        const float ratio = 0.8; // As in Lowe's paper; can be tuned
+        if (nn_matches[i][0].distance < ratio * nn_matches[i][1].distance) {
+            good_matches.push_back(nn_matches[i][0]);
+        }
+    }
+
+    Mat res;
+    drawMatches(Image1, kpts1, Image1, kpts2, good_matches, res);
+    imshow("Res", res);
+    waitKey();
 }
 
 void CameraStream::extractFGBlobs(Mat fgmask)

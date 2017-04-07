@@ -52,6 +52,7 @@ public:
     int NumberFloorPoints;
     void ProjectFloorPoints();
     void drawSemantic(Mat& CenitalPlane);
+    void Akaze(Mat Image1, Mat Image2);
 
     // Homogrpahy Points Saving
     ofstream PtsDstFile;
