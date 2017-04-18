@@ -255,50 +255,44 @@ void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameN
 {
     // Extract image warping
     if (CameraNumber == 2){
-        Mat ImageWarping;
-        ImageWarping = Mat::zeros(800, 1500, CV_64F);
+        Mat ImageWarpingFloor, ImageWarping1, ImageWarping2;
+        ImageWarpingFloor = Mat::zeros(600, 900, CV_64F);
+        ImageWarping1 = Mat::zeros(600, 900, CV_64F);
+        ImageWarping2 = Mat::zeros(600, 900, CV_64F);
 
-        Mat H3;
-        H3 = Mat::ones(3, 3, CV_64F);
-        H3.at<double>(1,0) = 0;
-        H3.at<double>(2,0) = 0;
-        H3.at<double>(2,1) = 0;
+        // Puntos Suelo
+        vector<Point2f> pts_src_suelo;
+        pts_src_suelo.push_back(Point2f(456, 354));
+        pts_src_suelo.push_back(Point2f(284, 407));
+        pts_src_suelo.push_back(Point2f(454, 470));
+        pts_src_suelo.push_back(Point2f(619, 404));
 
-        Mat H2;
-        H2 = Mat::zeros(3, 3, CV_64F);
+        vector<Point2f> pts_dst_sueloaltos;
+        pts_dst_sueloaltos.push_back(Point2f(456, 289));
+        pts_dst_sueloaltos.push_back(Point2f(284, 330));
+        pts_dst_sueloaltos.push_back(Point2f(454, 383));
+        pts_dst_sueloaltos.push_back(Point2f(619, 330));
 
-        //for(int i = 1; i < 10; i++){
-            /*
-            H3.at<double>(0,0) = i;
-            cout << H3 << endl;
-            */
+        Mat HomographyEntrePlantas = findHomography(pts_src_suelo, pts_dst_sueloaltos, CV_LMEDS);
 
-            // Puntos Suelo
-            vector<Point2f> pts_src_suelo;
-            pts_src_suelo.push_back(Point2f(456, 354));
-            pts_src_suelo.push_back(Point2f(284, 407));
-            pts_src_suelo.push_back(Point2f(454, 470));
-            pts_src_suelo.push_back(Point2f(619, 404));
+        //Mat H2;
+        //H2 = Mat::zeros(3, 3, CV_64F);
 
-            vector<Point2f> pts_dst_sueloaltos;
-            pts_dst_sueloaltos.push_back(Point2f(456, 289));
-            pts_dst_sueloaltos.push_back(Point2f(284, 330));
-            pts_dst_sueloaltos.push_back(Point2f(454, 383));
-            pts_dst_sueloaltos.push_back(Point2f(619, 330));
+        //multiply(Homography, HomographyEntrePlantas, H2);
+        //H2 = Homography.mul(HomographyEntrePlantas);
+        //H2 = Homography.t()*HomographyEntrePlantas;
 
-            Mat HomographyPrubea = findHomography(pts_src_suelo, pts_dst_sueloaltos, CV_LMEDS);
+        imshow("Actual Frame", ActualFrame);
+        warpPerspective(ActualFrame, ImageWarpingFloor, Homography, ImageWarpingFloor.size());
+        imshow("WarpPerspective Floor", ImageWarpingFloor);
 
-            //multiply(Homography, HomographyPrubea.inv(DECOMP_SVD), H2);
-            H2 = Homography.mul(HomographyPrubea.inv(DECOMP_SVD));
-            //H2 = Homography.t()*HomographyPrubea.inv(DECOMP_SVD);
+        warpPerspective(ActualFrame, ImageWarping1, HomographyEntrePlantas, ImageWarping1.size());
+        imshow("Parallel to Frame", ImageWarping1);
+        warpPerspective(ImageWarping1, ImageWarping2, Homography, ImageWarping2.size());
 
-            warpPerspective(ActualFrame, ImageWarping, H2, ImageWarping.size());
-            //String ImageName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Wrapped Images/Camera " + to_string(CameraNumber) + "/Frame" + FrameNumber + "-" + to_string(1) + ".png";
-            //imwrite(ImageName, ImageWarping);
+        imshow("WarpPerspective Parallel Floor", ImageWarpingFloor);
 
-            imshow("WarpPerspective", ImageWarping);
-            waitKey(1);
-        //}
+        waitKey();
     }
 
     //warpPerspective(ActualFrame, ImageWarping, Homography, ImageWarping.size());
