@@ -93,9 +93,9 @@ void MainWindow::on_actionOpen_file_triggered()
         Camera3.InputPath = filenames.at(Camera3.CameraNumber - 1).toStdString();
     }
     else {
-        Camera1.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 2/Videos/Camera1Sync.m2v";
-        Camera2.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 2/Videos/Camera2Sync.m2v";
-        Camera3.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 2/Videos/Camera3Sync.m2v";
+        Camera1.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Videos/Camera1Sync.m2v";
+        Camera2.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Videos/Camera2Sync.m2v";
+        Camera3.InputPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Videos/Camera3Sync.m2v";
     }
 
     // Open Video Streams
@@ -194,20 +194,20 @@ void MainWindow::ProcessVideo()
     // ----------------------- //
 
     // Project Floor Points
-    Camera1.ProjectFloorPoints();
-    Camera2.ProjectFloorPoints();
-    Camera3.ProjectFloorPoints();
+    //Camera1.ProjectFloorPoints();
+    //Camera2.ProjectFloorPoints();
+    //Camera3.ProjectFloorPoints();
 
     // Draw semantic projection
     Camera1.drawSemantic(CenitalPlane);
     Camera2.drawSemantic(CenitalPlane);
     Camera3.drawSemantic(CenitalPlane);
 
-    if (atoi(FrameNumber.c_str()) == 1) {
+    //if (atoi(FrameNumber.c_str()) == 1) {
         Camera1.saveWarpImages(Camera1.ActualFrame, Camera1.Homography, FrameNumber);
         Camera2.saveWarpImages(Camera2.ActualFrame, Camera2.Homography, FrameNumber);
         Camera3.saveWarpImages(Camera3.ActualFrame, Camera3.Homography, FrameNumber);
-    }
+    //}
 
 
     // ------------------------------------------- //
@@ -282,11 +282,11 @@ void MainWindow::on_actionCamera_1_triggered()
     for(int i = 1; i <= Camera1.NViews; i++){
         // Load the cenital plane
         Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
-        Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/EmptyCamera1.png");
+        Mat CameraFrame = imread(VideoPath + "/Homography Images/Camera 1/View " + to_string(i) + ".jpg");
 
         // Open files
-        Camera1.PtsDstFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Homography Points/Camera 1/Camera1_View" + to_string(i) + "_PtsDstFile.txt");
-        Camera1.PtsSrcFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Homography Points/Camera 1/Camera1_View" + to_string(i) + "_PtsSrcFile.txt");
+        Camera1.PtsDstFile.open(VideoPath + "/Homography Images/Camera 1/View " + to_string(i) + "_PtsDstFile.txt");
+        Camera1.PtsSrcFile.open(VideoPath + "/Homography Images/Camera 1/View " + to_string(i) + "_PtsSrcFile.txt");
 
         String CenitalWindow = "Cenital Frame";
         namedWindow(CenitalWindow);
@@ -333,11 +333,11 @@ void MainWindow::on_actionCamera_2_triggered()
     for(int i = 1; i <= Camera2.NViews; i++){
         // Load the cenital plane
         Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
-        Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/EmptyCamera2.png");
+        Mat CameraFrame = imread(VideoPath + "/Homography Images/Camera 2/View " + to_string(i) + ".jpg");
 
         // Open files
-        Camera2.PtsDstFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Homography Points/Camera 2/Camera1_View" + to_string(i) + "_PtsDstFile.txt");
-        Camera2.PtsSrcFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Homography Points/Camera 2/Camera1_View" + to_string(i) + "_PtsSrcFile.txt");
+        Camera2.PtsDstFile.open(VideoPath + "/Homography Images/Camera 2/View " + to_string(i) + "_PtsDstFile.txt");
+        Camera2.PtsSrcFile.open(VideoPath + "/Homography Images/Camera 2/View " + to_string(i) + "_PtsSrcFile.txt");
 
         String CenitalWindow = "Cenital Frame";
         namedWindow(CenitalWindow);
@@ -384,11 +384,11 @@ void MainWindow::on_actionCamera_3_triggered()
     for(int i = 1; i <= Camera3.NViews; i++){
         // Load the cenital plane
         Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
-        Mat CameraFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/EmptyCamera3.png");
+        Mat CameraFrame = imread(VideoPath + "/Homography Images/Camera 3/View " + to_string(i) + ".jpg");
 
         // Open files
-        Camera3.PtsDstFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Homography Points/Camera 3/Camera1_View" + to_string(i) + "_PtsDstFile.txt");
-        Camera3.PtsSrcFile.open("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Homography Points/Camera 3/Camera1_View" + to_string(i) + "_PtsSrcFile.txt");
+        Camera3.PtsDstFile.open(VideoPath + "/Homography Images/Camera 3/View " + to_string(i) + "_PtsDstFile.txt");
+        Camera3.PtsSrcFile.open(VideoPath + "/Homography Images/Camera 3/View " + to_string(i) + "_PtsSrcFile.txt");
 
         String CenitalWindow = "Cenital Frame";
         namedWindow(CenitalWindow);

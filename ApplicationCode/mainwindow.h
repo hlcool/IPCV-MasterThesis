@@ -41,6 +41,9 @@ public:
     // Flag to display text once
     bool FlagText = 1;
 
+    // Path to video folder
+    string VideoPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3";
+
     void DisplayImages(string FrameNumber);
 
 private:

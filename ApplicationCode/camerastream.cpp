@@ -50,10 +50,16 @@ void CameraStream::VideoOpenning(string InputPath)
     }
 
     size_t Pos = characterLocations[characterLocations.size() - 2];
-    string ImagesPath = InputPath.substr(0, Pos);
+    string VideoPath = InputPath.substr(0, Pos);
 
-    ImagesPath = ImagesPath + "/Semantic Images/Camera " + to_string(CameraNumber) + ".png";
-    cout << ImagesPath << endl;
+    // Save Camera Views into a vector
+    for(int i = 1; i <= NViews; i++){
+        Mat CameraFrame = imread(VideoPath + "/Homography Images/Camera " + to_string(CameraNumber) + "/View " + to_string(i) + ".jpg");
+        CameraViewsVector.push_back(CameraFrame);
+    }
+
+    // Read Semantic Image
+    string ImagesPath = VideoPath + "/Semantic Images/Camera " + to_string(CameraNumber) + ".png";
     SemanticImage = imread(ImagesPath);
 }
 
@@ -204,18 +210,20 @@ void CameraStream::imageEnhancement()
 
 void CameraStream::computeHomography()
 {
-    string MainPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/Homography Points/Camera ";
+    string MainPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Homography Images";
 
     for (int CameraView = 1; CameraView <= NViews; CameraView++){
         vector<Point2f> pts_src, pts_dst;
         string XCoord, YCoord;
 
         // CAMERA FRAME POINTS
-        string FileName = MainPath + to_string(CameraNumber) + "/Camera" + to_string(CameraNumber) + "_View" + to_string(CameraView) + "_PtsSrcFile.txt";
+        string FileName = MainPath + "/Camera " + to_string(CameraNumber) + "/View " + to_string(CameraView) + "_PtsSrcFile.txt";
         ifstream input(FileName);
 
         if (!input) {
             // The file does not exists
+            cout << "Problem with the following path:" << endl;
+            cout << FileName << endl;
             cout << "The file that should contain homography points for Camera " + to_string(CameraNumber) + " Frame do not exist" << endl;
             exit(EXIT_FAILURE);
         }
@@ -230,11 +238,13 @@ void CameraStream::computeHomography()
         }
 
         // CENITAL FRAME POINTS
-        FileName = MainPath + to_string(CameraNumber) + "/Camera" + to_string(CameraNumber) + "_View" + to_string(CameraView) + "_PtsDstFile.txt";
+        FileName = MainPath + "/Camera " + to_string(CameraNumber) + "/View " + to_string(CameraView) + "_PtsDstFile.txt";
         ifstream input2(FileName);
 
         if (!input2) {
             // The file does not exists
+            cout << "Problem with the following path:" << endl;
+            cout << FileName << endl;
             cout << "The file that should contain homography points for Cenital Frame for camera " + to_string(CameraNumber) + " do not exist" << endl;
             exit(EXIT_FAILURE);
         }
@@ -263,7 +273,26 @@ void CameraStream::HomogrpahySelection(vector<Mat> HomographyVector)
     // Compare Actual Frame with all the frames used to extract homographies with AKAZE
     // Extract number of correspondant view to index the homography vectors
     //Akaze(ActualFrame, ActualFrame);
-    Homography = HomographyVector[0];
+
+    int FinalIndex;
+    int NMatchesMax = 0;
+
+    for (int CameraView = 0; CameraView < NViews; CameraView++){
+        int NMatches;
+
+        Mat ViewImage = CameraViewsVector[CameraView];
+        Akaze(ViewImage, ActualFrame, NMatches);
+
+        //cout << "Number of mathces " << NMatches << endl;
+        //waitKey();
+
+        if (NMatches > NMatchesMax){
+            FinalIndex = CameraView;
+            NMatchesMax = NMatches;
+        }
+    }
+    cout << "Camera " << CameraNumber << "using view" << FinalIndex + 1 << endl;
+    Homography = HomographyVector[FinalIndex];
 }
 
 void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber)
@@ -397,7 +426,7 @@ void CameraStream::drawSemantic(Mat &CenitalPlane)
     }
 }
 
-void CameraStream::Akaze(Mat Image1, Mat Image2)
+void CameraStream::Akaze(Mat Image1, Mat Image2, int &NMatches)
 {
     vector<KeyPoint> kpts1, kpts2;
     Mat desc1, desc2;
@@ -418,10 +447,10 @@ void CameraStream::Akaze(Mat Image1, Mat Image2)
         }
     }
 
-    Mat res;
-    drawMatches(Image1, kpts1, Image1, kpts2, good_matches, res);
-    imshow("Res", res);
-    waitKey();
+    NMatches = good_matches.size();
+    //Mat res;
+    //drawMatches(Image1, kpts1, Image2, kpts2, good_matches, res);
+    //imshow("Res", res);
 }
 
 void CameraStream::extractFGBlobs(Mat fgmask)
