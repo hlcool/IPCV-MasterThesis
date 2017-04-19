@@ -117,9 +117,9 @@ void MainWindow::on_actionOpen_file_triggered()
     Camera3.computeHomography();
 
     // Project Floor Points
-    Camera1.ProjectFloorPoints();
-    Camera2.ProjectFloorPoints();
-    Camera3.ProjectFloorPoints();
+    Camera1.projectFloorPoints();
+    Camera2.projectFloorPoints();
+    Camera3.projectFloorPoints();
 
     ui->textBrowser->append("Processing starts");
 
@@ -196,6 +196,9 @@ void MainWindow::ProcessVideo()
     // ----------------------- //
     //   SEMANTIC PROJECTION   //
     // ----------------------- //
+
+    Camera2.reprojectSem2Image(Camera2.ActualFrame);
+    waitKey();
 
     Camera1.drawSemantic(CenitalPlane);
     Camera2.drawSemantic(CenitalPlane);

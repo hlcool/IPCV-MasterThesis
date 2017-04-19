@@ -50,8 +50,9 @@ public:
     // Semantic Projection
     vector<Point2f> ProjectedFloorVector;
     int NumberFloorPoints;
-    void ProjectFloorPoints();
+    void projectFloorPoints();
     void drawSemantic(Mat& CenitalPlane);
+    void reprojectSem2Image(Mat ActualFrame);
 
     // Homogrpahy Points Saving
     ofstream PtsDstFile;

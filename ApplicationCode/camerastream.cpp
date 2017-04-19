@@ -253,54 +253,15 @@ void CameraStream::computeHomography()
 
 void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber)
 {
-    // Extract image warping
-    if (CameraNumber == 2){
-        Mat ImageWarpingFloor, ImageWarping1, ImageWarping2;
-        ImageWarpingFloor = Mat::zeros(600, 900, CV_64F);
-        ImageWarping1 = Mat::zeros(600, 900, CV_64F);
-        ImageWarping2 = Mat::zeros(600, 900, CV_64F);
+    Mat ImageWarping;
+    ImageWarping = Mat::zeros(800, 1500, CV_64F);
 
-        // Puntos Suelo
-        vector<Point2f> pts_src_suelo;
-        pts_src_suelo.push_back(Point2f(456, 354));
-        pts_src_suelo.push_back(Point2f(284, 407));
-        pts_src_suelo.push_back(Point2f(454, 470));
-        pts_src_suelo.push_back(Point2f(619, 404));
-
-        vector<Point2f> pts_dst_sueloaltos;
-        pts_dst_sueloaltos.push_back(Point2f(456, 289));
-        pts_dst_sueloaltos.push_back(Point2f(284, 330));
-        pts_dst_sueloaltos.push_back(Point2f(454, 383));
-        pts_dst_sueloaltos.push_back(Point2f(619, 330));
-
-        Mat HomographyEntrePlantas = findHomography(pts_src_suelo, pts_dst_sueloaltos, CV_LMEDS);
-
-        //Mat H2;
-        //H2 = Mat::zeros(3, 3, CV_64F);
-
-        //multiply(Homography, HomographyEntrePlantas, H2);
-        //H2 = Homography.mul(HomographyEntrePlantas);
-        //H2 = Homography.t()*HomographyEntrePlantas;
-
-        imshow("Actual Frame", ActualFrame);
-        warpPerspective(ActualFrame, ImageWarpingFloor, Homography, ImageWarpingFloor.size());
-        imshow("WarpPerspective Floor", ImageWarpingFloor);
-
-        warpPerspective(ActualFrame, ImageWarping1, HomographyEntrePlantas, ImageWarping1.size());
-        imshow("Parallel to Frame", ImageWarping1);
-        warpPerspective(ImageWarping1, ImageWarping2, Homography, ImageWarping2.size());
-
-        imshow("WarpPerspective Parallel Floor", ImageWarpingFloor);
-
-        waitKey();
-    }
-
-    //warpPerspective(ActualFrame, ImageWarping, Homography, ImageWarping.size());
-    //String ImageName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Wrapped Images/Camera " + to_string(CameraNumber) + "/Frame" + FrameNumber + ".png";
-    //imwrite(ImageName, ImageWarping);
+    warpPerspective(ActualFrame, ImageWarping, Homography, ImageWarping.size());
+    String ImageName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Wrapped Images/Camera " + to_string(CameraNumber) + "/Frame" + FrameNumber + ".png";
+    imwrite(ImageName, ImageWarping);
 }
 
-void CameraStream::ProjectFloorPoints()
+void CameraStream::projectFloorPoints()
 {
     Mat FloorMask;
     Mat SemanticImageGray;
@@ -309,7 +270,7 @@ void CameraStream::ProjectFloorPoints()
 
     // Find floor mask and extract floor coordinates (Point format)
     cvtColor(SemanticImage, SemanticImageGray , CV_BGR2GRAY);
-    compare(SemanticImageGray, 3, FloorMask, CMP_EQ);
+    compare(SemanticImageGray, 14, FloorMask, CMP_EQ);
     findNonZero(FloorMask == 255, FloorPoints);
 
     // Convert from Point to Point2f floor coordinates. Auxiliar vector.
@@ -404,6 +365,7 @@ void CameraStream::drawSemantic(Mat &CenitalPlane)
     // Copy the cenital image to an overlay layer
     CenitalPlane.copyTo(overlay);
 
+    // Color the correct points of the image
     for (int i = 0 ; i < NumberFloorPoints ; i++){
         Point punto = ProjectedFloorVector[i];
         if ((punto.y > 0 && punto.y < overlay.rows) && (punto.x > 0 && punto.x < overlay.cols)){
@@ -411,13 +373,79 @@ void CameraStream::drawSemantic(Mat &CenitalPlane)
         }
     }
 
-    // Create the convex poligon from array of Point and add transparency to the final image
+    // Add transparency to the final image
     addWeighted(overlay, alpha, CenitalPlane, 1 - alpha, 0, CenitalPlane);
 
     // Last camera converts image to CV_32FC3
     if (CameraNumber == 3){
         CenitalPlane.convertTo(CenitalPlane, CV_32FC3, 1/255.0);
     }
+}
+
+void CameraStream::reprojectSem2Image(Mat ActualFrame)
+{
+    Mat ImageFrame;
+    ActualFrame.copyTo(ImageFrame);
+
+    Mat Heleva;
+    Heleva = Mat::zeros(3, 3, CV_64F);
+    Heleva.at<double>(0,0) = 1;
+    Heleva.at<double>(1,1) = 1;
+    Heleva.at<double>(2,2) = 1;
+
+    vector<Point2f> ElevatedFloorPointsCenital, ElevatedFloorPointsImage, ElevatedFloorPointsImage2;
+
+    // Transform floor points in cenital view to parallel plane in cenital view
+    perspectiveTransform(ProjectedFloorVector, ElevatedFloorPointsCenital, Heleva);
+
+    // Apply inverse semantic homogrpahy to transform the parallel plane to the original actual frame
+    perspectiveTransform(ElevatedFloorPointsCenital, ElevatedFloorPointsImage, Homography.inv(DECOMP_LU));
+
+    // Draw the points
+    Mat overlay;
+    double alpha = 0.8;
+    Vec3b Color;
+    Color.val[0] = 0;
+    Color.val[1] = 255;
+    Color.val[2] = 0;
+
+    // Copy the cenital image to an overlay layer
+    ImageFrame.copyTo(overlay);
+
+    for (size_t i = 0 ; i < ElevatedFloorPointsImage.size() ; i++){
+        Point punto = ElevatedFloorPointsImage[i];
+        if ((punto.y > 0 && punto.y < overlay.rows) && (punto.x > 0 && punto.x < overlay.cols)){
+            overlay.at<Vec3b>(punto.y, punto.x) = Color;
+        }
+    }
+
+    // Create the convex poligon from array of Point and add transparency to the final image
+    addWeighted(overlay, alpha, ImageFrame, 1 - alpha, 0, ImageFrame);
+    imshow("Original image + parallel plane", ImageFrame);
+
+
+    // CENITAL
+    perspectiveTransform(ElevatedFloorPointsImage, ElevatedFloorPointsImage2, Homography);
+
+    // Draw the points
+    string CenitalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png";
+    Mat CenitalFrame = imread(CenitalPath);
+
+    // Copy the cenital image to an overlay layer
+    CenitalFrame.copyTo(overlay);
+
+    for (size_t i = 0 ; i < ElevatedFloorPointsImage2.size() ; i++){
+        Point punto = ElevatedFloorPointsImage2[i];
+        if ((punto.y > 0 && punto.y < overlay.rows) && (punto.x > 0 && punto.x < overlay.cols)){
+            overlay.at<Vec3b>(punto.y, punto.x) = Color;
+        }
+    }
+
+    // Create the convex poligon from array of Point and add transparency to the final image
+    addWeighted(overlay, alpha, CenitalFrame, 1 - alpha, 0, CenitalFrame);
+    imshow("Cenital + parallel plane", CenitalFrame);
+
+
 }
 
 void CameraStream::extractFGBlobs(Mat fgmask)
