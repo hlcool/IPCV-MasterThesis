@@ -50,17 +50,43 @@ void CameraStream::VideoOpenning(string InputPath)
     }
 
     size_t Pos = characterLocations[characterLocations.size() - 2];
-    string VideoPath = InputPath.substr(0, Pos);
+    VideoPath = InputPath.substr(0, Pos);
 
     // Save Camera Views into a vector
     for(int i = 1; i <= NViews; i++){
         Mat CameraFrame = imread(VideoPath + "/Homography Images/Camera " + to_string(CameraNumber) + "/View " + to_string(i) + ".jpg");
         CameraViewsVector.push_back(CameraFrame);
     }
+}
 
-    // Read Semantic Image
-    string ImagesPath = VideoPath + "/Semantic Images/Camera " + to_string(CameraNumber) + ".png";
-    SemanticImage = imread(ImagesPath);
+void CameraStream::getActualSemFrame(string FrameNumber)
+{
+    int FrameNumber2 = atoi(FrameNumber.c_str()) - 1;
+    string SemImagesPath;
+
+    if (FrameNumber2 < 10){
+        // Add 000 to the path string
+        SemImagesPath = VideoPath + "/Semantic Images/Camera " + to_string(CameraNumber) + "/Camera" + to_string(CameraNumber) + "000" + to_string(FrameNumber2) + ".png";
+    }
+    else if (FrameNumber2 < 100){
+        // Add 00 to the path string
+        SemImagesPath = VideoPath + "/Semantic Images/Camera " + to_string(CameraNumber) + "/Camera" + to_string(CameraNumber) + "00" + to_string(FrameNumber2) + ".png";
+    }
+    else if (FrameNumber2 < 1000){
+        // Add 0 to the path string
+        SemImagesPath = VideoPath + "/Semantic Images/Camera " + to_string(CameraNumber) + "/Camera" + to_string(CameraNumber) + "0" + to_string(FrameNumber2) + ".png";
+    }
+    else{
+        SemImagesPath = VideoPath + "/Semantic Images/Camera " + to_string(CameraNumber) + "/Camera" + to_string(CameraNumber) + to_string(FrameNumber2) + ".png";
+    }
+    ActualSemFrame = imread(SemImagesPath);
+
+    // Check for invalid input
+    if(! ActualSemFrame.data ){
+        cout << "Could not open the actual semantic frame with the following path:" << endl;
+        cout << SemImagesPath << endl;
+        exit(EXIT_FAILURE);
+    }
 }
 
 void CameraStream::FastRCNNPeopleDetection(string FrameNumber, string Method)
@@ -268,31 +294,51 @@ void CameraStream::computeHomography()
     }
 }
 
-void CameraStream::HomogrpahySelection(vector<Mat> HomographyVector)
+void CameraStream::HomographySelection(vector<Mat> HomographyVector)
 {
     // Compare Actual Frame with all the frames used to extract homographies with AKAZE
     // Extract number of correspondant view to index the homography vectors
-    //Akaze(ActualFrame, ActualFrame);
 
-    int FinalIndex;
+    int ViewIndex;
+    int NMatches;
     int NMatchesMax = 0;
+    vector<Point2f> GoodMatchesPoints1, GoodMatchesPoints2;
 
     for (int CameraView = 0; CameraView < NViews; CameraView++){
-        int NMatches;
+        Mat ViewDescriptor = AKAZEDescriptorsVector[CameraView];
+        vector<KeyPoint> ViewKeypoints = AKAZEKeyPointsVector[CameraView];
 
-        Mat ViewImage = CameraViewsVector[CameraView];
-        Akaze(ViewImage, ActualFrame, NMatches);
-
-        //cout << "Number of mathces " << NMatches << endl;
-        //waitKey();
+        Akaze(ViewKeypoints, ViewDescriptor, ActualFrame, NMatches, GoodMatchesPoints1, GoodMatchesPoints2);
 
         if (NMatches > NMatchesMax){
-            FinalIndex = CameraView;
+            ViewIndex = CameraView;
             NMatchesMax = NMatches;
         }
     }
-    cout << "Camera " << CameraNumber << "using view" << FinalIndex + 1 << endl;
-    Homography = HomographyVector[FinalIndex];
+    cout << "Camera " << CameraNumber << " using view " << ViewIndex + 1 << endl;
+
+    // Now that we know the nearest view with respect with the ActualFrame we have to
+    // interpolate/trasnform the homography so it is more accurate
+    // Convert the ActualFrame to the view perspective
+    Mat HomographyBetweenViews = findHomography(GoodMatchesPoints2, GoodMatchesPoints1, CV_LMEDS);
+
+    // Convert ActualSemFrame with the computed homography to be similar to the semantic image from the view
+    Mat SemWarping;
+    warpPerspective(ActualSemFrame, SemWarping, HomographyBetweenViews, ActualSemFrame.size());
+
+    /*
+    Mat ActualFrameConverted;
+    warpPerspective(ActualFrame, ActualFrameConverted, HomographyBetweenViews, ActualSemFrame.size());
+
+    imshow("Actual frame", ActualFrame);
+    imshow("ActualFrameConverted", ActualFrameConverted);
+    imshow("Sem Actual", ActualSemFrame*10);
+    imshow("Warpped Sem", SemWarping*10);
+
+    waitKey();
+    */
+
+    Homography = HomographyVector[ViewIndex];
 }
 
 void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber)
@@ -314,7 +360,7 @@ void CameraStream::ProjectFloorPoints()
     vector<Point2f> ProjectedFloor;
 
     // Find floor mask and extract floor coordinates (Point format)
-    cvtColor(SemanticImage, SemanticImageGray , CV_BGR2GRAY);
+    cvtColor(ActualSemFrame, SemanticImageGray , CV_BGR2GRAY);
     compare(SemanticImageGray, 3, FloorMask, CMP_EQ);
     findNonZero(FloorMask == 255, FloorPoints);
 
@@ -426,20 +472,36 @@ void CameraStream::drawSemantic(Mat &CenitalPlane)
     }
 }
 
-void CameraStream::Akaze(Mat Image1, Mat Image2, int &NMatches)
+void CameraStream::AkazePointsForViewImages()
 {
-    vector<KeyPoint> kpts1, kpts2;
-    Mat desc1, desc2;
+    for (int CameraView = 0; CameraView < NViews; CameraView++){
+        Mat ViewImage = CameraViewsVector[CameraView];
 
-    Ptr<AKAZE> akaze = AKAZE::create();
-    akaze->detectAndCompute(Image1, noArray(), kpts1, desc1);
-    akaze->detectAndCompute(Image2, noArray(), kpts2, desc2);
+        vector<KeyPoint> kpts1;
+        Mat desc1;
+
+        // Compute AKAZE points for the selected view image
+        akazeDescriptor = AKAZE::create();
+        akazeDescriptor->detectAndCompute(ViewImage, noArray(), kpts1, desc1);
+
+        // Save descriptors for the view image
+        AKAZEDescriptorsVector.push_back(desc1);
+        AKAZEKeyPointsVector.push_back(kpts1);
+    }
+}
+
+void CameraStream::Akaze(vector<KeyPoint> kpts1, Mat desc1, Mat Image2, int &NMatches, vector<Point2f> &GoodMatchesPoints1, vector<Point2f> &GoodMatchesPoints2)
+{
+    vector<KeyPoint> kpts2;
+    Mat desc2;
+
+    akazeDescriptor->detectAndCompute(Image2, noArray(), kpts2, desc2);
 
     BFMatcher matcher(NORM_HAMMING);
-    vector< vector<DMatch> > nn_matches;
+    vector<vector<DMatch>> nn_matches;
     matcher.knnMatch(desc1, desc2, nn_matches, 2);
 
-    vector<cv::DMatch> good_matches;
+    vector<DMatch> good_matches;
     for (size_t i = 0; i < nn_matches.size(); ++i) {
         const float ratio = 0.8; // As in Lowe's paper; can be tuned
         if (nn_matches[i][0].distance < ratio * nn_matches[i][1].distance) {
@@ -448,9 +510,25 @@ void CameraStream::Akaze(Mat Image1, Mat Image2, int &NMatches)
     }
 
     NMatches = good_matches.size();
+
+    // Extract point coordinates from the good matches between ActualFrame and the correspondant ViewFrame
+    for (size_t j = 0; j < NMatches; ++j) {
+        DMatch Match = good_matches[j];
+
+        int Index1 = Match.queryIdx;
+        int Index2 = Match.trainIdx;
+
+        Point2f Point1 = kpts1[Index1].pt;
+        Point2f Point2 = kpts2[Index2].pt;
+
+        GoodMatchesPoints1.push_back(Point1);
+        GoodMatchesPoints2.push_back(Point2);
+    }
+
     //Mat res;
     //drawMatches(Image1, kpts1, Image2, kpts2, good_matches, res);
     //imshow("Res", res);
+
 }
 
 void CameraStream::extractFGBlobs(Mat fgmask)

@@ -109,12 +109,18 @@ void MainWindow::on_actionOpen_file_triggered()
     Camera1.VideoStatsFile.open(GlobalPath.toStdString() + "/VideoProcessingStats.txt");
     Camera1.VideoStatsFile << "Frame  Computational Time" << endl;
 
-    ui->textBrowser->append("Computing Homographies and projecting semantic");
+    ui->textBrowser->append("Computing Homographies");
 
     // Homography calculation for all the cameras
     Camera1.computeHomography();
     Camera2.computeHomography();
     Camera3.computeHomography();
+
+    ui->textBrowser->append("Calculating AKAZE points for the sampled view images");
+    // AKAZE Points calculation for sampled images
+    Camera1.AkazePointsForViewImages();
+    Camera2.AkazePointsForViewImages();
+    Camera3.AkazePointsForViewImages();
 
     ui->textBrowser->append("Processing starts");
 
@@ -146,6 +152,10 @@ void MainWindow::ProcessVideo()
         return;
     }
 
+    // Get Actual Semantic Frame for all the cameras
+    Camera1.getActualSemFrame(FrameNumber);
+    Camera2.getActualSemFrame(FrameNumber);
+    Camera3.getActualSemFrame(FrameNumber);
 
     /* -----------------------*/
     /*      MAIN ALGORITHM    */
@@ -184,9 +194,9 @@ void MainWindow::ProcessVideo()
     //   HOMOGRAPHY SELECTION  //
     // ----------------------- //
 
-    Camera1.HomogrpahySelection(Camera1.HomographyVector);
-    Camera2.HomogrpahySelection(Camera2.HomographyVector);
-    Camera3.HomogrpahySelection(Camera3.HomographyVector);
+    Camera1.HomographySelection(Camera1.HomographyVector);
+    Camera2.HomographySelection(Camera2.HomographyVector);
+    Camera3.HomographySelection(Camera3.HomographyVector);
 
 
     // ----------------------- //
@@ -194,20 +204,20 @@ void MainWindow::ProcessVideo()
     // ----------------------- //
 
     // Project Floor Points
-    //Camera1.ProjectFloorPoints();
-    //Camera2.ProjectFloorPoints();
-    //Camera3.ProjectFloorPoints();
+    Camera1.ProjectFloorPoints();
+    Camera2.ProjectFloorPoints();
+    Camera3.ProjectFloorPoints();
 
     // Draw semantic projection
     Camera1.drawSemantic(CenitalPlane);
     Camera2.drawSemantic(CenitalPlane);
     Camera3.drawSemantic(CenitalPlane);
 
-    //if (atoi(FrameNumber.c_str()) == 1) {
+    if (atoi(FrameNumber.c_str()) == 1) {
         Camera1.saveWarpImages(Camera1.ActualFrame, Camera1.Homography, FrameNumber);
         Camera2.saveWarpImages(Camera2.ActualFrame, Camera2.Homography, FrameNumber);
         Camera3.saveWarpImages(Camera3.ActualFrame, Camera3.Homography, FrameNumber);
-    //}
+    }
 
 
     // ------------------------------------------- //

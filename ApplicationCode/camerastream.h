@@ -19,6 +19,7 @@ public:
 
     // Video Variables
     string InputPath;
+    string VideoPath;
     VideoCapture cap;
     void VideoOpenning(string InputPath);
     int Width, Height, FrameRate, FrameNumber;
@@ -26,6 +27,8 @@ public:
 
     // Mat to store the frame to process
     Mat ActualFrame;
+    Mat ActualSemFrame;
+    void getActualSemFrame(string FrameNumber);
 
     // Enhancement methods
     void maskEnhancement(Mat BackgroundMask);
@@ -46,9 +49,8 @@ public:
     vector<Mat> CameraViewsVector;
     vector<Mat> HomographyVector;
     Mat Homography;
-    Mat SemanticImage;
     void computeHomography();
-    void HomogrpahySelection(vector<Mat> HomographyVector);
+    void HomographySelection(vector<Mat> HomographyVector);
     void saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber);
 
     // Semantic Projection
@@ -56,7 +58,13 @@ public:
     int NumberFloorPoints;
     void ProjectFloorPoints();
     void drawSemantic(Mat& CenitalPlane);
-    void Akaze(Mat Image1, Mat Image2, int &NMatches);
+
+    // AKAZE
+    Ptr<AKAZE> akazeDescriptor;
+    vector<vector<KeyPoint>> AKAZEKeyPointsVector;
+    vector<Mat> AKAZEDescriptorsVector;
+    void AkazePointsForViewImages();
+    void Akaze(vector<KeyPoint> kpts1, Mat desc1, Mat Image2, int &NMatches, vector<Point2f> &GoodMatchesPoints1, vector<Point2f> &GoodMatchesPoints2);
 
     // Homogrpahy Points Saving
     ofstream PtsDstFile;
