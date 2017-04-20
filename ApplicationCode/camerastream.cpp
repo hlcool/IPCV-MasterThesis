@@ -12,8 +12,6 @@
 #include "opencv2/objdetect/objdetect.hpp"
 #include "opencv2/features2d/features2d.hpp"
 
-
-
 CameraStream::CameraStream(){}
 CameraStream::~CameraStream(){}
 
@@ -315,7 +313,7 @@ void CameraStream::HomographySelection(vector<Mat> HomographyVector)
             NMatchesMax = NMatches;
         }
     }
-    cout << "Camera " << CameraNumber << " using view " << ViewIndex + 1 << endl;
+    //cout << "Camera " << CameraNumber << " using view " << ViewIndex + 1 << endl;
 
     // Now that we know the nearest view with respect with the ActualFrame we have to
     // interpolate/trasnform the homography so it is more accurate
