@@ -165,30 +165,34 @@ void MainWindow::ProcessVideo()
     //     BKG SUBSTRACTION & BLOB EXTRACTION   //
     // ---------------------------------------- //
 
-    // CAMERA 1
-    // Compute Background Mask
-    Camera1.pMOG2->apply(Camera1.ActualFrame, Camera1.BackgroundMask);
-    // Improve Background Mask
-    Camera1.maskEnhancement(Camera1.BackgroundMask);
-    Camera1.extractFGBlobs(Camera1.BackgroundMask);
-    Camera1.ExtractFGImages(Camera1.ActualFrame, Camera1.FGBlobs);
+    // Using or not Foreground filtering for PD
+    bool PDFilteringOption = ui->PDFiltering->isChecked();
 
-    // CAMERA 2
-    // Compute Background Mask
-    Camera2.pMOG2->apply(Camera2.ActualFrame, Camera2.BackgroundMask);
-    // Improve Background Mask
-    Camera2.maskEnhancement(Camera2.BackgroundMask);
-    Camera2.extractFGBlobs(Camera2.BackgroundMask);
-    Camera2.ExtractFGImages(Camera2.ActualFrame, Camera2.FGBlobs);
+    if (PDFilteringOption) {
+        // CAMERA 1
+        // Compute Background Mask
+        Camera1.pMOG2->apply(Camera1.ActualFrame, Camera1.BackgroundMask);
+        // Improve Background Mask
+        Camera1.maskEnhancement(Camera1.BackgroundMask);
+        Camera1.extractFGBlobs(Camera1.BackgroundMask);
+        Camera1.ExtractFGImages(Camera1.ActualFrame, Camera1.FGBlobs);
 
-    // CAMERA 3
-    // Compute Background Mask
-    Camera3.pMOG2->apply(Camera3.ActualFrame, Camera3.BackgroundMask);
-    // Improve Background Mask
-    Camera3.maskEnhancement(Camera3.BackgroundMask);
-    Camera3.extractFGBlobs(Camera3.BackgroundMask);
-    Camera3.ExtractFGImages(Camera3.ActualFrame, Camera3.FGBlobs);
+        // CAMERA 2
+        // Compute Background Mask
+        Camera2.pMOG2->apply(Camera2.ActualFrame, Camera2.BackgroundMask);
+        // Improve Background Mask
+        Camera2.maskEnhancement(Camera2.BackgroundMask);
+        Camera2.extractFGBlobs(Camera2.BackgroundMask);
+        Camera2.ExtractFGImages(Camera2.ActualFrame, Camera2.FGBlobs);
 
+        // CAMERA 3
+        // Compute Background Mask
+        Camera3.pMOG2->apply(Camera3.ActualFrame, Camera3.BackgroundMask);
+        // Improve Background Mask
+        Camera3.maskEnhancement(Camera3.BackgroundMask);
+        Camera3.extractFGBlobs(Camera3.BackgroundMask);
+        Camera3.ExtractFGImages(Camera3.ActualFrame, Camera3.FGBlobs);
+    }
 
     // ----------------------- //
     //   HOMOGRAPHY SELECTION  //
@@ -228,8 +232,6 @@ void MainWindow::ProcessVideo()
     String CBOption = ui->PeopleDetectorCB->currentText().toStdString();
     // Representation Method
     String RepresentationOption = ui->RepresentationCB->currentText().toStdString();
-    // Using or not Foreground filtering for PD
-    bool PDFilteringOption = ui->PDFiltering->isChecked();
 
     // FastRCNN Method
     if (ui->FastButton->isChecked())
