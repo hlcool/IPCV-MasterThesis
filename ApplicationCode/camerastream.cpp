@@ -232,6 +232,15 @@ void CameraStream::imageEnhancement()
     Height = ActualFrame.rows;
 }
 
+void CameraStream::extractPDMask(Mat ActualSemFrame)
+{
+    Mat SemanticImageGray;
+
+    // Find pedestrian mask (label 7)
+    cvtColor(ActualSemFrame, SemanticImageGray , CV_BGR2GRAY);
+    compare(SemanticImageGray, 7, PedestrianMask, CMP_EQ);
+}
+
 void CameraStream::computeHomography()
 {
     string MainPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Homography Images";
@@ -357,7 +366,7 @@ void CameraStream::ProjectFloorPoints()
     vector<Point> FloorPoints;
     vector<Point2f> ProjectedFloor;
 
-    // Find floor mask and extract floor coordinates (Point format)
+    // Find floor mask (label 3) and extract floor coordinates (Point format)
     cvtColor(ActualSemFrame, SemanticImageGray , CV_BGR2GRAY);
     compare(SemanticImageGray, 3, FloorMask, CMP_EQ);
     findNonZero(FloorMask == 255, FloorPoints);
@@ -563,8 +572,8 @@ void CameraStream::extractFGBlobs(Mat fgmask)
                 int PixelIncrease = 10;
                 RectangleOutput.x -= PixelIncrease;
                 RectangleOutput.y -= PixelIncrease;
-                RectangleOutput.width += PixelIncrease * 2;
-                RectangleOutput.height += PixelIncrease * 2;
+                RectangleOutput.width += PixelIncrease * 3;
+                RectangleOutput.height += PixelIncrease * 3;
 
                 // Include blob in 'bloblist'
                 bloblist.push_back(RectangleOutput);

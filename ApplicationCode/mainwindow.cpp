@@ -170,27 +170,19 @@ void MainWindow::ProcessVideo()
 
     if (PDFilteringOption) {
         // CAMERA 1
-        // Compute Background Mask
-        Camera1.pMOG2->apply(Camera1.ActualFrame, Camera1.BackgroundMask);
-        // Improve Background Mask
-        Camera1.maskEnhancement(Camera1.BackgroundMask);
-        Camera1.extractFGBlobs(Camera1.BackgroundMask);
+        // Compute People detection mask with semantic actual frane
+        Camera1.extractPDMask(Camera1.ActualSemFrame);
+        Camera1.extractFGBlobs(Camera1.PedestrianMask);
         Camera1.ExtractFGImages(Camera1.ActualFrame, Camera1.FGBlobs);
 
         // CAMERA 2
-        // Compute Background Mask
-        Camera2.pMOG2->apply(Camera2.ActualFrame, Camera2.BackgroundMask);
-        // Improve Background Mask
-        Camera2.maskEnhancement(Camera2.BackgroundMask);
-        Camera2.extractFGBlobs(Camera2.BackgroundMask);
+        Camera2.extractPDMask(Camera2.ActualSemFrame);
+        Camera2.extractFGBlobs(Camera2.PedestrianMask);
         Camera2.ExtractFGImages(Camera2.ActualFrame, Camera2.FGBlobs);
 
         // CAMERA 3
-        // Compute Background Mask
-        Camera3.pMOG2->apply(Camera3.ActualFrame, Camera3.BackgroundMask);
-        // Improve Background Mask
-        Camera3.maskEnhancement(Camera3.BackgroundMask);
-        Camera3.extractFGBlobs(Camera3.BackgroundMask);
+        Camera3.extractPDMask(Camera3.ActualSemFrame);
+        Camera3.extractFGBlobs(Camera3.PedestrianMask);
         Camera3.ExtractFGImages(Camera3.ActualFrame, Camera3.FGBlobs);
     }
 

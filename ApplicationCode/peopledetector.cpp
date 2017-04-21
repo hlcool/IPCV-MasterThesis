@@ -105,8 +105,8 @@ void PeopleDetector::DPMPeopleDetection(CameraStream &Camera, bool PDFiltering)
                         Rect Aux1 = DPMBoundingBoxesAux[i].rect;
                         float score = DPMBoundingBoxesAux[i].score;
 
-                        //rectangle(AuxiliarFrame2, Aux1.tl(), Aux1.br(), Scalar(255, 0 , 0), 1);
-                        //imshow("BB", AuxiliarFrame2);
+                        //rectangle(AuxiliarFrame, Aux1.tl(), Aux1.br(), Scalar(255, 0 , 0), 1);
+                        //imshow("BB", AuxiliarFrame);
 
                         // Convert top-left corner co-ordinates from small image to
                         // complete frame reference
