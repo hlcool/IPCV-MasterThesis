@@ -60,6 +60,29 @@ void PeopleDetector::MainPeopleDetection(CameraStream &Camera1, CameraStream &Ca
         paintBoundingBoxes(Camera3.ActualFrame, CBOption, Camera3.DPMBoundingBoxes, Scalar (0, 0, 255), 1);
         projectBlobs(Camera3.DPMBoundingBoxes, Camera3.DPMScores, Camera3.Homography, "RED", CenitalPlane, Camera3.CameraNumber, RepresentationOption);
     }
+    else if(!CBOption.compare("Semantic Detector")){
+        // People detection using labels from semantic information. Only working with Mask filtering.
+        // GAUSSSIAN REPRESENTATION NOT WORKING BECAUSE OF LACK OF SCORES
+
+        if (PDFiltering){
+        // Camera 1
+        paintBoundingBoxes(Camera1.ActualFrame, CBOption, Camera1.FGBlobs, Scalar (0, 255, 0), 1);
+        projectBlobs(Camera1.FGBlobs, Camera1.DPMScores, Camera1.Homography, "GREEN", CenitalPlane, Camera1.CameraNumber, RepresentationOption);
+
+        // Camera 2
+        paintBoundingBoxes(Camera2.ActualFrame, CBOption, Camera2.FGBlobs, Scalar (255, 0, 0), 1);
+        projectBlobs(Camera2.FGBlobs, Camera1.DPMScores, Camera2.Homography, "BLUE", CenitalPlane, Camera2.CameraNumber, RepresentationOption);
+
+        // Camera 3
+        paintBoundingBoxes(Camera3.ActualFrame, CBOption, Camera3.FGBlobs, Scalar (0, 0, 255), 1);
+        projectBlobs(Camera3.FGBlobs, Camera1.DPMScores, Camera3.Homography, "RED", CenitalPlane, Camera3.CameraNumber, RepresentationOption);
+        }
+        else{
+            cout << "ERROR" << endl;
+            cout << "In order to use semantic detection Mask Filtering option MUST be used." << endl;
+            exit(EXIT_FAILURE);
+        }
+    }
     else if(!CBOption.compare("None")){
         return;
     }

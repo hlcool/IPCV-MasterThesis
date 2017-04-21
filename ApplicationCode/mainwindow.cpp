@@ -169,8 +169,9 @@ void MainWindow::ProcessVideo()
     bool PDFilteringOption = ui->PDFiltering->isChecked();
 
     if (PDFilteringOption) {
-        // CAMERA 1
         // Compute People detection mask with semantic actual frane
+
+        // CAMERA 1
         Camera1.extractPDMask(Camera1.ActualSemFrame);
         Camera1.extractFGBlobs(Camera1.PedestrianMask);
         Camera1.ExtractFGImages(Camera1.ActualFrame, Camera1.FGBlobs);

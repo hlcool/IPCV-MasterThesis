@@ -1032,12 +1032,12 @@
            <widget class="QComboBox" name="PeopleDetectorCB">
             <item>
              <property name="text">
-              <string>DPM</string>
+              <string>Semantic Detector</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>HOG</string>
+              <string>DPM</string>
              </property>
             </item>
             <item>
@@ -1048,6 +1048,11 @@
             <item>
              <property name="text">
               <string>FastRCNN</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>HOG</string>
              </property>
             </item>
            </widget>
@@ -1090,7 +1095,10 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string>FG Filtering</string>
+               <string>Mask Filtering</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
