@@ -27,6 +27,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->textBrowser->append("Interface thread started");
+    ui->textBrowser->append("Press File and Open video files");
+
     // MetaType register for connection between signal and slots
     qRegisterMetaType<Mat>("Mat");
     qRegisterMetaType<String>("String");
@@ -99,8 +102,11 @@ void MainWindow::threadStarting()
 
         // Thread is started
         threads[i]->start();
-        qDebug() << "Thread from camera " << (i+1) << " started";
+        ui->textBrowser->append(QString::fromStdString("Thread from camera " + to_string(i+1) + " started"));
     }
+
+    // Display intial messages
+    ui->textBrowser->append(ui->PeopleDetectorCB->currentText() + " People Detector in use");
 }
 
 void MainWindow::connectSignals2Slots(QThread *thread, CameraWorker *worker)
@@ -135,18 +141,24 @@ void MainWindow::fillCameraVariables(CameraStream &Camera, int i)
 
 void MainWindow::updateVariables(Mat Frame, Mat CenitalPlane, int CameraNumber)
 {
-    if(CameraNumber == 1){
-        CameraWorkers[0]->WidgetHeight = ui->CVWidget1->height();
-        CameraWorkers[0]->WidgetWidth = ui->CVWidget1->width();
+    if (CameraNumber == 1){
+        // Update messages
+        if(CameraWorkers[CameraNumber-1]->CBOption.compare(ui->PeopleDetectorCB->currentText().toStdString()))
+            ui->textBrowser->append(ui->PeopleDetectorCB->currentText() + " People Detector in use");
     }
-    if(CameraNumber == 2){
-        CameraWorkers[1]->WidgetHeight = ui->CVWidget1->height();
-        CameraWorkers[1]->WidgetWidth = ui->CVWidget1->width();
-    }
-    if(CameraNumber == 3){
-        CameraWorkers[2]->WidgetHeight = ui->CVWidget1->height();
-        CameraWorkers[2]->WidgetWidth = ui->CVWidget1->width();
-    }
+
+    // Widget size variables
+    CameraWorkers[CameraNumber-1]->WidgetHeight = ui->CVWidget1->height();
+    CameraWorkers[CameraNumber-1]->WidgetWidth = ui->CVWidget1->width();
+    // People detection options
+    CameraWorkers[CameraNumber-1]->PDFiltering = ui->PDFiltering->isChecked();
+    CameraWorkers[CameraNumber-1]->CBOption = ui->PeopleDetectorCB->currentText().toStdString();
+    CameraWorkers[CameraNumber-1]->RepresentationOption = ui->RepresentationCB->currentText().toStdString();
+    if (ui->FastButton->isChecked())
+        CameraWorkers[CameraNumber-1]->FastRCNNMethod = "fast";
+    else if (ui->AccurateButton->isChecked())
+        CameraWorkers[CameraNumber-1]->FastRCNNMethod = "accurate";
+
 }
 
 void MainWindow::displayFrame(Mat frame, Mat CenitalPlane, int CameraNumber)
@@ -170,15 +182,15 @@ void MainWindow::displayFrame(Mat frame, Mat CenitalPlane, int CameraNumber)
 
 void MainWindow::joinCenitalFrames(Mat frame, Mat CenitalPlane, int CameraNumber)
 {
-   Mat CenitalFrame1, CenitalFrame2, CenitalFrame3;
+    Mat CenitalFrame1, CenitalFrame2, CenitalFrame3;
 
-   CenitalFrame1 =  CameraWorkers[0]->CenitalPlane;
-   CenitalFrame2 =  CameraWorkers[1]->CenitalPlane;
-   CenitalFrame3 =  CameraWorkers[2]->CenitalPlane;
+    CenitalFrame1 =  CameraWorkers[0]->CenitalPlane;
+    CenitalFrame2 =  CameraWorkers[1]->CenitalPlane;
+    CenitalFrame3 =  CameraWorkers[2]->CenitalPlane;
 
-   // Join all the images
-   add(CenitalPlane, CenitalFrame1, CenitalPlane);
-   add(CenitalPlane, CenitalFrame2, CenitalPlane);
-   add(CenitalPlane, CenitalFrame3, CenitalPlane);
-   emit cenitalJoined(frame, CenitalPlane, CameraNumber);
+    // Join all the images
+    add(CenitalPlane, CenitalFrame1, CenitalPlane);
+    add(CenitalPlane, CenitalFrame2, CenitalPlane);
+    add(CenitalPlane, CenitalFrame3, CenitalPlane);
+    emit cenitalJoined(frame, CenitalPlane, CameraNumber);
 }
