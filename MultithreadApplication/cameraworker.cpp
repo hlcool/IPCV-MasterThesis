@@ -14,11 +14,9 @@
 using namespace cv;
 using namespace std;
 
-CameraWorker::CameraWorker(CameraStream Camera, Barrier barrier) : Camera(Camera), barrier(barrier) {
-}
+CameraWorker::CameraWorker(CameraStream Camera, Barrier barrier) : Camera(Camera), barrier(barrier) {}
 
-CameraWorker::~CameraWorker(){
-}
+CameraWorker::~CameraWorker(){}
 
 void CameraWorker::preProcessVideo()
 {

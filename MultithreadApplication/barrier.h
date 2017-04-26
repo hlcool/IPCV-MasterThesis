@@ -19,6 +19,7 @@ public:
         }
         else{
             condition.wakeAll();
+            // When all the threads are awake the count is restarted
             count = 3;
         }
         mutex.unlock();

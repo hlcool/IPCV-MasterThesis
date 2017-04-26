@@ -38,11 +38,13 @@ public:
 
     // Mixture Of Gaussians Background Substractor
     Mat BackgroundMask;
+    bool EmptyBackground;
     Ptr<BackgroundSubtractor> pMOG2 = createBackgroundSubtractorMOG2();
+
+    // Pedestrian mask, blobs and images
+    Mat PedestrianMask;
     vector<Rect> FGBlobs;
     vector<Mat> FGImages;
-    bool EmptyBackground;
-    Mat PedestrianMask;
     void extractPDMask(Mat ActualSemFrame);
     void extractFGBlobs(Mat fgmask, string CBOption);
     void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects);

@@ -82,27 +82,9 @@ void MainWindow::threadStarting()
         // New CameraWorker initialize with Camera(CameraStream) and the barrier
         CameraWorkers[i] = new CameraWorker(Camera, barrier);
 
-        // Fill UI Variables in the CameraWorker
+        // Fill UI widget size in CameraWorkers
         CameraWorkers[i]->WidgetHeight = ui->CVWidget1->height();
         CameraWorkers[i]->WidgetWidth = ui->CVWidget1->width();
-
-        // Detector and Mask filtering
-        CameraWorkers[i]->CBOption =  ui->PeopleDetectorCB->currentText().toStdString();
-        if(!CameraWorkers[i]->CBOption.compare("Semantic Detector")){
-            CameraWorkers[i]->PDFiltering = 1;
-        }
-        else{
-            CameraWorkers[i]->PDFiltering = ui->PDFiltering->isChecked();
-        }
-
-        // Representation Method
-        CameraWorkers[i]->RepresentationOption = ui->RepresentationCB->currentText().toStdString();
-
-        // FastRCNN Method
-        if (ui->FastButton->isChecked())
-            CameraWorkers[i]->FastRCNNMethod = "fast";
-        else if (ui->AccurateButton->isChecked())
-            CameraWorkers[i]->FastRCNNMethod = "accurate";
 
         // Move CameraWorker to thread
         CameraWorkers[i]->moveToThread(threads[i]);
@@ -128,11 +110,11 @@ void MainWindow::connectSignals2Slots(QThread *thread, CameraWorker *worker)
     connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
 
     // WORKER SIGNAL CONNECTIONS
+    // cenitalJoined signal with displayFrame slot
+    connect(this, SIGNAL(cenitalJoined(Mat, Mat, int)), this, SLOT(displayFrame(Mat, Mat, int)));
     // frameFinished signal with updateVariables and joinCenitalFrames slots
     connect(worker, SIGNAL(frameFinished(Mat, Mat, int)), this, SLOT(updateVariables(Mat, Mat, int)));
     connect(worker, SIGNAL(frameFinished(Mat, Mat, int)), this, SLOT(joinCenitalFrames(Mat, Mat, int)));
-    // cenitalJoined signal with displayFrame slot
-    connect(this, SIGNAL(cenitalJoined(Mat, Mat, int)), this, SLOT(displayFrame(Mat, Mat, int)));
 
     // finished signal with quit and deleteLater slots
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
@@ -158,8 +140,8 @@ void MainWindow::updateVariables(Mat Frame, Mat CenitalPlane, int CameraNumber)
     }
 
     // Widget size variables
+    CameraWorkers[CameraNumber-1]->WidgetWidth  = ui->CVWidget1->width();
     CameraWorkers[CameraNumber-1]->WidgetHeight = ui->CVWidget1->height();
-    CameraWorkers[CameraNumber-1]->WidgetWidth = ui->CVWidget1->width();
 
     // People detection options
     CameraWorkers[CameraNumber-1]->CBOption = ui->PeopleDetectorCB->currentText().toStdString();
@@ -168,14 +150,14 @@ void MainWindow::updateVariables(Mat Frame, Mat CenitalPlane, int CameraNumber)
     else
         CameraWorkers[CameraNumber-1]->PDFiltering = ui->PDFiltering->isChecked();
 
-    // Representation methods
-    CameraWorkers[CameraNumber-1]->RepresentationOption = ui->RepresentationCB->currentText().toStdString();
-
     // FastRCNNN method
     if (ui->FastButton->isChecked())
         CameraWorkers[CameraNumber-1]->FastRCNNMethod = "fast";
     else if (ui->AccurateButton->isChecked())
         CameraWorkers[CameraNumber-1]->FastRCNNMethod = "accurate";
+
+    // People detection representation methods
+    CameraWorkers[CameraNumber-1]->RepresentationOption = ui->RepresentationCB->currentText().toStdString();
 
 }
 

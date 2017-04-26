@@ -22,7 +22,6 @@ void PeopleDetector::MainPeopleDetection(CameraStream &Camera, String CBOption, 
         //HOGPeopleDetection(Camera);
         //paintBoundingBoxes(Camera.ActualFrame, CBOption, Camera.HOGBoundingBoxesNMS, Camera.CameraNumber, 1);
         //projectBlobs(Camera.HOGBoundingBoxesNMS, Camera.HOGScores, Camera.Homography, CenitalPlane, Camera.CameraNumber, RepresentationOption);
-
     }
     else if(!CBOption.compare("FastRCNN")){
         // FastRCNN Detector
@@ -35,19 +34,13 @@ void PeopleDetector::MainPeopleDetection(CameraStream &Camera, String CBOption, 
         DPMPeopleDetection(Camera, PDFiltering);
         paintBoundingBoxes(Camera.ActualFrame, CBOption, Camera.DPMBoundingBoxes, Camera.CameraNumber, 1);
         projectBlobs(Camera.DPMBoundingBoxes, Camera.DPMScores, Camera.Homography, CenitalPlane, Camera.CameraNumber, RepresentationOption);
-
     }
     else if(!CBOption.compare("Semantic Detector")){
-        // People detection using labels from semantic information. Only working with Mask filtering.
+        // People detection using labels from semantic information.
         // GAUSSSIAN REPRESENTATION NOT WORKING BECAUSE OF LACK OF SCORES
         if (PDFiltering){
             paintBoundingBoxes(Camera.ActualFrame, CBOption, Camera.FGBlobs, Camera.CameraNumber, 1);
             projectBlobs(Camera.FGBlobs, Camera.DPMScores, Camera.Homography, CenitalPlane, Camera.CameraNumber, RepresentationOption);
-        }
-        else{
-            cout << "ERROR" << endl;
-            cout << "In order to use semantic detection Mask Filtering option MUST be used." << endl;
-            exit(EXIT_FAILURE);
         }
     }
     else if(!CBOption.compare("None")){
@@ -66,7 +59,6 @@ void PeopleDetector::HOGPeopleDetection(CameraStream &Camera)
     // HOG Detector
     HOG.detectMultiScale(Camera.ActualFrame, Camera.HOGBoundingBoxes, Camera.HOGScores, 0, Size(8, 8), Size(32, 32), 1.1, 2);
     Camera.HOGBoundingBoxesNMS = Camera.HOGBoundingBoxes;
-    //non_max_suppresion(HOGBoundingBoxes, HOGBoundingBoxesNMS, 0.65);
 }
 
 void PeopleDetector::DPMPeopleDetection(CameraStream &Camera, bool PDFiltering)
@@ -112,7 +104,6 @@ void PeopleDetector::DPMPeopleDetection(CameraStream &Camera, bool PDFiltering)
         }
         else{
             // If there is no information about the foregrouund nothing is done.
-            //cout << "No people searching due to FG information lack" << endl;
         }
     }
     // PEOPLE DETECTION WITHOUT FILTERING
@@ -374,6 +365,7 @@ void PeopleDetector::gaussianFunction(Mat &Gaussian3C, Mat X, Mat Y, Point2f cen
 
 void PeopleDetector::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh)
 {
+    // NOT WORKING. The good one is in CameraStream class.
     resRects.clear();
 
     const size_t size = srcRects.size();

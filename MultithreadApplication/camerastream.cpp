@@ -14,10 +14,8 @@
 #include "opencv2/objdetect/objdetect.hpp"
 #include "opencv2/features2d/features2d.hpp"
 
-CameraStream::CameraStream(){
-}
-CameraStream::~CameraStream(){
-}
+CameraStream::CameraStream(){}
+CameraStream::~CameraStream(){}
 
 using namespace cv;
 using namespace std;
@@ -328,7 +326,6 @@ void CameraStream::HomographySelection(vector<Mat> HomographyVector)
             GoodMatchesPoints2Def = GoodMatchesPoints2;
         }
     }
-    //cout << "Camera " << CameraNumber << " using view " << ViewIndex + 1 << endl;
 
     if (GoodMatchesPoints1Def.size() > 4){
         // Number of match points between images when selecting homography is more than 4 so we can compute
@@ -641,6 +638,7 @@ void CameraStream::ExtractFGImages(Mat ActualFrame, vector<Rect> FGBlobs){
 
 void CameraStream::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects)
 {
+    // NMS WORKING. Not the one in people detector
     vector<int> IntersectVector (srcRects.size(), 0);
     resRects.clear();
 
