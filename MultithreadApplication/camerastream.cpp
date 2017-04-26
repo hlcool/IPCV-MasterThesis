@@ -37,15 +37,6 @@ void CameraStream::VideoOpenning(string InputPath)
     FrameRate = cap.get(CV_CAP_PROP_FPS);
     FrameNumber = cap.get(CV_CAP_PROP_FRAME_COUNT);
 
-    // Display information
-    /*
-    cout << "Camera " << CameraNumber << " opened correctly"  << endl;
-    cout << "The video to process has the following information:" << endl;
-    cout << "Width: " << Width << ". Heigth: " << Height << ". Frames/second: " << FrameRate << endl;
-    cout << "The total number of frames is: " << FrameNumber << endl;
-    cout << "" << endl;
-    */
-
     // Load Semantic images for the camera
     vector<size_t> characterLocations;
     for(size_t i =0; i < InputPath.size(); i++){

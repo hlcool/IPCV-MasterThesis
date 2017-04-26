@@ -50,7 +50,7 @@ void MainWindow::on_actionOpen_file_triggered()
     GlobalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode";
 
     if (ProgramFlag) {
-        // Opens the QFileDialog
+        // Opens the QFileDialog to get files
         filenames = QFileDialog::getOpenFileNames(this, tr("Open video files for the cameras"), GlobalPath, tr("Video Files (*.mpg *.avi *.m4v *.ts *.m2v)"));
     }
     else {
@@ -128,10 +128,10 @@ void MainWindow::connectSignals2Slots(QThread *thread, CameraWorker *worker)
     connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
 
     // WORKER SIGNAL CONNECTIONS
-    // frameFinished signal with updateVariables and joinCenitalFrames
+    // frameFinished signal with updateVariables and joinCenitalFrames slots
     connect(worker, SIGNAL(frameFinished(Mat, Mat, int)), this, SLOT(updateVariables(Mat, Mat, int)));
     connect(worker, SIGNAL(frameFinished(Mat, Mat, int)), this, SLOT(joinCenitalFrames(Mat, Mat, int)));
-    // cenitalJoined signal with displayFrame
+    // cenitalJoined signal with displayFrame slot
     connect(this, SIGNAL(cenitalJoined(Mat, Mat, int)), this, SLOT(displayFrame(Mat, Mat, int)));
 
     // finished signal with quit and deleteLater slots
@@ -152,7 +152,7 @@ void MainWindow::fillCameraVariables(CameraStream &Camera, int i)
 void MainWindow::updateVariables(Mat Frame, Mat CenitalPlane, int CameraNumber)
 {
     if (CameraNumber == 1){
-        // Update messages
+        // Update messages only for one camera
         if(CameraWorkers[CameraNumber-1]->CBOption.compare(ui->PeopleDetectorCB->currentText().toStdString()))
             ui->textBrowser->append(ui->PeopleDetectorCB->currentText() + " People Detector in use");
     }
@@ -160,17 +160,17 @@ void MainWindow::updateVariables(Mat Frame, Mat CenitalPlane, int CameraNumber)
     // Widget size variables
     CameraWorkers[CameraNumber-1]->WidgetHeight = ui->CVWidget1->height();
     CameraWorkers[CameraNumber-1]->WidgetWidth = ui->CVWidget1->width();
+
     // People detection options
     CameraWorkers[CameraNumber-1]->CBOption = ui->PeopleDetectorCB->currentText().toStdString();
-
-    // People detector and Mask Filtering
     if(!CameraWorkers[CameraNumber-1]->CBOption.compare("Semantic Detector"))
         CameraWorkers[CameraNumber-1]->PDFiltering = 1;
     else
         CameraWorkers[CameraNumber-1]->PDFiltering = ui->PDFiltering->isChecked();
 
-    // Representation
+    // Representation methods
     CameraWorkers[CameraNumber-1]->RepresentationOption = ui->RepresentationCB->currentText().toStdString();
+
     // FastRCNNN method
     if (ui->FastButton->isChecked())
         CameraWorkers[CameraNumber-1]->FastRCNNMethod = "fast";
