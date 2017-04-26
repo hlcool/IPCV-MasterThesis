@@ -40,7 +40,6 @@ void PeopleDetector::MainPeopleDetection(CameraStream &Camera, String CBOption, 
     else if(!CBOption.compare("Semantic Detector")){
         // People detection using labels from semantic information. Only working with Mask filtering.
         // GAUSSSIAN REPRESENTATION NOT WORKING BECAUSE OF LACK OF SCORES
-
         if (PDFiltering){
             paintBoundingBoxes(Camera.ActualFrame, CBOption, Camera.FGBlobs, Camera.CameraNumber, 1);
             projectBlobs(Camera.FGBlobs, Camera.DPMScores, Camera.Homography, CenitalPlane, Camera.CameraNumber, RepresentationOption);

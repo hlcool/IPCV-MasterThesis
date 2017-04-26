@@ -85,10 +85,18 @@ void MainWindow::threadStarting()
         // Fill UI Variables in the CameraWorker
         CameraWorkers[i]->WidgetHeight = ui->CVWidget1->height();
         CameraWorkers[i]->WidgetWidth = ui->CVWidget1->width();
+
+        // Detector and Mask filtering
         CameraWorkers[i]->CBOption =  ui->PeopleDetectorCB->currentText().toStdString();
+        if(!CameraWorkers[i]->CBOption.compare("Semantic Detector")){
+            CameraWorkers[i]->PDFiltering = 1;
+        }
+        else{
+            CameraWorkers[i]->PDFiltering = ui->PDFiltering->isChecked();
+        }
+
         // Representation Method
         CameraWorkers[i]->RepresentationOption = ui->RepresentationCB->currentText().toStdString();
-        CameraWorkers[i]->PDFiltering = ui->PDFiltering->isChecked();
 
         // FastRCNN Method
         if (ui->FastButton->isChecked())
@@ -153,9 +161,17 @@ void MainWindow::updateVariables(Mat Frame, Mat CenitalPlane, int CameraNumber)
     CameraWorkers[CameraNumber-1]->WidgetHeight = ui->CVWidget1->height();
     CameraWorkers[CameraNumber-1]->WidgetWidth = ui->CVWidget1->width();
     // People detection options
-    CameraWorkers[CameraNumber-1]->PDFiltering = ui->PDFiltering->isChecked();
     CameraWorkers[CameraNumber-1]->CBOption = ui->PeopleDetectorCB->currentText().toStdString();
+
+    // People detector and Mask Filtering
+    if(!CameraWorkers[CameraNumber-1]->CBOption.compare("Semantic Detector"))
+        CameraWorkers[CameraNumber-1]->PDFiltering = 1;
+    else
+        CameraWorkers[CameraNumber-1]->PDFiltering = ui->PDFiltering->isChecked();
+
+    // Representation
     CameraWorkers[CameraNumber-1]->RepresentationOption = ui->RepresentationCB->currentText().toStdString();
+    // FastRCNNN method
     if (ui->FastButton->isChecked())
         CameraWorkers[CameraNumber-1]->FastRCNNMethod = "fast";
     else if (ui->AccurateButton->isChecked())
