@@ -36,6 +36,9 @@ public:
     // 1 - Enables the QFileDialog
     int ProgramFlag = 0;
 
+    // Camera number of sampled views
+    int NViews = 5;
+
 signals:
     // Cenital Frames Joined
     void cenitalJoined(Mat frame, Mat CenitalPlane, int index);
@@ -44,7 +47,11 @@ private slots:
     void updateVariables(Mat Frame, Mat CenitalPlane, int CameraNumber);
     void displayFrame(Mat frame, Mat CenitalPlane, int CameraNumber);
     void joinCenitalFrames(Mat frame, Mat CenitalPlane, int CameraNumber);
+
     void on_actionOpen_file_triggered();
+    void on_actionCamera_1_triggered();
+    void on_actionCamera_2_triggered();
+    void on_actionCamera_3_triggered();
 
 private:
     Ui::MainWindow *ui;

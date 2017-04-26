@@ -70,10 +70,6 @@ public:
     void AkazePointsForViewImages();
     void Akaze(Mat Image1, vector<KeyPoint> kpts1, Mat desc1, Mat Image2, int &NMatches, vector<Point2f> &GoodMatchesPoints1, vector<Point2f> &GoodMatchesPoints2);
 
-    // Homogrpahy Points Saving
-    //ofstream PtsDstFile;
-    //ofstream PtsSrcFile;
-
     // HOG Vectors
     vector<Rect> HOGBoundingBoxes;
     vector<Rect> HOGBoundingBoxesNMS;

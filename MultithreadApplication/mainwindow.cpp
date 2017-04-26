@@ -20,6 +20,8 @@ using namespace std;
 using namespace cv;
 
 vector<CameraStream> Cameras;
+ofstream PtsDstFile;
+ofstream PtsSrcFile;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -193,4 +195,164 @@ void MainWindow::joinCenitalFrames(Mat frame, Mat CenitalPlane, int CameraNumber
     add(CenitalPlane, CenitalFrame2, CenitalPlane);
     add(CenitalPlane, CenitalFrame3, CenitalPlane);
     emit cenitalJoined(frame, CenitalPlane, CameraNumber);
+}
+
+// ---------------------------------------- //
+//        HOMOGRAPHY POINTS SELECTION       //
+// ---------------------------------------- //
+
+void onMouseCamera1Cenital(int evt, int x, int y, int, void*)
+{
+    if(evt == CV_EVENT_LBUTTONDOWN) {
+        Point pt = Point(x,y);
+        cout << "Cenital Frame x = " << pt.x << " y = " << pt.y << endl;
+        // Save Points into txt file
+        PtsDstFile << pt.x << " " << pt.y << endl;
+    }
+}
+
+void onMouseCamera1Frame(int evt, int x, int y, int, void*)
+{
+    if(evt == CV_EVENT_LBUTTONDOWN) {
+        Point pt = Point(x,y);
+        cout << "Camera 1 Frame x = " << pt.x << " y = " << pt.y << endl;
+        // Save points into txt
+        PtsSrcFile << pt.x << " " << pt.y << endl;
+    }
+}
+
+void MainWindow::on_actionCamera_1_triggered()
+{
+    string VideoPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3";
+    for(int i = 1; i <= NViews; i++){
+        // Load the cenital plane
+        Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
+        Mat CameraFrame = imread(VideoPath + "/Homography Images/Camera 1/View " + to_string(i) + ".jpg");
+
+        // Open files
+        PtsDstFile.open(VideoPath + "/Homography Images/Camera 1/View " + to_string(i) + "_PtsDstFile.txt");
+        PtsSrcFile.open(VideoPath + "/Homography Images/Camera 1/View " + to_string(i) + "_PtsSrcFile.txt");
+
+        String CenitalWindow = "Cenital Frame";
+        namedWindow(CenitalWindow);
+        setMouseCallback(CenitalWindow, onMouseCamera1Cenital, 0);
+        imshow(CenitalWindow, CenitalFrame);
+
+        String FrameWindow = "Camera 1 Frame. View " + to_string(i);
+        namedWindow(FrameWindow);
+        setMouseCallback(FrameWindow, onMouseCamera1Frame, 0);
+        imshow(FrameWindow, CameraFrame);
+
+        if(waitKey()==27) {
+            PtsDstFile.close();
+            PtsSrcFile.close();
+            destroyWindow(CenitalWindow);
+            destroyWindow(FrameWindow);
+        }
+    }
+    return;
+}
+
+void onMouseCamera2Cenital(int evt, int x, int y, int, void*)
+{
+    if(evt == CV_EVENT_LBUTTONDOWN) {
+        Point pt = Point(x,y);
+        cout << "Cenital Frame x = " << pt.x << " y = " << pt.y << endl;
+        // Save Points into txt file
+        PtsDstFile << pt.x << " " << pt.y << endl;
+    }
+}
+
+void onMouseCamera2Frame(int evt, int x, int y, int, void*)
+{
+    if(evt == CV_EVENT_LBUTTONDOWN) {
+        Point pt = Point(x,y);
+        cout << "Camera 2 Frame x = " << pt.x << " y = " << pt.y << endl;
+        // Save points into txt
+        PtsSrcFile << pt.x << " " << pt.y << endl;
+    }
+}
+
+void MainWindow::on_actionCamera_2_triggered()
+{
+    string VideoPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3";
+    for(int i = 1; i <= NViews; i++){
+        // Load the cenital plane
+        Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
+        Mat CameraFrame = imread(VideoPath + "/Homography Images/Camera 2/View " + to_string(i) + ".jpg");
+
+        // Open files
+        PtsDstFile.open(VideoPath + "/Homography Images/Camera 2/View " + to_string(i) + "_PtsDstFile.txt");
+        PtsSrcFile.open(VideoPath + "/Homography Images/Camera 2/View " + to_string(i) + "_PtsSrcFile.txt");
+
+        String CenitalWindow = "Cenital Frame";
+        namedWindow(CenitalWindow);
+        setMouseCallback(CenitalWindow, onMouseCamera2Cenital, 0);
+        imshow(CenitalWindow, CenitalFrame);
+
+        String FrameWindow = "Camera 2 Frame. View " + to_string(i);
+        namedWindow(FrameWindow);
+        setMouseCallback(FrameWindow, onMouseCamera2Frame, 0);
+        imshow(FrameWindow, CameraFrame);
+
+        if(waitKey() == 27) {
+            PtsDstFile.close();
+            PtsSrcFile.close();
+            destroyWindow(CenitalWindow);
+            destroyWindow(FrameWindow);
+        }
+    }
+    return;
+}
+
+void onMouseCamera3Cenital(int evt, int x, int y, int, void*)
+{
+    if(evt == CV_EVENT_LBUTTONDOWN) {
+        Point pt = Point(x,y);
+        cout << "Cenital Frame x = " << pt.x << " y = " << pt.y << endl;
+        // Save Points into txt file
+        PtsDstFile << pt.x << " " << pt.y << endl;
+    }
+}
+
+void onMouseCamera3Frame(int evt, int x, int y, int, void*)
+{
+    if(evt == CV_EVENT_LBUTTONDOWN) {
+        Point pt = Point(x,y);
+        cout << "Camera 3 Frame x = " << pt.x << " y = " << pt.y << endl;
+        // Save points into txt
+        PtsSrcFile << pt.x << " " << pt.y << endl;
+    }
+}
+
+void MainWindow::on_actionCamera_3_triggered()
+{
+    string VideoPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3";
+    for(int i = 1; i <= NViews; i++){
+        // Load the cenital plane
+        Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
+        Mat CameraFrame = imread(VideoPath + "/Homography Images/Camera 3/View " + to_string(i) + ".jpg");
+
+        // Open files
+        PtsDstFile.open(VideoPath + "/Homography Images/Camera 3/View " + to_string(i) + "_PtsDstFile.txt");
+        PtsSrcFile.open(VideoPath + "/Homography Images/Camera 3/View " + to_string(i) + "_PtsSrcFile.txt");
+
+        String CenitalWindow = "Cenital Frame";
+        namedWindow(CenitalWindow);
+        setMouseCallback(CenitalWindow, onMouseCamera3Cenital, 0);
+        imshow(CenitalWindow, CenitalFrame);
+
+        String FrameWindow = "Camera 3 Frame. View " + to_string(i);
+        namedWindow(FrameWindow);
+        setMouseCallback(FrameWindow, onMouseCamera3Frame, 0);
+        imshow(FrameWindow, CameraFrame);
+
+        if(waitKey() == 27) {
+            PtsDstFile.close();
+            PtsSrcFile.close();
+            destroyWindow(CenitalWindow);
+            destroyWindow(FrameWindow);
+        }
+    }
+    return;
 }
