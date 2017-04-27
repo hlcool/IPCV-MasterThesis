@@ -358,9 +358,7 @@ void MainWindow::on_actionCamera_3_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    cout << "sadsad" <<  endl;
     AboutDialog Aboutwindow;
     Aboutwindow.setModal(true);
     Aboutwindow.exec();
-
 }
