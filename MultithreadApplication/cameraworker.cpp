@@ -3,13 +3,13 @@
 #include "barrier.h"
 #include "peopledetector.h"
 #include <QDebug>
+#include <string>
 #include <QThread>
-#include <QTime>
+#include <iostream>
+#include <QElapsedTimer>
 #include <opencv2/opencv.hpp>
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
-#include <iostream>
-#include <string>
 
 using namespace cv;
 using namespace std;
@@ -52,7 +52,8 @@ void CameraWorker::processVideo()
     // Main Video Loop
     while (true) {
         // Start the clock for measuring time consumption/frame
-        clock_t begin = clock();
+        QElapsedTimer timer;
+        timer.start();
 
         // Extract ActualFrame
         Camera.cap >> Camera.ActualFrame;
@@ -125,11 +126,12 @@ void CameraWorker::processVideo()
         putText(Camera.ActualFrame, FrameNumber, Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));
 
         // Compute the processing time per frame
-        clock_t end = clock();
-        double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+        double mseconds;
+        mseconds = timer.elapsed();
+        mseconds = mseconds / 1000;
 
         // Save measures to .txt file
-        VideoStatsFile << FrameNumber << "       " << elapsed_secs << endl;
+        VideoStatsFile << FrameNumber << "       " << mseconds << endl;
 
         //qDebug() << "Thread " << Camera.CameraNumber << " processing frame " << QString::fromStdString(FrameNumber);
         // Threads must wait here until all of them have reached the barrier

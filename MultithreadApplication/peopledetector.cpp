@@ -1,16 +1,16 @@
 #include "peopledetector.h"
 #include "camerastream.h"
-#include <fstream>
-#include <iostream>
 #include <string>
-#include <stdio.h>
-#include <stdlib.h>
 #include <numeric>
+#include <fstream>
+#include <stdio.h>
+#include <iostream>
+#include <stdlib.h>
+#include <boost/lexical_cast.hpp>
 #include <opencv2/opencv.hpp>
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/objdetect/objdetect.hpp"
-#include <boost/lexical_cast.hpp>
 
 PeopleDetector::PeopleDetector(){}
 PeopleDetector::~PeopleDetector(){}
@@ -87,9 +87,6 @@ void PeopleDetector::DPMPeopleDetection(CameraStream &Camera, bool PDFiltering)
                         Rect Aux1 = DPMBoundingBoxesAux[i].rect;
                         float score = DPMBoundingBoxesAux[i].score;
 
-                        //rectangle(AuxiliarFrame, Aux1.tl(), Aux1.br(), Scalar(255, 0 , 0), 1);
-                        //imshow("BB", AuxiliarFrame);
-
                         // Convert top-left corner co-ordinates from small image to
                         // complete frame reference
                         Aux1.x = Aux1.x + Offset.x;
@@ -103,7 +100,7 @@ void PeopleDetector::DPMPeopleDetection(CameraStream &Camera, bool PDFiltering)
             }
         }
         else{
-            // If there is no information about the foregrouund nothing is done.
+            // If there is no person on the semantic mask DPM does not search.
         }
     }
     // PEOPLE DETECTION WITHOUT FILTERING
@@ -265,19 +262,15 @@ void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> sco
             // Perpendicular line. New line at C pointing direction of Direction Vector
             line(CenitalPlane, MiddleSegmentPoint, C, PerpendicularColor, 2);
         }
-    }
+        else if (!RepresentationOption.compare("Gaussians")){
+            // Mesgrid function
+            meshgrid(X, Y, CenitalPlane.rows, CenitalPlane.cols);
 
-    if (!RepresentationOption.compare("Gaussians")){
-        // Mesgrid function
-        meshgrid(X, Y, CenitalPlane.rows, CenitalPlane.cols);
+            CenitalPlane.convertTo(CenitalPlane, CV_32FC3, 1/255.0);
 
-        // Extract the maximum score from the vector
-        double MaxScore = *max_element(scores.begin(), scores.end());
-
-        // Extract projected points and create Gaussians
-        for (size_t i = 0; i < ProjectedPoints.size(); i++) {
-            Point2f center = ProjectedPoints[i];
             if (!scores.empty()) {
+                // Extract the maximum score from the vector
+                double MaxScore = *max_element(scores.begin(), scores.end());
                 if (MaxScore > 1){
                     score = ((exp(-(scores[i]/MaxScore)))/0.02) - 15;
                 }
@@ -289,11 +282,12 @@ void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> sco
                 score = 5;
             }
 
-            // Draw a Gaussian of mean = center and std = score
-            gaussianFunction(Gaussian, X, Y, center, score, CameraNumber);
-
+            // Draw a Gaussian of mean = C and std = score
+            gaussianFunction(Gaussian, X, Y, C, score, CameraNumber);
             // Add gaussian to CenitalPlane to display
             add(Gaussian, CenitalPlane, CenitalPlane);
+
+            CenitalPlane.convertTo(CenitalPlane, CV_8UC3, 255.0);
         }
     }
 }

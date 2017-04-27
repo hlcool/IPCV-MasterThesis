@@ -3,18 +3,17 @@
 #include "barrier.h"
 #include "camerastream.h"
 #include "cameraworker.h"
-
 #include <QDebug>
-#include <QThread>
 #include <QLabel>
+#include <string>
+#include <QThread>
+#include <iostream>
 #include <QGridLayout>
+#include <QFileDialog>
+#include <boost/lexical_cast.hpp>
 #include <opencv2/opencv.hpp>
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
-#include <boost/lexical_cast.hpp>
-#include <QFileDialog>
-#include <iostream>
-#include <string>
 
 using namespace std;
 using namespace cv;
@@ -96,9 +95,6 @@ void MainWindow::threadStarting()
         threads[i]->start();
         ui->textBrowser->append(QString::fromStdString("Thread from camera " + to_string(i+1) + " started"));
     }
-
-    // Display intial messages
-    ui->textBrowser->append(ui->PeopleDetectorCB->currentText() + " People Detector in use");
 }
 
 void MainWindow::connectSignals2Slots(QThread *thread, CameraWorker *worker)
@@ -174,7 +170,6 @@ void MainWindow::displayFrame(Mat frame, Mat CenitalPlane, int CameraNumber)
     else if (CameraNumber == 3) {
         // Camera 3
         ui->CVWidget3->showImage(frame);
-        // CenitalPlane.convertTo(CenitalPlane, CV_8UC3, 255.0);
         // Cenital Plane is only displayed once
         ui->CVWidgetCenital->showImage(CenitalPlane);
     }
@@ -185,8 +180,13 @@ void MainWindow::joinCenitalFrames(Mat frame, Mat CenitalPlane, int CameraNumber
     Mat CenitalFrame1, CenitalFrame2, CenitalFrame3;
 
     CenitalFrame1 =  CameraWorkers[0]->CenitalPlane;
+    //CenitalFrame1.convertTo(CenitalFrame1, CV_8UC3, 255.0);
+
     CenitalFrame2 =  CameraWorkers[1]->CenitalPlane;
+    //CenitalFrame2.convertTo(CenitalFrame2, CV_8UC3, 255.0);
+
     CenitalFrame3 =  CameraWorkers[2]->CenitalPlane;
+    //CenitalFrame3.convertTo(CenitalFrame3, CV_8UC3, 255.0);
 
     // Join all the images
     add(CenitalPlane, CenitalFrame1, CenitalPlane);

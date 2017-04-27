@@ -1,12 +1,12 @@
 #include "camerastream.h"
-#include <fstream>
-#include <iostream>
 #include <string>
-#include <QThread>
 #include <QMutex>
+#include <fstream>
+#include <QThread>
 #include <stdio.h>
-#include <stdlib.h>
 #include <numeric>
+#include <iostream>
+#include <stdlib.h>
 #include <boost/lexical_cast.hpp>
 #include <opencv2/opencv.hpp>
 #include "opencv2/imgproc/imgproc.hpp"
@@ -112,7 +112,6 @@ void CameraStream::FastRCNNPeopleDetection(string FrameNumber, string Method)
         }
     }
     RCNNBoundingBoxesNMS = RCNNBoundingBoxes;
-    //non_max_suppresion(RCNNBoundingBoxes, RCNNBoundingBoxesNMS, 0.65);
 }
 
 void CameraStream::decodeBlobFile(string FileName, string FrameNumber)
@@ -377,10 +376,6 @@ void CameraStream::ProjectFloorPoints(Mat &CenitalPlane)
     // Extract number of Floor Points
     NumberFloorPoints = static_cast<int>(ProjectedFloorVector.size());
 
-    // Load cenital plane
-    //string CenitalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png";
-    //Mat CenitalPlane = imread(CenitalPath);
-
     // Extract projected floor mask
     Mat ProjectedFloorMask = Mat::zeros(CenitalPlane.rows, CenitalPlane.cols, CV_8U);
 
@@ -442,17 +437,6 @@ void CameraStream::drawSemantic(Mat &CenitalPlane)
         Color.val[2] = 255;
     }
 
-    // Clean previous cenital view
-    //string CenitalPath = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png";
-    //if (CameraNumber == 1){
-    //  CenitalPlane = imread(CenitalPath);
-    //}
-
-    //if(!CenitalPlane.data ){
-    //  cout <<  "Could not open or find the image " << CenitalPath << std::endl ;
-    //exit(EXIT_FAILURE);
-    //}
-
     // Copy the cenital image to an overlay layer
     CenitalPlane.copyTo(overlay);
 
@@ -465,11 +449,6 @@ void CameraStream::drawSemantic(Mat &CenitalPlane)
 
     // Create the convex poligon from array of Point and add transparency to the final image
     addWeighted(overlay, alpha, CenitalPlane, 1 - alpha, 0, CenitalPlane);
-
-    // Last camera converts image to CV_32FC3
-    //if (CameraNumber == 3){
-    //  CenitalPlane.convertTo(CenitalPlane, CV_32FC3, 1/255.0);
-    //}
 }
 
 void CameraStream::AkazePointsForViewImages()
