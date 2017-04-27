@@ -33,7 +33,8 @@ SOURCES += main.cpp\
     DPM/dpm_convolution.cpp \
     DPM/dpm_feature.cpp \
     DPM/dpm_model.cpp \
-    DPM/dpm_nms.cpp
+    DPM/dpm_nms.cpp \
+    aboutdialog.cpp
 
 HEADERS  += mainwindow.h \
     barrier.h \
@@ -47,9 +48,11 @@ HEADERS  += mainwindow.h \
     DPM/dpm_model.hpp \
     DPM/dpm_nms.hpp \
     DPM/dpm.hpp \
-    DPM/precomp.hpp
+    DPM/precomp.hpp \
+    aboutdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    aboutdialog.ui
 
 # The following lines tells Qmake to use pkg-config for opencv
 QT_CONFIG -= no-pkg-config
@@ -57,3 +60,6 @@ CONFIG  += link_pkgconfig
 PKGCONFIG += opencv
 
 QMAKE_CXXFLAGS_WARN_ON += -Wno-reorder
+
+RESOURCES += \
+    resources.qrc

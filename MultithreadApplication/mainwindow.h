@@ -53,6 +53,8 @@ private slots:
     void on_actionCamera_2_triggered();
     void on_actionCamera_3_triggered();
 
+    void on_actionAbout_triggered();
+
 private:
     Ui::MainWindow *ui;
     int numCams;

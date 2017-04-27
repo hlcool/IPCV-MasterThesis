@@ -3,6 +3,7 @@
 #include "barrier.h"
 #include "camerastream.h"
 #include "cameraworker.h"
+#include "aboutdialog.h"
 #include <QDebug>
 #include <QLabel>
 #include <string>
@@ -353,4 +354,13 @@ void MainWindow::on_actionCamera_3_triggered()
         }
     }
     return;
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+    cout << "sadsad" <<  endl;
+    AboutDialog Aboutwindow;
+    Aboutwindow.setModal(true);
+    Aboutwindow.exec();
+
 }

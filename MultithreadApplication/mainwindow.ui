@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1334</width>
-    <height>889</height>
+    <height>821</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -923,7 +923,30 @@
       <property name="title">
        <string/>
       </property>
-      <layout class="QGridLayout" name="gridLayout_11"/>
+      <layout class="QGridLayout" name="gridLayout_11">
+       <item row="0" column="0">
+        <widget class="QLabel" name="Logos">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>400</width>
+           <height>135</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="resources.qrc">:/images/Logos/Logos.png</pixmap>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
     <item row="0" column="1">
@@ -1120,6 +1143,10 @@
      <property name="title">
       <string>Set Homography...</string>
      </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/images/Logos/Homography Icon.png</normaloff>:/images/Logos/Homography Icon.png</iconset>
+     </property>
      <addaction name="actionCamera_1"/>
      <addaction name="actionCamera_2"/>
      <addaction name="actionCamera_3"/>
@@ -1128,34 +1155,91 @@
     <addaction name="menuSet_Homography"/>
     <addaction name="actionCloseWindow"/>
    </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
   </widget>
   <action name="actionOpen_file">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/Logos/Open File.png</normaloff>:/images/Logos/Open File.png</iconset>
+   </property>
    <property name="text">
     <string>Open file...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionCloseWindow">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/Logos/Exit Icon.png</normaloff>:/images/Logos/Exit Icon.png</iconset>
+   </property>
    <property name="text">
     <string>Close</string>
    </property>
    <property name="toolTip">
     <string>CloseWindow</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionCamera_3">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/Logos/Camera Icon.png</normaloff>:/images/Logos/Camera Icon.png</iconset>
+   </property>
    <property name="text">
     <string>Camera 3</string>
    </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionCamera_2">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/Logos/Camera Icon.png</normaloff>:/images/Logos/Camera Icon.png</iconset>
+   </property>
    <property name="text">
     <string>Camera 2</string>
    </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionCamera_1">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/Logos/Camera Icon.png</normaloff>:/images/Logos/Camera Icon.png</iconset>
+   </property>
    <property name="text">
     <string>Camera 1</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/Logos/About-icon.png</normaloff>:/images/Logos/About-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Application Information</string>
    </property>
   </action>
  </widget>
@@ -1168,7 +1252,9 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionCloseWindow</sender>
