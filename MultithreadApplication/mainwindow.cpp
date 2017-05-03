@@ -181,13 +181,8 @@ void MainWindow::joinCenitalFrames(Mat frame, Mat CenitalPlane, int CameraNumber
     Mat CenitalFrame1, CenitalFrame2, CenitalFrame3;
 
     CenitalFrame1 =  CameraWorkers[0]->CenitalPlane;
-    //CenitalFrame1.convertTo(CenitalFrame1, CV_8UC3, 255.0);
-
     CenitalFrame2 =  CameraWorkers[1]->CenitalPlane;
-    //CenitalFrame2.convertTo(CenitalFrame2, CV_8UC3, 255.0);
-
     CenitalFrame3 =  CameraWorkers[2]->CenitalPlane;
-    //CenitalFrame3.convertTo(CenitalFrame3, CV_8UC3, 255.0);
 
     // Join all the images
     add(CenitalPlane, CenitalFrame1, CenitalPlane);

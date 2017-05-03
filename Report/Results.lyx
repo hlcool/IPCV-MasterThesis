@@ -7,6 +7,8 @@
 \textclass book
 \begin_preamble
 \usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
@@ -93,6 +95,10 @@ name "chap:Results"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+Application Performance Results 
 \end_layout
 
 \begin_layout Section

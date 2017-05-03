@@ -6,8 +6,8 @@
         <file>Logos/Logos.png</file>
         <file>Logos/Open File.png</file>
         <file>Logos/Camera Icon.png</file>
-        <file>Logos/Exit Icon.png</file>
         <file>Logos/Homography Icon.png</file>
         <file>Logos/About-icon.png</file>
+        <file>Logos/Exit Icon.png</file>
     </qresource>
 </RCC>

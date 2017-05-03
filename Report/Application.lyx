@@ -1,0 +1,243 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass book
+\begin_preamble
+\usepackage{hyperref}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing double
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.5in
+\topmargin 1.6in
+\rightmargin 1.2in
+\bottommargin 1.6in
+\headheight 1.5in
+\headsep 0.3in
+\footskip 0.8in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle plain
+\bullet 1 2 6 -1
+\bullet 2 2 12 -1
+\bullet 3 1 25 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Developed Application
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Developed Application"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Within this Chapter the developed application will be analyze.
+ This application will be the base for the visualization and arrangement
+ of the usage statistics from the different areas of interest.
+ As said in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Objectives"
+
+\end_inset
+
+ this usage data can be pre-generated or generated ideally under a real-time
+ constraint.
+ The main application environment should be user-friendly.
+\end_layout
+
+\begin_layout Standard
+The application has been developed under QT Creator coding environment in
+ Mac OS.
+ This decision has been fundamentally based on:
+\end_layout
+
+\begin_layout Enumerate
+Its cross-platform characteristic which makes it easily portable from one
+ operating system to another.
+\end_layout
+
+\begin_layout Enumerate
+Its application window designer that enables the user to design the software
+ windows by using and interface instead of having to code to create the
+ mentioned window.
+\end_layout
+
+\begin_layout Enumerate
+The possibility to add OpenCV libraries to the project.
+\end_layout
+
+\begin_layout Standard
+Two main applications, single-thread and multi-thread, have been developed
+ and will be analyze on the following lines, however at the end of the project
+ only the multi-thread application will be the one in use.
+\end_layout
+
+\begin_layout Section
+Single-thread Application
+\end_layout
+
+\begin_layout Standard
+During the first stages of the development and for simplicity sake the applicati
+on has been design and developed to run under a single thread.
+ This means that all the processing has been done sequentially camera by
+ camera.
+ A simple flow-chart diagram can be seen in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Flow-chart diagram for the single-thread application"
+
+\end_inset
+
+ that illustrates the execution path.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Flow-chart diagram for the single-thread application
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Flow-chart diagram for the single-thread application"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This design approach will be valid if the computational effort is minimum,
+ however, when working with a multi-camera system with heavy algorithms
+ running the computational increases exponentially and this design is no
+ longer worthwhile.
+ 
+\end_layout
+
+\begin_layout Section
+Multi-thread Application
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Flow-chart diagram for the multi-thread application
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Flow-chart diagram for the multi-thread application"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

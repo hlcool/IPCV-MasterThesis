@@ -214,6 +214,16 @@ filename "StateOftheArt.lyx"
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
+filename "Application.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
 filename "Results.lyx"
 
 \end_inset

@@ -130,7 +130,7 @@ reference "cha:Introduction"
 \end_layout
 
 \begin_layout Section
-Pedestrian detection and crowd patrons.
+Pedestrian detection and crowd patrons
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Pedestrian-detection-and crowd patrons"
@@ -140,76 +140,125 @@ name "sec:Pedestrian-detection-and crowd patrons"
 
 \end_layout
 
+\begin_layout Subsection
+Available Datasets
+\end_layout
+
 \begin_layout Standard
 Pedestrian detection has been a major issue in computer vision during the
  past few years due to its potential uses for modern applications.
- It keeps being a research area because of the large amount of datasets
- with different video characteristics such as people occlusions, poses,
- scales, illumination ranges...
- Those datasets include Caltech 
+ It keeps being a research area because of the large amount of available
+ datasets with different video and people characteristics such as people
+ occlusions, poses, scales, illumination ranges...
+ Those datasets include among others:
+\end_layout
+
+\begin_layout Itemize
+Caltech 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dollar2009pedestrian"
 
 \end_inset
 
-, ETH 
+, which consists on video taken from a vehicle diving through regular traffic
+ in an urban environment.
+\end_layout
+
+\begin_layout Itemize
+ETHZ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ess2007depth"
 
 \end_inset
 
-, TUD 
+.
+ It consists on recordings using a pair of AVT Marlins F033C mounted on
+ a chariot which moves through pedestrian paths.
+\end_layout
+
+\begin_layout Itemize
+TUD 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "wojek2009multi"
 
 \end_inset
 
- or INRIA 
+.
+ In this case, the recording has been done by a static camera in a crossing
+ campus scene.
+\end_layout
+
+\begin_layout Itemize
+INRIA 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dalal2005histograms"
 
 \end_inset
 
- among others.
- As a result of this large amount of training and testing data, some detectors
+ which collects precise people images both static and moving.
+ In this case, images fully represent people without taking into account
+ the environment.
+\end_layout
+
+\begin_layout Standard
+As a result of this large amount of training and testing data, some detectors
  perform better in terms of precision and time consumption than others depending
  on the specific situations.
 \end_layout
 
+\begin_layout Subsection
+Main Detectors
+\end_layout
+
 \begin_layout Standard
-Detectors such using Histograms of Oriented Gradients 
+Main pedestrian detections that have been used so far can be divided in
+ many categories.
+ To name a few one can start with the ones that use Histograms of Oriented
+ Gradients like 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dalal2005histograms"
 
 \end_inset
 
-, Discriminative Part Models 
+ in combination with linear Support Vectors Machine in order to describe
+ pedestrian shape with gradients to create a model and classify possible
+ candidates.
+ Secondly, Discriminative Part Models as 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "felzenszwalb2008discriminatively"
 
 \end_inset
 
- and Aggregate Channel Features 
+ that will divide the human body into different parts (head, trunk, legs...)
+ and search for them into the image for a later combination into a single
+ person detection, or finally Aggregate Channel Features 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dollar2014fast"
 
 \end_inset
 
- have been used along this years with significant results depending on the
- train and test dataset.
+ which will use a combination of different channels such as normalized gradient
+ magnitude, histogram of oriented gradients (6 channels), and LUV color
+ channels in order to achieve the final detection.
+\end_layout
+
+\begin_layout Standard
+These detectors have been used along this years with significant results
+ depending on the train and test dataset as said before due to the differences
+ between different datasets.
  
 \end_layout
 
 \begin_layout Standard
 However, new detectors based on deep Convolutional Networks have improve
- notably the accuracy and time consumption of all the previous algorithms.
+ notably the accuracy of all the previous algorithms.
  Examples such as ImageNet 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -228,8 +277,111 @@ key "girshick2015fast"
  the previous mentioned algorithms.
 \end_layout
 
+\begin_layout Subsection
+Object Proposals
+\end_layout
+
 \begin_layout Standard
-In 
+Described detectors such as HOG, DPM or ACF utilized the well known 
+\begin_inset Quotes eld
+\end_inset
+
+sliding window
+\begin_inset Quotes erd
+\end_inset
+
+ algorithm, which means that an efficient classifier will test, in search
+ of pedestrian, every possible image window.
+ Parameters such as window size, or overlapping are common tuning values
+ that will increase or decrease the performance of the detector.
+ Those methods usually need from 
+\begin_inset Formula $10^{4}$
+\end_inset
+
+ to 
+\begin_inset Formula $10^{5}$
+\end_inset
+
+ windows per image and this number will grow exponentially for multi-scale
+ detection.
+ If the complexity of the core classifier is increased in every window testing,
+ the computational time will end up being not affordable.
+\end_layout
+
+\begin_layout Standard
+One of the most successful approach to overcame this time consumption problem
+ without losing detection quality is by means of object proposals 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "hosang2016makes"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Object proposals will be such objects that could be fitted into the desired
+ label classification.
+ This object will be share common visual properties that will distinguish
+ them from the background.
+ If lower number of object proposals than sliding windows lead to a higher
+ object recall, a speed-up will be achieve which means that more efforts
+ can be focus on more sophisticated classifiers.
+\end_layout
+
+\begin_layout Standard
+Both ImageNet and Fast R-CNN use detections proposals, which is one of the
+ main reasons why they outperform previous algorithms.
+ In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "hosang2016makes"
+
+\end_inset
+
+ two set of proposal methods are analyzed:
+\end_layout
+
+\begin_layout Itemize
+Grouping proposal methods.
+ This methods attempt to generate multiple, and so, overlapping segment
+ that are likely to correspond to objects.
+ Usually this method generate region proposals by grouping super pixels,
+ solving multiple graph cut problems, or directly using edge contours.
+ One of the best examples for this methods is MCG 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "arbelaez2014multiscale"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Window scoring proposal methods.
+ An alternate approach is to score each candidate window according to the
+ probability to contain an object.
+ Best results for this methods are provided by EdgeBoxes 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zitnick2014edge"
+
+\end_inset
+
+ which uses a coarse sliding window pattern which uses boundary estimation
+ and a refinement step to improve performance.
+\end_layout
+
+\begin_layout Subsection
+Research Directions
+\end_layout
+
+\begin_layout Standard
+As said before this computer vision field is constantly in change and so
+ some future work lines can be set.
+ In 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dollar2012pedestrian"
@@ -243,10 +395,11 @@ key "dollar2012pedestrian"
 
 \begin_layout Enumerate
 Context information should be added.
- The ground plane assumption can reduce errors if the detection for both
+ Starting from the hypothesis that a person should be placed on the floor,
+ the ground plane assumption can reduce errors if the detection for both
  the person and the floor are accurate.
- This could be done by extracting contextual information from the scene
- which is one of the objectives of the work.
+ This could be achieve by extracting good contextual information from the
+ scene which is one of the objectives of the work.
 \end_layout
 
 \begin_layout Enumerate
@@ -256,6 +409,10 @@ Occlusion treatment.
  frames whose miss rates are high could solve partially the problem of occlusion
 s or at least improve the performance.
  
+\end_layout
+
+\begin_layout Subsection
+Crowd Dynamics
 \end_layout
 
 \begin_layout Standard
@@ -277,16 +434,25 @@ key "turner2002encoding"
 .
  The information coming from these algorithms will lead to predictions in
  people behavior and the paths they could follow which could help us to
- extract more accurate statistical data or even refine people detections
- based on this previous behavior knowledge.
+ extract more accurate statistical data, refine people detections based
+ on this previous behavior knowledge or even improve detection computational
+ time searching pedestrian only in those paths they usually follow.
 \end_layout
 
 \begin_layout Section
-Contextual Information.
+Contextual Information
 \end_layout
 
 \begin_layout Standard
-Contextual information can be described as the set of circumstances or facts
+One can describe contextual information as the set of details that 
+\end_layout
+
+\begin_layout Subsection
+Semantic segmentation.
+\end_layout
+
+\begin_layout Standard
+Semantic information can be described as the set of circumstances or facts
  that one can extract from a scene.
  All this information can often lead to low-level characteristics 
 \begin_inset CommandInset citation
@@ -327,12 +493,11 @@ reference "fig:Scene-parsing-on PSPNet"
 
 \end_inset
 
-) which means that one could have the position and label of some object..
+) which means that one could have the position and label of some object.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
-placement H
 wide false
 sideways false
 status open
@@ -404,9 +569,10 @@ key "zhao2016pyramid"
 
  has dealt with this problems by using deep Convolutional Neural Network
  and assigning relationships between different dataset labels, i.e.
- a an airplane is likely to be in runway or fly in sky while not over a
- road which will reduce slightly the complexity of having large amounts
- of labels to predict..
+ a an airplane is likely to be in runway or flying in the sky while not
+ over a road.
+ This relationships will reduce slightly the complexity of having large
+ amounts of labels to predict.
 \end_layout
 
 \begin_layout Standard
@@ -426,19 +592,7 @@ reference "sec:Pedestrian-detection-and crowd patrons"
 \end_layout
 
 \begin_layout Section
-Required Analysis.
-\end_layout
-
-\begin_layout Subsection
-Multi camera scenarios.
-\end_layout
-
-\begin_layout Subsection
-Semantic segmentation.
-\end_layout
-
-\begin_layout Subsection
-Spatiotemporal constraining.
+Multi-camera scenarios.
 \end_layout
 
 \end_body

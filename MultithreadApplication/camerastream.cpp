@@ -314,7 +314,7 @@ void CameraStream::HomographySelection(vector<Mat> HomographyVector)
         Mat ViewDescriptor = AKAZEDescriptorsVector[CameraView];
         vector<KeyPoint> ViewKeypoints = AKAZEKeyPointsVector[CameraView];
 
-        Akaze(CameraViewImage, ViewKeypoints, ViewDescriptor, ActualFrame, NMatches, GoodMatchesPoints1, GoodMatchesPoints2);
+        Akaze(CameraViewImage, ViewKeypoints, ViewDescriptor, ActualFrame, NMatches, GoodMatchesPoints1, GoodMatchesPoints2, CameraView);
 
         if (NMatches > NMatchesMax){
             ViewIndex = CameraView;
@@ -338,6 +338,8 @@ void CameraStream::HomographySelection(vector<Mat> HomographyVector)
         // Convert ActualSemFrame with the computed homography to be similar to the semantic image from the view
         Mat SemWarping;
         warpPerspective(ActualSemFrame, SemWarping, HomographyBetweenViews, ActualSemFrame.size());
+        //String ImageName = "/Users/alex/Desktop/Semantic"+to_string(CameraNumber)+ ".png";
+        //imwrite(ImageName, SemWarping);
     }
     Homography = HomographyVector[ViewIndex];
 }
@@ -469,7 +471,7 @@ void CameraStream::AkazePointsForViewImages()
     }
 }
 
-void CameraStream::Akaze(Mat Image1, vector<KeyPoint> kpts1, Mat desc1, Mat Image2, int &NMatches, vector<Point2f> &GoodMatchesPoints1, vector<Point2f> &GoodMatchesPoints2)
+void CameraStream::Akaze(Mat Image1, vector<KeyPoint> kpts1, Mat desc1, Mat Image2, int &NMatches, vector<Point2f> &GoodMatchesPoints1, vector<Point2f> &GoodMatchesPoints2, int CameraView)
 {
     vector<KeyPoint> kpts2;
     Mat desc2;
@@ -511,6 +513,14 @@ void CameraStream::Akaze(Mat Image1, vector<KeyPoint> kpts1, Mat desc1, Mat Imag
         GoodMatchesPoints1.push_back(Point1);
         GoodMatchesPoints2.push_back(Point2);
     }
+    /*
+    if(CameraNumber == 1){
+        Mat res;
+        drawMatches(Image1, kpts1, Image2, kpts2, good_matches, res);
+        String ImageName = "/Users/alex/Desktop/image"+to_string(CameraView)+ ".png";
+        imwrite(ImageName, res);
+    }
+    */
 }
 
 void CameraStream::extractFGBlobs(Mat fgmask, string CBOption)

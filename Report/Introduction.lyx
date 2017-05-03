@@ -204,6 +204,13 @@ key "jiang2011anomalous"
 
 \begin_layout Section
 Objectives
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Objectives"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -311,6 +318,18 @@ reference "cha:State Of the Art"
 .
  State of the Art.
  
+\end_layout
+
+\begin_layout Itemize
+Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Developed Application"
+
+\end_inset
+
+.
+ Developed Application.
 \end_layout
 
 \begin_layout Itemize

@@ -70,7 +70,7 @@ public:
     vector<vector<KeyPoint>> AKAZEKeyPointsVector;
     vector<Mat> AKAZEDescriptorsVector;
     void AkazePointsForViewImages();
-    void Akaze(Mat Image1, vector<KeyPoint> kpts1, Mat desc1, Mat Image2, int &NMatches, vector<Point2f> &GoodMatchesPoints1, vector<Point2f> &GoodMatchesPoints2);
+    void Akaze(Mat Image1, vector<KeyPoint> kpts1, Mat desc1, Mat Image2, int &NMatches, vector<Point2f> &GoodMatchesPoints1, vector<Point2f> &GoodMatchesPoints2, int CameraView);
 
     // HOG Vectors
     vector<Rect> HOGBoundingBoxes;
