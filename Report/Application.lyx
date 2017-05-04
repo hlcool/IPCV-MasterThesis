@@ -7,6 +7,8 @@
 \textclass book
 \begin_preamble
 \usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
@@ -162,9 +164,235 @@ reference "fig:Flow-chart diagram for the single-thread application"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum
+ height=1cm,text centered, draw=black, fill=red!30]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm,
+ text centered, draw=black, fill=orange!30]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110,
+ minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=blue!30,
+ inner sep=10pt]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm,text
+ width=1.5cm, text centered, draw=black, fill=green!30]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{arrow} = [draw, -latex']
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[node distance=2cm] 
+\end_layout
+
+\begin_layout Plain Layout
+
+%% NODES
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (UIStart) [startstop] {Interface Start};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (UIIdle) [startstop, below of = UIStart] {Interface Idle};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (VideoInput) [io, right of = UIIdle, xshift=2cm] {Video Sequence};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (ParamInput) [io, left of = UIIdle, xshift=-2cm] {UI Parameters};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (Camera2) [process, below of=UIIdle, yshift=-0.5cm] {Camera 2};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (Camera1) [process, left of=Camera2, xshift=-2cm] {Camera 1};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (Camera3) [process, right of=Camera2, xshift=2cm] {Camera 3};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (Display) [process, below of=Camera3, yshift=-0.5cm] {Display};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (VideoEnd) [decision, below of=Camera2, yshift=-0.5cm] {Video Finished};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (VideoStop) [startstop, below of=VideoEnd, yshift=-1cm] {Video Stops};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+%% ARROWS
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (UIStart) -- (UIIdle);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (VideoInput) -- (UIIdle);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (ParamInput) -- (UIIdle);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (UIIdle) |- ([yshift=0.6cm] Camera1.north) -- (Camera1.north);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (Camera1) -- (Camera2);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (Camera2) -- (Camera3);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (Camera3) -- (Display);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (Display) -- (VideoEnd);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (VideoEnd) -| node[near start, anchor=south]{no}(Camera1);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (VideoEnd) -- node[anchor=east]{yes}(VideoStop);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
@@ -187,21 +415,17 @@ name "fig:Flow-chart diagram for the single-thread application"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-This design approach will be valid if the computational effort is minimum,
- however, when working with a multi-camera system with heavy algorithms
- running the computational increases exponentially and this design is no
- longer worthwhile.
- 
+This design approach will be valid if the computational effort is minimum
+ because before displaying any results, all the process for the three cameras
+ should be computed, however, when working with such a multi-camera system
+ with heavy algorithms running as the proposed in our work, the computational
+ time increases exponentially and this design is no longer worthwhile.
 \end_layout
 
 \begin_layout Section
@@ -209,11 +433,335 @@ Multi-thread Application
 \end_layout
 
 \begin_layout Standard
+The new and valid approach can be observed in the flow-chart displayed in
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Flow-chart diagram for the multi-thread application"
+
+\end_inset
+
+.
+ As one can observe, now the three threads are running in parallel and so,
+ all the process is no longer done sequentially and computing power from
+ the CPU can be much more usable.
+\end_layout
+
+\begin_layout Standard
+Now, however, as threads are running separately one have to create some
+ sort of synchronization between them.
+ This is done because one thread can process a frame faster than another
+ one due to multiple external reason.
+ Nevertheless, the application should display the same exact frame for all
+ the cameras more over if the information is going to be shared between
+ threads.
+ In our case the synchronization is perform by the barrier that can be observed
+ in the diagram.
+ This barrier will create a meeting point for all the threads that all of
+ them must reach before displaying any result.
+ This is done as said to ensure that all the process have been completed
+ before displaying or saving any results.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
 sideways false
-status collapsed
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum
+ height=1cm,text centered, draw=black, fill=red!30]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm,
+ text centered, draw=black, fill=orange!30]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110,
+ minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=blue!30,
+ inner sep=10pt]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm,text
+ width=1.5cm, text centered, draw=black, fill=green!30]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{arrow} = [draw, -latex']
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[node distance=2cm] 
+\end_layout
+
+\begin_layout Plain Layout
+
+%% NODES
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (UIStart) [startstop] {Interface Start};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (UIIdle) [startstop, below of = UIStart] {Interface Idle};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (VideoInput) [io, right of = UIIdle, xshift=2cm] {Video Sequence};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (ParamInput) [io, left of = UIIdle, xshift=-2cm] {UI Parameters};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (ThreadStart) [startstop, below of = UIIdle] {Threads Start};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (Camera2) [process, below of=ThreadStart] {Camera 2 Thread};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (Camera1) [process, left of=Camera2, xshift=-2cm] {Camera 1 Thread};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (Camera3) [process, right of=Camera2, xshift=2cm] {Camera 3 Thread};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (ThreadBarrier) [startstop, below of=Camera2] {Thread Barrier / Meeting
+ Point};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (Display) [process, below of=ThreadBarrier] {Display};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (VideoEnd) [decision, below of=Display, yshift=-0.5cm] {Video Finished};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (VideoStop) [startstop, below of=VideoEnd, yshift=-0.7cm] {Video Stops};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+%% ARROWS
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (UIStart) -- (UIIdle);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (VideoInput) -- (UIIdle);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (ParamInput) -- (UIIdle);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (UIIdle) -- (ThreadStart);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (ThreadStart) -| (Camera1);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (ThreadStart) -- (Camera2);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (ThreadStart) -| (Camera3);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (Camera1) |- (ThreadBarrier);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (Camera2) -- (ThreadBarrier);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (Camera3) |- (ThreadBarrier);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (ThreadBarrier) -- (Display);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (Display) -- (VideoEnd);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (VideoEnd) -| node[near start, anchor=south]{no}([xshift=-1cm]
+ Camera1.west) -- (Camera1.west);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (VideoEnd) -| node[near start, anchor=south]{}([xshift=+1cm]
+ Camera3.east) -- (Camera3.east);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (VideoEnd) -| node[near start, anchor=south]{no}([xshift=+0.8cm]
+ Camera2.east) -- (Camera2.east);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (VideoEnd) -- node[anchor=east]{yes}(VideoStop);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard

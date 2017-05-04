@@ -216,9 +216,9 @@ Main Detectors
 
 \begin_layout Standard
 Main pedestrian detections that have been used so far can be divided in
- many categories.
- To name a few one can start with the ones that use Histograms of Oriented
- Gradients like 
+ many categories and from many points of views.
+ One possible easy classification depending on the used descriptor may start
+ with the ones that use Histograms of Oriented Gradients like 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dalal2005histograms"
@@ -250,15 +250,224 @@ key "dollar2014fast"
 \end_layout
 
 \begin_layout Standard
-These detectors have been used along this years with significant results
- depending on the train and test dataset as said before due to the differences
- between different datasets.
- 
+In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "garcia2015people"
+
+\end_inset
+
+ an extensive evaluation of the state of the art of people detection is
+ given.
+ Here algorithms are characterize and differentiate ones from the others
+ depending on the object detection approach and the person model used.
+ Object detection will be the extraction of the possible candidates to be
+ a person from the scene.
+ Main algorithms usually will use:
+\end_layout
+
+\begin_layout Itemize
+Sliding window: The so called exhaustive search will lead to an efficient
+ classifier to test, in search of pedestrian, every possible image window.
+ Parameters such as window size, or overlapping are common tuning values
+ that will increase or decrease the performance of the detector.
+ Those methods usually need from 
+\begin_inset Formula $10^{4}$
+\end_inset
+
+ to 
+\begin_inset Formula $10^{5}$
+\end_inset
+
+ windows per image and this number will grow exponentially for multi-scale
+ detection.
+ If the complexity of the core classifier is increased in every window testing,
+ the computational time will end up being not affordable.
+\end_layout
+
+\begin_layout Itemize
+Segmentation: This approach will introduce some sort of segmentation as
+ a preliminary step for the pedestrian detection.
+ Algorithms such as background subtraction will lead to some moving parts
+ of the image that will generate interest objects from moving patterns.
+ Others such as color segmentation are based on color skin to restrict the
+ future people search only to those objects that fulfill the color condition.
+ By all means, segmentation will directly produce those scene candidates
+ to be a person and so the computational time is highly decreased.
+\end_layout
+
+\begin_layout Itemize
+Segmentation + Exhaustive search: The final approach will be the combination
+ of both previously analyzed techniques.
+ In this case the previous step of segmentation will not lead to final candidate
+s objects but to an area that could contain some candidates objects.
+ After segmentation process and sliding window technique is perform over
+ the reduce scene area and so the final candidates are extracted.
+ In this case improvements from both approaches are used as the computational
+ cost of the exhaustive search (that is the main drawback) is reduce by
+ the use of some sort of segmentation.
 \end_layout
 
 \begin_layout Standard
-However, new detectors based on deep Convolutional Networks have improve
- notably the accuracy of all the previous algorithms.
+Moving to person model, or in other words the set of characteristics that
+ will be able to discriminate between people and any other object in the
+ scene, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "garcia2015people"
+
+\end_inset
+
+differentiates three different groups:
+\end_layout
+
+\begin_layout Itemize
+Based on appearance: Most of the available detectors nowadays use appearance
+ information to define the person model and so, to discriminate between
+ person and the rest of the scene.
+ In this group of person model one can differentiate two approaches to describe
+ the shape of a person.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Holistic: With this models people will be defined from the easiest point
+ of view when a person is a region or a shape
+\end_layout
+
+\begin_layout Itemize
+Part-based: These models however, use more complex model where people are
+ defined as a combination of multiple shapes or regions from its body.
+\end_layout
+
+\begin_layout Standard
+Here one can find those that use silhouettes to classify people, either
+ from an holistic or part-based point of view, or color distribution in
+ people, however the most used approaches as said at the beginning of the
+ section, use Histograms of Oriented Gradients like 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dalal2005histograms"
+
+\end_inset
+
+, Haar-like features 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "alonso2007combination"
+
+\end_inset
+
+, or combination of multiple features, aggregate channel features: HOG,
+ gradient and color (ACF) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dollar2014fast"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Based on motion: As said before many of the detectors usually are based
+ on appearance, however, human appearance is likely to change due to environment
+al factors such as light conditions, cloths, camera settings.
+ In addition, people variability in terms of height, weigh and poses will
+ make appearance much likely to vary.
+ Due to this, some approaches try to get rid of these factors and detect
+ pedestrians using only its motion information.
+ In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cutler2000robust"
+
+\end_inset
+
+ detections are based on periodic motion analysis.
+ The algorithm performs motion segmentation and tracking to later on compute
+ the self-similarity between objects.
+\end_layout
+
+\begin_layout Itemize
+Based on appearance + motion: Although the main used algorithms are based
+ on appearance there are some such as 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "giebel2004bayesian,okuma2004boosted"
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "giebel2004bayesian,okuma2004boosted"
+
+\end_inset
+
+ that will merge both appearance and motion in order to improve results.
+ Most of these algorithms combine people detection and tracking, and so,
+ they have been design to improve people tracking over video sequences.
+\end_layout
+
+\begin_layout Standard
+In the table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Pedestrian-detection-performance"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "garcia2015people"
+
+\end_inset
+
+ propose some results from the State of the Art detectors depending on different
+ datasets.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Pedestrian Detection Performance
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Pedestrian-detection-performance"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+However, last years a new sort of detectors have start to be use detectors
+ based on deep Convolutional Networks have improve notably the accuracy
+ of all the previous algorithms.
  Examples such as ImageNet 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -399,15 +608,16 @@ Context information should be added.
  the ground plane assumption can reduce errors if the detection for both
  the person and the floor are accurate.
  This could be achieve by extracting good contextual information from the
- scene which is one of the objectives of the work.
+ scene which is one of the main objectives of the work.
 \end_layout
 
 \begin_layout Enumerate
 Occlusion treatment.
- Performance degrades rapidly under even mild occlusion so, the use of a
- multi-camera scenario with homographies to reproject detections in those
- frames whose miss rates are high could solve partially the problem of occlusion
-s or at least improve the performance.
+ Usually pedestrians, due to other scene elements such as columns or even
+ other pedestrians get occluded.
+ When this happens performance degrades rapidly under even mild occlusion
+ so, some improvements in this area will increase the performance in real
+ life situations such as crowded spaces.
  
 \end_layout
 
@@ -444,17 +654,41 @@ Contextual Information
 \end_layout
 
 \begin_layout Standard
-One can describe contextual information as the set of details that 
-\end_layout
-
-\begin_layout Subsection
-Semantic segmentation.
+One can describe contextual information as the set of circumstances or facts
+ that one can extract from a scene.
+ Usually, this set of circumstances is a wealth of information that is not
+ captured by the image but extracted by humans based on previously acquired
+ knowledge.
+ By taking a look to an outdoor image one can derive where the sky will
+ be, what the weather conditions are, which time of the day...
+ Also, by knowing the place the photo was taken, one can lead which objects
+ will be more probable to appear in the scene.
 \end_layout
 
 \begin_layout Standard
-Semantic information can be described as the set of circumstances or facts
- that one can extract from a scene.
- All this information can often lead to low-level characteristics 
+When talking specifically about computer vision, contextual information
+ will embrace for instance camera information (such as position, configuration,
+ distance to an object, static or not), the set of objects that one could
+ detect in the scene or how many views will be available...
+\end_layout
+
+\begin_layout Standard
+All this set of information that is not extracted from the frame will provide
+ a more general understanding about the scene and will help further algorithms.
+\end_layout
+
+\begin_layout Standard
+If we now focus with the set of objects that one can observe from a scene,
+ semantic segmentation techniques, which will be analyzed in the following
+ section, aim to separate a scene into different observable objects.
+\end_layout
+
+\begin_layout Subsection
+Semantic segmentation
+\end_layout
+
+\begin_layout Standard
+Semantic information can often lead to low-level characteristics 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "manjunath2002introduction"
@@ -483,8 +717,8 @@ key "zhao2016pyramid"
 \end_layout
 
 \begin_layout Standard
-In other words, scene contextual or semantic segmentation will have the
- goal to assign each pixel of an image a category label.
+In other words, semantic segmentation will have the goal to assign each
+ pixel of an image a category label.
  If the prediction is accurate, it will provide complete semantic understanding
  from the scene (Figure 
 \begin_inset CommandInset ref
@@ -575,15 +809,44 @@ key "zhao2016pyramid"
  amounts of labels to predict.
 \end_layout
 
+\begin_layout Section
+Multi-camera scenarios
+\end_layout
+
 \begin_layout Standard
-As in Section 
+The use of multi-camera is a common setup when dealing with video surveillance
+ problems.
+ Having multiple camera instances allows to observe the same event or object
+ of interest from up to two different points of view.
+ This will lead to a set of advantages in the scope of our work when dealing
+ with pedestrian detection and semantic classification and also, some unavoidabl
+e disadvantages.
+\end_layout
+
+\begin_layout Subsection
+Advantages
+\end_layout
+
+\begin_layout Standard
+As said in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Pedestrian-detection-and crowd patrons"
 
 \end_inset
 
-, the inclusion of a multi-camera system will arise some benefits.
+ one of the main research paths in pedestrian detection is the occlusion
+ treatment.
+ In this case, the use of a multi-camera scenario with computed homographies
+ between camera frames will help to reproject detections from one camera
+ to another whose miss rates are high so one could solve partially the problem
+ of occlusions or at least improve the performance.
+ 
+\end_layout
+
+\begin_layout Standard
+When talking about semantic segmentation the inclusion of a multi-camera
+ system will arise some benefits.
  While a single-camera system could lead to misclassification of labels
  in the image or even to represent an object with many classes due to for
  example, camera capture problems, in a multi-camera system one camera instance
@@ -591,8 +854,31 @@ reference "sec:Pedestrian-detection-and crowd patrons"
  they are analyzing the same common area.
 \end_layout
 
-\begin_layout Section
-Multi-camera scenarios.
+\begin_layout Subsection
+Disadvantages
+\end_layout
+
+\begin_layout Standard
+The main disadvantage when dealing with multi-camera systems will be the
+ exponential grow of computational time as algorithms should be performed
+ 
+\begin_inset Formula $N$
+\end_inset
+
+ times being 
+\begin_inset Formula $N$
+\end_inset
+
+ the number of camera instances.
+ This issue could be solved by the use of some parallel coding that will
+ perform cameras process separately.
+\end_layout
+
+\begin_layout Standard
+Other disadvantages will be related with synchronization problems, as if
+ the camera instances will be used to reproject objects/pedestrians from
+ one camera to another they must evidentially represent the same exact moment
+ in time, which depending on the setup will be more or less difficult.
 \end_layout
 
 \end_body

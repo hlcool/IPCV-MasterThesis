@@ -54,6 +54,9 @@ backgroundcolor=\color{gray75},
 \lstdefinestyle{C}
 {language=C,
 }
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
