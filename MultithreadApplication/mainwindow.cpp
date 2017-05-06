@@ -8,6 +8,7 @@
 #include <QLabel>
 #include <string>
 #include <QThread>
+#include <QMutex>
 #include <iostream>
 #include <QGridLayout>
 #include <QFileDialog>
@@ -22,6 +23,7 @@ using namespace cv;
 vector<CameraStream> Cameras;
 ofstream PtsDstFile;
 ofstream PtsSrcFile;
+QMutex mutexWindow;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -112,6 +114,7 @@ void MainWindow::connectSignals2Slots(QThread *thread, CameraWorker *worker)
     // frameFinished signal with updateVariables and joinCenitalFrames slots
     connect(worker, SIGNAL(frameFinished(Mat, Mat, int)), this, SLOT(updateVariables(Mat, Mat, int)));
     connect(worker, SIGNAL(frameFinished(Mat, Mat, int)), this, SLOT(joinCenitalFrames(Mat, Mat, int)));
+    connect(worker, SIGNAL(semanticFinished(int)), this, SLOT(joinSemanticMask(int)));
 
     // finished signal with quit and deleteLater slots
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
@@ -178,17 +181,51 @@ void MainWindow::displayFrame(Mat frame, Mat CenitalPlane, int CameraNumber)
 
 void MainWindow::joinCenitalFrames(Mat frame, Mat CenitalPlane, int CameraNumber)
 {
-    Mat CenitalFrame1, CenitalFrame2, CenitalFrame3;
-
-    CenitalFrame1 =  CameraWorkers[0]->CenitalPlane;
-    CenitalFrame2 =  CameraWorkers[1]->CenitalPlane;
-    CenitalFrame3 =  CameraWorkers[2]->CenitalPlane;
+    Mat CenitalFrame1 =  CameraWorkers[0]->CenitalPlane;
+    Mat CenitalFrame2 =  CameraWorkers[1]->CenitalPlane;
+    Mat CenitalFrame3 =  CameraWorkers[2]->CenitalPlane;
 
     // Join all the images
     add(CenitalPlane, CenitalFrame1, CenitalPlane);
     add(CenitalPlane, CenitalFrame2, CenitalPlane);
     add(CenitalPlane, CenitalFrame3, CenitalPlane);
     emit cenitalJoined(frame, CenitalPlane, CameraNumber);
+}
+
+void MainWindow::joinSemanticMask(int CameraNumber)
+{
+    if (CameraNumber == 1){
+        Mat SemanticMask1 =  CameraWorkers[0]->SemanticMask;
+        Mat SemanticMask2 =  CameraWorkers[1]->SemanticMask;
+        Mat SemanticMask3 =  CameraWorkers[2]->SemanticMask;
+
+        Mat CommonSemantic = Mat::zeros(SemanticMask1.rows, SemanticMask1.cols, SemanticMask1.type());
+        CommonSemantic.setTo(255);
+
+        int GrayLevel1, GrayLevel2, GrayLevel3;
+
+        for (int i = 0; i < SemanticMask1.rows; i++){
+            for (int j = 0; j < SemanticMask1.cols; j++){
+                GrayLevel1 = SemanticMask1.at<Vec3b>(i,j)[0];
+                GrayLevel2 = SemanticMask2.at<Vec3b>(i,j)[0];
+                GrayLevel3 = SemanticMask3.at<Vec3b>(i,j)[0];
+
+                if((GrayLevel1 != 0) && (GrayLevel2 != 0) && (GrayLevel3 != 0)) {
+                    if((GrayLevel1 == GrayLevel2) && (GrayLevel1 == GrayLevel3) && (GrayLevel3 == GrayLevel2)){
+                        //cout << "1: " << GrayLevel1 << ". 2: " << GrayLevel2 << ". 3: " << GrayLevel3 << endl;
+                        CommonSemantic.at<Vec3b>(i,j)[0] = GrayLevel1;
+                        CommonSemantic.at<Vec3b>(i,j)[1] = GrayLevel1;
+                        CommonSemantic.at<Vec3b>(i,j)[2] = GrayLevel1;
+                    }
+                }
+            }
+        }
+        imshow("Common Semantic Ground Plane", CommonSemantic);
+
+        imshow("Semantic Camera 1", SemanticMask1);
+        imshow("Semantic Camera 2", SemanticMask2);
+        imshow("Semantic Camera 3", SemanticMask3);
+    }
 }
 
 // ---------------------------------------- //

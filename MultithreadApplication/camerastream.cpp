@@ -355,7 +355,7 @@ void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameN
     imwrite(ImageName, ImageWarping);
 }
 
-void CameraStream::ProjectFloorPoints(Mat &CenitalPlane)
+void CameraStream::ProjectFloorPoints(Mat &CenitalPlane, Mat &SemanticMask, String FrameNumber)
 {
     Mat FloorMask;
     Mat SemanticImageGray;
@@ -372,6 +372,20 @@ void CameraStream::ProjectFloorPoints(Mat &CenitalPlane)
 
     // Apply Homography to vector of Points2f to find the projection of the floor
     perspectiveTransform(FloorPoints2, ProjectedFloor, Homography);
+    warpPerspective(ActualSemFrame*20, SemanticMask, Homography, SemanticMask.size());
+
+    if(CameraNumber == 1){
+        String ImageName = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Projected Frames /Projected Frames 1/Frame" + FrameNumber + ".png";
+        imwrite(ImageName, SemanticMask);
+    }
+    if(CameraNumber == 2){
+        String ImageName = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Projected Frames /Projected Frames 2/Frame" + FrameNumber + ".png";
+        imwrite(ImageName, SemanticMask);
+    }
+    if(CameraNumber == 3){
+        String ImageName = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Projected Frames /Projected Frames 3/Frame" + FrameNumber + ".png";
+        imwrite(ImageName, SemanticMask);
+    }
 
     // Fill the global vector
     ProjectedFloorVector = ProjectedFloor;
@@ -476,8 +490,8 @@ void CameraStream::Akaze(Mat Image1, vector<KeyPoint> kpts1, Mat desc1, Mat Imag
     vector<KeyPoint> kpts2;
     Mat desc2;
 
-    akazeDescriptor->setNOctaves(2);
-    akazeDescriptor->setNOctaveLayers(1);
+    akazeDescriptor->setNOctaves(3);
+    akazeDescriptor->setNOctaveLayers(2);
     akazeDescriptor->detectAndCompute(Image2, noArray(), kpts2, desc2);
 
     //  ------------------  //

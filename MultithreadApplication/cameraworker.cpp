@@ -105,7 +105,8 @@ void CameraWorker::processVideo()
         // Auxiliar Cenital plane to paint
         CenitalPlane = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
         // Project Floor Points
-        Camera.ProjectFloorPoints(CenitalPlane);
+        SemanticMask = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
+        Camera.ProjectFloorPoints(CenitalPlane, SemanticMask, FrameNumber);
         // Draw semantic projection
         Camera.drawSemantic(CenitalPlane);
 
@@ -136,7 +137,8 @@ void CameraWorker::processVideo()
         //qDebug() << "Thread " << Camera.CameraNumber << " processing frame " << QString::fromStdString(FrameNumber);
         // Threads must wait here until all of them have reached the barrier
         barrier.wait();
-        emit frameFinished(Camera.ActualFrame.clone(), CenitalPlaneImage.clone(), Camera.CameraNumber);
+        //emit semanticFinished(Camera.CameraNumber);
+        emit frameFinished(Camera.ActualFrame, CenitalPlaneImage, Camera.CameraNumber);
     }
     emit finished();
 }

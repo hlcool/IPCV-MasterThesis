@@ -33,12 +33,15 @@ public:
 
     // Cenital Frame
     Mat CenitalPlane;
+    // Semantic Mask
+    Mat SemanticMask;
 
     void processVideo();
 
 signals:
     // frame and index of label which frame will be displayed
-    void frameFinished(Mat frame, Mat CenitalPlane, int index);
+    void frameFinished(Mat frame, Mat CenitalPlane, int CameraNumber);
+    void semanticFinished(int CameraNumber);
     void finished();
 
 public slots:

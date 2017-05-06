@@ -62,7 +62,7 @@ public:
     // Semantic Projection
     vector<Point2f> ProjectedFloorVector;
     int NumberFloorPoints;
-    void ProjectFloorPoints(Mat &CenitalPlane);
+    void ProjectFloorPoints(Mat &CenitalPlane, Mat &SemanticMask, String FrameNumber);
     void drawSemantic(Mat& CenitalPlane);
 
     // AKAZE
