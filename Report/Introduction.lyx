@@ -146,7 +146,7 @@ key "wang2013intelligent"
 
 \begin_layout Standard
 The combination of these veins of research could lead to the automation
- of high-level human semantic tasks such as people detection
+ of high-level human semantic tasks such as people detection 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dollar2012pedestrian"
@@ -160,7 +160,7 @@ key "felzenszwalb2010object,ren2015faster,hosang2016makes"
 
 \end_inset
 
-and extraction of contextual information 
+ and extraction of contextual information 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "zhao2016pyramid"
@@ -175,6 +175,16 @@ key "zhao2016pyramid"
 \end_layout
 
 \begin_layout Standard
+Usually, mentioned video surveillance systems could be focus either from
+ a single-camera point of view, whcih will lead to a simple scenariao in
+ which the potential actions/events to detect will be observed from one
+ point in the scene, or, on the contrary from a multi-camera setup.
+ This sort of configuration will arise multiple benefits when dealing with
+ big spaces as it will provide the user different views of the scene which
+ will help the application purposes.
+\end_layout
+
+\begin_layout Standard
 Among Computer Vision applications running on a multi-camera scenario, a
  pivotal field of research is the analysis of public spaces.
  These are often crowd-populated scenarios which analysis requires the combinati
@@ -186,7 +196,7 @@ key "mazzon2013multi,turner2002encoding,scovanner2009learning"
 
 \end_inset
 
-and temporal usage of a given area in large-scale scenarios such as shopping
+ and temporal usage of a given area in large-scale scenarios such as shopping
  malls, universities and, generally, in any public-use building, either
  to extract statistical measures of behavior or to detect anomalous unexpected
  events 
@@ -198,8 +208,8 @@ key "jiang2011anomalous"
 
 .
  This analysis will come from a combination of complementary algorithms
- such as semantic area classification, people detection and crowd behavior
- analysis.
+ such as contextual or semantic area classification, people detection and
+ crowd behavior analysis.
 \end_layout
 
 \begin_layout Section
@@ -214,10 +224,10 @@ name "sec:Objectives"
 \end_layout
 
 \begin_layout Standard
-The main objective of this master thesis is to extract a contextual description
- about a populated large-scale scenario while extracting temporal statistical
+The main objective of this master thesis is to extract contextual description
+ from a large-scale populated scenario while extracting temporal statistical
  usage data from relevant scene spaces using various cameras.
- This should be supported with a GUI application.
+ This should be supported with a Graphical User Interface application.
  To fulfill this objective, this work will embrace two different blocks
  of objectives that will complement each other.
  The first one will have to do with the design of a graphical user interface
@@ -241,7 +251,7 @@ Algorithm
 \end_layout
 
 \begin_layout Standard
-The algorithm related objectives will be:
+The algorithm related objectives are:
 \end_layout
 
 \begin_layout Enumerate
@@ -359,7 +369,7 @@ reference "chap:Conclusions"
 \end_layout
 
 \begin_layout Itemize
-Annex.
+Appendix.
 \end_layout
 
 \begin_layout Itemize

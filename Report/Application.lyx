@@ -140,6 +140,147 @@ Two main applications, single-thread and multi-thread, have been developed
  only the multi-thread application will be the one in use.
 \end_layout
 
+\begin_layout Standard
+During the analysis of the application trough out the Section some flow-charts
+ will be displayed.
+ The used legend can be observed in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Flow-chart-legend"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum
+ height=1cm,text centered, draw=black, fill=red!30]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm,
+ text centered, draw=black, fill=orange!30]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110,
+ minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=blue!30,
+ inner sep=10pt]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm,text
+ width=1.5cm, text centered, draw=black, fill=green!30]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{arrow} = [draw, -latex']
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[node distance=2cm] 
+\end_layout
+
+\begin_layout Plain Layout
+
+%% NODES
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (UIStart) [startstop] {Start/Stop Module};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (VideoInput) [io, right of = UIStart, xshift=4cm] {Input/Output Module};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (Camera2) [process, below of = UIStart] {Process Module};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (VideoEnd) [decision, right of = Camera2, xshift=4cm] {Decision Module};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Flow-chart legend
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Flow-chart-legend"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Single-thread Application
 \end_layout
@@ -468,7 +609,7 @@ Now, however, as threads are running separately one have to create some
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT

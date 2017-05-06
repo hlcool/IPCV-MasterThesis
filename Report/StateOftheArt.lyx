@@ -115,18 +115,26 @@ name "cha:State Of the Art"
 \end_layout
 
 \begin_layout Standard
-As explained during Chapter 
+As explained in Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "cha:Introduction"
 
 \end_inset
 
- the process of analysis of a common crowed space will join many algorithms
+ the process of analysis of a common crowed space will embrace many algorithms
  from different Computer Vision disciplines.
  Throughout this Chapter we will summarize the actual and most used algorithms
  in the different categories that we will use during the development of
  the project.
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\color red
+ESQUEMA INICIAL DONDE SE INDIQUE QUE PATAS DEL ANALISS DE IAMGEN Y VIDEO
+ VAMOS A EXPLORAR
 \end_layout
 
 \begin_layout Section
@@ -140,78 +148,29 @@ name "sec:Pedestrian-detection-and crowd patrons"
 
 \end_layout
 
-\begin_layout Subsection
-Available Datasets
-\end_layout
-
 \begin_layout Standard
 Pedestrian detection has been a major issue in computer vision during the
- past few years due to its potential uses for modern applications.
- It keeps being a research area because of the large amount of available
- datasets with different video and people characteristics such as people
- occlusions, poses, scales, illumination ranges...
- Those datasets include among others:
-\end_layout
-
-\begin_layout Itemize
-Caltech 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "dollar2009pedestrian"
-
-\end_inset
-
-, which consists on video taken from a vehicle diving through regular traffic
- in an urban environment.
-\end_layout
-
-\begin_layout Itemize
-ETHZ 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ess2007depth"
-
-\end_inset
-
-.
- It consists on recordings using a pair of AVT Marlins F033C mounted on
- a chariot which moves through pedestrian paths.
-\end_layout
-
-\begin_layout Itemize
-TUD 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "wojek2009multi"
-
-\end_inset
-
-.
- In this case, the recording has been done by a static camera in a crossing
- campus scene.
-\end_layout
-
-\begin_layout Itemize
-INRIA 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "dalal2005histograms"
-
-\end_inset
-
- which collects precise people images both static and moving.
- In this case, images fully represent people without taking into account
- the environment.
+ past few years due to its potential uses for all sort of modern applications.
+ Its main objective is to detect and identify a potential object as a person
+ and by the end, obtain its position in the scene.
 \end_layout
 
 \begin_layout Standard
-As a result of this large amount of training and testing data, some detectors
- perform better in terms of precision and time consumption than others depending
- on the specific situations.
+Nowadays, it is consider a half-solved problem.
+ Although there are many excellent pedestrian detectors in the literature
+ the is not a detector that performs with perfect accuracy.
+ This is one of the reasons why it keeps being one of the most researched
+ area in the computer vision field.
+\end_layout
+
+\begin_layout Standard
+The difficulty of pedestrian detector lies in the large amount of available
+ datasets with different video and people characteristics such as people
+ occlusions, poses, scales, illumination ranges.
 \end_layout
 
 \begin_layout Subsection
-Main Detectors
+People detection approaches
 \end_layout
 
 \begin_layout Standard
@@ -437,10 +396,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -484,6 +439,246 @@ key "girshick2015fast"
 
  for object detection expose that deep convolutional networks outperform
  the previous mentioned algorithms.
+\end_layout
+
+\begin_layout Subsection
+Available Datasets
+\end_layout
+
+\begin_layout Standard
+As said at the beginning of the section pedestrian approaches will perform
+ better or worse depending on the dataset characteristics that have been
+ use for learning.
+ Due to the high number of available dataset no detector can outperform
+ on all of them.
+ During this section main used datasets will be analyzed:
+\end_layout
+
+\begin_layout Itemize
+Caltech 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dollar2009pedestrian"
+
+\end_inset
+
+, which consists on video taken from a vehicle diving through regular traffic
+ in an urban environment.
+\end_layout
+
+\begin_layout Itemize
+ETHZ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ess2007depth"
+
+\end_inset
+
+.
+ It consists on recordings using a pair of AVT Marlins F033C mounted on
+ a chariot which moves through pedestrian paths.
+\end_layout
+
+\begin_layout Itemize
+TUD 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wojek2009multi"
+
+\end_inset
+
+.
+ In this case, the recording has been done by a static camera in a crossing
+ campus scene.
+\end_layout
+
+\begin_layout Itemize
+INRIA 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dalal2005histograms"
+
+\end_inset
+
+ which collects precise people images both static and moving.
+ In this case, images fully represent people without taking into account
+ the environment.
+\end_layout
+
+\begin_layout Standard
+As a result of this large amount of training and testing data, some detectors
+ perform better in terms of precision and time consumption than others depending
+ on the specific situations.
+\end_layout
+
+\begin_layout Standard
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Image-summary-from datasets"
+
+\end_inset
+
+ one can observe some examples from the images that can be obtained from
+ the different mentioned datasets.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Caltech 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dollar2009pedestrian"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ETHZ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ess2007depth"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+TUD 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wojek2009multi"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+INRIA 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dalal2005histograms"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Image summary from all the analyzed datasets.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Image-summary-from datasets"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -534,7 +729,12 @@ Object proposals will be such objects that could be fitted into the desired
  label classification.
  This object will be share common visual properties that will distinguish
  them from the background.
- If lower number of object proposals than sliding windows lead to a higher
+ In order words, this approaches will perform a complete search over an
+ image to previously select potential pedestrian candidates.
+\end_layout
+
+\begin_layout Standard
+If lower number of object proposals than sliding windows lead to a higher
  object recall, a speed-up will be achieve which means that more efforts
  can be focus on more sophisticated classifiers.
 \end_layout
@@ -653,6 +853,22 @@ key "turner2002encoding"
 Contextual Information
 \end_layout
 
+\begin_layout Subsection
+Offline
+\end_layout
+
+\begin_layout Subsection
+Online
+\end_layout
+
+\begin_layout Subsection
+Global
+\end_layout
+
+\begin_layout Subsection
+Local
+\end_layout
+
 \begin_layout Standard
 One can describe contextual information as the set of circumstances or facts
  that one can extract from a scene.
@@ -669,7 +885,7 @@ One can describe contextual information as the set of circumstances or facts
 When talking specifically about computer vision, contextual information
  will embrace for instance camera information (such as position, configuration,
  distance to an object, static or not), the set of objects that one could
- detect in the scene or how many views will be available...
+ detect in the scene or how many views will be available.
 \end_layout
 
 \begin_layout Standard
@@ -685,6 +901,13 @@ If we now focus with the set of objects that one can observe from a scene,
 
 \begin_layout Subsection
 Semantic segmentation
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\color red
+ALGORITHMS DEL CITYSCAPES
 \end_layout
 
 \begin_layout Standard
@@ -821,6 +1044,27 @@ The use of multi-camera is a common setup when dealing with video surveillance
  This will lead to a set of advantages in the scope of our work when dealing
  with pedestrian detection and semantic classification and also, some unavoidabl
 e disadvantages.
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\color red
+DEFINITION
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\color red
+CONFIGURATION
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\color red
+PREVIOUS APPROACHES
 \end_layout
 
 \begin_layout Subsection
