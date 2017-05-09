@@ -124,17 +124,18 @@ reference "cha:Introduction"
 
  the process of analysis of a common crowed space will embrace many algorithms
  from different Computer Vision disciplines.
- Throughout this Chapter we will summarize the actual and most used algorithms
- in the different categories that we will use during the development of
- the project.
+ In the scope of our work it will be worthy to analyze deeply state of the
+ art pedestrian detection approaches and how to improve them as it will
+ be a pivotal field for our goals.
+ In addition contextual information an its main algorithms will be also
+ important an the actual literature should be analyzed.
+ Both of these disciplines will be used in a multi-camera setup and so,
+ scenarios working with this configuration will be defined.
 \end_layout
 
 \begin_layout Standard
-
-\size large
-\color red
-ESQUEMA INICIAL DONDE SE INDIQUE QUE PATAS DEL ANALISS DE IAMGEN Y VIDEO
- VAMOS A EXPLORAR
+Throughout this Chapter we will summarize the actual and most used algorithms
+ in the different mentioned categories.
 \end_layout
 
 \begin_layout Section
@@ -265,8 +266,47 @@ s objects but to an area that could contain some candidates objects.
  In this case improvements from both approaches are used as the computational
  cost of the exhaustive search (that is the main drawback) is reduce by
  the use of some sort of segmentation.
+ In Figure we can observe a diagram example of the Edge detector that uses
+ the segmentation + exhaustive search approach.
 \end_layout
 
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/State Of the Art/Edge Pedestrian Detector Example.png
+	lyxscale 30
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Edge Detector Example Diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 Moving to person model, or in other words the set of characteristics that
  will be able to discriminate between people and any other object in the
@@ -277,7 +317,7 @@ key "garcia2015people"
 
 \end_inset
 
-differentiates three different groups:
+ differentiates three different classification groups:
 \end_layout
 
 \begin_layout Itemize
@@ -289,12 +329,12 @@ Based on appearance: Most of the available detectors nowadays use appearance
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
+\begin_layout Standard
 Holistic: With this models people will be defined from the easiest point
  of view when a person is a region or a shape
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 Part-based: These models however, use more complex model where people are
  defined as a combination of multiple shapes or regions from its body.
 \end_layout
@@ -358,27 +398,20 @@ key "giebel2004bayesian,okuma2004boosted"
 
 \end_inset
 
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "giebel2004bayesian,okuma2004boosted"
-
-\end_inset
-
  that will merge both appearance and motion in order to improve results.
  Most of these algorithms combine people detection and tracking, and so,
  they have been design to improve people tracking over video sequences.
 \end_layout
 
 \begin_layout Standard
-In the table 
+In the Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:Pedestrian-detection-performance"
 
 \end_inset
 
- 
+, 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "garcia2015people"
@@ -394,6 +427,470 @@ key "garcia2015people"
 wide false
 sideways false
 status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="8">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Video
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+HOG
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ISM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fusion
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Edge
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DTDP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ACF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Faster-RCNN
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+89.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+71.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+34.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+84.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+96.7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+99.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+99.7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+69.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+82.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+92.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+90.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+77.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+77.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+98.2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+55.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+75.7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+64.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+71.7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+68.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+68.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+82.9
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+33.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+33.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+37.5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Average AUC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -439,6 +936,14 @@ key "girshick2015fast"
 
  for object detection expose that deep convolutional networks outperform
  the previous mentioned algorithms.
+ This fact is clearly presented in the mentioned Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Pedestrian-detection-performance"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -537,6 +1042,18 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/State Of the Art/Caltech Dataset.jpg
+	lyxscale 80
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -555,10 +1072,6 @@ key "dollar2009pedestrian"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -566,6 +1079,18 @@ key "dollar2009pedestrian"
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/State Of the Art/ETHZ Dataset.png
+	lyxscale 30
+	width 40text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -586,10 +1111,6 @@ key "ess2007depth"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -601,6 +1122,18 @@ key "ess2007depth"
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/State Of the Art/TUD Campus Dataset.png
+	lyxscale 30
+	width 40text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -628,6 +1161,18 @@ key "wojek2009multi"
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/State Of the Art/Inria Dataset.png
+	lyxscale 20
+	width 40text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -669,10 +1214,6 @@ name "fig:Image-summary-from datasets"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -853,22 +1394,6 @@ key "turner2002encoding"
 Contextual Information
 \end_layout
 
-\begin_layout Subsection
-Offline
-\end_layout
-
-\begin_layout Subsection
-Online
-\end_layout
-
-\begin_layout Subsection
-Global
-\end_layout
-
-\begin_layout Subsection
-Local
-\end_layout
-
 \begin_layout Standard
 One can describe contextual information as the set of circumstances or facts
  that one can extract from a scene.
@@ -891,6 +1416,74 @@ When talking specifically about computer vision, contextual information
 \begin_layout Standard
 All this set of information that is not extracted from the frame will provide
  a more general understanding about the scene and will help further algorithms.
+ We can divide contextual information into two different levels, global
+ and local contextual information, and also into two different categories
+ offline, and online.
+\end_layout
+
+\begin_layout Subsection
+Global
+\end_layout
+
+\begin_layout Standard
+Global context will consider image detections from the image as a whole,
+ this means that for instance an image will be consider as a kitchen to
+ predict the presence of a stove.
+ This kind of approaches are focused on psychology studies 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "navon1977forest,rensink1997see"
+
+\end_inset
+
+ that suggests that human perceptual processes work following a hierarchically
+ organized process.
+ Our perception system will go from a global structure towards a more detailed
+ analysis.
+\end_layout
+
+\begin_layout Standard
+Global context approaches aims to define a scene as an extra source of global
+ information.
+ The structure of a determinate scene image can be estimated by the mean
+ of global image features.
+\end_layout
+
+\begin_layout Subsection
+Local
+\end_layout
+
+\begin_layout Standard
+On the contrary, local context will consider context information from the
+ neighbor area of an object, e.g.
+ a kitchen table will predict the presence of a spoon.
+ The neighboring areas will be defined as a set of other objects, patches
+ or even pixels.
+ The aim is to try to correctly define the area that surrounds the object
+ to precisely detect the desired object.
+ 
+\end_layout
+
+\begin_layout Subsection
+Offline
+\end_layout
+
+\begin_layout Standard
+Offline contextual information will be the set of circumstances that are
+ computed and available before starting any kind of procedure.
+ This information will be previously computed and so, it will lead to external
+ image information that will added to any algorithm knowledge.
+\end_layout
+
+\begin_layout Subsection
+Online
+\end_layout
+
+\begin_layout Standard
+Online information, on the other hand, will be computed during procedures,
+ and so it will not previously computed knowledge.
+ Online extraction will have the computational time drawback as it will
+ be considered as part of an algorithm.
 \end_layout
 
 \begin_layout Standard
@@ -901,13 +1494,6 @@ If we now focus with the set of objects that one can observe from a scene,
 
 \begin_layout Subsection
 Semantic segmentation
-\end_layout
-
-\begin_layout Standard
-
-\size large
-\color red
-ALGORITHMS DEL CITYSCAPES
 \end_layout
 
 \begin_layout Standard
@@ -928,7 +1514,7 @@ key "oh2010content"
 
  such as cars according to its moving paths or, what is more important to
  our related work, concrete areas in a scene such as walls, corridors, walking
- paths...
+ paths, etc.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -957,7 +1543,7 @@ reference "fig:Scene-parsing-on PSPNet"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1005,13 +1591,533 @@ name "fig:Scene-parsing-on PSPNet"
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cityscapes Dataset 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cordts2016cityscapes"
+
+\end_inset
+
+ is a large-scale dataset that contains stereo video sequences recorded
+ in street scenes from among 50 different cities around the world.
+ This dataset presents class annotations over pixels in more than 5000 frames.
+ In the following table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Cityscapes-Dataset-Class Definitions"
+
+\end_inset
+
+ available dataset classes are presented.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
 \begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Category
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Classes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flat
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+road · sidewalk · parking · rail track
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Human
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+person · rider
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Vehicle
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+car · truck · bus · on rails · motorcycle · bicycle · caravan · trailer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Construction
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+building · wall · fence · guard rail · bridge · tunnel
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Object
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+pole · pole group · traffic sign · traffic light
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nature
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+vegetation · terrain
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sky
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sky
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Void
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ground · dynamic · static
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cityscapes Dataset Class Definitions
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Cityscapes-Dataset-Class Definitions"
+
+\end_inset
+
 
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cordts2016cityscapes"
+
+\end_inset
+
+ offers a benchmark suite with an evaluation server.
+ This makes easy that authors can upload semantic segmentation results in
+ order to be able to compare their performance with the rest of tested algorithm
+s.
+ In Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Cityscapes Dataset Challenge Results"
+
+\end_inset
+
+ we can observe the four most accurate algorithms in the scope of this dataset.
+\end_layout
+
+\begin_layout Standard
+The main used metric for this Pixel-Level semantic classification results
+ is the commonly known as the PASCAL VOC intersection-over-union metric
+ which formula is presented in Eq 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Intersection over Union Metric"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+IoU=\frac{\#TP}{\#TP+\#FP+\#FN}\label{eq:Intersection over Union Metric}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+with 
+\begin_inset Formula $TP=TruePositives$
+\end_inset
+
+, 
+\begin_inset Formula $FP=FalsePositives$
+\end_inset
+
+ and 
+\begin_inset Formula $FN=FalseNegatives$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Algorithm Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+iOU Category
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+IoU Class
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+motovis
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+91.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+81.0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ResNet-38 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wu2016wider"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+91.0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+80.6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+NetWarp
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+91.0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+80.5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PSPNet 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zhao2016pyramid"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+90.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+80.2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cityscapes Dataset Challenge Results
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Cityscapes Dataset Challenge Results"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Both ResNet-38 and PSPNet are based on convolutional networks.
+ Since the presentation of AlexNet 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "krizhevsky2012imagenet"
+
+\end_inset
+
+ in 2012 those networks have been growing deeper and deeper each year ending
+ up with 1,202 trainable layers.
 \end_layout
 
 \begin_layout Standard
@@ -1024,12 +2130,134 @@ key "zhao2016pyramid"
 
 \end_inset
 
- has dealt with this problems by using deep Convolutional Neural Network
- and assigning relationships between different dataset labels, i.e.
+ has dealt with this problems assigning relationships between different
+ dataset labels, i.e.
  a an airplane is likely to be in runway or flying in the sky while not
  over a road.
  This relationships will reduce slightly the complexity of having large
- amounts of labels to predict.
+ amounts of labels to predict and will improve the general performance of
+ the algorithm.
+ In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ResNet-38-Algorithm"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PSPNet-Algorithm"
+
+\end_inset
+
+ we can observe some visual examples of how this two algorithms perform
+ on some Cityscapes frames.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/State Of the Art/ResNet-38 Results.png
+	lyxscale 30
+	width 45text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ResNet-38 Algorithm
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ResNet-38-Algorithm"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/State Of the Art/PSPNet Results.png
+	lyxscale 30
+	width 45text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+PSPNet Algorithm
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PSPNet-Algorithm"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Semantic Segmentation result examples on Cityscapes Dataset
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1039,38 +2267,24 @@ Multi-camera scenarios
 \begin_layout Standard
 The use of multi-camera is a common setup when dealing with video surveillance
  problems.
- Having multiple camera instances allows to observe the same event or object
- of interest from up to two different points of view.
+ One can define as multi-camera scenario one space that has more than one
+ video camera working and recording at the same exact time.
+ Having 
+\begin_inset Formula $N$
+\end_inset
+
+ multiple camera instances allows to observe the same event or object of
+ interest from up to two different points of view.
  This will lead to a set of advantages in the scope of our work when dealing
  with pedestrian detection and semantic classification and also, some unavoidabl
 e disadvantages.
 \end_layout
 
-\begin_layout Standard
-
-\size large
-\color red
-DEFINITION
-\end_layout
-
-\begin_layout Standard
-
-\size large
-\color red
-CONFIGURATION
-\end_layout
-
-\begin_layout Standard
-
-\size large
-\color red
-PREVIOUS APPROACHES
-\end_layout
-
-\begin_layout Subsection
+\begin_layout Itemize
 Advantages
 \end_layout
 
+\begin_deeper
 \begin_layout Standard
 As said in 
 \begin_inset CommandInset ref
@@ -1098,10 +2312,12 @@ When talking about semantic segmentation the inclusion of a multi-camera
  they are analyzing the same common area.
 \end_layout
 
-\begin_layout Subsection
+\end_deeper
+\begin_layout Itemize
 Disadvantages
 \end_layout
 
+\begin_deeper
 \begin_layout Standard
 The main disadvantage when dealing with multi-camera systems will be the
  exponential grow of computational time as algorithms should be performed
@@ -1122,8 +2338,10 @@ The main disadvantage when dealing with multi-camera systems will be the
 Other disadvantages will be related with synchronization problems, as if
  the camera instances will be used to reproject objects/pedestrians from
  one camera to another they must evidentially represent the same exact moment
- in time, which depending on the setup will be more or less difficult.
+ in time in the same sequence frame, which depending on the setup will be
+ more or less difficult.
 \end_layout
 
+\end_deeper
 \end_body
 \end_document

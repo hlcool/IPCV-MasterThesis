@@ -110,7 +110,8 @@ reference "sec:Objectives"
 
  this usage data can be pre-generated or generated ideally under a real-time
  constraint.
- The main application environment should be user-friendly.
+ The main application environment should be user-friendly to ensure its
+ correct usage.
 \end_layout
 
 \begin_layout Standard
@@ -125,9 +126,9 @@ Its cross-platform characteristic which makes it easily portable from one
 \end_layout
 
 \begin_layout Enumerate
-Its application window designer that enables the user to design the software
- windows by using and interface instead of having to code to create the
- mentioned window.
+Its application window designer that enables the programmer to design the
+ software windows by using an interface instead of having to code to create
+ the mentioned window.
 \end_layout
 
 \begin_layout Enumerate
@@ -220,28 +221,36 @@ begin{tikzpicture}[node distance=2cm]
 
 
 \backslash
-node (UIStart) [startstop] {Start/Stop Module};
+node (UIStart) [startstop] {
+\backslash
+footnotesize Start/Stop Module};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (VideoInput) [io, right of = UIStart, xshift=4cm] {Input/Output Module};
+node (VideoInput) [io, right of = UIStart, xshift=4cm] {
+\backslash
+footnotesize Input/Output Module};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (Camera2) [process, below of = UIStart] {Process Module};
+node (Camera2) [process, below of = UIStart] {
+\backslash
+footnotesize Process Module};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (VideoEnd) [decision, right of = Camera2, xshift=4cm] {Decision Module};
+node (VideoEnd) [decision, right of = Camera2, xshift=4cm] {
+\backslash
+footnotesize Decision Module};
 \end_layout
 
 \begin_layout Plain Layout
@@ -305,7 +314,7 @@ reference "fig:Flow-chart diagram for the single-thread application"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -376,70 +385,90 @@ begin{tikzpicture}[node distance=2cm]
 
 
 \backslash
-node (UIStart) [startstop] {Interface Start};
+node (UIStart) [startstop] {
+\backslash
+footnotesize Interface Start};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (UIIdle) [startstop, below of = UIStart] {Interface Idle};
+node (UIIdle) [startstop, below of = UIStart] {
+\backslash
+footnotesize Interface Idle};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (VideoInput) [io, right of = UIIdle, xshift=2cm] {Video Sequence};
+node (VideoInput) [io, right of = UIIdle, xshift=2cm] {
+\backslash
+footnotesize Video Sequence};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (ParamInput) [io, left of = UIIdle, xshift=-2cm] {UI Parameters};
+node (ParamInput) [io, left of = UIIdle, xshift=-2cm] {
+\backslash
+footnotesize UI Parameters};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (Camera2) [process, below of=UIIdle, yshift=-0.5cm] {Camera 2};
+node (Camera2) [process, below of=UIIdle, yshift=-0.5cm] {
+\backslash
+footnotesize Camera 2};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (Camera1) [process, left of=Camera2, xshift=-2cm] {Camera 1};
+node (Camera1) [process, left of=Camera2, xshift=-2cm] {
+\backslash
+footnotesize Camera 1};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (Camera3) [process, right of=Camera2, xshift=2cm] {Camera 3};
+node (Camera3) [process, right of=Camera2, xshift=2cm] {
+\backslash
+footnotesize Camera 3};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (Display) [process, below of=Camera3, yshift=-0.5cm] {Display};
+node (Display) [process, below of=Camera3, yshift=-0.5cm] {
+\backslash
+footnotesize Display};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (VideoEnd) [decision, below of=Camera2, yshift=-0.5cm] {Video Finished};
+node (VideoEnd) [decision, below of=Camera2, yshift=-0.5cm] {
+\backslash
+footnotesize Video Finished};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (VideoStop) [startstop, below of=VideoEnd, yshift=-1cm] {Video Stops};
+node (VideoStop) [startstop, below of=VideoEnd, yshift=-1cm] {
+\backslash
+footnotesize Video Stops};
 \end_layout
 
 \begin_layout Plain Layout
@@ -679,85 +708,108 @@ begin{tikzpicture}[node distance=2cm]
 
 
 \backslash
-node (UIStart) [startstop] {Interface Start};
+node (UIStart) [startstop] {
+\backslash
+footnotesize Interface Start};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (UIIdle) [startstop, below of = UIStart] {Interface Idle};
+node (UIIdle) [startstop, below of = UIStart] {
+\backslash
+footnotesize Interface Idle};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (VideoInput) [io, right of = UIIdle, xshift=2cm] {Video Sequence};
+node (VideoInput) [io, right of = UIIdle, xshift=2cm] {
+\backslash
+footnotesize Video Sequence};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (ParamInput) [io, left of = UIIdle, xshift=-2cm] {UI Parameters};
+node (ParamInput) [io, left of = UIIdle, xshift=-2cm] {
+\backslash
+footnotesize UI Parameters};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (ThreadStart) [startstop, below of = UIIdle] {Threads Start};
+node (ThreadStart) [startstop, below of = UIIdle] {
+\backslash
+footnotesize Threads Start};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (Camera2) [process, below of=ThreadStart] {Camera 2 Thread};
+node (Camera2) [process, below of=ThreadStart] {
+\backslash
+footnotesize Camera 2 Thread};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (Camera1) [process, left of=Camera2, xshift=-2cm] {Camera 1 Thread};
+node (Camera1) [process, left of=Camera2, xshift=-2.7cm] {
+\backslash
+footnotesize Camera 1 Thread};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (Camera3) [process, right of=Camera2, xshift=2cm] {Camera 3 Thread};
+node (Camera3) [process, right of=Camera2, xshift=2.7cm] {
+\backslash
+footnotesize Camera 3 Thread};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (ThreadBarrier) [startstop, below of=Camera2] {Thread Barrier / Meeting
- Point};
+node (ThreadBarrier) [startstop, below of=Camera2] {
+\backslash
+footnotesize Thread Barrier / Meeting Point};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (Display) [process, below of=ThreadBarrier] {Display};
+node (Display) [process, below of=ThreadBarrier] {
+\backslash
+footnotesize Display};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (VideoEnd) [decision, below of=Display, yshift=-0.5cm] {Video Finished};
+node (VideoEnd) [decision, below of=Display, yshift=-0.5cm] {
+\backslash
+footnotesize Video Finished};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (VideoStop) [startstop, below of=VideoEnd, yshift=-0.7cm] {Video Stops};
+node (VideoStop) [startstop, below of=VideoEnd, yshift=-0.7cm] {
+\backslash
+footnotesize Video Stops};
 \end_layout
 
 \begin_layout Plain Layout
@@ -873,7 +925,7 @@ draw [arrow] (VideoEnd) -| node[near start, anchor=south]{}([xshift=+1cm]
 
 
 \backslash
-draw [arrow] (VideoEnd) -| node[near start, anchor=south]{no}([xshift=+0.8cm]
+draw [arrow] (VideoEnd) -| node[near start, anchor=south]{no}([xshift=+1.3cm]
  Camera2.east) -- (Camera2.east);
 \end_layout
 
@@ -928,5 +980,413 @@ name "fig:Flow-chart diagram for the multi-thread application"
 
 \end_layout
 
+\begin_layout Standard
+Main application window is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Main-application-window"
+
+\end_inset
+
+.
+ As one can observe it is compose of four separate areas:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Application/Main Window.png
+	lyxscale 30
+	width 70text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Main application window
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Main-application-window"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Application menu bar.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+In this menu we will have the main application actions.
+ From here the user can open a new video sequence, compute the set of desired
+ homographies or close the program.
+ The application also provides a help searcher and an external information
+ window.
+ This set of functions can be seen in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Application-menu-bar"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Application/File Submenu.png
+	lyxscale 60
+	width 45text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+File Submenu
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Application/Help Submenu.png
+	lyxscale 60
+	width 55text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Help Submenu
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Application menu bar
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Application-menu-bar"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Options menu.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+This options box (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Options Menu"
+
+\end_inset
+
+) in the application will contain all the possible parameters that can be
+ tuned during the execution of the program.
+ From here algorithms can be changed in real time so there is no need to
+ restart the running before changing some parameter.
+ The user can select among various pedestrian detectors such as semantic
+ detector, DPM or even Fast-RCNN as well as the type of representation that
+ one wants for these detections, lines or gaussians.
+ In addition the application provides an option to perform mask filtering.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Application/Options Menu.png
+	lyxscale 60
+	width 45text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Options Menu
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Options Menu"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Information Display
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Along this text box some information will be provided to the user.
+ Messages such as 
+\begin_inset Quotes eld
+\end_inset
+
+Open video files
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Processing starts now
+\begin_inset Quotes erd
+\end_inset
+
+ or 
+\begin_inset Quotes eld
+\end_inset
+
+DPM Pedestrian Detector is now in use
+\begin_inset Quotes erd
+\end_inset
+
+ will appear during the execution of the application so the user can obtain
+ some information about what to do, or what algorithm are in use as we can
+ observe in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Information-Display"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Application/Information Display.png
+	lyxscale 60
+	width 45text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Information Display
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Information-Display"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Results Display
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+This is the main display area in the application in which all the visual
+ results will be presented.
+ We have three separate windows for each of the used camera as well as one
+ more display window for the cenital plane.
+ Here the camera frames with its pedestrian detection will be shown and
+ all the projected semantic can be observed on the cenital frame.
+ An example of its performance is presented in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Results Display Area"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Application/Result Display.png
+	lyxscale 40
+	width 70text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Results Display Area
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Results Display Area"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \end_body
 \end_document
