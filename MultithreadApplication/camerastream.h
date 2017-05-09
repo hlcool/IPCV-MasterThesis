@@ -42,7 +42,7 @@ public:
     Ptr<BackgroundSubtractor> pMOG2 = createBackgroundSubtractorMOG2();
 
     // Homography and Image Wrapping
-    int NViews = 5;
+    int NViews = 9;
     vector<Mat> CameraViewsVector;
     vector<Mat> HomographyVector;
     Mat Homography;

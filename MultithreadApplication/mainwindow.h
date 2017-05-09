@@ -37,7 +37,7 @@ public:
     int ProgramFlag = 0;
 
     // Camera number of sampled views
-    int NViews = 5;
+    int NViews = 9;
 
 signals:
     // Cenital Frames Joined
