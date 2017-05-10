@@ -50,6 +50,12 @@ void CameraStream::VideoOpenning(string InputPath)
         Mat CameraFrame = imread(VideoPath + "/Homography Images/Camera " + to_string(CameraNumber) + "/View " + to_string(i) + ".jpg");
         CameraViewsVector.push_back(CameraFrame);
     }
+
+    // Save projected semantic into vector
+    for(int i = 1; i <= 3; i++){
+        Mat SemProjectFrame = imread(VideoPath + "/Projected Semantic Frames/Sem" + to_string(i) + "Median.png");
+        ProjectedFullSemanticVector.push_back(SemProjectFrame);
+    }
 }
 
 void CameraStream::getActualSemFrame(string FrameNumber)
@@ -295,16 +301,17 @@ void CameraStream::computeHomography()
     }
 }
 
-void CameraStream::HomographySelection(vector<Mat> HomographyVector)
+void CameraStream::ViewSelection(vector<Mat> HomographyVector)
 {
     // Compare Actual Frame with all the frames used to extract homographies with AKAZE
     // Extract number of correspondant view to index the homography vectors
 
     int ViewIndex;
     int NMatches;
-    int NMatchesMax = 0;
     vector<Point2f> GoodMatchesPoints1, GoodMatchesPoints2;
     vector<Point2f> GoodMatchesPoints1Def, GoodMatchesPoints2Def;
+    vector<vector<Point2f>> VectorGoodMatches1, VectorGoodMatches2;
+    vector<int> VectorNMaches;
 
     for (int CameraView = 0; CameraView < NViews; CameraView++){
         GoodMatchesPoints1.clear();
@@ -316,15 +323,25 @@ void CameraStream::HomographySelection(vector<Mat> HomographyVector)
 
         Akaze(CameraViewImage, ViewKeypoints, ViewDescriptor, ActualFrame, NMatches, GoodMatchesPoints1, GoodMatchesPoints2, CameraView);
 
-        if (NMatches > NMatchesMax){
-            ViewIndex = CameraView;
-            NMatchesMax = NMatches;
-            GoodMatchesPoints1Def.clear();
-            GoodMatchesPoints2Def.clear();
-            GoodMatchesPoints1Def = GoodMatchesPoints1;
-            GoodMatchesPoints2Def = GoodMatchesPoints2;
-        }
+        VectorNMaches.push_back(NMatches);
+        VectorGoodMatches1.push_back(GoodMatchesPoints1);
+        VectorGoodMatches2.push_back(GoodMatchesPoints2);
     }
+
+    // Sort NMatches vector
+    vector<int> SortedNMatches;
+    SortedNMatches = VectorNMaches;
+    sort(SortedNMatches.begin(), SortedNMatches.end());
+
+    // Extract the first maximum number of matches
+    auto MaxNMatches = SortedNMatches.at(NViews-1);
+
+    // Extract maximum positon
+    ViewIndex = find(VectorNMaches.begin(), VectorNMaches.end(), MaxNMatches) - VectorNMaches.begin();
+
+    // Get the maximum view points for the homography
+    GoodMatchesPoints1Def = VectorGoodMatches1[ViewIndex];
+    GoodMatchesPoints2Def = VectorGoodMatches2[ViewIndex];
 
     if (GoodMatchesPoints1Def.size() > 4){
         // Number of match points between images when selecting homography is more than 4 so we can compute
@@ -336,10 +353,7 @@ void CameraStream::HomographySelection(vector<Mat> HomographyVector)
         Mat HomographyBetweenViews = findHomography(GoodMatchesPoints2Def, GoodMatchesPoints1Def, CV_LMEDS);
 
         // Convert ActualSemFrame with the computed homography to be similar to the semantic image from the view
-        Mat SemWarping;
-        warpPerspective(ActualSemFrame, SemWarping, HomographyBetweenViews, ActualSemFrame.size());
-        //String ImageName = "/Users/alex/Desktop/Semantic"+to_string(CameraNumber)+ ".png";
-        //imwrite(ImageName, SemWarping);
+        warpPerspective(ActualSemFrame, ActualSemFrame, HomographyBetweenViews, ActualSemFrame.size());
     }
     Homography = HomographyVector[ViewIndex];
 }
@@ -355,7 +369,74 @@ void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameN
     imwrite(ImageName, ImageWarping);
 }
 
-void CameraStream::ProjectFloorPoints(Mat &CenitalPlane)
+void CameraStream::SemanticCommonPoints()
+{
+    // Extract common points between cameras with the offline projected semantic images
+
+    int Rows = ProjectedFullSemanticVector[0].rows;
+    int Cols = ProjectedFullSemanticVector[0].cols;
+    int GrayLevel1, GrayLevel2;
+
+    // Camera 1 and Camera 2
+    CommonSemantic12 = Mat::zeros(Rows, Cols, ProjectedFullSemanticVector[0].type());
+
+    for (int i = 0; i < Rows; i++){
+        for (int j = 0; j < Cols; j++){
+            GrayLevel1 = ProjectedFullSemanticVector[0].at<Vec3b>(i,j)[0];
+            GrayLevel2 = ProjectedFullSemanticVector[1].at<Vec3b>(i,j)[0];
+
+            if((GrayLevel1 != 0) && (GrayLevel2 != 0)) {
+                if(GrayLevel1 == GrayLevel2){
+                    CommonSemantic12.at<Vec3b>(i,j)[0] = GrayLevel1;
+                    CommonSemantic12.at<Vec3b>(i,j)[1] = GrayLevel1;
+                    CommonSemantic12.at<Vec3b>(i,j)[2] = GrayLevel1;
+                }
+            }
+        }
+    }
+
+    // Camera 2 and Camera 3
+    CommonSemantic23 = Mat::zeros(Rows, Cols, ProjectedFullSemanticVector[0].type());
+
+    for (int i = 0; i < Rows; i++){
+        for (int j = 0; j < Cols; j++){
+            GrayLevel1 = ProjectedFullSemanticVector[1].at<Vec3b>(i,j)[0];
+            GrayLevel2 = ProjectedFullSemanticVector[2].at<Vec3b>(i,j)[0];
+
+            if((GrayLevel1 != 0) && (GrayLevel2 != 0)) {
+                if(GrayLevel1 == GrayLevel2){
+                    CommonSemantic23.at<Vec3b>(i,j)[0] = GrayLevel1;
+                    CommonSemantic23.at<Vec3b>(i,j)[1] = GrayLevel1;
+                    CommonSemantic23.at<Vec3b>(i,j)[2] = GrayLevel1;
+                }
+            }
+        }
+    }
+
+    // Camera 1 and Camera 3
+    CommonSemantic13 = Mat::zeros(Rows, Cols, ProjectedFullSemanticVector[0].type());
+
+    for (int i = 0; i < Rows; i++){
+        for (int j = 0; j < Cols; j++){
+            GrayLevel1 = ProjectedFullSemanticVector[0].at<Vec3b>(i,j)[0];
+            GrayLevel2 = ProjectedFullSemanticVector[2].at<Vec3b>(i,j)[0];
+
+            if((GrayLevel1 != 0) && (GrayLevel2 != 0)) {
+                if(GrayLevel1 == GrayLevel2){
+                    CommonSemantic13.at<Vec3b>(i,j)[0] = GrayLevel1;
+                    CommonSemantic13.at<Vec3b>(i,j)[1] = GrayLevel1;
+                    CommonSemantic13.at<Vec3b>(i,j)[2] = GrayLevel1;
+                }
+            }
+        }
+    }
+
+    cvtColor(CommonSemantic12, CommonSemantic12 , CV_BGR2GRAY);
+    cvtColor(CommonSemantic23, CommonSemantic23 , CV_BGR2GRAY);
+    cvtColor(CommonSemantic13, CommonSemantic13 , CV_BGR2GRAY);
+}
+
+void CameraStream::ProjectSemanticPoints(Mat &CenitalPlane, Mat &SemanticMask, String FrameNumber)
 {
     Mat FloorMask;
     Mat SemanticImageGray;
@@ -372,6 +453,22 @@ void CameraStream::ProjectFloorPoints(Mat &CenitalPlane)
 
     // Apply Homography to vector of Points2f to find the projection of the floor
     perspectiveTransform(FloorPoints2, ProjectedFloor, Homography);
+
+    // Project all semantic image
+    warpPerspective(ActualSemFrame*20, SemanticMask, Homography, SemanticMask.size());
+
+    if(CameraNumber == 1){
+        String ImageName = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Projected Semantic Frames/Projected Frames 1/Frame" + FrameNumber + ".png";
+        imwrite(ImageName, SemanticMask);
+    }
+    if(CameraNumber == 2){
+        String ImageName = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Projected Semantic Frames/Projected Frames 2/Frame" + FrameNumber + ".png";
+        imwrite(ImageName, SemanticMask);
+    }
+    if(CameraNumber == 3){
+        String ImageName = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Projected Semantic Frames/Projected Frames 3/Frame" + FrameNumber + ".png";
+        imwrite(ImageName, SemanticMask);
+    }
 
     // Fill the global vector
     ProjectedFloorVector = ProjectedFloor;
@@ -451,6 +548,91 @@ void CameraStream::drawSemantic(Mat &CenitalPlane)
 
     // Create the convex poligon from array of Point and add transparency to the final image
     addWeighted(overlay, alpha, CenitalPlane, 1 - alpha, 0, CenitalPlane);
+}
+
+void CameraStream::ProjectCommonSemantic()
+{
+    Vec3b Color;
+    vector<Point> CommonPoints;
+    vector<Point2f> ReProjectedCommonPoints;
+    Mat overlay;
+    double alpha = 0.7;
+
+    if((CameraNumber == 1) || (CameraNumber == 2)){
+        // Project common points with Camera 2 into actual frame
+        Color.val[0] = 255;
+        Color.val[1] = 255;
+        Color.val[2] = 0;
+
+        findNonZero(CommonSemantic12, CommonPoints);
+        // Convert from Point to Point2f floor coordinates. Auxiliar vector.
+        vector<Point2f> CommonPoints2(CommonPoints.begin(), CommonPoints.end());
+        // Apply Homography to vector of Points2f to find the projection of the floor
+        perspectiveTransform(CommonPoints2, ReProjectedCommonPoints, Homography.inv(DECOMP_LU));
+
+        // Copy the cenital image to an overlay layer
+        ActualFrame.copyTo(overlay);
+
+        for (int i = 0 ; i < ReProjectedCommonPoints.size() ; i++){
+            Point punto = ReProjectedCommonPoints[i];
+            if ((punto.y > 0 && punto.y < overlay.rows) && (punto.x > 0 && punto.x < overlay.cols)){
+                overlay.at<Vec3b>(punto.y, punto.x) = Color;
+            }
+        }
+
+        // Create the convex poligon from array of Point and add transparency to the final image
+        addWeighted(overlay, alpha, ActualFrame, 1 - alpha, 0, ActualFrame);
+    }
+    if((CameraNumber == 1) || (CameraNumber == 3)){
+        // Project common points with Camera 3 into actual frame
+        Color.val[0] = 0;
+        Color.val[1] = 255;
+        Color.val[2] = 255;
+
+        findNonZero(CommonSemantic13, CommonPoints);
+        // Convert from Point to Point2f floor coordinates. Auxiliar vector.
+        vector<Point2f> CommonPoints3(CommonPoints.begin(), CommonPoints.end());
+        // Apply Homography to vector of Points2f to find the projection of the floor
+        perspectiveTransform(CommonPoints3, ReProjectedCommonPoints, Homography.inv(DECOMP_LU));
+
+        // Copy the cenital image to an overlay layer
+        ActualFrame.copyTo(overlay);
+
+        for (int i = 0 ; i < ReProjectedCommonPoints.size() ; i++){
+            Point punto = ReProjectedCommonPoints[i];
+            if ((punto.y > 0 && punto.y < overlay.rows) && (punto.x > 0 && punto.x < overlay.cols)){
+                overlay.at<Vec3b>(punto.y, punto.x) = Color;
+            }
+        }
+
+        // Create the convex poligon from array of Point and add transparency to the final image
+        addWeighted(overlay, alpha, ActualFrame, 1 - alpha, 0, ActualFrame);
+    }
+    if((CameraNumber == 2) || (CameraNumber == 3)){
+        // Project common points with Camera 3 into actual frame
+        Color.val[0] = 255;
+        Color.val[1] = 0;
+        Color.val[2] = 255;
+
+        findNonZero(CommonSemantic23, CommonPoints);
+        // Convert from Point to Point2f floor coordinates. Auxiliar vector.
+        vector<Point2f> CommonPoints3(CommonPoints.begin(), CommonPoints.end());
+        // Apply Homography to vector of Points2f to find the projection of the floor
+        perspectiveTransform(CommonPoints3, ReProjectedCommonPoints, Homography.inv(DECOMP_LU));
+
+        // Copy the cenital image to an overlay layer
+        ActualFrame.copyTo(overlay);
+
+        for (int i = 0 ; i < ReProjectedCommonPoints.size() ; i++){
+            Point punto = ReProjectedCommonPoints[i];
+            if ((punto.y > 0 && punto.y < overlay.rows) && (punto.x > 0 && punto.x < overlay.cols)){
+                overlay.at<Vec3b>(punto.y, punto.x) = Color;
+            }
+        }
+
+        // Create the convex poligon from array of Point and add transparency to the final image
+        addWeighted(overlay, alpha, ActualFrame, 1 - alpha, 0, ActualFrame);
+    }
 }
 
 void CameraStream::AkazePointsForViewImages()

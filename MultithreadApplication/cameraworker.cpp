@@ -40,6 +40,9 @@ void CameraWorker::preProcessVideo()
     // Compute AKAZE points for camera views
     Camera.AkazePointsForViewImages();
 
+    // Extract common projected semantic points
+    Camera.SemanticCommonPoints();
+
     // Main video processing function
     processVideo();
 }
@@ -94,20 +97,26 @@ void CameraWorker::processVideo()
             Camera.ExtractFGImages(Camera.ActualFrame, Camera.FGBlobs);
         }
 
-        // ----------------------- //
-        //   HOMOGRAPHY SELECTION  //
-        // ----------------------- //
-        Camera.HomographySelection(Camera.HomographyVector);
+        // ------------------------------ //
+        //   HOMOGRAPHY & VIEW SELECTION  //
+        // ------------------------------ //
+        Camera.ViewSelection(Camera.HomographyVector);
 
         // ----------------------- //
         //   SEMANTIC PROJECTION   //
         // ----------------------- //
         // Auxiliar Cenital plane to paint
         CenitalPlane = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
-        // Project Floor Points
-        Camera.ProjectFloorPoints(CenitalPlane);
+        // Semantic Mask
+        SemanticMask = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
+        Camera.ProjectSemanticPoints(CenitalPlane, SemanticMask, FrameNumber);
         // Draw semantic projection
         Camera.drawSemantic(CenitalPlane);
+
+        // ---------------------------- //
+        //   INDUCED PLANE HOMOGRAPHY   //
+        // ---------------------------- //
+        Camera.ProjectCommonSemantic();
 
         // ------------------------------------------- //
         //     PEOPLE DETECTION & BLOBS PROJECTION     //
@@ -136,7 +145,7 @@ void CameraWorker::processVideo()
         //qDebug() << "Thread " << Camera.CameraNumber << " processing frame " << QString::fromStdString(FrameNumber);
         // Threads must wait here until all of them have reached the barrier
         barrier.wait();
-        emit frameFinished(Camera.ActualFrame.clone(), CenitalPlaneImage.clone(), Camera.CameraNumber);
+        emit frameFinished(Camera.ActualFrame, CenitalPlaneImage, Camera.CameraNumber);
     }
     emit finished();
 }

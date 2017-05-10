@@ -41,6 +41,27 @@ public:
     bool EmptyBackground;
     Ptr<BackgroundSubtractor> pMOG2 = createBackgroundSubtractorMOG2();
 
+    // Homography and Image Wrapping
+    int NViews = 9;
+    vector<Mat> CameraViewsVector;
+    vector<Mat> HomographyVector;
+    Mat Homography;
+    void computeHomography();
+    void ViewSelection(vector<Mat> HomographyVector);
+    void saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber);
+
+    // Semantic Projection
+    vector<Mat> ProjectedFullSemanticVector;
+    Mat CommonSemantic12, CommonSemantic23, CommonSemantic13;
+    vector<Point2f> ProjectedFloorVector;
+    int NumberFloorPoints;
+    void SemanticCommonPoints();
+    void ProjectSemanticPoints(Mat &CenitalPlane, Mat &SemanticMask, String FrameNumber);
+    void drawSemantic(Mat& CenitalPlane);
+
+    // Induced Plane Homography
+    void ProjectCommonSemantic();
+
     // Pedestrian mask, blobs and images
     Mat PedestrianMask;
     vector<Rect> FGBlobs;
@@ -49,21 +70,6 @@ public:
     void extractFGBlobs(Mat fgmask, string CBOption);
     void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects);
     void ExtractFGImages(Mat ActualFrame, vector<Rect> FGBlobs);
-
-    // Homography and Image Wrapping
-    int NViews = 5;
-    vector<Mat> CameraViewsVector;
-    vector<Mat> HomographyVector;
-    Mat Homography;
-    void computeHomography();
-    void HomographySelection(vector<Mat> HomographyVector);
-    void saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber);
-
-    // Semantic Projection
-    vector<Point2f> ProjectedFloorVector;
-    int NumberFloorPoints;
-    void ProjectFloorPoints(Mat &CenitalPlane);
-    void drawSemantic(Mat& CenitalPlane);
 
     // AKAZE
     Ptr<AKAZE> akazeDescriptor;

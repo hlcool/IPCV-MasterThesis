@@ -8,6 +8,7 @@
 #include <QLabel>
 #include <string>
 #include <QThread>
+#include <QMutex>
 #include <iostream>
 #include <QGridLayout>
 #include <QFileDialog>
@@ -22,6 +23,7 @@ using namespace cv;
 vector<CameraStream> Cameras;
 ofstream PtsDstFile;
 ofstream PtsSrcFile;
+QMutex mutexWindow;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -174,15 +176,31 @@ void MainWindow::displayFrame(Mat frame, Mat CenitalPlane, int CameraNumber)
         // Cenital Plane is only displayed once
         ui->CVWidgetCenital->showImage(CenitalPlane);
     }
+
+    // Other Displays
+    /*
+    Mat SemanticMask1 =  CameraWorkers[0]->SemanticMask;
+    Mat SemanticMask2 =  CameraWorkers[1]->SemanticMask;
+    Mat SemanticMask3 =  CameraWorkers[2]->SemanticMask;
+
+    imshow("Semantic Camera 1", SemanticMask1);
+    imshow("Semantic Camera 2", SemanticMask2);
+    imshow("Semantic Camera 3", SemanticMask3);
+    */
+    //Mat SemanticMask1 =  CameraWorkers[0]->Camera.CommonSemantic12;
+    //Mat SemanticMask2 =  CameraWorkers[0]->Camera.CommonSemantic23;
+    //Mat SemanticMask3 =  CameraWorkers[0]->Camera.CommonSemantic13;
+
+    //imshow("Common Semantic between Camera 1 and 2", SemanticMask1*20);
+    //imshow("Common Semantic between Camera 2 and 3", SemanticMask2*20);
+    //imshow("Common Semantic between Camera 1 and 3", SemanticMask3*20);
 }
 
 void MainWindow::joinCenitalFrames(Mat frame, Mat CenitalPlane, int CameraNumber)
 {
-    Mat CenitalFrame1, CenitalFrame2, CenitalFrame3;
-
-    CenitalFrame1 =  CameraWorkers[0]->CenitalPlane;
-    CenitalFrame2 =  CameraWorkers[1]->CenitalPlane;
-    CenitalFrame3 =  CameraWorkers[2]->CenitalPlane;
+    Mat CenitalFrame1 =  CameraWorkers[0]->CenitalPlane;
+    Mat CenitalFrame2 =  CameraWorkers[1]->CenitalPlane;
+    Mat CenitalFrame3 =  CameraWorkers[2]->CenitalPlane;
 
     // Join all the images
     add(CenitalPlane, CenitalFrame1, CenitalPlane);

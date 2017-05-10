@@ -21,6 +21,9 @@ public:
     CameraWorker(CameraStream Camera, Barrier barrier);
     ~CameraWorker();
 
+    // Camera Class
+    CameraStream Camera;
+
     // Display Widget Variables
     int WidgetWidth, WidgetHeight;
 
@@ -33,12 +36,14 @@ public:
 
     // Cenital Frame
     Mat CenitalPlane;
+    // Semantic Mask
+    Mat SemanticMask;
 
     void processVideo();
 
 signals:
     // frame and index of label which frame will be displayed
-    void frameFinished(Mat frame, Mat CenitalPlane, int index);
+    void frameFinished(Mat frame, Mat CenitalPlane, int CameraNumber);
     void finished();
 
 public slots:
@@ -46,7 +51,6 @@ public slots:
 
 
 private:
-    CameraStream Camera;
     Barrier barrier;
 
     // Txt file to extract and save information
