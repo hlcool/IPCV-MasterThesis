@@ -608,7 +608,6 @@ void CameraStream::ProjectCommonSemantic()
         // Create the convex poligon from array of Point and add transparency to the final image
         addWeighted(overlay, alpha, ActualFrame, 1 - alpha, 0, ActualFrame);
     }
-
     if((CameraNumber == 2) || (CameraNumber == 3)){
         // Project common points with Camera 3 into actual frame
         Color.val[0] = 255;
