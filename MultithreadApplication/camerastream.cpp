@@ -306,11 +306,13 @@ void CameraStream::ViewSelection(vector<Mat> HomographyVector)
     // Compare Actual Frame with all the frames used to extract homographies with AKAZE
     // Extract number of correspondant view to index the homography vectors
 
-    int ViewIndex;
+    int ViewIndex, ViewIndex2;
     int NMatches;
-    int NMatchesMax = 0;
     vector<Point2f> GoodMatchesPoints1, GoodMatchesPoints2;
     vector<Point2f> GoodMatchesPoints1Def, GoodMatchesPoints2Def;
+    vector<Point2f> GoodMatchesPoints1Def2, GoodMatchesPoints2Def2;
+    vector<vector<Point2f>> VectorGoodMatches1, VectorGoodMatches2;
+    vector<int> VectorNMaches;
 
     for (int CameraView = 0; CameraView < NViews; CameraView++){
         GoodMatchesPoints1.clear();
@@ -322,14 +324,35 @@ void CameraStream::ViewSelection(vector<Mat> HomographyVector)
 
         Akaze(CameraViewImage, ViewKeypoints, ViewDescriptor, ActualFrame, NMatches, GoodMatchesPoints1, GoodMatchesPoints2, CameraView);
 
-        if (NMatches > NMatchesMax){
-            ViewIndex = CameraView;
-            NMatchesMax = NMatches;
-            GoodMatchesPoints1Def.clear();
-            GoodMatchesPoints2Def.clear();
-            GoodMatchesPoints1Def = GoodMatchesPoints1;
-            GoodMatchesPoints2Def = GoodMatchesPoints2;
-        }
+        VectorNMaches.push_back(NMatches);
+        VectorGoodMatches1.push_back(GoodMatchesPoints1);
+        VectorGoodMatches2.push_back(GoodMatchesPoints2);
+    }
+
+    // Sort NMatches vector
+    vector<int> SortedNMatches;
+    SortedNMatches = VectorNMaches;
+    sort(SortedNMatches.begin(), SortedNMatches.end());
+
+    // Extract the first and second maximum number of matches
+    auto MaxNMatches = SortedNMatches.at(NViews-1);
+    auto MaxNMatches2 = SortedNMatches.at(NViews-2);
+
+    // Extract voth maximum positons
+    ViewIndex = find(VectorNMaches.begin(), VectorNMaches.end(), MaxNMatches) - VectorNMaches.begin();
+    ViewIndex2 = find(VectorNMaches.begin(), VectorNMaches.end(), MaxNMatches2) - VectorNMaches.begin();
+
+    // Get the maximum view points for the homographies
+    GoodMatchesPoints1Def = VectorGoodMatches1[ViewIndex];
+    GoodMatchesPoints2Def = VectorGoodMatches2[ViewIndex];
+
+    GoodMatchesPoints1Def2 = VectorGoodMatches1[ViewIndex2];
+    GoodMatchesPoints2Def2 = VectorGoodMatches2[ViewIndex2];
+
+    if(CameraNumber == 1){
+        cout << "First: MNMatches is " << MaxNMatches << " at camera view " << ViewIndex << endl;
+        cout << "Second: MNMatches is " << MaxNMatches2 << " at camera view " << ViewIndex2 << endl;
+        cout << endl;
     }
 
     if (GoodMatchesPoints1Def.size() > 4){
@@ -340,12 +363,30 @@ void CameraStream::ViewSelection(vector<Mat> HomographyVector)
         // interpolate/trasnform the homography so it is more accurate
         // Convert the ActualFrame to the view perspective
         Mat HomographyBetweenViews = findHomography(GoodMatchesPoints2Def, GoodMatchesPoints1Def, CV_LMEDS);
+        Mat HomographyBetweenViews2 = findHomography(GoodMatchesPoints2Def2, GoodMatchesPoints1Def2, CV_LMEDS);
 
         // Convert ActualSemFrame with the computed homography to be similar to the semantic image from the view
-        Mat SemWarping;
+        Mat SemWarping, SemWarping2;
         warpPerspective(ActualSemFrame, SemWarping, HomographyBetweenViews, ActualSemFrame.size());
-        //String ImageName = "/Users/alex/Desktop/Semantic"+to_string(CameraNumber)+ ".png";
-        //imwrite(ImageName, SemWarping);
+        warpPerspective(ActualSemFrame, SemWarping2, HomographyBetweenViews2, ActualSemFrame.size());
+
+        /*
+        Mat CameraViewImage = CameraViewsVector[ViewIndex];
+        Mat CameraViewImage2 = CameraViewsVector[ViewIndex2];
+
+        if (CameraNumber == 1){
+            String ImageName = "/Users/alex/Desktop/aux/CameraViewImage1-"+to_string(CameraNumber)+ ".png";
+            imwrite(ImageName, CameraViewImage);
+            ImageName = "/Users/alex/Desktop/aux/ CameraViewImage2-"+to_string(CameraNumber)+ ".png";
+            imwrite(ImageName, CameraViewImage2);
+            ImageName = "/Users/alex/Desktop/aux/Semantic1-"+to_string(CameraNumber)+ ".png";
+            imwrite(ImageName, SemWarping*20);
+            ImageName = "/Users/alex/Desktop/aux/Semantic2-"+to_string(CameraNumber)+ ".png";
+            imwrite(ImageName, SemWarping2*20);
+            ImageName = "/Users/alex/Desktop/aux/ActualFrame-"+to_string(CameraNumber)+ ".png";
+            imwrite(ImageName, ActualFrame);
+        }
+        */
     }
     Homography = HomographyVector[ViewIndex];
 }
