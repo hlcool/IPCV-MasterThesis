@@ -107,7 +107,7 @@ void CameraWorker::processVideo()
         // ----------------------- //
         // Auxiliar Cenital plane to paint
         CenitalPlane = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
-        // Project Floor Points
+        // Semantic Mask
         SemanticMask = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
         Camera.ProjectSemanticPoints(CenitalPlane, SemanticMask, FrameNumber);
         // Draw semantic projection

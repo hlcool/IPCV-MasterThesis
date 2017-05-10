@@ -187,13 +187,13 @@ void MainWindow::displayFrame(Mat frame, Mat CenitalPlane, int CameraNumber)
     imshow("Semantic Camera 2", SemanticMask2);
     imshow("Semantic Camera 3", SemanticMask3);
     */
-    Mat SemanticMask1 =  CameraWorkers[0]->Camera.CommonSemantic12;
-    Mat SemanticMask2 =  CameraWorkers[0]->Camera.CommonSemantic23;
-    Mat SemanticMask3 =  CameraWorkers[0]->Camera.CommonSemantic13;
+    //Mat SemanticMask1 =  CameraWorkers[0]->Camera.CommonSemantic12;
+    //Mat SemanticMask2 =  CameraWorkers[0]->Camera.CommonSemantic23;
+    //Mat SemanticMask3 =  CameraWorkers[0]->Camera.CommonSemantic13;
 
-    imshow("Common Semantic between Camera 1 and 2", SemanticMask1*20);
-    imshow("Common Semantic between Camera 2 and 3", SemanticMask2*20);
-    imshow("Common Semantic between Camera 1 and 3", SemanticMask3*20);
+    //imshow("Common Semantic between Camera 1 and 2", SemanticMask1*20);
+    //imshow("Common Semantic between Camera 2 and 3", SemanticMask2*20);
+    //imshow("Common Semantic between Camera 1 and 3", SemanticMask3*20);
 }
 
 void MainWindow::joinCenitalFrames(Mat frame, Mat CenitalPlane, int CameraNumber)
