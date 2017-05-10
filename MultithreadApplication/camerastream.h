@@ -43,6 +43,7 @@ public:
 
     // Homography and Image Wrapping
     int NViews = 9;
+    Mat HomographyBetweenViews;
     vector<Mat> CameraViewsVector;
     vector<Mat> HomographyVector;
     Mat Homography;
@@ -53,13 +54,15 @@ public:
     // Semantic Projection
     vector<Mat> ProjectedFullSemanticVector;
     Mat CommonSemantic12, CommonSemantic23, CommonSemantic13;
+    Mat CommonSemanticAllCameras;
     vector<Point2f> ProjectedFloorVector;
     int NumberFloorPoints;
-    void SemanticCommonPoints();
     void ProjectSemanticPoints(Mat &CenitalPlane, Mat &SemanticMask, String FrameNumber);
     void drawSemantic(Mat& CenitalPlane);
 
     // Induced Plane Homography
+    void SemanticCommonPoints();
+    void ExtractViewScores();
     void ProjectCommonSemantic();
 
     // Pedestrian mask, blobs and images

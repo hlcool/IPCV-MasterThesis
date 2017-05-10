@@ -43,6 +43,9 @@ void CameraWorker::preProcessVideo()
     // Extract common projected semantic points
     Camera.SemanticCommonPoints();
 
+    // Extract plane scores for views
+    Camera.ExtractViewScores();
+
     // Main video processing function
     processVideo();
 }
