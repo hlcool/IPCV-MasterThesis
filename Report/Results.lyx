@@ -142,7 +142,7 @@ reference "fig:Sony-SNC-RZ50P-Pan/Tilt Range"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -197,6 +197,24 @@ placement H
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength
+\backslash
+extrarowheight{7pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -259,7 +277,7 @@ Focal length
 \begin_inset Text
 
 \begin_layout Plain Layout
-f=3.5 to 91.0 mm
+f = 3.5 to 91.0 mm
 \end_layout
 
 \end_inset
@@ -585,7 +603,7 @@ name "tab:Sony-SNC-RZ50P-Specifications"
 \end_layout
 
 \begin_layout Subsection
-Camera User Interface (GUI)
+Camera User Web Interface (GUI)
 \end_layout
 
 \begin_layout Standard
@@ -617,6 +635,18 @@ placement H
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Camera Control.png
+	lyxscale 20
+	width 50text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -658,8 +688,8 @@ reference "fig:Visualization and control menu"
 
 \end_inset
 
- in order to recover the same position if the camera has been moved precise
- and easily.
+ in order to recover the same position if the camera has been moved before
+ in precise and easily manner.
 \end_layout
 
 \begin_deeper
@@ -669,6 +699,18 @@ placement H
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Preset Menu.png
+	lyxscale 20
+	width 50text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -698,9 +740,9 @@ name "fig:Preset-position-setting"
 \begin_layout Itemize
 Tour setting: One could apart from pointing the camera to a static point,
  set it to describe a tour over the scene.
- This process is done by setting two different preset positions from where
- the camera will be moving from one to the other at a set speed.
- The menu is displayed in Figure 
+ This process is done by setting at least two different preset positions
+ from where the camera will be moving from one to the other at a set speed.
+ The menu to configure this behavior is displayed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Tour setting menu"
@@ -717,6 +759,18 @@ placement H
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Tour Menu.png
+	lyxscale 20
+	width 50text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard

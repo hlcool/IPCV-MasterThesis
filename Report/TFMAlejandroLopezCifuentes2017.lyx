@@ -6,16 +6,16 @@
 \origin unavailable
 \textclass book
 \begin_preamble
-%\usepackage{lettrine}
+\usepackage{lettrine}
 %\usepackage[colorlinks=false, citecolor={black}]{hyperref}%to avoid the red boxed around cross-references. Text is coloured instead red box.         
-\usepackage[english]{babel}
+%\usepackage[english]{babel}
 \usepackage{courier}
 \usepackage{lscape}
-\usepackage[linkbordercolor={1 1 1},citebordercolor={1 1 1}]{hyperref}
 \usepackage{color}
 \definecolor{gray97}{gray}{.97}
 \definecolor{gray75}{gray}{.75}
 \definecolor{gray45}{gray}{.45}
+%\usepackage[linkbordercolor={1 1 1},citebordercolor={1 1 1}]{hyperref}
 
 \usepackage{listings}
 \lstset{ frame=Ltb,
@@ -57,6 +57,7 @@ backgroundcolor=\color{gray75},
 
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
+%\usepackage[hyperref,backend=biber,backref,backrefstyle=none]{biblatex}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
@@ -218,6 +219,16 @@ filename "StateOftheArt.lyx"
 \begin_inset CommandInset include
 LatexCommand include
 filename "Application.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "Proposed System.lyx"
 
 \end_inset
 

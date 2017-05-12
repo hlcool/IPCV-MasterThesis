@@ -1,0 +1,723 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass book
+\begin_preamble
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing double
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.5in
+\topmargin 1.6in
+\rightmargin 1.2in
+\bottommargin 1.6in
+\headheight 1.5in
+\headsep 0.3in
+\footskip 0.8in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle plain
+\bullet 1 2 6 -1
+\bullet 2 2 12 -1
+\bullet 3 1 25 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Proposed System
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Proposed-System"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Pedestrian Detection
+\end_layout
+
+\begin_layout Standard
+Along this section we will present the pedestrian State of the Art detectors
+ that have been selected for our work.
+ Some of them have been chosen due to the algorithm simplicity and computational
+ cost and other due to its contrasted performance while working in real
+ sequences as we have seen in Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:State-of-the art"
+
+\end_inset
+
+.
+ However, one of the main reasons of choosing the following three algorithms
+ among others in the SoA is the possibility of either having the original
+ source code or the practical implementation within an external library.
+\end_layout
+
+\begin_layout Subsection
+Histogram of Oriented Gradients
+\end_layout
+
+\begin_layout Standard
+Histogram of Oriented Gradients, i.e.
+ HOG, is one of the main used detectors along pedestrian detection field.
+ This fact is due to it's extremely simplicity in terms of describer complexity.
+ Pedestrians are described as set of HOG, this means that its shape and
+ appearance can be described by a set of gradients and intensities organized
+ as orientation histograms.
+ These histograms will describe intensity distributions from local gradients
+ or border directions.
+ This descriptor can be observe graphically in Figure 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/HoG.jpg
+	lyxscale 60
+	width 60text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+HOG Pedestrian Descriptor
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:HOG-Pedestrian-Descriptor"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Once HOG have been used to describe the personal shape, Support Vector Machines
+ are used to train a person model and to classify potential candidates as
+ people.
+ SVM are a data classification method formed by a set of supervised training.
+ The aim of this kind of approaches is to produce a model which will be
+ able to predict classification labels on a test set based only on the descripto
+rs of the set.
+\end_layout
+
+\begin_layout Standard
+The idea behind SVM is that training vectors will be mapped on to a bigger
+ dimensional space in which the data separation by means of one or many
+ hyperplane will be much easier than in the original dimensional space.
+\end_layout
+
+\begin_layout Standard
+The combination between HOG and SVM will lead to a fast detector that depending
+ on the situation will perform decently, although it has some main drawbacks
+ as its lack of occlusion treatment which will not make this algorithm usable
+ when working with crowded spaces.
+\end_layout
+
+\begin_layout Standard
+The main implementation of Histogram of Oriented Gradient Pedestrian Detector
+ is in OpenCV library for C++.
+\end_layout
+
+\begin_layout Subsection
+Deformable Part Model
+\end_layout
+
+\begin_layout Standard
+As was mentioned in the previous paragraph one of the main drawbacks when
+ working with the simple HOG pedestrian detection is that it describes the
+ person model as a hole which will lead to the described drawbacks.
+ Deformable Part Model solves this problem, among others, by defining the
+ model as a global coarse template, several higher resolution part templates
+ and a spatial model for the location of each part.
+ This description is the one that can be observed in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Example-detection-obtained with DPM Person model"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/DPM.png
+	lyxscale 20
+	width 70text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Example detection obtained with the person model.
+ From left to right: Original image + detections, global coarse model, part
+ templates and spatial model for each part.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Example-detection-obtained with DPM Person model"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "felzenszwalb2010object"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Both global and part templates are modeled with histogram of gradient features
+ and the model is built by using an improving over SVM called latent SVM.
+ In addition, scores for every detection are obtained by applying a root
+ filter on the window plus the sum over parts of the maximum over placements
+ of that par, of the part filter score on the resulting sub window minus
+ the deformation cost.
+\end_layout
+
+\begin_layout Standard
+The use of this detector will lead to a set of advantages than when working
+ with others simpler approaches.
+ In terms of pedestrian occlusion treatment we will be able to detect those
+ people that have been occluded by something in the scene just by detecting
+ some visible part.
+ This will outperform other detectors while working with crowded scenes
+ in which holistic methods will have problems that will lead for instance
+ to groups of people being detected as a unique detection while DPM will
+ be able to separate them into different person instances.
+\end_layout
+
+\begin_layout Standard
+However, its scanning window approach as well as the part based model will
+ lead to some computational cost that will increase the time needed to obtain
+ detections.
+\end_layout
+
+\begin_layout Standard
+The main implementation of Deformable Part Model Pedestrian Detector is
+ in OpenCV library for C++.
+\end_layout
+
+\begin_layout Subsection
+Fast Region-Based Convolutional Network
+\end_layout
+
+\begin_layout Standard
+Fast Region-based Convolutional Network (Fast R-CNN) it will be used to
+ detect pedestrian in our proposed system, however, as said in Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:State-of-the art"
+
+\end_inset
+
+ it is not only a pedestrian detector but a method for object detection.
+ In 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Object-Proposals"
+
+\end_inset
+
+ we mentioned that Fast-RCNN must use objects proposals for its usage.
+ In the developed system MCG 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "arbelaez2014multiscale"
+
+\end_inset
+
+ grouping method will be used for this purpose.
+\end_layout
+
+\begin_layout Standard
+Fast-RCNN method employs set its contributions in a several number of innovation
+s to improve training and testing speed over its fundamental base R-CNN:
+\end_layout
+
+\begin_layout Enumerate
+Higher detection quality (mAP)
+\end_layout
+
+\begin_layout Enumerate
+Training is single-stage, using a multi-task loss 
+\end_layout
+
+\begin_layout Enumerate
+Training can update all network layers 
+\end_layout
+
+\begin_layout Enumerate
+No disk storage is required for feature caching
+\end_layout
+
+\begin_layout Standard
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Fast-R-RCNN-architecture"
+
+\end_inset
+
+ one can observe the general Fast R-RCNN architecture.
+ The input for the Fast-RCNN network are the entire desired image that one
+ wants to process and a set of object proposals.
+ The first step in the network is to process the whole image with several
+ convolutional and max pooling layers to produce a convolutional feature
+ map.
+ Then, for every object proposal present in the image, a region of interest
+ (ROI) pooling layer extracts a fixed-length feature vector from the feature
+ map.
+\end_layout
+
+\begin_layout Standard
+Each feature vector is after introduced into a sequence of fully connected
+ (FC) layers that finally diverge into to output layers.
+ The first one produces probabilities estimates over 
+\begin_inset Formula $K$
+\end_inset
+
+ object classes.
+ The second one outputs four real numbers for each of the 
+\begin_inset Formula $K$
+\end_inset
+
+ object classes.
+ This set of 4 values encodes the final bounding-box positions for one of
+ the objects from the 
+\begin_inset Formula $K$
+\end_inset
+
+ classes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/Fast RCNN.png
+	lyxscale 10
+	width 70text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Fast R-RCNN architecture.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "girshick2015fast"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Fast-R-RCNN-architecture"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this case, both Fast-RCNN detector and MCG object proposal extract are
+ implemented within external Matlab libraries.
+\end_layout
+
+\begin_layout Subsection
+Cylinder Estimation
+\end_layout
+
+\begin_layout Standard
+In [Paper Rafael Nieto y Alejandro Miguélez (TFG)] a cylinder estimation
+ technique is proposed.
+ The detected bounding boxes on the camera frame do not correspond spatially
+ with the position of the detected object due to the camera perspective.
+ If this detection error is not corrected when the bounding boxes are projected
+ either to another camera instance or to the common cenital plane there
+ will be a distance between the bounding box and the real object.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Cylinder-estimation-for camera instances projections"
+
+\end_inset
+
+ shows the case for bounding box transference between cameras and Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Cylinder-estimation-for cenital view projections"
+
+\end_inset
+
+ for the cenital frame.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/Cylinder estimation between cameras.png
+	lyxscale 20
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cylinder estimation for camera instance projections
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Cylinder-estimation-for camera instances projections"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/Cylinder estimation in cenital.png
+	lyxscale 20
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cylinder estimation for cenital view projections
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Cylinder-estimation-for cenital view projections"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Poner aqui o en resultados?
+\end_layout
+
+\begin_layout Subsection
+Gaussian Bounding Box Representation
+\end_layout
+
+\begin_layout Standard
+Explicar la representacion de personas mediante funcion gaussiana en funcion
+ de los scores obtenidos en el detector
+\end_layout
+
+\begin_layout Standard
+Aqui o en resultados?
+\end_layout
+
+\begin_layout Section
+Semantic Segmentation
+\end_layout
+
+\begin_layout Standard
+Explicar como se ha llevado a cabo la extraccion de las iamgenes semanticas.
+\end_layout
+
+\begin_layout Standard
+PSP-Net con con un determinado modelo de los 3 que hay.
+ Porq?
+\end_layout
+
+\begin_layout Standard
+Numero de clases completa del modelo era...
+ y ha sido reducido a 20 por temas de eficiencia y limitaciones de espacio
+ en disco.
+\end_layout
+
+\begin_layout Section
+Multi-camera Scenario
+\end_layout
+
+\begin_layout Standard
+Configuracion del sistema multicamara.
+ Vistas de cada camara.
+ Ventajas sombre un sistema mono camara.
+\end_layout
+
+\begin_layout Standard
+Inlcusion de panning en las camaras para mejorar las areas de vision
+\end_layout
+
+\begin_layout Subsection
+Cenital Plan Design
+\end_layout
+
+\begin_layout Standard
+Primera aproximacion del plano con medidas irreales.
+ -> Imposibilidad de seleccion de puntos de homografia correctos -> Semantica
+ no coincide correctamente
+\end_layout
+
+\begin_layout Standard
+Solucion diseño de un nuevo plano con medidas corregidas y detalle de la
+ escena.
+\end_layout
+
+\begin_layout Standard
+Explicar el diseño del plano del hall mediante AutoCad.
+ Imagen con las medidas reales del plano.
+\end_layout
+
+\begin_layout Subsection
+Video Sequence Synchronization
+\end_layout
+
+\begin_layout Standard
+Sincronizacion entre los diferentes videos de las camaras por medio de eventos
+ concretos en las secuencias.
+\end_layout
+
+\begin_layout Section
+Camera Panning
+\end_layout
+
+\begin_layout Standard
+Zona comun cuando las camaras estan estaticas se reduce al centro de la
+ sala.
+ Inlcusion de panning en la configuracion de las camaras para captar un
+ area mayor y aumentar el area comun entre camaras.
+\end_layout
+
+\begin_layout Subsection
+Camera Panning Discretization
+\end_layout
+
+\begin_layout Standard
+Discretizacion del tour de la camara en N vistas para mejorar la eficiencia
+ del programa y poder tener las homografias pre calculadas.
+\end_layout
+
+\begin_layout Subsection
+View Selection
+\end_layout
+
+\begin_layout Standard
+Seleccion de vista mediante comparacion de puntos de interes y descriptores
+ (AKAZE) del frame actual y cada una de las vistas seleccionadas.
+ Calculo de la homografia entre el frame actual y la vista correspondiente
+ para poder corregir la semantica a la posicion en la cual la homografia
+ es correcta.
+\end_layout
+
+\begin_layout Section
+Cenital Plane Homography
+\end_layout
+
+\begin_layout Standard
+Calculo de las homografias entre las diferentes vistas y plano cenital de
+ la escena.
+ Procedimiento de seleccion de puntos comunes por medio del usuario.
+\end_layout
+
+\begin_layout Section
+Induced Plane Homography
+\end_layout
+
+\begin_layout Standard
+Promediado de semanticas projectadas en la imagen cenital para las 3 camaras.
+\end_layout
+
+\begin_layout Standard
+Puntos comunes entre promedidados de semanticas para pares de camaras.
+\end_layout
+
+\begin_layout Standard
+Puntos comunes entre los promedidados de las tres camaras -> Primera hipotesis
+ de puntos pertenencientes al suelo.
+ Extraccion de scores para esos puntos.
+\end_layout
+
+\begin_layout Standard
+Generacion de planos paralelos al cenital para proyectar nuevos puntos comunes
+ a otra altura.
+\end_layout
+
+\end_body
+\end_document

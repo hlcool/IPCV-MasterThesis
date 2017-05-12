@@ -116,7 +116,7 @@ reference "sec:Objectives"
 
 \begin_layout Standard
 The application has been developed under QT Creator coding environment in
- Mac OS.
+ Mac OS Sierra.
  This decision has been fundamentally based on:
 \end_layout
 
@@ -128,9 +128,46 @@ Its cross-platform characteristic which makes it easily portable from one
 \begin_layout Enumerate
 Its application window designer that enables the programmer to design the
  software windows by using an interface instead of having to code to create
- the mentioned window.
+ the mentioned window (Figure ).
 \end_layout
 
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Developed Application/QT Window Designer.png
+	lyxscale 20
+	width 60text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+QT Window Designer
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Enumerate
 The possibility to add OpenCV libraries to the project.
 \end_layout
@@ -139,6 +176,17 @@ The possibility to add OpenCV libraries to the project.
 Two main applications, single-thread and multi-thread, have been developed
  and will be analyze on the following lines, however at the end of the project
  only the multi-thread application will be the one in use.
+ All the code for both approaches is available in the following 
+\color blue
+
+\begin_inset CommandInset href
+LatexCommand href
+name "GitHub Repository"
+target "https://github.com/alexlopezcifuentes/IPCV-MasterThesis/"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -230,7 +278,7 @@ footnotesize Start/Stop Module};
 
 
 \backslash
-node (VideoInput) [io, right of = UIStart, xshift=4cm] {
+node (VideoInput) [io, right of = UIStart, xshift=2.3cm] {
 \backslash
 footnotesize Input/Output Module};
 \end_layout
@@ -248,7 +296,7 @@ footnotesize Process Module};
 
 
 \backslash
-node (VideoEnd) [decision, right of = Camera2, xshift=4cm] {
+node (VideoEnd) [decision, right of = Camera2, xshift=2.3cm] {
 \backslash
 footnotesize Decision Module};
 \end_layout
@@ -1004,7 +1052,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Application/Main Window.png
 	lyxscale 30
-	width 70text%
+	width 60text%
 
 \end_inset
 
@@ -1187,7 +1235,8 @@ reference "fig:Options Menu"
  restart the running before changing some parameter.
  The user can select among various pedestrian detectors such as semantic
  detector, DPM or even Fast-RCNN as well as the type of representation that
- one wants for these detections, lines or gaussians.
+ one wants for these detections, lines or gaussians which will be explained
+ later.
  In addition the application provides an option to perform mask filtering.
 \end_layout
 
@@ -1388,5 +1437,13 @@ name "fig:Results Display Area"
 \end_layout
 
 \end_deeper
+\begin_layout Subsection
+Engineer Application
+\end_layout
+
+\begin_layout Subsection
+User Application
+\end_layout
+
 \end_body
 \end_document

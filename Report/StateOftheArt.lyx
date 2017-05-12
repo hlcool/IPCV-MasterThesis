@@ -103,11 +103,9 @@
 
 \begin_layout Chapter
 State of the Art
-\noun on
-
 \begin_inset CommandInset label
 LatexCommand label
-name "cha:State Of the Art"
+name "chap:State-of-the art"
 
 \end_inset
 
@@ -266,8 +264,15 @@ s objects but to an area that could contain some candidates objects.
  In this case improvements from both approaches are used as the computational
  cost of the exhaustive search (that is the main drawback) is reduce by
  the use of some sort of segmentation.
- In Figure we can observe a diagram example of the Edge detector that uses
- the segmentation + exhaustive search approach.
+ In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Edge-Detector-Example"
+
+\end_inset
+
+ we can observe a diagram example of the Edge detector that uses the segmentatio
+n + exhaustive search approach.
 \end_layout
 
 \begin_deeper
@@ -275,7 +280,7 @@ s objects but to an area that could contain some candidates objects.
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -294,6 +299,13 @@ status collapsed
 
 \begin_layout Plain Layout
 Edge Detector Example Diagram
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Edge-Detector-Example"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -420,6 +432,10 @@ key "garcia2015people"
 
  propose some results from the State of the Art detectors depending on different
  datasets.
+ The selected algorithm ranking for this evaluation is the average AUC.
+ This metric will measure the area under a Recall Over Precision curve which
+ means that an area of 1 represents a perfect test; an area of .5 represents
+ a worthless test
 \end_layout
 
 \begin_layout Standard
@@ -427,6 +443,24 @@ key "garcia2015people"
 wide false
 sideways false
 status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength
+\backslash
+extrarowheight{7pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -1224,6 +1258,13 @@ name "fig:Image-summary-from datasets"
 
 \begin_layout Subsection
 Object Proposals
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Object-Proposals"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1624,6 +1665,24 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength
+\backslash
+extrarowheight{7pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="9" columns="2">
@@ -1910,6 +1969,24 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength
+\backslash
+extrarowheight{7pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="3">
@@ -1951,7 +2028,16 @@ IoU Class
 \begin_inset Text
 
 \begin_layout Plain Layout
-motovis
+
+\color blue
+\begin_inset CommandInset href
+LatexCommand href
+name "motovis"
+target "http://www.motovis.com/"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset

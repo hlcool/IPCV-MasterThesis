@@ -346,6 +346,18 @@ reference "chap:Developed Application"
 Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
+reference "chap:Proposed-System"
+
+\end_inset
+
+.
+ Proposed System.
+\end_layout
+
+\begin_layout Itemize
+Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
 reference "chap:Results"
 
 \end_inset
@@ -373,7 +385,7 @@ Appendix.
 \end_layout
 
 \begin_layout Itemize
-References.
+Bibliography.
 \end_layout
 
 \end_body
