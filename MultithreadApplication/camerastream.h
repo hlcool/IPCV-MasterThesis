@@ -49,7 +49,7 @@ public:
     Mat Homography;
     void computeHomography();
     void ViewSelection(vector<Mat> HomographyVector);
-    void saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber);
+    void saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber, Mat ImageWarping);
 
     // Semantic Projection
     vector<Mat> ProjectedFullSemanticVector;

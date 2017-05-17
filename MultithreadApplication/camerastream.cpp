@@ -358,14 +358,13 @@ void CameraStream::ViewSelection(vector<Mat> HomographyVector)
     Homography = HomographyVector[ViewIndex];
 }
 
-void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber)
+void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber, Mat ImageWarping)
 {
     // Extract image warping
-    Mat ImageWarping;
-    ImageWarping = Mat::zeros(600, 1500, CV_64F);
-    warpPerspective(ActualFrame, ImageWarping, Homography, ImageWarping.size());
+    warpPerspective(ActualFrame, ImageWarping, HomographyBetweenViews, ImageWarping.size());
+    warpPerspective(ImageWarping, ImageWarping, Homography, ImageWarping.size());
 
-    String ImageName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Wrapped Images/Camera " + to_string(CameraNumber) + "/Frame" + FrameNumber + ".png";
+    String ImageName = VideoPath + "/Wrapped Images/Camera " + to_string(CameraNumber) + "/Frame" + FrameNumber + ".png";
     imwrite(ImageName, ImageWarping);
 }
 
@@ -438,25 +437,45 @@ void CameraStream::SemanticCommonPoints()
 
 void CameraStream::ExtractViewScores()
 {
-        int Rows = CommonSemantic12.rows;
-        int Cols = CommonSemantic12.cols;
 
-        CommonSemanticAllCameras = Mat::zeros(Rows, Cols, CV_8UC1);
+    int Rows = CommonSemantic12.rows;
+    int Cols = CommonSemantic12.cols;
 
-        // Join the three commmon semantic images
-        for (int i = 0; i < Rows; i++){
-            for (int j = 0; j < Cols; j++){
-                int Label1 = CommonSemantic12.at<uchar>(i,j);
-                int Label2 = CommonSemantic23.at<uchar>(i,j);
-                int Label3 = CommonSemantic13.at<uchar>(i,j);
+    Mat ProjectedImage1 = imread(VideoPath + "/Wrapped Images/Sem1Median.png");
+    Mat ProjectedImage2 = imread(VideoPath + "/Wrapped Images/Sem2Median.png");
+    Mat ProjectedImage3 = imread(VideoPath + "/Wrapped Images/Sem3Median.png");
 
-                if ((Label1 == Label2) && (Label1== Label3) && (Label2== Label3)){
-                    CommonSemanticAllCameras.at<uchar>(i,j) = Label1;
+    CommonSemanticAllCameras = Mat::zeros(Rows, Cols, CV_8UC1);
+    Mat Scores = Mat::zeros(Rows, Cols, CV_8UC1);
+
+    // Join the three commmon semantic images
+    for (int i = 0; i < Rows; i++){
+        for (int j = 0; j < Cols; j++){
+            int Label1 = CommonSemantic12.at<uchar>(i,j);
+            int Label2 = CommonSemantic23.at<uchar>(i,j);
+            int Label3 = CommonSemantic13.at<uchar>(i,j);
+
+            if ((Label1 == Label2) && (Label1== Label3) && (Label2== Label3)){
+                CommonSemanticAllCameras.at<uchar>(i,j) = Label1;
+
+                if(Label1 != 0){
+                    double dist1 = norm(ProjectedImage1.at<Vec3b>(i,j), ProjectedImage2.at<Vec3b>(i,j), CV_L2);
+                    double dist2 = norm(ProjectedImage1.at<Vec3b>(i,j), ProjectedImage3.at<Vec3b>(i,j), CV_L2);
+                    double dist3 = norm(ProjectedImage3.at<Vec3b>(i,j), ProjectedImage2.at<Vec3b>(i,j), CV_L2);
+                    Scores.at<uchar>(i,j) = max(dist3, max(dist1, dist2));
                 }
+                else
+                    Scores.at<uchar>(i,j) = 255;
+            }
+            else {
+                Scores.at<uchar>(i,j) = 255;
             }
         }
-        String ImageName = "/Users/alex/Desktop/aux.png";
-        imwrite(ImageName, CommonSemanticAllCameras);
+    }
+    String ImageName = "/Users/alex/Desktop/CommonSemanticAllCameras.png";
+    imwrite(ImageName, CommonSemanticAllCameras*20);
+    ImageName = "/Users/alex/Desktop/Scores.png";
+    imwrite(ImageName, Scores);
 }
 
 void CameraStream::ProjectSemanticPoints(Mat &CenitalPlane, Mat &SemanticMask, String FrameNumber)
@@ -480,18 +499,8 @@ void CameraStream::ProjectSemanticPoints(Mat &CenitalPlane, Mat &SemanticMask, S
     // Project all semantic image
     warpPerspective(ActualSemFrame*20, SemanticMask, Homography, SemanticMask.size());
 
-    if(CameraNumber == 1){
-        String ImageName = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Projected Semantic Frames/Projected Frames 1/Frame" + FrameNumber + ".png";
-        imwrite(ImageName, SemanticMask);
-    }
-    if(CameraNumber == 2){
-        String ImageName = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Projected Semantic Frames/Projected Frames 2/Frame" + FrameNumber + ".png";
-        imwrite(ImageName, SemanticMask);
-    }
-    if(CameraNumber == 3){
-        String ImageName = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Projected Semantic Frames/Projected Frames 3/Frame" + FrameNumber + ".png";
-        imwrite(ImageName, SemanticMask);
-    }
+    String ImageName = VideoPath + "/Projected Semantic Frames/Projected Frames " + to_string(CameraNumber) + "/Frame" + FrameNumber + ".png";
+    imwrite(ImageName, SemanticMask);
 
     // Fill the global vector
     ProjectedFloorVector = ProjectedFloor;

@@ -112,9 +112,11 @@ void CameraWorker::processVideo()
         CenitalPlane = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
         // Semantic Mask
         SemanticMask = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
+        Mat ImageWarping = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
         Camera.ProjectSemanticPoints(CenitalPlane, SemanticMask, FrameNumber);
         // Draw semantic projection
         Camera.drawSemantic(CenitalPlane);
+        Camera.saveWarpImages(Camera.ActualFrame, Camera.Homography, FrameNumber, ImageWarping);
 
         // ---------------------------- //
         //   INDUCED PLANE HOMOGRAPHY   //
