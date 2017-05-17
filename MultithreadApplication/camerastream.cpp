@@ -350,7 +350,7 @@ void CameraStream::ViewSelection(vector<Mat> HomographyVector)
         // Now that we know the nearest view with respect with the ActualFrame we have to
         // interpolate/trasnform the homography so it is more accurate
         // Convert the ActualFrame to the view perspective
-        Mat HomographyBetweenViews = findHomography(GoodMatchesPoints2Def, GoodMatchesPoints1Def, CV_LMEDS);
+        HomographyBetweenViews = findHomography(GoodMatchesPoints2Def, GoodMatchesPoints1Def, CV_LMEDS);
 
         // Convert ActualSemFrame with the computed homography to be similar to the semantic image from the view
         warpPerspective(ActualSemFrame, ActualSemFrame, HomographyBetweenViews, ActualSemFrame.size());
@@ -358,14 +358,13 @@ void CameraStream::ViewSelection(vector<Mat> HomographyVector)
     Homography = HomographyVector[ViewIndex];
 }
 
-void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber)
+void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber, Mat ImageWarping)
 {
     // Extract image warping
-    Mat ImageWarping;
-    ImageWarping = Mat::zeros(600, 1500, CV_64F);
-    warpPerspective(ActualFrame, ImageWarping, Homography, ImageWarping.size());
+    warpPerspective(ActualFrame, ImageWarping, HomographyBetweenViews, ImageWarping.size());
+    warpPerspective(ImageWarping, ImageWarping, Homography, ImageWarping.size());
 
-    String ImageName = "/Users/alex/IPCV-MasterThesis/ApplicationCode/Wrapped Images/Camera " + to_string(CameraNumber) + "/Frame" + FrameNumber + ".png";
+    String ImageName = VideoPath + "/Wrapped Images/Camera " + to_string(CameraNumber) + "/Frame" + FrameNumber + ".png";
     imwrite(ImageName, ImageWarping);
 }
 
@@ -436,6 +435,49 @@ void CameraStream::SemanticCommonPoints()
     cvtColor(CommonSemantic13, CommonSemantic13 , CV_BGR2GRAY);
 }
 
+void CameraStream::ExtractViewScores()
+{
+
+    int Rows = CommonSemantic12.rows;
+    int Cols = CommonSemantic12.cols;
+
+    Mat ProjectedImage1 = imread(VideoPath + "/Wrapped Images/Sem1Median.png");
+    Mat ProjectedImage2 = imread(VideoPath + "/Wrapped Images/Sem2Median.png");
+    Mat ProjectedImage3 = imread(VideoPath + "/Wrapped Images/Sem3Median.png");
+
+    CommonSemanticAllCameras = Mat::zeros(Rows, Cols, CV_8UC1);
+    Mat Scores = Mat::zeros(Rows, Cols, CV_8UC1);
+
+    // Join the three commmon semantic images
+    for (int i = 0; i < Rows; i++){
+        for (int j = 0; j < Cols; j++){
+            int Label1 = CommonSemantic12.at<uchar>(i,j);
+            int Label2 = CommonSemantic23.at<uchar>(i,j);
+            int Label3 = CommonSemantic13.at<uchar>(i,j);
+
+            if ((Label1 == Label2) && (Label1== Label3) && (Label2== Label3)){
+                CommonSemanticAllCameras.at<uchar>(i,j) = Label1;
+
+                if(Label1 != 0){
+                    double dist1 = norm(ProjectedImage1.at<Vec3b>(i,j), ProjectedImage2.at<Vec3b>(i,j), CV_L2);
+                    double dist2 = norm(ProjectedImage1.at<Vec3b>(i,j), ProjectedImage3.at<Vec3b>(i,j), CV_L2);
+                    double dist3 = norm(ProjectedImage3.at<Vec3b>(i,j), ProjectedImage2.at<Vec3b>(i,j), CV_L2);
+                    Scores.at<uchar>(i,j) = max(dist3, max(dist1, dist2));
+                }
+                else
+                    Scores.at<uchar>(i,j) = 255;
+            }
+            else {
+                Scores.at<uchar>(i,j) = 255;
+            }
+        }
+    }
+    String ImageName = "/Users/alex/Desktop/CommonSemanticAllCameras.png";
+    imwrite(ImageName, CommonSemanticAllCameras*20);
+    ImageName = "/Users/alex/Desktop/Scores.png";
+    imwrite(ImageName, Scores);
+}
+
 void CameraStream::ProjectSemanticPoints(Mat &CenitalPlane, Mat &SemanticMask, String FrameNumber)
 {
     Mat FloorMask;
@@ -457,18 +499,8 @@ void CameraStream::ProjectSemanticPoints(Mat &CenitalPlane, Mat &SemanticMask, S
     // Project all semantic image
     warpPerspective(ActualSemFrame*20, SemanticMask, Homography, SemanticMask.size());
 
-    if(CameraNumber == 1){
-        String ImageName = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Projected Semantic Frames/Projected Frames 1/Frame" + FrameNumber + ".png";
-        imwrite(ImageName, SemanticMask);
-    }
-    if(CameraNumber == 2){
-        String ImageName = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Projected Semantic Frames/Projected Frames 2/Frame" + FrameNumber + ".png";
-        imwrite(ImageName, SemanticMask);
-    }
-    if(CameraNumber == 3){
-        String ImageName = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Projected Semantic Frames/Projected Frames 3/Frame" + FrameNumber + ".png";
-        imwrite(ImageName, SemanticMask);
-    }
+    String ImageName = VideoPath + "/Projected Semantic Frames/Projected Frames " + to_string(CameraNumber) + "/Frame" + FrameNumber + ".png";
+    imwrite(ImageName, SemanticMask);
 
     // Fill the global vector
     ProjectedFloorVector = ProjectedFloor;
@@ -556,8 +588,50 @@ void CameraStream::ProjectCommonSemantic()
     vector<Point> CommonPoints;
     vector<Point2f> ReProjectedCommonPoints;
     Mat overlay;
-    double alpha = 0.7;
+    double alpha = 1;
 
+    // Project common points with Camera 2 into actual frame
+    // Select color depending on the CameraNumber
+    if (CameraNumber == 1){
+        Color.val[0] = 0;
+        Color.val[1] = 255;
+        Color.val[2] = 0;
+    }
+    if (CameraNumber == 2){
+        Color.val[0] = 255;
+        Color.val[1] = 0;
+        Color.val[2] = 0;
+    }
+    if (CameraNumber == 3){
+        Color.val[0] = 0;
+        Color.val[1] = 0;
+        Color.val[2] = 255;
+    }
+
+    findNonZero(CommonSemanticAllCameras, CommonPoints);
+    // Convert from Point to Point2f floor coordinates. Auxiliar vector.
+    vector<Point2f> CommonPoints2(CommonPoints.begin(), CommonPoints.end());
+
+    // Apply Homography to vector of Points2f to find the projection of the floor
+    // Reprojection to the view
+    perspectiveTransform(CommonPoints2, ReProjectedCommonPoints, Homography.inv(DECOMP_LU));
+    // Reprojection to actual frame
+    perspectiveTransform(ReProjectedCommonPoints, ReProjectedCommonPoints, HomographyBetweenViews.inv(DECOMP_LU));
+
+    // Copy the cenital image to an overlay layer
+    ActualFrame.copyTo(overlay);
+
+    for (int i = 0 ; i < ReProjectedCommonPoints.size() ; i++){
+        Point punto = ReProjectedCommonPoints[i];
+        if ((punto.y > 0 && punto.y < overlay.rows) && (punto.x > 0 && punto.x < overlay.cols)){
+            overlay.at<Vec3b>(punto.y, punto.x) = Color;
+        }
+    }
+
+    // Create the convex poligon from array of Point and add transparency to the final image
+    addWeighted(overlay, alpha, ActualFrame, 1 - alpha, 0, ActualFrame);
+
+    /*
     if((CameraNumber == 1) || (CameraNumber == 2)){
         // Project common points with Camera 2 into actual frame
         Color.val[0] = 255;
@@ -633,13 +707,13 @@ void CameraStream::ProjectCommonSemantic()
         // Create the convex poligon from array of Point and add transparency to the final image
         addWeighted(overlay, alpha, ActualFrame, 1 - alpha, 0, ActualFrame);
     }
+    */
 }
 
 void CameraStream::AkazePointsForViewImages()
 {
     for (int CameraView = 0; CameraView < NViews; CameraView++){
         Mat ViewImage = CameraViewsVector[CameraView];
-
         vector<KeyPoint> kpts1;
         Mat desc1;
 

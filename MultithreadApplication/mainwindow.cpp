@@ -157,7 +157,6 @@ void MainWindow::updateVariables(Mat Frame, Mat CenitalPlane, int CameraNumber)
 
     // People detection representation methods
     CameraWorkers[CameraNumber-1]->RepresentationOption = ui->RepresentationCB->currentText().toStdString();
-
 }
 
 void MainWindow::displayFrame(Mat frame, Mat CenitalPlane, int CameraNumber)
@@ -186,14 +185,18 @@ void MainWindow::displayFrame(Mat frame, Mat CenitalPlane, int CameraNumber)
     imshow("Semantic Camera 1", SemanticMask1);
     imshow("Semantic Camera 2", SemanticMask2);
     imshow("Semantic Camera 3", SemanticMask3);
-    */
-    //Mat SemanticMask1 =  CameraWorkers[0]->Camera.CommonSemantic12;
-    //Mat SemanticMask2 =  CameraWorkers[0]->Camera.CommonSemantic23;
-    //Mat SemanticMask3 =  CameraWorkers[0]->Camera.CommonSemantic13;
 
-    //imshow("Common Semantic between Camera 1 and 2", SemanticMask1*20);
-    //imshow("Common Semantic between Camera 2 and 3", SemanticMask2*20);
-    //imshow("Common Semantic between Camera 1 and 3", SemanticMask3*20);
+    Mat SemanticMask1 =  CameraWorkers[0]->Camera.CommonSemantic12;
+    Mat SemanticMask2 =  CameraWorkers[0]->Camera.CommonSemantic23;
+    Mat SemanticMask3 =  CameraWorkers[0]->Camera.CommonSemantic13;
+
+    imshow("Common Semantic between Camera 1 and 2", SemanticMask1*20);
+    imshow("Common Semantic between Camera 2 and 3", SemanticMask2*20);
+    imshow("Common Semantic between Camera 1 and 3", SemanticMask3*20);
+    */
+
+    Mat CommonSemantic = CameraWorkers[0]->Camera.CommonSemanticAllCameras;
+    imshow("Common Semantic between all cameras", CommonSemantic*20);
 }
 
 void MainWindow::joinCenitalFrames(Mat frame, Mat CenitalPlane, int CameraNumber)
