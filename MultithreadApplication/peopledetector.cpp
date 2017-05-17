@@ -165,7 +165,8 @@ void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> sco
         SColor = Scalar (0, 0, 255);
 
     vector<Point2f> LeftCornerVectors, RightCornerVectors;
-    vector<Point2f> ProjectedLeftPoints, ProjectedRightPoints;
+    ProjectedLeftPoints.clear();
+    ProjectedRightPoints.clear();
 
     // Extract bottom bounding box segment
     for (size_t i = 0; i < BoundingBoxes.size(); i++) {
@@ -189,7 +190,7 @@ void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> sco
     perspectiveTransform(RightCornerVectors, ProjectedRightPoints, Homography);
 
     // Vector to save the coordinates of projected squares for gaussians
-    vector<Point2f> ProjectedPoints;
+    ProjectedCenterPoints.clear();
 
     for (size_t i = 0; i < ProjectedLeftPoints.size(); i++) {
         // Left Projected Point
@@ -254,7 +255,7 @@ void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> sco
         C.y = MiddleSegmentPoint.y + VectorLeft2Rigth.y * length;
 
         // Save projected square central point
-        ProjectedPoints.push_back(C);
+        ProjectedCenterPoints.push_back(C);
 
         if (!RepresentationOption.compare("Lines")){
             // Projection Line

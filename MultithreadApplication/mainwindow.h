@@ -47,6 +47,7 @@ private slots:
     void updateVariables(Mat Frame, Mat CenitalPlane, int CameraNumber);
     void displayFrame(Mat frame, Mat CenitalPlane, int CameraNumber);
     void joinCenitalFrames(Mat frame, Mat CenitalPlane, int CameraNumber);
+    void sharePedestrianDetections(int CameraNumber);
 
     void on_actionOpen_file_triggered();
     void on_actionCamera_1_triggered();

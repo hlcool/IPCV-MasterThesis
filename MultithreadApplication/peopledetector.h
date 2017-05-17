@@ -41,6 +41,9 @@ public:
     void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, Mat& CenitalPlane, int CameraNumber, String RepresentationOption);
     void meshgrid(Mat &X, Mat &Y, int rows, int cols);
     void gaussianFunction(Mat &Gaussian3C, Mat X, Mat Y, Point2f center, double score, int CameraNumber);
+
+    // Final Pedestrian Projected Bounding Boxes
+    vector<Point2f> ProjectedCenterPoints, ProjectedLeftPoints, ProjectedRightPoints;
 };
 
 #endif // PEOPLEDETECTOR_H

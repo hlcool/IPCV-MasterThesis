@@ -10,6 +10,7 @@
 #include <fstream>
 #include <string>
 #include "camerastream.h"
+#include "peopledetector.h"
 
 using namespace cv;
 using namespace std;
@@ -23,6 +24,8 @@ public:
 
     // Camera Class
     CameraStream Camera;
+    // People detector class
+    PeopleDetector PeopleDetec;
 
     // Display Widget Variables
     int WidgetWidth, WidgetHeight;
@@ -45,6 +48,7 @@ signals:
     // frame and index of label which frame will be displayed
     void frameFinished(Mat frame, Mat CenitalPlane, int CameraNumber);
     void finished();
+    void PedestrianDetectionFinished(int CameraNumber);
 
 public slots:
     void preProcessVideo();

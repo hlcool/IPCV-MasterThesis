@@ -114,6 +114,7 @@ void MainWindow::connectSignals2Slots(QThread *thread, CameraWorker *worker)
     // frameFinished signal with updateVariables and joinCenitalFrames slots
     connect(worker, SIGNAL(frameFinished(Mat, Mat, int)), this, SLOT(updateVariables(Mat, Mat, int)));
     connect(worker, SIGNAL(frameFinished(Mat, Mat, int)), this, SLOT(joinCenitalFrames(Mat, Mat, int)));
+    connect(worker, SIGNAL(PedestrianDetectionFinished(int)), this, SLOT(sharePedestrianDetections(int)));
 
     // finished signal with quit and deleteLater slots
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
@@ -210,6 +211,19 @@ void MainWindow::joinCenitalFrames(Mat frame, Mat CenitalPlane, int CameraNumber
     add(CenitalPlane, CenitalFrame2, CenitalPlane);
     add(CenitalPlane, CenitalFrame3, CenitalPlane);
     emit cenitalJoined(frame, CenitalPlane, CameraNumber);
+}
+
+void MainWindow::sharePedestrianDetections(int CameraNumber)
+{
+    if (CameraNumber == 1) {
+        //CameraWorkers[CameraNumber-1]->P
+    }
+    else if (CameraNumber == 2) {
+
+    }
+    else if (CameraNumber == 3) {
+
+    }
 }
 
 // ---------------------------------------- //
