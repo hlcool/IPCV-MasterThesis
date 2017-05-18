@@ -216,13 +216,61 @@ void MainWindow::joinCenitalFrames(Mat frame, Mat CenitalPlane, int CameraNumber
 void MainWindow::sharePedestrianDetections(int CameraNumber)
 {
     if (CameraNumber == 1) {
-        //CameraWorkers[CameraNumber-1]->P
+        // Clear vectors
+        CameraWorkers[CameraNumber-1]->ProjCenterPoints1.clear();
+        CameraWorkers[CameraNumber-1]->ProjCenterPoints2.clear();
+        CameraWorkers[CameraNumber-1]->ProjLeftPoints1.clear();
+        CameraWorkers[CameraNumber-1]->ProjLeftPoints2.clear();
+        CameraWorkers[CameraNumber-1]->ProjRightPoints1.clear();
+        CameraWorkers[CameraNumber-1]->ProjRightPoints2.clear();
+
+        // Copy projections from camera 2
+        CameraWorkers[CameraNumber-1]->ProjCenterPoints1 = CameraWorkers[1]->PeopleDetec.ProjectedCenterPoints;
+        CameraWorkers[CameraNumber-1]->ProjLeftPoints1   = CameraWorkers[1]->PeopleDetec.ProjectedLeftPoints;
+        CameraWorkers[CameraNumber-1]->ProjRightPoints1  = CameraWorkers[1]->PeopleDetec.ProjectedRightPoints;
+
+        // Copy projections from camera 3
+        CameraWorkers[CameraNumber-1]->ProjCenterPoints2 = CameraWorkers[2]->PeopleDetec.ProjectedCenterPoints;
+        CameraWorkers[CameraNumber-1]->ProjLeftPoints2   = CameraWorkers[2]->PeopleDetec.ProjectedLeftPoints;
+        CameraWorkers[CameraNumber-1]->ProjRightPoints2  = CameraWorkers[2]->PeopleDetec.ProjectedRightPoints;
     }
     else if (CameraNumber == 2) {
+        // Clear vectors
+        CameraWorkers[CameraNumber-1]->ProjCenterPoints1.clear();
+        CameraWorkers[CameraNumber-1]->ProjCenterPoints2.clear();
+        CameraWorkers[CameraNumber-1]->ProjLeftPoints1.clear();
+        CameraWorkers[CameraNumber-1]->ProjLeftPoints2.clear();
+        CameraWorkers[CameraNumber-1]->ProjRightPoints1.clear();
+        CameraWorkers[CameraNumber-1]->ProjRightPoints2.clear();
 
+        // Copy projections from camera 1
+        CameraWorkers[CameraNumber-1]->ProjCenterPoints1 = CameraWorkers[0]->PeopleDetec.ProjectedCenterPoints;
+        CameraWorkers[CameraNumber-1]->ProjLeftPoints1   = CameraWorkers[0]->PeopleDetec.ProjectedLeftPoints;
+        CameraWorkers[CameraNumber-1]->ProjRightPoints1  = CameraWorkers[0]->PeopleDetec.ProjectedRightPoints;
+
+        // Copy projections from camera 3
+        CameraWorkers[CameraNumber-1]->ProjCenterPoints2 = CameraWorkers[2]->PeopleDetec.ProjectedCenterPoints;
+        CameraWorkers[CameraNumber-1]->ProjLeftPoints2   = CameraWorkers[2]->PeopleDetec.ProjectedLeftPoints;
+        CameraWorkers[CameraNumber-1]->ProjRightPoints2  = CameraWorkers[2]->PeopleDetec.ProjectedRightPoints;
     }
     else if (CameraNumber == 3) {
+        // Clear vectors
+        CameraWorkers[CameraNumber-1]->ProjCenterPoints1.clear();
+        CameraWorkers[CameraNumber-1]->ProjCenterPoints2.clear();
+        CameraWorkers[CameraNumber-1]->ProjLeftPoints1.clear();
+        CameraWorkers[CameraNumber-1]->ProjLeftPoints2.clear();
+        CameraWorkers[CameraNumber-1]->ProjRightPoints1.clear();
+        CameraWorkers[CameraNumber-1]->ProjRightPoints2.clear();
 
+        // Copy projections from camera 1
+        CameraWorkers[CameraNumber-1]->ProjCenterPoints2 = CameraWorkers[0]->PeopleDetec.ProjectedCenterPoints;
+        CameraWorkers[CameraNumber-1]->ProjLeftPoints2   = CameraWorkers[0]->PeopleDetec.ProjectedLeftPoints;
+        CameraWorkers[CameraNumber-1]->ProjRightPoints2  = CameraWorkers[0]->PeopleDetec.ProjectedRightPoints;
+
+        // Copy projections from camera 2
+        CameraWorkers[CameraNumber-1]->ProjCenterPoints1 = CameraWorkers[1]->PeopleDetec.ProjectedCenterPoints;
+        CameraWorkers[CameraNumber-1]->ProjLeftPoints1   = CameraWorkers[1]->PeopleDetec.ProjectedLeftPoints;
+        CameraWorkers[CameraNumber-1]->ProjRightPoints1  = CameraWorkers[1]->PeopleDetec.ProjectedRightPoints;
     }
 }
 

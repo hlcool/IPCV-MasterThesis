@@ -42,6 +42,10 @@ public:
     // Semantic Mask
     Mat SemanticMask;
 
+    // Final Pedestrian Projected Bounding Boxes from the other cameras
+    vector<Point2f> ProjCenterPoints1, ProjLeftPoints1, ProjRightPoints1;
+    vector<Point2f> ProjCenterPoints2, ProjLeftPoints2, ProjRightPoints2;
+
     void processVideo();
 
 signals:
@@ -56,7 +60,6 @@ public slots:
 
 private:
     Barrier barrier;
-
     // Txt file to extract and save information
     ofstream VideoStatsFile;
 };

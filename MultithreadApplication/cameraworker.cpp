@@ -126,6 +126,8 @@ void CameraWorker::processVideo()
         PeopleDetec.MainPeopleDetection(Camera, CBOption, RepresentationOption, PDFiltering, CenitalPlane);
         barrier.wait();
         emit PedestrianDetectionFinished(Camera.CameraNumber);
+        PeopleDetec.ReprojectionFusion(ProjCenterPoints1, ProjLeftPoints1, ProjRightPoints1, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
+        PeopleDetec.ReprojectionFusion(ProjCenterPoints2, ProjLeftPoints2, ProjRightPoints2, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
 
         // ------------------------------------------- //
         //        FRAME RESIZE AND FRAME NUMBER        //
