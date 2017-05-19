@@ -98,6 +98,22 @@ name "chap:Proposed-System"
 \end_layout
 
 \begin_layout Section
+Contextual Model Generation
+\end_layout
+
+\begin_layout Section
+Detecction
+\end_layout
+
+\begin_layout Section
+Filtering
+\end_layout
+
+\begin_layout Section
+Statistical Data
+\end_layout
+
+\begin_layout Section
 Pedestrian Detection
 \end_layout
 
@@ -576,6 +592,8 @@ name "fig:Cylinder-estimation-for cenital view projections"
 \end_layout
 
 \begin_layout Standard
+
+\color red
 Poner aqui o en resultados?
 \end_layout
 
@@ -584,11 +602,55 @@ Gaussian Bounding Box Representation
 \end_layout
 
 \begin_layout Standard
-Explicar la representacion de personas mediante funcion gaussiana en funcion
- de los scores obtenidos en el detector
+Another different bounding box representation in the cenital plane rather
+ than a line is the gaussian function representation.
+ In this case we will project every pedestrain detection as a guassian function
+ of the form described in Eq.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Gaussian Function Equation"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+f(x,y)=Aexp\left(-\left(\frac{(x-x_{0}){}^{2}}{2\sigma_{x}^{2}}+\frac{(y-y_{0}){}^{2}}{2\sigma_{y}^{2}}\right)\right)\label{eq:Gaussian Function Equation}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this case 
+\begin_inset Formula $A$
+\end_inset
+
+ will be the amplitude, 
+\begin_inset Formula $x_{0},y_{0}$
+\end_inset
+
+ the mean of the gaussian wchihc, in our case will be the center of the
+ blob and 
+\begin_inset Formula $\sigma_{x},\sigma_{y}$
+\end_inset
+
+ whihc is the standard deviation and in our case will represent the accuracy
+ of the detection.
+ This means that detections with higher scores will be represented as a
+ narrow gaussian function while lower scores will lead to wide gaussians
+ that will represent a bigger area in where one can find that person.
+\end_layout
+
+\begin_layout Standard
+
+\color red
 Aqui o en resultados?
 \end_layout
 
@@ -597,18 +659,63 @@ Semantic Segmentation
 \end_layout
 
 \begin_layout Standard
+One of the main ojbetives in the scope of this work is to segment frames
+ into different semantic areas.
+ The relative position in the scene for elements such as doors, walls, paths,
+ columns and windows for isntance will be necessary to achive further objective.
+ For this task we will use an algorithm presented in Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:State-of-the art"
+
+\end_inset
+
+, PSP-Net 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zhao2016pyramid"
+
+\end_inset
+
+.
+ The goal for this algorithm is is to assign each pixel in the image a category
+ label and predict the label, location, as well as shape for each element.
+ 
+\end_layout
+
+\begin_layout Standard
 Explicar como se ha llevado a cabo la extraccion de las iamgenes semanticas.
 \end_layout
 
 \begin_layout Standard
-PSP-Net con con un determinado modelo de los 3 que hay.
- Porq?
+PSP-Net comes with a set of three different pretrained caffe models for
+ three different Datasets.
+\end_layout
+
+\begin_layout Itemize
+ADE20K
+\end_layout
+
+\begin_layout Itemize
+VOC2012
+\end_layout
+
+\begin_layout Itemize
+CityScapes
 \end_layout
 
 \begin_layout Standard
-Numero de clases completa del modelo era...
- y ha sido reducido a 20 por temas de eficiencia y limitaciones de espacio
- en disco.
+So, as one can observe the three differnt model represent different object
+ categories.
+ In our case we have selected the model ...
+ because elements such as walls, floor, person and column fit better in
+ our work and will give us better performance results in fruther analisys.
+ In addition, the number of classes of ...
+ model was ...
+ and it has been reduce to the 21 classes of our interest so we only obtain
+ scores for those objects that we want.
+ This class limitations will lead above all in a considerably hard drive
+ space saving.
 \end_layout
 
 \begin_layout Section
