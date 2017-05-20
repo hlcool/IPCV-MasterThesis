@@ -101,16 +101,486 @@ name "chap:Proposed-System"
 Contextual Model Generation
 \end_layout
 
-\begin_layout Section
-Detecction
+\begin_layout Standard
+One of the main objectives in the scope of this work is to segment frames
+ into different semantic areas.
+ The relative position in the scene for elements such as doors, walls, paths,
+ columns and windows for instance will be necessary to achieve further objective
+s.
+ For this task we will use an algorithm presented in Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:State of the art"
+
+\end_inset
+
+, PSP-Net 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zhao2016pyramid"
+
+\end_inset
+
+.
+ The goal for this algorithm is is to assign each pixel in the image a category
+ label and predict the label, location, as well as shape for each element.
+ 
 \end_layout
 
-\begin_layout Section
-Filtering
+\begin_layout Standard
+This process is based on a deep convolutional neural network (CNN) called
+ pyramid scene parsing network (PSPNet) which is designed to improve performance
+ for open-vocabulary object and stuff identification in complex scene parsing.
+ The structure of the network can be observed in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Overview-of-the proposed PSPNet"
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Section
-Statistical Data
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/PSP-Net.png
+	lyxscale 50
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Overview of the proposed PSPNet
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Overview-of-the proposed PSPNet"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Given the image in (a) the first step is to process it through a pre trained
+ CNN called ResNet 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "he2016deep"
+
+\end_inset
+
+ to get the feature map (b) of the last convolutional layer.
+ The final feature map in this step is 
+\begin_inset Formula $1/8$
+\end_inset
+
+ of the size of the input image.
+ 
+\end_layout
+
+\begin_layout Standard
+The second step is to apply what is called the Pyramid Pooling Module (c).
+ The main objective of the module is to collect a few levels of information,
+ more representative than global pooling.
+ It separates the feature map into different sub-regions and forms pooled
+ representation for different locations.
+ Here a set of pooling, convolutional and upsampling layers are applied
+ that will harvest different sub-region representation in 
+\begin_inset Formula $N$
+\end_inset
+
+ different scales.
+ 
+\end_layout
+
+\begin_layout Standard
+After the bilinear interpolation upsampling, concatenation layers are used
+ to form the final feature representation by fusing the feature map extracted
+ in (b) and the Pyramid Pooling Module output.
+ This final feature carries both local and global context information.
+ In the end, the representation is fed into a convolutional layer which
+ gets the final per-pixel prediction (d).
+\end_layout
+
+\begin_layout Standard
+
+\color blue
+\begin_inset CommandInset href
+LatexCommand href
+name "PSP-Net"
+target "https://github.com/hszhao/PSPNet"
+
+\end_inset
+
+ 
+\color inherit
+comes with a set of three different pre trained caffe models for three different
+ Datasets.
+ The main difference between the model for our scope is the environment
+ in which the network has been trained.
+\end_layout
+
+\begin_layout Itemize
+ADE20K: This data set is the more challenging as it has up to 150 different
+ labels in a wide range of scenes.
+ The scenes go from interior room places to outdoor scenarios.
+\end_layout
+
+\begin_layout Itemize
+VOC2012: It contains 20 object categories and one background class from
+ diverse indoor scenes.
+\end_layout
+
+\begin_layout Itemize
+CityScapes: The last dataset defines 19 categories containing both stuff
+ and objects.
+ All the available sequences have been recorded from a driving car in the
+ street.
+\end_layout
+
+\begin_layout Standard
+So, as one can observe the three different model represent different object
+ categories in different spaces.
+ In our case we will select the model based on two main reasons:
+\end_layout
+
+\begin_layout Enumerate
+The model should be trained with indoor scenes.
+ This will lead to discard those models that performs in outdoors scenes
+ as we would like our work to perform in interior scenarios.
+ This will exclude CityScapes dataset from our options as all the classes
+ are from outdoor scenes.
+\end_layout
+
+\begin_layout Enumerate
+From the trained indoor models we have to choose those whose categories
+ best fit in our work.
+ In this case VOC2012 dataset uses classes such as boat, airplane or table
+ which are not interesting for our segmentation.
+\end_layout
+
+\begin_layout Standard
+With this two reasons taken into account we have selected the model ADE20K
+ because it has elements such as walls, floor, person and column.
+ However, we consider that most of the 150 label categories will be unused
+ in our procedure, so, the number of classes in the model has been reduced
+ to the 21 classes of our interest so we only obtain scores for those objects
+ that we want.
+ This class limitations will lead above all in a considerably hard drive
+ space saving.
+ In Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Final classes list from ADE20K to use in PSP-Net"
+
+\end_inset
+
+ can be observed the final 21 classes that have been used.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+wall
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+building
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+floor
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ceiling
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+road
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+window pane
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+person
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+door
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+table
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+chair
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+seat
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+desk
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+lamp
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+column
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+counter
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+path
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+stairs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+screen door
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+stairway
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+toilet
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+poster
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bag
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Final classes list from ADE20K to use in PSP-Net
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Final classes list from ADE20K to use in PSP-Net"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -125,7 +595,7 @@ Along this section we will present the pedestrian State of the Art detectors
  sequences as we have seen in Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "chap:State-of-the art"
+reference "chap:State of the art"
 
 \end_inset
 
@@ -334,7 +804,7 @@ Fast Region-based Convolutional Network (Fast R-CNN) it will be used to
  detect pedestrian in our proposed system, however, as said in Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "chap:State-of-the art"
+reference "chap:State of the art"
 
 \end_inset
 
@@ -473,7 +943,643 @@ In this case, both Fast-RCNN detector and MCG object proposal extract are
  implemented within external Matlab libraries.
 \end_layout
 
+\begin_layout Section
+Fusion and Filtering
+\end_layout
+
+\begin_layout Standard
+Once the semantic model and pedestrian detections are implemented the next
+ step is to combine the information coming from different sources to in
+ a process that we have called fusion and filtering.
+\end_layout
+
 \begin_layout Subsection
+Multi-camera Scenario
+\end_layout
+
+\begin_layout Standard
+Our system is developed in a multi-camera scenario.
+ This means that we will be able to observe the scene from different point
+ of views.
+ In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Multi-camera-configuration"
+
+\end_inset
+
+ we can observe how the scene is configured with 3 different video-surveillance
+ cameras.
+ Two of them are placed at the sides of the scene, while one is at the bottom
+ part.
+ The starting views from the three cameras is displayed in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Initial Camera Views"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/Camera Configuration Static.png
+	lyxscale 50
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Multi-camera configuration
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Multi-camera-configuration"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/Camera 1 Initial View.jpg
+	lyxscale 50
+	width 30text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/Camera 2 Initial View.jpg
+	lyxscale 50
+	width 30text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/Camera 3 Initial View.jpg
+	lyxscale 50
+	width 30text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Initial Camera Views
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Initial Camera Views"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As said in Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:State of the art"
+
+\end_inset
+
+ working with a multi-camera scenario has some advantages.
+ As one can see in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Initial Camera Views"
+
+\end_inset
+
+ we can observe the same scene area from three different point of views,
+ which for example means, that detections from one camera can be used to
+ detect in other camera or even refine the available detections.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Cenital Plane Homography
+\end_layout
+
+\begin_layout Standard
+Homography calculation is a pivotal task in our work and the main base for
+ the fusion of all the different information coming from the three cameras.
+ The objective is to compute an homography matrix that will relate a camera
+ frame to the cenital plane.
+ With this homography matrix we will be able to transform every frame pixel
+ to its correspondent position in the cenital plane, i.e.
+ it will transform the frame as if it were being viewed from the top.
+\end_layout
+
+\begin_layout Standard
+In order to compute an homography, a relation between at least 4 points
+ in each of the two images should be computed.
+ In this case we are trying to create a relationship between a real camera
+ frame, and a cenital view plane created by computer.
+ This means that there will not be a real correspondent for pixels and so
+ it is not possible to use a point descriptor to extract points in both
+ images.
+ User has to manually select the points that represent the same spatial
+ place in both images using the Graphical User Interface and then the algorithm
+ will compute the matrix.
+\end_layout
+
+\begin_layout Subsubsection
+Cenital Plan Design
+\end_layout
+
+\begin_layout Standard
+As said in the previous paragraph, one of the main objectives of the work
+ is to project the extracted detections from the three cameras, i.e.
+ pedestrian and semantic, into a common plane for all of them.
+ To achieve this goal a cenital plane from the scene is needed.
+ The first approach for the cenital plane can be observe in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:First cenital plane approach"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/PSP-Net.png
+	lyxscale 50
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+First cenital plane approach
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:First cenital plane approach"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As we can observe the first approach of the cenital plane lacks of details
+ from the scene.
+ To compute an homography between the camera frame and the cenital plane
+ we should be able to identify the same scene points in both images in the
+ floor plane.
+ This means that the cenital plane should have enough detail so the point
+ selection is done correctly and the homography is correctly computed.
+\end_layout
+
+\begin_layout Standard
+For this reason another cenital plane has been compute starting from zero.
+ In this new approach the scene has been correctly measure by hand and the
+ plane has been done with real measures and high floor detail.
+\end_layout
+
+\begin_layout Standard
+For correctly drawing the plane AutoCAD 2017 software has been used.
+ The second plane approach can be seen in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Second cenital plane approach with measures"
+
+\end_inset
+
+ with all the annotated measures and in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Second cenital plane approach with camera positions"
+
+\end_inset
+
+ with the camera positions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/PSP-Net.png
+	lyxscale 50
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Second cenital plane approach with measures
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Second cenital plane approach with measures"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/PSP-Net.png
+	lyxscale 50
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Second cenital plane approach with camera positions
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Second cenital plane approach with camera positions"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now the cenital plane has much more detail that in the first approach and
+ as we will se later, the homography selection points will be better selected
+ and so all the projections will be more accurate.
+\end_layout
+
+\begin_layout Subsubsection
+Camera Panning
+\end_layout
+
+\begin_layout Standard
+When cameras are static and pointing to the center of the scene as in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Initial Camera Views"
+
+\end_inset
+
+ one can easily see that the vision range compared to the hole scenario
+ is quite limited due to the low vision range of the cameras.
+ The cameras are covering the middle part leaving unattended the lateral
+ parts of the scenario.
+ The solution to this problem is to include panning movement in all the
+ cameras from left to right so cameras view range is increased and no longer
+ focus in the middle of the scene as before.
+ This will lead also that the common areas that the cameras will share are
+ increased.
+ This solution is presented in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Multi-camera-configuration with panning set up"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/PSP-Net.png
+	lyxscale 50
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Multi-camera configuration with panning set up
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Multi-camera-configuration with panning set up"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Camera Panning Discretization
+\end_layout
+
+\begin_layout Standard
+Before including camera panning in the set up, homographies where calculated,
+ at the beginning, for only one video frame per camera.
+ This means that every camera only had one homography matrix as all its
+ sequence was static and all its video frames where projected using the
+ same matrix.
+ However, when including video panning this solution is no longer valid
+ as the view is constantly changing.
+ The ideal solution for this problem would be having one homography matrix
+ 
+\begin_inset Formula $H$
+\end_inset
+
+ per video frame.
+ As the homographies are calculated by the user selecting the points this
+ solution is evidentially impossible in term of usability.
+ We propose discretization of the panning tour in which 
+\begin_inset Formula $N$
+\end_inset
+
+ vies are selected from the video sequence.
+ This will lead to an homography codebook in where the user will compute
+ a homography matrix 
+\begin_inset Formula $H$
+\end_inset
+
+ for each of the 
+\begin_inset Formula $N$
+\end_inset
+
+ camera views.
+\end_layout
+
+\begin_layout Subsubsection
+View Selection
+\end_layout
+
+\begin_layout Standard
+Due to the creation of the homography codebook we now have to choose between
+ a set of 
+\begin_inset Formula $N$
+\end_inset
+
+ homography matrices to project detections into the cenital plane.
+ The actual analyzed frame should be compared to each of the 
+\begin_inset Formula $N$
+\end_inset
+
+ views to obtain an spatial correspondence and so, use the correct homography
+ matrix.
+\end_layout
+
+\begin_layout Standard
+In order to compare two images we have done comparison between interest
+ points.
+ AKAZE detector and descriptor 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "alcantarilla2011fast"
+
+\end_inset
+
+ has been used for this task.
+\end_layout
+
+\begin_layout Standard
+AKAZE will detect and describe points of interest in any image and then
+ by a brute force comparator we will extract how many coincidence we have
+ between a pair of images.
+ It is essential to say, that, as we have to compare the current frame with
+ all of the 
+\begin_inset Formula $N$
+\end_inset
+
+ vies we will have a trade off.
+ More view will mean a better space discretization however the computational
+ time will increase exponentially, this means that we have to choose the
+ number of views 
+\begin_inset Formula $N$
+\end_inset
+
+ so it represents correctly the space and keeps the computational time low.
+\end_layout
+
+\begin_layout Standard
+As we said before, the homographies are calculated for each of the views,
+ this means, that if a frame is not positioned exactly as a view the homography
+ matrix will not project the points correctly, there will be a small error.
+ Taking advantage of the calculation of common interest point between the
+ frame and its correspondent view we can solve this problem by calculating
+ automatically the homography between both images.
+ This means that now, to project detections from the current frame to the
+ cenital plane, first we will change the perspective of it to the perspective
+ of the view.
+ This way we will ensure that the used perspective is the same one as the
+ one that was used to compute the homography.
+\end_layout
+
+\begin_layout Subsubsection
+Video Sequence Synchronization
+\end_layout
+
+\begin_layout Standard
+Synchronization between different camera videos by using concrete common
+ events in the sequences.
+\end_layout
+
+\begin_layout Subsection
+Pedestrian Filtering
+\end_layout
+
+\begin_layout Subsubsection
 Cylinder Estimation
 \end_layout
 
@@ -507,7 +1613,7 @@ reference "fig:Cylinder-estimation-for cenital view projections"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -540,10 +1646,6 @@ name "fig:Cylinder-estimation-for camera instances projections"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -553,7 +1655,7 @@ name "fig:Cylinder-estimation-for camera instances projections"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -592,19 +1694,32 @@ name "fig:Cylinder-estimation-for cenital view projections"
 \end_layout
 
 \begin_layout Standard
+The final representation of the projected bounding boxes into the cenital
+ plane using this approach will be two perpendicular lines.
+ The first one will represent the projection of the bounding box and the
+ second one will represent the real position of the object into the plane.
+\end_layout
+
+\begin_layout Standard
 
 \color red
 Poner aqui o en resultados?
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Gaussian Bounding Box Representation
 \end_layout
 
 \begin_layout Standard
-Another different bounding box representation in the cenital plane rather
- than a line is the gaussian function representation.
- In this case we will project every pedestrain detection as a guassian function
+Using also the cylinder representation one can change the way bounding boxes
+ are represented in the cenital plane.
+ As said before, in the simple cylinder representation pedestrian will be
+ represented with two perpendicular lines, however the middle point from
+ the cylinder can be used to present a gaussian.
+\end_layout
+
+\begin_layout Standard
+In this case we will project every pedestrian detection as a Gaussian function
  of the form described in Eq.
  
 \begin_inset CommandInset ref
@@ -636,12 +1751,12 @@ In this case
 \begin_inset Formula $x_{0},y_{0}$
 \end_inset
 
- the mean of the gaussian wchihc, in our case will be the center of the
- blob and 
+ the mean of the gaussian which, in our case will be the center of the blob
+ and 
 \begin_inset Formula $\sigma_{x},\sigma_{y}$
 \end_inset
 
- whihc is the standard deviation and in our case will represent the accuracy
+ which is the standard deviation and in our case will represent the accuracy
  of the detection.
  This means that detections with higher scores will be represented as a
  narrow gaussian function while lower scores will lead to wide gaussians
@@ -655,152 +1770,13 @@ Aqui o en resultados?
 \end_layout
 
 \begin_layout Section
-Semantic Segmentation
+Statistical Usage Data
 \end_layout
 
 \begin_layout Standard
-One of the main ojbetives in the scope of this work is to segment frames
- into different semantic areas.
- The relative position in the scene for elements such as doors, walls, paths,
- columns and windows for isntance will be necessary to achive further objective.
- For this task we will use an algorithm presented in Chapter 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "chap:State-of-the art"
-
-\end_inset
-
-, PSP-Net 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "zhao2016pyramid"
-
-\end_inset
-
-.
- The goal for this algorithm is is to assign each pixel in the image a category
- label and predict the label, location, as well as shape for each element.
- 
-\end_layout
-
-\begin_layout Standard
-Explicar como se ha llevado a cabo la extraccion de las iamgenes semanticas.
-\end_layout
-
-\begin_layout Standard
-PSP-Net comes with a set of three different pretrained caffe models for
- three different Datasets.
-\end_layout
-
-\begin_layout Itemize
-ADE20K
-\end_layout
-
-\begin_layout Itemize
-VOC2012
-\end_layout
-
-\begin_layout Itemize
-CityScapes
-\end_layout
-
-\begin_layout Standard
-So, as one can observe the three differnt model represent different object
- categories.
- In our case we have selected the model ...
- because elements such as walls, floor, person and column fit better in
- our work and will give us better performance results in fruther analisys.
- In addition, the number of classes of ...
- model was ...
- and it has been reduce to the 21 classes of our interest so we only obtain
- scores for those objects that we want.
- This class limitations will lead above all in a considerably hard drive
- space saving.
-\end_layout
-
-\begin_layout Section
-Multi-camera Scenario
-\end_layout
-
-\begin_layout Standard
-Configuracion del sistema multicamara.
- Vistas de cada camara.
- Ventajas sombre un sistema mono camara.
-\end_layout
-
-\begin_layout Standard
-Inlcusion de panning en las camaras para mejorar las areas de vision
-\end_layout
-
-\begin_layout Subsection
-Cenital Plan Design
-\end_layout
-
-\begin_layout Standard
-Primera aproximacion del plano con medidas irreales.
- -> Imposibilidad de seleccion de puntos de homografia correctos -> Semantica
- no coincide correctamente
-\end_layout
-
-\begin_layout Standard
-Solucion diseño de un nuevo plano con medidas corregidas y detalle de la
- escena.
-\end_layout
-
-\begin_layout Standard
-Explicar el diseño del plano del hall mediante AutoCad.
- Imagen con las medidas reales del plano.
-\end_layout
-
-\begin_layout Subsection
-Video Sequence Synchronization
-\end_layout
-
-\begin_layout Standard
-Sincronizacion entre los diferentes videos de las camaras por medio de eventos
- concretos en las secuencias.
-\end_layout
-
-\begin_layout Section
-Camera Panning
-\end_layout
-
-\begin_layout Standard
-Zona comun cuando las camaras estan estaticas se reduce al centro de la
- sala.
- Inlcusion de panning en la configuracion de las camaras para captar un
- area mayor y aumentar el area comun entre camaras.
-\end_layout
-
-\begin_layout Subsection
-Camera Panning Discretization
-\end_layout
-
-\begin_layout Standard
-Discretizacion del tour de la camara en N vistas para mejorar la eficiencia
- del programa y poder tener las homografias pre calculadas.
-\end_layout
-
-\begin_layout Subsection
-View Selection
-\end_layout
-
-\begin_layout Standard
-Seleccion de vista mediante comparacion de puntos de interes y descriptores
- (AKAZE) del frame actual y cada una de las vistas seleccionadas.
- Calculo de la homografia entre el frame actual y la vista correspondiente
- para poder corregir la semantica a la posicion en la cual la homografia
- es correcta.
-\end_layout
-
-\begin_layout Section
-Cenital Plane Homography
-\end_layout
-
-\begin_layout Standard
-Calculo de las homografias entre las diferentes vistas y plano cenital de
- la escena.
- Procedimiento de seleccion de puntos comunes por medio del usuario.
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 \end_layout
 
 \begin_layout Section
