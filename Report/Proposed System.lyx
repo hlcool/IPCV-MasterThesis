@@ -97,17 +97,31 @@ name "chap:Proposed-System"
 
 \end_layout
 
+\begin_layout Standard
+During this Chapter our proposed system will be explained.
+ We will start from the main contextual model generation and pedestrian
+ detectors to finally explain the fusion of all the elements in a multi
+ camera system in addition to the statistical usage data.
+\end_layout
+
 \begin_layout Section
 Contextual Model Generation
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Contextual-Model-Generation"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-One of the main objectives in the scope of this work is to segment frames
+One of the main objectives in the scope of this work is to segment one frame
  into different semantic areas.
  The relative position in the scene for elements such as doors, walls, paths,
- columns and windows for instance will be necessary to achieve further objective
-s.
- For this task we will use an algorithm presented in Chapter 
+ columns and windows will be necessary to achieve further objectives such
+ as multi camera fusion and statistical data.
+ For this complex task we will use an algorithm presented in Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:State of the art"
@@ -122,14 +136,15 @@ key "zhao2016pyramid"
 \end_inset
 
 .
- The goal for this algorithm is is to assign each pixel in the image a category
- label and predict the label, location, as well as shape for each element.
+ The goal for this algorithm as said before, is is to assign each pixel
+ in the image a category label and predict the label, location, as well
+ as shape for each element.
  
 \end_layout
 
 \begin_layout Standard
 This process is based on a deep convolutional neural network (CNN) called
- pyramid scene parsing network (PSPNet) which is designed to improve performance
+ Pyramid Scene Parsing Network (PSPNet) which is designed to improve performance
  for open-vocabulary object and stuff identification in complex scene parsing.
  The structure of the network can be observed in Figure 
 \begin_inset CommandInset ref
@@ -202,11 +217,18 @@ key "he2016deep"
 \end_layout
 
 \begin_layout Standard
-The second step is to apply what is called the Pyramid Pooling Module (c).
+The second step is to apply the main contribution of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zhao2016pyramid"
+
+\end_inset
+
+, which is called the Pyramid Pooling Module (c).
  The main objective of the module is to collect a few levels of information,
- more representative than global pooling.
+ much more representative than global pooling.
  It separates the feature map into different sub-regions and forms pooled
- representation for different locations.
+ representations for different locations.
  Here a set of pooling, convolutional and upsampling layers are applied
  that will harvest different sub-region representation in 
 \begin_inset Formula $N$
@@ -237,54 +259,56 @@ target "https://github.com/hszhao/PSPNet"
 
  
 \color inherit
-comes with a set of three different pre trained caffe models for three different
- Datasets.
- The main difference between the model for our scope is the environment
+comes with a set of three different pre trained Caffe models for three different
+ datasets.
+ The main difference between the models for our scope is the environment
  in which the network has been trained.
 \end_layout
 
 \begin_layout Itemize
-ADE20K: This data set is the more challenging as it has up to 150 different
+ADE20K: This dataset is the most challenging as it has up to 150 different
  labels in a wide range of scenes.
  The scenes go from interior room places to outdoor scenarios.
 \end_layout
 
 \begin_layout Itemize
 VOC2012: It contains 20 object categories and one background class from
- diverse indoor scenes.
+ diverse indoor and outdoor scenes.
 \end_layout
 
 \begin_layout Itemize
 CityScapes: The last dataset defines 19 categories containing both stuff
  and objects.
- All the available sequences have been recorded from a driving car in the
- street.
+ All the available sequences have been recorded from a driving car while
+ driving in the street.
 \end_layout
 
 \begin_layout Standard
-So, as one can observe the three different model represent different object
- categories in different spaces.
+So, as one can observe the three different models represent different object
+ categories in different real spaces.
  In our case we will select the model based on two main reasons:
 \end_layout
 
 \begin_layout Enumerate
 The model should be trained with indoor scenes.
- This will lead to discard those models that performs in outdoors scenes
- as we would like our work to perform in interior scenarios.
+ This will lead to discard those models that perform only in outdoors scenes
+ as we would like our approach to be used in interior scenarios.
  This will exclude CityScapes dataset from our options as all the classes
- are from outdoor scenes.
+ and seqeunces used for training are from outdoor scenes.
 \end_layout
 
 \begin_layout Enumerate
-From the trained indoor models we have to choose those whose categories
- best fit in our work.
+From the trained indoor models we have to choose between those whose categories
+ fit best in our work.
  In this case VOC2012 dataset uses classes such as boat, airplane or table
- which are not interesting for our segmentation.
+ which are not interesting for our segmentation and it does not have classes
+ such as door or wall which are really important for us.
 \end_layout
 
 \begin_layout Standard
-With this two reasons taken into account we have selected the model ADE20K
- because it has elements such as walls, floor, person and column.
+With this two reasons being taked into account we have selected the model
+ ADE20K because it has elements such as walls, floor, person and column
+ in its model.
  However, we consider that most of the 150 label categories will be unused
  in our procedure, so, the number of classes in the model has been reduced
  to the 21 classes of our interest so we only obtain scores for those objects
@@ -305,7 +329,7 @@ reference "tab:Final classes list from ADE20K to use in PSP-Net"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -589,9 +613,9 @@ Pedestrian Detection
 
 \begin_layout Standard
 Along this section we will present the pedestrian State of the Art detectors
- that have been selected for our work.
+ that have been selected for our system.
  Some of them have been chosen due to the algorithm simplicity and computational
- cost and other due to its contrasted performance while working in real
+ cost and others due to its contrasted performance while working in real
  sequences as we have seen in Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -612,13 +636,21 @@ Histogram of Oriented Gradients
 \begin_layout Standard
 Histogram of Oriented Gradients, i.e.
  HOG, is one of the main used detectors along pedestrian detection field.
- This fact is due to it's extremely simplicity in terms of describer complexity.
+ This fact is due to it's extremely simplicity in terms of the descriptor
+ complexity.
  Pedestrians are described as set of HOG, this means that its shape and
  appearance can be described by a set of gradients and intensities organized
  as orientation histograms.
  These histograms will describe intensity distributions from local gradients
  or border directions.
  This descriptor can be observe graphically in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:HOG-Pedestrian-Descriptor"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -664,7 +696,7 @@ name "fig:HOG-Pedestrian-Descriptor"
 \end_layout
 
 \begin_layout Standard
-Once HOG have been used to describe the personal shape, Support Vector Machines
+Once HOG have been used to describe the person shape, Support Vector Machines
  are used to train a person model and to classify potential candidates as
  people.
  SVM are a data classification method formed by a set of supervised training.
@@ -697,11 +729,12 @@ Deformable Part Model
 
 \begin_layout Standard
 As was mentioned in the previous paragraph one of the main drawbacks when
- working with the simple HOG pedestrian detection is that it describes the
- person model as a hole which will lead to the described drawbacks.
- Deformable Part Model solves this problem, among others, by defining the
- model as a global coarse template, several higher resolution part templates
- and a spatial model for the location of each part.
+ working with the simple HOG pedestrian detector is that it describes the
+ person model as a hole which will lead, inevitably, to the described drawbacks.
+ Deformable Part Model tries to solve this problem, among others, by defining
+ the model as first, a global coarse template, secondly, several higher
+ resolution part templates and finally a spatial model for the location
+ of each part.
  This description is the one that can be observed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -791,8 +824,8 @@ However, its scanning window approach as well as the part based model will
 \end_layout
 
 \begin_layout Standard
-The main implementation of Deformable Part Model Pedestrian Detector is
- in OpenCV library for C++.
+The main implementation of Deformable Part Model Pedestrian Detector can
+ be found in OpenCV library for C++.
 \end_layout
 
 \begin_layout Subsection
@@ -800,15 +833,15 @@ Fast Region-Based Convolutional Network
 \end_layout
 
 \begin_layout Standard
-Fast Region-based Convolutional Network (Fast R-CNN) it will be used to
- detect pedestrian in our proposed system, however, as said in Chapter 
+Fast Region-based Convolutional Network (Fast R-CNN) will be used to detect
+ pedestrian in our proposed system, however, as said in Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:State of the art"
 
 \end_inset
 
- it is not only a pedestrian detector but a method for object detection.
+ it is not only a pedestrian detector but an algorithm for object detection.
  In 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -817,35 +850,35 @@ reference "subsec:Object-Proposals"
 \end_inset
 
  we mentioned that Fast-RCNN must use objects proposals for its usage.
- In the developed system MCG 
+ In our developed system MCG 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "arbelaez2014multiscale"
 
 \end_inset
 
- grouping method will be used for this purpose.
+ grouping method will be used for this purpose due to its great results.
 \end_layout
 
 \begin_layout Standard
-Fast-RCNN method employs set its contributions in a several number of innovation
-s to improve training and testing speed over its fundamental base R-CNN:
+Fast-RCNN method sets its contributions in a several number of innovations
+ to improve training and testing speed over its fundamental base R-CNN:
 \end_layout
 
 \begin_layout Enumerate
-Higher detection quality (mAP)
+Higher detection quality (mAP).
 \end_layout
 
 \begin_layout Enumerate
-Training is single-stage, using a multi-task loss 
+Training is single-stage, using a multi-task loss.
 \end_layout
 
 \begin_layout Enumerate
-Training can update all network layers 
+Training can update all network layers.
 \end_layout
 
 \begin_layout Enumerate
-No disk storage is required for feature caching
+No disk storage is required for feature caching.
 \end_layout
 
 \begin_layout Standard
@@ -858,7 +891,7 @@ reference "fig:Fast-R-RCNN-architecture"
 
  one can observe the general Fast R-RCNN architecture.
  The input for the Fast-RCNN network are the entire desired image that one
- wants to process and a set of object proposals.
+ wants to process and the set of object proposals.
  The first step in the network is to process the whole image with several
  convolutional and max pooling layers to produce a convolutional feature
  map.
@@ -868,7 +901,7 @@ reference "fig:Fast-R-RCNN-architecture"
 \end_layout
 
 \begin_layout Standard
-Each feature vector is after introduced into a sequence of fully connected
+Each feature vector is after, introduced into a sequence of fully connected
  (FC) layers that finally diverge into to output layers.
  The first one produces probabilities estimates over 
 \begin_inset Formula $K$
@@ -943,14 +976,32 @@ In this case, both Fast-RCNN detector and MCG object proposal extract are
  implemented within external Matlab libraries.
 \end_layout
 
+\begin_layout Subsection
+PSP-Net
+\end_layout
+
+\begin_layout Standard
+As we explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Contextual-Model-Generation"
+
+\end_inset
+
+ PSP-Net working along with ADE20K dataset has been trained to detect people
+ as a class.
+ In our proposed system we will also use this class along with the previously
+ explained pedestrian algorithms.
+\end_layout
+
 \begin_layout Section
 Fusion and Filtering
 \end_layout
 
 \begin_layout Standard
 Once the semantic model and pedestrian detections are implemented the next
- step is to combine the information coming from different sources to in
- a process that we have called fusion and filtering.
+ step is to combine the information coming from different camera sources
+ in a process that we have called fusion and filtering.
 \end_layout
 
 \begin_layout Subsection
@@ -1184,7 +1235,8 @@ Cenital Plane Homography
 Homography calculation is a pivotal task in our work and the main base for
  the fusion of all the different information coming from the three cameras.
  The objective is to compute an homography matrix that will relate a camera
- frame to the cenital plane.
+ frame to a so called cenital plane, i.e.
+ a bird-eye representation of the scene.
  With this homography matrix we will be able to transform every frame pixel
  to its correspondent position in the cenital plane, i.e.
  it will transform the frame as if it were being viewed from the top.
@@ -1195,12 +1247,12 @@ In order to compute an homography, a relation between at least 4 points
  in each of the two images should be computed.
  In this case we are trying to create a relationship between a real camera
  frame, and a cenital view plane created by computer.
- This means that there will not be a real correspondent for pixels and so
- it is not possible to use a point descriptor to extract points in both
- images.
+ This means that there will not be a real correspondence for pixels and
+ so it is not possible to use a point descriptor to extract common points
+ in both images.
  User has to manually select the points that represent the same spatial
  place in both images using the Graphical User Interface and then the algorithm
- will compute the matrix.
+ will compute the transformation matrix.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1268,11 +1320,11 @@ name "fig:First cenital plane approach"
 \begin_layout Standard
 As we can observe the first approach of the cenital plane lacks of details
  from the scene.
- The information about the details of the scenerio is minimum and also,
+ The information about the details of the scenario is minimum and also,
  the scene proportions are not correct.
  To compute a correct homography between the camera frame and the cenital
  plane we should be able to identify the same scene points in both images
- in the floor plane.
+ in the ground plane.
  This means that the cenital plane should have enough detail so the point
  selection is done correctly by the user and the homography is correctly
  computed.
@@ -1285,7 +1337,19 @@ For this reason another cenital plane has been compute starting from zero.
 \end_layout
 
 \begin_layout Standard
-For correctly drawing the plane AutoCAD 2017 software has been used.
+For correctly drawing the plane 
+\color brown
+
+\begin_inset CommandInset href
+LatexCommand href
+name "AutoCAD 2017"
+target "https://www.autodesk.es/products/autocad/overview"
+
+\end_inset
+
+
+\color inherit
+ software has been used.
  The second plane approach can be seen in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1293,14 +1357,15 @@ reference "fig:Second cenital plane approach with measures"
 
 \end_inset
 
- with all the annotated measures and in Figure 
+ with all the manual measures extracted from the real scene and in Figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Second cenital plane approach with camera positions"
 
 \end_inset
 
- with the camera positions.
+ with the correct camera positions.
 \end_layout
 
 \begin_layout Standard
@@ -1388,9 +1453,25 @@ name "fig:Second cenital plane approach with camera positions"
 \end_layout
 
 \begin_layout Standard
-Now the cenital plane has much more detail that in the first approach and
- as we will se later, the homography selection points will be better selected
- and so all the projections will be more accurate.
+It is easily observable that differences between Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:First cenital plane approach"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Second cenital plane approach with camera positions"
+
+\end_inset
+
+ are outstanding both in floor details and in general construction proportions.
+ This detail increase will lead to a much more easy homography selection
+ points by the user as it now has much more point options to choose and
+ evidentially this will mean that the final homography matrix, and so, all
+ the projections will be increased accurately talking.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1406,15 +1487,15 @@ reference "fig:Initial Camera Views"
 
 \end_inset
 
- one can easily see that the vision range compared to the hole scenario
- is quite limited due to the low vision range of the cameras.
- The cameras are covering the middle part leaving unattended the lateral
- parts of the scenario.
+ one can easily observe that the vision range compared to the hole scenario
+ representation is quite limited due to the low vision range of the cameras.
+ The cameras are covering the middle part leaving completely unattended
+ the lateral parts of the scenario.
  The solution to this problem is to include panning movement in all the
  cameras from left to right so cameras view range is increased and no longer
  focus in the middle of the scene as before.
  This will lead also that the common areas that the cameras will share are
- increased.
+ increased and not static.
  This solution is presented in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1430,7 +1511,7 @@ reference "fig:Multi-camera-configuration with panning set up"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1479,7 +1560,7 @@ Before including camera panning in the set up, homographies where calculated,
  sequence was static and all its video frames where projected using the
  same matrix.
  However, when including video panning this solution is no longer valid
- as the view is constantly changing.
+ as the scene view is constantly changing.
  The ideal solution for this problem would be having one homography matrix
  
 \begin_inset Formula $H$
@@ -1487,7 +1568,7 @@ Before including camera panning in the set up, homographies where calculated,
 
  per video frame.
  As the homographies are calculated by the user selecting the points this
- solution is evidentially impossible in term of usability.
+ solution is evidentially impossible in terms of usability.
  We propose discretization of the panning tour in which 
 \begin_inset Formula $N$
 \end_inset
@@ -1503,6 +1584,8 @@ Before including camera panning in the set up, homographies where calculated,
 \end_inset
 
  camera views.
+ This codebook of views and homographies will be responsible for projecting
+ into the cenital plane the hole video.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1525,8 +1608,8 @@ Due to the creation of the homography codebook we now have to choose between
 \end_layout
 
 \begin_layout Standard
-In order to compare two images we have done comparison between interest
- points.
+In order to compare two images we have done comparison between points of
+ interest.
  AKAZE detector and descriptor 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1547,28 +1630,36 @@ AKAZE will detect and describe points of interest in any image and then
 \end_inset
 
  vies we will have a trade off.
- More view will mean a better space discretization however the computational
+ More views will mean a better space discretization, however, the computational
  time will increase exponentially, this means that we have to choose the
  number of views 
 \begin_inset Formula $N$
 \end_inset
 
- so it represents correctly the space and keeps the computational time low.
+ so it represents correctly the space and keeps the computational time relativel
+y low.
 \end_layout
 
 \begin_layout Standard
 As we said before, the homographies are calculated for each of the views,
  this means, that if a frame is not positioned exactly as a view the homography
  matrix will not project the points correctly, there will be a small error.
- Taking advantage of the calculation of common interest point between the
- frame and its correspondent view we can solve this problem by calculating
+ Taking advantage of the calculation of common points of interest between
+ the frame and its correspondent view we can solve this problem by calculating
  automatically the homography between both images.
  This means that now, to project detections from the current frame to the
  cenital plane, first we will change the perspective of it to the perspective
  of the view.
  This way we will ensure that the used perspective is the same one as the
  one that was used to compute the homography.
- This process is graphically explained in Figure
+ This process is graphically explained in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:View selection process and homography between views computation"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1594,7 +1685,7 @@ status open
 
 \begin_layout Plain Layout
 View selection process and homography between views computation.
- 
+ IMAGEN NO TERMINADA Y PENDIENTE DE CAMBIOS 
 \begin_inset Formula $N_{Views}=5$
 \end_inset
 
@@ -1629,6 +1720,12 @@ Synchronization between different camera videos by using concrete common
 
 \begin_layout Subsection
 Pedestrian Filtering
+\end_layout
+
+\begin_layout Standard
+During this Section we will explain how the pedestrian detections are filtered
+ and also how the information between people from the three cameras is fusion
+ in the system to increase the general algorithm performance.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1914,8 +2011,30 @@ Aqui o en resultados?
 Pedestrian Reprojection
 \end_layout
 
+\begin_layout Standard
+When all the pedestrian detections have been projected into the cenital
+ plane we can start reprojecting those projections from the cenital plane
+ back to the camera frames.
+ This process will have a fundamental important as it will be the process
+ from where the pedestrian detector accuracy can be increase by the use
+ of the multi camera system.
+ For instance, detections from Cameras 2 and 3 will be reprojected into
+ Camera 1.
+ Sometimes, those reprojections will not be in the frame because the cameras
+ will not be aiming to the same spatial area, however, when the are seeing
+ the same spatial space cameras will share those detections.
+ Ideally, if the three cameras detect the person reprojection will not be
+ necessary, but, if one of them misses the detection, the other two detections,
+ by the use of reprojection, will lead to suppress that miss detection.
+\end_layout
+
 \begin_layout Section
 Statistical Usage Data
+\end_layout
+
+\begin_layout Standard
+Along this Section the extraction of the statistical usage data will be
+ deeply explained
 \end_layout
 
 \begin_layout Standard

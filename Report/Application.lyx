@@ -128,7 +128,14 @@ Its cross-platform characteristic which makes it easily portable from one
 \begin_layout Enumerate
 Its application window designer that enables the programmer to design the
  software windows by using an interface instead of having to code to create
- the mentioned window (Figure ).
+ the mentioned window (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:QT-Window-Designer"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_deeper
@@ -155,6 +162,13 @@ status collapsed
 
 \begin_layout Plain Layout
 QT Window Designer
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:QT-Window-Designer"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1437,6 +1451,65 @@ name "fig:Results Display Area"
 \end_layout
 
 \end_deeper
+\begin_layout Subsection
+Classes Distribution
+\end_layout
+
+\begin_layout Standard
+In terms of C++ blocks the application has been divided into several classes
+ whose functions will be explained in the following lines:
+\end_layout
+
+\begin_layout Itemize
+MainWindow.
+ This class corresponds to the main interface window and main application
+ thread.
+ It is the base for all the further processing.
+ The functions that should be done by this class is opening the video files,
+ creating and starting the threads, update all the algorithms configurations
+ from the UI and displaying results through the CVImageWidget class.
+\end_layout
+
+\begin_layout Itemize
+AboutWindow.
+ Class that execute the second window that simply displays information.
+\end_layout
+
+\begin_layout Itemize
+CameraWorker.
+ Main class for the cameras.
+ CameraWorker class is linked with a thread to process all the algorithms
+ inside.
+ It has CameraStream, PeopleDetector and Barrier classes declared within
+ it.
+\end_layout
+
+\begin_layout Itemize
+CameraStream.
+ This class will perform all the processes that has to deal with the video
+ processing except pedestrian detection.
+ The main reading loop, homographies and computations will be computed in
+ this class.
+\end_layout
+
+\begin_layout Itemize
+PeopleDetector.
+ Main class to perform everything with respect to pedestrian detection.
+ All the algorithms to detect, project and draw will be from this class.
+\end_layout
+
+\begin_layout Itemize
+Barrier.
+ This class will implement everything that has to deal with thread synchronizati
+on.
+\end_layout
+
+\begin_layout Itemize
+CVImageWidget.
+ Display representation class that will paint OpenCV Mat images into the
+ QT interface Widget.
+\end_layout
+
 \begin_layout Subsection
 Engineer Application
 \end_layout
