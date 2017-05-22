@@ -1685,11 +1685,12 @@ status open
 
 \begin_layout Plain Layout
 View selection process and homography between views computation.
- IMAGEN NO TERMINADA Y PENDIENTE DE CAMBIOS 
+ 
 \begin_inset Formula $N_{Views}=5$
 \end_inset
 
-
+.
+ IMAGEN NO TERMINADA Y PENDIENTE DE CAMBIOS
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:View selection process and homography between views computation"
@@ -1714,8 +1715,25 @@ Video Sequence Synchronization
 \end_layout
 
 \begin_layout Standard
-Synchronization between different camera videos by using concrete common
- events in the sequences.
+One of the main issue when dealing with multi camera systems, and specially,
+ those that will combine information between the cameras, is that video
+ sequences coming from them should be correctly synchronized.
+ This is really important because if the same frame number 
+\begin_inset Formula $f$
+\end_inset
+
+ is not representing the same exact moment in time in the three cameras,
+ combination and fusion of the information is not possible.
+\end_layout
+
+\begin_layout Standard
+We have synchronized the processed videos using th so called clapperboard
+ technique.
+ This technique aims to synchronize using concrete events that can be observed
+ from all the cameras at the same time.
+ By this, we will be able to set a synchronize starting point from where
+ the following video frames will be correctly representing the same moment
+ in time.
 \end_layout
 
 \begin_layout Subsection
@@ -2034,7 +2052,7 @@ Statistical Usage Data
 
 \begin_layout Standard
 Along this Section the extraction of the statistical usage data will be
- deeply explained
+ deeply explained.
 \end_layout
 
 \begin_layout Standard

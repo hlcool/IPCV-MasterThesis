@@ -143,7 +143,7 @@ reference "fig:QT-Window-Designer"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -161,7 +161,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-QT Window Designer
+QT Main Window Designer
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:QT-Window-Designer"
@@ -701,7 +701,7 @@ Now, however, as threads are running separately one have to create some
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1466,22 +1466,26 @@ In terms of C++ blocks the application has been divided into several classes
 MainWindow.
  This class corresponds to the main interface window and main application
  thread.
- It is the base for all the further processing.
- The functions that should be done by this class is opening the video files,
- creating and starting the threads, update all the algorithms configurations
- from the UI and displaying results through the CVImageWidget class.
+ It is the base for all the further processing as everything will be under
+ this class.
+ The functions that are going to be done by this class is creating the file
+ open dialogs, creating and starting all the camera threads, update all
+ the algorithms configurations from the UI and displaying results through
+ the CVImageWidget class.
 \end_layout
 
 \begin_layout Itemize
 AboutWindow.
- Class that execute the second window that simply displays information.
+ Class that execute the second window.
+ This instance will display general information about the application and
+ its developers.
 \end_layout
 
 \begin_layout Itemize
 CameraWorker.
  Main class for the cameras.
- CameraWorker class is linked with a thread to process all the algorithms
- inside.
+ CameraWorker class is linked with a thread which will process all the algorithm
+s inside.
  It has CameraStream, PeopleDetector and Barrier classes declared within
  it.
 \end_layout
@@ -1490,34 +1494,125 @@ CameraWorker.
 CameraStream.
  This class will perform all the processes that has to deal with the video
  processing except pedestrian detection.
- The main reading loop, homographies and computations will be computed in
+ The main reading loop, homographies and projections will be computed in
  this class.
 \end_layout
 
 \begin_layout Itemize
 PeopleDetector.
  Main class to perform everything with respect to pedestrian detection.
- All the algorithms to detect, project and draw will be from this class.
+ All the algorithms to detect, project and draw pedestrian either on the
+ camera frame or the cenital plane will be from this class.
 \end_layout
 
 \begin_layout Itemize
 Barrier.
  This class will implement everything that has to deal with thread synchronizati
 on.
+ It will be declared in Main Window and passed by arguments to the thread
+ so each of them has the same exact barrier to perform the synchronization.
 \end_layout
 
 \begin_layout Itemize
 CVImageWidget.
- Display representation class that will paint OpenCV Mat images into the
- QT interface Widget.
+ Display representation class that will deal with all the process to finally
+ paint OpenCV Mat images into a QT interface Widget.
+\end_layout
+
+\begin_layout Standard
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Hierarchical representation of the code"
+
+\end_inset
+
+ a hierarchical representation of how the different classes are related
+ in the code is presented.
+ As on can observe everything is under the hierarchy of the main window.
+ Here we have the three camera worker threads which will have inside the
+ same barrier, and each of them a camera stream and a people detector.
+ In addition, main window will also be the parent of the extra about window
+ and the CVImageWidget.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/Hierarchical class distribution.png
+	lyxscale 30
+	width 70text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Hierarchical representation of the code.
+ NO DEFINITIVO
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Hierarchical representation of the code"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Due to the complexity of some of the algorithms in terms of parameter tuning
+ and configuration we have decide to create two separate versions of the
+ same application that will be explained in the following paragraphs.
 \end_layout
 
 \begin_layout Subsection
 Engineer Application
 \end_layout
 
+\begin_layout Standard
+The first version of the software will correspond to the engineer application.
+ As its name says, it is design so it can be used by programmers or engineers
+ who understand about the general concepts of the algorithms running at
+ the back of the application.
+ This means that all the variable parameters will be available for tuning
+ from the graphical interface, as well as different detector options and
+ visualization.
+ The final motivation for this version is to achieve high variability and
+ tuning in terms of algorithm parameters, however, in order to have good
+ performance the user should have the basic knowledge about how parameters
+ are affecting the software performance.
+\end_layout
+
 \begin_layout Subsection
 User Application
+\end_layout
+
+\begin_layout Standard
+On the contrary, the second developed application is focus on general users.
+ This version will only allow to load the video files and display results.
+ All the parameters will be set by default so the user does not have to
+ fine tuning any of them making the usage and the general perception of
+ the application much more simple and easy.
 \end_layout
 
 \end_body
