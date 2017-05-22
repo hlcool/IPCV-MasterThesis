@@ -294,7 +294,7 @@ The model should be trained with indoor scenes.
  This will lead to discard those models that perform only in outdoors scenes
  as we would like our approach to be used in interior scenarios.
  This will exclude CityScapes dataset from our options as all the classes
- and seqeunces used for training are from outdoor scenes.
+ and sequences used for training are from outdoor scenes.
 \end_layout
 
 \begin_layout Enumerate
@@ -306,7 +306,7 @@ From the trained indoor models we have to choose between those whose categories
 \end_layout
 
 \begin_layout Standard
-With this two reasons being taked into account we have selected the model
+With this two reasons being taken into account we have selected the model
  ADE20K because it has elements such as walls, floor, person and column
  in its model.
  However, we consider that most of the 150 label categories will be unused
@@ -1338,7 +1338,7 @@ For this reason another cenital plane has been compute starting from zero.
 
 \begin_layout Standard
 For correctly drawing the plane 
-\color brown
+\color blue
 
 \begin_inset CommandInset href
 LatexCommand href
@@ -1858,7 +1858,7 @@ reference "fig:Cylinder-estimation-for camera instances projections"
 
  when the blue bounding boxes are projected from image (a) to image (c)
  they are not correctly on the pedestrian.
- The solution is to compute the cilinder that embrace the square whose side
+ The solution is to compute the cylinder that embrace the square whose side
  is the bounding box (b).
  Once the cylinder is estimated, the person will be in the middle of the
  cylinder.
@@ -1874,11 +1874,11 @@ reference "fig:Cylinder-estimation-for cenital view projections"
 
 \end_inset
 
- the same methohd is applyed but in this case, the bounding box is not projected
+ the same method is applied but in this case, the bounding box is not projected
  to another camera perspective but to the cenital plane.
  In this case we can see that the projection of the bounding box, represented
  by the green line is not in the same position as the center of the cylinder,
- whcih will be at the end of the purple line.
+ which will be at the end of the purple line.
  The center of the cylinder so, will correspond to a more approximate position
  of the detected person.
 \end_layout
@@ -1977,7 +1977,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Gaussian representation examples
+Gaussian representation examples CAMBIAR IMAGEN A GAUSSIANS
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Gaussian-representation-examples"
