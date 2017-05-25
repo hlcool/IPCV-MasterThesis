@@ -299,6 +299,16 @@ void CameraStream::computeHomography()
         // Calculate Homography and store it in the vector
         HomographyVector.push_back(findHomography(pts_src, pts_dst, CV_LMEDS));
     }
+
+    for(int CameraView = 1; CameraView <= NViews; CameraView++){
+        Mat View = imread(VideoPath + "/Homography Images/Camera " + to_string(CameraNumber) + "/View " + to_string(CameraView) + ".jpg");
+        Mat ImageWarping = Mat::zeros(540, 960, CV_8UC1);
+        Mat Homografia = HomographyVector[CameraView-1];
+        warpPerspective(View, ImageWarping, Homografia, ImageWarping.size());
+
+        String ImageName = "/Users/alex/Desktop/Vistas Proyectadas/Camera " + to_string(CameraNumber) + "_Vista" + to_string(CameraView) + ".jpg";
+        imwrite(ImageName, ImageWarping);
+    }
 }
 
 void CameraStream::ViewSelection(vector<Mat> HomographyVector)
@@ -732,8 +742,8 @@ void CameraStream::Akaze(Mat Image1, vector<KeyPoint> kpts1, Mat desc1, Mat Imag
     vector<KeyPoint> kpts2;
     Mat desc2;
 
-    akazeDescriptor->setNOctaves(2);
-    akazeDescriptor->setNOctaveLayers(1);
+    akazeDescriptor->setNOctaves(3);
+    akazeDescriptor->setNOctaveLayers(2);
     akazeDescriptor->detectAndCompute(Image2, noArray(), kpts2, desc2);
 
     //  ------------------  //
@@ -741,7 +751,7 @@ void CameraStream::Akaze(Mat Image1, vector<KeyPoint> kpts1, Mat desc1, Mat Imag
     //  ------------------  //
     BFMatcher matcher(NORM_HAMMING);
     vector<vector<DMatch>> nn_matches;
-    matcher.knnMatch(desc1, desc2, nn_matches, 5);
+    matcher.knnMatch(desc1, desc2, nn_matches, 10);
 
     vector<DMatch> good_matches;
     for (size_t i = 0; i < nn_matches.size(); ++i) {
