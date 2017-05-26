@@ -298,13 +298,27 @@ void CameraStream::computeHomography()
 
         // Calculate Homography and store it in the vector
         HomographyVector.push_back(findHomography(pts_src, pts_dst, CV_LMEDS));
-    }
 
-    for(int CameraView = 1; CameraView <= NViews; CameraView++){
         Mat View = imread(VideoPath + "/Homography Images/Camera " + to_string(CameraNumber) + "/View " + to_string(CameraView) + ".jpg");
-        Mat ImageWarping = Mat::zeros(540, 960, CV_8UC1);
+        Mat ImageWarping = Mat::zeros(986, 1606, CV_8UC1);
         Mat Homografia = HomographyVector[CameraView-1];
         warpPerspective(View, ImageWarping, Homografia, ImageWarping.size());
+
+        // Apply Homography to vectors of Points to find the projection
+        vector<Point2f> pts_src_projected;
+        perspectiveTransform(pts_src, pts_src_projected, Homografia);
+
+        for(int i = 0; i < pts_src.size(); i++){
+
+            Point PuntoImagen = pts_src_projected[i];
+            Point PuntoCenital = pts_dst[i];
+
+            // Puntos de la imagen seleccionados proyectados
+            circle(ImageWarping, PuntoImagen, 2, Scalar(255,0,0), 4);
+
+            // Puntos de la imagen cenital seleccionados
+            circle(ImageWarping, PuntoCenital, 4, Scalar(0,0,255), 4);
+        }
 
         String ImageName = "/Users/alex/Desktop/Vistas Proyectadas/Camera " + to_string(CameraNumber) + "_Vista" + to_string(CameraView) + ".jpg";
         imwrite(ImageName, ImageWarping);
@@ -451,9 +465,9 @@ void CameraStream::ExtractViewScores()
     int Rows = CommonSemantic12.rows;
     int Cols = CommonSemantic12.cols;
 
-    Mat ProjectedImage1 = imread(VideoPath + "/Wrapped Images/Sem1Median.png");
-    Mat ProjectedImage2 = imread(VideoPath + "/Wrapped Images/Sem2Median.png");
-    Mat ProjectedImage3 = imread(VideoPath + "/Wrapped Images/Sem3Median.png");
+    Mat ProjectedImage1 = imread(VideoPath + "/Wrapped Images/RGB1Median.png");
+    Mat ProjectedImage2 = imread(VideoPath + "/Wrapped Images/RGB2Median.png");
+    Mat ProjectedImage3 = imread(VideoPath + "/Wrapped Images/RGB3Median.png");
 
     CommonSemanticAllCameras = Mat::zeros(Rows, Cols, CV_8UC1);
     Mat Scores = Mat::zeros(Rows, Cols, CV_8UC1);
@@ -742,7 +756,7 @@ void CameraStream::Akaze(Mat Image1, vector<KeyPoint> kpts1, Mat desc1, Mat Imag
     vector<KeyPoint> kpts2;
     Mat desc2;
 
-    akazeDescriptor->setNOctaves(3);
+    akazeDescriptor->setNOctaves(4);
     akazeDescriptor->setNOctaveLayers(2);
     akazeDescriptor->detectAndCompute(Image2, noArray(), kpts2, desc2);
 
@@ -751,7 +765,7 @@ void CameraStream::Akaze(Mat Image1, vector<KeyPoint> kpts1, Mat desc1, Mat Imag
     //  ------------------  //
     BFMatcher matcher(NORM_HAMMING);
     vector<vector<DMatch>> nn_matches;
-    matcher.knnMatch(desc1, desc2, nn_matches, 10);
+    matcher.knnMatch(desc1, desc2, nn_matches, 5);
 
     vector<DMatch> good_matches;
     for (size_t i = 0; i < nn_matches.size(); ++i) {

@@ -2,9 +2,9 @@ clc;
 clear all;
 close all;
 
-o1 = zeros(540,960);
-o2 = zeros(540,960);
-o3 = zeros(540,960);
+o1 = zeros(986, 1606);
+o2 = zeros(986, 1606);
+o3 = zeros(986, 1606);
 
 filenames = dir('/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Wrapped Images/Camera 1/*.png');
 
@@ -27,7 +27,7 @@ end
 
 figure
 imshow(uint8(o1))
-imwrite(uint8(o1),'Sem1Median.png')
+imwrite(uint8(o1),'RGB1Median.png')
 
 filenames = dir('/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Wrapped Images/Camera 2/*.png');
 
@@ -50,7 +50,7 @@ end
 
 figure
 imshow(uint8(o2))
-imwrite(uint8(o2),'Sem2Median.png')
+imwrite(uint8(o2),'RGB2Median.png')
 
 filenames = dir('/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Wrapped Images/Camera 3/*.png');
 
@@ -73,4 +73,4 @@ end
 
 figure
 imshow(uint8(o3))
-imwrite(uint8(o3),'Sem3Median.png')
+imwrite(uint8(o3),'RGB3Median.png')

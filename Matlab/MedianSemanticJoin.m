@@ -2,9 +2,9 @@ clc;
 clear all;
 close all;
 
-o1 = zeros(540,960);
-o2 = zeros(540,960);
-o3 = zeros(540,960);
+o1 = zeros(986, 1606);
+o2 = zeros(986, 1606);
+o3 = zeros(986, 1606);
 
 filenames = dir('/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Projected Semantic Frames/Projected Frames 1/*.png');
 
