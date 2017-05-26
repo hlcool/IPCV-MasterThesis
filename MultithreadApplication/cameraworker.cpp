@@ -52,9 +52,6 @@ void CameraWorker::preProcessVideo()
 
 void CameraWorker::processVideo()
 {
-    // People detector class
-    PeopleDetector PeopleDetec;
-
     // Main Video Loop
     while (true) {
         // Start the clock for measuring time consumption/frame
@@ -127,6 +124,10 @@ void CameraWorker::processVideo()
         //     PEOPLE DETECTION & BLOBS PROJECTION     //
         // ------------------------------------------- //
         PeopleDetec.MainPeopleDetection(Camera, CBOption, RepresentationOption, PDFiltering, CenitalPlane);
+        barrier.wait();
+        emit PedestrianDetectionFinished(Camera.CameraNumber);
+        PeopleDetec.ReprojectionFusion(ProjCenterPoints1, ProjLeftPoints1, ProjRightPoints1, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
+        PeopleDetec.ReprojectionFusion(ProjCenterPoints2, ProjLeftPoints2, ProjRightPoints2, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
 
         // ------------------------------------------- //
         //        FRAME RESIZE AND FRAME NUMBER        //

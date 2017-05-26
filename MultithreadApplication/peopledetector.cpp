@@ -33,15 +33,13 @@ void PeopleDetector::MainPeopleDetection(CameraStream &Camera, String CBOption, 
         // DPM Detector
         DPMPeopleDetection(Camera, PDFiltering);
         paintBoundingBoxes(Camera.ActualFrame, CBOption, Camera.DPMBoundingBoxes, Camera.CameraNumber, 1);
-        projectBlobs(Camera.DPMBoundingBoxes, Camera.DPMScores, Camera.Homography, CenitalPlane, Camera.CameraNumber, RepresentationOption);
+        projectBlobs(Camera.DPMBoundingBoxes, Camera.DPMScores, Camera.Homography, Camera.HomographyBetweenViews, CenitalPlane, Camera.CameraNumber, RepresentationOption);
     }
     else if(!CBOption.compare("Semantic Detector")){
         // People detection using labels from semantic information.
         // GAUSSSIAN REPRESENTATION NOT WORKING BECAUSE OF LACK OF SCORES
-        if (PDFiltering){
-            paintBoundingBoxes(Camera.ActualFrame, CBOption, Camera.FGBlobs, Camera.CameraNumber, 1);
-            projectBlobs(Camera.FGBlobs, Camera.DPMScores, Camera.Homography, CenitalPlane, Camera.CameraNumber, RepresentationOption);
-        }
+        paintBoundingBoxes(Camera.ActualFrame, CBOption, Camera.FGBlobs, Camera.CameraNumber, 1);
+        projectBlobs(Camera.FGBlobs, Camera.DPMScores, Camera.Homography, Camera.HomographyBetweenViews, CenitalPlane, Camera.CameraNumber, RepresentationOption);
     }
     else if(!CBOption.compare("None")){
         return;
@@ -147,10 +145,14 @@ void PeopleDetector::paintBoundingBoxes(Mat &ActualFrame, string Method, vector<
     }
 }
 
-void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, Mat &CenitalPlane, int CameraNumber, String RepresentationOption)
+void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, Mat HomographyBetweenViews, Mat &CenitalPlane, int CameraNumber, String RepresentationOption)
 {
-    if (BoundingBoxes.empty())
+    if (BoundingBoxes.empty()){
+        ProjectedLeftPoints.clear();
+        ProjectedRightPoints.clear();
+        ProjectedCenterPoints.clear();
         return;
+    }
 
     Mat Gaussian;
     double score;
@@ -165,7 +167,8 @@ void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> sco
         SColor = Scalar (0, 0, 255);
 
     vector<Point2f> LeftCornerVectors, RightCornerVectors;
-    vector<Point2f> ProjectedLeftPoints, ProjectedRightPoints;
+    ProjectedLeftPoints.clear();
+    ProjectedRightPoints.clear();
 
     // Extract bottom bounding box segment
     for (size_t i = 0; i < BoundingBoxes.size(); i++) {
@@ -184,12 +187,15 @@ void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> sco
         RightCornerVectors.push_back(RightCorner);
     }
 
-    // Apply Homography to vectors of Points to find the projection
-    perspectiveTransform(LeftCornerVectors, ProjectedLeftPoints, Homography);
-    perspectiveTransform(RightCornerVectors, ProjectedRightPoints, Homography);
+    // Apply Homography to vectors of Points to find the projection in the view
+    perspectiveTransform(LeftCornerVectors, ProjectedLeftPoints, HomographyBetweenViews);
+    perspectiveTransform(RightCornerVectors, ProjectedRightPoints, HomographyBetweenViews);
+    // Apply Homography to vectors of Points to find the projection in the cenital plane
+    perspectiveTransform(ProjectedLeftPoints, ProjectedLeftPoints, Homography);
+    perspectiveTransform(ProjectedRightPoints, ProjectedRightPoints, Homography);
 
     // Vector to save the coordinates of projected squares for gaussians
-    vector<Point2f> ProjectedPoints;
+    ProjectedCenterPoints.clear();
 
     for (size_t i = 0; i < ProjectedLeftPoints.size(); i++) {
         // Left Projected Point
@@ -254,7 +260,7 @@ void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> sco
         C.y = MiddleSegmentPoint.y + VectorLeft2Rigth.y * length;
 
         // Save projected square central point
-        ProjectedPoints.push_back(C);
+        ProjectedCenterPoints.push_back(C);
 
         if (!RepresentationOption.compare("Lines")){
             // Projection Line
@@ -355,6 +361,44 @@ void PeopleDetector::gaussianFunction(Mat &Gaussian3C, Mat X, Mat Y, Point2f cen
         GaussianChannels.at(2) = Gaussian;
 
     merge(GaussianChannels, Gaussian3C);
+}
+
+void PeopleDetector::ReprojectionFusion(vector<Point2f> ProjCenterPoints, vector<Point2f> ProjLeftPoints, vector<Point2f> ProjRightPoints, Mat Homography, Mat HomographyBetweenViews, Mat &ActualFrame)
+{
+    if (ProjCenterPoints.empty()){
+        return;
+    }
+
+    vector<Point2f> CenterPoints, LeftPoints, RightPoints;
+    // Apply Homography inverse vector of center points from other camera
+    perspectiveTransform(ProjCenterPoints, CenterPoints, Homography.inv(DECOMP_LU));
+    // Apply Homography inverse vector of center points from other camera
+    perspectiveTransform(ProjLeftPoints, LeftPoints, Homography.inv(DECOMP_LU));
+    // Apply Homography inverse vector of center points from other camera
+    perspectiveTransform(ProjRightPoints, RightPoints, Homography.inv(DECOMP_LU));
+
+    // Apply Homography inverse vector of center points from other camera
+    perspectiveTransform(CenterPoints, CenterPoints, HomographyBetweenViews.inv(DECOMP_LU));
+    // Apply Homography inverse vector of center points from other camera
+    perspectiveTransform(LeftPoints, LeftPoints, HomographyBetweenViews.inv(DECOMP_LU));
+    // Apply Homography inverse vector of center points from other camera
+    perspectiveTransform(RightPoints, RightPoints, HomographyBetweenViews.inv(DECOMP_LU));
+
+    for(int n = 0; n < CenterPoints.size(); n++){
+        Point2f Center = CenterPoints[n];
+        Point2f LeftCorner = LeftPoints[n];
+        Point2f RightCorner = RightPoints[n];
+        Point2f TopLeftCorner;
+
+        float width = RightCorner.x - LeftCorner.x;
+        float heigth = width/ 0.3;
+
+        TopLeftCorner.x = RightCorner.x - width;
+        TopLeftCorner.y = LeftCorner.y - heigth;
+
+        circle(ActualFrame, Center, 10, Scalar(255,255,255), 3);
+        rectangle(ActualFrame, TopLeftCorner, RightCorner, Scalar(255,255,255), 3);
+    }
 }
 
 void PeopleDetector::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh)
