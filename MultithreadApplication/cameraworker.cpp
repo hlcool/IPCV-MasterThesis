@@ -101,23 +101,25 @@ void CameraWorker::processVideo()
         //   HOMOGRAPHY & VIEW SELECTION  //
         // ------------------------------ //
         Camera.ViewSelection(Camera.HomographyVector);
+        Mat ImageWarping = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
+        Camera.saveWarpImages(Camera.ActualFrame, Camera.Homography, FrameNumber, ImageWarping);
 
         // ----------------------- //
         //   SEMANTIC PROJECTION   //
         // ----------------------- //
-        // Auxiliar Cenital plane to paint
+        // Clear Cenital Plane
         CenitalPlane = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
-        // Semantic Mask
+        // Clear Semantic Mask
         SemanticMask = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
-        Mat ImageWarping = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
+        // Project Semantic to the cenital plane
         Camera.ProjectSemanticPoints(CenitalPlane, SemanticMask, FrameNumber);
-        // Draw semantic projection
+        // Draw semantic projection in the cenital plane
         Camera.drawSemantic(CenitalPlane);
-        Camera.saveWarpImages(Camera.ActualFrame, Camera.Homography, FrameNumber, ImageWarping);
 
         // ---------------------------- //
         //   INDUCED PLANE HOMOGRAPHY   //
         // ---------------------------- //
+        // Project common semantic back to the camera frames
         Camera.ProjectCommonSemantic();
 
         // ------------------------------------------- //
@@ -126,8 +128,10 @@ void CameraWorker::processVideo()
         PeopleDetec.MainPeopleDetection(Camera, CBOption, RepresentationOption, PDFiltering, CenitalPlane);
         barrier.wait();
         emit PedestrianDetectionFinished(Camera.CameraNumber);
+        // Reproject to the frames other camera detections
         PeopleDetec.ReprojectionFusion(ProjCenterPoints1, ProjLeftPoints1, ProjRightPoints1, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
         PeopleDetec.ReprojectionFusion(ProjCenterPoints2, ProjLeftPoints2, ProjRightPoints2, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
+        // Filter Pedestrian Detections that are not correcly placed within the semantic
 
         // ------------------------------------------- //
         //        FRAME RESIZE AND FRAME NUMBER        //

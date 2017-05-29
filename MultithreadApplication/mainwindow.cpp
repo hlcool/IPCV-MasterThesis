@@ -194,10 +194,10 @@ void MainWindow::displayFrame(Mat frame, Mat CenitalPlane, int CameraNumber)
     imshow("Common Semantic between Camera 1 and 2", SemanticMask1*20);
     imshow("Common Semantic between Camera 2 and 3", SemanticMask2*20);
     imshow("Common Semantic between Camera 1 and 3", SemanticMask3*20);
-    */
 
     Mat CommonSemantic = CameraWorkers[0]->Camera.CommonSemanticAllCameras;
     imshow("Common Semantic between all cameras", CommonSemantic*20);
+    */
 }
 
 void MainWindow::joinCenitalFrames(Mat frame, Mat CenitalPlane, int CameraNumber)
