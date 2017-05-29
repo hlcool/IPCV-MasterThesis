@@ -370,20 +370,17 @@ void PeopleDetector::ReprojectionFusion(vector<Point2f> ProjCenterPoints, vector
     }
 
     vector<Point2f> CenterPoints, LeftPoints, RightPoints;
-    // Apply Homography inverse vector of center points from other camera
+    // Apply Homography inverse to reproject from the cneital plane to the view
     perspectiveTransform(ProjCenterPoints, CenterPoints, Homography.inv(DECOMP_LU));
-    // Apply Homography inverse vector of center points from other camera
     perspectiveTransform(ProjLeftPoints, LeftPoints, Homography.inv(DECOMP_LU));
-    // Apply Homography inverse vector of center points from other camera
     perspectiveTransform(ProjRightPoints, RightPoints, Homography.inv(DECOMP_LU));
 
-    // Apply Homography inverse vector of center points from other camera
+    // Apply HomographyBetweenViews inverse to project from the view to the actual frame
     perspectiveTransform(CenterPoints, CenterPoints, HomographyBetweenViews.inv(DECOMP_LU));
-    // Apply Homography inverse vector of center points from other camera
     perspectiveTransform(LeftPoints, LeftPoints, HomographyBetweenViews.inv(DECOMP_LU));
-    // Apply Homography inverse vector of center points from other camera
     perspectiveTransform(RightPoints, RightPoints, HomographyBetweenViews.inv(DECOMP_LU));
 
+    // Draw into the actual frame the reprojected detections
     for(int n = 0; n < CenterPoints.size(); n++){
         Point2f Center = CenterPoints[n];
         Point2f LeftCorner = LeftPoints[n];
