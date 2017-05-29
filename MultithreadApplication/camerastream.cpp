@@ -454,56 +454,63 @@ void CameraStream::SemanticCommonPoints()
     cvtColor(CommonSemantic12, CommonSemantic12 , CV_BGR2GRAY);
     cvtColor(CommonSemantic23, CommonSemantic23 , CV_BGR2GRAY);
     cvtColor(CommonSemantic13, CommonSemantic13 , CV_BGR2GRAY);
-}
 
-void CameraStream::ExtractViewScores()
-{
-    int Rows = CommonSemantic12.rows;
-    int Cols = CommonSemantic12.cols;
-
-    Mat ProjectedImage1 = imread(VideoPath + "/Wrapped Images/RGB1Median.png", CV_LOAD_IMAGE_GRAYSCALE);
-    Mat ProjectedImage2 = imread(VideoPath + "/Wrapped Images/RGB2Median.png", CV_LOAD_IMAGE_GRAYSCALE);
-    Mat ProjectedImage3 = imread(VideoPath + "/Wrapped Images/RGB3Median.png", CV_LOAD_IMAGE_GRAYSCALE);
-
+    // Common semantic between the three cameras
     CommonSemanticAllCameras = Mat::zeros(Rows, Cols, CV_8UC1);
-    Mat Scores = Mat::zeros(Rows, Cols, CV_8UC1);
 
-    // Join the three commmon semantic images
     for (int i = 0; i < Rows; i++){
         for (int j = 0; j < Cols; j++){
-            int Label1 = CommonSemantic12.at<uchar>(i,j);
-            int Label2 = CommonSemantic23.at<uchar>(i,j);
-            int Label3 = CommonSemantic13.at<uchar>(i,j);
+            int Label12 = CommonSemantic12.at<uchar>(i,j);
+            int Label23 = CommonSemantic23.at<uchar>(i,j);
+            int Label13 = CommonSemantic13.at<uchar>(i,j);
 
-            if ((Label1 == Label2) && (Label1 == Label3) && (Label2 == Label3)){
-                CommonSemanticAllCameras.at<uchar>(i,j) = Label1;
-
-                if(Label1 != 0){
-                    int dist1 = ProjectedImage1.at<uchar>(i,j) - ProjectedImage2.at<uchar>(i,j);
-                    int dist2 = ProjectedImage1.at<uchar>(i,j) - ProjectedImage3.at<uchar>(i,j);
-                    int dist3 = ProjectedImage3.at<uchar>(i,j) - ProjectedImage2.at<uchar>(i,j);
-                    Scores.at<uchar>(i,j) = max(dist3, max(dist1, dist2));
-                }
-                else
-                    Scores.at<uchar>(i,j) = 255;
-            }
-            else {
-                Scores.at<uchar>(i,j) = 255;
+            if ((Label12 == Label23) && (Label12 == Label13) && (Label23 == Label13)){
+                CommonSemanticAllCameras.at<uchar>(i,j) = Label12;
             }
         }
     }
 
-    // Save Results
+    // Save image Results
     String ImageName = "/Users/alex/Desktop/CommonSemanticAllCameras.png";
     imwrite(ImageName, CommonSemanticAllCameras*20);
-    ImageName = "/Users/alex/Desktop/Scores.png";
-    imwrite(ImageName, Scores);
     ImageName = "/Users/alex/Desktop/CommonSemantic12.png";
     imwrite(ImageName, CommonSemantic12*20);
     ImageName = "/Users/alex/Desktop/CommonSemantic23.png";
     imwrite(ImageName, CommonSemantic23*20);
     ImageName = "/Users/alex/Desktop/CommonSemantic13.png";
     imwrite(ImageName, CommonSemantic13*20);
+}
+
+void CameraStream::ExtractViewScores()
+{
+    // Extract scores for the common areas for the three cameras
+
+    int Rows = CommonSemanticAllCameras.rows;
+    int Cols = CommonSemanticAllCameras.cols;
+
+    Mat ProjectedImage1 = imread(VideoPath + "/Wrapped Images/RGB1Median.png", CV_LOAD_IMAGE_GRAYSCALE);
+    Mat ProjectedImage2 = imread(VideoPath + "/Wrapped Images/RGB2Median.png", CV_LOAD_IMAGE_GRAYSCALE);
+    Mat ProjectedImage3 = imread(VideoPath + "/Wrapped Images/RGB3Median.png", CV_LOAD_IMAGE_GRAYSCALE);
+
+    Mat Scores = Mat::zeros(Rows, Cols, CV_8UC1);
+
+    // Join the three commmon semantic images
+    for (int i = 0; i < Rows; i++){
+        for (int j = 0; j < Cols; j++){
+            int Label = CommonSemanticAllCameras.at<uchar>(i,j);
+            if(Label != 0){
+                int dist1 = ProjectedImage1.at<uchar>(i,j) - ProjectedImage2.at<uchar>(i,j);
+                int dist2 = ProjectedImage1.at<uchar>(i,j) - ProjectedImage3.at<uchar>(i,j);
+                int dist3 = ProjectedImage3.at<uchar>(i,j) - ProjectedImage2.at<uchar>(i,j);
+                Scores.at<uchar>(i,j) = max(dist3, max(dist1, dist2));
+            }
+            else
+                Scores.at<uchar>(i,j) = 255;
+        }
+    }
+    // Save Results
+    String ImageName = "/Users/alex/Desktop/Scores.png";
+    imwrite(ImageName, Scores);
 }
 
 void CameraStream::ProjectSemanticPoints(Mat &CenitalPlane, Mat &SemanticMask, String FrameNumber)
