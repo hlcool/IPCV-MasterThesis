@@ -398,6 +398,91 @@ void PeopleDetector::ReprojectionFusion(vector<Point2f> ProjCenterPoints, vector
     }
 }
 
+void PeopleDetector::SemanticConstraining(vector<Point2f> ProjCenterPoints1, vector<Point2f> ProjCenterPoints2, int CameraNumber, Mat &ActualFrame, Mat Homography, Mat HomographyBetweenViews)
+{
+    Mat CommonImage1, CommonImage2;
+
+    // ProjectedCenterPoints
+    if(CameraNumber == 1) {
+        CommonImage1 = imread("/Users/alex/Desktop/CommonSemantic13.png", CV_LOAD_IMAGE_GRAYSCALE);
+        CommonImage2 = imread("/Users/alex/Desktop/CommonSemantic12.png", CV_LOAD_IMAGE_GRAYSCALE);
+    }
+    else if(CameraNumber == 2) {
+        CommonImage1 = imread("/Users/alex/Desktop/CommonSemantic12.png", CV_LOAD_IMAGE_GRAYSCALE);
+        CommonImage2 = imread("/Users/alex/Desktop/CommonSemantic23.png", CV_LOAD_IMAGE_GRAYSCALE);
+    }
+    else if(CameraNumber == 3) {
+        CommonImage1 = imread("/Users/alex/Desktop/CommonSemantic13.png", CV_LOAD_IMAGE_GRAYSCALE);
+        CommonImage2 = imread("/Users/alex/Desktop/CommonSemantic23.png", CV_LOAD_IMAGE_GRAYSCALE);
+    }
+
+    if((! CommonImage1.data) || (! CommonImage2.data)) {
+        cout <<  "Could not open the common semantic images for SemanticConstraining function" << endl ;
+        return;
+    }
+
+    Point2f Point;
+    // Supressed points due to semantic constrains
+    vector<Point2f> SupressedPoints;
+
+    if (!ProjectedCenterPoints.empty()){
+        // Check if all the detections are in the floor
+        for(int i = 0; i < ProjectedCenterPoints.size(); i++){
+            Point = ProjectedCenterPoints[i];
+            if((Point.x > 0) && (Point.y > 0) && (Point.x < CommonImage1.cols) && (Point.y < CommonImage1.rows)) {
+                int Label1 = CommonImage1.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+                int Label2 = CommonImage2.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+
+                if (!(Label1 == 3 || Label2 == 3)){
+                    SupressedPoints.push_back(Point);
+                }
+            }
+
+        }
+    }
+
+    if (!ProjCenterPoints1.empty()){
+        for(int j = 0; j < ProjCenterPoints1.size(); j++){
+            Point = ProjCenterPoints1[j];
+            if((Point.x > 0) && (Point.y > 0) && (Point.x < CommonImage1.cols) && (Point.y < CommonImage1.rows)) {
+                int Label1 = CommonImage1.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+                int Label2 = CommonImage2.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+
+                if (!(Label1 == 3 || Label2 == 3)){
+                    SupressedPoints.push_back(Point);
+                }
+            }
+        }
+    }
+
+    if (!ProjCenterPoints2.empty()){
+        for(int k = 0; k < ProjCenterPoints2.size(); k++){
+            Point = ProjCenterPoints2[k];
+            if((Point.x > 0) && (Point.y > 0) && (Point.x < CommonImage1.cols) && (Point.y < CommonImage1.rows)) {
+                int Label1 = CommonImage1.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+                int Label2 = CommonImage2.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+
+                if (!(Label1 == 3 || Label2 == 3)){
+                    SupressedPoints.push_back(Point);
+                }
+            }
+        }
+    }
+
+    if (!SupressedPoints.empty()){
+        // Project the suppresed points to print a text
+        perspectiveTransform(SupressedPoints, SupressedPoints, Homography.inv(DECOMP_LU));
+        perspectiveTransform(SupressedPoints, SupressedPoints, HomographyBetweenViews.inv(DECOMP_LU));
+
+        for(int n = 0; n < SupressedPoints.size(); n++){
+            Point2f SupressedCenter = SupressedPoints[n];
+
+            putText(ActualFrame, "BLOB SUPRESSED", SupressedCenter, FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1.5);
+        }
+    }
+
+}
+
 void PeopleDetector::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh)
 {
     // NOT WORKING. The good one is in CameraStream class.

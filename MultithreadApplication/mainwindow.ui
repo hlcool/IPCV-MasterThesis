@@ -1030,12 +1030,12 @@
            <widget class="QComboBox" name="PeopleDetectorCB">
             <item>
              <property name="text">
-              <string>Semantic Detector</string>
+              <string>DPM</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>DPM</string>
+              <string>Semantic Detector</string>
              </property>
             </item>
             <item>
@@ -1096,7 +1096,7 @@
                <string>Mask Filtering</string>
               </property>
               <property name="checked">
-               <bool>true</bool>
+               <bool>false</bool>
               </property>
              </widget>
             </item>

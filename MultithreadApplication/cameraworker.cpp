@@ -128,10 +128,11 @@ void CameraWorker::processVideo()
         PeopleDetec.MainPeopleDetection(Camera, CBOption, RepresentationOption, PDFiltering, CenitalPlane);
         barrier.wait();
         emit PedestrianDetectionFinished(Camera.CameraNumber);
+        // Filter Pedestrian Detections that are not correcly placed within the semantic
+        PeopleDetec.SemanticConstraining(ProjCenterPoints1, ProjCenterPoints2, Camera.CameraNumber, Camera.ActualFrame, Camera.Homography, Camera.HomographyBetweenViews);
         // Reproject to the frames other camera detections
         PeopleDetec.ReprojectionFusion(ProjCenterPoints1, ProjLeftPoints1, ProjRightPoints1, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
         PeopleDetec.ReprojectionFusion(ProjCenterPoints2, ProjLeftPoints2, ProjRightPoints2, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
-        // Filter Pedestrian Detections that are not correcly placed within the semantic
 
         // ------------------------------------------- //
         //        FRAME RESIZE AND FRAME NUMBER        //

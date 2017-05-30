@@ -451,9 +451,9 @@ void CameraStream::SemanticCommonPoints()
         }
     }
 
-    cvtColor(CommonSemantic12, CommonSemantic12 , CV_BGR2GRAY);
-    cvtColor(CommonSemantic23, CommonSemantic23 , CV_BGR2GRAY);
-    cvtColor(CommonSemantic13, CommonSemantic13 , CV_BGR2GRAY);
+    cvtColor(CommonSemantic12, CommonSemantic12, CV_BGR2GRAY);
+    cvtColor(CommonSemantic23, CommonSemantic23, CV_BGR2GRAY);
+    cvtColor(CommonSemantic13, CommonSemantic13, CV_BGR2GRAY);
 
     // Common semantic between the three cameras
     CommonSemanticAllCameras = Mat::zeros(Rows, Cols, CV_8UC1);
@@ -643,7 +643,55 @@ void CameraStream::ProjectCommonSemantic()
         Color.val[2] = 255;
     }
 
-    findNonZero(CommonSemanticAllCameras, CommonPoints);
+    Mat CommonImage1, CommonImage2;
+
+    // ProjectedCenterPoints
+    if(CameraNumber == 1) {
+        CommonImage1 = imread("/Users/alex/Desktop/CommonSemantic13.png", CV_LOAD_IMAGE_GRAYSCALE);
+        CommonImage2 = imread("/Users/alex/Desktop/CommonSemantic12.png", CV_LOAD_IMAGE_GRAYSCALE);
+    }
+    else if(CameraNumber == 2) {
+        CommonImage1 = imread("/Users/alex/Desktop/CommonSemantic12.png", CV_LOAD_IMAGE_GRAYSCALE);
+        CommonImage2 = imread("/Users/alex/Desktop/CommonSemantic23.png", CV_LOAD_IMAGE_GRAYSCALE);
+    }
+    else if(CameraNumber == 3) {
+        CommonImage1 = imread("/Users/alex/Desktop/CommonSemantic13.png", CV_LOAD_IMAGE_GRAYSCALE);
+        CommonImage2 = imread("/Users/alex/Desktop/CommonSemantic23.png", CV_LOAD_IMAGE_GRAYSCALE);
+    }
+
+    // ------------------ //
+    // FIRST CAMERA PAIR
+    // ------------------ //
+
+    findNonZero(CommonImage1, CommonPoints);
+    // Convert from Point to Point2f floor coordinates. Auxiliar vector.
+    vector<Point2f> CommonPoints1(CommonPoints.begin(), CommonPoints.end());
+
+    // Apply Homography to vector of Points2f to find the projection of the floor
+    // Reprojection to the view
+    perspectiveTransform(CommonPoints1, ReProjectedCommonPoints, Homography.inv(DECOMP_LU));
+    // Reprojection to actual frame
+    perspectiveTransform(ReProjectedCommonPoints, ReProjectedCommonPoints, HomographyBetweenViews.inv(DECOMP_LU));
+
+    // Copy the cenital image to an overlay layer
+    ActualFrame.copyTo(overlay);
+
+    for (int i = 0 ; i < ReProjectedCommonPoints.size() ; i++){
+        Point punto = ReProjectedCommonPoints[i];
+        if ((punto.y > 0 && punto.y < overlay.rows) && (punto.x > 0 && punto.x < overlay.cols)){
+            overlay.at<Vec3b>(punto.y, punto.x) = Color;
+        }
+    }
+
+    // Create the convex poligon from array of Point and add transparency to the final image
+    addWeighted(overlay, alpha, ActualFrame, 1 - alpha, 0, ActualFrame);
+
+
+    // ------------------ //
+    // SECOND CAMERA PAIR
+    // ------------------ //
+
+    findNonZero(CommonImage2, CommonPoints);
     // Convert from Point to Point2f floor coordinates. Auxiliar vector.
     vector<Point2f> CommonPoints2(CommonPoints.begin(), CommonPoints.end());
 
@@ -667,81 +715,30 @@ void CameraStream::ProjectCommonSemantic()
     addWeighted(overlay, alpha, ActualFrame, 1 - alpha, 0, ActualFrame);
 
     /*
-    if((CameraNumber == 1) || (CameraNumber == 2)){
-        // Project common points with Camera 2 into actual frame
-        Color.val[0] = 255;
-        Color.val[1] = 255;
-        Color.val[2] = 0;
+     COMMON AREAS BETWEEN THE THREE CAMERAS
 
-        findNonZero(CommonSemantic12, CommonPoints);
-        // Convert from Point to Point2f floor coordinates. Auxiliar vector.
-        vector<Point2f> CommonPoints2(CommonPoints.begin(), CommonPoints.end());
-        // Apply Homography to vector of Points2f to find the projection of the floor
-        perspectiveTransform(CommonPoints2, ReProjectedCommonPoints, Homography.inv(DECOMP_LU));
+    findNonZero(CommonSemanticAllCameras, CommonPoints);
+    // Convert from Point to Point2f floor coordinates. Auxiliar vector.
+    vector<Point2f> CommonPoints2(CommonPoints.begin(), CommonPoints.end());
 
-        // Copy the cenital image to an overlay layer
-        ActualFrame.copyTo(overlay);
+    // Apply Homography to vector of Points2f to find the projection of the floor
+    // Reprojection to the view
+    perspectiveTransform(CommonPoints2, ReProjectedCommonPoints, Homography.inv(DECOMP_LU));
+    // Reprojection to actual frame
+    perspectiveTransform(ReProjectedCommonPoints, ReProjectedCommonPoints, HomographyBetweenViews.inv(DECOMP_LU));
 
-        for (int i = 0 ; i < ReProjectedCommonPoints.size() ; i++){
-            Point punto = ReProjectedCommonPoints[i];
-            if ((punto.y > 0 && punto.y < overlay.rows) && (punto.x > 0 && punto.x < overlay.cols)){
-                overlay.at<Vec3b>(punto.y, punto.x) = Color;
-            }
+    // Copy the cenital image to an overlay layer
+    ActualFrame.copyTo(overlay);
+
+    for (int i = 0 ; i < ReProjectedCommonPoints.size() ; i++){
+        Point punto = ReProjectedCommonPoints[i];
+        if ((punto.y > 0 && punto.y < overlay.rows) && (punto.x > 0 && punto.x < overlay.cols)){
+            overlay.at<Vec3b>(punto.y, punto.x) = Color;
         }
-
-        // Create the convex poligon from array of Point and add transparency to the final image
-        addWeighted(overlay, alpha, ActualFrame, 1 - alpha, 0, ActualFrame);
     }
-    if((CameraNumber == 1) || (CameraNumber == 3)){
-        // Project common points with Camera 3 into actual frame
-        Color.val[0] = 0;
-        Color.val[1] = 255;
-        Color.val[2] = 255;
 
-        findNonZero(CommonSemantic13, CommonPoints);
-        // Convert from Point to Point2f floor coordinates. Auxiliar vector.
-        vector<Point2f> CommonPoints3(CommonPoints.begin(), CommonPoints.end());
-        // Apply Homography to vector of Points2f to find the projection of the floor
-        perspectiveTransform(CommonPoints3, ReProjectedCommonPoints, Homography.inv(DECOMP_LU));
-
-        // Copy the cenital image to an overlay layer
-        ActualFrame.copyTo(overlay);
-
-        for (int i = 0 ; i < ReProjectedCommonPoints.size() ; i++){
-            Point punto = ReProjectedCommonPoints[i];
-            if ((punto.y > 0 && punto.y < overlay.rows) && (punto.x > 0 && punto.x < overlay.cols)){
-                overlay.at<Vec3b>(punto.y, punto.x) = Color;
-            }
-        }
-
-        // Create the convex poligon from array of Point and add transparency to the final image
-        addWeighted(overlay, alpha, ActualFrame, 1 - alpha, 0, ActualFrame);
-    }
-    if((CameraNumber == 2) || (CameraNumber == 3)){
-        // Project common points with Camera 3 into actual frame
-        Color.val[0] = 255;
-        Color.val[1] = 0;
-        Color.val[2] = 255;
-
-        findNonZero(CommonSemantic23, CommonPoints);
-        // Convert from Point to Point2f floor coordinates. Auxiliar vector.
-        vector<Point2f> CommonPoints3(CommonPoints.begin(), CommonPoints.end());
-        // Apply Homography to vector of Points2f to find the projection of the floor
-        perspectiveTransform(CommonPoints3, ReProjectedCommonPoints, Homography.inv(DECOMP_LU));
-
-        // Copy the cenital image to an overlay layer
-        ActualFrame.copyTo(overlay);
-
-        for (int i = 0 ; i < ReProjectedCommonPoints.size() ; i++){
-            Point punto = ReProjectedCommonPoints[i];
-            if ((punto.y > 0 && punto.y < overlay.rows) && (punto.x > 0 && punto.x < overlay.cols)){
-                overlay.at<Vec3b>(punto.y, punto.x) = Color;
-            }
-        }
-
-        // Create the convex poligon from array of Point and add transparency to the final image
-        addWeighted(overlay, alpha, ActualFrame, 1 - alpha, 0, ActualFrame);
-    }
+    // Create the convex poligon from array of Point and add transparency to the final image
+    addWeighted(overlay, alpha, ActualFrame, 1 - alpha, 0, ActualFrame);
     */
 }
 
