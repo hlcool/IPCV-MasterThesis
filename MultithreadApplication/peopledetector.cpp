@@ -402,7 +402,7 @@ void PeopleDetector::SemanticConstraining(vector<Point2f> ProjCenterPoints1, vec
 {
     Mat CommonImage1, CommonImage2;
 
-    // ProjectedCenterPoints
+    // Load the common images depending on the camera number
     if(CameraNumber == 1) {
         CommonImage1 = imread("/Users/alex/Desktop/CommonSemantic13.png", CV_LOAD_IMAGE_GRAYSCALE);
         CommonImage2 = imread("/Users/alex/Desktop/CommonSemantic12.png", CV_LOAD_IMAGE_GRAYSCALE);
@@ -421,54 +421,53 @@ void PeopleDetector::SemanticConstraining(vector<Point2f> ProjCenterPoints1, vec
         return;
     }
 
-    Point2f Point;
-    // Supressed points due to semantic constrains
+    // Vector for supressed points due to semantic constrains
     vector<Point2f> SupressedPoints;
+    Point2f Point;
 
-    if (!ProjectedCenterPoints.empty()){
-        // Check if all the detections are in the floor
-        for(int i = 0; i < ProjectedCenterPoints.size(); i++){
-            Point = ProjectedCenterPoints[i];
-            if((Point.x > 0) && (Point.y > 0) && (Point.x < CommonImage1.cols) && (Point.y < CommonImage1.rows)) {
-                int Label1 = CommonImage1.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
-                int Label2 = CommonImage2.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
 
-                if (!(Label1 == 3 || Label2 == 3)){
-                    SupressedPoints.push_back(Point);
-                }
-            }
+    // CHECK IF THE DETECTIONS ARE ON THE COMMON FLOOR
 
-        }
-    }
+    // Detections from the own camera
+    for(int i = 0; i < ProjectedCenterPoints.size(); i++){
+        Point = ProjectedCenterPoints[i];
+        if((Point.x > 0) && (Point.y > 0) && (Point.x < CommonImage1.cols) && (Point.y < CommonImage1.rows)) {
+            int Label1 = CommonImage1.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+            int Label2 = CommonImage2.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
 
-    if (!ProjCenterPoints1.empty()){
-        for(int j = 0; j < ProjCenterPoints1.size(); j++){
-            Point = ProjCenterPoints1[j];
-            if((Point.x > 0) && (Point.y > 0) && (Point.x < CommonImage1.cols) && (Point.y < CommonImage1.rows)) {
-                int Label1 = CommonImage1.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
-                int Label2 = CommonImage2.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
-
-                if (!(Label1 == 3 || Label2 == 3)){
-                    SupressedPoints.push_back(Point);
-                }
+            if (!(Label1 == 3 || Label2 == 3)){
+                SupressedPoints.push_back(Point);
             }
         }
     }
 
-    if (!ProjCenterPoints2.empty()){
-        for(int k = 0; k < ProjCenterPoints2.size(); k++){
-            Point = ProjCenterPoints2[k];
-            if((Point.x > 0) && (Point.y > 0) && (Point.x < CommonImage1.cols) && (Point.y < CommonImage1.rows)) {
-                int Label1 = CommonImage1.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
-                int Label2 = CommonImage2.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+    // Detections from another camera
+    for(int j = 0; j < ProjCenterPoints1.size(); j++){
+        Point = ProjCenterPoints1[j];
+        if((Point.x > 0) && (Point.y > 0) && (Point.x < CommonImage1.cols) && (Point.y < CommonImage1.rows)) {
+            int Label1 = CommonImage1.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+            int Label2 = CommonImage2.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
 
-                if (!(Label1 == 3 || Label2 == 3)){
-                    SupressedPoints.push_back(Point);
-                }
+            if (!(Label1 == 3 || Label2 == 3)){
+                SupressedPoints.push_back(Point);
             }
         }
     }
 
+    // Detections from another camera
+    for(int k = 0; k < ProjCenterPoints2.size(); k++){
+        Point = ProjCenterPoints2[k];
+        if((Point.x > 0) && (Point.y > 0) && (Point.x < CommonImage1.cols) && (Point.y < CommonImage1.rows)) {
+            int Label1 = CommonImage1.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+            int Label2 = CommonImage2.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+
+            if (!(Label1 == 3 || Label2 == 3)){
+                SupressedPoints.push_back(Point);
+            }
+        }
+    }
+
+    // Transform the supressed points to the actual frame perspective
     if (!SupressedPoints.empty()){
         // Project the suppresed points to print a text
         perspectiveTransform(SupressedPoints, SupressedPoints, Homography.inv(DECOMP_LU));
@@ -476,11 +475,9 @@ void PeopleDetector::SemanticConstraining(vector<Point2f> ProjCenterPoints1, vec
 
         for(int n = 0; n < SupressedPoints.size(); n++){
             Point2f SupressedCenter = SupressedPoints[n];
-
             putText(ActualFrame, "BLOB SUPRESSED", SupressedCenter, FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1.5);
         }
     }
-
 }
 
 void PeopleDetector::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh)

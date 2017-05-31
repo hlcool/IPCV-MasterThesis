@@ -663,7 +663,8 @@ void CameraStream::ProjectCommonSemantic()
     // FIRST CAMERA PAIR
     // ------------------ //
 
-    findNonZero(CommonImage1, CommonPoints);
+    compare(CommonImage1, 60, CommonImage1, CMP_EQ);
+    findNonZero(CommonImage1 == 255, CommonPoints);
     // Convert from Point to Point2f floor coordinates. Auxiliar vector.
     vector<Point2f> CommonPoints1(CommonPoints.begin(), CommonPoints.end());
 
@@ -691,7 +692,8 @@ void CameraStream::ProjectCommonSemantic()
     // SECOND CAMERA PAIR
     // ------------------ //
 
-    findNonZero(CommonImage2, CommonPoints);
+    compare(CommonImage2, 60, CommonImage2, CMP_EQ);
+    findNonZero(CommonImage2 == 255, CommonPoints);
     // Convert from Point to Point2f floor coordinates. Auxiliar vector.
     vector<Point2f> CommonPoints2(CommonPoints.begin(), CommonPoints.end());
 
