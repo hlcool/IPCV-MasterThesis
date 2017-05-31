@@ -148,49 +148,12 @@ ESCUELA POLITÉCNICA SUPERIOR
 \begin_inset Graphics
 	filename Images/Logos/LogoOficial-EPS.PNG
 	lyxscale 60
-	scale 40
+	scale 80
 	clip
 
 \end_inset
 
  
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-hspace*{1.2 cm}
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename Images/Logos/logoUAM.PNG
-	scale 60
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-vspace*{0.1cm}
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -224,23 +187,6 @@ Supervisor: Jesús Bescós Cano
 
 \begin_layout Standard
 \align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-vspace*{0.5cm}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
 
 \series bold
 \size larger
@@ -248,17 +194,9 @@ vspace*{0.5cm}
 \end_layout
 
 \begin_layout Standard
+\noindent
 \align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-vspace*{0.5cm}
-\end_layout
-
+\begin_inset VSpace 0.01cm
 \end_inset
 
 
@@ -284,6 +222,29 @@ Escuela Politécnica Superior
 \end_inset
 
  July 2017
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/Logos/IPCV Logo.png
+	lyxscale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/Logos/IPCV Logos.png
+	lyxscale 50
+	scale 30
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -440,11 +401,13 @@ vspace*{1.5cm}
 \end_inset
 
  
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
 \series bold
-
-\begin_inset Newline newline
-\end_inset
-
 Video Processing and Understanding Lab
 \begin_inset Newline newline
 \end_inset
@@ -470,6 +433,28 @@ Universidad Autónoma de Madrid
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+Proyecto parcialmente financiado por el gobierno español bajo el proyecto
+ TEC2014-53176-R (HAVideo)
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/Logos/Logotipo_del_Ministerio_de_Economía,_Industria_y_Competitividad.svg.png
+	lyxscale 30
+	width 50text%
+	clip
+
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Standard
