@@ -34,7 +34,34 @@ SOURCES += main.cpp\
     DPM/dpm_feature.cpp \
     DPM/dpm_model.cpp \
     DPM/dpm_nms.cpp \
-    aboutdialog.cpp
+    aboutdialog.cpp \
+    ACF/ACFDetector.cpp \
+    ACF/ACFFeaturePyramid.cpp \
+    ACF/Channel.cpp \
+    ACF/ChannelFeatures.cpp \
+    ACF/ColorChannel.cpp \
+    ACF/convConst.cpp \
+    ACF/GradHistChannel.cpp \
+    ACF/gradientMex.cpp \
+    ACF/GradMagChannel.cpp \
+    ACF/wrappers.cpp \
+    ACF/Core/detection.cpp \
+    ACF/Core/DetectionList.cpp \
+    ACF/Core/detector.cpp \
+    ACF/Core/DetectorManager.cpp \
+    ACF/Core/detectormodel.cpp \
+    ACF/Core/feature.cpp \
+    ACF/Core/featurelayer.cpp \
+    ACF/Core/filelocator.cpp \
+    ACF/Core/FileWriter.cpp \
+    ACF/Core/FrameFromCamera.cpp \
+    ACF/Core/FrameFromDirectory.cpp \
+    ACF/Core/FrameFromVideo.cpp \
+    ACF/Core/FrameProducer.cpp \
+    ACF/Core/nms.cpp \
+    ACF/Core/NonMaximumSuppression.cpp \
+    ACF/Core/ScaleSpacePyramid.cpp \
+    ACF/Channel/Convert.cpp
 
 HEADERS  += mainwindow.h \
     barrier.h \
@@ -49,7 +76,41 @@ HEADERS  += mainwindow.h \
     DPM/dpm_nms.hpp \
     DPM/dpm.hpp \
     DPM/precomp.hpp \
-    aboutdialog.h
+    aboutdialog.h \
+    ACF/ACFDetector.h \
+    ACF/ACFFeaturePyramid.h \
+    ACF/Channel.h \
+    ACF/ChannelFeatures.h \
+    ACF/ColorChannel.h \
+    ACF/GradHistChannel.h \
+    ACF/GradMagChannel.h \
+    ACF/imResampleMex.hpp \
+    ACF/rgbConvertMex.hpp \
+    ACF/sse.hpp \
+    ACF/wrappers.hpp \
+    ACF/Core/detection.h \
+    ACF/Core/DetectionList.h \
+    ACF/Core/detector.h \
+    ACF/Core/DetectorManager.h \
+    ACF/Core/detectormodel.h \
+    ACF/Core/dirent.h \
+    ACF/Core/feature.h \
+    ACF/Core/featurelayer.h \
+    ACF/Core/filelocator.h \
+    ACF/Core/FileWriter.h \
+    ACF/Core/FrameFromCamera.h \
+    ACF/Core/FrameFromDirectory.h \
+    ACF/Core/FrameFromVideo.h \
+    ACF/Core/FrameProducer.h \
+    ACF/Core/Image.hpp \
+    ACF/Core/nms.h \
+    ACF/Core/NonMaximumSuppression.h \
+    ACF/Core/ScaleSpacePyramid.h \
+    ACF/rapidxml-1.13/rapidxml_iterators.hpp \
+    ACF/rapidxml-1.13/rapidxml_print.hpp \
+    ACF/rapidxml-1.13/rapidxml_utils.hpp \
+    ACF/rapidxml-1.13/rapidxml.hpp \
+    ACF/Channel/Functions.h
 
 FORMS    += mainwindow.ui \
     aboutdialog.ui

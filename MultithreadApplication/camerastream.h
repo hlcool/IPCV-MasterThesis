@@ -97,6 +97,10 @@ public:
     // DPM Vectors
     vector<Rect> DPMBoundingBoxes;
     vector<double> DPMScores;
+
+    // ACF Vectors
+    vector<Rect> ACFBoundingBoxes;
+    vector<double> ACFScores;
 };
 
 #endif // CAMERASTREAM_H

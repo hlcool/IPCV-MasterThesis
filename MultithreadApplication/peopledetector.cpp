@@ -35,6 +35,12 @@ void PeopleDetector::MainPeopleDetection(CameraStream &Camera, String CBOption, 
         paintBoundingBoxes(Camera.ActualFrame, CBOption, Camera.DPMBoundingBoxes, Camera.CameraNumber, 1);
         projectBlobs(Camera.DPMBoundingBoxes, Camera.DPMScores, Camera.Homography, Camera.HomographyBetweenViews, CenitalPlane, Camera.CameraNumber, RepresentationOption);
     }
+    else if(!CBOption.compare("ACF")){
+        // ACF Detector
+        ACFPeopleDetection(Camera, PDFiltering);
+        //paintBoundingBoxes(Camera.ActualFrame, CBOption, Camera.ACFBoundingBoxes, Camera.CameraNumber, 1);
+        //projectBlobs(Camera.ACFBoundingBoxes, Camera.ACFScores, Camera.Homography, Camera.HomographyBetweenViews, CenitalPlane, Camera.CameraNumber, RepresentationOption);
+    }
     else if(!CBOption.compare("Semantic Detector")){
         // People detection using labels from semantic information.
         // GAUSSSIAN REPRESENTATION NOT WORKING BECAUSE OF LACK OF SCORES
@@ -142,6 +148,69 @@ void PeopleDetector::paintBoundingBoxes(Mat &ActualFrame, string Method, vector<
             r.height = cvRound(r.height*0.8);
         }
         rectangle(ActualFrame, r.tl(), r.br(), Color, Thickness);
+    }
+}
+
+void PeopleDetector::ACFPeopleDetection(CameraStream &Camera, bool PDFiltering)
+{
+    Camera.ACFBoundingBoxes.clear();
+    Camera.ACFScores.clear();
+
+    // PEOPLE DETECTION FILTERING
+    if (PDFiltering){
+        if (Camera.FGImages.size() > 0){
+            //cout << "Using BKG information" << endl;
+            for (size_t i = 0; i < Camera.FGImages.size(); i++) {
+                // Auxiliar ActualFrame
+                Mat AuxiliarFrame = Camera.FGImages[i].clone();
+                //Mat AuxiliarFrame2 = Camara.FGImages[i].clone();
+                Rect Offset = Camera.FGBlobs[i];
+
+                if (AuxiliarFrame.rows > 125 && AuxiliarFrame.cols > 125){
+                    // Local detection vector
+                    vector<DPMDetector::ObjectDetection> ACFBoundingBoxesAux;
+                    // ACF detector with NMS. The function destroys the Frame
+                    DPMdetector->detect(AuxiliarFrame, ACFBoundingBoxesAux);
+
+                    // Convert from vector<ObjectDetection> to vector<Rect>
+                    for (unsigned int i = 0; i < ACFBoundingBoxesAux.size(); i++){
+                        Rect Aux1 = ACFBoundingBoxesAux[i].rect;
+                        float score = ACFBoundingBoxesAux[i].score;
+
+                        // Convert top-left corner co-ordinates from small image to
+                        // complete frame reference
+                        Aux1.x = Aux1.x + Offset.x;
+                        Aux1.y = Aux1.y + Offset.y;
+
+                        Camera.ACFScores.push_back(score);
+                        Camera.ACFBoundingBoxes.push_back(Aux1);
+
+                    }
+                }
+            }
+        }
+        else{
+            // If there is no person on the semantic mask DPM does not search.
+        }
+    }
+    // PEOPLE DETECTION WITHOUT FILTERING
+    else{
+        // Auxiliar ActualFrame
+        Mat AuxiliarFrame = Camera.ActualFrame.clone();
+
+        // Local detection vector
+        DetectionList ACFDetectionsList;
+        //vector<DPMDetector::ObjectDetection> ACFBoundingBoxesAux;
+        // ACF detector
+        ACFDetectionsList = ACFdetector.applyDetector(AuxiliarFrame);
+
+        // Convert from vector<ObjectDetection> to vector<Rect>
+        //for (unsigned int i = 0; i < ACFBoundingBoxesAux.size(); i++){
+          //  Rect Aux1 = ACFBoundingBoxesAux[i].rect;
+            //float score = ACFBoundingBoxesAux[i].score;
+            //Camera.ACFScores.push_back(score);
+            //Camera.ACFBoundingBoxes.push_back(Aux1);
+        //}
     }
 }
 

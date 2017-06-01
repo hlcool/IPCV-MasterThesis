@@ -9,6 +9,9 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include <DPM/dpm.hpp>
+#include <ACF/ACFDetector.h>
+#include "ACF/ACFFeaturePyramid.h"
+#include <ACF/Core/DetectionList.h>
 #include "opencv2/objdetect/objdetect.hpp"
 #include "camerastream.h"
 
@@ -33,6 +36,10 @@ public:
     Ptr<DPMDetector> DPMdetector = DPMDetector::create(vector<string>(1, "/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/People Detection/inriaperson.xml"));
     void DPMPeopleDetection(CameraStream &Camera, bool PDFiltering);
     void paintBoundingBoxes(Mat &ActualFrame, string Method, vector<Rect> BoundingBoxes, int CameraNumber, int Thickness);
+
+    // ACF People Detector
+    ACFDetector ACFdetector;
+    void ACFPeopleDetection(CameraStream &Camera, bool PDFiltering);
 
     // Non-Maximum-Supression
     void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh);
