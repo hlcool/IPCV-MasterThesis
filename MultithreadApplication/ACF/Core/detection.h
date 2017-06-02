@@ -101,8 +101,6 @@ public:
         return cv::Point(this->getX()+this->getWidth()/2, this->getY()+this->getHeight()/2);
     }
 
-
-private:
     float m_x,m_y,m_width,m_height;
     float m_score;
     std::string m_filename;
@@ -110,7 +108,7 @@ private:
     std::string m_modelName;
     int m_level;
 
-
+private:
     std::string detectorname;
 };
 

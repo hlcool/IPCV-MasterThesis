@@ -12,6 +12,7 @@
 #include <ACF/ACFDetector.h>
 #include "ACF/ACFFeaturePyramid.h"
 #include <ACF/Core/DetectionList.h>
+#include <ACF/Core/NonMaximumSuppression.h>
 #include "opencv2/objdetect/objdetect.hpp"
 #include "camerastream.h"
 
@@ -40,9 +41,6 @@ public:
     // ACF People Detector
     ACFDetector ACFdetector;
     void ACFPeopleDetection(CameraStream &Camera, bool PDFiltering);
-
-    // Non-Maximum-Supression
-    void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh);
 
     // Gaussians creation
     void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, Mat HomographyBetweenViews, Mat& CenitalPlane, int CameraNumber, String RepresentationOption);

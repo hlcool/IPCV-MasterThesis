@@ -38,8 +38,8 @@ void PeopleDetector::MainPeopleDetection(CameraStream &Camera, String CBOption, 
     else if(!CBOption.compare("ACF")){
         // ACF Detector
         ACFPeopleDetection(Camera, PDFiltering);
-        //paintBoundingBoxes(Camera.ActualFrame, CBOption, Camera.ACFBoundingBoxes, Camera.CameraNumber, 1);
-        //projectBlobs(Camera.ACFBoundingBoxes, Camera.ACFScores, Camera.Homography, Camera.HomographyBetweenViews, CenitalPlane, Camera.CameraNumber, RepresentationOption);
+        paintBoundingBoxes(Camera.ActualFrame, CBOption, Camera.ACFBoundingBoxes, Camera.CameraNumber, 1);
+        projectBlobs(Camera.ACFBoundingBoxes, Camera.ACFScores, Camera.Homography, Camera.HomographyBetweenViews, CenitalPlane, Camera.CameraNumber, RepresentationOption);
     }
     else if(!CBOption.compare("Semantic Detector")){
         // People detection using labels from semantic information.
@@ -168,22 +168,34 @@ void PeopleDetector::ACFPeopleDetection(CameraStream &Camera, bool PDFiltering)
 
                 if (AuxiliarFrame.rows > 125 && AuxiliarFrame.cols > 125){
                     // Local detection vector
-                    vector<DPMDetector::ObjectDetection> ACFBoundingBoxesAux;
-                    // ACF detector with NMS. The function destroys the Frame
-                    DPMdetector->detect(AuxiliarFrame, ACFBoundingBoxesAux);
+                    DetectionList ACFDetectionsList;
+                    // ACF detector
+                    ACFDetectionsList = ACFdetector.applyDetector(AuxiliarFrame);
 
-                    // Convert from vector<ObjectDetection> to vector<Rect>
-                    for (unsigned int i = 0; i < ACFBoundingBoxesAux.size(); i++){
-                        Rect Aux1 = ACFBoundingBoxesAux[i].rect;
-                        float score = ACFBoundingBoxesAux[i].score;
+                    //NMS
+                    DetectionList ACFDetectionsListNMS;
+                    NonMaximumSuppression NMS;
+                    ACFDetectionsListNMS = NMS.dollarNMS(ACFDetectionsList);
+
+                    // Convert from DetectionList to vector<Rect>
+                    for (unsigned int i = 0; i < ACFDetectionsListNMS.Ds.size(); i++){
+                        Detection Ds = ACFDetectionsListNMS.Ds[i];
+
+                        Rect Rectangle;
+                        Rectangle.x = Ds.m_x;
+                        Rectangle.y = Ds.m_y;
+                        Rectangle.width = Ds.m_width;
+                        Rectangle.height = Ds.m_height;
+
+                        float score = Ds.m_score;
 
                         // Convert top-left corner co-ordinates from small image to
                         // complete frame reference
-                        Aux1.x = Aux1.x + Offset.x;
-                        Aux1.y = Aux1.y + Offset.y;
+                        Rectangle.x = Rectangle.x + Offset.x;
+                        Rectangle.y = Rectangle.y + Offset.y;
 
                         Camera.ACFScores.push_back(score);
-                        Camera.ACFBoundingBoxes.push_back(Aux1);
+                        Camera.ACFBoundingBoxes.push_back(Rectangle);
 
                     }
                 }
@@ -200,17 +212,29 @@ void PeopleDetector::ACFPeopleDetection(CameraStream &Camera, bool PDFiltering)
 
         // Local detection vector
         DetectionList ACFDetectionsList;
-        //vector<DPMDetector::ObjectDetection> ACFBoundingBoxesAux;
         // ACF detector
         ACFDetectionsList = ACFdetector.applyDetector(AuxiliarFrame);
 
-        // Convert from vector<ObjectDetection> to vector<Rect>
-        //for (unsigned int i = 0; i < ACFBoundingBoxesAux.size(); i++){
-          //  Rect Aux1 = ACFBoundingBoxesAux[i].rect;
-            //float score = ACFBoundingBoxesAux[i].score;
-            //Camera.ACFScores.push_back(score);
-            //Camera.ACFBoundingBoxes.push_back(Aux1);
-        //}
+        //NMS
+        DetectionList ACFDetectionsListNMS;
+        NonMaximumSuppression NMS;
+        ACFDetectionsListNMS = NMS.dollarNMS(ACFDetectionsList);
+
+        // Convert from DetectionList to vector<Rect>
+        for (unsigned int i = 0; i < ACFDetectionsListNMS.Ds.size(); i++){
+            Detection Ds = ACFDetectionsListNMS.Ds[i];
+
+            Rect Rectangle;
+            Rectangle.x = Ds.m_x;
+            Rectangle.y = Ds.m_y;
+            Rectangle.width = Ds.m_width;
+            Rectangle.height = Ds.m_height;
+
+            float score = Ds.m_score;
+
+            Camera.ACFScores.push_back(score);
+            Camera.ACFBoundingBoxes.push_back(Rectangle);
+        }
     }
 }
 
@@ -464,51 +488,5 @@ void PeopleDetector::ReprojectionFusion(vector<Point2f> ProjCenterPoints, vector
 
         circle(ActualFrame, Center, 10, Scalar(255,255,255), 3);
         rectangle(ActualFrame, TopLeftCorner, RightCorner, Scalar(255,255,255), 3);
-    }
-}
-
-void PeopleDetector::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh)
-{
-    // NOT WORKING. The good one is in CameraStream class.
-    resRects.clear();
-
-    const size_t size = srcRects.size();
-    if (!size)
-        return;
-
-    // Sort the bounding boxes by the bottom - right y - coordinate of the bounding box
-    multimap<int, size_t> idxs;
-    for (size_t i = 0; i < size; ++i) {
-        idxs.insert(pair<int, size_t>(srcRects[i].br().y, i));
-    }
-
-    // keep looping while some indexes still remain in the indexes list
-    while (idxs.size() > 0) {
-        // grab the last rectangle
-        auto lastElem = --end(idxs);
-        const Rect& rect1 = srcRects[lastElem->second];
-
-        resRects.push_back(rect1);
-
-        idxs.erase(lastElem);
-
-        for (auto pos = begin(idxs); pos != end(idxs); ) {
-            // grab the current rectangle
-            const Rect& rect2 = srcRects[pos->second];
-
-            float intArea = (rect1 & rect2).area();
-            float unionArea = rect1.area() + rect2.area() - intArea;
-            float overlap = intArea / unionArea;
-
-            cout << overlap << endl;
-
-            // if there is sufficient overlap, suppress the current bounding box
-            if (overlap > thresh) {
-                pos = idxs.erase(pos);
-            }
-            else {
-                ++pos;
-            }
-        }
     }
 }
