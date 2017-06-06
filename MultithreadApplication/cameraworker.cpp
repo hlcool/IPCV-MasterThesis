@@ -121,6 +121,7 @@ void CameraWorker::processVideo()
         // ---------------------------- //
         // Project common semantic back to the camera frames
         Camera.ProjectCommonSemantic();
+        Camera.InertialPlanes(Camera.ActualSemFrame, CenitalPlane, FrameNumber);
 
         // ------------------------------------------- //
         //     PEOPLE DETECTION & BLOBS PROJECTION     //

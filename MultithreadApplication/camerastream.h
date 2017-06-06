@@ -64,6 +64,7 @@ public:
     void SemanticCommonPoints();
     void ExtractViewScores();
     void ProjectCommonSemantic();
+    void InertialPlanes(Mat ActualSemFrame, Mat CenitalPlane, String FrameNumber);
 
     // Pedestrian mask, blobs and images
     Mat PedestrianMask;

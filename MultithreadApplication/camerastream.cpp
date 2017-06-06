@@ -385,8 +385,9 @@ void CameraStream::ViewSelection(vector<Mat> HomographyVector)
 void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber, Mat ImageWarping)
 {
     // Extract image warping
-    warpPerspective(ActualFrame, ImageWarping, HomographyBetweenViews, ImageWarping.size());
-    warpPerspective(ImageWarping, ImageWarping, Homography, ImageWarping.size());
+    Mat Aux;
+    warpPerspective(ActualFrame, Aux, HomographyBetweenViews, ActualFrame.size());
+    warpPerspective(Aux, ImageWarping, Homography, ImageWarping.size());
 
     String ImageName = VideoPath + "/Wrapped Images/Camera " + to_string(CameraNumber) + "/Frame" + FrameNumber + ".png";
     imwrite(ImageName, ImageWarping);
@@ -395,7 +396,6 @@ void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameN
 void CameraStream::SemanticCommonPoints()
 {
     // Extract common points between cameras with the offline projected semantic images
-
     int Rows = ProjectedFullSemanticVector[0].rows;
     int Cols = ProjectedFullSemanticVector[0].cols;
     int GrayLevel1, GrayLevel2;
@@ -479,56 +479,6 @@ void CameraStream::SemanticCommonPoints()
     imwrite(ImageName, CommonSemantic23*20);
     ImageName = "/Users/alex/Desktop/CommonSemantic13.png";
     imwrite(ImageName, CommonSemantic13*20);
-
-    // Common semantic in another level
-    Mat Heleva;
-    Heleva = Mat::zeros(3, 3, CV_64F);
-    if(CameraNumber == 1){
-        Heleva.at<double>(0,0) = 1;
-        Heleva.at<double>(1,1) = 1;
-        Heleva.at<double>(2,2) = 0.9;
-    }
-    else if(CameraNumber == 2){
-        Heleva.at<double>(0,0) = 1;
-        Heleva.at<double>(1,1) = 0.7;
-        Heleva.at<double>(2,2) = 1;
-    }
-    else if(CameraNumber == 3){
-        Heleva.at<double>(0,0) = 0.7;
-        Heleva.at<double>(1,1) = 1;
-        Heleva.at<double>(2,2) = 1;
-    }
-
-    Mat Image = ProjectedFullSemanticVector[CameraNumber - 1];
-    Mat ImageWarped;
-
-    cvtColor(Image, Image , CV_BGR2GRAY);
-    warpPerspective(Image, ImageWarped, Heleva, Image.size());
-
-    ImageName = "/Users/alex/Desktop/Aux" + to_string(CameraNumber) + ".png";
-    imwrite(ImageName, ImageWarped*20);
-
-
-    // Common semantic between the three cameras at another level
-    Mat CommonSemanticAllCameras2 = Mat::zeros(Rows, Cols, CommonSemanticAllCameras.type());
-
-    //Mat Projected1 = imread("/Users/alex/Desktop/Aux1.png", CV_LOAD_IMAGE_GRAYSCALE);
-    Mat Projected2 = imread("/Users/alex/Desktop/Aux2.png", CV_LOAD_IMAGE_GRAYSCALE);
-    Mat Projected3 = imread("/Users/alex/Desktop/Aux3.png", CV_LOAD_IMAGE_GRAYSCALE);
-
-    for (int i = 0; i < Rows; i++){
-        for (int j = 0; j < Cols; j++){
-      //      int Label1 = Projected1.at<uchar>(i,j);
-            int Label2 = Projected2.at<uchar>(i,j);
-            int Label3 = Projected3.at<uchar>(i,j);
-
-            if (Label2 == Label3){
-                CommonSemanticAllCameras2.at<uchar>(i,j) = Label2/20;
-            }
-        }
-    }
-    ImageName = "/Users/alex/Desktop/Common23AnotherLevel.png";
-    imwrite(ImageName, CommonSemanticAllCameras2*20);
 }
 
 void CameraStream::ExtractViewScores()
@@ -795,6 +745,76 @@ void CameraStream::ProjectCommonSemantic()
     */
 }
 
+void CameraStream::InertialPlanes(Mat ActualSemFrame, Mat CenitalPlane, String FrameNumber)
+{
+    cvtColor(ActualSemFrame, ActualSemFrame , CV_BGR2GRAY);
+
+    // Common semantic in another level
+    Mat HVPi, HVPiPrima, ZUnitVector, P, SemanticWarped;
+
+    // Unitary vector on the Z axis
+    ZUnitVector = Mat::zeros(3, 1, CV_64F);
+    // Principal camera point
+    P = Mat::zeros(1, 3, CV_64F);
+    // Desired height
+    float IntertialHeight = 0.05;
+
+    if(CameraNumber == 1){
+        ZUnitVector.at<double>(0,0) = 0;
+        ZUnitVector.at<double>(1,0) = 0;
+        ZUnitVector.at<double>(2,0) = 1;
+    }
+    else if(CameraNumber == 2){
+        ZUnitVector.at<double>(0,0) = 0;
+        ZUnitVector.at<double>(1,0) = 0;
+        ZUnitVector.at<double>(2,0) = 1;
+    }
+    else if(CameraNumber == 3){
+        ZUnitVector.at<double>(0,0) = 0;
+        ZUnitVector.at<double>(1,0) = 0;
+        ZUnitVector.at<double>(2,0) = 1;
+    }
+    transpose(ZUnitVector, ZUnitVector);
+
+    // Fill P principal point of camera
+    P.at<double>(0,0) = cvRound(ActualSemFrame.rows / 2);
+    P.at<double>(0,1) = cvRound(ActualSemFrame.cols / 2);
+    P.at<double>(0,2) = 1;
+    transpose(P,P);
+
+    HVPi = Homography;
+    HVPiPrima = HVPi.inv(DECOMP_LU) + IntertialHeight * P * ZUnitVector;
+    HVPiPrima = HVPiPrima.inv(DECOMP_LU);
+
+    warpPerspective(ActualSemFrame, SemanticWarped, HVPiPrima, CenitalPlane.size());
+
+    String ImageName = "/Users/alex/Desktop/Inertial Planes/Camera " + to_string(CameraNumber) + "/Frame " + FrameNumber + ".png";
+    imwrite(ImageName, SemanticWarped*20);
+
+    /*
+    // Common semantic between the three cameras at another level
+    Mat CommonSemanticAllCameras2 = Mat::zeros(Rows, Cols, CommonSemanticAllCameras.type());
+
+    Mat Projected1 = imread("/Users/alex/Desktop/Aux1.png", CV_LOAD_IMAGE_GRAYSCALE);
+    Mat Projected2 = imread("/Users/alex/Desktop/Aux2.png", CV_LOAD_IMAGE_GRAYSCALE);
+    Mat Projected3 = imread("/Users/alex/Desktop/Aux3.png", CV_LOAD_IMAGE_GRAYSCALE);
+
+    for (int i = 0; i < Rows; i++){
+        for (int j = 0; j < Cols; j++){
+      //      int Label1 = Projected1.at<uchar>(i,j);
+            int Label2 = Projected2.at<uchar>(i,j);
+            int Label3 = Projected3.at<uchar>(i,j);
+
+            if (Label2 == Label3){
+                CommonSemanticAllCameras2.at<uchar>(i,j) = Label2/20;
+            }
+        }
+    }
+    ImageName = "/Users/alex/Desktop/Common23AnotherLevel.png";
+    imwrite(ImageName, CommonSemanticAllCameras2*20);
+    */
+}
+
 void CameraStream::AkazePointsForViewImages()
 {
     for (int CameraView = 0; CameraView < NViews; CameraView++){
@@ -818,7 +838,7 @@ void CameraStream::Akaze(Mat Image1, vector<KeyPoint> kpts1, Mat desc1, Mat Imag
     Mat desc2;
 
     akazeDescriptor->setNOctaves(4);
-    akazeDescriptor->setNOctaveLayers(2);
+    akazeDescriptor->setNOctaveLayers(3);
     akazeDescriptor->detectAndCompute(Image2, noArray(), kpts2, desc2);
 
     //  ------------------  //
