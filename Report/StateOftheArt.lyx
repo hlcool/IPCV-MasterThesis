@@ -139,7 +139,7 @@ Throughout this Chapter we will summarize the actual and most used algorithms
 \end_layout
 
 \begin_layout Section
-Pedestrian detection and crowd patrons
+Pedestrian Detection and Crowd Patrons
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Pedestrian-detection-and crowd patrons"
@@ -173,7 +173,7 @@ The difficulty of pedestrian detector lies in the large amount of available
 \end_layout
 
 \begin_layout Subsection
-People detection approaches
+People Detection Approaches
 \end_layout
 
 \begin_layout Standard
@@ -937,6 +937,15 @@ Average AUC
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Pedestrian Detection Performance.
+\end_layout
+
+\end_inset
+
 Pedestrian Detection Performance 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -944,7 +953,7 @@ key "garcia2015pdbm"
 
 \end_inset
 
- .
+.
  Complete table available in 
 \color blue
 
@@ -1551,7 +1560,7 @@ If we now focus with the set of objects that one can observe from a scene,
 \end_layout
 
 \begin_layout Subsection
-Semantic segmentation
+Semantic Segmentation
 \end_layout
 
 \begin_layout Standard
@@ -1619,6 +1628,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Scene parsing on ADE20K dataset.
+\end_layout
+
+\end_inset
+
 Scene parsing on ADE20K dataset 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1679,7 +1697,7 @@ reference "tab:Cityscapes-Dataset-Class Definitions"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT

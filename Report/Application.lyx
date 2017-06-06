@@ -220,7 +220,7 @@ reference "fig:Flow-chart-legend"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -376,7 +376,7 @@ reference "fig:Flow-chart diagram for the single-thread application"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -602,14 +602,14 @@ draw [arrow] (Display) -- (VideoEnd);
 
 
 \backslash
-draw [arrow] (VideoEnd) -| node[near start, anchor=south]{no}(Camera1);
+draw [arrow] (VideoEnd) -| node[near start, anchor=south]{No}(Camera1);
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-draw [arrow] (VideoEnd) -- node[anchor=east]{yes}(VideoStop);
+draw [arrow] (VideoEnd) -- node[anchor=east]{Yes}(VideoStop);
 \end_layout
 
 \begin_layout Plain Layout
@@ -633,7 +633,11 @@ end{tikzpicture}
 
 \begin_layout Plain Layout
 Flow-chart diagram for the single-thread application.
- NO DEFINITIVO
+ 
+\color red
+NO DEFINITIVO
+\color inherit
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Flow-chart diagram for the single-thread application"
@@ -701,7 +705,7 @@ Now, however, as threads are running separately one have to create some
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -972,7 +976,7 @@ draw [arrow] (Display) -- (VideoEnd);
 
 
 \backslash
-draw [arrow] (VideoEnd) -| node[near start, anchor=south]{no}([xshift=-1cm]
+draw [arrow] (VideoEnd) -| node[near start, anchor=south]{No}([xshift=-1cm]
  Camera1.west) -- (Camera1.west);
 \end_layout
 
@@ -988,7 +992,7 @@ draw [arrow] (VideoEnd) -| node[near start, anchor=south]{}([xshift=+1cm]
 
 
 \backslash
-draw [arrow] (VideoEnd) -| node[near start, anchor=south]{no}([xshift=+1.3cm]
+draw [arrow] (VideoEnd) -| node[near start, anchor=south]{No}([xshift=+1.3cm]
  Camera2.east) -- (Camera2.east);
 \end_layout
 
@@ -996,7 +1000,7 @@ draw [arrow] (VideoEnd) -| node[near start, anchor=south]{no}([xshift=+1.3cm]
 
 
 \backslash
-draw [arrow] (VideoEnd) -- node[anchor=east]{yes}(VideoStop);
+draw [arrow] (VideoEnd) -- node[anchor=east]{Yes}(VideoStop);
 \end_layout
 
 \begin_layout Plain Layout
@@ -1024,7 +1028,11 @@ end{tikzpicture}
 
 \begin_layout Plain Layout
 Flow-chart diagram for the multi-thread application.
- NO DEFINITIVO
+ 
+\color red
+NO DEFINITIVO
+\color inherit
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Flow-chart diagram for the multi-thread application"
@@ -1559,7 +1567,11 @@ status open
 
 \begin_layout Plain Layout
 Hierarchical representation of the code.
- NO DEFINITIVO
+ 
+\color red
+NO DEFINITIVO
+\color inherit
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Hierarchical representation of the code"
