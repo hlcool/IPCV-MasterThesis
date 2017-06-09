@@ -135,6 +135,12 @@ void CameraWorker::processVideo()
         PeopleDetec.ReprojectionFusion(ProjCenterPoints1, ProjLeftPoints1, ProjRightPoints1, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
         PeopleDetec.ReprojectionFusion(ProjCenterPoints2, ProjLeftPoints2, ProjRightPoints2, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
 
+        // ---------------------------------- //
+        //             EVALUATION             //
+        // ---------------------------------- //
+        vector<Rect> GroundTruthVector;
+        Evaluate.XMLParser(Evaluate.GTPath, GroundTruthVector);
+
         // ------------------------------------------- //
         //        FRAME RESIZE AND FRAME NUMBER        //
         // ------------------------------------------- //

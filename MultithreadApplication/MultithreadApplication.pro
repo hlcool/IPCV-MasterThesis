@@ -61,7 +61,8 @@ SOURCES += main.cpp\
     ACF/Core/nms.cpp \
     ACF/Core/NonMaximumSuppression.cpp \
     ACF/Core/ScaleSpacePyramid.cpp \
-    ACF/Channel/Convert.cpp
+    ACF/Channel/Convert.cpp \
+    evaluation.cpp
 
 HEADERS  += mainwindow.h \
     barrier.h \
@@ -110,7 +111,8 @@ HEADERS  += mainwindow.h \
     ACF/rapidxml-1.13/rapidxml_print.hpp \
     ACF/rapidxml-1.13/rapidxml_utils.hpp \
     ACF/rapidxml-1.13/rapidxml.hpp \
-    ACF/Channel/Functions.h
+    ACF/Channel/Functions.h \
+    evaluation.h
 
 FORMS    += mainwindow.ui \
     aboutdialog.ui

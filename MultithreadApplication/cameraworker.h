@@ -11,6 +11,7 @@
 #include <string>
 #include "camerastream.h"
 #include "peopledetector.h"
+#include "evaluation.h"
 
 using namespace cv;
 using namespace std;
@@ -26,6 +27,8 @@ public:
     CameraStream Camera;
     // People detector class
     PeopleDetector PeopleDetec;
+    // Evaluation Class
+    Evaluation Evaluate;
 
     // Display Widget Variables
     int WidgetWidth, WidgetHeight;
