@@ -120,7 +120,8 @@ void CameraWorker::processVideo()
         //   INDUCED PLANE HOMOGRAPHY   //
         // ---------------------------- //
         // Project common semantic back to the camera frames
-        Camera.ProjectCommonSemantic();
+        if(SemanticEnabled)
+            Camera.ProjectCommonSemantic();
 
         // ------------------------------------------- //
         //     PEOPLE DETECTION & BLOBS PROJECTION     //

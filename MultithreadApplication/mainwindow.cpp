@@ -158,6 +158,9 @@ void MainWindow::updateVariables(Mat Frame, Mat CenitalPlane, int CameraNumber)
 
     // People detection representation methods
     CameraWorkers[CameraNumber-1]->RepresentationOption = ui->RepresentationCB->currentText().toStdString();
+
+    // Semantic drawing enable
+    CameraWorkers[CameraNumber-1]->SemanticEnabled = ui->SemanticEnable->isChecked();
 }
 
 void MainWindow::displayFrame(Mat frame, Mat CenitalPlane, int CameraNumber)

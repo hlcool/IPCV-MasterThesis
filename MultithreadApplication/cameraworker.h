@@ -31,7 +31,8 @@ public:
     int WidgetWidth, WidgetHeight;
 
     // UI Variables
-    bool PDFiltering;
+    bool PDFiltering = 0;
+    bool SemanticEnabled = 0;
     String CBOption;
     // Representation Method
     String RepresentationOption;

@@ -1030,7 +1030,7 @@
            <widget class="QComboBox" name="PeopleDetectorCB">
             <item>
              <property name="text">
-              <string>DPM</string>
+              <string>ACF</string>
              </property>
             </item>
             <item>
@@ -1040,17 +1040,17 @@
             </item>
             <item>
              <property name="text">
-              <string>ACF</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>FastRCNN</string>
+              <string>DPM</string>
              </property>
             </item>
             <item>
              <property name="text">
               <string>HOG</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>FastRCNN</string>
              </property>
             </item>
             <item>
@@ -1118,6 +1118,16 @@
               </property>
               <property name="checked">
                <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QCheckBox" name="SemanticEnable">
+              <property name="text">
+               <string>Semantic Enable</string>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
               </property>
              </widget>
             </item>
