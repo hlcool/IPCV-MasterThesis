@@ -490,3 +490,131 @@ void PeopleDetector::ReprojectionFusion(vector<Point2f> ProjCenterPoints, vector
         rectangle(ActualFrame, TopLeftCorner, RightCorner, Scalar(255,255,255), 3);
     }
 }
+
+void PeopleDetector::SemanticConstraining(vector<Point2f> ProjCenterPoints1, vector<Point2f> ProjCenterPoints2, int CameraNumber, Mat &ActualFrame, Mat Homography, Mat HomographyBetweenViews)
+{
+    Mat CommonImage1, CommonImage2;
+
+    // Load the common images depending on the camera number
+    if(CameraNumber == 1) {
+        CommonImage1 = imread("/Users/alex/Desktop/CommonSemantic13.png", CV_LOAD_IMAGE_GRAYSCALE);
+        CommonImage2 = imread("/Users/alex/Desktop/CommonSemantic12.png", CV_LOAD_IMAGE_GRAYSCALE);
+    }
+    else if(CameraNumber == 2) {
+        CommonImage1 = imread("/Users/alex/Desktop/CommonSemantic12.png", CV_LOAD_IMAGE_GRAYSCALE);
+        CommonImage2 = imread("/Users/alex/Desktop/CommonSemantic23.png", CV_LOAD_IMAGE_GRAYSCALE);
+    }
+    else if(CameraNumber == 3) {
+        CommonImage1 = imread("/Users/alex/Desktop/CommonSemantic13.png", CV_LOAD_IMAGE_GRAYSCALE);
+        CommonImage2 = imread("/Users/alex/Desktop/CommonSemantic23.png", CV_LOAD_IMAGE_GRAYSCALE);
+    }
+
+    if((! CommonImage1.data) || (! CommonImage2.data)) {
+        cout <<  "Could not open the common semantic images for SemanticConstraining function" << endl ;
+        return;
+    }
+
+    // Vector for supressed points due to semantic constrains
+    vector<Point2f> SupressedPoints;
+    Point2f Point;
+
+
+    // CHECK IF THE DETECTIONS ARE ON THE COMMON FLOOR
+
+    // Detections from the own camera
+    for(int i = 0; i < ProjectedCenterPoints.size(); i++){
+        Point = ProjectedCenterPoints[i];
+        if((Point.x > 0) && (Point.y > 0) && (Point.x < CommonImage1.cols) && (Point.y < CommonImage1.rows)) {
+            int Label1 = CommonImage1.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+            int Label2 = CommonImage2.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+
+            if (!(Label1 == 3 || Label2 == 3)){
+                SupressedPoints.push_back(Point);
+            }
+        }
+    }
+
+    // Detections from another camera
+    for(int j = 0; j < ProjCenterPoints1.size(); j++){
+        Point = ProjCenterPoints1[j];
+        if((Point.x > 0) && (Point.y > 0) && (Point.x < CommonImage1.cols) && (Point.y < CommonImage1.rows)) {
+            int Label1 = CommonImage1.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+            int Label2 = CommonImage2.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+
+            if (!(Label1 == 3 || Label2 == 3)){
+                SupressedPoints.push_back(Point);
+            }
+        }
+    }
+
+    // Detections from another camera
+    for(int k = 0; k < ProjCenterPoints2.size(); k++){
+        Point = ProjCenterPoints2[k];
+        if((Point.x > 0) && (Point.y > 0) && (Point.x < CommonImage1.cols) && (Point.y < CommonImage1.rows)) {
+            int Label1 = CommonImage1.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+            int Label2 = CommonImage2.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+
+            if (!(Label1 == 3 || Label2 == 3)){
+                SupressedPoints.push_back(Point);
+            }
+        }
+    }
+
+    // Transform the supressed points to the actual frame perspective
+    if (!SupressedPoints.empty()){
+        // Project the suppresed points to print a text
+        perspectiveTransform(SupressedPoints, SupressedPoints, Homography.inv(DECOMP_LU));
+        perspectiveTransform(SupressedPoints, SupressedPoints, HomographyBetweenViews.inv(DECOMP_LU));
+
+        for(int n = 0; n < SupressedPoints.size(); n++){
+            Point2f SupressedCenter = SupressedPoints[n];
+            putText(ActualFrame, "BLOB SUPRESSED", SupressedCenter, FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1.5);
+        }
+    }
+}
+
+void PeopleDetector::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects, float thresh)
+{
+    // NOT WORKING. The good one is in CameraStream class.
+    resRects.clear();
+
+    const size_t size = srcRects.size();
+    if (!size)
+        return;
+
+    // Sort the bounding boxes by the bottom - right y - coordinate of the bounding box
+    multimap<int, size_t> idxs;
+    for (size_t i = 0; i < size; ++i) {
+        idxs.insert(pair<int, size_t>(srcRects[i].br().y, i));
+    }
+
+    // keep looping while some indexes still remain in the indexes list
+    while (idxs.size() > 0) {
+        // grab the last rectangle
+        auto lastElem = --end(idxs);
+        const Rect& rect1 = srcRects[lastElem->second];
+
+        resRects.push_back(rect1);
+
+        idxs.erase(lastElem);
+
+        for (auto pos = begin(idxs); pos != end(idxs); ) {
+            // grab the current rectangle
+            const Rect& rect2 = srcRects[pos->second];
+
+            float intArea = (rect1 & rect2).area();
+            float unionArea = rect1.area() + rect2.area() - intArea;
+            float overlap = intArea / unionArea;
+
+            cout << overlap << endl;
+
+            // if there is sufficient overlap, suppress the current bounding box
+            if (overlap > thresh) {
+                pos = idxs.erase(pos);
+            }
+            else {
+                ++pos;
+            }
+        }
+    }
+}

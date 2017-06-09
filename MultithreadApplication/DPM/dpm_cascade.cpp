@@ -289,6 +289,8 @@ void DPMCascade::process( vector< vector<double> > &dets)
     int padx = params.padx;
     int pady = params.pady;
     vector<double> scales = params.scales;
+    // The lower the more detections will be
+    model.scoreThresh = -2;
 
     int nlevels = (int)pyramid.size() - interval;
     CV_Assert(nlevels > 0);
@@ -394,7 +396,8 @@ void DPMCascade::process( vector< vector<double> > &dets)
 
                     // check if the hypothesis passed all stages with a
                     // final score over the global threshold
-                    if (stage == numstages && score >= model.scoreThresh)
+                    //if (stage == numstages && score >= model.scoreThresh)
+                    if (score >= model.scoreThresh)
                     {
                         vector<double> coords;
                         // compute and record image coordinates of the detection window
