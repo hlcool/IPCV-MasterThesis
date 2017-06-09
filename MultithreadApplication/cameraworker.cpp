@@ -139,7 +139,7 @@ void CameraWorker::processVideo()
         //             EVALUATION             //
         // ---------------------------------- //
         vector<Rect> GroundTruthVector;
-        Evaluate.XMLParser(Evaluate.GTPath, GroundTruthVector);
+        Evaluate.XMLParser(GroundTruthVector);
 
         // ------------------------------------------- //
         //        FRAME RESIZE AND FRAME NUMBER        //

@@ -19,7 +19,7 @@ public:
     // Ground truth path
     String GTPath= "GroundTruth Path";
 
-    void XMLParser(String GTPath, vector<Rect> GroundTruthVector);
+    void XMLParser(vector<Rect> &GroundTruthVector);
 
     // Recall and precision vectors
     vector<double> Recall, Precision;
