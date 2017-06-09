@@ -297,12 +297,15 @@ void CameraStream::computeHomography()
         }
 
         // Calculate Homography and store it in the vector
-        HomographyVector.push_back(findHomography(pts_src, pts_dst, CV_LMEDS));
+        HomographyVector.push_back(findHomography(pts_src, pts_dst, 0));
 
         Mat View = imread(VideoPath + "/Homography Images/Camera " + to_string(CameraNumber) + "/View " + to_string(CameraView) + ".jpg");
-        Mat ImageWarping = Mat::zeros(986, 1606, CV_8UC1);
+        Mat ImageWarping = Mat::zeros(986, 1606, CV_8UC3);
         Mat Homografia = HomographyVector[CameraView-1];
         warpPerspective(View, ImageWarping, Homografia, ImageWarping.size());
+
+        cout << "Camera " << CameraNumber << ". View " << CameraView << ". Homography Determinant = " << determinant(Homografia) << endl;
+        cout << endl;
 
         // Apply Homography to vectors of Points to find the projection
         vector<Point2f> pts_src_projected;
@@ -408,10 +411,11 @@ void CameraStream::SemanticCommonPoints()
             GrayLevel2 = ProjectedFullSemanticVector[1].at<Vec3b>(i,j)[0];
 
             if((GrayLevel1 != 0) && (GrayLevel2 != 0)) {
-                if(GrayLevel1 == GrayLevel2){
+                if((GrayLevel1 == GrayLevel2) && (GrayLevel1 == 3)){
                     CommonSemantic12.at<Vec3b>(i,j)[0] = GrayLevel1;
                     CommonSemantic12.at<Vec3b>(i,j)[1] = GrayLevel1;
                     CommonSemantic12.at<Vec3b>(i,j)[2] = GrayLevel1;
+
                 }
             }
         }
@@ -425,10 +429,11 @@ void CameraStream::SemanticCommonPoints()
             GrayLevel2 = ProjectedFullSemanticVector[2].at<Vec3b>(i,j)[0];
 
             if((GrayLevel1 != 0) && (GrayLevel2 != 0)) {
-                if(GrayLevel1 == GrayLevel2){
+                if((GrayLevel1 == GrayLevel2) && (GrayLevel1 == 3)){
                     CommonSemantic23.at<Vec3b>(i,j)[0] = GrayLevel1;
                     CommonSemantic23.at<Vec3b>(i,j)[1] = GrayLevel1;
                     CommonSemantic23.at<Vec3b>(i,j)[2] = GrayLevel1;
+
                 }
             }
         }
@@ -442,7 +447,7 @@ void CameraStream::SemanticCommonPoints()
             GrayLevel2 = ProjectedFullSemanticVector[2].at<Vec3b>(i,j)[0];
 
             if((GrayLevel1 != 0) && (GrayLevel2 != 0)) {
-                if(GrayLevel1 == GrayLevel2){
+                if((GrayLevel1 == GrayLevel2) && (GrayLevel1 == 3)){
                     CommonSemantic13.at<Vec3b>(i,j)[0] = GrayLevel1;
                     CommonSemantic13.at<Vec3b>(i,j)[1] = GrayLevel1;
                     CommonSemantic13.at<Vec3b>(i,j)[2] = GrayLevel1;
@@ -756,8 +761,8 @@ void CameraStream::InertialPlanes(Mat ActualSemFrame, Mat CenitalPlane, String F
     ZUnitVector = Mat::zeros(3, 1, CV_64F);
     // Principal camera point
     P = Mat::zeros(1, 3, CV_64F);
-    // Desired height
-    float IntertialHeight = 0.05;
+    // Desired height. The heigher the number, the more heigth.
+    vector<float> HeightVector = {0.00001, 0.00002, 0.00004, 0.00006, 0.00008, 0.00012, 0.0002};
 
     if(CameraNumber == 1){
         ZUnitVector.at<double>(0,0) = 0;
@@ -783,36 +788,21 @@ void CameraStream::InertialPlanes(Mat ActualSemFrame, Mat CenitalPlane, String F
     transpose(P,P);
 
     HVPi = Homography;
-    HVPiPrima = HVPi.inv(DECOMP_LU) + IntertialHeight * P * ZUnitVector;
-    HVPiPrima = HVPiPrima.inv(DECOMP_LU);
 
-    warpPerspective(ActualSemFrame, SemanticWarped, HVPiPrima, CenitalPlane.size());
+    for(int i = 0; i < HeightVector.size(); i++){
+        float IntertialHeight = HeightVector[i];
 
-    String ImageName = "/Users/alex/Desktop/Inertial Planes/Camera " + to_string(CameraNumber) + "/Frame " + FrameNumber + ".png";
-    imwrite(ImageName, SemanticWarped*20);
+        HVPiPrima = HVPi.inv(DECOMP_LU) + IntertialHeight * P * ZUnitVector;
+        HVPiPrima = HVPiPrima.inv(DECOMP_LU);
 
-    /*
-    // Common semantic between the three cameras at another level
-    Mat CommonSemanticAllCameras2 = Mat::zeros(Rows, Cols, CommonSemanticAllCameras.type());
+        warpPerspective(ActualSemFrame, SemanticWarped, HVPiPrima, CenitalPlane.size());
 
-    Mat Projected1 = imread("/Users/alex/Desktop/Aux1.png", CV_LOAD_IMAGE_GRAYSCALE);
-    Mat Projected2 = imread("/Users/alex/Desktop/Aux2.png", CV_LOAD_IMAGE_GRAYSCALE);
-    Mat Projected3 = imread("/Users/alex/Desktop/Aux3.png", CV_LOAD_IMAGE_GRAYSCALE);
+        // Supress the floor in the image
+        SemanticWarped.setTo(0,(SemanticWarped == 3));
 
-    for (int i = 0; i < Rows; i++){
-        for (int j = 0; j < Cols; j++){
-      //      int Label1 = Projected1.at<uchar>(i,j);
-            int Label2 = Projected2.at<uchar>(i,j);
-            int Label3 = Projected3.at<uchar>(i,j);
-
-            if (Label2 == Label3){
-                CommonSemanticAllCameras2.at<uchar>(i,j) = Label2/20;
-            }
-        }
+        String ImageName = "/Users/alex/Desktop/Inertial Planes/Camera " + to_string(CameraNumber) + "/Height " + to_string(i+1) + "/Frame " + FrameNumber + ".png";
+        imwrite(ImageName, SemanticWarped*20);
     }
-    ImageName = "/Users/alex/Desktop/Common23AnotherLevel.png";
-    imwrite(ImageName, CommonSemanticAllCameras2*20);
-    */
 }
 
 void CameraStream::AkazePointsForViewImages()
@@ -837,8 +827,8 @@ void CameraStream::Akaze(Mat Image1, vector<KeyPoint> kpts1, Mat desc1, Mat Imag
     vector<KeyPoint> kpts2;
     Mat desc2;
 
-    akazeDescriptor->setNOctaves(4);
-    akazeDescriptor->setNOctaveLayers(3);
+    akazeDescriptor->setNOctaves(2);
+    akazeDescriptor->setNOctaveLayers(2);
     akazeDescriptor->detectAndCompute(Image2, noArray(), kpts2, desc2);
 
     //  ------------------  //
