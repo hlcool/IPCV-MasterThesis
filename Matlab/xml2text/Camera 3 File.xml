@@ -1,0 +1,1394 @@
+<?xml version="1.0" ?>
+<DOCANALYSIS MODALITY="Video">
+ <DOCREF TYPE="File">
+  <FILE>C:\Users\alexl\Desktop\Camera 3\Camera3Sync.m2v</FILE>
+ </DOCREF>
+ <SEGMENT_LIST>
+ </SEGMENT_LIST>
+ <MLCI_LIST>
+  <MLCI>
+  </MLCI>
+ </MLCI_LIST>
+ <TRAJECTORYSET>
+  <TRAJECTORY>
+   <ID>Region 01</ID>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>0</FRAME>
+    <LEFT>202</LEFT>
+    <TOP>65</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>1</FRAME>
+    <LEFT>202</LEFT>
+    <TOP>65</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>2</FRAME>
+    <LEFT>201</LEFT>
+    <TOP>66</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>3</FRAME>
+    <LEFT>202</LEFT>
+    <TOP>70</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>4</FRAME>
+    <LEFT>203</LEFT>
+    <TOP>70</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>5</FRAME>
+    <LEFT>212</LEFT>
+    <TOP>69</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>6</FRAME>
+    <LEFT>212</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>7</FRAME>
+    <LEFT>213</LEFT>
+    <TOP>66</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>8</FRAME>
+    <LEFT>217</LEFT>
+    <TOP>66</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>9</FRAME>
+    <LEFT>219</LEFT>
+    <TOP>64</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>10</FRAME>
+    <LEFT>219</LEFT>
+    <TOP>64</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>11</FRAME>
+    <LEFT>224</LEFT>
+    <TOP>63</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>12</FRAME>
+    <LEFT>224</LEFT>
+    <TOP>63</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>13</FRAME>
+    <LEFT>224</LEFT>
+    <TOP>63</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>14</FRAME>
+    <LEFT>226</LEFT>
+    <TOP>64</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>15</FRAME>
+    <LEFT>228</LEFT>
+    <TOP>64</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>16</FRAME>
+    <LEFT>231</LEFT>
+    <TOP>65</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>17</FRAME>
+    <LEFT>233</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>18</FRAME>
+    <LEFT>237</LEFT>
+    <TOP>69</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>19</FRAME>
+    <LEFT>238</LEFT>
+    <TOP>69</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>20</FRAME>
+    <LEFT>239</LEFT>
+    <TOP>68</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>21</FRAME>
+    <LEFT>240</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>22</FRAME>
+    <LEFT>240</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>23</FRAME>
+    <LEFT>243</LEFT>
+    <TOP>66</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>24</FRAME>
+    <LEFT>244</LEFT>
+    <TOP>65</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>25</FRAME>
+    <LEFT>244</LEFT>
+    <TOP>65</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>26</FRAME>
+    <LEFT>244</LEFT>
+    <TOP>65</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>27</FRAME>
+    <LEFT>250</LEFT>
+    <TOP>64</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>28</FRAME>
+    <LEFT>250</LEFT>
+    <TOP>64</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>29</FRAME>
+    <LEFT>251</LEFT>
+    <TOP>64</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>30</FRAME>
+    <LEFT>259</LEFT>
+    <TOP>69</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>31</FRAME>
+    <LEFT>263</LEFT>
+    <TOP>70</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>32</FRAME>
+    <LEFT>263</LEFT>
+    <TOP>70</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>33</FRAME>
+    <LEFT>263</LEFT>
+    <TOP>70</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>34</FRAME>
+    <LEFT>263</LEFT>
+    <TOP>70</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>35</FRAME>
+    <LEFT>263</LEFT>
+    <TOP>70</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>36</FRAME>
+    <LEFT>269</LEFT>
+    <TOP>68</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>37</FRAME>
+    <LEFT>272</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>38</FRAME>
+    <LEFT>273</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>39</FRAME>
+    <LEFT>273</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>40</FRAME>
+    <LEFT>273</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>41</FRAME>
+    <LEFT>273</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>42</FRAME>
+    <LEFT>278</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>43</FRAME>
+    <LEFT>280</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>44</FRAME>
+    <LEFT>282</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>45</FRAME>
+    <LEFT>286</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>46</FRAME>
+    <LEFT>291</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>47</FRAME>
+    <LEFT>291</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>48</FRAME>
+    <LEFT>291</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>49</FRAME>
+    <LEFT>296</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>50</FRAME>
+    <LEFT>301</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>51</FRAME>
+    <LEFT>301</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>52</FRAME>
+    <LEFT>301</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>53</FRAME>
+    <LEFT>303</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>54</FRAME>
+    <LEFT>304</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>55</FRAME>
+    <LEFT>306</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>56</FRAME>
+    <LEFT>312</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>57</FRAME>
+    <LEFT>313</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>58</FRAME>
+    <LEFT>313</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>59</FRAME>
+    <LEFT>313</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>60</FRAME>
+    <LEFT>313</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>61</FRAME>
+    <LEFT>313</LEFT>
+    <TOP>67</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>62</FRAME>
+    <LEFT>315</LEFT>
+    <TOP>68</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>63</FRAME>
+    <LEFT>324</LEFT>
+    <TOP>69</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>64</FRAME>
+    <LEFT>326</LEFT>
+    <TOP>69</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>65</FRAME>
+    <LEFT>331</LEFT>
+    <TOP>69</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>66</FRAME>
+    <LEFT>332</LEFT>
+    <TOP>69</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>67</FRAME>
+    <LEFT>335</LEFT>
+    <TOP>69</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>68</FRAME>
+    <LEFT>337</LEFT>
+    <TOP>69</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>69</FRAME>
+    <LEFT>337</LEFT>
+    <TOP>69</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>70</FRAME>
+    <LEFT>337</LEFT>
+    <TOP>69</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>71</FRAME>
+    <LEFT>337</LEFT>
+    <TOP>69</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>72</FRAME>
+    <LEFT>340</LEFT>
+    <TOP>70</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>73</FRAME>
+    <LEFT>341</LEFT>
+    <TOP>70</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>74</FRAME>
+    <LEFT>341</LEFT>
+    <TOP>70</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>75</FRAME>
+    <LEFT>353</LEFT>
+    <TOP>72</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>76</FRAME>
+    <LEFT>356</LEFT>
+    <TOP>72</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>77</FRAME>
+    <LEFT>356</LEFT>
+    <TOP>72</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>78</FRAME>
+    <LEFT>356</LEFT>
+    <TOP>72</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>79</FRAME>
+    <LEFT>356</LEFT>
+    <TOP>72</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>80</FRAME>
+    <LEFT>356</LEFT>
+    <TOP>72</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>81</FRAME>
+    <LEFT>356</LEFT>
+    <TOP>72</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>82</FRAME>
+    <LEFT>356</LEFT>
+    <TOP>72</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>83</FRAME>
+    <LEFT>359</LEFT>
+    <TOP>72</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>84</FRAME>
+    <LEFT>375</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>85</FRAME>
+    <LEFT>375</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>86</FRAME>
+    <LEFT>377</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>87</FRAME>
+    <LEFT>378</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>88</FRAME>
+    <LEFT>378</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>89</FRAME>
+    <LEFT>378</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>90</FRAME>
+    <LEFT>384</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>91</FRAME>
+    <LEFT>387</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>92</FRAME>
+    <LEFT>391</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>93</FRAME>
+    <LEFT>393</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>94</FRAME>
+    <LEFT>393</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>95</FRAME>
+    <LEFT>393</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>96</FRAME>
+    <LEFT>395</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>97</FRAME>
+    <LEFT>403</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>98</FRAME>
+    <LEFT>407</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>99</FRAME>
+    <LEFT>407</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>100</FRAME>
+    <LEFT>407</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>101</FRAME>
+    <LEFT>412</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>102</FRAME>
+    <LEFT>412</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>103</FRAME>
+    <LEFT>412</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>104</FRAME>
+    <LEFT>412</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>105</FRAME>
+    <LEFT>424</LEFT>
+    <TOP>74</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>106</FRAME>
+    <LEFT>426</LEFT>
+    <TOP>74</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>107</FRAME>
+    <LEFT>426</LEFT>
+    <TOP>74</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>108</FRAME>
+    <LEFT>426</LEFT>
+    <TOP>74</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>109</FRAME>
+    <LEFT>426</LEFT>
+    <TOP>74</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>110</FRAME>
+    <LEFT>431</LEFT>
+    <TOP>74</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>111</FRAME>
+    <LEFT>437</LEFT>
+    <TOP>74</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>112</FRAME>
+    <LEFT>439</LEFT>
+    <TOP>74</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>113</FRAME>
+    <LEFT>444</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>114</FRAME>
+    <LEFT>444</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>115</FRAME>
+    <LEFT>444</LEFT>
+    <TOP>73</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>116</FRAME>
+    <LEFT>456</LEFT>
+    <TOP>70</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>117</FRAME>
+    <LEFT>457</LEFT>
+    <TOP>69</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>118</FRAME>
+    <LEFT>459</LEFT>
+    <TOP>69</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>119</FRAME>
+    <LEFT>463</LEFT>
+    <TOP>69</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>120</FRAME>
+    <LEFT>472</LEFT>
+    <TOP>66</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>121</FRAME>
+    <LEFT>472</LEFT>
+    <TOP>66</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>122</FRAME>
+    <LEFT>473</LEFT>
+    <TOP>65</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>123</FRAME>
+    <LEFT>479</LEFT>
+    <TOP>63</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>124</FRAME>
+    <LEFT>487</LEFT>
+    <TOP>61</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>125</FRAME>
+    <LEFT>493</LEFT>
+    <TOP>57</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>126</FRAME>
+    <LEFT>493</LEFT>
+    <TOP>57</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>127</FRAME>
+    <LEFT>496</LEFT>
+    <TOP>57</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>128</FRAME>
+    <LEFT>503</LEFT>
+    <TOP>56</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>129</FRAME>
+    <LEFT>507</LEFT>
+    <TOP>56</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>130</FRAME>
+    <LEFT>508</LEFT>
+    <TOP>56</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>131</FRAME>
+    <LEFT>517</LEFT>
+    <TOP>56</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>132</FRAME>
+    <LEFT>522</LEFT>
+    <TOP>56</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>133</FRAME>
+    <LEFT>522</LEFT>
+    <TOP>56</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>134</FRAME>
+    <LEFT>522</LEFT>
+    <TOP>56</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>135</FRAME>
+    <LEFT>534</LEFT>
+    <TOP>56</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>136</FRAME>
+    <LEFT>543</LEFT>
+    <TOP>56</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>137</FRAME>
+    <LEFT>544</LEFT>
+    <TOP>56</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>138</FRAME>
+    <LEFT>545</LEFT>
+    <TOP>56</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>139</FRAME>
+    <LEFT>548</LEFT>
+    <TOP>56</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>140</FRAME>
+    <LEFT>553</LEFT>
+    <TOP>55</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>141</FRAME>
+    <LEFT>556</LEFT>
+    <TOP>55</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>142</FRAME>
+    <LEFT>558</LEFT>
+    <TOP>55</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>143</FRAME>
+    <LEFT>559</LEFT>
+    <TOP>55</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>144</FRAME>
+    <LEFT>566</LEFT>
+    <TOP>53</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>145</FRAME>
+    <LEFT>568</LEFT>
+    <TOP>52</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>146</FRAME>
+    <LEFT>570</LEFT>
+    <TOP>52</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>147</FRAME>
+    <LEFT>574</LEFT>
+    <TOP>52</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>148</FRAME>
+    <LEFT>576</LEFT>
+    <TOP>50</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>149</FRAME>
+    <LEFT>587</LEFT>
+    <TOP>47</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>150</FRAME>
+    <LEFT>588</LEFT>
+    <TOP>47</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>151</FRAME>
+    <LEFT>588</LEFT>
+    <TOP>47</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+   <POS TYPE="BBOXSEQUENCE">
+   <BOX>
+    <FRAME>152</FRAME>
+    <LEFT>593</LEFT>
+    <TOP>45</TOP>
+    <WIDTH>80</WIDTH>
+    <HEIGHT>185</HEIGHT>
+   </BOX>
+   </POS>
+  </TRAJECTORY>
+ </TRAJECTORYSET>
+</DOCANALYSIS>

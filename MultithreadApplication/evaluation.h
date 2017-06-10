@@ -16,10 +16,7 @@ class Evaluation
 public:
     Evaluation();
 
-    // Ground truth path
-    String GTPath= "GroundTruth Path";
-
-    void XMLParser(vector<Rect> &GroundTruthVector);
+    void GTTextParser(int CameraNumber, vector<Rect> &GroundTruthVector, String FrameNumber);
 
     // Recall and precision vectors
     vector<double> Recall, Precision;

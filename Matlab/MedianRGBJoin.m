@@ -6,11 +6,11 @@ o1 = zeros(986, 1606);
 o2 = zeros(986, 1606);
 o3 = zeros(986, 1606);
 
-filenames = dir('/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Wrapped Images/Camera 1/*.png');
+filenames = dir('/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Wrapped Images/Camera 1/*.png');
 
 for i = 1:numel(filenames)
     
-    image = imread(['/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Wrapped Images/Camera 1/' filenames(i).name]);
+    image = imread(['/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Wrapped Images/Camera 1/' filenames(i).name]);
     
     md(:,:,i) = image(:,:,1);
 end
@@ -29,11 +29,11 @@ figure
 imshow(uint8(o1))
 imwrite(uint8(o1),'RGB1Median.png')
 
-filenames = dir('/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Wrapped Images/Camera 2/*.png');
+filenames = dir('/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Wrapped Images/Camera 2/*.png');
 
 for i = 1:numel(filenames)
     
-    image = imread(['/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Wrapped Images/Camera 2/' filenames(i).name]);
+    image = imread(['/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Wrapped Images/Camera 2/' filenames(i).name]);
     
     md(:,:,i) = image(:,:,1);
 end
@@ -52,11 +52,11 @@ figure
 imshow(uint8(o2))
 imwrite(uint8(o2),'RGB2Median.png')
 
-filenames = dir('/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Wrapped Images/Camera 3/*.png');
+filenames = dir('/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Wrapped Images/Camera 3/*.png');
 
 for i = 1:numel(filenames)
     
-    image = imread(['/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Wrapped Images/Camera 3/' filenames(i).name]);
+    image = imread(['/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Wrapped Images/Camera 3/' filenames(i).name]);
     
     md(:,:,i) = image(:,:,1);
 end

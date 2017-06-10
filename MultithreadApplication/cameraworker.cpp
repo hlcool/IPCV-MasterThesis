@@ -138,8 +138,10 @@ void CameraWorker::processVideo()
         // ---------------------------------- //
         //             EVALUATION             //
         // ---------------------------------- //
+        // Read GT
         vector<Rect> GroundTruthVector;
-        Evaluate.XMLParser(GroundTruthVector);
+        Evaluate.GTTextParser(Camera.CameraNumber, GroundTruthVector, FrameNumber);
+        PeopleDetec.paintBoundingBoxes(Camera.ActualFrame, "GT", GroundTruthVector, Camera.CameraNumber, 5);
 
         // ------------------------------------------- //
         //        FRAME RESIZE AND FRAME NUMBER        //

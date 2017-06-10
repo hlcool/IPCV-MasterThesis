@@ -18,9 +18,74 @@ Evaluation::Evaluation(){}
 using namespace cv;
 using namespace std;
 
-void Evaluation::XMLParser(vector<Rect> &GroundTruthVector)
+void Evaluation::GTTextParser(int CameraNumber, vector<Rect> &GroundTruthVector, String FrameNumber)
 {
+    String GTPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Camera" + to_string(CameraNumber) + "GT.txt";
+    ifstream input(GTPath);
 
+    if (!input) {
+        // The file does not exists
+        cout << "The file containing the FastRCNN blobs does not exist" << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    // Auxiliary variables to store the information
+    string AuxString;
+    Rect RectAux;
+    size_t found;
+    int Counter = 0;
+    int LineCounter = 0;
+
+    // Start decoding the file
+    while (input >> AuxString){
+        if (AuxString.find("Frame") != std::string::npos) {
+            // Check if the desired line has been read and so
+            // exit the function
+            if (LineCounter == atoi(FrameNumber.c_str()))
+                return;
+            LineCounter++;
+        }
+        if (LineCounter == atoi(FrameNumber.c_str())) {
+            switch(Counter)
+            {
+            case 0:
+                Counter++;
+                break;
+            case 1:
+                // Case for x1
+                found = AuxString.find(',');
+                AuxString = AuxString.substr(1, found - 1 );
+                RectAux.x = atoi(AuxString.c_str());
+                Counter++;
+                break;
+            case 2:
+                // Case for y1
+                found = AuxString.find(',');
+                AuxString = AuxString.substr(0, found);
+                RectAux.y = atoi(AuxString.c_str());
+                Counter++;
+                break;
+            case 3:
+                // Case for x2
+                found = AuxString.find(',');
+                AuxString = AuxString.substr(0, found);
+                RectAux.width = atoi(AuxString.c_str());
+                Counter++;
+                break;
+            case 4:
+                // Case for y2
+                found = AuxString.find(']');
+                AuxString = AuxString.substr(0, found);
+                RectAux.height = atoi(AuxString.c_str());
+
+                GroundTruthVector.push_back(RectAux);
+
+                // Restart the couter to read another blob
+                Counter = 1;
+                break;
+            }
+        }
+    }
 }
 
 bool Evaluation::IoU(Rect GroundTruth, Rect BoundingBox, int threshold)

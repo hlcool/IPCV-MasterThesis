@@ -243,7 +243,7 @@ void CameraStream::extractPDMask(Mat ActualSemFrame)
 
 void CameraStream::computeHomography()
 {
-    string MainPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Homography Images";
+    string MainPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Homography Images";
 
     for (int CameraView = 1; CameraView <= NViews; CameraView++){
         vector<Point2f> pts_src, pts_dst;
@@ -807,7 +807,7 @@ void CameraStream::Akaze(Mat Image1, vector<KeyPoint> kpts1, Mat desc1, Mat Imag
     if(CameraNumber == 1){
         Mat res;
         drawMatches(Image1, kpts1, Image2, kpts2, good_matches, res);
-        String ImageName = "/Users/alex/Desktop/image"+to_string(CameraView)+ ".png";
+        String ImageName = "/Users/alex/Desktop/aux/" + to_string(CameraView) + ".png";
         imwrite(ImageName, res);
     }
     */
