@@ -34,6 +34,10 @@ void CameraWorker::preProcessVideo()
     VideoStatsFile.open("/Users/alex/IPCV-MasterThesis/MultithreadApplication/VideoProcessingStats" + to_string(Camera.CameraNumber) + ".txt");
     VideoStatsFile << "Frame  Computational Time" << endl;
 
+    // Create and open the statistics file
+    Evaluate.EvaluationFile.open("/Users/alex/IPCV-MasterThesis/MultithreadApplication/Evaluation Stats Camera " + to_string(Camera.CameraNumber) + ".txt");
+    Evaluate.EvaluationFile << "Frame  Precision  Recall" << endl;
+
     // Compute camera homographies
     Camera.computeHomography();
 
@@ -70,6 +74,7 @@ void CameraWorker::processVideo()
             emit frameFinished(Camera.ActualFrame, CenitalPlaneImage, Camera.CameraNumber);
             // Close time consumption file
             VideoStatsFile.close();
+            Evaluate.EvaluationFile.close();
             break;
         }
 
@@ -142,6 +147,7 @@ void CameraWorker::processVideo()
         vector<Rect> GroundTruthVector;
         Evaluate.GTTextParser(Camera.CameraNumber, GroundTruthVector, FrameNumber);
         PeopleDetec.paintBoundingBoxes(Camera.ActualFrame, "GT", GroundTruthVector, Camera.CameraNumber, 5);
+        Evaluate.ExtractEvaluationScores(GroundTruthVector, PeopleDetec.AllPedestrianVector, FrameNumber);
 
         // ------------------------------------------- //
         //        FRAME RESIZE AND FRAME NUMBER        //

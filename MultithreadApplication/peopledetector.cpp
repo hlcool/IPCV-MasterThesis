@@ -17,6 +17,8 @@ PeopleDetector::~PeopleDetector(){}
 
 void PeopleDetector::MainPeopleDetection(CameraStream &Camera, String CBOption, String RepresentationOption, bool PDFiltering, Mat &CenitalPlane)
 {
+    AllPedestrianVector.clear();
+
     if (!CBOption.compare("HOG")){
         // HOG Detector
         //HOGPeopleDetection(Camera);
@@ -146,6 +148,9 @@ void PeopleDetector::paintBoundingBoxes(Mat &ActualFrame, string Method, vector<
             r.width = cvRound(r.width*0.8);
             r.y += cvRound(r.height*0.07);
             r.height = cvRound(r.height*0.8);
+        }
+        if (Method.compare("GT")) {
+            AllPedestrianVector.push_back(r);
         }
         rectangle(ActualFrame, r.tl(), r.br(), Color, Thickness);
     }
@@ -357,9 +362,9 @@ void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> sco
 
         if (!RepresentationOption.compare("Lines")){
             // Projection Line
-            line(CenitalPlane, LeftProjected, RightProjected, SColor, 2);
+            line(CenitalPlane, LeftProjected, RightProjected, SColor, 4);
             // Perpendicular line. New line at C pointing direction of Direction Vector
-            line(CenitalPlane, MiddleSegmentPoint, C, PerpendicularColor, 2);
+            line(CenitalPlane, MiddleSegmentPoint, C, PerpendicularColor, 4);
         }
         else if (!RepresentationOption.compare("Gaussians")){
             // Mesgrid function
@@ -478,16 +483,17 @@ void PeopleDetector::ReprojectionFusion(vector<Point2f> ProjCenterPoints, vector
         Point2f Center = CenterPoints[n];
         Point2f LeftCorner = LeftPoints[n];
         Point2f RightCorner = RightPoints[n];
-        Point2f TopLeftCorner;
+        Rect Blob;
 
-        float width = RightCorner.x - LeftCorner.x;
-        float heigth = width/ 0.3;
+        Blob.width = (RightCorner.x - LeftCorner.x) + 50;
+        Blob.height = Blob.width * 4;
+        Blob.x = RightCorner.x - Blob.width;
+        Blob.y = LeftCorner.y - Blob.height;
 
-        TopLeftCorner.x = RightCorner.x - width;
-        TopLeftCorner.y = LeftCorner.y - heigth;
+        AllPedestrianVector.push_back(Blob);
 
         circle(ActualFrame, Center, 10, Scalar(255,255,255), 3);
-        rectangle(ActualFrame, TopLeftCorner, RightCorner, Scalar(255,255,255), 3);
+        rectangle(ActualFrame, Blob, Scalar(255,255,255), 3);
     }
 }
 

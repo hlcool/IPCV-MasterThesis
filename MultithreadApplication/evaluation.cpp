@@ -88,16 +88,47 @@ void Evaluation::GTTextParser(int CameraNumber, vector<Rect> &GroundTruthVector,
     }
 }
 
-bool Evaluation::IoU(Rect GroundTruth, Rect BoundingBox, int threshold)
+void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<Rect> DetectionsVector, String FrameNumber)
+{
+    if(DetectionsVector.empty()){
+        EvaluationFile << FrameNumber << endl;
+        return;
+    }
+
+    float FalsePositives = 0;
+    float TruePositives = 0;
+    float Precision, Recall;
+
+    for(int i = 0; i < DetectionsVector.size(); i++){
+        Rect Detection = DetectionsVector[i];
+        for (int j = 0; j < GroundTruthVector.size(); j++){
+            Rect GT = GroundTruthVector[i];
+
+            if(IoU(GT, Detection, 0.3)){
+                TruePositives++;
+            }
+            else{
+                FalsePositives++;
+            }
+        }
+    }
+
+    Precision = TruePositives / (TruePositives + FalsePositives);
+    Recall = TruePositives / DetectionsVector.size();
+    // Save measures to .txt file
+    EvaluationFile << FrameNumber << "       " << Precision << "       " << Recall << endl;
+}
+
+bool Evaluation::IoU(Rect GroundTruth, Rect BoundingBox, float threshold)
 {
     // Interseccion entre los dos rectangulos
-    int Intersection = (GroundTruth & BoundingBox).area();
+    float Intersection = (GroundTruth & BoundingBox).area();
 
     // Suma del area de los dos rectangulos - la itnerseccion
-    int Union = GroundTruth.area() + BoundingBox.area() - Intersection;
+    float Union = GroundTruth.area() + BoundingBox.area() - Intersection;
 
     // Intersection over Union
-    int IoU = Intersection / Union;
+    float IoU = Intersection / Union;
 
     if(IoU > threshold)
         return 1;

@@ -23,8 +23,14 @@ public:
 
     int IoUThreshold = 50;
 
+    // Extract evaluation scores
+    void ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<Rect> DetectionsVector, String FrameNumber);
+
     // Intersection Over Union Function
-    bool IoU (Rect GroundTruth, Rect BoundingBox, int threshold);
+    bool IoU (Rect GroundTruth, Rect BoundingBox, float threshold);
+
+    // Txt file to extract and save information
+    ofstream EvaluationFile;
 };
 
 #endif // EVALUATION_H
