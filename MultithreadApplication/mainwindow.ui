@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1334</width>
-    <height>821</height>
+    <height>871</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -432,7 +432,7 @@
    </palette>
   </property>
   <property name="windowTitle">
-   <string>Alex Master Application</string>
+   <string>Alex Master Thesis Application</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -982,7 +982,7 @@
       <property name="minimumSize">
        <size>
         <width>430</width>
-        <height>200</height>
+        <height>250</height>
        </size>
       </property>
       <property name="font">
@@ -1023,10 +1023,17 @@
           </font>
          </property>
          <property name="title">
-          <string>People Detection</string>
+          <string>People Detection and Representation</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_13">
           <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>People Detector</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
            <widget class="QComboBox" name="PeopleDetectorCB">
             <item>
              <property name="text">
@@ -1060,7 +1067,7 @@
             </item>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item row="4" column="0">
            <widget class="QComboBox" name="RepresentationCB">
             <item>
              <property name="text">
@@ -1074,7 +1081,7 @@
             </item>
            </widget>
           </item>
-          <item row="1" column="1">
+          <item row="2" column="1">
            <layout class="QGridLayout" name="gridLayout_12">
             <item row="3" column="0">
              <widget class="QRadioButton" name="AccurateButton">
@@ -1105,6 +1112,16 @@
               </property>
              </widget>
             </item>
+            <item row="3" column="1">
+             <widget class="QCheckBox" name="SemanticEnable">
+              <property name="text">
+               <string>Semantic Enable</string>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
             <item row="0" column="0">
              <widget class="QRadioButton" name="FastButton">
               <property name="sizePolicy">
@@ -1121,17 +1138,27 @@
               </property>
              </widget>
             </item>
-            <item row="3" column="1">
-             <widget class="QCheckBox" name="SemanticEnable">
-              <property name="text">
-               <string>Semantic Enable</string>
+            <item row="0" column="2">
+             <widget class="QCheckBox" name="GTDisplay">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
               </property>
-              <property name="checked">
-               <bool>false</bool>
+              <property name="text">
+               <string>GT Display</string>
               </property>
              </widget>
             </item>
            </layout>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Representation Method</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>

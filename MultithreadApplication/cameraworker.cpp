@@ -147,7 +147,8 @@ void CameraWorker::processVideo()
         // Read GT
         vector<Rect> GroundTruthVector;
         Evaluate.GTTextParser(Camera.CameraNumber, GroundTruthVector, FrameNumber);
-        PeopleDetec.paintBoundingBoxes(Camera.ActualFrame, "GT", GroundTruthVector, Camera.CameraNumber, 5);
+        if(GTDisplay)
+            PeopleDetec.paintBoundingBoxes(Camera.ActualFrame, "GT", GroundTruthVector, Camera.CameraNumber, 5);
         Evaluate.ExtractEvaluationScores(GroundTruthVector, PeopleDetec.AllPedestrianVectorNMS, FrameNumber);
 
         // ---------------------------- //

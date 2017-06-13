@@ -161,6 +161,9 @@ void MainWindow::updateVariables(Mat Frame, Mat CenitalPlane, int CameraNumber)
 
     // Semantic drawing enable
     CameraWorkers[CameraNumber-1]->SemanticEnabled = ui->SemanticEnable->isChecked();
+
+    // Ground truth drawing enable
+    CameraWorkers[CameraNumber-1]->GTDisplay = ui->GTDisplay->isChecked();
 }
 
 void MainWindow::displayFrame(Mat frame, Mat CenitalPlane, int CameraNumber)

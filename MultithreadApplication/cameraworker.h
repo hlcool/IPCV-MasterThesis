@@ -36,6 +36,7 @@ public:
     // UI Variables
     bool PDFiltering = 0;
     bool SemanticEnabled = 0;
+    bool GTDisplay = 0;
     String CBOption;
     // Representation Method
     String RepresentationOption;
