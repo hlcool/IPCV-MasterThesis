@@ -102,7 +102,7 @@ Application Performance Results
 \end_layout
 
 \begin_layout Section
-Hardware
+Used Hardware
 \end_layout
 
 \begin_layout Standard
@@ -797,5 +797,68 @@ name "fig:Tour setting menu"
 \end_layout
 
 \end_deeper
+\begin_layout Section
+Experiment Setup
+\end_layout
+
+\begin_layout Section
+Dataset
+\end_layout
+
+\begin_layout Standard
+Dataset generado con las camaras mencionadas.
+ Numero de camaras.
+ Seleccion de panning como se ha dicho en el capitulo de sistema propueto.
+ Imagenes del dataset
+\end_layout
+
+\begin_layout Section
+Ground-Truth Generation
+\end_layout
+
+\begin_layout Standard
+Generacion de ground truth de personas mediante software Via Annotation
+ Tool.
+ Anotacion manual de X frames para cada camara.
+\end_layout
+
+\begin_layout Section
+Evaluation Framework
+\end_layout
+
+\begin_layout Standard
+Medidas usadas para evaluar un video/frame.
+ Comparacion entre un bounding box y un blob de ground truth.
+\end_layout
+
+\begin_layout Section
+People Detection Results
+\end_layout
+
+\begin_layout Standard
+Evaluacion de deteccion de personas en tres entornos
+\end_layout
+
+\begin_layout Itemize
+Detecion de personas unicamara
+\end_layout
+
+\begin_layout Itemize
+Deteccion de personas usando reprojecciones de varias camaras
+\end_layout
+
+\begin_layout Itemize
+Deteccion de personas usando solo semantica
+\end_layout
+
+\begin_layout Itemize
+Deteccionde personas usando reprojecciones de varias camaras y informacion
+ semantica
+\end_layout
+
+\begin_layout Section
+Statistical Usage Data
+\end_layout
+
 \end_body
 \end_document
