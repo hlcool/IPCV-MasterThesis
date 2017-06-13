@@ -51,13 +51,14 @@ public:
     void ReprojectionFusion(vector<Point2f> ProjCenterPoints, vector<Point2f> ProjLeftPoints, vector<Point2f> ProjRightPoints, Mat Homography, Mat HomographyBetweenViews, Mat &ActualFrame);
 
     // Semantic Pedestrian Constraining
+    vector<int> SupressedIndices;
     void SemanticConstraining(vector<Point2f> ProjCenterPoints1, vector<Point2f> ProjCenterPoints2, int CameraNumber, Mat &ActualFrame, Mat Homography, Mat HomographyBetweenViews);
 
     // Final Pedestrian Projected Bounding Boxes from the camera.
     vector<Point2f> ProjectedCenterPoints, ProjectedLeftPoints, ProjectedRightPoints;
 
     // Join detections from all the cameras in one vector
-    vector<Rect> AllPedestrianVector;
+    vector<Rect> AllPedestrianVector, AllPedestrianVectorNMS;
 };
 
 #endif // PEOPLEDETECTOR_H

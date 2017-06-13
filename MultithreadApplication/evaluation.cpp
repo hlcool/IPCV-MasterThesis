@@ -88,7 +88,7 @@ void Evaluation::GTTextParser(int CameraNumber, vector<Rect> &GroundTruthVector,
     }
 }
 
-void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<Rect> DetectionsVector, String FrameNumber)
+void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<Rect> DetectionsVector, vector<int> SupressedIndices, String FrameNumber)
 {
     if(DetectionsVector.empty()){
         EvaluationFile << FrameNumber << endl;
@@ -99,18 +99,28 @@ void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<
     float TruePositives = 0;
     float Precision, Recall;
 
-    for(int i = 0; i < DetectionsVector.size(); i++){
-        Rect Detection = DetectionsVector[i];
-        for (int j = 0; j < GroundTruthVector.size(); j++){
-            Rect GT = GroundTruthVector[i];
+    for(int k = 0; k < SupressedIndices.size(); k++){
+        int Index = SupressedIndices[k];
+        DetectionsVector.erase(DetectionsVector.begin() + Index);
+    }
 
-            if(IoU(GT, Detection, 0.3)){
-                TruePositives++;
-            }
-            else{
-                FalsePositives++;
+    if(GroundTruthVector.empty()){
+        FalsePositives = DetectionsVector.size();
+    }
+    else{
+        for(int i = 0; i < DetectionsVector.size(); i++){
+            Rect Detection = DetectionsVector[i];
+            for (int j = 0; j < GroundTruthVector.size(); j++){
+                Rect GT = GroundTruthVector[j];
+                if(IoU( GT, Detection, 0.5)){
+                    TruePositives++;
+                }
+                else{
+                    FalsePositives++;
+                }
             }
         }
+
     }
 
     Precision = TruePositives / (TruePositives + FalsePositives);

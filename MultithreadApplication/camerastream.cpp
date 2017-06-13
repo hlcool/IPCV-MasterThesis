@@ -408,7 +408,7 @@ void CameraStream::SemanticCommonPoints()
             GrayLevel2 = ProjectedFullSemanticVector[1].at<Vec3b>(i,j)[0];
 
             if((GrayLevel1 != 0) && (GrayLevel2 != 0)) {
-                if(GrayLevel1 == GrayLevel2){
+                if((GrayLevel1 == GrayLevel2) && (GrayLevel1 == 3)){
                     CommonSemantic12.at<Vec3b>(i,j)[0] = GrayLevel1;
                     CommonSemantic12.at<Vec3b>(i,j)[1] = GrayLevel1;
                     CommonSemantic12.at<Vec3b>(i,j)[2] = GrayLevel1;
@@ -425,7 +425,7 @@ void CameraStream::SemanticCommonPoints()
             GrayLevel2 = ProjectedFullSemanticVector[2].at<Vec3b>(i,j)[0];
 
             if((GrayLevel1 != 0) && (GrayLevel2 != 0)) {
-                if(GrayLevel1 == GrayLevel2){
+                if((GrayLevel1 == GrayLevel2) && (GrayLevel1 == 3)){
                     CommonSemantic23.at<Vec3b>(i,j)[0] = GrayLevel1;
                     CommonSemantic23.at<Vec3b>(i,j)[1] = GrayLevel1;
                     CommonSemantic23.at<Vec3b>(i,j)[2] = GrayLevel1;
@@ -442,7 +442,7 @@ void CameraStream::SemanticCommonPoints()
             GrayLevel2 = ProjectedFullSemanticVector[2].at<Vec3b>(i,j)[0];
 
             if((GrayLevel1 != 0) && (GrayLevel2 != 0)) {
-                if(GrayLevel1 == GrayLevel2){
+                if((GrayLevel1 == GrayLevel2) && (GrayLevel1 == 3)){
                     CommonSemantic13.at<Vec3b>(i,j)[0] = GrayLevel1;
                     CommonSemantic13.at<Vec3b>(i,j)[1] = GrayLevel1;
                     CommonSemantic13.at<Vec3b>(i,j)[2] = GrayLevel1;
@@ -687,7 +687,6 @@ void CameraStream::ProjectCommonSemantic()
     // Create the convex poligon from array of Point and add transparency to the final image
     addWeighted(overlay, alpha, ActualFrame, 1 - alpha, 0, ActualFrame);
 
-
     // ------------------ //
     // SECOND CAMERA PAIR
     // ------------------ //
@@ -715,33 +714,6 @@ void CameraStream::ProjectCommonSemantic()
 
     // Create the convex poligon from array of Point and add transparency to the final image
     addWeighted(overlay, alpha, ActualFrame, 1 - alpha, 0, ActualFrame);
-
-    /*
-     COMMON AREAS BETWEEN THE THREE CAMERAS
-
-    findNonZero(CommonSemanticAllCameras, CommonPoints);
-    // Convert from Point to Point2f floor coordinates. Auxiliar vector.
-    vector<Point2f> CommonPoints2(CommonPoints.begin(), CommonPoints.end());
-
-    // Apply Homography to vector of Points2f to find the projection of the floor
-    // Reprojection to the view
-    perspectiveTransform(CommonPoints2, ReProjectedCommonPoints, Homography.inv(DECOMP_LU));
-    // Reprojection to actual frame
-    perspectiveTransform(ReProjectedCommonPoints, ReProjectedCommonPoints, HomographyBetweenViews.inv(DECOMP_LU));
-
-    // Copy the cenital image to an overlay layer
-    ActualFrame.copyTo(overlay);
-
-    for (int i = 0 ; i < ReProjectedCommonPoints.size() ; i++){
-        Point punto = ReProjectedCommonPoints[i];
-        if ((punto.y > 0 && punto.y < overlay.rows) && (punto.x > 0 && punto.x < overlay.cols)){
-            overlay.at<Vec3b>(punto.y, punto.x) = Color;
-        }
-    }
-
-    // Create the convex poligon from array of Point and add transparency to the final image
-    addWeighted(overlay, alpha, ActualFrame, 1 - alpha, 0, ActualFrame);
-    */
 }
 
 void CameraStream::AkazePointsForViewImages()
@@ -878,8 +850,8 @@ void CameraStream::extractFGBlobs(Mat fgmask, string CBOption)
     // Suppress small boxes
     for (size_t i = 0; i < bloblist_joined.size(); i++) {
         Rect rect = bloblist_joined[i];
-        if (rect.area() > 5000)
-            bloblist_joined_filtered.push_back(rect);
+        //if (rect.area() > 5000)
+        bloblist_joined_filtered.push_back(rect);
     }
     FGBlobs = bloblist_joined_filtered;
     return;
@@ -917,7 +889,6 @@ void CameraStream::ExtractFGImages(Mat ActualFrame, vector<Rect> FGBlobs){
 
 void CameraStream::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects)
 {
-    // NMS WORKING. Not the one in people detector
     vector<int> IntersectVector (srcRects.size(), 0);
     resRects.clear();
 

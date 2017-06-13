@@ -24,7 +24,7 @@ public:
     int IoUThreshold = 50;
 
     // Extract evaluation scores
-    void ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<Rect> DetectionsVector, String FrameNumber);
+    void ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<Rect> DetectionsVector, vector<int> SupressedIndices, String FrameNumber);
 
     // Intersection Over Union Function
     bool IoU (Rect GroundTruth, Rect BoundingBox, float threshold);

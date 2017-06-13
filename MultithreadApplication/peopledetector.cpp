@@ -22,31 +22,29 @@ void PeopleDetector::MainPeopleDetection(CameraStream &Camera, String CBOption, 
     if (!CBOption.compare("HOG")){
         // HOG Detector
         //HOGPeopleDetection(Camera);
-        //paintBoundingBoxes(Camera.ActualFrame, CBOption, Camera.HOGBoundingBoxesNMS, Camera.CameraNumber, 1);
         //projectBlobs(Camera.HOGBoundingBoxesNMS, Camera.HOGScores, Camera.Homography, CenitalPlane, Camera.CameraNumber, RepresentationOption);
     }
     else if(!CBOption.compare("FastRCNN")){
         // FastRCNN Detector
         //FastRCNNPeopleDetection(FrameNumber, Camera1.FastRCNNMethod);
-        //paintBoundingBoxes(Camera.ActualFrame, CBOption, Camera.RCNNBoundingBoxesNMS, Scalar (0, 0, 255), 1);
         //projectBlobs(Camera.RCNNBoundingBoxesNMS, Camera.RCNNScores, Camera.Homography, CenitalPlane);
     }
     else if(!CBOption.compare("DPM")){
         // DPM Detector
         DPMPeopleDetection(Camera, PDFiltering);
-        paintBoundingBoxes(Camera.ActualFrame, CBOption, Camera.DPMBoundingBoxes, Camera.CameraNumber, 1);
+        AllPedestrianVector = Camera.DPMBoundingBoxes;
         projectBlobs(Camera.DPMBoundingBoxes, Camera.DPMScores, Camera.Homography, Camera.HomographyBetweenViews, CenitalPlane, Camera.CameraNumber, RepresentationOption);
     }
     else if(!CBOption.compare("ACF")){
         // ACF Detector
         ACFPeopleDetection(Camera, PDFiltering);
-        paintBoundingBoxes(Camera.ActualFrame, CBOption, Camera.ACFBoundingBoxes, Camera.CameraNumber, 1);
+        AllPedestrianVector = Camera.ACFBoundingBoxes;
         projectBlobs(Camera.ACFBoundingBoxes, Camera.ACFScores, Camera.Homography, Camera.HomographyBetweenViews, CenitalPlane, Camera.CameraNumber, RepresentationOption);
     }
     else if(!CBOption.compare("Semantic Detector")){
         // People detection using labels from semantic information.
         // GAUSSSIAN REPRESENTATION NOT WORKING BECAUSE OF LACK OF SCORES
-        paintBoundingBoxes(Camera.ActualFrame, CBOption, Camera.FGBlobs, Camera.CameraNumber, 1);
+        AllPedestrianVector = Camera.FGBlobs;
         projectBlobs(Camera.FGBlobs, Camera.DPMScores, Camera.Homography, Camera.HomographyBetweenViews, CenitalPlane, Camera.CameraNumber, RepresentationOption);
     }
     else if(!CBOption.compare("None")){
@@ -149,9 +147,9 @@ void PeopleDetector::paintBoundingBoxes(Mat &ActualFrame, string Method, vector<
             r.y += cvRound(r.height*0.07);
             r.height = cvRound(r.height*0.8);
         }
-        if (Method.compare("GT")) {
-            AllPedestrianVector.push_back(r);
-        }
+        //if (Method.compare("GT")) {
+          //  AllPedestrianVector.push_back(r);
+        //}
         rectangle(ActualFrame, r.tl(), r.br(), Color, Thickness);
     }
 }
@@ -463,7 +461,7 @@ void PeopleDetector::gaussianFunction(Mat &Gaussian3C, Mat X, Mat Y, Point2f cen
 
 void PeopleDetector::ReprojectionFusion(vector<Point2f> ProjCenterPoints, vector<Point2f> ProjLeftPoints, vector<Point2f> ProjRightPoints, Mat Homography, Mat HomographyBetweenViews, Mat &ActualFrame)
 {
-    if (ProjCenterPoints.empty()){
+    if ((ProjCenterPoints.empty()) || (ProjLeftPoints.empty()) || (ProjRightPoints.empty())){
         return;
     }
 
@@ -491,9 +489,7 @@ void PeopleDetector::ReprojectionFusion(vector<Point2f> ProjCenterPoints, vector
         Blob.y = LeftCorner.y - Blob.height;
 
         AllPedestrianVector.push_back(Blob);
-
-        circle(ActualFrame, Center, 10, Scalar(255,255,255), 3);
-        rectangle(ActualFrame, Blob, Scalar(255,255,255), 3);
+        circle(ActualFrame, Center, 10, Scalar(255,255,255), 2);
     }
 }
 
@@ -523,6 +519,8 @@ void PeopleDetector::SemanticConstraining(vector<Point2f> ProjCenterPoints1, vec
     // Vector for supressed points due to semantic constrains
     vector<Point2f> SupressedPoints;
     Point2f Point;
+    SupressedIndices.clear();
+    int Counter = 0;
 
 
     // CHECK IF THE DETECTIONS ARE ON THE COMMON FLOOR
@@ -536,8 +534,10 @@ void PeopleDetector::SemanticConstraining(vector<Point2f> ProjCenterPoints1, vec
 
             if (!(Label1 == 3 || Label2 == 3)){
                 SupressedPoints.push_back(Point);
+                SupressedIndices.push_back(Counter);
             }
         }
+        Counter++;
     }
 
     // Detections from another camera
@@ -549,8 +549,10 @@ void PeopleDetector::SemanticConstraining(vector<Point2f> ProjCenterPoints1, vec
 
             if (!(Label1 == 3 || Label2 == 3)){
                 SupressedPoints.push_back(Point);
+                SupressedIndices.push_back(Counter);
             }
         }
+        Counter++;
     }
 
     // Detections from another camera
@@ -562,8 +564,11 @@ void PeopleDetector::SemanticConstraining(vector<Point2f> ProjCenterPoints1, vec
 
             if (!(Label1 == 3 || Label2 == 3)){
                 SupressedPoints.push_back(Point);
+                SupressedIndices.push_back(Counter);
+
             }
         }
+        Counter++;
     }
 
     // Transform the supressed points to the actual frame perspective
@@ -574,6 +579,7 @@ void PeopleDetector::SemanticConstraining(vector<Point2f> ProjCenterPoints1, vec
 
         for(int n = 0; n < SupressedPoints.size(); n++){
             Point2f SupressedCenter = SupressedPoints[n];
+            cout << SupressedCenter << endl;
             putText(ActualFrame, "BLOB SUPRESSED", SupressedCenter, FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1.5);
         }
     }

@@ -121,33 +121,43 @@ void CameraWorker::processVideo()
         // Draw semantic projection in the cenital plane
         Camera.drawSemantic(CenitalPlane);
 
+        // ------------------------------------------- //
+        //     PEOPLE DETECTION & BLOBS PROJECTION     //
+        // ------------------------------------------- //
+
+        PeopleDetec.MainPeopleDetection(Camera, CBOption, RepresentationOption, PDFiltering, CenitalPlane);
+        barrier.wait();
+        emit PedestrianDetectionFinished(Camera.CameraNumber);
+
+        if(Camera.CameraNumber == 1){
+            // Reproject to the frames other camera detections
+            PeopleDetec.ReprojectionFusion(ProjCenterPoints1, ProjLeftPoints1, ProjRightPoints1, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
+            PeopleDetec.ReprojectionFusion(ProjCenterPoints2, ProjLeftPoints2, ProjRightPoints2, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
+
+            // Filter Pedestrian Detections that are not correcly placed within the semantic (floor)
+            PeopleDetec.SemanticConstraining(ProjCenterPoints1, ProjCenterPoints2, Camera.CameraNumber, Camera.ActualFrame, Camera.Homography, Camera.HomographyBetweenViews);
+
+            // Non Maximum supression betwen blobs from all the cameras
+            Camera.non_max_suppresion(PeopleDetec.AllPedestrianVector, PeopleDetec.AllPedestrianVectorNMS);
+            PeopleDetec.paintBoundingBoxes(Camera.ActualFrame, CBOption, PeopleDetec.AllPedestrianVectorNMS, Camera.CameraNumber, 2);
+
+            // ---------------------------------- //
+            //             EVALUATION             //
+            // ---------------------------------- //
+            // Read GT
+            vector<Rect> GroundTruthVector;
+            Evaluate.GTTextParser(Camera.CameraNumber, GroundTruthVector, FrameNumber);
+            PeopleDetec.paintBoundingBoxes(Camera.ActualFrame, "GT", GroundTruthVector, Camera.CameraNumber, 5);
+
+            Evaluate.ExtractEvaluationScores(GroundTruthVector, PeopleDetec.AllPedestrianVectorNMS, PeopleDetec.SupressedIndices, FrameNumber);
+        }
+
         // ---------------------------- //
         //   INDUCED PLANE HOMOGRAPHY   //
         // ---------------------------- //
         // Project common semantic back to the camera frames
         if(SemanticEnabled)
             Camera.ProjectCommonSemantic();
-
-        // ------------------------------------------- //
-        //     PEOPLE DETECTION & BLOBS PROJECTION     //
-        // ------------------------------------------- //
-        PeopleDetec.MainPeopleDetection(Camera, CBOption, RepresentationOption, PDFiltering, CenitalPlane);
-        barrier.wait();
-        emit PedestrianDetectionFinished(Camera.CameraNumber);
-        // Filter Pedestrian Detections that are not correcly placed within the semantic
-        PeopleDetec.SemanticConstraining(ProjCenterPoints1, ProjCenterPoints2, Camera.CameraNumber, Camera.ActualFrame, Camera.Homography, Camera.HomographyBetweenViews);
-        // Reproject to the frames other camera detections
-        PeopleDetec.ReprojectionFusion(ProjCenterPoints1, ProjLeftPoints1, ProjRightPoints1, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
-        PeopleDetec.ReprojectionFusion(ProjCenterPoints2, ProjLeftPoints2, ProjRightPoints2, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
-
-        // ---------------------------------- //
-        //             EVALUATION             //
-        // ---------------------------------- //
-        // Read GT
-        vector<Rect> GroundTruthVector;
-        Evaluate.GTTextParser(Camera.CameraNumber, GroundTruthVector, FrameNumber);
-        PeopleDetec.paintBoundingBoxes(Camera.ActualFrame, "GT", GroundTruthVector, Camera.CameraNumber, 5);
-        Evaluate.ExtractEvaluationScores(GroundTruthVector, PeopleDetec.AllPedestrianVector, FrameNumber);
 
         // ------------------------------------------- //
         //        FRAME RESIZE AND FRAME NUMBER        //
