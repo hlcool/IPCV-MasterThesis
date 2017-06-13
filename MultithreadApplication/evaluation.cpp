@@ -88,23 +88,18 @@ void Evaluation::GTTextParser(int CameraNumber, vector<Rect> &GroundTruthVector,
     }
 }
 
-void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<Rect> DetectionsVector, vector<int> SupressedIndices, String FrameNumber)
+void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<Rect> DetectionsVector, String FrameNumber)
 {
-    if(DetectionsVector.empty()){
-        EvaluationFile << FrameNumber << endl;
-        return;
-    }
-
     float FalsePositives = 0;
     float TruePositives = 0;
     float Precision, Recall;
 
-    for(int k = 0; k < SupressedIndices.size(); k++){
-        int Index = SupressedIndices[k];
-        DetectionsVector.erase(DetectionsVector.begin() + Index);
+    if(DetectionsVector.empty() && GroundTruthVector.empty()){
+        cout << "hads" << endl;
+        EvaluationFile << FrameNumber << endl;
+        return;
     }
-
-    if(GroundTruthVector.empty()){
+    else if(!DetectionsVector.empty() && GroundTruthVector.empty()){
         FalsePositives = DetectionsVector.size();
     }
     else{
@@ -120,7 +115,6 @@ void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<
                 }
             }
         }
-
     }
 
     Precision = TruePositives / (TruePositives + FalsePositives);

@@ -124,33 +124,31 @@ void CameraWorker::processVideo()
         // ------------------------------------------- //
         //     PEOPLE DETECTION & BLOBS PROJECTION     //
         // ------------------------------------------- //
-
         PeopleDetec.MainPeopleDetection(Camera, CBOption, RepresentationOption, PDFiltering, CenitalPlane);
         barrier.wait();
         emit PedestrianDetectionFinished(Camera.CameraNumber);
 
-        if(Camera.CameraNumber == 1){
-            // Reproject to the frames other camera detections
-            PeopleDetec.ReprojectionFusion(ProjCenterPoints1, ProjLeftPoints1, ProjRightPoints1, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
-            PeopleDetec.ReprojectionFusion(ProjCenterPoints2, ProjLeftPoints2, ProjRightPoints2, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
+        // Reproject to the frames other camera detections
+        PeopleDetec.ReprojectionFusion(ProjCenterPoints1, ProjLeftPoints1, ProjRightPoints1, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
+        PeopleDetec.ReprojectionFusion(ProjCenterPoints2, ProjLeftPoints2, ProjRightPoints2, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
 
-            // Filter Pedestrian Detections that are not correcly placed within the semantic (floor)
-            PeopleDetec.SemanticConstraining(ProjCenterPoints1, ProjCenterPoints2, Camera.CameraNumber, Camera.ActualFrame, Camera.Homography, Camera.HomographyBetweenViews);
+        // Non Maximum supression betwen blobs from all the cameras
+        Camera.non_max_suppresion(PeopleDetec.AllPedestrianVector, PeopleDetec.AllPedestrianVectorNMS);
 
-            // Non Maximum supression betwen blobs from all the cameras
-            Camera.non_max_suppresion(PeopleDetec.AllPedestrianVector, PeopleDetec.AllPedestrianVectorNMS);
-            PeopleDetec.paintBoundingBoxes(Camera.ActualFrame, CBOption, PeopleDetec.AllPedestrianVectorNMS, Camera.CameraNumber, 2);
+        // Filter Pedestrian Detections that are not correcly placed within the semantic (floor)
+        PeopleDetec.SemanticConstraining(PeopleDetec.AllPedestrianVectorNMS, Camera.CameraNumber, Camera.ActualFrame, Camera.Homography, Camera.HomographyBetweenViews);
 
-            // ---------------------------------- //
-            //             EVALUATION             //
-            // ---------------------------------- //
-            // Read GT
-            vector<Rect> GroundTruthVector;
-            Evaluate.GTTextParser(Camera.CameraNumber, GroundTruthVector, FrameNumber);
-            PeopleDetec.paintBoundingBoxes(Camera.ActualFrame, "GT", GroundTruthVector, Camera.CameraNumber, 5);
+        // Paint Bounding Boxes
+        PeopleDetec.paintBoundingBoxes(Camera.ActualFrame, CBOption, PeopleDetec.AllPedestrianVectorNMS, Camera.CameraNumber, 2);
 
-            Evaluate.ExtractEvaluationScores(GroundTruthVector, PeopleDetec.AllPedestrianVectorNMS, PeopleDetec.SupressedIndices, FrameNumber);
-        }
+        // ---------------------------------- //
+        //             EVALUATION             //
+        // ---------------------------------- //
+        // Read GT
+        vector<Rect> GroundTruthVector;
+        Evaluate.GTTextParser(Camera.CameraNumber, GroundTruthVector, FrameNumber);
+        PeopleDetec.paintBoundingBoxes(Camera.ActualFrame, "GT", GroundTruthVector, Camera.CameraNumber, 5);
+        Evaluate.ExtractEvaluationScores(GroundTruthVector, PeopleDetec.AllPedestrianVectorNMS, FrameNumber);
 
         // ---------------------------- //
         //   INDUCED PLANE HOMOGRAPHY   //

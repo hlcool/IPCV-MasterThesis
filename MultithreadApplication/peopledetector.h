@@ -52,7 +52,7 @@ public:
 
     // Semantic Pedestrian Constraining
     vector<int> SupressedIndices;
-    void SemanticConstraining(vector<Point2f> ProjCenterPoints1, vector<Point2f> ProjCenterPoints2, int CameraNumber, Mat &ActualFrame, Mat Homography, Mat HomographyBetweenViews);
+    void SemanticConstraining(vector<Rect> &AllPedestrianVector, int CameraNumber, Mat &ActualFrame, Mat Homography, Mat HomographyBetweenViews);
 
     // Final Pedestrian Projected Bounding Boxes from the camera.
     vector<Point2f> ProjectedCenterPoints, ProjectedLeftPoints, ProjectedRightPoints;

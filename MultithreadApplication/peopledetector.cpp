@@ -147,9 +147,6 @@ void PeopleDetector::paintBoundingBoxes(Mat &ActualFrame, string Method, vector<
             r.y += cvRound(r.height*0.07);
             r.height = cvRound(r.height*0.8);
         }
-        //if (Method.compare("GT")) {
-          //  AllPedestrianVector.push_back(r);
-        //}
         rectangle(ActualFrame, r.tl(), r.br(), Color, Thickness);
     }
 }
@@ -493,7 +490,7 @@ void PeopleDetector::ReprojectionFusion(vector<Point2f> ProjCenterPoints, vector
     }
 }
 
-void PeopleDetector::SemanticConstraining(vector<Point2f> ProjCenterPoints1, vector<Point2f> ProjCenterPoints2, int CameraNumber, Mat &ActualFrame, Mat Homography, Mat HomographyBetweenViews)
+void PeopleDetector::SemanticConstraining(vector<Rect> &AllPedestrianVector, int CameraNumber, Mat &ActualFrame, Mat Homography, Mat HomographyBetweenViews)
 {
     Mat CommonImage1, CommonImage2;
 
@@ -517,70 +514,41 @@ void PeopleDetector::SemanticConstraining(vector<Point2f> ProjCenterPoints1, vec
     }
 
     // Vector for supressed points due to semantic constrains
-    vector<Point2f> SupressedPoints;
-    Point2f Point;
     SupressedIndices.clear();
     int Counter = 0;
 
+    for(int i = 0; i < AllPedestrianVector.size(); i++){
+        Rect Blob = AllPedestrianVector[i];
+        Point2f BottomCenter, BottomCenterProjected;
+        vector<Point2f> VectorAux;
 
-    // CHECK IF THE DETECTIONS ARE ON THE COMMON FLOOR
+        // COmpute bottom middle part of the blob and save it in an auxiliar vector
+        BottomCenter.x = cvRound(Blob.x + Blob.width/2);
+        BottomCenter.y = Blob.y + Blob.height;
+        VectorAux.push_back(BottomCenter);
 
-    // Detections from the own camera
-    for(int i = 0; i < ProjectedCenterPoints.size(); i++){
-        Point = ProjectedCenterPoints[i];
-        if((Point.x > 0) && (Point.y > 0) && (Point.x < CommonImage1.cols) && (Point.y < CommonImage1.rows)) {
-            int Label1 = CommonImage1.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
-            int Label2 = CommonImage2.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
+        // Transform the point to the cenital plane
+        perspectiveTransform(VectorAux, VectorAux, HomographyBetweenViews);
+        perspectiveTransform(VectorAux, VectorAux, Homography);
+
+        // Extract the projected point
+        BottomCenterProjected = VectorAux[0];
+
+        if((BottomCenterProjected.x > 0) && (BottomCenterProjected.y > 0) && (BottomCenterProjected.x < CommonImage1.cols) && (BottomCenterProjected.y < CommonImage1.rows)) {
+            int Label1 = CommonImage1.at<uchar>(cvRound(BottomCenterProjected.y), cvRound(BottomCenterProjected.x)) / 20;
+            int Label2 = CommonImage2.at<uchar>(cvRound(BottomCenterProjected.y), cvRound(BottomCenterProjected.x)) / 20;
 
             if (!(Label1 == 3 || Label2 == 3)){
-                SupressedPoints.push_back(Point);
                 SupressedIndices.push_back(Counter);
+                putText(ActualFrame, "BLOB SUPRESSED", BottomCenter, FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1.5);
             }
         }
         Counter++;
     }
 
-    // Detections from another camera
-    for(int j = 0; j < ProjCenterPoints1.size(); j++){
-        Point = ProjCenterPoints1[j];
-        if((Point.x > 0) && (Point.y > 0) && (Point.x < CommonImage1.cols) && (Point.y < CommonImage1.rows)) {
-            int Label1 = CommonImage1.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
-            int Label2 = CommonImage2.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
-
-            if (!(Label1 == 3 || Label2 == 3)){
-                SupressedPoints.push_back(Point);
-                SupressedIndices.push_back(Counter);
-            }
-        }
-        Counter++;
-    }
-
-    // Detections from another camera
-    for(int k = 0; k < ProjCenterPoints2.size(); k++){
-        Point = ProjCenterPoints2[k];
-        if((Point.x > 0) && (Point.y > 0) && (Point.x < CommonImage1.cols) && (Point.y < CommonImage1.rows)) {
-            int Label1 = CommonImage1.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
-            int Label2 = CommonImage2.at<uchar>(cvRound(Point.y), cvRound(Point.x)) / 20;
-
-            if (!(Label1 == 3 || Label2 == 3)){
-                SupressedPoints.push_back(Point);
-                SupressedIndices.push_back(Counter);
-
-            }
-        }
-        Counter++;
-    }
-
-    // Transform the supressed points to the actual frame perspective
-    if (!SupressedPoints.empty()){
-        // Project the suppresed points to print a text
-        perspectiveTransform(SupressedPoints, SupressedPoints, Homography.inv(DECOMP_LU));
-        perspectiveTransform(SupressedPoints, SupressedPoints, HomographyBetweenViews.inv(DECOMP_LU));
-
-        for(int n = 0; n < SupressedPoints.size(); n++){
-            Point2f SupressedCenter = SupressedPoints[n];
-            cout << SupressedCenter << endl;
-            putText(ActualFrame, "BLOB SUPRESSED", SupressedCenter, FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1.5);
-        }
+    // Suppress the blobs from the vector
+    for(int k = 0; k < SupressedIndices.size(); k++){
+        int Index = SupressedIndices[k];
+        AllPedestrianVector.erase(AllPedestrianVector.begin() + Index);
     }
 }
