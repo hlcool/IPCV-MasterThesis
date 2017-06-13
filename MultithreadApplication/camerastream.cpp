@@ -762,7 +762,7 @@ void CameraStream::InertialPlanes(Mat ActualSemFrame, Mat CenitalPlane, String F
     // Principal camera point
     P = Mat::zeros(1, 3, CV_64F);
     // Desired height. The heigher the number, the more heigth.
-    vector<float> HeightVector = {0.0001, 0.0002, 0.0004, 0.0006, 0.0008, 0.0012, 0.0016};
+    vector<float> HeightVector = {0.0001, 0.0002, 0.0003, 0.0004, 0.0005, 0.0006, 0.0007};
 
     if(CameraNumber == 1){
         ZUnitVector.at<double>(0,0) = 0;
@@ -795,9 +795,12 @@ void CameraStream::InertialPlanes(Mat ActualSemFrame, Mat CenitalPlane, String F
         HVPiPrima = HVPi.inv(DECOMP_LU) + IntertialHeight * P * ZUnitVector;
         HVPiPrima = HVPiPrima.inv(DECOMP_LU);
 
-        //cout << endl;
-        //cout << "Frame Number: " << FrameNumber << ". Camara: " << to_string(CameraNumber) << ". Altura: " << to_string(IntertialHeight) << ". H = " << HVPiPrima << endl;
-        //cout << endl;
+        if(CameraNumber == 2){
+            cout << endl;
+            //cout << "Frame Number: " << FrameNumber << ". Camara: " << to_string(CameraNumber) << ". Altura: " << to_string(IntertialHeight) << ". H = " << HVPiPrima << endl;
+            cout << HVPiPrima << endl;
+            cout << endl;
+        }
 
         // Supress the floor in the image
         ActualSemFrame.setTo(0,(ActualSemFrame == 3));
