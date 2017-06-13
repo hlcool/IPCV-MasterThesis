@@ -243,7 +243,7 @@ void CameraStream::extractPDMask(Mat ActualSemFrame)
 
 void CameraStream::computeHomography()
 {
-    string MainPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Homography Images";
+    string MainPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Homography Images";
 
     for (int CameraView = 1; CameraView <= NViews; CameraView++){
         vector<Point2f> pts_src, pts_dst;
@@ -762,7 +762,7 @@ void CameraStream::InertialPlanes(Mat ActualSemFrame, Mat CenitalPlane, String F
     // Principal camera point
     P = Mat::zeros(1, 3, CV_64F);
     // Desired height. The heigher the number, the more heigth.
-    vector<float> HeightVector = {0.00001, 0.00002, 0.00004, 0.00006, 0.00008, 0.00012, 0.0002};
+    vector<float> HeightVector = {0.0001, 0.0002, 0.0004, 0.0006, 0.0008, 0.0012, 0.0016};
 
     if(CameraNumber == 1){
         ZUnitVector.at<double>(0,0) = 0;
@@ -795,10 +795,14 @@ void CameraStream::InertialPlanes(Mat ActualSemFrame, Mat CenitalPlane, String F
         HVPiPrima = HVPi.inv(DECOMP_LU) + IntertialHeight * P * ZUnitVector;
         HVPiPrima = HVPiPrima.inv(DECOMP_LU);
 
-        warpPerspective(ActualSemFrame, SemanticWarped, HVPiPrima, CenitalPlane.size());
+        //cout << endl;
+        //cout << "Frame Number: " << FrameNumber << ". Camara: " << to_string(CameraNumber) << ". Altura: " << to_string(IntertialHeight) << ". H = " << HVPiPrima << endl;
+        //cout << endl;
 
         // Supress the floor in the image
-        SemanticWarped.setTo(0,(SemanticWarped == 3));
+        ActualSemFrame.setTo(0,(ActualSemFrame == 3));
+
+        warpPerspective(ActualSemFrame, SemanticWarped, HVPiPrima, CenitalPlane.size());
 
         String ImageName = "/Users/alex/Desktop/Inertial Planes/Camera " + to_string(CameraNumber) + "/Height " + to_string(i+1) + "/Frame " + FrameNumber + ".png";
         imwrite(ImageName, SemanticWarped*20);

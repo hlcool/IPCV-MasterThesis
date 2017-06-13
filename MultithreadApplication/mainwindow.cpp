@@ -56,9 +56,9 @@ void MainWindow::on_actionOpen_file_triggered()
         filenames = QFileDialog::getOpenFileNames(this, tr("Open video files for the cameras"), GlobalPath, tr("Video Files (*.mpg *.avi *.m4v *.ts *.m2v)"));
     }
     else {
-        filenames << "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Videos/Camera1Sync.m2v";
-        filenames << "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Videos/Camera2Sync.m2v";
-        filenames << "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3/Videos/Camera3Sync.m2v";
+        filenames << "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Videos/Camera1Sync.m2v";
+        filenames << "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Videos/Camera2Sync.m2v";
+        filenames << "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Videos/Camera3Sync.m2v";
     }
     threadStarting();
 }
@@ -300,7 +300,7 @@ void onMouseCamera1Frame(int evt, int x, int y, int, void*)
 
 void MainWindow::on_actionCamera_1_triggered()
 {
-    string VideoPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3";
+    string VideoPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5";
     for(int i = 1; i <= NViews; i++){
         // Load the cenital plane
         Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
@@ -352,7 +352,7 @@ void onMouseCamera2Frame(int evt, int x, int y, int, void*)
 
 void MainWindow::on_actionCamera_2_triggered()
 {
-    string VideoPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3";
+    string VideoPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5";
     for(int i = 1; i <= NViews; i++){
         // Load the cenital plane
         Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
@@ -404,7 +404,7 @@ void onMouseCamera3Frame(int evt, int x, int y, int, void*)
 
 void MainWindow::on_actionCamera_3_triggered()
 {
-    string VideoPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 3";
+    string VideoPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5";
     for(int i = 1; i <= NViews; i++){
         // Load the cenital plane
         Mat CenitalFrame = imread("/Users/alex/IPCV-MasterThesis/ApplicationCode/Inputs/Homography/CenitalViewMeasured.png");
