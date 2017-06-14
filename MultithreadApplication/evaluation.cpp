@@ -109,7 +109,7 @@ void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<
             Flag = 0;
             for(int i = 0; i < DetectionsVector.size(); i++){
                 Rect Detection = DetectionsVector[i];
-                if(IoU( GT, Detection, 0.5)){
+                if(IoU( GT, Detection, 0.3)){
                     TruePositives++;
                     Flag = 1;
                 }
