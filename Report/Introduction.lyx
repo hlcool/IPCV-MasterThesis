@@ -120,7 +120,7 @@ Motivation
 
 \begin_layout Standard
 Nowadays, we live surrounded by electronic devices which objective is to
- ensure the safety and security of the global population or to ease our
+ ensure the safety and security of the global population and to ease our
  lives on everyday tasks.
  These range from biometric systems 
 \begin_inset CommandInset citation
@@ -175,13 +175,14 @@ key "zhao2016pyramid"
 \end_layout
 
 \begin_layout Standard
-Usually, mentioned video surveillance systems could be focus either from
- a single-camera point of view, whcih will lead to a simple scenariao in
- which the potential actions/events to detect will be observed from one
- point in the scene, or, on the contrary from a multi-camera setup.
- This sort of configuration will arise multiple benefits when dealing with
- big spaces as it will provide the user different views of the scene which
- will help the application purposes.
+Usually, mentioned video surveillance systems could be focus either on the
+ analysis of a single-camera point of view, which will lead to a simple
+ scenario in which the potential actions/events to detect will be observed
+ from a single point in the scene or, on the analysis of a multi-camera
+ setup.
+ This last configuration will arise multiple benefits when analyzing big
+ spaces as it will provide the user different views of the scene disambiguating
+ occluded areas in the mono-camera views.
 \end_layout
 
 \begin_layout Standard
@@ -197,9 +198,9 @@ key "mazzon2013multi,turner2002encoding,scovanner2009learning"
 \end_inset
 
  and temporal usage of a given area in large-scale scenarios such as shopping
- malls, universities and, generally, in any public-use building, either
- to extract statistical measures of behavior or to detect anomalous unexpected
- events 
+ malls, universities and, generally, public-use buildings.
+ Analysis range from the extraction of statistical measures of behavior
+ to detect anomalous unexpected events 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "jiang2011anomalous"
@@ -207,8 +208,8 @@ key "jiang2011anomalous"
 \end_inset
 
 .
- This analysis will come from a combination of complementary algorithms
- such as contextual or semantic area classification, people detection and
+ This analysis may come from a combination of complementary algorithms such
+ as contextual and semantic area classification, people detection and as
  crowd behavior analysis.
 \end_layout
 
@@ -224,12 +225,16 @@ name "sec:Objectives"
 \end_layout
 
 \begin_layout Standard
-The main objective of this master thesis is to extract contextual description
+The main objective of this master thesis is to extract contextual descriptions
  from a large-scale populated scenario while extracting temporal statistical
  usage data from relevant scene spaces using various cameras.
  This should be supported with a Graphical User Interface application.
- To fulfill this objective, this work will embrace two different blocks
- of objectives that will complement each other.
+ 
+\end_layout
+
+\begin_layout Standard
+To fulfill this objective, this work will embrace two different blocks of
+ objectives that will complement each other.
  The first one will have to do with the design of a graphical user interface
  (GUI) whereas the second block will deal with algorithm and research-related
  objectives.
@@ -242,7 +247,7 @@ Graphical User Interface
 \begin_layout Standard
 The main user interface should be able to visualize and dynamically arrange
  usage statistics from different areas of interest in a public space either
- pre-generated or generated under a real-time constraint, under a user-friendly
+ pre-generated or generated under a real-time constraint, using a user-friendly
  environment.
 \end_layout
 
@@ -258,8 +263,8 @@ The algorithm related objectives are:
 To integrate a semantic segmentation algorithm to perform contextual element
  analysis in video sequences.
  The objective is to detect and classify and determine the spatial extend
- on each frame of the video of relevant elements such as doors, desks, corridors
- and floor areas.
+ on each frame of the video of relevant elements such as doors, chairs,
+ corridors and floor areas.
  We aim to:
 \end_layout
 
@@ -290,9 +295,8 @@ Create a fusion mechanism to take advantage of the multi-camera scenario.
 \end_layout
 
 \begin_layout Enumerate
-Analyze people and crowd motion patterns to by combining them with contextual
- information define usage statistical measures on predefined spaces where
- specific activities take place.
+Increase people detection algorithms performance by the use of semantic
+ constraining information to suppress false detections.
 \end_layout
 
 \end_deeper

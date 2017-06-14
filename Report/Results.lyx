@@ -801,7 +801,7 @@ name "fig:Tour setting menu"
 Experiment Setup
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Dataset
 \end_layout
 
@@ -812,7 +812,7 @@ Dataset generado con las camaras mencionadas.
  Imagenes del dataset
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Ground-Truth Generation
 \end_layout
 
@@ -822,7 +822,7 @@ Generacion de ground truth de personas mediante software Via Annotation
  Anotacion manual de X frames para cada camara.
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Evaluation Framework
 \end_layout
 
