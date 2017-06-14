@@ -19,7 +19,10 @@ public:
     void GTTextParser(int CameraNumber, vector<Rect> &GroundTruthVector, String FrameNumber);
 
     // Recall and precision vectors
-    vector<double> Recall, Precision;
+    //vector<double> Recall, Precision;
+    float FalsePositives = 0;
+    float TruePositives = 0;
+    float NDetections = 0;
 
     int IoUThreshold = 50;
 

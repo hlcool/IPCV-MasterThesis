@@ -90,9 +90,9 @@ void Evaluation::GTTextParser(int CameraNumber, vector<Rect> &GroundTruthVector,
 
 void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<Rect> DetectionsVector, String FrameNumber)
 {
-    float FalsePositives = 0;
-    float TruePositives = 0;
     float Precision, Recall;
+
+    NDetections = NDetections + DetectionsVector.size();
 
     if(DetectionsVector.empty() && GroundTruthVector.empty()){
         cout << "hads" << endl;
@@ -100,7 +100,7 @@ void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<
         return;
     }
     else if(!DetectionsVector.empty() && GroundTruthVector.empty()){
-        FalsePositives = DetectionsVector.size();
+        FalsePositives = FalsePositives + DetectionsVector.size();
     }
     else{
         for(int i = 0; i < DetectionsVector.size(); i++){
@@ -118,7 +118,7 @@ void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<
     }
 
     Precision = TruePositives / (TruePositives + FalsePositives);
-    Recall = TruePositives / DetectionsVector.size();
+    Recall = TruePositives / NDetections;
     // Save measures to .txt file
     EvaluationFile << FrameNumber << "       " << Precision << "       " << Recall << endl;
 }
