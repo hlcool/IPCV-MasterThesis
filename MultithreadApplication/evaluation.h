@@ -22,7 +22,9 @@ public:
     //vector<double> Recall, Precision;
     float FalsePositives = 0;
     float TruePositives = 0;
-    float NDetections = 0;
+    float FalseNegatives = 0;
+    float NDetecciones = 0;
+    float GTItems = 0;
 
     int IoUThreshold = 50;
 

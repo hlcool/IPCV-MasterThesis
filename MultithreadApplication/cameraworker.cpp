@@ -36,7 +36,7 @@ void CameraWorker::preProcessVideo()
 
     // Create and open the statistics file
     Evaluate.EvaluationFile.open("/Users/alex/IPCV-MasterThesis/MultithreadApplication/Evaluation Stats Camera " + to_string(Camera.CameraNumber) + ".txt");
-    Evaluate.EvaluationFile << "Frame  TruePositives  False Positives  Number of Detections  Precision  Recall" << endl;
+    Evaluate.EvaluationFile << "Frame   GroundTruth Elements   TruePositives  False Positives  Number of Detections   False Negatives    Precision           Recall" << endl;
 
     // Compute camera homographies
     Camera.computeHomography();

@@ -610,6 +610,8 @@ void PeopleDetector::SemanticConstraining(vector<Rect> &AllPedestrianVector, int
         Counter++;
     }
 
+    sort(SupressedIndices.begin(), SupressedIndices.end(), greater<int>());
+
     // Suppress the blobs from the vector
     for(int k = 0; k < SupressedIndices.size(); k++){
         int Index = SupressedIndices[k];

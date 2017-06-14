@@ -91,8 +91,10 @@ void Evaluation::GTTextParser(int CameraNumber, vector<Rect> &GroundTruthVector,
 void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<Rect> DetectionsVector, String FrameNumber)
 {
     float Precision, Recall;
+    bool Flag;
 
-    NDetections = NDetections + DetectionsVector.size();
+    NDetecciones = NDetecciones + DetectionsVector.size();
+    GTItems = GTItems + GroundTruthVector.size();
 
     if(DetectionsVector.empty() && GroundTruthVector.empty()){
         EvaluationFile << FrameNumber << endl;
@@ -102,24 +104,32 @@ void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<
         FalsePositives = FalsePositives + DetectionsVector.size();
     }
     else{
-        for(int i = 0; i < DetectionsVector.size(); i++){
-            Rect Detection = DetectionsVector[i];
-            for (int j = 0; j < GroundTruthVector.size(); j++){
-                Rect GT = GroundTruthVector[j];
+        for (int j = 0; j < GroundTruthVector.size(); j++){
+            Rect GT = GroundTruthVector[j];
+            Flag = 0;
+            for(int i = 0; i < DetectionsVector.size(); i++){
+                Rect Detection = DetectionsVector[i];
                 if(IoU( GT, Detection, 0.5)){
                     TruePositives++;
+                    Flag = 1;
                 }
-                else{
-                    FalsePositives++;
-                }
+            }
+            if(Flag){
+                FalseNegatives++;
             }
         }
     }
 
+    FalsePositives = NDetecciones - TruePositives;
+
     Precision = TruePositives / (TruePositives + FalsePositives);
-    Recall = TruePositives / NDetections;
+    Recall = TruePositives / (TruePositives + FalseNegatives);
     // Save measures to .txt file
-    EvaluationFile << FrameNumber << "       " << TruePositives << "       " << FalsePositives << "       " << NDetections << "       " << Precision << "       " << Recall << endl;
+    EvaluationFile << FrameNumber << "               " << GTItems << "               "
+                   << TruePositives << "               "
+                   << FalsePositives << "               " << NDetecciones << "               "
+                   << FalseNegatives << "               "
+                   << Precision << "               " << Recall << endl;
 }
 
 bool Evaluation::IoU(Rect GroundTruth, Rect BoundingBox, float threshold)
