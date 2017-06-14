@@ -35,11 +35,14 @@ public:
 
     // UI Variables
     bool PDFiltering = 0;
-    bool SemanticEnabled = 0;
+    bool SemanticDisplay = 0;
     bool GTDisplay = 0;
     String CBOption;
     // Representation Method
     String RepresentationOption;
+    // Pedestrian Filtering
+    bool MultiCameraFiltering = 0;
+    bool SemanticFiltering = 0;
 
     // Cenital Frame
     Mat CenitalPlane;

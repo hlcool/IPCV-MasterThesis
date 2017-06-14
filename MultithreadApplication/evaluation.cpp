@@ -124,12 +124,13 @@ void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<
 
     Precision = TruePositives / (TruePositives + FalsePositives);
     Recall = TruePositives / (TruePositives + FalseNegatives);
+
     // Save measures to .txt file
-    EvaluationFile << FrameNumber << "               " << GTItems << "               "
+    EvaluationFile << FrameNumber << "               " << GTItems << "                    "
                    << TruePositives << "               "
-                   << FalsePositives << "               " << NDetecciones << "               "
-                   << FalseNegatives << "               "
-                   << Precision << "               " << Recall << endl;
+                   << FalsePositives << "                  " << NDetecciones << "                  "
+                   << FalseNegatives << "              "
+                   << Precision << "                " << Recall << endl;
 }
 
 bool Evaluation::IoU(Rect GroundTruth, Rect BoundingBox, float threshold)

@@ -130,14 +130,17 @@ void CameraWorker::processVideo()
         emit PedestrianDetectionFinished(Camera.CameraNumber);
 
         // Reproject to the frames other camera detections
-        PeopleDetec.ReprojectionFusion(ProjCenterPoints1, ProjLeftPoints1, ProjRightPoints1, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
-        PeopleDetec.ReprojectionFusion(ProjCenterPoints2, ProjLeftPoints2, ProjRightPoints2, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
+        if(MultiCameraFiltering){
+            PeopleDetec.ReprojectionFusion(ProjCenterPoints1, ProjLeftPoints1, ProjRightPoints1, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
+            PeopleDetec.ReprojectionFusion(ProjCenterPoints2, ProjLeftPoints2, ProjRightPoints2, Camera.Homography, Camera.HomographyBetweenViews, Camera.ActualFrame);
+        }
 
         // Non Maximum supression betwen blobs from all the cameras
         Camera.non_max_suppresion(PeopleDetec.AllPedestrianVector, PeopleDetec.AllPedestrianVectorNMS);
 
         // Filter Pedestrian Detections that are not correcly placed within the semantic (floor)
-        PeopleDetec.SemanticConstraining(PeopleDetec.AllPedestrianVectorNMS, Camera.CameraNumber, Camera.ActualFrame, Camera.Homography, Camera.HomographyBetweenViews);
+        if(SemanticFiltering)
+            PeopleDetec.SemanticConstraining(PeopleDetec.AllPedestrianVectorNMS, Camera.CameraNumber, Camera.ActualFrame, Camera.Homography, Camera.HomographyBetweenViews);
 
         // Paint Bounding Boxes
         PeopleDetec.paintBoundingBoxes(Camera.ActualFrame, CBOption, PeopleDetec.AllPedestrianVectorNMS, Camera.CameraNumber, 2);
@@ -156,7 +159,7 @@ void CameraWorker::processVideo()
         //   INDUCED PLANE HOMOGRAPHY   //
         // ---------------------------- //
         // Project common semantic back to the camera frames
-        if(SemanticEnabled)
+        if(SemanticDisplay)
             Camera.ProjectCommonSemantic();
 
         // ------------------------------------------- //

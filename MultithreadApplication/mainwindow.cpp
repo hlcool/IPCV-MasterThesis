@@ -154,13 +154,17 @@ void MainWindow::updateVariables(Mat Frame, Mat CenitalPlane, int CameraNumber)
     CameraWorkers[CameraNumber-1]->RepresentationOption = ui->RepresentationCB->currentText().toStdString();
 
     // Semantic drawing enable
-    CameraWorkers[CameraNumber-1]->SemanticEnabled = ui->SemanticEnable->isChecked();
+    CameraWorkers[CameraNumber-1]->SemanticDisplay = ui->SemanticEnable->isChecked();
 
     // Ground truth drawing enable
     CameraWorkers[CameraNumber-1]->GTDisplay = ui->GTDisplay->isChecked();
 
     // Pedestrian score threshold
     CameraWorkers[CameraNumber-1]->PeopleDetec.Threshold = ui->PDThreshold->value();
+
+    // Pedestrian filtering with multicamera or semantic information
+    CameraWorkers[CameraNumber-1]->MultiCameraFiltering = ui->MultiCameraFiltering->isChecked();
+    CameraWorkers[CameraNumber-1]->SemanticFiltering = ui->SemanticFiltering->isChecked();
 }
 
 void MainWindow::displayFrame(Mat frame, Mat CenitalPlane, int CameraNumber)
