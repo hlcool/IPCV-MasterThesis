@@ -36,7 +36,7 @@ void CameraWorker::preProcessVideo()
 
     // Create and open the statistics file
     Evaluate.EvaluationFile.open("/Users/alex/IPCV-MasterThesis/MultithreadApplication/Evaluation Stats Camera " + to_string(Camera.CameraNumber) + ".txt");
-    Evaluate.EvaluationFile << "Frame  Precision  Recall" << endl;
+    Evaluate.EvaluationFile << "Frame  TruePositives  False Positives  Number of Detections  Precision  Recall" << endl;
 
     // Compute camera homographies
     Camera.computeHomography();
@@ -108,6 +108,7 @@ void CameraWorker::processVideo()
         Camera.ViewSelection(Camera.HomographyVector);
         Mat ImageWarping = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
         Camera.saveWarpImages(Camera.ActualFrame, Camera.Homography, FrameNumber, ImageWarping);
+
 
         // ----------------------- //
         //   SEMANTIC PROJECTION   //

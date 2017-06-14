@@ -71,7 +71,8 @@ DetectionList ACFDetector::applyDetector(const cv::Mat &Frame) const {
 std::vector<Detection*> ACFDetector::Detect(const ChannelFeatures *features) const {
     std::vector<Detection*> Ds;
 
-    float cascThr = -1; //could also come from model
+    // Change to obtain more detections
+    float cascThr = -15; //could also come from model
     int stride = shrinking;
 
     int treeDepth = this->ModelDepth;

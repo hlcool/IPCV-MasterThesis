@@ -150,12 +150,6 @@ void MainWindow::updateVariables(Mat Frame, Mat CenitalPlane, int CameraNumber)
     else
         CameraWorkers[CameraNumber-1]->PDFiltering = ui->PDFiltering->isChecked();
 
-    // FastRCNNN method
-    if (ui->FastButton->isChecked())
-        CameraWorkers[CameraNumber-1]->FastRCNNMethod = "fast";
-    else if (ui->AccurateButton->isChecked())
-        CameraWorkers[CameraNumber-1]->FastRCNNMethod = "accurate";
-
     // People detection representation methods
     CameraWorkers[CameraNumber-1]->RepresentationOption = ui->RepresentationCB->currentText().toStdString();
 
@@ -164,6 +158,9 @@ void MainWindow::updateVariables(Mat Frame, Mat CenitalPlane, int CameraNumber)
 
     // Ground truth drawing enable
     CameraWorkers[CameraNumber-1]->GTDisplay = ui->GTDisplay->isChecked();
+
+    // Pedestrian score threshold
+    CameraWorkers[CameraNumber-1]->PeopleDetec.Threshold = ui->PDThreshold->value();
 }
 
 void MainWindow::displayFrame(Mat frame, Mat CenitalPlane, int CameraNumber)

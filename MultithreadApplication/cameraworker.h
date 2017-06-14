@@ -40,7 +40,6 @@ public:
     String CBOption;
     // Representation Method
     String RepresentationOption;
-    String FastRCNNMethod;
 
     // Cenital Frame
     Mat CenitalPlane;

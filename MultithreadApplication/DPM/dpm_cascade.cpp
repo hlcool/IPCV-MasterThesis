@@ -290,7 +290,7 @@ void DPMCascade::process( vector< vector<double> > &dets)
     int pady = params.pady;
     vector<double> scales = params.scales;
     // The lower the more detections will be
-    model.scoreThresh = -2;
+    model.scoreThresh = -5;
 
     int nlevels = (int)pyramid.size() - interval;
     CV_Assert(nlevels > 0);

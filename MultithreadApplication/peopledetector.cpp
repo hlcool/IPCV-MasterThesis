@@ -18,38 +18,34 @@ PeopleDetector::~PeopleDetector(){}
 void PeopleDetector::MainPeopleDetection(CameraStream &Camera, String CBOption, String RepresentationOption, bool PDFiltering, Mat &CenitalPlane)
 {
     AllPedestrianVector.clear();
+    AllPedestrianVectorScore.clear();
 
     if (!CBOption.compare("HOG")){
         // HOG Detector
-        //HOGPeopleDetection(Camera);
-        //projectBlobs(Camera.HOGBoundingBoxesNMS, Camera.HOGScores, Camera.Homography, CenitalPlane, Camera.CameraNumber, RepresentationOption);
+        HOGPeopleDetection(Camera);
     }
     else if(!CBOption.compare("FastRCNN")){
         // FastRCNN Detector
         //FastRCNNPeopleDetection(FrameNumber, Camera1.FastRCNNMethod);
-        //projectBlobs(Camera.RCNNBoundingBoxesNMS, Camera.RCNNScores, Camera.Homography, CenitalPlane);
     }
     else if(!CBOption.compare("DPM")){
         // DPM Detector
         DPMPeopleDetection(Camera, PDFiltering);
-        AllPedestrianVector = Camera.DPMBoundingBoxes;
-        projectBlobs(Camera.DPMBoundingBoxes, Camera.DPMScores, Camera.Homography, Camera.HomographyBetweenViews, CenitalPlane, Camera.CameraNumber, RepresentationOption);
     }
     else if(!CBOption.compare("ACF")){
         // ACF Detector
         ACFPeopleDetection(Camera, PDFiltering);
-        AllPedestrianVector = Camera.ACFBoundingBoxes;
-        projectBlobs(Camera.ACFBoundingBoxes, Camera.ACFScores, Camera.Homography, Camera.HomographyBetweenViews, CenitalPlane, Camera.CameraNumber, RepresentationOption);
     }
     else if(!CBOption.compare("Semantic Detector")){
         // People detection using labels from semantic information.
-        // GAUSSSIAN REPRESENTATION NOT WORKING BECAUSE OF LACK OF SCORES
         AllPedestrianVector = Camera.FGBlobs;
-        projectBlobs(Camera.FGBlobs, Camera.DPMScores, Camera.Homography, Camera.HomographyBetweenViews, CenitalPlane, Camera.CameraNumber, RepresentationOption);
     }
     else if(!CBOption.compare("None")){
         return;
     }
+
+    ThresholdDetections(AllPedestrianVector,  AllPedestrianVectorScore, Threshold);
+    projectBlobs(AllPedestrianVector, AllPedestrianVectorScore, Camera.Homography, Camera.HomographyBetweenViews, CenitalPlane, Camera.CameraNumber, RepresentationOption);
 }
 
 void PeopleDetector::HOGPeopleDetection(CameraStream &Camera)
@@ -57,18 +53,33 @@ void PeopleDetector::HOGPeopleDetection(CameraStream &Camera)
     // Clear vectors
     Camera.HOGBoundingBoxes.clear();
     Camera.HOGBoundingBoxesNMS.clear();
+    Camera.HOGScores.clear();
 
     // Initialice the SVM
     HOG.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
+
     // HOG Detector
-    HOG.detectMultiScale(Camera.ActualFrame, Camera.HOGBoundingBoxes, Camera.HOGScores, 0, Size(8, 8), Size(32, 32), 1.1, 2);
+    vector<double> NoNormalizedScores;
+    HOG.detectMultiScale(Camera.ActualFrame, Camera.HOGBoundingBoxes, NoNormalizedScores, 0, Size(8, 8), Size(32, 32), 1.1, 2);
+
+    // Score Normalization
+    double MaxHOGScore = 3.8326;
+    for(int j = 0; j < NoNormalizedScores.size(); j++){
+        double Score = NoNormalizedScores[j];
+        double NormalizedScore = Score/MaxHOGScore;
+        Camera.HOGScores.push_back(NormalizedScore);
+    }
+
     Camera.HOGBoundingBoxesNMS = Camera.HOGBoundingBoxes;
+    AllPedestrianVector = Camera.HOGBoundingBoxesNMS;
+    AllPedestrianVectorScore = Camera.HOGScores;
 }
 
 void PeopleDetector::DPMPeopleDetection(CameraStream &Camera, bool PDFiltering)
 {
     Camera.DPMBoundingBoxes.clear();
     Camera.DPMScores.clear();
+    vector<double> NoNormalizedDPMScores;
 
     // PEOPLE DETECTION FILTERING
     if (PDFiltering){
@@ -96,7 +107,7 @@ void PeopleDetector::DPMPeopleDetection(CameraStream &Camera, bool PDFiltering)
                         Aux1.x = Aux1.x + Offset.x;
                         Aux1.y = Aux1.y + Offset.y;
 
-                        Camera.DPMScores.push_back(score);
+                        NoNormalizedDPMScores.push_back(score);
                         Camera.DPMBoundingBoxes.push_back(Aux1);
 
                     }
@@ -121,10 +132,23 @@ void PeopleDetector::DPMPeopleDetection(CameraStream &Camera, bool PDFiltering)
         for (unsigned int i = 0; i < DPMBoundingBoxesAux.size(); i++){
             Rect Aux1 = DPMBoundingBoxesAux[i].rect;
             float score = DPMBoundingBoxesAux[i].score;
-            Camera.DPMScores.push_back(score);
+            NoNormalizedDPMScores.push_back(score);
             Camera.DPMBoundingBoxes.push_back(Aux1);
         }
     }
+
+    // Score Normalization. Unity-based normalization
+    double MaxDPMScore = 1.1371;
+    double MinDPMScore = -5;
+
+    for(int j = 0; j < NoNormalizedDPMScores.size(); j++){
+        double Score = NoNormalizedDPMScores[j];
+        double NormalizedScore = (Score - MinDPMScore) / (MaxDPMScore - MinDPMScore);
+        Camera.DPMScores.push_back(NormalizedScore);
+    }
+
+    AllPedestrianVector = Camera.DPMBoundingBoxes;
+    AllPedestrianVectorScore = Camera.DPMScores;
 }
 
 void PeopleDetector::paintBoundingBoxes(Mat &ActualFrame, string Method, vector<Rect> BoundingBoxes, int CameraNumber, int Thickness)
@@ -155,6 +179,7 @@ void PeopleDetector::ACFPeopleDetection(CameraStream &Camera, bool PDFiltering)
 {
     Camera.ACFBoundingBoxes.clear();
     Camera.ACFScores.clear();
+    vector<double> NoNormalizedACFScores;
 
     // PEOPLE DETECTION FILTERING
     if (PDFiltering){
@@ -194,7 +219,7 @@ void PeopleDetector::ACFPeopleDetection(CameraStream &Camera, bool PDFiltering)
                         Rectangle.x = Rectangle.x + Offset.x;
                         Rectangle.y = Rectangle.y + Offset.y;
 
-                        Camera.ACFScores.push_back(score);
+                        NoNormalizedACFScores.push_back(score);
                         Camera.ACFBoundingBoxes.push_back(Rectangle);
 
                     }
@@ -232,10 +257,50 @@ void PeopleDetector::ACFPeopleDetection(CameraStream &Camera, bool PDFiltering)
 
             float score = Ds.m_score;
 
-            Camera.ACFScores.push_back(score);
+            NoNormalizedACFScores.push_back(score);
             Camera.ACFBoundingBoxes.push_back(Rectangle);
         }
     }
+
+    double MinACFScore = -15;
+    double MaxACFScore = 107.46;
+
+    // Score Normalization.
+    for(int j = 0; j < NoNormalizedACFScores.size(); j++){
+        double Score = NoNormalizedACFScores[j];
+        double NormalizedScore = (Score - MinACFScore) / (MaxACFScore - MinACFScore);
+        Camera.ACFScores.push_back(NormalizedScore);
+    }
+
+    AllPedestrianVector = Camera.ACFBoundingBoxes;
+    AllPedestrianVectorScore = Camera.ACFScores;
+}
+
+void PeopleDetector::ThresholdDetections(vector<Rect> Detections,  vector<double> Scores, double Threshold)
+{
+    if(Detections.empty())
+        return;
+
+    vector<int> SuppresedBlobs;
+
+    for(int Index = 0; Index < Scores.size(); Index++){
+        double Score = Scores[Index];
+        if(Score < Threshold)
+            SuppresedBlobs.push_back(Index);
+    }
+
+    sort(SuppresedBlobs.begin(), SuppresedBlobs.end(), greater<int>());
+
+    for(size_t i = 0; i < SuppresedBlobs.size(); i++){
+        int Index = SuppresedBlobs[i];
+        Detections.erase(Detections.begin() + Index);
+        Scores.erase(Scores.begin() + Index);
+    }
+
+    AllPedestrianVector.clear();
+    AllPedestrianVectorScore.clear();
+    AllPedestrianVector = Detections;
+    AllPedestrianVectorScore = Scores;
 }
 
 void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, Mat HomographyBetweenViews, Mat &CenitalPlane, int CameraNumber, String RepresentationOption)
@@ -279,7 +344,6 @@ void PeopleDetector::projectBlobs(vector<Rect> BoundingBoxes, vector<double> sco
         LeftCornerVectors.push_back(LeftCorner);
         RightCornerVectors.push_back(RightCorner);
     }
-
     // Apply Homography to vectors of Points to find the projection in the view
     perspectiveTransform(LeftCornerVectors, ProjectedLeftPoints, HomographyBetweenViews);
     perspectiveTransform(RightCornerVectors, ProjectedRightPoints, HomographyBetweenViews);

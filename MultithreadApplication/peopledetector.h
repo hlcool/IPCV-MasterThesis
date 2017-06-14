@@ -28,6 +28,8 @@ public:
 
     // Main People Detection Function
     void MainPeopleDetection(CameraStream &Camera, String CBOption, String RepresentationOption, bool PDFiltering, Mat &CenitalPlane);
+    double Threshold = 0.5;
+    void ThresholdDetections(vector<Rect> Detections,  vector<double> Scores, double Threshold);
 
     // HOG People Detection
     HOGDescriptor HOG;
@@ -59,6 +61,7 @@ public:
 
     // Join detections from all the cameras in one vector
     vector<Rect> AllPedestrianVector, AllPedestrianVectorNMS;
+    vector<double> AllPedestrianVectorScore;
 };
 
 #endif // PEOPLEDETECTOR_H

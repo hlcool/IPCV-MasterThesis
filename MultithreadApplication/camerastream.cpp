@@ -329,7 +329,6 @@ void CameraStream::ViewSelection(vector<Mat> HomographyVector)
 {
     // Compare Actual Frame with all the frames used to extract homographies with AKAZE
     // Extract number of correspondant view to index the homography vectors
-
     int ViewIndex;
     int NMatches;
     vector<Point2f> GoodMatchesPoints1, GoodMatchesPoints2;

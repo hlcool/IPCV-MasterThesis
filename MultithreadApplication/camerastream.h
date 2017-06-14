@@ -87,7 +87,6 @@ public:
     vector<double> HOGScores;
 
     // Fast RCNN Vectors
-    string FastRCNNMethod;
     vector<Rect> RCNNBoundingBoxes;
     vector<Rect> RCNNBoundingBoxesNMS;
     vector<double> RCNNScores;

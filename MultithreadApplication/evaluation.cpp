@@ -95,7 +95,6 @@ void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<
     NDetections = NDetections + DetectionsVector.size();
 
     if(DetectionsVector.empty() && GroundTruthVector.empty()){
-        cout << "hads" << endl;
         EvaluationFile << FrameNumber << endl;
         return;
     }
@@ -120,7 +119,7 @@ void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<
     Precision = TruePositives / (TruePositives + FalsePositives);
     Recall = TruePositives / NDetections;
     // Save measures to .txt file
-    EvaluationFile << FrameNumber << "       " << Precision << "       " << Recall << endl;
+    EvaluationFile << FrameNumber << "       " << TruePositives << "       " << FalsePositives << "       " << NDetections << "       " << Precision << "       " << Recall << endl;
 }
 
 bool Evaluation::IoU(Rect GroundTruth, Rect BoundingBox, float threshold)
