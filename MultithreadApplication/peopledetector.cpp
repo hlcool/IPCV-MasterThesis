@@ -15,7 +15,8 @@
 PeopleDetector::PeopleDetector(){}
 PeopleDetector::~PeopleDetector(){}
 
-void PeopleDetector::MainPeopleDetection(CameraStream &Camera, String CBOption, String RepresentationOption, bool PDFiltering, Mat &CenitalPlane)
+void PeopleDetector::MainPeopleDetection(CameraStream &Camera, String CBOption, String RepresentationOption,
+                                         bool PDFiltering, Mat &CenitalPlane, bool MultiCameraFiltering, bool SemanticFiltering)
 {
     AllPedestrianVector.clear();
     AllPedestrianVectorScore.clear();
@@ -45,7 +46,8 @@ void PeopleDetector::MainPeopleDetection(CameraStream &Camera, String CBOption, 
     }
 
     ThresholdDetections(AllPedestrianVector,  AllPedestrianVectorScore, Threshold);
-    projectBlobs(AllPedestrianVector, AllPedestrianVectorScore, Camera.Homography, Camera.HomographyBetweenViews, CenitalPlane, Camera.CameraNumber, RepresentationOption);
+    if(MultiCameraFiltering || SemanticFiltering)
+        projectBlobs(AllPedestrianVector, AllPedestrianVectorScore, Camera.Homography, Camera.HomographyBetweenViews, CenitalPlane, Camera.CameraNumber, RepresentationOption);
 }
 
 void PeopleDetector::HOGPeopleDetection(CameraStream &Camera)

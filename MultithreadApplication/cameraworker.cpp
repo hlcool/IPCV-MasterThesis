@@ -75,6 +75,7 @@ void CameraWorker::processVideo()
             // Close time consumption file
             VideoStatsFile.close();
             Evaluate.EvaluationFile.close();
+            exit(EXIT_FAILURE);
             break;
         }
 
@@ -105,10 +106,11 @@ void CameraWorker::processVideo()
         // ------------------------------ //
         //   HOMOGRAPHY & VIEW SELECTION  //
         // ------------------------------ //
-        Camera.ViewSelection(Camera.HomographyVector);
-        Mat ImageWarping = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
-        Camera.saveWarpImages(Camera.ActualFrame, Camera.Homography, FrameNumber, ImageWarping);
-
+        if(MultiCameraFiltering || SemanticFiltering){
+            Camera.ViewSelection(Camera.HomographyVector);
+            Mat ImageWarping = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
+            Camera.saveWarpImages(Camera.ActualFrame, Camera.Homography, FrameNumber, ImageWarping);
+        }
 
         // ----------------------- //
         //   SEMANTIC PROJECTION   //
@@ -117,17 +119,21 @@ void CameraWorker::processVideo()
         CenitalPlane = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
         // Clear Semantic Mask
         SemanticMask = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
-        // Project Semantic to the cenital plane
-        Camera.ProjectSemanticPoints(CenitalPlane, SemanticMask, FrameNumber);
-        // Draw semantic projection in the cenital plane
-        Camera.drawSemantic(CenitalPlane);
+        if(MultiCameraFiltering || SemanticFiltering){
+            // Project Semantic to the cenital plane
+            Camera.ProjectSemanticPoints(CenitalPlane, SemanticMask, FrameNumber);
+            // Draw semantic projection in the cenital plane
+            Camera.drawSemantic(CenitalPlane);
+        }
 
         // ------------------------------------------- //
         //     PEOPLE DETECTION & BLOBS PROJECTION     //
         // ------------------------------------------- //
-        PeopleDetec.MainPeopleDetection(Camera, CBOption, RepresentationOption, PDFiltering, CenitalPlane);
-        barrier.wait();
-        emit PedestrianDetectionFinished(Camera.CameraNumber);
+        PeopleDetec.MainPeopleDetection(Camera, CBOption, RepresentationOption, PDFiltering, CenitalPlane, MultiCameraFiltering, SemanticFiltering);
+        if(MultiCameraFiltering){
+            barrier.wait();
+            emit PedestrianDetectionFinished(Camera.CameraNumber);
+        }
 
         // Reproject to the frames other camera detections
         if(MultiCameraFiltering){
@@ -148,7 +154,6 @@ void CameraWorker::processVideo()
         // ---------------------------------- //
         //             EVALUATION             //
         // ---------------------------------- //
-        // Read GT
         vector<Rect> GroundTruthVector;
         Evaluate.GTTextParser(Camera.CameraNumber, GroundTruthVector, FrameNumber);
         if(GTDisplay)
@@ -167,8 +172,10 @@ void CameraWorker::processVideo()
         // ------------------------------------------- //
         // Resize the frames accordingly to the widgets size
         cv::resize(Camera.ActualFrame, Camera.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
-        cv::resize(CenitalPlane, CenitalPlane, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
-        cv::resize(CenitalPlaneImage, CenitalPlaneImage, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
+        if(MultiCameraFiltering || SemanticFiltering){
+            cv::resize(CenitalPlane, CenitalPlane, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
+            cv::resize(CenitalPlaneImage, CenitalPlaneImage, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
+        }
 
         // Write frame number on the camera frame
         putText(Camera.ActualFrame, FrameNumber, Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));

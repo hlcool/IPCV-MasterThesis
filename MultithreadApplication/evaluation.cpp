@@ -114,7 +114,7 @@ void Evaluation::ExtractEvaluationScores(vector<Rect> GroundTruthVector, vector<
                     Flag = 1;
                 }
             }
-            if(Flag){
+            if(!Flag){
                 FalseNegatives++;
             }
         }

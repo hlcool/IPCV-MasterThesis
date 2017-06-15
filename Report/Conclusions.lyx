@@ -103,5 +103,11 @@ Conclusions
 Future Work
 \end_layout
 
+\begin_layout Standard
+Limitacion de cambios de iluminacion en el mismo video por incoherencia
+ con las vistas precargadas.
+ Solucion: actualizar online las vistas con la posicion exacta de la camara.
+\end_layout
+
 \end_body
 \end_document

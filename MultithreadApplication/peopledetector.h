@@ -27,7 +27,7 @@ public:
     ~PeopleDetector();
 
     // Main People Detection Function
-    void MainPeopleDetection(CameraStream &Camera, String CBOption, String RepresentationOption, bool PDFiltering, Mat &CenitalPlane);
+    void MainPeopleDetection(CameraStream &Camera, String CBOption, String RepresentationOption, bool PDFiltering, Mat &CenitalPlane, bool MultiCameraFiltering, bool SemanticFiltering);
     double Threshold = 0.5;
     void ThresholdDetections(vector<Rect> Detections,  vector<double> Scores, double Threshold);
 

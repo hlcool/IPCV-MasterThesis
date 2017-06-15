@@ -2299,7 +2299,14 @@ When all the pedestrian detections have been projected into the cenital
  Ideally, if the three cameras detect the person reprojection will not be
  necessary, but, if one of them misses the detection, the other two detections,
  by the use of reprojection, will lead to suppress that miss detection.
- This process can be observed in Figure
+ This process can be observed in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Pedestrain reprojection into other cameras"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2450,7 +2457,6 @@ Pedestrian Semantic Constraining
 \color red
 AQUI SE DA POR EXPLICADO EL PROCEDIMEINTO PARA CALCULAR ZONAS COMUNES DE
  SUELO ENTRE PARES DE CAMARAS.
- HABRA QUE EXPLICARLO ANTES
 \end_layout
 
 \begin_layout Standard
@@ -2677,7 +2683,8 @@ reference "fig:View selection process and homography between views computation"
 \end_inset
 
  one can project every video frame into a cenital perspective.
- This way a set of projected RGB and semantic frames will be obtained.
+ This way a set of projected RGB and semantic frames for each camera will
+ be obtained.
  Some examples of these images can be observed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2692,7 +2699,7 @@ reference "fig:RGB-and-semantic projected"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -2704,7 +2711,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Proposed System/Cilynder Cenital.png
+	filename Images/Proposed System/Frame207 RGB.png
 	lyxscale 20
 	width 40text%
 
@@ -2717,75 +2724,11 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Camera 3
-\end_layout
-
+RGB Projected 
+\begin_inset Formula $Frame_{t}$
 \end_inset
 
 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Images/Proposed System/Cilynder Cenital.png
-	lyxscale 20
-	width 40text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Camera 3
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Images/Proposed System/Cilynder Cenital.png
-	lyxscale 20
-	width 40text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Camera 3
 \end_layout
 
 \end_inset
@@ -2804,7 +2747,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Proposed System/Cilynder Cenital.png
+	filename Images/Proposed System/Frame1169 RGB.png
 	lyxscale 20
 	width 40text%
 
@@ -2817,7 +2760,87 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Camera 3
+RGB Projected 
+\begin_inset Formula $Frame_{t+\Delta t}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/Frame207 Semantic.png
+	lyxscale 20
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Semantic Projected 
+\begin_inset Formula $Frame_{t}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/Frame1169 Semantic.png
+	lyxscale 20
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Semantic Projected 
+\begin_inset Formula $Frame_{t+\Delta t}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2855,8 +2878,10 @@ name "fig:RGB-and-semantic projected"
 \end_layout
 
 \begin_layout Standard
-Once all the frames are projected we apply a temporal average through a
- median filter for the three cameras.
+Once all the video frames are projected we propose to apply a temporal average
+ through a median filter for the three cameras separately.
+ By this method a reference plane contained in the ground plane will be
+ created by joining all the separated projected frames.
  This process is detailed in Eq 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2879,8 +2904,22 @@ MedianSemantic_{C}=\sum_{i=1}^{nFrames}Projected_{i}\label{eq:Median Temporal Av
 \end_layout
 
 \begin_layout Standard
-The result when the temporal average is applied can be observed in Figure
- for RBG and Figure for semantic.
+The result coming from the temporal averaging can be observed in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RGB Median Average"
+
+\end_inset
+
+ for RBG case and in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Semantic Median Average"
+
+\end_inset
+
+ for semantic information.
 \end_layout
 
 \begin_layout Standard
@@ -2923,10 +2962,6 @@ Camera 1
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-\align center
 \begin_inset Float figure
 wide false
 sideways false
@@ -3025,7 +3060,7 @@ name "fig:RGB Median Average"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3061,10 +3096,6 @@ Camera 1
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-\align center
 \begin_inset Float figure
 wide false
 sideways false
@@ -3160,7 +3191,11 @@ name "fig:Semantic Median Average"
 \end_layout
 
 \begin_layout Standard
-Promediado de semanticas projectadas en la imagen cenital para las 3 camaras.
+As one can observe we get smooth semantic maps from all the hall area as
+ well as an RGB map.
+ It is important to recall that only the ground floor is correctly projected
+ and also, the base of for instance the columns from all the different cameras
+ should lay in the same spatial point in these images.
 \end_layout
 
 \begin_layout Subsection
@@ -3168,13 +3203,228 @@ Semantic Fusion in the Reference Plane
 \end_layout
 
 \begin_layout Standard
-Puntos comunes entre promedidados de semanticas para pares de camaras.
+Once the cenital maps have been extracted one can combine them to create
+ semantic fusion in the reference plane.
+ The main objective is to obtain common areas, i.e.
+ pixels with the same label within two or more cameras.
+ This method will allow us to increment the confidence for those pixels
+ and so, we can use this information for example, to constrain pedestrians
+ detections.
+ As the reference plane is obtained by the homography to the ground plane
+ we have only take into account floor pixels to create the common areas,
+ as the others will have projection errors that will lead to fusion errors.
 \end_layout
 
 \begin_layout Standard
-Puntos comunes entre los promedidados de las tres camaras -> Primera hipotesis
- de puntos pertenencientes al suelo.
- Extraccion de scores para esos puntos.
+First, we have combine pairs of cameras to create three common semantic
+ areas that are shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Common semantic areas between pair of cameras."
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/CommonSemantic12.png
+	lyxscale 20
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cameras 1 and 2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/CommonSemantic23.png
+	lyxscale 20
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cameras 2 and 3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/CommonSemantic13.png
+	lyxscale 20
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cameras 3 and 1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Common semantic areas between pair of cameras.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Common semantic areas between pair of cameras."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Once pairs of cameras have been combined one can go further and extract
+ common areas for the three cameras at the same time.
+ Those areas will be pixels with the exact same label for the three cameras
+ so its probability to be that class is real high.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Common semantic areas for all the cameras"
+
+\end_inset
+
+ represents the common areas.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/CommonSemanticAllCameras.png
+	lyxscale 20
+	width 60text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Common semantic areas for all the cameras.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Common semantic areas for all the cameras"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As we can observe, due to the multi camera setup and some occlusions the
+ common area for all the cameras represent a small portion of the room.
+ This is the reason why we have choose common areas between pairs of cameras
+ to work along with pedestrian detection rather than common area between
+ all of them.
 \end_layout
 
 \begin_layout Subsection

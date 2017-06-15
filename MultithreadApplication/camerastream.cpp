@@ -512,7 +512,7 @@ void CameraStream::ExtractViewScores()
     imwrite(ImageName, Scores);
 }
 
-void CameraStream::ProjectSemanticPoints(Mat &CenitalPlane, Mat &SemanticMask, String FrameNumber)
+void CameraStream::ProjectSemanticPoints(Mat CenitalPlane, Mat &SemanticMask, String FrameNumber)
 {
     Mat FloorMask;
     Mat SemanticImageGray;

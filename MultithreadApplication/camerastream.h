@@ -57,7 +57,7 @@ public:
     Mat CommonSemanticAllCameras;
     vector<Point2f> ProjectedFloorVector;
     int NumberFloorPoints;
-    void ProjectSemanticPoints(Mat &CenitalPlane, Mat &SemanticMask, String FrameNumber);
+    void ProjectSemanticPoints(Mat CenitalPlane, Mat &SemanticMask, String FrameNumber);
     void drawSemantic(Mat& CenitalPlane);
 
     // Induced Plane Homography

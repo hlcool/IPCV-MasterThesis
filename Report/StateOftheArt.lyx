@@ -882,7 +882,7 @@ Average AUC
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+56
 \end_layout
 
 \end_inset
@@ -891,7 +891,7 @@ Average AUC
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+57.5
 \end_layout
 
 \end_inset
@@ -900,7 +900,7 @@ Average AUC
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+48
 \end_layout
 
 \end_inset
@@ -909,7 +909,7 @@ Average AUC
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+63
 \end_layout
 
 \end_inset
@@ -918,7 +918,7 @@ Average AUC
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+69.1
 \end_layout
 
 \end_inset
@@ -927,7 +927,7 @@ Average AUC
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+69.8
 \end_layout
 
 \end_inset
@@ -937,6 +937,8 @@ Average AUC
 
 \begin_layout Plain Layout
 
+\series bold
+79.5
 \end_layout
 
 \end_inset

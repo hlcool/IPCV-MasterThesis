@@ -801,15 +801,124 @@ name "fig:Tour setting menu"
 Experiment Setup
 \end_layout
 
+\begin_layout Standard
+For all the experiments that are going to be analyzed along this Chapter
+ the experiment setup should be explained.
+ In this section, the generated dataset and ground truth will be explained
+ and also the evaluation frame work used to obtain results.
+\end_layout
+
 \begin_layout Subsection
 Dataset
 \end_layout
 
 \begin_layout Standard
-Dataset generado con las camaras mencionadas.
- Numero de camaras.
- Seleccion de panning como se ha dicho en el capitulo de sistema propueto.
- Imagenes del dataset
+As said in the beginning of the Chapter the dataset has been generated in
+ the university hall.
+ The number of available PTZ cameras in the university is three so we have
+ been able to record from three different points of view.
+ In addition, a tour for each camera has been set so they move from left
+ to rigth only chanign position in the X/horizontal direction and not in
+ the Y/vertical direction.
+\end_layout
+
+\begin_layout Standard
+Both settings are configured as displayed previously in the diagram of Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Multi-camera-configuration with panning set up"
+
+\end_inset
+
+.
+ A number of three videos have been recorded, Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Dataset example frames"
+
+\end_inset
+
+shows some example of them.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Camera13751.jpg
+	lyxscale 40
+	width 40text%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/Results/Camera24379.jpg
+	lyxscale 40
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Camera34404.jpg
+	lyxscale 40
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Dataset example frames
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Dataset example frames"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The technical characteristics of the videos are the detailed in the following
+ lines:
+\end_layout
+
+\begin_layout Itemize
+Resolution: 640x480 pixels.
+\end_layout
+
+\begin_layout Itemize
+Frame rate: 23.976 fps.
+\end_layout
+
+\begin_layout Itemize
+Format: MPEG Video.
 \end_layout
 
 \begin_layout Subsection
@@ -817,9 +926,53 @@ Ground-Truth Generation
 \end_layout
 
 \begin_layout Standard
-Generacion de ground truth de personas mediante software Via Annotation
- Tool.
- Anotacion manual de X frames para cada camara.
+One of the Dataset videos has been manually annotated with Via Annotation
+ Tool to generate ground-truth.
+ The sequence used for this annotation is the one that is going to be use
+ to evaluate further algorithms and consist on three different videos of
+ 8300 frames.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/IoU.png
+	lyxscale 60
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Via Annotation Tool software
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Via Annotation Tool software"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -827,33 +980,133 @@ Evaluation Framework
 \end_layout
 
 \begin_layout Standard
-Medidas usadas para evaluar un video/frame.
- Comparacion entre un bounding box y un blob de ground truth.
+In order to evaluate pedestrian detection algorithms recall and precision
+ metrics will be used.
+ These metrics are defined in Eq.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Precision"
+
+\end_inset
+
+ and Eq.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Recall"
+
+\end_inset
+
+, respectively.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+Precision=\frac{\#TruePositives}{\#TruePositives+\#FalsePositives}\label{eq:Precision}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+Recall=\frac{\#TruePositives}{\#TruePositives+\#FalseNegatives}\label{eq:Recall}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In order to compare a bounding box detection with a ground truth blob Intersecti
+on over Union (IoU) or Jaccard metric has been selected.
+ IoU is computed as in Eq 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Intersection over Union"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+IoU=\frac{OverlapArea}{UnionArea}\label{eq:Intersection over Union}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/IoU.png
+	lyxscale 60
+	width 60text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Intersection over Union or Jaccard Index
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Intersection over Union"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
 People Detection Results
 \end_layout
 
-\begin_layout Standard
-Evaluacion de deteccion de personas en tres entornos
+\begin_layout Subsection
+Pedestrian Detection Mono-camera
 \end_layout
 
-\begin_layout Itemize
-Detecion de personas unicamara
+\begin_layout Subsection
+Pedestrian Detection Multi-camera
 \end_layout
 
-\begin_layout Itemize
-Deteccion de personas usando reprojecciones de varias camaras
+\begin_layout Subsection
+Pedestrian Detection with Semantic Constraining
 \end_layout
 
-\begin_layout Itemize
-Deteccion de personas usando solo semantica
-\end_layout
-
-\begin_layout Itemize
-Deteccionde personas usando reprojecciones de varias camaras y informacion
- semantica
+\begin_layout Subsection
+Pedestrian Detection Multi-Camera with Semantic Constraining
 \end_layout
 
 \begin_layout Section
