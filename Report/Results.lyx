@@ -109,11 +109,11 @@ Used Hardware
 The project has been developed in the Escuela Politécnica Superior (Universidad
  Autónoma de Madrid).
  Due to this fact, the testing environment has been the hall of the mentioned
- engineering school which has a set up of three different Internet Protocol
+ engineering school which has a setup of three different Internet Protocol
  Cameras (IP Cameras).
  This type of cameras can send and receive data via a computer network and
- the Internet which allows the user to set the configuration and receive
- frames from the cameras.
+ Internet which allows the user to set the configuration and receive frames
+ from the cameras.
 \end_layout
 
 \begin_layout Subsection
@@ -124,7 +124,7 @@ Camera Specifications
 Specifically, the camera model used along the project has been the Sony
  SNC-RZ50P PTZ Camera .
  This is a PTZ camera which means that it will be able to Pan, Tilt and
- Zoom all over the scene are.
+ Zoom all over the scene.
  Precisely this camera will have a pan range of 340 degrees and a tilt range
  of 115 degrees, enabling users to monitor a wide area over the scene if
  the camera is moved (Figure 
@@ -181,14 +181,18 @@ name "fig:Sony-SNC-RZ50P-Pan/Tilt Range"
 \end_layout
 
 \begin_layout Standard
-The complete and relevant specifications are detailed in Table 
+The complete and relevant specifications from the cameras are detailed in
+ Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:Sony-SNC-RZ50P-Specifications"
 
 \end_inset
 
-:
+.
+ In the scope of our work the most important features will be resolution
+ and frames per second that will enable us to have more quality in both
+ image and video.
 \end_layout
 
 \begin_layout Standard
@@ -804,8 +808,8 @@ Experiment Setup
 \begin_layout Standard
 For all the experiments that are going to be analyzed along this Chapter
  the experiment setup should be explained.
- In this section, the generated dataset and ground truth will be explained
- and also the evaluation frame work used to obtain results.
+ In this section, the generated dataset and ground truth and the proposed
+ evaluation frame work used to obtain results will be detailed.
 \end_layout
 
 \begin_layout Subsection
@@ -813,17 +817,24 @@ Dataset
 \end_layout
 
 \begin_layout Standard
-As said in the beginning of the Chapter the dataset has been generated in
+As said at the beginning of the Chapter the dataset has been generated in
  the university hall.
  The number of available PTZ cameras in the university is three so we have
- been able to record from three different points of view.
+ been able to record different sequences from three points of view.
  In addition, a tour for each camera has been set so they move from left
- to rigth only chanign position in the X/horizontal direction and not in
- the Y/vertical direction.
+ to right only changing position in the X/horizontal axis and not in the
+ Y/vertical direction because of the reasons presented in Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Proposed-System"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Both settings are configured as displayed previously in the diagram of Figure
+Both settings are configured as previously displayed in the diagram of Figure
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -832,14 +843,39 @@ reference "fig:Multi-camera-configuration with panning set up"
 \end_inset
 
 .
- A number of three videos have been recorded, Figure 
+ 
+\end_layout
+
+\begin_layout Standard
+The complete dataset consists on a set of three different recordings about
+ 5 minute long from three different days.
+ In each of the recordings all the camera sequences are available.
+ Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Dataset example frames"
 
 \end_inset
 
-shows some example of them.
+ shows some example of them.
+ The technical characteristics of the videos are the detailed in the following
+ lines:
+\end_layout
+
+\begin_layout Itemize
+Number of videos: 
+\end_layout
+
+\begin_layout Itemize
+Resolution: 640x480 pixels.
+\end_layout
+
+\begin_layout Itemize
+Frame rate: 23.976 fps.
+\end_layout
+
+\begin_layout Itemize
+Format: MPEG Video.
 \end_layout
 
 \begin_layout Standard
@@ -904,40 +940,36 @@ name "fig:Dataset example frames"
 
 \end_layout
 
-\begin_layout Standard
-The technical characteristics of the videos are the detailed in the following
- lines:
-\end_layout
-
-\begin_layout Itemize
-Resolution: 640x480 pixels.
-\end_layout
-
-\begin_layout Itemize
-Frame rate: 23.976 fps.
-\end_layout
-
-\begin_layout Itemize
-Format: MPEG Video.
-\end_layout
-
 \begin_layout Subsection
-Ground-Truth Generation
+Ground Truth Generation
 \end_layout
 
 \begin_layout Standard
-One of the Dataset videos has been manually annotated with Via Annotation
- Tool to generate ground-truth.
- The sequence used for this annotation is the one that is going to be use
- to evaluate further algorithms and consist on three different videos of
- 8300 frames.
+We have selected one of the three recordings from the dataset to completely
+ evaluate the system.
+ In order to do the evaluation ground truth information is needed.
+ The video has been manually annotated with 
+\color blue
+
+\begin_inset CommandInset href
+LatexCommand href
+name "Via Annotation Tool"
+target "https://sourceforge.net/projects/via-tool/"
+
+\end_inset
+
+
+\color inherit
+ to generate real pedestrian bounding boxes.
+ The recording consists on three different videos of 8300 frames, which
+ means that the total number of manually annotated frames has been 25.200.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -975,14 +1007,70 @@ name "fig:Via Annotation Tool software"
 
 \end_layout
 
+\begin_layout Standard
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Annotated example frames"
+
+\end_inset
+
+ annotated frames for the recording in different video situations can be
+ observed.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/IoU.png
+	lyxscale 60
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Annotated example frames
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Annotated example frames"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Evaluation Framework
 \end_layout
 
 \begin_layout Standard
-In order to evaluate pedestrian detection algorithms recall and precision
- metrics will be used.
- These metrics are defined in Eq.
+Once the dataset recording has been correctly annotated one can proceed
+ to evaluate the performance of pedestrian detectors.
+ In order to evaluate these algorithms precision and recall metrics will
+ be used.
+ The calculation of these metrics is defined in Eq.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1004,7 +1092,7 @@ reference "eq:Recall"
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-Precision=\frac{\#TruePositives}{\#TruePositives+\#FalsePositives}\label{eq:Precision}
+Precision=\frac{\#True\,Positives}{\#True\,Positives+\#False\,Positives}\label{eq:Precision}
 \end{equation}
 
 \end_inset
@@ -1015,17 +1103,21 @@ Precision=\frac{\#TruePositives}{\#TruePositives+\#FalsePositives}\label{eq:Prec
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-Recall=\frac{\#TruePositives}{\#TruePositives+\#FalseNegatives}\label{eq:Recall}
+Recall=\frac{\#True\,Positives}{\#True\,Positives+\#False\,Negatives}\label{eq:Recall}
 \end{equation}
 
 \end_inset
 
-
+Precision gives us information about the classification stage, whereas the
+ second one provides overall system performance information.
+ 
 \end_layout
 
 \begin_layout Standard
-In order to compare a bounding box detection with a ground truth blob Intersecti
-on over Union (IoU) or Jaccard metric has been selected.
+To extract the mentioned metrics we should have a method to compute which
+ bounding boxes match with the ground truth.
+ In order to achieve this objective Intersection over Union (IoU) or Jaccard
+ metric has been selected.
  IoU is computed as in Eq 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1033,13 +1125,30 @@ reference "eq:Intersection over Union"
 
 \end_inset
 
-.
+ and it measures the relation between bounding boxes overlapping and the
+ union.
+ This means that even if the bounding boxes overlap perfectly, but the union
+ of them is high, IoU metric will have a small value.
+ This effect can be observed in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Intersection over Union"
+
+\end_inset
+
+ where one can observe that a almost perfect overlapping between bounding
+ boxes does not lead to a high IoU value.
+ For our evaluation framework a detection will be consider correct if 
+\begin_inset Formula $IoU(Detection,\,Ground\,Truth)\leq0.5$
+\end_inset
+
+ which is the usually metric value selected in the State of the Art.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-IoU=\frac{OverlapArea}{UnionArea}\label{eq:Intersection over Union}
+IoU(Detection,\,Ground\,Truth)=\frac{OverlapArea(Detection,\,Ground\,Truth)}{UnionArea(Detection,\,Ground\,Truth)}\label{eq:Intersection over Union}
 \end{equation}
 
 \end_inset
@@ -1090,27 +1199,515 @@ name "fig:Intersection over Union"
 \end_layout
 
 \begin_layout Section
-People Detection Results
+Pedestrian Detection Results
+\end_layout
+
+\begin_layout Standard
+During this section results in the context of pedestrian detection will
+ be presented.
+ We propose a set of four different experiments to test our developed system.
+ 
+\end_layout
+
+\begin_layout Standard
+The first one, will test all of the previously analyzed pedestrian detections
+ working in a mono-camera environment.
+ This means that neither information is shared by the cameras nor semantic
+ constrains are applied.
+ 
+\end_layout
+
+\begin_layout Standard
+We will follow testing the algorithms in a multi-camera setup.
+ As explained in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Pedestrian-Reprojection between cameras"
+
+\end_inset
+
+ detections from cameras will be projected into the others to try to achieve
+ better results than in a mono-camera scenario.
+ 
+\end_layout
+
+\begin_layout Standard
+Thirdly, we will analyze people detection again in a mono camera environment
+ but this time, applying semantic constraining as proposed in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Pedestrian-Semantic-Constraining"
+
+\end_inset
+
+ for all the detections.
+\end_layout
+
+\begin_layout Standard
+Finally, the last test will embrace all the proposed algorithms working
+ within the multi-camera setup and applying semantic constrains.
+\end_layout
+
+\begin_layout Standard
+It is important to remind that results will be presented within Recall versus
+ Precision curves.
+ In order to create these graphs algorithms have been evaluated in all the
+ four test using five different values for the score thresholding 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+ interval.
+ Each threshold iteration for an algorithm will provide one point of the
+ curve.
+ To proceed with this process all the algorithms scores have been normalized
+ from its original values to the mentioned interval.
+ In order to obtain scores distributions for all the detectors a train sequence
+ has been used.
 \end_layout
 
 \begin_layout Subsection
-Pedestrian Detection Mono-camera
+Mono-Camera Pedestrian Detection
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 10text%
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Recall / Precision graphs for mono camera pedestrian detection.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Recall / Precision graphs for mono camera pedestrian detection."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
-Pedestrian Detection Multi-camera
+Multi-Camera Pedestrian Detection
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 10text%
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Recall / Precision graphs for multi camera pedestrian detection.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Recall / Precision graphs for multi camera pedestrian detection.-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
-Pedestrian Detection with Semantic Constraining
+Mono-Camera Pedestrian Detection with Semantic Constraining
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 10text%
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Recall / Precision graphs for mono camera pedestrian detection with semantic
+ constraining.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Recall / Precision graphs for mono camera pedestrian detection with semantic constraining"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
-Pedestrian Detection Multi-Camera with Semantic Constraining
+Multi-Camera Pedestrian Detection with Semantic Constraining
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 10text%
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Recall / Precision graphs for multi camera pedestrian detection with semantic
+ constraining.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Recall / Precision graphs for multi camera pedestrian detection with semantic constraining."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
 Statistical Usage Data
+\end_layout
+
+\begin_layout Standard
+Finally, results concerning statistical usage data will be presented.
+ For this result an additional sequence has been used.
+ The reuslts will be presented in one curve for each of the semantic analyzed
+ area.
+ This graph will represent the number of pedestrian using that semantic
+ class in each video frame.
+ For this experiment we will use the following combination of algorithm
+ and system which has resulted the best one in the previous section.
 \end_layout
 
 \end_body

@@ -2281,7 +2281,14 @@ Aqui o en resultados?
 \end_layout
 
 \begin_layout Subsubsection
-Pedestrian Reprojection
+Pedestrian Reprojection Between Cameras
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Pedestrian-Reprojection between cameras"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2450,6 +2457,13 @@ name "fig:Pedestrain reprojection into other cameras"
 
 \begin_layout Subsubsection
 Pedestrian Semantic Constraining
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Pedestrian-Semantic-Constraining"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
