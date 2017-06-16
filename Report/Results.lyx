@@ -821,9 +821,10 @@ As said at the beginning of the Chapter the dataset has been generated in
  the university hall.
  The number of available PTZ cameras in the university is three so we have
  been able to record different sequences from three points of view.
- In addition, a tour for each camera has been set so they move from left
- to right only changing position in the X/horizontal axis and not in the
- Y/vertical direction because of the reasons presented in Chapter 
+ In addition, as explained in the previous Chapter a tour for each camera
+ has been set so they move from left to right only changing position in
+ the X/horizontal axis and not in the Y/vertical direction because of the
+ reasons presented in Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:Proposed-System"
@@ -1266,7 +1267,7 @@ It is important to remind that results will be presented within Recall versus
 \end_layout
 
 \begin_layout Subsection
-Mono-Camera Pedestrian Detection
+Mono-Camera
 \end_layout
 
 \begin_layout Standard
@@ -1373,7 +1374,7 @@ name "fig:Recall / Precision graphs for mono camera pedestrian detection."
 \end_layout
 
 \begin_layout Subsection
-Multi-Camera Pedestrian Detection
+Multi-Camera
 \end_layout
 
 \begin_layout Standard
@@ -1480,7 +1481,7 @@ name "fig:Recall / Precision graphs for multi camera pedestrian detection.-1"
 \end_layout
 
 \begin_layout Subsection
-Mono-Camera Pedestrian Detection with Semantic Constraining
+Mono-Camera with Semantic Constraining
 \end_layout
 
 \begin_layout Standard
@@ -1588,7 +1589,7 @@ name "fig:Recall / Precision graphs for mono camera pedestrian detection with se
 \end_layout
 
 \begin_layout Subsection
-Multi-Camera Pedestrian Detection with Semantic Constraining
+Multi-Camera with Semantic Constraining
 \end_layout
 
 \begin_layout Standard

@@ -100,7 +100,8 @@ name "chap:Developed Application"
 \begin_layout Standard
 Within this Chapter the developed application will be analyze.
  This application will be the base for the visualization and arrangement
- of the usage statistics from the different areas of interest.
+ of the usage statistics from the different areas of interest as well as
+ pedestrian detections.
  As said in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -110,8 +111,8 @@ reference "sec:Objectives"
 
  this usage data can be pre-generated or generated ideally under a real-time
  constraint.
- The main application environment should be user-friendly to ensure its
- correct usage.
+ The main application environment should be user-friendly to ensure a correct
+ and easy usage by the end user.
 \end_layout
 
 \begin_layout Standard
@@ -122,13 +123,13 @@ The application has been developed under QT Creator coding environment in
 
 \begin_layout Enumerate
 Its cross-platform characteristic which makes it easily portable from one
- operating system to another.
+ operating system to another such as Windows or Linux distributions.
 \end_layout
 
 \begin_layout Enumerate
-Its application window designer that enables the programmer to design the
- software windows by using an interface instead of having to code to create
- the mentioned window (Figure 
+Its application window designer that enables the programmer to design software
+ windows by using an interface instead of having to code to create the mentioned
+ window and set up all the desired configuration (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:QT-Window-Designer"
@@ -143,7 +144,7 @@ reference "fig:QT-Window-Designer"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -186,10 +187,35 @@ name "fig:QT-Window-Designer"
 The possibility to add OpenCV libraries to the project.
 \end_layout
 
+\begin_layout Enumerate
+Its multi-thread capabilities that enables to perform different code segments
+ in various threads to increase speed.
+\end_layout
+
 \begin_layout Standard
-Two main applications, single-thread and multi-thread, have been developed
- and will be analyze on the following lines, however at the end of the project
- only the multi-thread application will be the one in use.
+Due to the complexity of some of the algorithms used in terms of parameter
+ tuning and configuration we have decide to create two separate applications,
+ engineer and user version.
+ 
+\end_layout
+
+\begin_layout Standard
+The first version of the software will correspond to the engineer application.
+ As its name says, it is design so it can be used by programmers or engineers
+ who understand general concepts of the algorithms running at the backend
+ application.
+ This means that all the variable parameters will be available for tuning
+ from the graphical interface, as well as different detector options and
+ visualization.
+ The final motivation for this version is to achieve high variability and
+ tuning in terms of algorithm parameters, however, in order to have good
+ performance the user should have a basic knowledge about how parameters
+ are affecting the software performance.
+\end_layout
+
+\begin_layout Standard
+For the engineer application both single-thread and multi-thread versions,
+ have been developed and will be analyze on the following lines.
  All the code for both approaches is available in the following 
 \color blue
 
@@ -220,7 +246,7 @@ reference "fig:Flow-chart-legend"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -353,7 +379,7 @@ name "fig:Flow-chart-legend"
 \end_layout
 
 \begin_layout Section
-Single-thread Application
+Single-thread Engineer Application
 \end_layout
 
 \begin_layout Standard
@@ -376,7 +402,7 @@ reference "fig:Flow-chart diagram for the single-thread application"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -658,19 +684,24 @@ name "fig:Flow-chart diagram for the single-thread application"
 \end_layout
 
 \begin_layout Standard
-This design approach will be valid if the computational effort is minimum
- because before displaying any results, all the process for the three cameras
- should be computed, however, when working with such a multi-camera system
- with heavy algorithms running as the proposed in our work, the computational
- time increases exponentially and this design is no longer worthwhile.
+This approach has the advantage that all the code is executed in the same
+ segment which makes really easy for instance to share information between
+ cameras, however, this design will only be valid if the computational effort
+ is minimum.
+ Before displaying any results, all the process for the three cameras should
+ be computed one after the other which means that when calculating detections
+ for one camera the others will remain idle.
+ When working with such a multi-camera system with heavy algorithms running
+ as the proposed in our work, the computational time increases exponentially
+ and this design is no longer worthwhile.
 \end_layout
 
 \begin_layout Section
-Multi-thread Application
+Multi-thread Engineer Application
 \end_layout
 
 \begin_layout Standard
-The new and valid approach can be observed in the flow-chart displayed in
+The new and used approach can be observed in the flow-chart displayed in
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -686,18 +717,31 @@ reference "fig:Flow-chart diagram for the multi-thread application"
 
 \begin_layout Standard
 Now, however, as threads are running separately one have to create some
- sort of synchronization between them.
- This is done because one thread can process a frame faster than another
- one due to multiple external reason.
- Nevertheless, the application should display the same exact frame for all
- the cameras more over if the information is going to be shared between
- threads.
+ sort of synchronization between them to keep consistency in the application.
+ One thread can process a frame faster than another one due to multiple
+ external reasons, nevertheless, the application should display the same
+ exact frame for all the cameras more over if the information is going to
+ be shared between threads.
  In our case the synchronization is perform by the barrier that can be observed
- in the diagram.
+ in diagram 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Flow-chart diagram for the multi-thread application"
+
+\end_inset
+
+.
  This barrier will create a meeting point for all the threads that all of
- them must reach before displaying any result.
- This is done as said to ensure that all the process have been completed
- before displaying or saving any results.
+ them must reach before continuing with their execution.
+ 
+\end_layout
+
+\begin_layout Standard
+In the code two barriers will be available.
+ The first one will ensure that all the threads have perform pedestrian
+ detection before sharing those detections between the rest of the threads.
+ The second one will be at the end of a frame execution, so threads wait
+ to each other before sending results to the main window.
 \end_layout
 
 \begin_layout Standard
@@ -705,7 +749,7 @@ Now, however, as threads are running separately one have to create some
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1069,7 +1113,7 @@ reference "fig:Main-application-window"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1087,7 +1131,12 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Main application window
+Main application window.
+ 
+\color red
+CAMBIAR POR LA NUEVA
+\color inherit
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Main-application-window"
@@ -1114,8 +1163,8 @@ Application menu bar.
 \begin_deeper
 \begin_layout Standard
 In this menu we will have the main application actions.
- From here the user can open a new video sequence, compute the set of desired
- homographies or close the program.
+ From here the user can open a new video sequence, compute the set of needed
+ homographies for the algorithms or close the program.
  The application also provides a help searcher and an external information
  window.
  This set of functions can be seen in Figure 
@@ -1133,7 +1182,7 @@ reference "fig:Application-menu-bar"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1212,6 +1261,80 @@ Help Submenu
 \end_layout
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Application/Help Submenu.png
+	lyxscale 60
+	width 55text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+File open dialog.
+ 
+\color red
+POENR LA FOTO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Application/Help Submenu.png
+	lyxscale 60
+	width 55text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Application information window.
+ 
+\color red
+POENR LA FOTO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -1257,11 +1380,13 @@ reference "fig:Options Menu"
  tuned during the execution of the program.
  From here algorithms can be changed in real time so there is no need to
  restart the running before changing some parameter.
- The user can select among various pedestrian detectors such as semantic
- detector, DPM or even Fast-RCNN as well as the type of representation that
- one wants for these detections, lines or gaussians which will be explained
+ The user can select among various pedestrian detectors such as PSP-Net
+ detector, DPM, ACF or even Fast-RCNN as well as the type of representation
+ that one wants for these detections, lines or gaussians which will be explained
  later.
- In addition the application provides an option to perform mask filtering.
+ It also enables the user to select pedestrian detection threshold as well
+ as the filtering or constraint used, in addition to perform mask filtering.
+ Finally, a check box to display or not ground truth information is available.
 \end_layout
 
 \begin_layout Standard
@@ -1287,7 +1412,12 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Options Menu
+Options Menu.
+ 
+\color red
+ACTUALIZAR FOTO
+\color inherit
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Options Menu"
@@ -1314,7 +1444,7 @@ Information Display
 
 \begin_deeper
 \begin_layout Standard
-Along this text box some information will be provided to the user.
+Along this text box some guide information will be provided to the user.
  Messages such as 
 \begin_inset Quotes eld
 \end_inset
@@ -1340,8 +1470,8 @@ DPM Pedestrian Detector is now in use
 \end_inset
 
  will appear during the execution of the application so the user can obtain
- some information about what to do, or what algorithm are in use as we can
- observe in Figure 
+ some information about what to do, or what algorithm is in use.
+ This can observe in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Information-Display"
@@ -1405,8 +1535,9 @@ This is the main display area in the application in which all the visual
  results will be presented.
  We have three separate windows for each of the used camera as well as one
  more display window for the cenital plane.
- Here the camera frames with its pedestrian detection will be shown and
- all the projected semantic can be observed on the cenital frame.
+ Here the camera frames with its pedestrian detection or/and ground truth
+ will be shown and all the projected semantic can be observed on the cenital
+ frame.
  An example of its performance is presented in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1467,43 +1598,45 @@ Classes Distribution
 
 \begin_layout Standard
 In terms of C++ blocks the application has been divided into several classes
- whose functions will be explained in the following lines:
+ for a better code design and easier understanding.
+ Their functions will be explained in the following lines:
 \end_layout
 
 \begin_layout Itemize
 MainWindow.
  This class corresponds to the main interface window and main application
  thread.
- It is the base for all the further processing as everything will be under
- this class.
- The functions that are going to be done by this class is creating the file
- open dialogs, creating and starting all the camera threads, update all
- the algorithms configurations from the UI and displaying results through
- the CVImageWidget class.
+ It is the base for all the further processing as everything will be inherit
+ from this class.
+ The functions that are going to be done by this class is creating file
+ open dialogs, setting up and start all the camera threads, update all the
+ algorithms configurations with value from the UI and displaying results
+ through the CVImageWidget class.
+ It is also responsible of the information sharing between threads.
 \end_layout
 
 \begin_layout Itemize
 AboutWindow.
- Class that execute the second window.
+ Class that execute the second available window.
  This instance will display general information about the application and
  its developers.
 \end_layout
 
 \begin_layout Itemize
 CameraWorker.
- Main class for the cameras.
- CameraWorker class is linked with a thread which will process all the algorithm
-s inside.
- It has CameraStream, PeopleDetector and Barrier classes declared within
- it.
+ Main class for all the execution in each of the cameras.
+ CameraWorker class is linked with a unique thread that will process all
+ the algorithms inside.
+ It has CameraStream, PeopleDetector, Evaluation and Barrier classes declared
+ within it to distribute the processing.
 \end_layout
 
 \begin_layout Itemize
 CameraStream.
- This class will perform all the processes that has to deal with the video
+ This class will perform all the functions that has to deal with the video
  processing except pedestrian detection.
- The main reading loop, homographies and projections will be computed in
- this class.
+ The main reading loop, homographies and semantic projections will be computed
+ in this class.
 \end_layout
 
 \begin_layout Itemize
@@ -1511,6 +1644,11 @@ PeopleDetector.
  Main class to perform everything with respect to pedestrian detection.
  All the algorithms to detect, project and draw pedestrian either on the
  camera frame or the cenital plane will be from this class.
+\end_layout
+
+\begin_layout Itemize
+Evaluation: Here ground truth will be read and also the evaluation between
+ system pedestrian detection and ground truth information will be performed.
 \end_layout
 
 \begin_layout Itemize
@@ -1524,7 +1662,7 @@ on.
 \begin_layout Itemize
 CVImageWidget.
  Display representation class that will deal with all the process to finally
- paint OpenCV Mat images into a QT interface Widget.
+ paint OpenCV Mat images into a QT main window interface Widget.
 \end_layout
 
 \begin_layout Standard
@@ -1537,9 +1675,10 @@ reference "fig:Hierarchical representation of the code"
 
  a hierarchical representation of how the different classes are related
  in the code is presented.
- As on can observe everything is under the hierarchy of the main window.
+ As on can observe everything is under the heritage of the main window.
  Here we have the three camera worker threads which will have inside the
- same barrier, and each of them a camera stream and a people detector.
+ same barrier, and each of them a camera stream, a people detector and a
+ evaluator.
  In addition, main window will also be the parent of the extra about window
  and the CVImageWidget.
 \end_layout
@@ -1548,7 +1687,7 @@ reference "fig:Hierarchical representation of the code"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1569,7 +1708,8 @@ status open
 Hierarchical representation of the code.
  
 \color red
-NO DEFINITIVO
+NO DEFINITIVO.
+ FALTA CLASE EVALUACION
 \color inherit
 
 \begin_inset CommandInset label
@@ -1591,40 +1731,78 @@ name "fig:Hierarchical representation of the code"
 
 \end_layout
 
-\begin_layout Standard
-Due to the complexity of some of the algorithms in terms of parameter tuning
- and configuration we have decide to create two separate versions of the
- same application that will be explained in the following paragraphs.
-\end_layout
-
-\begin_layout Subsection
-Engineer Application
+\begin_layout Section
+Multi-thread User Application
 \end_layout
 
 \begin_layout Standard
-The first version of the software will correspond to the engineer application.
- As its name says, it is design so it can be used by programmers or engineers
- who understand about the general concepts of the algorithms running at
- the back of the application.
- This means that all the variable parameters will be available for tuning
- from the graphical interface, as well as different detector options and
- visualization.
- The final motivation for this version is to achieve high variability and
- tuning in terms of algorithm parameters, however, in order to have good
- performance the user should have the basic knowledge about how parameters
- are affecting the software performance.
-\end_layout
-
-\begin_layout Subsection
-User Application
-\end_layout
-
-\begin_layout Standard
-On the contrary, the second developed application is focus on general users.
+On the contrary to the analyzed version, the second developed application
+ is focus on general users.
  This version will only allow to load the video files and display results.
  All the parameters will be set by default so the user does not have to
  fine tuning any of them making the usage and the general perception of
  the application much more simple and easy.
+ This method will ensure that achieved results will be the best ones that
+ the proposed system can obtain and will be the best approach to display
+ demos.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:User version application main window"
+
+\end_inset
+
+ displays the general application window where we can observe the difference
+ with the Engineer version.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/Hierarchical class distribution.png
+	lyxscale 30
+	width 70text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+User version application main window
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:User version application main window"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As said, conversely to the engineer application ...
 \end_layout
 
 \end_body

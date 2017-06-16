@@ -98,7 +98,7 @@ name "chap:Proposed-System"
 \end_layout
 
 \begin_layout Standard
-During this Chapter our proposed system will be explained.
+During this Chapter our proposed system will be explained deeply.
  We will start from the main contextual model generation and pedestrian
  detectors to finally explain the fusion of all the elements in a multi
  camera system in addition to the statistical usage data.
@@ -116,34 +116,34 @@ name "sec:Contextual-Model-Generation"
 \end_layout
 
 \begin_layout Standard
-One of the main objectives in the scope of this work is to segment one frame
+One of the main objectives in the scope of this work is to divide one frame
  into different semantic areas.
  The relative position in the scene for elements such as doors, walls, paths,
  columns and windows will be necessary to achieve further objectives such
- as multi camera fusion and statistical data.
- For this complex task we will use an algorithm presented in Chapter 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "chap:State of the art"
-
-\end_inset
-
-, PSP-Net 
+ as multi camera constraint and statistical data extraction.
+ For this complex task we will use the algorithm PSP-Net 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "zhao2016pyramid"
 
 \end_inset
 
+ presented in Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:State of the art"
+
+\end_inset
+
 .
  The goal for this algorithm as said before, is is to assign each pixel
- in the image a category label and predict the label, location, as well
- as shape for each element.
+ in the image a category label achieving by this the location and shape
+ for each element.
  
 \end_layout
 
 \begin_layout Standard
-This process is based on a deep convolutional neural network (CNN) called
+This process is based on a deep Convolutional Neural Network (CNN) called
  Pyramid Scene Parsing Network (PSPNet) which is designed to improve performance
  for open-vocabulary object and stuff identification in complex scene parsing.
  The structure of the network can be observed in Figure 
@@ -207,7 +207,7 @@ key "he2016deep"
 
 \end_inset
 
- to get the feature map (b) of the last convolutional layer.
+ to get the full feature map (b) of the last convolutional layer.
  The final feature map in this step is 
 \begin_inset Formula $1/8$
 \end_inset
@@ -230,7 +230,7 @@ key "zhao2016pyramid"
  It separates the feature map into different sub-regions and forms pooled
  representations for different locations.
  Here a set of pooling, convolutional and upsampling layers are applied
- that will harvest different sub-region representation in 
+ to harvest different sub-region representation in 
 \begin_inset Formula $N$
 \end_inset
 
@@ -291,8 +291,8 @@ So, as one can observe the three different models represent different object
 
 \begin_layout Enumerate
 The model should be trained with indoor scenes.
- This will lead to discard those models that perform only in outdoors scenes
- as we would like our approach to be used in interior scenarios.
+ This will lead to discard those models that perform only in outdoors as
+ we would like our approach to be used in interior scenarios.
  This will exclude CityScapes dataset from our options as all the classes
  and sequences used for training are from outdoor scenes.
 \end_layout
@@ -307,12 +307,12 @@ From the trained indoor models we have to choose between those whose categories
 
 \begin_layout Standard
 With this two reasons being taken into account we have selected the model
- ADE20K because it has elements such as walls, floor, person and column
- in its model.
+ ADE20K because as said, it has elements such as walls, floor, person and
+ column in its model.
  However, we consider that most of the 150 label categories will be unused
- in our procedure, so, the number of classes in the model has been reduced
- to the 21 classes of our interest so we only obtain scores for those objects
- that we want.
+ in our procedure, so, the number of classes from the model has been reduced
+ to the 21 classes of our interest so we only obtain position and scores
+ for those objects that we want.
  This class limitations will lead above all in a considerably hard drive
  space saving.
  In Table 
@@ -322,7 +322,7 @@ reference "tab:Final classes list from ADE20K to use in PSP-Net"
 
 \end_inset
 
- can be observed the final 21 classes that have been used.
+ the final 21 classes that have been selected can be observed.
 \end_layout
 
 \begin_layout Standard
@@ -613,7 +613,7 @@ Pedestrian Detection
 
 \begin_layout Standard
 Along this section we will present the pedestrian State of the Art detectors
- that have been selected for our system.
+ that have been selected to work in our system.
  Some of them have been chosen due to the algorithm simplicity and computational
  cost and others due to its contrasted performance while working in real
  sequences as we have seen in Chapter 
@@ -626,7 +626,7 @@ reference "chap:State of the art"
 .
  However, one of the main reasons of choosing the following three algorithms
  among others in the SoA is the possibility of either having the original
- source code or the practical implementation within an external library.
+ source code or the practical implementation within an external OpenCV library.
 \end_layout
 
 \begin_layout Subsection
@@ -702,13 +702,14 @@ Once HOG have been used to describe the person shape, Support Vector Machines
  SVM are a data classification method formed by a set of supervised training.
  The aim of this kind of approaches is to produce a model which will be
  able to predict classification labels on a test set based only on the descripto
-rs of the set.
+rs of the set and the model.
 \end_layout
 
 \begin_layout Standard
 The idea behind SVM is that training vectors will be mapped on to a bigger
- dimensional space in which the data separation by means of one or many
- hyperplane will be much easier than in the original dimensional space.
+ dimensional space in which the data separation, by means of one or many
+ hyperplane, will be much easier to divide than in the original dimensional
+ space.
 \end_layout
 
 \begin_layout Standard
@@ -730,7 +731,8 @@ Deformable Part Model
 \begin_layout Standard
 As was mentioned in the previous paragraph one of the main drawbacks when
  working with the simple HOG pedestrian detector is that it describes the
- person model as a hole which will lead, inevitably, to the described drawbacks.
+ person model as a hole which will lead, inevitably, to the mentioned occlusion
+ drawbacks.
  Deformable Part Model tries to solve this problem, among others, by defining
  the model as first, a global coarse template, secondly, several higher
  resolution part templates and finally a spatial model for the location
@@ -810,8 +812,8 @@ Both global and part templates are modeled with histogram of gradient features
  and the model is built by using an improving over SVM called latent SVM.
  In addition, scores for every detection are obtained by applying a root
  filter on the window plus the sum over parts of the maximum over placements
- of that par, of the part filter score on the resulting sub window minus
- the deformation cost.
+ of the part filter score on the resulting sub window minus the deformation
+ cost.
 \end_layout
 
 \begin_layout Standard
@@ -823,7 +825,7 @@ The use of this detector will lead to a set of advantages than when working
  This will outperform other detectors while working with crowded scenes
  in which holistic methods will have problems that will lead for instance
  to groups of people being detected as a unique detection while DPM will
- be able to separate them into different person instances.
+ be ideally able to separate them into different person instances.
 \end_layout
 
 \begin_layout Standard
@@ -842,8 +844,8 @@ Aggregated Channel FeaturesDetector
 \end_layout
 
 \begin_layout Standard
-The basic idea behind ACF detector is to outperform other approaches by
- the use of many different channels on an input image I.
+The basic idea behind ACF detector is to increase other approaches performance
+ by the use of many different channels to describe an input image I.
  In Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -880,8 +882,8 @@ key "dollar2014fast"
 
 \end_inset
 
- the set of 10 channels used to achieve state-of-the-art performance in
- pedestrian detection are:
+ a set of 10 channels are used to achieve state-of-the-art performance in
+ pedestrian detection:
 \end_layout
 
 \begin_layout Enumerate
@@ -960,8 +962,9 @@ Fast Region-Based Convolutional Network
 \end_layout
 
 \begin_layout Standard
-Fast Region-based Convolutional Network (Fast R-CNN) will be used to detect
- pedestrian in our proposed system, however, as said in Chapter 
+Fast Region-Based Convolutional Network (Fast R-CNN) will be used to perform
+ offline pedestrian detection in our proposed system, however, as said in
+ Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:State of the art"
@@ -1109,7 +1112,8 @@ name "fig:Fast-R-RCNN-architecture"
 
 \begin_layout Standard
 In this case, both Fast-RCNN detector and MCG object proposal extract are
- implemented within external Matlab libraries.
+ implemented within external Matlab libraries and so, should be computed
+ offline and introduced to the application.
 \end_layout
 
 \begin_layout Subsection
@@ -1135,9 +1139,10 @@ Fusion and Filtering
 \end_layout
 
 \begin_layout Standard
-Once the semantic model and pedestrian detections are implemented the next
+Once the semantic model and pedestrian detections are obtained the next
  step is to combine the information coming from different camera sources
- in a process that we have called fusion and filtering.
+ in terms of both multi camera setup and semantic constraint in a process
+ that we have called fusion and filtering.
 \end_layout
 
 \begin_layout Subsection
@@ -1159,7 +1164,7 @@ reference "fig:Multi-camera-configuration"
  cameras.
  Two of them are placed at the sides of the scene, while one is at the bottom
  part.
- The starting views from the three cameras is displayed in Figure 
+ The starting views from the three cameras are displayed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Initial Camera Views"
@@ -1374,8 +1379,8 @@ Homography calculation is a pivotal task in our work and the main base for
  frame to a so called cenital plane, i.e.
  a bird-eye representation of the scene.
  With this homography matrix we will be able to transform every frame pixel
- to its correspondent position in the cenital plane, i.e.
- it will transform the frame as if it were being viewed from the top.
+ to its correspondent position in the cenital plane which means that the
+ frame will be transform as if it were being viewed from the top.
 \end_layout
 
 \begin_layout Standard
@@ -1461,7 +1466,7 @@ As we can observe the first approach of the cenital plane lacks of details
  To compute a correct homography between the camera frame and the cenital
  plane we should be able to identify the same scene points in both images
  in the ground plane.
- This means that the cenital plane should have enough detail so the point
+ This means that the cenital plane should have enough details so the point
  selection is done correctly by the user and the homography is correctly
  computed.
 \end_layout
@@ -1607,7 +1612,7 @@ reference "fig:Second cenital plane approach with camera positions"
  This detail increase will lead to a much more easy homography selection
  points by the user as it now has much more point options to choose and
  evidentially this will mean that the final homography matrix, and so, all
- the projections will be increased accurately talking.
+ the projections will be better accurately talking.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1627,11 +1632,13 @@ reference "fig:Initial Camera Views"
  representation is quite limited due to the low vision range of the cameras.
  The cameras are covering the middle part leaving completely unattended
  the lateral parts of the scenario.
+ This approach is a limitation to the project objectives as we will not
+ be able to extract a high percentage of the scene semantic.
  The solution to this problem is to include panning movement in all the
- cameras from left to right so cameras view range is increased and no longer
- focus in the middle of the scene as before.
- This will lead also that the common areas that the cameras will share are
- increased and not static.
+ cameras from left to right so cameras view range is increased and they
+ are no longer focus only in the middle of the scene as before.
+ This will lead also to more common and not static areas which the cameras
+ will share.
  This solution is presented in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1695,8 +1702,8 @@ Before including camera panning in the set up, homographies where calculated,
  This means that every camera only had one homography matrix as all its
  sequence was static and all its video frames where projected using the
  same matrix.
- However, when including video panning this solution is no longer valid
- as the scene view is constantly changing.
+ However, when including video panning this simple approach is no longer
+ valid as the scene view is constantly changing.
  The ideal solution for this problem would be having one homography matrix
  
 \begin_inset Formula $H$
@@ -1758,22 +1765,28 @@ key "alcantarilla2011fast"
 
 \begin_layout Standard
 AKAZE will detect and describe points of interest in any image and then
- by a brute force comparator we will extract how many coincidence we have
- between a pair of images.
+ by a brute force comparator in terms of distances we will extract how many
+ coincidence we have between a pair of images.
  It is essential to say, that, as we have to compare the current frame with
  all of the 
 \begin_inset Formula $N$
 \end_inset
 
  vies we will have a trade off.
- More views will mean a better space discretization, however, the computational
- time will increase exponentially, this means that we have to choose the
- number of views 
+ More views will mean a better space discretization and more overlapping,
+ however, the computational time will increase exponentially, this means
+ that we have to choose the number of views 
 \begin_inset Formula $N$
 \end_inset
 
  so it represents correctly the space and keeps the computational time relativel
 y low.
+ In our application we have choose 
+\begin_inset Formula $N=9$
+\end_inset
+
+ to maintain a trade off between projection quality due to the overlap between
+ the views and time consumption.
 \end_layout
 
 \begin_layout Standard
@@ -1890,9 +1903,9 @@ Pedestrian Filtering and Constraining
 \end_layout
 
 \begin_layout Standard
-During this Section we will explain how the pedestrian detections are filtered
- and also how the information between people from the three cameras is fusion
- in the system to increase the general algorithm performance.
+During this Section we will explain how the pedestrian detections are semantic
+ filtered and also how the information between people from the three cameras
+ is fusion in the system to increase the general algorithm performance.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1995,7 +2008,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cylinder estimation for cenital view projections
+Cylinder estimation for cenital view projections.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Cylinder-estimation-for cenital view projections"
@@ -2435,7 +2448,11 @@ Camera 3 + Reprojections from 1 and 2
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Pedestrian detection reprojection
+Pedestrian detection reprojection.
+\color red
+CAMBIAR FOTOS
+\color inherit
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Pedestrain reprojection into other cameras"
@@ -2469,14 +2486,13 @@ name "subsec:Pedestrian-Semantic-Constraining"
 \begin_layout Standard
 
 \color red
-AQUI SE DA POR EXPLICADO EL PROCEDIMEINTO PARA CALCULAR ZONAS COMUNES DE
- SUELO ENTRE PARES DE CAMARAS.
+AQUI SE MENCIONAN ZONAS COMUNES DE SUELO ENTRE PARES DE CAMARAS.
 \end_layout
 
 \begin_layout Standard
-Once all the detections have been reprojected into all the cameras we will
- use semantic information in order to filter those bounding boxes that hypotheti
-cally do not represent pedestrians.
+Once all the detections have been reprojected into all the cameras once
+ can use semantic information in order to filter false positives detections
+ in weird scene areas .
  Ideally people are always walking on the floor so we will use the common
  floor areas between pairs of cameras to constrain the pedestrian detections
  to this hypothesis.
@@ -2637,21 +2653,17 @@ Camera 3
 status open
 
 \begin_layout Plain Layout
-Pedestrian semantic constraining.
+Pedestrian semantic constraining examples.
 \end_layout
 
 \end_inset
 
 Pedestrian semantic constraining.
- Blobs that are not in the right semantic area are displayed with a text
- label that says 
-\begin_inset Quotes eld
-\end_inset
-
-Blob Suppressed
-\begin_inset Quotes erd
-\end_inset
-
+ Blobs that are not in the right semantic area just displayed by a circle
+ and text label
+\color red
+.CAMBIAR FOTOS
+\color inherit
 .
 \begin_inset CommandInset label
 LatexCommand label
@@ -2678,7 +2690,7 @@ Reference and Inertial Homography Planes
 
 \begin_layout Standard
 During this Section we will explain our proposed method to create both RGB
- and semantic reference plane combining information from all the cameras
+ and semantic reference planes combining information from all the cameras
  positions.
  The final objective is to have complete maps in each camera that represent
  the scene.
@@ -3205,11 +3217,12 @@ name "fig:Semantic Median Average"
 \end_layout
 
 \begin_layout Standard
-As one can observe we get smooth semantic maps from all the hall area as
- well as an RGB map.
- It is important to recall that only the ground floor is correctly projected
- and also, the base of for instance the columns from all the different cameras
- should lay in the same spatial point in these images.
+As one can observe we get smooth semantic and RGB maps from all the hall
+ area.
+ It is important to recall that only if the homographies and the ground
+ floor are correctly calculated and projected, the base of for instance,
+ the columns from all the different cameras should lay in the same spatial
+ point in these images.
 \end_layout
 
 \begin_layout Subsection
@@ -3238,7 +3251,7 @@ reference "fig:Common semantic areas between pair of cameras."
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
