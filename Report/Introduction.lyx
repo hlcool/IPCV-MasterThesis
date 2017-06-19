@@ -200,7 +200,7 @@ key "mazzon2013multi,turner2002encoding,scovanner2009learning"
  and temporal usage of a given area in large-scale scenarios such as shopping
  malls, universities and, generally, public-use buildings.
  Analysis range from the extraction of statistical measures of behavior
- to detect anomalous unexpected events 
+ to the detection of anomalous unexpected events 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "jiang2011anomalous"
@@ -208,9 +208,9 @@ key "jiang2011anomalous"
 \end_inset
 
 .
- This analysis may come from a combination of complementary algorithms such
- as contextual and semantic area classification, people detection and as
- crowd behavior analysis.
+ This results may come from a combination of complementary algorithms such
+ as contextual and semantic area classification, people detection and crowd
+ behavior analysis.
 \end_layout
 
 \begin_layout Section
@@ -225,9 +225,9 @@ name "sec:Objectives"
 \end_layout
 
 \begin_layout Standard
-The main objective of this master thesis is to extract contextual descriptions
+The main objective of this thesis is to extract contextual descriptions
  from a large-scale populated scenario while extracting temporal statistical
- usage data from relevant scene spaces using various cameras.
+ usage data from relevant scene spaces using multiple cameras.
  This should be supported with a Graphical User Interface application.
  
 \end_layout
@@ -246,9 +246,9 @@ Graphical User Interface
 
 \begin_layout Standard
 The main user interface should be able to visualize and dynamically arrange
- usage statistics from different areas of interest in a public space either
- pre-generated or generated under a real-time constraint, using a user-friendly
- environment.
+ -under a user-friendly environment-statistics from different areas of interest
+ in a public space either pre-generated or generated under a real-time constrain
+t.
 \end_layout
 
 \begin_layout Subsection*
@@ -262,9 +262,9 @@ The algorithm related objectives are:
 \begin_layout Enumerate
 To integrate a semantic segmentation algorithm to perform contextual element
  analysis in video sequences.
- The objective is to detect and classify and determine the spatial extend
- on each frame of the video of relevant elements such as doors, chairs,
- corridors and floor areas.
+ The objective is to detect, classify and determine the spatial extend on
+ each frame of the video of relevant elements such as doors, chairs, corridors
+ and floor areas.
  We aim to:
 \end_layout
 
@@ -289,7 +289,7 @@ To integrate state-of-the-art people detection algorithms results per view.
 \begin_deeper
 \begin_layout Enumerate
 Create a fusion mechanism to take advantage of the multi-camera scenario.
- The results from all the cameras are projected on a common space and combined
+ The results from all the cameras are projected to a common space and combined
  such that by result’s refinement the individual detector performances are
  increased.
 \end_layout

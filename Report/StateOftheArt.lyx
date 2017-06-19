@@ -120,24 +120,19 @@ reference "cha:Introduction"
 
 \end_inset
 
-, the process of analysis of a public crowed space embraces many different
- algorithms from Computer Vision disciplines.
- This chapter aims to deeply study the State Of the Art pedestrian detection
- approaches and how to improve these as it constitutes a pivotal field for
- our goals.
+, the analysis of a public crowed space embraces many different algorithms
+ from Computer Vision disciplines.
  
 \end_layout
 
 \begin_layout Standard
-In addition, it also covers the topic of contextual information and in concrete,
- semantic segmentation and its algorithms.
- 
-\end_layout
-
-\begin_layout Standard
-Both of these disciplines are used in a multi-camera setup and so, scenarios
- working with this configuration are also defined presenting their advantages
- an disadvantages.
+This chapter aims to study the State Of the Art pedestrian detection approaches
+ and how to improve these as it constitutes a pivotal field for our goals.
+ In addition, it also covers the topic of contextual information and in
+ concrete, semantic segmentation and its algorithms.
+ Finally as both of these disciplines are used in a multi-camera setup and
+ so, scenarios working with this configuration are also defined, presenting
+ their advantages an disadvantages.
 \end_layout
 
 \begin_layout Section
@@ -152,25 +147,27 @@ name "sec:Pedestrian-detection-and crowd patrons"
 \end_layout
 
 \begin_layout Standard
-Pedestrian detection has been a major issue in computer vision during the
- past few years due to its relevance in all sort of computer vision applications.
+Pedestrian detection (PD) has been a major issue in computer vision during
+ the past few years due to its relevance in all sort of computer vision
+ applications.
  Its main objective is to detect and identify a potential object as a person
- obtaining its position in the scene.
+ by automatically detecting its position and relative size in the scene.
 \end_layout
 
 \begin_layout Standard
-Nowadays, it is consider a partially-solved problem.
+Nowadays, it can be consider a partially-solved problem.
  Although there are excellent pedestrian detectors in the literature, there
- is not one that performs with perfect accuracy within all the situations.
- This is one of the reasons why pedestrian detection is still one of the
- most researched areas in computer vision.
+ is no algorithm able to effectively perform on a generic scenario.
+ This is one of the reasons why PD is still one of the most researched areas
+ in computer vision.
 \end_layout
 
 \begin_layout Standard
-The complexity related to pedestrian detector lies in the large amount of
- available datasets with different video and people characteristics such
- as people occlusions, poses, scales, illumination ranges that increase
- performance difficulty.
+The complexity related to pedestrian detector lies on the large amount of
+ available data-sets with different video and people characteristics including
+ challenges such as: as people occlusions, different poses and scales and
+ under different illumination conditions.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -179,10 +176,24 @@ Pedestrian Detection Approaches
 
 \begin_layout Standard
 A number of people detection approaches have been presented.
- A classification based on the descriptor and detection scheme may start
- with the ones that use Histograms of Oriented Gradients in combination
- with linear Support Vectors Machine in order to describe pedestrian shape
- with gradients to create a model and classify possible candidates 
+ The following PD State of the Art analysis is divided into three different
+ classification.
+ First, pedestrian descriptor and detection scheme is explained.
+ Second, the person model and the algorithms to detect potencial objects
+ are analyzed.
+ Finally, new trends in PD are briefly introduced.
+\end_layout
+
+\begin_layout Subsubsection
+Description and detection scheme
+\end_layout
+
+\begin_layout Standard
+An organization of existing PD approaches based on the descriptor and detection
+ scheme may start with the ones that use Histograms of Oriented Gradients
+ in combination with linear Support Vectors Machine in order to describe
+ pedestrian shape with gradients to create a model and classify possible
+ candidates 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dalal2005histograms"
@@ -190,11 +201,7 @@ key "dalal2005histograms"
 \end_inset
 
 .
- 
-\end_layout
-
-\begin_layout Standard
-Differently, Discriminative Part Models such as 
+ Differently, Discriminative Part Models (DPM) such as 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "felzenszwalb2008discriminatively"
@@ -219,6 +226,10 @@ key "dollar2014fast"
  channels in order to achieve the final detection.
 \end_layout
 
+\begin_layout Subsubsection
+Object detection and Model
+\end_layout
+
 \begin_layout Standard
 In 
 \begin_inset CommandInset citation
@@ -241,11 +252,11 @@ Object detection is defined as the extraction of the possible candidates
 \end_layout
 
 \begin_layout Itemize
-Sliding window: Or exhaustive search leads to an efficient classifier to
- test, in search of pedestrian, every possible image window.
+Sliding window: -Also known as- exhaustive search leads to an efficient
+ classifier to test, in search of pedestrian, every possible image window.
  Parameters such as window size, or overlapping are common tuning values
  that increase or decrease the performance of the detector.
- Those methods usually need from 
+ These methods usually need from 
 \begin_inset Formula $10^{4}$
 \end_inset
 
@@ -259,8 +270,8 @@ Sliding window: Or exhaustive search leads to an efficient classifier to
 \end_layout
 
 \begin_layout Itemize
-Segmentation: This approach introduces segmentation as a preliminary step
- for the pedestrian detection.
+Segmentation: This line of research introduces segmentation as a preliminary
+ step for the PD.
  Algorithms such as background subtraction lead to moving parts of the image
  that generate interest objects from moving patterns.
  Others such as color segmentation are based on color skin to restrict the
@@ -270,8 +281,8 @@ Segmentation: This approach introduces segmentation as a preliminary step
 \end_layout
 
 \begin_layout Itemize
-Segmentation + Exhaustive search: The final approach is the combination
- of both previously analyzed techniques.
+Segmentation + Exhaustive search: Alternatively, a combination of both previousl
+y analyzed techniques.
  In this case the previous step of segmentation does not lead to final candidate
 s but to a delimited area that could contain some candidates objects.
  After the segmentation process a sliding window technique is performed
@@ -279,15 +290,15 @@ s but to a delimited area that could contain some candidates objects.
  In this case improvements from both approaches are used as the computational
  cost of the exhaustive search (which is its main drawback) is reduced by
  the use of segmentation.
- In Figure 
+ Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Edge-Detector-Example"
 
 \end_inset
 
- one can observe an example diagram of the Edge detector that uses the combinati
-on of segmentation and exhaustive for the search approach.
+ depicts a flowchart for a PD approach which relies on the combination of
+ segmentation and exhaustive search.
 \end_layout
 
 \begin_deeper
@@ -313,7 +324,19 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Edge Detector Example Diagram
+Edge Detector Example Diagram.
+ Adapted from 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "garcia2015people"
+
+\end_inset
+
+
+\color red
+ 
+\color inherit
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Edge-Detector-Example"
@@ -335,42 +358,44 @@ name "fig:Edge-Detector-Example"
 
 \end_deeper
 \begin_layout Standard
-Describing person model or in other words, the set of characteristics that
- are able to discriminate between people and any other object in the scene,
- 
+The model of a person can be considered as the set of characteristics that
+ are able to discriminate between people and any other object in the scene.
+ In 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "garcia2015people"
 
 \end_inset
 
- differentiates three different classification groups:
+ three different kinds of person model are presented:
 \end_layout
 
 \begin_layout Itemize
 Based on appearance: Most of the available detectors in the state of the
- art use appearance information to define the person model and so, to discrimina
-te between person and the rest of the scene.
+ art use appearance information to define the person model.
  In this group of person models one can differentiate two approaches to
  describe the shape of a person.
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-Holistic: In these models people are defined from the easiest point of view
- as a unique and indivisible region or a shape.
+Holistic: In these models people are defined as a unique and indivisible
+ region or a shape.
 \end_layout
 
 \begin_layout Itemize
-Part-based: These however, use more complex models where people are defined
- as a combination of multiple shapes, regions or parts from its body.
+Part-based: These models however, rely on more complex characteristics where
+ a person is defined as a combination of multiple shapes, regions or parts
+ of its body.
 \end_layout
 
 \begin_layout Standard
-In this group one can find algorithms that use silhouettes to classify people,
- either from an holistic or part-based point of view, or color distribution
- in people, however the most used approaches based on appearance use Histograms
- of Oriented Gradients like 
+Examples of appearance-based detectors are those that use silhouettes to
+ classify people, either from an holistic or part-based basis, or color
+ distribution in people.
+ However the group of appearance-based PD is mainly covered with approaches
+ based on the appearance use of Histograms of Oriented Gradients (HOG) like
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dalal2005histograms"
@@ -384,24 +409,23 @@ key "alonso2007combination"
 
 \end_inset
 
-, or combination of multiple features, aggregate channel features: HOG,
- gradient and color (ACF) 
+, or combination of multiple features and aggregate channel features -e.g.
+ the ACF 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dollar2014fast"
 
 \end_inset
 
-.
+ which combines HoG, gradient and color information-.
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-Based on motion: Many of the detectors usually are based on appearance,
- however, human appearance is likely to change due to environmental factors
- such as light conditions, cloths or camera settings.
+Based on motion: Human appearance is likely to change due to environmental
+ factors such as light conditions, cloths or camera settings.
  In addition, people variability in terms of height, weigh and poses make
- appearance very likely to vary.
+ appearance likely to vary.
  For these reasons, some approaches try to get rid of these factors and
  detect pedestrians using only its motion information.
  In 
@@ -417,40 +441,38 @@ key "cutler2000robust"
 \end_layout
 
 \begin_layout Itemize
-Based on appearance + motion: There are some algorithms such as 
+Based on appearance + motion: Algorithms such as 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "giebel2004bayesian,okuma2004boosted"
 
 \end_inset
 
- that merge both appearance and motion approaches in order to improve results.
+ merge both appearance and motion approaches in order to improve results.
  Most of these algorithms combine people detection and tracking, and so,
- they have been design to improve people tracking over video sequences rather
- than outperforming available state of the art pedestrian detectors.
+ they have been designed to improve people tracking over video sequences
+ rather than to outperform state of the art pedestrian detectors.
 \end_layout
 
 \begin_layout Standard
-In Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Pedestrian-detection-performance"
-
-\end_inset
-
-, 
+In 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "garcia2015pdbm"
 
 \end_inset
 
- propose some results from the State of the Art detectors depending on different
- datasets.
- The selected algorithm ranking for this evaluation is the average AUC.
- This metric measures the area under a Recall Over Precision curve which
- means that an area of 1 represents a perfect test; an area of .5 represents
- a worthless test.
+ a comparison of the performance of PD on different data-sets is made.
+ This comparison derives to a ranking which is partially included in Table
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Pedestrian-detection-performance"
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -964,15 +986,18 @@ Pedestrian Detection Performance.
 
 \end_inset
 
-Pedestrian Detection Performance 
+Pedestrian Detection Performance.
+ Adapted from 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "garcia2015pdbm"
 
 \end_inset
 
-.
- Complete table available in 
+ (selected approaches).
+ Metric for this evaluation is the average AUC.
+ This metric measures the area under a Recall Over Precision curve.
+ See 
 \color blue
 
 \begin_inset CommandInset href
@@ -984,7 +1009,7 @@ target "http://www-vpu.eps.uam.es/DS/PDbm/results.html"
 
 
 \color inherit
-
+ for the complete table available in 
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:Pedestrian-detection-performance"
@@ -1002,6 +1027,10 @@ name "tab:Pedestrian-detection-performance"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsubsection
+Recent Trends in Pedestrian Detection
 \end_layout
 
 \begin_layout Standard
@@ -1022,9 +1051,9 @@ key "girshick2015fast"
 
 \end_inset
 
- for object detection expose that deep convolutional networks outperform
- the previous mentioned algorithms.
- This fact is clearly presented in the mentioned Table 
+ for object detection expose that deep convolutional networks usually improve
+ the performance of aforementioned approaches.
+ This fact is clearly presented Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:Pedestrian-detection-performance"
@@ -1035,16 +1064,16 @@ reference "tab:Pedestrian-detection-performance"
 \end_layout
 
 \begin_layout Subsection
-Available Datasets
+Data-sets for evaluating PD approaches
 \end_layout
 
 \begin_layout Standard
 As mentioned at the beginning of the section pedestrian approaches performance
- varies depending on the dataset characteristics that have been use for
+ varies depending on the data-set characteristics that have been use for
  its training.
- Due to the high number of available dataset no detector can outperform
+ Due to the high number of available data-set no detector can outperform
  on all of them.
- During this section main used datasets in the state of the art are analyzed:
+ During this section main used data-sets in the state of the art are analyzed:
 \end_layout
 
 \begin_layout Itemize
@@ -1113,7 +1142,7 @@ reference "fig:Image-summary-from datasets"
 \end_inset
 
  one can observe some image examples that can be obtained from the different
- mentioned datasets.
+ mentioned data-sets.
 \end_layout
 
 \begin_layout Standard
@@ -1290,7 +1319,7 @@ key "dalal2005histograms"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Image summary from all the analyzed datasets.
+Image summary from all the analyzed data-sets.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Image-summary-from datasets"
@@ -1322,7 +1351,7 @@ name "subsec:Object-Proposals"
 \end_layout
 
 \begin_layout Standard
-Described detectors such as HOG, DPM or ACF utilized the analyzed 
+Described PD such as HOG, DPM or ACF utilized the analyzed 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1336,8 +1365,8 @@ sliding window
 \end_layout
 
 \begin_layout Standard
-One of the most successful approaches to overcame this time consumption
- problem without losing detection quality is by means of object proposals
+One of the most successful approaches to overcome this time consumption
+ problem without losing detection quality is the use of object proposals
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1349,37 +1378,50 @@ key "hosang2016makes"
 \end_layout
 
 \begin_layout Standard
-Object proposals are those objects that could be fitted into the any of
- the desired label classification.
- This object shares common visual properties that distinguish it from the
- background.
- In order words, these approaches perform a complete search over an image
- to select potential object candidates.
+Object proposals approaches perform a complete search over an image to detect
+ potential object candidates.
+ These candidates are detected as image areas with visual properties that
+ distinguish them from the scene background.
 \end_layout
 
 \begin_layout Standard
-If lower number of object proposals than sliding windows lead to a higher
- object recall, a speed-up is achieved which means that efforts can be focus
- on a more sophisticated classifier.
+In general, object proposal approaches reduce pedestrian candidates respect
+ to sliding-window like algorithms.
+ Leading to a higher object recall and increasing the efficiency of the
+ detection process.
+ Successful examples of using proposal to improve and speed-up detection
+ include the aforementioned ImageNet 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "krizhevsky2012imagenet"
+
+\end_inset
+
+ and Faster R-CNN 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/corr/RenHG015"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Both ImageNet and Fast R-CNN algorithms use detections proposals, which
- is one of the main reasons why they outperform previous algorithms.
- In 
+In 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "hosang2016makes"
 
 \end_inset
 
- two set of different proposal methods groups are proposed and analyzed:
+ two set of proposal methods groups are proposed and analyzed:
 \end_layout
 
 \begin_layout Itemize
 Grouping proposal methods attempt to generate multiple, and so, overlapping
  segments that are likely to correspond to objects.
- Usually this method generates region proposals by grouping super pixels,
+ Usually these method generates region proposals by grouping super pixels,
  solving multiple graph cut problems, or directly using edge contours.
  One of the best examples for this methods is MCG 
 \begin_inset CommandInset citation
@@ -1406,12 +1448,12 @@ key "zitnick2014edge"
 \end_layout
 
 \begin_layout Subsection
-Research Directions
+Next Steps Towards Generic PD
 \end_layout
 
 \begin_layout Standard
-As said before pedestrian detection is constantly in development and so,
- some future work lines can be set.
+As said before PD is constantly in development and so, some future work
+ lines can be set.
  In 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1429,17 +1471,19 @@ Context information should be added.
  Starting from the hypothesis that a person should be placed on the floor,
  the ground plane assumption can reduce errors if the detection for both
  the person and the floor are accurate.
- This could be achieve by extracting good contextual information from the
- scene which is one of the main objectives of the work.
+ This could be achieved by extracting useful contextual information from
+ the scene.
+ This is one of the main objectives of the work.
 \end_layout
 
 \begin_layout Enumerate
 Occlusion treatment.
  Usually pedestrians, due to other scene elements such as columns or even
- other pedestrians get occluded.
- When this happens performance degrades rapidly under even mild occlusion
- so, some improvements in this area could increase the performance in real
- life situations such as crowded spaces.
+ other pedestrians appear occluded.
+ When this happens PD performance is substantially degraded under even mild
+ occlusions.
+ Improvements in this area could increase the performance in real life situation
+s such as crowded spaces.
  
 \end_layout
 
@@ -1476,30 +1520,33 @@ Contextual Information
 \end_layout
 
 \begin_layout Standard
-One can describe contextual information as the set of circumstances or facts
- that one can extract from a scene.
- Usually, this set of circumstances is a wealth of information that is not
- captured by the image but extracted by humans based on previously acquired
- knowledge.
- By just taking a look to an outdoor image one can derive where the sky
- will be, what the weather conditions or which time of the day is.
+One can describe contextual information as the set of additional circumstances
+ or facts that one can extract from a scene besides the target of analysis.
+ Generally, this set of circumstances is a wealth of information that is
+ not extracted by the image analysis but extracted by humans based on previously
+ acquired knowledge.
+ By just taking a look to an outdoor image a human can derive where the
+ sky will be, what the weather conditions or which time of the day is.
  Also, by knowing the place the photo was taken, one would imagine which
  objects are more or less probable to appear in the scene.
 \end_layout
 
 \begin_layout Standard
-When talking specifically about computer vision, contextual information
- embraces for instance camera information (such as position, configuration,
- distance to an object, movement), the set of objects that one could detect
- in the scene or how many views are available.
+Dealing with computer vision, contextual information sources also include
+ camera information (such as position, configuration, distance to an object
+ and camera motion), as well as set of objects that one could detect in
+ the scene or how many views are available.
 \end_layout
 
 \begin_layout Standard
-All this set of information that is not extracted from a frame provides
- a more general understanding about the scene and helps with further algorithms.
- We can divide contextual information into two different levels, global
- and local contextual information, and also into two different categories
- offline, and online.
+All this set of information that is not extracted from a the image analysis
+ provides a more general understanding about the scene and helps with further
+ algorithms.
+ We can divide contextual information into two different levels: global
+ and local contextual information.
+ .
+ Besides, we can also further divide contextual information two different
+ categories offline, and online.
 \end_layout
 
 \begin_layout Subsection
@@ -1507,10 +1554,14 @@ Global
 \end_layout
 
 \begin_layout Standard
-Global context considers image detections from the image as a whole, this
- means that for instance an image is consider as a kitchen to predict the
- presence of a stove.
- This kind of approaches are focused on psychology studies that suggests
+Global context considers image detections from the image as a whole.
+ For instance, if the context of a scene is known -kitchen- we can use this
+ information to search for typical objects in this context --e.g.
+ a stove--.
+\end_layout
+
+\begin_layout Standard
+This kind of approaches are focused on psychology studies that suggests
  that human perceptual processes work following a hierarchically organized
  process 
 \begin_inset CommandInset citation
@@ -1521,14 +1572,15 @@ key "navon1977forest,rensink1997see"
 
 .
  Our perception system goes from a global structure towards a more detailed
- analysis.
+ analysis in a top-down scene interpretation..
 \end_layout
 
 \begin_layout Standard
-Global context approaches aims to define a scene as an extra source of global
+Global context approaches aim to define a scene as an extra source of global
  information.
- The structure of a determinate scene image can be estimated by the mean
- of global image features.
+ The structure of a determinate scene image can be estimated by means of
+ global image features.
+ REFERENCIAS OLIVA TORRALBA
 \end_layout
 
 \begin_layout Subsection
@@ -1536,13 +1588,18 @@ Local
 \end_layout
 
 \begin_layout Standard
-On the contrary, local context considers context information from the neighbor
- area of an object, e.g.
- a kitchen table will predict the presence of a spoon.
- The neighboring areas are defined as a set of other objects, patches or
- even pixels.
- The aim is to try to correctly define the area that surrounds an object
- to precisely detect other object instance.
+On the contrary, local context refers to contextual information related
+ to an object, e.g.
+ a kitchen table may help predict the presence of a spoon.
+ 
+\end_layout
+
+\begin_layout Standard
+The impact area of an object -in contextual terms- is defined as a set of
+ other objects, patches or even pixels.
+ Algorithms dealing with the extraction of local contextual information
+ aim to correctly define the area that surrounds an object to precisely
+ detect other object instances.
  
 \end_layout
 
@@ -1552,9 +1609,10 @@ Offline
 
 \begin_layout Standard
 Offline contextual information is defined as the set of circumstances that
- are computed and available before starting any kind of analysis procedure.
- This information is previously computed and so, it leads to external image
- information that is added to further algorithms.
+ are computed before starting any kind of analysis procedure.
+ This information leads to external image information that is used to constraint
+ analisys algorithms.
+ REFERENCIAS ALVARO Y JC
 \end_layout
 
 \begin_layout Subsection
@@ -1562,21 +1620,33 @@ Online
 \end_layout
 
 \begin_layout Standard
-Online information, on the other hand, is computed during procedures, and
- so it is not previously computed knowledge.
- Online extraction has the computational time drawback as it is considered
- as part of an algorithm, but however, has one of the main advantages which
- is that it can be dynamically updated.
+Online information, on the other hand, is computed with the analysis.
+ Online extraction entails a degradation of an algorithm efficiency, albeit
+ allows to dynamically update the context.
 \end_layout
 
 \begin_layout Standard
-If we now focus on the set of objects that one can observe from a scene,
- semantic segmentation techniques, which is analyzed in the following section,
- aim to separate a scene into different observable objects.
+Examples of online (and local) contextual information extractors are the
+ algorithms in the semantic segmentation branch.
+ Next section (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Semantic-Segmentation"
+
+\end_inset
+
+) discuss some of the approaches in this vein.
 \end_layout
 
 \begin_layout Subsection
 Semantic Segmentation
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Semantic-Segmentation"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1650,12 +1720,12 @@ status open
 status open
 
 \begin_layout Plain Layout
-Scene parsing on ADE20K dataset.
+Scene parsing on ADE20K data-set.
 \end_layout
 
 \end_inset
 
-Scene parsing on ADE20K dataset 
+Scene parsing on ADE20K data-set 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "zhou2016semantic"
@@ -1663,7 +1733,7 @@ key "zhou2016semantic"
 \end_inset
 
 .
- Image from 
+ Adapted from 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "zhao2016pyramid"
@@ -1691,16 +1761,17 @@ name "fig:Scene-parsing-on PSPNet"
 \end_layout
 
 \begin_layout Standard
-Cityscapes Dataset 
+Cityscapes Data-set 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "cordts2016cityscapes"
 
 \end_inset
 
- is a large-scale dataset that contains stereo video sequences recorded
+ is a large-scale data-set that contains stereo video sequences recorded
  in street scenes from among 50 different cities around the world.
- This dataset presents class annotations over pixels in more than 5000 frames.
+ This data-set presents class annotations over pixels in more than 5000
+ frames.
  In the following Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1933,7 +2004,7 @@ ground · dynamic · static
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cityscapes Dataset Class Definitions
+Cityscapes Data-set Class Definitions
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:Cityscapes-Dataset-Class Definitions"
@@ -1971,7 +2042,7 @@ reference "tab:Cityscapes Dataset Challenge Results"
 
 \end_inset
 
- we can observe the four most accurate algorithms in the scope of this dataset
+ we can observe the four most accurate algorithms in the scope of this data-set
  at the day of this report.
 \end_layout
 
@@ -2231,7 +2302,7 @@ key "zhao2016pyramid"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cityscapes Dataset Challenge Results
+Cityscapes Data-set Challenge Results
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:Cityscapes Dataset Challenge Results"
@@ -2295,7 +2366,7 @@ reference "fig:PSPNet-Algorithm"
 \end_inset
 
  we can observe some visual examples of how this two algorithms perform
- on some Cityscapes Dataset frames.
+ on some Cityscapes Data-set frames.
 \end_layout
 
 \begin_layout Standard
@@ -2390,7 +2461,7 @@ name "fig:PSPNet-Algorithm"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Semantic Segmentation result examples on Cityscapes Dataset
+Semantic Segmentation result examples on Cityscapes Data-set.
 \end_layout
 
 \end_inset
@@ -2410,17 +2481,18 @@ Multi-camera scenarios
 \begin_layout Standard
 The use of various cameras is a common setup when dealing with video surveillanc
 e problems.
- One can define as multi-camera scenario one space that has more than one
- video camera working and recording synchronized at the same exact time.
+ One can define a multi-camera scenario one space that has more than one
+ video camera recording .
+ Ideally, the recordings for the different cameras are temporally aligned
+ -synchronized-.
  Having 
 \begin_inset Formula $N$
 \end_inset
 
  multiple camera instances allows to observe the same event or object of
- interest from up to two different points of view.
+ interest from at least two different points of view.
  This leads to a set of advantages in the scope of our work when dealing
- with pedestrian detection and semantic classification and also, some unavoidabl
-e disadvantages.
+ with PD and semantic classification and also, to some unavoidable disadvantages.
 \end_layout
 
 \begin_layout Itemize
@@ -2429,20 +2501,21 @@ Advantages
 
 \begin_deeper
 \begin_layout Standard
-As said in 
+As said in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Pedestrian-detection-and crowd patrons"
 
 \end_inset
 
- one of the main research paths in pedestrian detection is the occlusion
- treatment.
+ one of the main research paths in PD is the occlusion treatment.
  In this case, the use of a multi-camera scenario with computed homographies
- between camera frames could help to solve partially the problem of occlusions
- or at least improve the performance.
+ between camera frames could help.
  This could be achieved by reprojecting detections from one camera to another
  whose miss rates are high.
+ 
+\color red
+REFERENCIAS
 \end_layout
 
 \begin_layout Standard
@@ -2453,6 +2526,9 @@ When talking about semantic segmentation the inclusion of a multi-camera
  example, camera capture problems, in a multi-camera system one camera instance
  could help to refine the classes in another one provided that, evidentially,
  they are analyzing the same common area.
+
+\color red
+ REFERENCIAS
 \end_layout
 
 \end_deeper
@@ -2463,21 +2539,20 @@ Disadvantages
 \begin_deeper
 \begin_layout Standard
 The main disadvantage when dealing with multi-camera systems is the exponential
- grow of computational time as algorithms should be performed 
+ grow of computational time.
+ Algorithms should be performed 
 \begin_inset Formula $N$
 \end_inset
 
  times.
- This issue could be solved by the use of some parallel coding that perform
- cameras process separately.
+ This issue could be solved by the use of parallel coding that perform cameras
+ processing simultaneously.
 \end_layout
 
 \begin_layout Standard
-Another disadvantage is related with synchronization problems.
- If the camera instances are used to reproject objects/pedestrians from
- one camera to another they must evidentially, represent the same exact
- moment in time in the same sequence frame, which depending on the setup
- could be more or less complex.
+Besides, the use of multiple cameras entail two additional tasks: the temporal
+ alignment of the views -synchronization- and the spatial arrangement of
+ the different view -homographies-.
 \end_layout
 
 \end_deeper
