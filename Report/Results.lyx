@@ -1261,7 +1261,8 @@ It is important to remind that results will be presented within Recall versus
  Each threshold iteration for an algorithm will provide one point of the
  curve.
  To proceed with this process all the algorithms scores have been normalized
- from its original values to the mentioned interval.
+ from its original values using the maximum and minimum scores to the mentioned
+ interval.
  In order to obtain scores distributions for all the detectors a train sequence
  has been used.
 \end_layout
@@ -1703,7 +1704,7 @@ Statistical Usage Data
 \begin_layout Standard
 Finally, results concerning statistical usage data will be presented.
  For this result an additional sequence has been used.
- The reuslts will be presented in one curve for each of the semantic analyzed
+ The results will be presented in one curve for each of the semantic analyzed
  area.
  This graph will represent the number of pedestrian using that semantic
  class in each video frame.

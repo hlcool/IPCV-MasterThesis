@@ -129,7 +129,7 @@ void CameraWorker::processVideo()
         // ------------------------------------------- //
         //     PEOPLE DETECTION & BLOBS PROJECTION     //
         // ------------------------------------------- //
-        PeopleDetec.MainPeopleDetection(Camera, CBOption, RepresentationOption, PDFiltering, CenitalPlane, MultiCameraFiltering, SemanticFiltering);
+        PeopleDetec.MainPeopleDetection(Camera, FrameNumber, CBOption, RepresentationOption, PDFiltering, CenitalPlane, MultiCameraFiltering, SemanticFiltering);
         if(MultiCameraFiltering){
             barrier.wait();
             emit PedestrianDetectionFinished(Camera.CameraNumber);

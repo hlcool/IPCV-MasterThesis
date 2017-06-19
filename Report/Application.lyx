@@ -1687,7 +1687,7 @@ reference "fig:Hierarchical representation of the code"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1709,9 +1709,10 @@ Hierarchical representation of the code.
  
 \color red
 NO DEFINITIVO.
- FALTA CLASE EVALUACION
+ FALTA CLASE EVALUACION.
+ CAMBIAR LOS COLORES DE PD Y CS
 \color inherit
-
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Hierarchical representation of the code"
@@ -1763,7 +1764,7 @@ reference "fig:User version application main window"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1782,6 +1783,11 @@ status collapsed
 
 \begin_layout Plain Layout
 User version application main window
+\color red
+.
+ CAMBIAR FOTO
+\color inherit
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:User version application main window"
@@ -1802,7 +1808,9 @@ name "fig:User version application main window"
 \end_layout
 
 \begin_layout Standard
-As said, conversely to the engineer application ...
+As said, conversely to the engineer application the only functionality of
+ the main window is to display results and algorithm tuning is no longer
+ available.
 \end_layout
 
 \end_body

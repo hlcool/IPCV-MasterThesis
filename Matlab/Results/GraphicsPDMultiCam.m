@@ -3,57 +3,67 @@ clear all;
 close all;
 
 
-%% Pedestrian Detection Mono Camera
-
-% HOG
+%% Pedestrian Detection Multi Camera
 
 % Camera 1
-HOGPrecision1 = [0.58341 0.71336 0.884319 0.957447 1];
-HOGRecall1 = [0.16909 0.1332 0.0459463 0.0060104 0.00013356];
+HOGPrecision1 = [0.152373 0.242678];
+HOGRecall1 = [0.164685 0.131695];
 
-DPMPrecision1 = [0.0140929 0.0182355 0.0681893 0.633588 0.964497];
-DPMRecall1 = [0.241007 0.257361 0.328032 0.265777 0.108855];
+DPMPrecision1 = [];
+DPMRecall1 = [];
+
+PSPPrecision1 = [];
+PSPRecall1 = [];
 
 figure(1)
-plot(1 - HOGPrecision1, HOGRecall1, '-rx')
+plot(HOGPrecision1, HOGRecall1, '-rx')
 hold on;
-plot(1 - DPMPrecision1, DPMRecall1, '-b*')
+plot(DPMPrecision1, DPMRecall1, '-b*')
+plot(PSPPrecision1, PSPRecall1, '-gx')
 xlim([0 1]);ylim([0 1]);
-xlabel('1 - Precision');
+xlabel('Precision');
 ylabel('Recall');
-legend('HOG','DPM')
-title('Camera 1 Pedestrian Detection Mono Camera')
+legend('HOG', 'DPM', 'PSP-Net')
+title('Camera 1 Pedestrian Detection Multi Camera')
 
 % Camera 2
-HOGPrecision2 = [0.18009 0.30972 0.407166 0.459016 0.75];
-HOGRecall2 = [0.09540 0.0610 0.0202823 0.0045432 0.00048677];
+HOGPrecision2 = [0.0642081 0.082546];
+HOGRecall2 = [0.0872951 0.05533];
 
-DPMPrecision2 = [0.0105133 0.0154302 0.0536681 0.158117 0.840299];
-DPMRecall2 = [0.205613 0.242754 0.303318 0.243432 0.091351];
+DPMPrecision2 = [];
+DPMRecall2 = [];
+
+PSPPrecision2 = [];
+PSPRecall2 = [];
 
 figure(2)
-plot(1 - HOGPrecision2, HOGRecall2, '-rx')
+plot(HOGPrecision2, HOGRecall2, '-rx')
 hold on;
-plot(1 - DPMPrecision2, DPMRecall2, '-b*')
+plot(DPMPrecision2, DPMRecall2, '-b*')
+plot(PSPPrecision2, PSPRecall2, '-gx')
 xlim([0 1]);ylim([0 1]);
-xlabel('1 - Precision');
+xlabel('Precision');
 ylabel('Recall');
-legend('HOG','DPM')
-title('Camera 2 Pedestrian Detection Mono Camera')
+legend('HOG', 'DPM', 'PSP-Net')
+title('Camera 2 Pedestrian Detection Multi Camera')
 
 % Camera 3
-HOGPrecision3 = [0.35194 0.50976 0.689038 0.742188  0.92];
-HOGRecall3 = [0.23911 0.1861 0.0784114 0.0241853 0.00585987];
+HOGPrecision3 = [0.118507 0.187824];
+HOGRecall3 = [0.24561 0.19414];
 
-DPMPrecision3 = [0.0120268 0.0161443 0.0603696 0.218275 0.611303];
-DPMRecall3 = [0.38032 0.399751 0.492798 0.456605 0.135032];
+DPMPrecision3 = [];
+DPMRecall3 = [];
+
+PSPPrecision3 = [];
+PSPRecall3 = [];
 
 figure(3)
-plot(1 - HOGPrecision3, HOGRecall3, '-rx')
+plot(HOGPrecision3, HOGRecall3, '-rx')
 hold on;
-plot(1 - DPMPrecision3, DPMRecall3, '-b*')
+plot(DPMPrecision3, DPMRecall3, '-b*')
+plot(PSPPrecision3, PSPRecall3, '-gx')
 xlim([0 1]);ylim([0 1]);
-xlabel('1 - Precision');
+xlabel('Precision');
 ylabel('Recall');
-legend('HOG','DPM')
-title('Camera 3 Pedestrian Detection Mono Camera')
+legend('HOG', 'DPM', 'PSP-Net')
+title('Camera 3 Pedestrian Detection Multi Camera')

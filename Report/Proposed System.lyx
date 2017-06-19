@@ -1288,6 +1288,10 @@ Camera 2
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Float figure
 wide false
 sideways false
@@ -1381,6 +1385,8 @@ Homography calculation is a pivotal task in our work and the main base for
  With this homography matrix we will be able to transform every frame pixel
  to its correspondent position in the cenital plane which means that the
  frame will be transform as if it were being viewed from the top.
+ It is also necesary so pedestrains detections can be projected also to
+ the cenital plane.
 \end_layout
 
 \begin_layout Standard
@@ -1916,7 +1922,7 @@ Cylinder Estimation
 In 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Miguelez2016Deteccion"
+key "miguelez2016Deteccion"
 
 \end_inset
 
@@ -2056,9 +2062,9 @@ reference "fig:Cylinder-estimation-for cenital view projections"
 
  the same method is applied but in this case, the bounding box is not projected
  to another camera perspective but to the cenital plane.
- In this case we can see that the projection of the bounding box, represented
- by the green line is not in the same position as the center of the cylinder,
- which will be at the end of the purple line.
+ The projection of the bounding box, represented by the green line is not
+ in the same position as the center of the cylinder, which will be at the
+ end of the purple line.
  The center of the cylinder so, will correspond to a more approximate position
  of the detected person.
 \end_layout
@@ -2319,7 +2325,22 @@ When all the pedestrian detections have been projected into the cenital
  Ideally, if the three cameras detect the person reprojection will not be
  necessary, but, if one of them misses the detection, the other two detections,
  by the use of reprojection, will lead to suppress that miss detection.
- This process can be observed in Figure 
+ 
+\end_layout
+
+\begin_layout Standard
+Projected frames from one camera to another will be treat as another detector
+ blob.
+ This means that if the detection is accurate enough in the original camera,
+ when projected to another frame it will be either joined by a Non-Maximum
+ Suppression (NMS) if that camera already has one blob, or maintained as
+ a detection on the person.
+ However, if the detection is not accurate enough projection will not be
+ on the person and so that blob will lead to a false positive.
+\end_layout
+
+\begin_layout Standard
+This process can be observed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Pedestrain reprojection into other cameras"
@@ -2449,8 +2470,9 @@ Camera 3 + Reprojections from 1 and 2
 
 \begin_layout Plain Layout
 Pedestrian detection reprojection.
+
 \color red
-CAMBIAR FOTOS
+ CAMBIAR FOTOS
 \color inherit
 
 \begin_inset CommandInset label
@@ -2660,9 +2682,10 @@ Pedestrian semantic constraining examples.
 
 Pedestrian semantic constraining.
  Blobs that are not in the right semantic area just displayed by a circle
- and text label
+ and text label.
+
 \color red
-.CAMBIAR FOTOS
+ CAMBIAR FOTOS
 \color inherit
 .
 \begin_inset CommandInset label
@@ -3408,7 +3431,7 @@ reference "fig:Common semantic areas for all the cameras"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3468,8 +3491,73 @@ Statistical Usage Data
 \end_layout
 
 \begin_layout Standard
-Along this Section the extraction of the statistical usage data will be
- deeply explained.
+Along this Section we will explain our propose system to extract statistical
+ usage data by frame given a sequence.
+\end_layout
+
+\begin_layout Standard
+In order to extract usage data the first step is to create a projected common
+ semantic map.
+ For this task, rather than creating common areas between cameras as done
+ for the PD fusion, information for all the cameras have been joined without
+ strictly being shared.
+ The result from this step is a unique map that represents the hole area
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Statistical Semantic Map"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/CommonSemanticAllCameras.png
+	lyxscale 20
+	width 60text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Statistical semantic map.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Statistical Semantic Map"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Following the same principle as in the previous Section pedestrians will
+ be projected on to the map and so we will be able to know how many of them
+ are in each of the designed areas.
 \end_layout
 
 \end_body

@@ -27,7 +27,7 @@ public:
     ~PeopleDetector();
 
     // Main People Detection Function
-    void MainPeopleDetection(CameraStream &Camera, String CBOption, String RepresentationOption, bool PDFiltering, Mat &CenitalPlane, bool MultiCameraFiltering, bool SemanticFiltering);
+    void MainPeopleDetection(CameraStream &Camera, String FrameNumber, String CBOption, String RepresentationOption, bool PDFiltering, Mat &CenitalPlane, bool MultiCameraFiltering, bool SemanticFiltering);
     double Threshold = 0.5;
     void ThresholdDetections(vector<Rect> Detections,  vector<double> Scores, double Threshold);
 
@@ -43,6 +43,9 @@ public:
     // ACF People Detector
     ACFDetector ACFdetector;
     void ACFPeopleDetection(CameraStream &Camera, bool PDFiltering);
+
+    // PSP-Net Detector
+    void PSPNetScores(int CameraNumber, String FrameNumber);
 
     // Gaussians creation
     void projectBlobs(vector<Rect> BoundingBoxes, vector<double> scores, Mat Homography, Mat HomographyBetweenViews, Mat& CenitalPlane, int CameraNumber, String RepresentationOption);

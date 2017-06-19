@@ -15,7 +15,7 @@
 PeopleDetector::PeopleDetector(){}
 PeopleDetector::~PeopleDetector(){}
 
-void PeopleDetector::MainPeopleDetection(CameraStream &Camera, String CBOption, String RepresentationOption,
+void PeopleDetector::MainPeopleDetection(CameraStream &Camera, String FrameNumber, String CBOption, String RepresentationOption,
                                          bool PDFiltering, Mat &CenitalPlane, bool MultiCameraFiltering, bool SemanticFiltering)
 {
     AllPedestrianVector.clear();
@@ -40,6 +40,7 @@ void PeopleDetector::MainPeopleDetection(CameraStream &Camera, String CBOption, 
     else if(!CBOption.compare("Semantic Detector")){
         // People detection using labels from semantic information.
         AllPedestrianVector = Camera.FGBlobs;
+        PSPNetScores(Camera.CameraNumber, FrameNumber);
     }
     else if(!CBOption.compare("None")){
         return;
@@ -276,6 +277,71 @@ void PeopleDetector::ACFPeopleDetection(CameraStream &Camera, bool PDFiltering)
 
     AllPedestrianVector = Camera.ACFBoundingBoxes;
     AllPedestrianVectorScore = Camera.ACFScores;
+}
+
+void PeopleDetector::PSPNetScores(int CameraNumber, String FrameNumber)
+{
+    int FrameNumber2 = atoi(FrameNumber.c_str()) - 1;
+    string SemScoresPath;
+
+    if (FrameNumber2 < 10){
+        // Add 000 to the path string
+        SemScoresPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Scores PSP/Camera " + to_string(CameraNumber) + "/Camera" + to_string(CameraNumber) + "000" + to_string(FrameNumber2) + ".png";
+    }
+    else if (FrameNumber2 < 100){
+        // Add 00 to the path string
+        SemScoresPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Scores PSP/Camera " + to_string(CameraNumber) + "/Camera" + to_string(CameraNumber) + "00" + to_string(FrameNumber2) + ".png";
+    }
+    else if (FrameNumber2 < 1000){
+        // Add 0 to the path string
+        SemScoresPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Scores PSP/Camera " + to_string(CameraNumber) + "/Camera" + to_string(CameraNumber) + "0" + to_string(FrameNumber2) + ".png";
+    }
+    else{
+        SemScoresPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Scores PSP/Camera " + to_string(CameraNumber) + "/Camera" + to_string(CameraNumber) + to_string(FrameNumber2) + ".png";
+    }
+
+    Mat ScoresImage = imread(SemScoresPath);
+
+    vector<double> NoNormalizedScores, NormalizedScores;
+
+    for(int i = 0; i < AllPedestrianVector.size(); i++){
+        Rect Blob = AllPedestrianVector[i];
+
+        Mat Aux = ScoresImage(Blob);
+
+        int rows = Aux.rows;
+        int cols = Aux.cols;
+
+        double s = 0;
+        int counter = 0;
+
+        for(int row = 0; row < rows; row++){
+            for(int col = 0; col < cols; col++){
+                double pixel = Aux.at<uchar>(col, row);
+                if(pixel > 10){
+                    s = s + pixel;
+                    counter++;
+                }
+            }
+        }
+        if(counter != 0){
+            s = s / counter;
+            s = s / 100;
+            NoNormalizedScores.push_back(s);
+        }
+
+
+        // Score Normalization
+        double MaxPSPScore = 0.9407;
+        double MinPSPScore = 0.1100;
+
+        for(int j = 0; j < NoNormalizedScores.size(); j++){
+            double Score = NoNormalizedScores[j];
+            double NormalizedScore = (Score - MinPSPScore) / (MaxPSPScore - MinPSPScore);
+            NormalizedScores.push_back(NormalizedScore);
+        }
+        AllPedestrianVectorScore = NormalizedScores;
+    }
 }
 
 void PeopleDetector::ThresholdDetections(vector<Rect> Detections,  vector<double> Scores, double Threshold)

@@ -87,6 +87,7 @@ void MainWindow::threadStarting()
         // Fill UI widget size in CameraWorkers
         CameraWorkers[i]->WidgetHeight = ui->CVWidget1->height();
         CameraWorkers[i]->WidgetWidth = ui->CVWidget1->width();
+        CameraWorkers[i]->CBOption = ui->PeopleDetectorCB->currentText().toStdString();
 
         // Move CameraWorker to thread
         CameraWorkers[i]->moveToThread(threads[i]);

@@ -126,20 +126,20 @@ reference "cha:Introduction"
 \end_layout
 
 \begin_layout Standard
-This chapter aims to study the State Of the Art pedestrian detection approaches
+This Chapter aims to study the State Of the Art pedestrian detection approaches
  and how to improve these as it constitutes a pivotal field for our goals.
  In addition, it also covers the topic of contextual information and in
  concrete, semantic segmentation and its algorithms.
- Finally as both of these disciplines are used in a multi-camera setup and
- so, scenarios working with this configuration are also defined, presenting
+ Finally as both of these disciplines are used in a multi-camera setup,
+ scenarios working with this configuration are also defined, presenting
  their advantages an disadvantages.
 \end_layout
 
 \begin_layout Section
-Pedestrian Detection and Crowd Patterns
+Pedestrian Detection
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:Pedestrian-detection-and crowd patrons"
+name "sec:Pedestrian-detection"
 
 \end_inset
 
@@ -167,7 +167,240 @@ The complexity related to pedestrian detector lies on the large amount of
  available data-sets with different video and people characteristics including
  challenges such as: as people occlusions, different poses and scales and
  under different illumination conditions.
- 
+ Caltech 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dollar2009pedestrian"
+
+\end_inset
+
+ (recorded on a vehicle in an urban environment.), ETHZ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ess2007depth"
+
+\end_inset
+
+ (recorded from a chariot which moves through pedestrian paths), TUD 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wojek2009multi"
+
+\end_inset
+
+ (static camera in a crossing campus scene) or INRIA 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dalal2005histograms"
+
+\end_inset
+
+ (collects precise people images both static and moving) are some of the
+ many literature data-sets that have been used through the years to train
+ different pedestrain detectors.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Image-summary-from datasets"
+
+\end_inset
+
+ gathers some examples that can be obtained from the different mentioned
+ data-sets.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/State Of the Art/Caltech Dataset.jpg
+	lyxscale 80
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Caltech 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dollar2009pedestrian"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/State Of the Art/ETHZ Dataset.png
+	lyxscale 30
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ETHZ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ess2007depth"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/State Of the Art/TUD Campus Dataset.png
+	lyxscale 30
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+TUD 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wojek2009multi"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/State Of the Art/Inria Dataset.png
+	lyxscale 20
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+INRIA 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dalal2005histograms"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Image summary from data-sets.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Image-summary-from datasets"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -175,11 +408,11 @@ Pedestrian Detection Approaches
 \end_layout
 
 \begin_layout Standard
-A number of people detection approaches have been presented.
- The following PD State of the Art analysis is divided into three different
- classification.
- First, pedestrian descriptor and detection scheme is explained.
- Second, the person model and the algorithms to detect potencial objects
+Some people detection approaches are presented thorugh the following section.
+ The PD State of the Art analysis is divided into three different classification
+s.
+ Firstly, pedestrian descriptor and detection scheme is explained.
+ Secondly, the person model and the algorithms to detect potential objects
  are analyzed.
  Finally, new trends in PD are briefly introduced.
 \end_layout
@@ -191,9 +424,9 @@ Description and detection scheme
 \begin_layout Standard
 An organization of existing PD approaches based on the descriptor and detection
  scheme may start with the ones that use Histograms of Oriented Gradients
- in combination with linear Support Vectors Machine in order to describe
- pedestrian shape with gradients to create a model and classify possible
- candidates 
+ (HOG) in combination with linear Support Vectors Machine (SVM) in order
+ to describe pedestrian shape with gradients to create a model and classify
+ possible candidates 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dalal2005histograms"
@@ -241,7 +474,7 @@ key "garcia2015people"
  an extensive evaluation of the state of the art of people detection is
  given.
  Here algorithms are characterized and differentiated from the others depending
- on the object detection approach and the person model used.
+ on the object detection approach and the used person model.
  
 \end_layout
 
@@ -254,8 +487,8 @@ Object detection is defined as the extraction of the possible candidates
 \begin_layout Itemize
 Sliding window: -Also known as- exhaustive search leads to an efficient
  classifier to test, in search of pedestrian, every possible image window.
- Parameters such as window size, or overlapping are common tuning values
- that increase or decrease the performance of the detector.
+ Parameters such as window size, or overlapping between them are common
+ tuning values that increase or decrease the performance of the detector.
  These methods usually need from 
 \begin_inset Formula $10^{4}$
 \end_inset
@@ -271,7 +504,7 @@ Sliding window: -Also known as- exhaustive search leads to an efficient
 
 \begin_layout Itemize
 Segmentation: This line of research introduces segmentation as a preliminary
- step for the PD.
+ step for PD.
  Algorithms such as background subtraction lead to moving parts of the image
  that generate interest objects from moving patterns.
  Others such as color segmentation are based on color skin to restrict the
@@ -284,21 +517,21 @@ Segmentation: This line of research introduces segmentation as a preliminary
 Segmentation + Exhaustive search: Alternatively, a combination of both previousl
 y analyzed techniques.
  In this case the previous step of segmentation does not lead to final candidate
-s but to a delimited area that could contain some candidates objects.
+s but to a delimited small area that could contain some candidates objects.
  After the segmentation process a sliding window technique is performed
- over the reduced scene area and so the final candidates are extracted.
- In this case improvements from both approaches are used as the computational
- cost of the exhaustive search (which is its main drawback) is reduced by
- the use of segmentation.
+ over the reduced scene area and so, the final candidates are extracted.
+ In this case improvements from both approaches are exploited as the computation
+al cost of the exhaustive search (which is its main drawback) is reduced
+ by the use of segmentation.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Edge-Detector-Example"
+reference "fig:Pedestrain-Detector-Example"
 
 \end_inset
 
- depicts a flowchart for a PD approach which relies on the combination of
- segmentation and exhaustive search.
+ depicts a flowchart for a generic PD approach which relies on the combination
+ of segmentation and exhaustive search.
 \end_layout
 
 \begin_deeper
@@ -312,7 +545,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Images/State Of the Art/Edge Pedestrian Detector Example.png
-	lyxscale 30
+	lyxscale 20
 	width 80text%
 
 \end_inset
@@ -324,7 +557,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Edge Detector Example Diagram.
+Generic Pedestrian Detector Example Diagram.
  Adapted from 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -339,7 +572,7 @@ key "garcia2015people"
 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Edge-Detector-Example"
+name "fig:Pedestrain-Detector-Example"
 
 \end_inset
 
@@ -371,8 +604,8 @@ key "garcia2015people"
 \end_layout
 
 \begin_layout Itemize
-Based on appearance: Most of the available detectors in the state of the
- art use appearance information to define the person model.
+Based on appearance: Most of the available detectors in the State of the
+ Art use appearance information to define the person model.
  In this group of person models one can differentiate two approaches to
  describe the shape of a person.
 \end_layout
@@ -380,7 +613,7 @@ Based on appearance: Most of the available detectors in the state of the
 \begin_deeper
 \begin_layout Itemize
 Holistic: In these models people are defined as a unique and indivisible
- region or a shape.
+ region or shape.
 \end_layout
 
 \begin_layout Itemize
@@ -394,8 +627,7 @@ Examples of appearance-based detectors are those that use silhouettes to
  classify people, either from an holistic or part-based basis, or color
  distribution in people.
  However the group of appearance-based PD is mainly covered with approaches
- based on the appearance use of Histograms of Oriented Gradients (HOG) like
- 
+ based on tthe use of Histograms of Oriented Gradients like 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dalal2005histograms"
@@ -451,7 +683,7 @@ key "giebel2004bayesian,okuma2004boosted"
  merge both appearance and motion approaches in order to improve results.
  Most of these algorithms combine people detection and tracking, and so,
  they have been designed to improve people tracking over video sequences
- rather than to outperform state of the art pedestrian detectors.
+ rather than to outperform State of the Art pedestrian detectors.
 \end_layout
 
 \begin_layout Standard
@@ -1009,7 +1241,8 @@ target "http://www-vpu.eps.uam.es/DS/PDbm/results.html"
 
 
 \color inherit
- for the complete table available in 
+ for the complete table.
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:Pedestrian-detection-performance"
@@ -1044,10 +1277,10 @@ key "krizhevsky2012imagenet"
 
 \end_inset
 
- for image classification and Fast R-CNN 
+ for image classification and Faster R-CNN 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "girshick2015fast"
+key "DBLP:journals/corr/RenHG015"
 
 \end_inset
 
@@ -1060,283 +1293,7 @@ reference "tab:Pedestrian-detection-performance"
 
 \end_inset
 
-.
-\end_layout
-
-\begin_layout Subsection
-Data-sets for evaluating PD approaches
-\end_layout
-
-\begin_layout Standard
-As mentioned at the beginning of the section pedestrian approaches performance
- varies depending on the data-set characteristics that have been use for
- its training.
- Due to the high number of available data-set no detector can outperform
- on all of them.
- During this section main used data-sets in the state of the art are analyzed:
-\end_layout
-
-\begin_layout Itemize
-Caltech 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "dollar2009pedestrian"
-
-\end_inset
-
-, which consists on video taken from a vehicle diving through regular traffic
- in an urban environment.
-\end_layout
-
-\begin_layout Itemize
-ETHZ 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ess2007depth"
-
-\end_inset
-
-.
- It consists on recordings using a pair of AVT Marlins F033C mounted on
- a chariot which moves through pedestrian paths.
-\end_layout
-
-\begin_layout Itemize
-TUD 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "wojek2009multi"
-
-\end_inset
-
-.
- In this case, the recording has been done by a static camera in a crossing
- campus scene.
-\end_layout
-
-\begin_layout Itemize
-INRIA 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "dalal2005histograms"
-
-\end_inset
-
- which collects precise people images both static and moving.
- In this case, images fully represent people without taking into account
- the environment.
-\end_layout
-
-\begin_layout Standard
-As a result of this large amount of training and testing data, some detectors
- perform better in terms of precision and time consumption than others depending
- on the specific situations.
-\end_layout
-
-\begin_layout Standard
-In Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Image-summary-from datasets"
-
-\end_inset
-
- one can observe some image examples that can be obtained from the different
- mentioned data-sets.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Images/State Of the Art/Caltech Dataset.jpg
-	lyxscale 80
-	width 40text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Caltech 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "dollar2009pedestrian"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Images/State Of the Art/ETHZ Dataset.png
-	lyxscale 30
-	width 40text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-ETHZ 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ess2007depth"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Images/State Of the Art/TUD Campus Dataset.png
-	lyxscale 30
-	width 40text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-TUD 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "wojek2009multi"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Images/State Of the Art/Inria Dataset.png
-	lyxscale 20
-	width 40text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-INRIA 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "dalal2005histograms"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Image summary from all the analyzed data-sets.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Image-summary-from datasets"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
+ where Faster R-CNN outperforms every other approach.
 \end_layout
 
 \begin_layout Subsection
@@ -1365,9 +1322,8 @@ sliding window
 \end_layout
 
 \begin_layout Standard
-One of the most successful approaches to overcome this time consumption
- problem without losing detection quality is the use of object proposals
- 
+One of the most successful solutions to overcome this time consumption problem
+ without losing detection quality is the use of object proposals 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "hosang2016makes"
@@ -1415,18 +1371,135 @@ key "hosang2016makes"
 
 \end_inset
 
- two set of proposal methods groups are proposed and analyzed:
+ three set of proposal methods groups are proposed and analyzed:
 \end_layout
 
 \begin_layout Itemize
 Grouping proposal methods attempt to generate multiple, and so, overlapping
  segments that are likely to correspond to objects.
- Usually these method generates region proposals by grouping super pixels,
- solving multiple graph cut problems, or directly using edge contours.
- One of the best examples for this methods is MCG 
+ Here one can distinguish between three types of methods according to how
+ they generate proposals.
+ Methods can generate proposals by groping super-pixels (SP), solving multiple
+ graph cut (GC) problems or finally, using edge contours (EC).
+ Among those that use SP we can find Selective Search 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "van2011segmentation"
+
+\end_inset
+
+, Randomized Prim's 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "manen2013prime"
+
+\end_inset
+
+, Rantalankia 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rantalankila2014generating"
+
+\end_inset
+
+ or Chang 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "chang2011fusing"
+
+\end_inset
+
+.
+ Those that use GC are CPMC 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "carreira2010constrained"
+
+\end_inset
+
+, Endres 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "endres2010category"
+
+\end_inset
+
+ or Rigor 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "humayun2014rigor"
+
+\end_inset
+
+.
+ Finally Geodesic 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "krahenbuhl2014geodesic"
+
+\end_inset
+
+ and MCG 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "arbelaez2014multiscale"
+
+\end_inset
+
+ use EC to obtain proposals.
+\end_layout
+
+\begin_layout Itemize
+Window scoring proposal methods are an alternative approach to score each
+ candidate window according to the probability to contain an object.
+ Usually this methods tend to be faster and, in addition, they typically
+ extract only bounding boxes.
+ One can find among other approaches Objectness 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "alexe2010object"
+
+\end_inset
+
+, Rahtu 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rahtu2011learning"
+
+\end_inset
+
+, Bing 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cheng2014bing"
+
+\end_inset
+
+, EdgeBoxes 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zitnick2014edge"
+
+\end_inset
+
+, Feng 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "feng2011salient"
+
+\end_inset
+
+, Zhang 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zhang2011proposal"
+
+\end_inset
+
+, RandomizedSeeds 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "van2013online"
 
 \end_inset
 
@@ -1434,17 +1507,23 @@ key "arbelaez2014multiscale"
 \end_layout
 
 \begin_layout Itemize
-Window scoring proposal methods are an alternative approach to score each
- candidate window according to the probability to contain an object.
- Best results for this methods are provided by EdgeBoxes 
+Alternative proposal methods.
+ Apart from the main groups a set of alternate approaches such as ShapeSharing
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "zitnick2014edge"
+key "kim2012shape"
 
 \end_inset
 
- which uses a coarse sliding window pattern that uses boundary estimation
- and a refinement step to improve performance.
+ or Multi-box 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "erhan2014scalable"
+
+\end_inset
+
+ are also used to extract object proposals.
 \end_layout
 
 \begin_layout Subsection
@@ -1483,36 +1562,7 @@ Occlusion treatment.
  When this happens PD performance is substantially degraded under even mild
  occlusions.
  Improvements in this area could increase the performance in real life situation
-s such as crowded spaces.
- 
-\end_layout
-
-\begin_layout Subsection
-Crowd Dynamics
-\end_layout
-
-\begin_layout Standard
-Finally, there is many literature concerning pedestrian dynamics in the
- real world.
- Some examples are the Social Force Model (SFM) 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "mazzon2013multi"
-
-\end_inset
-
- or people behavior in a built environment 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "turner2002encoding"
-
-\end_inset
-
-.
- The information coming from these algorithms leads to predictions in people
- behavior and potential paths to be follow which could help us to extract
- more accurate statistical data, refine people detections based on this
- previous behavior knowledge or even improve detection computational time.
+s.
 \end_layout
 
 \begin_layout Section
@@ -1524,7 +1574,7 @@ One can describe contextual information as the set of additional circumstances
  or facts that one can extract from a scene besides the target of analysis.
  Generally, this set of circumstances is a wealth of information that is
  not extracted by the image analysis but extracted by humans based on previously
- acquired knowledge.
+ acquired knowledge during their lifes.
  By just taking a look to an outdoor image a human can derive where the
  sky will be, what the weather conditions or which time of the day is.
  Also, by knowing the place the photo was taken, one would imagine which
@@ -1532,21 +1582,21 @@ One can describe contextual information as the set of additional circumstances
 \end_layout
 
 \begin_layout Standard
-Dealing with computer vision, contextual information sources also include
- camera information (such as position, configuration, distance to an object
- and camera motion), as well as set of objects that one could detect in
- the scene or how many views are available.
+Dealing with computer vision disciplines, contextual information sources
+ also include camera information (such as position, configuration, distance
+ to an object and camera motion), as well as set of objects that one could
+ detect in the scene or how many views are available.
 \end_layout
 
 \begin_layout Standard
-All this set of information that is not extracted from a the image analysis
+All this set of information that is not extracted from the image analysis
  provides a more general understanding about the scene and helps with further
  algorithms.
  We can divide contextual information into two different levels: global
  and local contextual information.
- .
  Besides, we can also further divide contextual information two different
  categories offline, and online.
+ Finally, semantic information is also analyzed.
 \end_layout
 
 \begin_layout Subsection
@@ -1556,8 +1606,8 @@ Global
 \begin_layout Standard
 Global context considers image detections from the image as a whole.
  For instance, if the context of a scene is known -kitchen- we can use this
- information to search for typical objects in this context --e.g.
- a stove--.
+ information to search for typical objects in this context -e.g.
+ a stove-.
 \end_layout
 
 \begin_layout Standard
@@ -1572,15 +1622,22 @@ key "navon1977forest,rensink1997see"
 
 .
  Our perception system goes from a global structure towards a more detailed
- analysis in a top-down scene interpretation..
+ analysis in a top-down scene interpretation.
 \end_layout
 
 \begin_layout Standard
 Global context approaches aim to define a scene as an extra source of global
  information.
  The structure of a determinate scene image can be estimated by means of
- global image features.
- REFERENCIAS OLIVA TORRALBA
+ global image features 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "torralba2006contextual"
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -1611,8 +1668,16 @@ Offline
 Offline contextual information is defined as the set of circumstances that
  are computed before starting any kind of analysis procedure.
  This information leads to external image information that is used to constraint
- analisys algorithms.
- REFERENCIAS ALVARO Y JC
+ analysis algorithms.
+ Approaches such as 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "garcia2015people"
+
+\end_inset
+
+ uses previously introduced contextual information to improve part-based
+ pedestrian detections over a scene.
 \end_layout
 
 \begin_layout Subsection
@@ -1650,25 +1715,27 @@ name "subsec:Semantic-Segmentation"
 \end_layout
 
 \begin_layout Standard
-Semantic information can often lead to low-level characteristics such as
- global color 
+Semantic information is defined as the set of high-level elements from contextua
+l information.
+ This can often lead to characteristics such as global image color 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "manjunath2002introduction"
 
 \end_inset
 
-or it can describe an image by the position and status of relevant objects
- such as cars according to its moving paths 
+.
+ It can also describe an image by the position and status of relevant objects
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "oh2010content"
 
 \end_inset
 
- or, what is more important to our related work, concrete areas in a scene
- such as walls, corridors or walking paths,.
- 
+.
+ Or it also defines concrete image areas in a scene such as walls, corridors
+ or walking paths 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "zhao2016pyramid"
@@ -1679,19 +1746,19 @@ key "zhao2016pyramid"
 \end_layout
 
 \begin_layout Standard
-In other words, semantic segmentation has the goal to assign each pixel
- of an image a category label.
- If the prediction is accurate, it provides complete semantic understanding
- from the scene which means that one could have the position and label of
- some object.
- (Figure 
+In other words, semantic segmentation has the goal to assign each image
+ pixel a high level category label.
+ If accurately done, it provides complete semantic understanding, which
+ in terms of computer vision, it means that location of an object within
+ an image will be known.
+ The result of semantic segmentation is depicted in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Scene-parsing-on PSPNet"
 
 \end_inset
 
-)
+, where scenes are analyzed and divided into separate semantic areas.
 \end_layout
 
 \begin_layout Standard
@@ -1761,32 +1828,43 @@ name "fig:Scene-parsing-on PSPNet"
 \end_layout
 
 \begin_layout Standard
-Cityscapes Data-set 
+Semantic segmentation is a recent trend and nowadays, it remains a significant
+ challenge for the computer vision community.
+ Due to its short-life term there is not yet a complete survey available
+ in which algorithms are deeply analyzed and compared.
+ However, there are a set of benchmark suits where developers can upload
+ their obtained results with a given dataset and so, algorithms performance
+ can be compared.
+\end_layout
+
+\begin_layout Standard
+An example of benchmark is Cityscapes Data-set 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "cordts2016cityscapes"
 
 \end_inset
 
- is a large-scale data-set that contains stereo video sequences recorded
+.
+ It is a large-scale data-set that contains stereo video sequences recorded
  in street scenes from among 50 different cities around the world.
  This data-set presents class annotations over pixels in more than 5000
  frames.
- In the following Table 
+ This set of categories and classes are presented in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:Cityscapes-Dataset-Class Definitions"
 
 \end_inset
 
- available categories and classes are presented.
+.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -2025,66 +2103,28 @@ name "tab:Cityscapes-Dataset-Class Definitions"
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand cite
-key "cordts2016cityscapes"
-
-\end_inset
-
- offers also a benchmark suite with an evaluation server.
- This process helps developers so they can upload semantic segmentation
- results in order to be able to compare their performance with the rest
- of tested algorithms.
- In Table 
+In Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:Cityscapes Dataset Challenge Results"
 
 \end_inset
 
- we can observe the four most accurate algorithms in the scope of this data-set
- at the day of this report.
-\end_layout
+ we can observe an adapted version from 
+\color blue
 
-\begin_layout Standard
-The main used metric for the Pixel-Level semantic classification results
- is the commonly known as the PASCAL VOC intersection-over-union metric
- which formula is presented in Eq 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:Intersection over Union Metric"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-IoU=\frac{\#TP}{\#TP+\#FP+\#FN}\label{eq:Intersection over Union Metric}
-\end{equation}
+\begin_inset CommandInset href
+LatexCommand href
+name "Cityscapes Website"
+target "https://www.cityscapes-dataset.com/"
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\align center
-with 
-\begin_inset Formula $TP=TruePositives$
-\end_inset
-
-, 
-\begin_inset Formula $FP=FalsePositives$
-\end_inset
-
- and 
-\begin_inset Formula $FN=FalseNegatives$
-\end_inset
-
-
+\color inherit
+ in which some of the most accurate algorithms are presented.
+ Only those algorithms that have more than 80% on IoU class metric have
+ been mentioned in this thesis for practical reasons.
 \end_layout
 
 \begin_layout Standard
@@ -2114,7 +2154,7 @@ extrarowheight{7pt}
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="3">
+<lyxtabular version="3" rows="6" columns="3">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -2133,7 +2173,7 @@ Algorithm Name
 \begin_inset Text
 
 \begin_layout Plain Layout
-iOU Category
+IoU Category
 \end_layout
 
 \end_inset
@@ -2162,7 +2202,9 @@ target "http://www.motovis.com/"
 
 \end_inset
 
-
+ 
+\color inherit
+(Anonymous)
 \end_layout
 
 \end_inset
@@ -2173,7 +2215,7 @@ target "http://www.motovis.com/"
 \begin_layout Plain Layout
 
 \series bold
-91.4
+91.5
 \end_layout
 
 \end_inset
@@ -2184,7 +2226,43 @@ target "http://www.motovis.com/"
 \begin_layout Plain Layout
 
 \series bold
-81.0
+81.3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PSPNet 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zhao2016pyramid"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+91.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+81.2
 \end_layout
 
 \end_inset
@@ -2231,7 +2309,7 @@ key "wu2016wider"
 \begin_inset Text
 
 \begin_layout Plain Layout
-NetWarp
+NetWarp (Anonymous)
 \end_layout
 
 \end_inset
@@ -2260,10 +2338,10 @@ NetWarp
 \begin_inset Text
 
 \begin_layout Plain Layout
-PSPNet 
+TuSimple_Coarse 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "zhao2016pyramid"
+key "DBLP:journals/corr/WangCYLHHC17"
 
 \end_inset
 
@@ -2276,7 +2354,7 @@ key "zhao2016pyramid"
 \begin_inset Text
 
 \begin_layout Plain Layout
-90.6
+90.7
 \end_layout
 
 \end_inset
@@ -2285,7 +2363,7 @@ key "zhao2016pyramid"
 \begin_inset Text
 
 \begin_layout Plain Layout
-80.2
+80.5
 \end_layout
 
 \end_inset
@@ -2302,7 +2380,7 @@ key "zhao2016pyramid"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cityscapes Data-set Challenge Results
+Cityscapes Data-set Challenge Results (Intersection over Union metric)
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:Cityscapes Dataset Challenge Results"
@@ -2323,50 +2401,47 @@ name "tab:Cityscapes Dataset Challenge Results"
 \end_layout
 
 \begin_layout Standard
-Both ResNet-38 and PSPNet are based on convolutional networks.
- Since the presentation of AlexNet 
+PSPNet, ResNet-38 and TuSimple_Coarse are all based on convolutional networks.
+ This fact reveals that deep convolutional neural networks (CNNs) have led
+ to significant improvement over previous semantic segmentation systems
+ since the presentation of AlexNet 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "krizhevsky2012imagenet"
 
 \end_inset
 
- in 2012 those networks have been growing deeper and deeper each year ending
- up with 1.202 trainable layers.
+ in 2012.
 \end_layout
 
 \begin_layout Standard
-The main difficulty of scene parsing is related to the type of scene and
- by all means to the label variety that one can predict.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "zhao2016pyramid"
-
-\end_inset
-
- has dealt with this problems assigning relationships between different
+However, even when using CNNs the main difficulty of scene parsing is related
+ to the type of scene and to label variety.
+ PSPNet deals with this problems assigning relationships between different
  labels, i.e.
  an airplane is likely to be in runway or flying in the sky while not over
  a road or in the water.
  This relationships reduce slightly the complexity of having large amounts
  of labels to predict and improve the general performance of the algorithm.
- In Figure 
+ ResNet-38 on the other hand, propose not only to not increase CNNs depth,
+ but rather to ensemble many relatively shallow networks to increase performance.
+ Their approach also improves usability reducing memory use and sometimes
+ even training time.
+ Finally, TuSimple_Coarse propose a combination between dense upsampling
+ convolution (DUC) to generate pixel-level prediction and a hybrid dilated
+ convolution (HDC) framework.
+\end_layout
+
+\begin_layout Standard
+In Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:ResNet-38-Algorithm"
+reference "fig:Semantic-Segmentation-results"
 
 \end_inset
 
- and 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:PSPNet-Algorithm"
-
-\end_inset
-
- we can observe some visual examples of how this two algorithms perform
- on some Cityscapes Data-set frames.
+ some visual examples of how this algorithms perform on Cityscapes Data-set
+ frames are displayed.
 \end_layout
 
 \begin_layout Standard
@@ -2398,14 +2473,8 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-ResNet-38 Algorithm
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:ResNet-38-Algorithm"
-
-\end_inset
-
-
+ResNet-38 Algorithm.
+ From top to bottom: Input images, ground truth and results.
 \end_layout
 
 \end_inset
@@ -2437,10 +2506,48 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-PSPNet Algorithm
+PSPNet Algorithm.
+ From left to right: Input images, ground truth and results.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/State Of the Art/TuSimple_Coarse Results.png
+	lyxscale 30
+	width 45text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+TuSimple_Coarse Algorithm.
+ From left to right: Input images, ground truth and results.
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:PSPNet-Algorithm"
+name "fig:PSPNet-Algorithm-1"
 
 \end_inset
 
@@ -2462,6 +2569,14 @@ name "fig:PSPNet-Algorithm"
 
 \begin_layout Plain Layout
 Semantic Segmentation result examples on Cityscapes Data-set.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Semantic-Segmentation-results"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2481,8 +2596,8 @@ Multi-camera scenarios
 \begin_layout Standard
 The use of various cameras is a common setup when dealing with video surveillanc
 e problems.
- One can define a multi-camera scenario one space that has more than one
- video camera recording .
+ One can define as a multi-camera scenario one space that has more than
+ one video camera recording.
  Ideally, the recordings for the different cameras are temporally aligned
  -synchronized-.
  Having 
@@ -2504,7 +2619,7 @@ Advantages
 As said in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Pedestrian-detection-and crowd patrons"
+reference "sec:Pedestrian-detection"
 
 \end_inset
 
@@ -2512,10 +2627,15 @@ reference "sec:Pedestrian-detection-and crowd patrons"
  In this case, the use of a multi-camera scenario with computed homographies
  between camera frames could help.
  This could be achieved by reprojecting detections from one camera to another
- whose miss rates are high.
+ whose miss rates are high 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "miguelez2016Deteccion"
+
+\end_inset
+
+.
  
-\color red
-REFERENCIAS
 \end_layout
 
 \begin_layout Standard
@@ -2525,10 +2645,14 @@ When talking about semantic segmentation the inclusion of a multi-camera
  in the image or even to represent an object with many classes due to for
  example, camera capture problems, in a multi-camera system one camera instance
  could help to refine the classes in another one provided that, evidentially,
- they are analyzing the same common area.
+ they are analyzing the same common area 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "xiao2009multiple"
 
-\color red
- REFERENCIAS
+\end_inset
+
+.
 \end_layout
 
 \end_deeper
@@ -2556,5 +2680,56 @@ Besides, the use of multiple cameras entail two additional tasks: the temporal
 \end_layout
 
 \end_deeper
+\begin_layout Section
+Metrics 
+\end_layout
+
+\begin_layout Standard
+
+\color red
+NO ES SEGURA ESTA SECCION
+\end_layout
+
+\begin_layout Standard
+The main used metric for the Pixel-Level semantic classification results
+ is the commonly known as the PASCAL VOC intersection-over-union metric
+ which formula is presented in Eq 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Intersection over Union Metric"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+IoU=\frac{\#TP}{\#TP+\#FP+\#FN}\label{eq:Intersection over Union Metric}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+with 
+\begin_inset Formula $TP=TruePositives$
+\end_inset
+
+, 
+\begin_inset Formula $FP=FalsePositives$
+\end_inset
+
+ and 
+\begin_inset Formula $FN=FalseNegatives$
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
