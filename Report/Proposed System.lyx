@@ -2158,6 +2158,13 @@ We have synchronized the processed videos using the so called clapperboard
 
 \begin_layout Subsection
 Pedestrian Filtering and Constraining
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Pedestrian-Filtering-and"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2618,7 +2625,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Proposed System/Cilynder Cenital.png
+	filename Images/Proposed System/Multi Camera Reprojection/Cam 1.png
 	lyxscale 20
 	width 40text%
 
@@ -2655,7 +2662,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Proposed System/Cilynder Cenital.png
+	filename Images/Proposed System/Multi Camera Reprojection/Cam 2.png
 	lyxscale 20
 	width 40text%
 
@@ -2691,7 +2698,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Proposed System/Cilynder Cenital.png
+	filename Images/Proposed System/Multi Camera Reprojection/Cam 3.png
 	lyxscale 20
 	width 40text%
 
@@ -2722,11 +2729,7 @@ Camera 3 + Reprojections from 1 and 2
 
 \begin_layout Plain Layout
 Pedestrian detection reprojection.
-
-\color red
- CAMBIAR FOTOS
-\color inherit
-
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Pedestrain reprojection into other cameras"
@@ -2820,7 +2823,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Proposed System/Cilynder Cenital.png
+	filename Images/Proposed System/Semantic Constraining/Cam 1.png
 	lyxscale 20
 	width 40text%
 
@@ -2857,7 +2860,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Proposed System/Cilynder Cenital.png
+	filename Images/Proposed System/Semantic Constraining/Cam 2.png
 	lyxscale 20
 	width 40text%
 
@@ -2893,7 +2896,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Proposed System/Cilynder Cenital.png
+	filename Images/Proposed System/Semantic Constraining/Cam 3.png
 	lyxscale 20
 	width 40text%
 
@@ -2935,11 +2938,6 @@ Pedestrian semantic constraining examples.
 Pedestrian semantic constraining.
  Blobs that are not in the right semantic area just displayed by a circle
  and text label.
-
-\color red
- CAMBIAR FOTOS
-\color inherit
-.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Pedestrain semantic constraining"
