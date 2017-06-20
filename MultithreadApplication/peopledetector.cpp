@@ -306,7 +306,6 @@ void PeopleDetector::PSPNetScores(int CameraNumber, String FrameNumber)
 
     for(int i = 0; i < AllPedestrianVector.size(); i++){
         Rect Blob = AllPedestrianVector[i];
-
         Mat Aux = ScoresImage(Blob);
 
         int rows = Aux.rows;
@@ -317,31 +316,37 @@ void PeopleDetector::PSPNetScores(int CameraNumber, String FrameNumber)
 
         for(int row = 0; row < rows; row++){
             for(int col = 0; col < cols; col++){
-                double pixel = Aux.at<uchar>(col, row);
+                double pixel = Aux.at<uchar>(row, col);
                 if(pixel > 10){
                     s = s + pixel;
                     counter++;
                 }
             }
         }
+
         if(counter != 0){
             s = s / counter;
             s = s / 100;
             NoNormalizedScores.push_back(s);
         }
-
-
-        // Score Normalization
-        double MaxPSPScore = 0.9407;
-        double MinPSPScore = 0.1100;
-
-        for(int j = 0; j < NoNormalizedScores.size(); j++){
-            double Score = NoNormalizedScores[j];
-            double NormalizedScore = (Score - MinPSPScore) / (MaxPSPScore - MinPSPScore);
-            NormalizedScores.push_back(NormalizedScore);
+        else{
+            s = 0;
+            NoNormalizedScores.push_back(s);
         }
-        AllPedestrianVectorScore = NormalizedScores;
+
     }
+
+    // Score Normalization
+    double MaxPSPScore = 0.9407;
+    double MinPSPScore = 0;
+
+    for(int j = 0; j < NoNormalizedScores.size(); j++){
+        double Score = NoNormalizedScores[j];
+        double NormalizedScore = (Score - MinPSPScore) / (MaxPSPScore - MinPSPScore);
+        NormalizedScores.push_back(NormalizedScore);
+    }
+
+    AllPedestrianVectorScore = NormalizedScores;
 }
 
 void PeopleDetector::ThresholdDetections(vector<Rect> Detections,  vector<double> Scores, double Threshold)
