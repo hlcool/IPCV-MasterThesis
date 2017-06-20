@@ -2154,8 +2154,9 @@ extrarowheight{7pt}
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="3">
+<lyxtabular version="3" rows="6" columns="4">
 <features tabularvalignment="middle">
+<column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -2183,6 +2184,15 @@ IoU Category
 
 \begin_layout Plain Layout
 IoU Class
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Available Code
 \end_layout
 
 \end_inset
@@ -2231,6 +2241,15 @@ target "http://www.motovis.com/"
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
 </row>
 <row>
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
@@ -2263,6 +2282,15 @@ key "zhao2016pyramid"
 
 \begin_layout Plain Layout
 81.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
 \end_layout
 
 \end_inset
@@ -2303,6 +2331,15 @@ key "wu2016wider"
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
 </row>
 <row>
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
@@ -2328,6 +2365,15 @@ NetWarp (Anonymous)
 
 \begin_layout Plain Layout
 80.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
 \end_layout
 
 \end_inset
@@ -2364,6 +2410,15 @@ key "DBLP:journals/corr/WangCYLHHC17"
 
 \begin_layout Plain Layout
 80.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
 \end_layout
 
 \end_inset
@@ -2680,56 +2735,5 @@ Besides, the use of multiple cameras entail two additional tasks: the temporal
 \end_layout
 
 \end_deeper
-\begin_layout Section
-Metrics 
-\end_layout
-
-\begin_layout Standard
-
-\color red
-NO ES SEGURA ESTA SECCION
-\end_layout
-
-\begin_layout Standard
-The main used metric for the Pixel-Level semantic classification results
- is the commonly known as the PASCAL VOC intersection-over-union metric
- which formula is presented in Eq 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:Intersection over Union Metric"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-IoU=\frac{\#TP}{\#TP+\#FP+\#FN}\label{eq:Intersection over Union Metric}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-with 
-\begin_inset Formula $TP=TruePositives$
-\end_inset
-
-, 
-\begin_inset Formula $FP=FalsePositives$
-\end_inset
-
- and 
-\begin_inset Formula $FN=FalseNegatives$
-\end_inset
-
-
-\end_layout
-
 \end_body
 \end_document

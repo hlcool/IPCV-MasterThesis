@@ -97,8 +97,14 @@ name "chap:Results"
 
 \end_layout
 
-\begin_layout Section
-Application Performance Results 
+\begin_layout Standard
+During this Chapter all the achieve results are exposed and analyzed.
+ Firstly, a brief analysis of the used hardware during the Thesis is done.
+ Secondly, the experiment setup is explained, in detail, the generated dataset
+ and ground truth, and the evaluation framework.
+ Later, results concerning application performance are presented.
+ Finally, the last two sections aim is to present pedestrian detection results
+ in term of performance and usage data extraction.
 \end_layout
 
 \begin_layout Section
@@ -142,14 +148,14 @@ reference "fig:Sony-SNC-RZ50P-Pan/Tilt Range"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/Results/IPCamera Pan:Tilt.png
 	lyxscale 20
-	width 50text%
+	width 65text%
 
 \end_inset
 
@@ -883,7 +889,7 @@ Format: MPEG Video.
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -895,11 +901,23 @@ status collapsed
 \end_inset
 
 
+\begin_inset space \hspace{}
+\length 3text%
+\end_inset
+
+
 \begin_inset Graphics
 	filename Images/Results/Camera24379.jpg
 	lyxscale 40
 	width 40text%
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace 2text%
 \end_inset
 
 
@@ -962,6 +980,8 @@ target "https://sourceforge.net/projects/via-tool/"
 
 \color inherit
  to generate real pedestrian bounding boxes.
+ This software allows the user to generate XML files with position and type
+ of bounding box through the hole sequences.
  The recording consists on three different videos of 8300 frames, which
  means that the total number of manually annotated frames has been 25.200.
 \end_layout
@@ -970,14 +990,14 @@ target "https://sourceforge.net/projects/via-tool/"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/IoU.png
-	lyxscale 60
-	width 40text%
+	filename Images/Proposed System/Via Window.png
+	lyxscale 30
+	width 60text%
 
 \end_inset
 
@@ -988,7 +1008,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Via Annotation Tool software
+Via Annotation Tool software main window
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Via Annotation Tool software"
@@ -1024,13 +1044,45 @@ reference "fig:Annotated example frames"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/IoU.png
-	lyxscale 60
+	filename Images/Proposed System/Via 1.png
+	lyxscale 30
+	width 40text%
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 3text%
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/Proposed System/Via 2.png
+	lyxscale 30
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace 2text%
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/Via 3.png
+	lyxscale 30
 	width 40text%
 
 \end_inset
@@ -1042,7 +1094,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Annotated example frames
+Annotated ground truth frames
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Annotated example frames"
@@ -1060,6 +1112,25 @@ name "fig:Annotated example frames"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+As one can observe in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Annotated example frames"
+
+\end_inset
+
+.
+ The selected sequence for evaluation purposes is a mix between easy and
+ difficult situations for a pedestrian detector.
+ Situations go from people walking alone across the hall, to people pushing
+ objects like a wheelchair in addition to big groups of people both inside
+ and outside the building where people are always occluded.
+ In general due to image quality in terms of resolution and illumination
+ and pedestrian situations the selected sequences are in the medium-high
+ range of difficulty for pedestrian detection.
 \end_layout
 
 \begin_layout Subsection
@@ -1126,10 +1197,14 @@ reference "eq:Intersection over Union"
 
 \end_inset
 
- and it measures the relation between bounding boxes overlapping and the
- union.
- This means that even if the bounding boxes overlap perfectly, but the union
- of them is high, IoU metric will have a small value.
+ and it measures the relation between bounding boxes overlapping and its
+ union areas.
+ 
+\end_layout
+
+\begin_layout Standard
+This means that even if the bounding boxes overlap perfectly, but the union
+ area of them is high, IoU metric will have a small value.
  This effect can be observed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1139,7 +1214,7 @@ reference "fig:Intersection over Union"
 
  where one can observe that a almost perfect overlapping between bounding
  boxes does not lead to a high IoU value.
- For our evaluation framework a detection will be consider correct if 
+ For our evaluation framework a detection is consider correct if 
 \begin_inset Formula $IoU(Detection,\,Ground\,Truth)\leq0.5$
 \end_inset
 
@@ -1168,7 +1243,7 @@ status open
 \begin_inset Graphics
 	filename Images/Results/IoU.png
 	lyxscale 60
-	width 60text%
+	width 85text%
 
 \end_inset
 
@@ -1183,6 +1258,403 @@ Intersection over Union or Jaccard Index
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Intersection over Union"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Application Performance Results 
+\end_layout
+
+\begin_layout Standard
+Along this section we will evaluate the application in terms of general
+ computational time.
+\end_layout
+
+\begin_layout Standard
+Firstly, results concerning single thread and multi thread application are
+ exposed.
+ All the computations to extract and visualize pedestrian detections are
+ measured.
+ In Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Single threads vs Multi threads"
+
+\end_inset
+
+ one can observer the difference in term of seconds per frame and frame
+ per second for the same video sequence and the same pedestrian detector
+ approach.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength
+\backslash
+extrarowheight{7pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Seconds/Frame
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+FPS
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Single-Thread
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Multi-Thread
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison between the use of single thread or multi threads
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Single threads vs Multi threads"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In addition, all the PD are compared when evaluated in the multi thread
+ environment with the same video sequence.
+ This results can be seen in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Multithreads PD Computational"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength
+\backslash
+extrarowheight{7pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Seconds/Frame
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+FPS
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+HOG
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ACF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DPM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PSP-Net (Offline)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison between the use of single thread or multi threads
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Multithreads PD Computational"
 
 \end_inset
 
@@ -1275,7 +1747,7 @@ Mono-Camera
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1283,6 +1755,18 @@ status collapsed
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Experiment 1/Camera 1.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1299,15 +1783,22 @@ Camera 1
 \end_inset
 
 
-\begin_inset space \hspace{}
-\length 10text%
-\end_inset
-
-
 \begin_inset Float figure
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Experiment 1/Camera 1.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1332,6 +1823,18 @@ Camera 2
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Experiment 1/Camera 1.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1382,7 +1885,7 @@ Multi-Camera
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1390,6 +1893,18 @@ status collapsed
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Experiment 1/Camera 1.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1406,15 +1921,22 @@ Camera 1
 \end_inset
 
 
-\begin_inset space \hspace{}
-\length 10text%
-\end_inset
-
-
 \begin_inset Float figure
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Experiment 1/Camera 1.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1439,6 +1961,18 @@ Camera 2
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Experiment 1/Camera 1.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1489,7 +2023,7 @@ Mono-Camera with Semantic Constraining
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1497,6 +2031,18 @@ status collapsed
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Experiment 1/Camera 1.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1513,15 +2059,22 @@ Camera 1
 \end_inset
 
 
-\begin_inset space \hspace{}
-\length 10text%
-\end_inset
-
-
 \begin_inset Float figure
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Experiment 1/Camera 1.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1546,6 +2099,18 @@ Camera 2
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Experiment 1/Camera 1.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1597,7 +2162,7 @@ Multi-Camera with Semantic Constraining
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1605,6 +2170,18 @@ status collapsed
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Experiment 1/Camera 1.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1621,15 +2198,22 @@ Camera 1
 \end_inset
 
 
-\begin_inset space \hspace{}
-\length 10text%
-\end_inset
-
-
 \begin_inset Float figure
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Experiment 1/Camera 1.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1654,6 +2238,18 @@ Camera 2
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Experiment 1/Camera 1.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1704,8 +2300,7 @@ Statistical Usage Data
 \begin_layout Standard
 Finally, results concerning statistical usage data will be presented.
  For this result an additional sequence has been used.
- The results will be presented in one curve for each of the semantic analyzed
- area.
+ The results will be presented in one graph for each of the cameras.
  This graph will represent the number of pedestrian using that semantic
  class in each video frame.
  For this experiment we will use the following combination of algorithm

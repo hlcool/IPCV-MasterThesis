@@ -99,9 +99,63 @@ name "chap:Proposed-System"
 
 \begin_layout Standard
 During this Chapter our proposed system will be explained deeply.
- We will start from the main contextual model generation and pedestrian
- detectors to finally explain the fusion of all the elements in a multi
- camera system in addition to the statistical usage data.
+ We start from the main contextual model generation and pedestrian detectors
+ to finally explain the fusion of all the elements in a multi camera system
+ with semantic constraints.
+ In addition the generation of statistical usage data from semantic areas
+ will be proposed.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Proposed-system-flowchart"
+
+\end_inset
+
+ represents the flowchart that the application will follow for the computation
+ of the main mentioned algorithms.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/System FlowChart.svg
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Proposed system flowchart
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Proposed-system-flowchart"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -120,7 +174,7 @@ One of the main objectives in the scope of this work is to divide one frame
  into different semantic areas.
  The relative position in the scene for elements such as doors, walls, paths,
  columns and windows will be necessary to achieve further objectives such
- as multi camera constraint and statistical data extraction.
+ as multi camera pedestrian constraint and statistical data extraction.
  For this complex task we will use the algorithm PSP-Net 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -136,6 +190,8 @@ reference "chap:State of the art"
 \end_inset
 
 .
+ We choose PSP-Net because at the moment of the selection was the one with
+ available code achieving the best results.
  The goal for this algorithm as said before, is is to assign each pixel
  in the image a category label achieving by this the location and shape
  for each element.
@@ -166,7 +222,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Images/Proposed System/PSP-Net.png
-	lyxscale 50
+	lyxscale 20
 	width 80text%
 
 \end_inset
@@ -1141,8 +1197,7 @@ Fusion and Filtering
 \begin_layout Standard
 Once the semantic model and pedestrian detections are obtained the next
  step is to combine the information coming from different camera sources
- in terms of both multi camera setup and semantic constraint in a process
- that we have called fusion and filtering.
+ into a common plane in a process that we have called fusion and filtering.
 \end_layout
 
 \begin_layout Subsection
@@ -1164,7 +1219,8 @@ reference "fig:Multi-camera-configuration"
  cameras.
  Two of them are placed at the sides of the scene, while one is at the bottom
  part.
- The starting views from the three cameras are displayed in Figure 
+ The starting views from the three static cameras are displayed in Figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Initial Camera Views"
@@ -1385,8 +1441,190 @@ Homography calculation is a pivotal task in our work and the main base for
  With this homography matrix we will be able to transform every frame pixel
  to its correspondent position in the cenital plane which means that the
  frame will be transform as if it were being viewed from the top.
- It is also necesary so pedestrains detections can be projected also to
+ It is also necessary so pedestrians detections can be projected also to
  the cenital plane.
+\end_layout
+
+\begin_layout Standard
+The formulation of the generic homography problem is as follows:
+\end_layout
+
+\begin_layout Standard
+We have two cameras 
+\begin_inset Formula $C_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $C_{2}$
+\end_inset
+
+ looking at the same exact points 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+ in a plane.
+ One wants to pass from the projection 
+\begin_inset Formula $p_{i}(C_{2})=\left(u_{i}(C_{2});\,v_{i}(C_{2});\,1\right)$
+\end_inset
+
+ of 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+ in 
+\begin_inset Formula $C_{2}$
+\end_inset
+
+ to the projection 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+ in 
+\begin_inset Formula $C_{1}$
+\end_inset
+
+ defined as 
+\begin_inset Formula $p_{i}(C_{1})=\left(u_{i}(C_{1});\,v_{i}(C_{1});\,1\right)$
+\end_inset
+
+.
+ To do this process Eq 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Projection EQ by homography"
+
+\end_inset
+
+ should be computed.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+p_{i}(C_{1})=\frac{z_{i}(C_{2})}{z_{i}(C_{1})}K_{1}\cdot H_{C_{2}C_{1}}\cdot K_{C_{2}}^{-1}\cdot p_{i}(C_{2})\label{eq:Projection EQ by homography}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $z_{i}(C_{1})$
+\end_inset
+
+ and 
+\begin_inset Formula $z_{i}(b)$
+\end_inset
+
+ are the z coordinates of P in each camera frame and where homography matrix
+ 
+\begin_inset Formula $H_{C_{2}C_{1}}$
+\end_inset
+
+ is defined as in Eq 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Homography Matrix"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+H_{C_{2}C_{1}}=R-\frac{tn^{T}}{d}\label{eq:Homography Matrix}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $R$
+\end_inset
+
+ is the rotation matrix by which 
+\begin_inset Formula $C_{2}$
+\end_inset
+
+ is rotated in relation to 
+\begin_inset Formula $C_{1}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $t$
+\end_inset
+
+ is the translation vector from 
+\begin_inset Formula $C_{1}$
+\end_inset
+
+ to 
+\begin_inset Formula $C_{2}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $n$
+\end_inset
+
+ and 
+\begin_inset Formula $d$
+\end_inset
+
+ are the normal vector and the distance to the plane respectively and finally
+ 
+\begin_inset Formula $K_{a}$
+\end_inset
+
+ and 
+\begin_inset Formula $K_{b}$
+\end_inset
+
+ are the camera intrinsic parameters.
+ All this variables can be observed in Figure 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/Homography setup.svg
+	lyxscale 70
+	width 60text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Homography setup for one camera
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1407,11 +1645,12 @@ Cenital Plan Design
 \end_layout
 
 \begin_layout Standard
-As said in the previous paragraph, one of the main objectives of the work
+As said in the section introduction, one of the main objectives of the work
  is to project the extracted detections from the three cameras, i.e.
  pedestrian and semantic, into a common plane for all of them.
- To achieve this goal a cenital plane from the scene is needed.
- The first approach used for the cenital plane can be observe in Figure
+ To achieve this goal a cenital plane that correctly represents the scene
+ is needed.
+ The first used approach for the cenital plane can be observe in Figure
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1465,8 +1704,7 @@ name "fig:First cenital plane approach"
 \end_layout
 
 \begin_layout Standard
-As we can observe the first approach of the cenital plane lacks of details
- from the scene.
+This cenital plane lacks of details from the scene.
  The information about the details of the scenario is minimum and also,
  the scene proportions are not correct.
  To compute a correct homography between the camera frame and the cenital
@@ -1478,7 +1716,8 @@ As we can observe the first approach of the cenital plane lacks of details
 \end_layout
 
 \begin_layout Standard
-For this reason another cenital plane has been compute starting from zero.
+For this reason, and driven by bad results, another cenital plane has been
+ compute starting from zero.
  In this new approach the scene has been correctly measure by hand and the
  plane has been done with real measures and high floor detail.
 \end_layout
@@ -1497,22 +1736,22 @@ target "https://www.autodesk.es/products/autocad/overview"
 
 \color inherit
  software has been used.
- The second plane approach can be seen in Figure 
+ The second plane approach with all the manual measures extracted from the
+ real scene superposed can be seen in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Second cenital plane approach with measures"
 
 \end_inset
 
- with all the manual measures extracted from the real scene and in Figure
- 
+ and Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Second cenital plane approach with camera positions"
 
 \end_inset
 
- with the correct camera positions.
+ represents the final cenital map with the correct camera positions.
 \end_layout
 
 \begin_layout Standard
@@ -1615,10 +1854,10 @@ reference "fig:Second cenital plane approach with camera positions"
 \end_inset
 
  are outstanding both in floor details and in general construction proportions.
- This detail increase will lead to a much more easy homography selection
- points by the user as it now has much more point options to choose and
- evidentially this will mean that the final homography matrix, and so, all
- the projections will be better accurately talking.
+ This detail rise will lead to a much more easy homography selection points
+ by the user as it now has more point options to choose and evidentially
+ this means that the final homography matrix, and so, all the projections
+ will be better accurately talking.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1640,12 +1879,13 @@ reference "fig:Initial Camera Views"
  the lateral parts of the scenario.
  This approach is a limitation to the project objectives as we will not
  be able to extract a high percentage of the scene semantic.
- The solution to this problem is to include panning movement in all the
- cameras from left to right so cameras view range is increased and they
- are no longer focus only in the middle of the scene as before.
- This will lead also to more common and not static areas which the cameras
- will share.
- This solution is presented in Figure 
+ The solution to this problem is to include panning movement thanks to the
+ PTZ technology in all the cameras from left to right so cameras view range
+ is increased and they are no longer focus only in the middle of the scene
+ as before.
+ This leads also to more common and not static areas which the cameras will
+ share.
+ This solution is presented in the scene diagram in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Multi-camera-configuration with panning set up"
@@ -1723,8 +1963,8 @@ Before including camera panning in the set up, homographies where calculated,
 \end_inset
 
  views are selected from the video sequence.
- This will lead to an homography codebook in where the user will compute
- a homography matrix 
+ This leads to the obtention of an homography codebook in where the user
+ will compute a homography matrix 
 \begin_inset Formula $H$
 \end_inset
 
@@ -1773,21 +2013,31 @@ key "alcantarilla2011fast"
 AKAZE will detect and describe points of interest in any image and then
  by a brute force comparator in terms of distances we will extract how many
  coincidence we have between a pair of images.
- It is essential to say, that, as we have to compare the current frame with
+ 
+\end_layout
+
+\begin_layout Standard
+
+\color red
+DESCRIPCCION DE AKAZE
+\end_layout
+
+\begin_layout Standard
+It is essential to say, that, as we have to compare the current frame with
  all of the 
 \begin_inset Formula $N$
 \end_inset
 
- vies we will have a trade off.
- More views will mean a better space discretization and more overlapping,
- however, the computational time will increase exponentially, this means
- that we have to choose the number of views 
+ views we will have a trade off.
+ More views will mean a better space discretization and more overlapping
+ between them, however, the computational time will increase exponentially,
+ this means that we have to choose the number of views 
 \begin_inset Formula $N$
 \end_inset
 
  so it represents correctly the space and keeps the computational time relativel
 y low.
- In our application we have choose 
+ In our proposed system we have choose 
 \begin_inset Formula $N=9$
 \end_inset
 
@@ -1799,15 +2049,17 @@ y low.
 As we said before, the homographies are calculated for each of the views,
  this means, that if a frame is not positioned exactly as a view the homography
  matrix will not project the points correctly, there will be a small error.
- Taking advantage of the calculation of common points of interest between
- the frame and its correspondent view we can solve this problem by calculating
- automatically the homography between both images.
+ Taking advantage of the calculation of common descriptor between the frame
+ and its correspondent view we can solve this problem by calculating automatical
+ly the homography between both images.
  This means that now, to project detections from the current frame to the
- cenital plane, first we will change the perspective of it to the perspective
+ cenital plane two homographies are used.
+ First we change the perspective of the original frame to the perspective
  of the view.
- This way we will ensure that the used perspective is the same one as the
- one that was used to compute the homography.
- This process is graphically explained in Figure 
+ This process ensures that the used perspective is the same one as the one
+ that was used previously to compute the homography.
+ Finally, the frame and its new perspective are projected to the cenital
+ plane.This process is graphically explained in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:View selection process and homography between views computation"
@@ -1884,8 +2136,8 @@ Video Sequence Synchronization
 
 \begin_layout Standard
 One of the main issue when dealing with multi camera systems, and specially,
- those that will combine information between the cameras, is that video
- sequences coming from them should be correctly synchronized.
+ those that combine information between the cameras, is that video sequences
+ coming from them should be correctly synchronized.
  This is really important because if the same frame number 
 \begin_inset Formula $f$
 \end_inset
@@ -3431,7 +3683,7 @@ reference "fig:Common semantic areas for all the cameras"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -3470,8 +3722,9 @@ name "fig:Common semantic areas for all the cameras"
 \end_layout
 
 \begin_layout Standard
-As we can observe, due to the multi camera setup and some occlusions the
- common area for all the cameras represent a small portion of the room.
+As we can observe, due to the multi camera setup and some scene occlusions
+ such as scene panels or columns, the common area shared by all the cameras
+ represents a small portion of the room.
  This is the reason why we have choose common areas between pairs of cameras
  to work along with pedestrian detection rather than common area between
  all of them.
@@ -3491,8 +3744,11 @@ Statistical Usage Data
 \end_layout
 
 \begin_layout Standard
-Along this Section we will explain our propose system to extract statistical
- usage data by frame given a sequence.
+Along this Section we explain the proposed system to extract statistical
+ usage data frame by frame given a sequence.
+ The aim is to obtain three graphs per data-set recording, this means that
+ we will have one graph per camera in which all the statitstics will be
+ presented.
 \end_layout
 
 \begin_layout Standard
@@ -3501,8 +3757,13 @@ In order to extract usage data the first step is to create a projected common
  For this task, rather than creating common areas between cameras as done
  for the PD fusion, information for all the cameras have been joined without
  strictly being shared.
- The result from this step is a unique map that represents the hole area
- (Figure 
+ This have been done to preserve as much semantic as possible and so, have
+ bigger floor or door areas than if we were more restrictive
+\end_layout
+
+\begin_layout Standard
+The result from this step is a unique map that represents the hole spatial
+ area (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Statistical Semantic Map"
@@ -3521,7 +3782,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Proposed System/CommonSemanticAllCameras.png
+	filename Images/Proposed System/Statistical Map.png
 	lyxscale 20
 	width 60text%
 
@@ -3555,9 +3816,12 @@ name "fig:Statistical Semantic Map"
 \end_layout
 
 \begin_layout Standard
-Following the same principle as in the previous Section pedestrians will
- be projected on to the map and so we will be able to know how many of them
- are in each of the designed areas.
+As one can observe we have decided to only take into account for this process
+ floor, doors and chairs, whcih are the most accurate detections from the
+ semantic segmentation.
+ Following the same principle as in the previous Section, pedestrians will
+ be projected on to the statistical semantic map and so we will be able
+ to know how many people are in each of the designed areas.
 \end_layout
 
 \end_body

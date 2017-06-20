@@ -15,16 +15,18 @@ DPMRecall1 = [0.241007 0.257361 0.328032 0.265777 0.108855];
 PSPPrecision1 = [0.378523 0.413583 0.626809 1 1 ];
 PSPRecall1 = [0.435956 0.435956 0.422198 0.270736 0.0519567];
 
-figure(1)
-plot(HOGPrecision1, HOGRecall1, '-rx')
+figure1 = figure();
+axes1 = axes('Parent',figure1);
+plot(HOGPrecision1, HOGRecall1, '-rx', 'MarkerSize', 10, 'LineWidth', 3)
 hold on;
-plot(DPMPrecision1, DPMRecall1, '-b*')
-plot(PSPPrecision1, PSPRecall1, '-gx')
+plot(DPMPrecision1, DPMRecall1, '-b*', 'MarkerSize', 10, 'LineWidth', 3)
+plot(PSPPrecision1, PSPRecall1, '-gx', 'MarkerSize', 10, 'LineWidth', 3)
 xlim([0 1]);ylim([0 1]);
-xlabel('Precision');
-ylabel('Recall');
+xlabel('Precision','FontWeight','bold');
+ylabel('Recall','FontWeight','bold');
 legend('HOG', 'DPM', 'PSP-Net')
 title('Camera 1 Pedestrian Detection Mono Camera')
+set(axes1,'FontSize', 40,'FontWeight','bold');
 
 % Camera 2
 HOGPrecision2 = [0.18009 0.30972 0.407166 0.459016 0.75];
@@ -36,16 +38,18 @@ DPMRecall2 = [0.205613 0.242754 0.303318 0.243432 0.091351];
 PSPPrecision2 = [0.332649 0.364877 0.45742 0.842213 0.95283];
 PSPRecall2 = [0.472984 0.472984 0.436638 0.133377 0.0163881];
 
-figure(2)
-plot(HOGPrecision2, HOGRecall2, '-rx')
+figure2 = figure();
+axes2 = axes('Parent',figure2);
+plot(HOGPrecision2, HOGRecall2, '-rx', 'MarkerSize', 10, 'LineWidth', 3)
 hold on;
-plot(DPMPrecision2, DPMRecall2, '-b*')
-plot(PSPPrecision2, PSPRecall2, '-gx')
+plot(DPMPrecision2, DPMRecall2, '-b*', 'MarkerSize', 10, 'LineWidth', 3)
+plot(PSPPrecision2, PSPRecall2, '-gx', 'MarkerSize', 10, 'LineWidth', 3)
 xlim([0 1]);ylim([0 1]);
-xlabel('Precision');
-ylabel('Recall');
+xlabel('Precision','FontWeight','bold');
+ylabel('Recall','FontWeight','bold');
 legend('HOG', 'DPM', 'PSP-Net')
 title('Camera 2 Pedestrian Detection Mono Camera')
+set(axes2,'FontSize', 40,'FontWeight','bold');
 
 % Camera 3
 HOGPrecision3 = [0.35194 0.50976 0.689038 0.742188  0.92];
@@ -57,13 +61,15 @@ DPMRecall3 = [0.38032 0.399751 0.492798 0.456605 0.135032];
 PSPPrecision3 = [0.430561 0.43056 0.490085 0.702815 0.841523];
 PSPRecall3 = [0.582485 0.582485  0.572556 0.388025 0.0796843];
 
-figure(3)
-plot(HOGPrecision3, HOGRecall3, '-rx')
+figure3 = figure();
+axes3 = axes('Parent',figure3);
+plot(HOGPrecision3, HOGRecall3, '-rx', 'MarkerSize', 10, 'LineWidth', 3)
 hold on;
-plot(DPMPrecision3, DPMRecall3, '-b*')
-plot(PSPPrecision3, PSPRecall3, '-gx')
+plot(DPMPrecision3, DPMRecall3, '-b*', 'MarkerSize', 10, 'LineWidth', 3)
+plot(PSPPrecision3, PSPRecall3, '-gx', 'MarkerSize', 10, 'LineWidth', 3)
 xlim([0 1]);ylim([0 1]);
-xlabel('Precision');
-ylabel('Recall');
+xlabel('Precision','FontWeight','bold');
+ylabel('Recall','FontWeight','bold');
 legend('HOG', 'DPM', 'PSP-Net')
 title('Camera 3 Pedestrian Detection Mono Camera')
+set(axes3,'FontSize', 40,'FontWeight','bold');

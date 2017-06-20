@@ -1,6 +1,6 @@
 clc;
 clear all;
-close all;
+%close all;
 
 
 %% Pedestrian Detection Mono Camera Semantic Constrains
@@ -15,7 +15,7 @@ DPMRecall1 = [0.154541 0.162377 0.210086 0.265777 0.0916255];
 PSPPrecision1 = [0.52237];
 PSPRecall1 = [0.33992];
 
-figure(1)
+figure(4)
 plot(HOGPrecision1, HOGRecall1, '-rx')
 hold on;
 plot(DPMPrecision1, DPMRecall1, '-b*')
@@ -36,7 +36,7 @@ DPMRecall2 = [0.159186 0.186966 0.248346 0.243432 0.0881064];
 PSPPrecision2 = [0.32854];
 PSPRecall2 = [0.41148];
 
-figure(2)
+figure(5)
 plot(HOGPrecision2, HOGRecall2, '-rx')
 hold on;
 plot(DPMPrecision2, DPMRecall2, '-b*')
@@ -57,7 +57,7 @@ DPMRecall3 = [0.275329 0.293673 0.390808 0.456605 0.10387];
 PSPPrecision3 = [0.44151];
 PSPRecall3 = [0.51502];
 
-figure(3)
+figure(6)
 plot(HOGPrecision3, HOGRecall3, '-rx')
 hold on;
 plot(DPMPrecision3, DPMRecall3, '-b*')
