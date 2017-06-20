@@ -65,6 +65,9 @@ public:
     // Join detections from all the cameras in one vector
     vector<Rect> AllPedestrianVector, AllPedestrianVectorNMS;
     vector<double> AllPedestrianVectorScore;
+
+    // Statistical Data Usage
+    void ExtractDataUsage(int CameraNumber, String FrameNumber, Mat Homography, Mat HomographyBetweenViews);
 };
 
 #endif // PEOPLEDETECTOR_H

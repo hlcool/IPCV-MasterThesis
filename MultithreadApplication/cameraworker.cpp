@@ -152,6 +152,13 @@ void CameraWorker::processVideo()
         PeopleDetec.paintBoundingBoxes(Camera.ActualFrame, CBOption, PeopleDetec.AllPedestrianVectorNMS, Camera.CameraNumber, 2);
 
         // ---------------------------------- //
+        //             DATA USAGE             //
+        // ---------------------------------- //
+        if(MultiCameraFiltering || SemanticFiltering){
+                PeopleDetec.ExtractDataUsage(Camera.CameraNumber, FrameNumber, Camera.Homography, Camera.HomographyBetweenViews);
+        }
+
+        // ---------------------------------- //
         //             EVALUATION             //
         // ---------------------------------- //
         vector<Rect> GroundTruthVector;

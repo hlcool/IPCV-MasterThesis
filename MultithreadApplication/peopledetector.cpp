@@ -680,6 +680,10 @@ void PeopleDetector::SemanticConstraining(vector<Rect> &AllPedestrianVector, int
                 putText(ActualFrame, "BLOB SUPRESSED", BottomCenter, FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1.5);
             }
         }
+        else{
+            SupressedIndices.push_back(Counter);
+            putText(ActualFrame, "BLOB SUPRESSED", BottomCenter, FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1.5);
+        }
         Counter++;
     }
 
@@ -690,4 +694,52 @@ void PeopleDetector::SemanticConstraining(vector<Rect> &AllPedestrianVector, int
         int Index = SupressedIndices[k];
         AllPedestrianVector.erase(AllPedestrianVector.begin() + Index);
     }
+}
+
+void PeopleDetector::ExtractDataUsage(int CameraNumber, String FrameNumber, Mat Homography, Mat HomographyBetweenViews)
+{
+    if(AllPedestrianVectorNMS.empty() || Homography.empty() || HomographyBetweenViews.empty())
+        return;
+
+    Mat StatisticalMap = imread("/Users/alex/Desktop/StatisticalMap.png", CV_LOAD_IMAGE_GRAYSCALE);
+
+    int FloorCount = 0, DoorCount = 0, ChairCount = 0;
+
+    for(int i = 0; i < AllPedestrianVectorNMS.size(); i++){
+        Rect Blob = AllPedestrianVectorNMS[i];
+        int MapLabel;
+        Point2f BottomCenter, BottomCenterProjected;
+        vector<Point2f> VectorAux;
+
+        // COmpute bottom middle part of the blob and save it in an auxiliar vector
+        BottomCenter.x = cvRound(Blob.x + Blob.width/2);
+        BottomCenter.y = Blob.y + Blob.height;
+        VectorAux.push_back(BottomCenter);
+
+        // Transform the point to the cenital plane
+        perspectiveTransform(VectorAux, VectorAux, HomographyBetweenViews);
+        perspectiveTransform(VectorAux, VectorAux, Homography);
+
+        // Extract the projected point
+        BottomCenterProjected = VectorAux[0];
+
+        if((BottomCenterProjected.x > 0) && (BottomCenterProjected.y > 0) && (BottomCenterProjected.x < StatisticalMap.cols) && (BottomCenterProjected.y < StatisticalMap.rows)) {
+            // Check label of Statistical Map
+            MapLabel = StatisticalMap.at<uchar>(cvRound(BottomCenterProjected.y), cvRound(BottomCenterProjected.x));
+
+            //cout << "Pos: " << BottomCenterProjected << " with label " << to_string(MapLabel) << endl;
+            // If floor, door or chair sum 1
+            if(MapLabel == 3){
+                FloorCount++;
+            }
+            else if(MapLabel == 8){
+                DoorCount++;
+            }
+            else if(MapLabel == 9){
+                ChairCount++;
+            }
+        }
+    }
+    cout << "Frame: " << FrameNumber << ". Camera " << to_string(CameraNumber) << ". " << to_string(FloorCount) << " on the floor. "
+         << to_string(DoorCount) << " usign the doors. " << to_string(ChairCount) << " seated on chairs." << endl;
 }
