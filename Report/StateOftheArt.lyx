@@ -2131,7 +2131,7 @@ target "https://www.cityscapes-dataset.com/"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -2510,7 +2510,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -2540,10 +2540,15 @@ ResNet-38 Algorithm.
 \end_inset
 
 
+\begin_inset space \hspace{}
+\length 4text%
+\end_inset
+
+
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -2580,7 +2585,7 @@ PSPNet Algorithm.
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center

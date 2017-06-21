@@ -100,8 +100,8 @@ name "chap:Results"
 \begin_layout Standard
 During this Chapter all the achieve results are exposed and analyzed.
  Firstly, a brief analysis of the used hardware during the Thesis is done.
- Secondly, the experiment setup is explained, in detail, the generated dataset
- and ground truth, and the evaluation framework.
+ Secondly, in detail, the experiment setup is explained, i.e.
+ the generated dataset and ground truth, and the evaluation framework.
  Later, results concerning application performance are presented.
  Finally, the last two sections aim is to present pedestrian detection results
  in term of performance and usage data extraction.
@@ -889,7 +889,7 @@ Format: MPEG Video.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1304,7 +1304,7 @@ reference "tab:Single threads vs Multi threads"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1467,7 +1467,7 @@ reference "tab:Multithreads PD Computational"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1730,8 +1730,11 @@ It is important to remind that results will be presented within Recall versus
 \end_inset
 
  interval.
- Each threshold iteration for an algorithm will provide one point of the
- curve.
+ Each threshold iteration (
+\begin_inset Formula $0,\,0.2,\,0.4,\,0.6,\,0.8$
+\end_inset
+
+) for an algorithm will provide one point of the curve.
  To proceed with this process all the algorithms scores have been normalized
  from its original values using the maximum and minimum scores to the mentioned
  interval.
@@ -2305,6 +2308,10 @@ Finally, results concerning statistical usage data will be presented.
  class in each video frame.
  For this experiment we will use the following combination of algorithm
  and system which has resulted the best one in the previous section.
+\end_layout
+
+\begin_layout Section
+Result Discussion
 \end_layout
 
 \end_body

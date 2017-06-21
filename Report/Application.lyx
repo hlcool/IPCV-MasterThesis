@@ -98,10 +98,11 @@ name "chap:Developed Application"
 \end_layout
 
 \begin_layout Standard
-Within this Chapter the developed application will be analyze.
- This application will be the base for the visualization and arrangement
- of the usage statistics from the different areas of interest as well as
- pedestrian detections.
+Within this Chapter the developed application in terms of software developement
+ will be analyze.
+ This application will be the base for the calculation, svisualization and
+ arrangement of the usage statistics from the different areas of interest,
+ pedestrian detections and other results.
  As said in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -116,9 +117,20 @@ reference "sec:Objectives"
 \end_layout
 
 \begin_layout Standard
-The application has been developed under QT Creator coding environment in
- Mac OS Sierra.
- This decision has been fundamentally based on:
+The application has been developed under 
+\color blue
+
+\begin_inset CommandInset href
+LatexCommand href
+name "QT Creator"
+target "QT Creator"
+
+\end_inset
+
+
+\color inherit
+ coding environment in Mac OS Sierra.
+ This decision has fundamentally been based on:
 \end_layout
 
 \begin_layout Enumerate
@@ -184,29 +196,30 @@ name "fig:QT-Window-Designer"
 
 \end_deeper
 \begin_layout Enumerate
-The possibility to add OpenCV libraries to the project.
+The possibility to add OpenCV libraries to the project as well as independent
+ external libraries.
 \end_layout
 
 \begin_layout Enumerate
 Its multi-thread capabilities that enables to perform different code segments
- in various threads to increase speed.
+ in various threads to increase computational speed.
 \end_layout
 
 \begin_layout Standard
 Due to the complexity of some of the algorithms used in terms of parameter
- tuning and configuration we have decide to create two separate applications,
+ tuning and configuration two separate applications have been developed,
  engineer and user version.
  
 \end_layout
 
 \begin_layout Standard
-The first version of the software will correspond to the engineer application.
+The first version of the software corresponds to the engineer application.
  As its name says, it is design so it can be used by programmers or engineers
- who understand general concepts of the algorithms running at the backend
+ who generally understand concepts of the algorithms running at the backend
  application.
- This means that all the variable parameters will be available for tuning
- from the graphical interface, as well as different detector options and
- visualization.
+ This means that all the variable parameters are available for tuning from
+ the graphical interface, as well as different detector options and visualizatio
+n.
  The final motivation for this version is to achieve high variability and
  tuning in terms of algorithm parameters, however, in order to have good
  performance the user should have a basic knowledge about how parameters
@@ -214,8 +227,8 @@ The first version of the software will correspond to the engineer application.
 \end_layout
 
 \begin_layout Standard
-For the engineer application both single-thread and multi-thread versions,
- have been developed and will be analyze on the following lines.
+For the engineer application both single-thread and multi-thread versions
+ have been developed and are analyzed on the following lines.
  All the code for both approaches is available in the following 
 \color blue
 
@@ -231,7 +244,7 @@ target "https://github.com/alexlopezcifuentes/IPCV-MasterThesis/"
 
 \begin_layout Standard
 During the analysis of the application trough out the Section some flow-charts
- will be displayed.
+ are displayed.
  The used legend can be observed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -387,14 +400,15 @@ During the first stages of the development and for simplicity sake the applicati
 on has been design and developed to run under a single thread.
  This means that all the processing has been done sequentially camera by
  camera.
- A simple flow-chart diagram can be seen in Figure 
+ A simple flow-chart diagram that illustrates the execution path can be
+ seen in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Flow-chart diagram for the single-thread application"
 
 \end_inset
 
- that illustrates the execution path.
+ .
 \end_layout
 
 \begin_layout Standard
@@ -686,11 +700,12 @@ name "fig:Flow-chart diagram for the single-thread application"
 \begin_layout Standard
 This approach has the advantage that all the code is executed in the same
  segment which makes really easy for instance to share information between
- cameras, however, this design will only be valid if the computational effort
- is minimum.
+ cameras as the share the same memory segments, however, this design will
+ only be valid if the computational effort is minimum.
  Before displaying any results, all the process for the three cameras should
- be computed one after the other which means that when calculating detections
- for one camera the others will remain idle.
+ be computed one after the other.
+ This means that when calculating detections for one camera the others will
+ remain idle.
  When working with such a multi-camera system with heavy algorithms running
  as the proposed in our work, the computational time increases exponentially
  and this design is no longer worthwhile.
@@ -710,9 +725,9 @@ reference "fig:Flow-chart diagram for the multi-thread application"
 \end_inset
 
 .
- As one can observe, now the three threads are running in parallel and so,
- all the process is no longer done sequentially and computing power from
- the CPU can be much more usable.
+ As one can observe, now different threads are running in parallel, one
+ for each camera, and so, all the process is no longer done sequentially
+ and computing power from the CPU can be much more usable.
 \end_layout
 
 \begin_layout Standard
@@ -741,7 +756,8 @@ In the code two barriers will be available.
  The first one will ensure that all the threads have perform pedestrian
  detection before sharing those detections between the rest of the threads.
  The second one will be at the end of a frame execution, so threads wait
- to each other before sending results to the main window.
+ to each other before sending results to the main window for representing
+ processes.
 \end_layout
 
 \begin_layout Standard
@@ -1113,7 +1129,7 @@ reference "fig:Main-application-window"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1354,7 +1370,7 @@ Options menu.
 
 \begin_deeper
 \begin_layout Standard
-This options box (Figure 
+The options box (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Options Menu"
@@ -1367,8 +1383,8 @@ reference "fig:Options Menu"
  restart the running before changing some parameter.
  The user can select among various pedestrian detectors such as PSP-Net
  detector, DPM, ACF or even Fast-RCNN as well as the type of representation
- that one wants for these detections, lines or gaussians which will be in
- Section 
+ that one wants for these detections, lines or gaussians which will be explained
+ in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Pedestrian-Filtering-and"
@@ -1380,9 +1396,9 @@ reference "subsec:Pedestrian-Filtering-and"
  as well as the filtering or constraint that is used.
  One can select between regular pedestrian detection, PD with semantic constrain
 ing or to perform multicamera projection.
- In addition perform mask filtering can be also used so PD search area is
- reduced.
- Finally, a check box to display or not ground truth information is available.
+ In addition mask filtering can be also perform so PD search area is reduced.
+ Finally, a check box to display or not ground truth information is available
+ too.
 \end_layout
 
 \begin_layout Standard
@@ -1795,8 +1811,9 @@ name "fig:User version application main window"
 
 \begin_layout Standard
 As said, conversely to the engineer application the only functionality of
- the main window is to display results and information.
- All the options for tuning in the engenieer application are no longer available.
+ the main window is to display results and guide information.
+ All the options present in the engenieer application for tunning are no
+ longer available.
 \end_layout
 
 \end_body

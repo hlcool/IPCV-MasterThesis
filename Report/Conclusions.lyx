@@ -99,18 +99,67 @@ name "chap:Conclusions"
 Conclusions
 \end_layout
 
+\begin_layout Standard
+Cuando hay cambios de iluminacion bruscos la seleccion de vistas falla.
+\end_layout
+
+\begin_layout Standard
+Debido a fallos del detector las projeccciones no se corresponden exactamente
+ con la persona.
+\end_layout
+
+\begin_layout Standard
+Debido a las perspectivas, las reprojecciones de personas en otros frames
+ tienen un ancho minimo y al applicar la fomrula para la altura, está, sale
+ muy pequeña.
+\end_layout
+
 \begin_layout Section
 Future Work
 \end_layout
 
 \begin_layout Standard
-Limitacion de cambios de iluminacion en el mismo video por incoherencia
- con las vistas precargadas.
- Solucion: actualizar online las vistas con la posicion exacta de la camara.
+Taking into account actual state of the art, obtained results and extracted
+ conclusions one can set the stage for future work.
 \end_layout
 
 \begin_layout Standard
-Generar la altura del bounding box en funcion de la distancia a la camara
+In term of application and software development some improvements are proposed
+ to be done.
+ Nowadays, heavy computational work is achieve almost in real time by the
+ use of graphic cards.
+ GPU computation should be implemented in the scoope of this work.
+ Many of the used method are also developed with GPU functionalities and
+ the inclusion of this kind of speed-up could lead to better and faster
+ results.
+\end_layout
+
+\begin_layout Standard
+In other term, the proposed system bases all its performance in the correct
+ view selection as explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:View-Selection"
+
+\end_inset
+
+.
+ However, as said in Conclusions when high illumination changes occur this
+ process fails.
+ We propose to fix this problem by the use of camera spatial positions.
+ With this information exact same position for each of the views can be
+ obtained and so, they can be updated during the video sequence in order
+ to adapt to illumination changes.
+\end_layout
+
+\begin_layout Standard
+One of the main problems discussed in the conclusions section is that when
+ pedestrians are reprojected the blob height is lost.
+ Due to this, there are some frames that have small detections compared
+ to the person size.
+ To correctly reproject the blob we propose as future work to use real distances
+ between camera and bounding box to finally obtain the real height for the
+ blob.
 \end_layout
 
 \end_body
