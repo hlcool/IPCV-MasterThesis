@@ -98,10 +98,10 @@ name "chap:Proposed-System"
 \end_layout
 
 \begin_layout Standard
-During this Chapter our proposed system will be explained deeply.
+During this Chapter our proposed system will be deeply explained.
  We start from the main contextual model generation and pedestrian detectors
- to finally explain the fusion of all the elements in a multi camera system
- with semantic constraints.
+ to finally explain the fusion of all the obtained elements in a multi camera
+ system with semantic constraints.
  In addition the generation of statistical usage data from semantic areas
  will be proposed.
  Figure 
@@ -170,8 +170,15 @@ name "sec:Contextual-Model-Generation"
 \end_layout
 
 \begin_layout Standard
-One of the main objectives in the scope of this work is to divide one frame
- into different semantic areas.
+One of the main objectives in the scope of this work is to permorm semantic
+ segmentation, wchih as explained in Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:State of the art"
+
+\end_inset
+
+ means to divide one frame into different semantic areas.
  The relative position in the scene for elements such as doors, walls, paths,
  and columns are necessary to achieve further objectives such as multi camera
  pedestrian constraint and statistical data extraction.
@@ -190,8 +197,8 @@ reference "chap:State of the art"
 \end_inset
 
  is used.
- We choose PSP-Net because at the moment of the selection was the one with
- available code achieving the best results.
+ We choose PSP-Net because at the moment of this work was the one with available
+ code achieving the best results.
  The goal for this algorithm as said before, is is to assign each pixel
  in the image a category label achieving by this the location and shape
  for each element.
@@ -209,7 +216,7 @@ reference "fig:Overview-of-the proposed PSPNet"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -255,15 +262,29 @@ name "fig:Overview-of-the proposed PSPNet"
 \end_layout
 
 \begin_layout Standard
-Given the image in (a) the first step is to process it through a pre trained
- CNN called ResNet 
+Given the image in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Overview-of-the proposed PSPNet"
+
+\end_inset
+
+.(a) the first step is to process it through a pre trained CNN called ResNet
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "he2016deep"
 
 \end_inset
 
- to get the full feature map (b) of the last convolutional layer.
+ to get the full feature map 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Overview-of-the proposed PSPNet"
+
+\end_inset
+
+.(b) of the last convolutional layer.
  The final feature map in this step is 
 \begin_inset Formula $1/8$
 \end_inset
@@ -280,7 +301,14 @@ key "zhao2016pyramid"
 
 \end_inset
 
-, which is called the Pyramid Pooling Module (c).
+, which is called the Pyramid Pooling Module 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Overview-of-the proposed PSPNet"
+
+\end_inset
+
+.(c).
  The main objective of the module is to collect a few levels of information,
  much more representative than global pooling.
  It separates the feature map into different sub-regions and forms pooled
@@ -297,10 +325,24 @@ key "zhao2016pyramid"
 \begin_layout Standard
 After the bilinear interpolation upsampling, concatenation layers are used
  to form the final feature representation by fusing the feature map extracted
- in (b) and the Pyramid Pooling Module output.
+ in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Overview-of-the proposed PSPNet"
+
+\end_inset
+
+.(b) and the Pyramid Pooling Module output.
  This final feature carries both local and global context information.
  In the end, the representation is fed into a convolutional layer which
- gets the final per-pixel prediction (d).
+ gets the final per-pixel prediction 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Overview-of-the proposed PSPNet"
+
+\end_inset
+
+.(d).
 \end_layout
 
 \begin_layout Standard
@@ -315,8 +357,11 @@ target "https://github.com/hszhao/PSPNet"
 
  
 \color inherit
-comes with a set of three different pre trained Caffe models for three different
- datasets.
+comes with a set of three different pre trained 
+\shape italic
+Caffe
+\shape default
+ models for three different datasets.
  The main difference between the models for our scope is the environment
  in which the network has been trained.
 \end_layout
@@ -340,25 +385,25 @@ CityScapes: The last dataset defines 19 categories containing both stuff
 \end_layout
 
 \begin_layout Standard
-So, as one can observe the three different models represent different object
+As one can observe the three different models represent different object
  categories in different real spaces.
- In our case we will select the model based on two main reasons:
+ In our case we select the model based on two main reasons:
 \end_layout
 
 \begin_layout Enumerate
-The model should be trained with indoor scenes.
- This will lead to discard those models that perform only in outdoors as
- we would like our approach to be used in interior scenarios.
+The model should have been trained with indoor scenes.
+ This leads to discard those models that represent only outdoors scenes
+ as we would like our approach to be used in an interior scenario.
  This will exclude CityScapes dataset from our options as all the classes
  and sequences used for training are from outdoor scenes.
 \end_layout
 
 \begin_layout Enumerate
 From the trained indoor models we have to choose between those whose categories
- fit best in our work.
+ best fit in our work.
  In this case VOC2012 dataset uses classes such as boat, airplane or table
- which are not interesting for our segmentation and it does not have classes
- such as door or wall which are really important for us.
+ which are not interesting for our segmentation problem and it does not
+ have classes such as door or wall which are really important for us.
 \end_layout
 
 \begin_layout Standard
@@ -367,10 +412,10 @@ With this two reasons being taken into account we have selected the model
  column in its model.
  However, we consider that most of the 150 label categories will be unused
  in our procedure, so, the number of classes from the model has been reduced
- to the 21 classes of our interest so we only obtain position and scores
- for those objects that we want.
- This class limitations will lead above all in a considerably hard drive
- space saving.
+ to the 21 classes of our interest.
+ Position and scores for those objects are the only ones obtained.
+ This class limitation leads above all in a considerably hard drive space
+ saving.
  In Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -378,7 +423,7 @@ reference "tab:Final classes list from ADE20K to use in PSP-Net"
 
 \end_inset
 
- the final 21 classes that have been selected can be observed.
+ the final 21 selected classes are exposed.
 \end_layout
 
 \begin_layout Standard
@@ -670,8 +715,8 @@ Pedestrian Detection
 \begin_layout Standard
 Along this section we will present the pedestrian State of the Art detectors
  that have been selected to work in our system.
- Some of them have been chosen due to the algorithm simplicity and computational
- cost and others due to its contrasted performance while working in real
+ Some of them have been chosen due to algorithm simplicity and computational
+ cost and others, due to its contrasted performance while working in real
  sequences as we have seen in Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -891,11 +936,11 @@ However, its scanning window approach as well as the part based model lead
 
 \begin_layout Standard
 The main implementation of Deformable Part Model Pedestrian Detector can
- be found in OpenCV library for C++.k
+ be found in OpenCV library for C++.
 \end_layout
 
 \begin_layout Subsection
-Aggregated Channel FeaturesDetector 
+Aggregated Channel Features Detector 
 \end_layout
 
 \begin_layout Standard
@@ -1042,7 +1087,7 @@ key "arbelaez2014multiscale"
 
 \end_inset
 
- grouping method will be used for this purpose due to its great results.
+ grouping method is used.
 \end_layout
 
 \begin_layout Standard
@@ -1196,7 +1241,8 @@ Fusion and Filtering
 \begin_layout Standard
 Once the semantic model and pedestrian detections are obtained the next
  step is to combine the information coming from different camera sources
- into a common plane in a process that we have called fusion and filtering.
+ into a common plane.
+ This is done in a process called fusion and filtering.
 \end_layout
 
 \begin_layout Subsection
@@ -1204,10 +1250,10 @@ Multi-camera Scenario
 \end_layout
 
 \begin_layout Standard
-Our system is developed in a multi-camera scenario which is the essential
- setup to fusion information.
- This means that we will be able to observe the scene from different point
- of views.
+Our system is developed in a multi-camera scenario.
+ This is the essential setup to fusion information.
+ This means that we are able to observe the scene from different point of
+ views.
  In Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1215,7 +1261,7 @@ reference "fig:Multi-camera-configuration"
 
 \end_inset
 
- we can observe how the scene is configured with 3 different video-surveillance
+ we can observe how the scene is configured with 3 static video-surveillance
  cameras.
  Two of them are placed at the sides of the scene, while one is at the bottom
  part.
@@ -1415,15 +1461,15 @@ reference "chap:State of the art"
 \end_inset
 
  working with a multi-camera scenario has some advantages.
- As one can see in Figure 
+ One can see in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Initial Camera Views"
 
 \end_inset
 
- we can observe the same scene area from three different point of views,
- which for example means, that detections from one camera can be used to
+ we can observe the same scene area from three different points of views,
+ which means that for instance, detections from one camera can be used to
  detect in other camera or even refine the available detections.
  
 \end_layout
@@ -1436,25 +1482,42 @@ Cenital Plane Homography
 Homography calculation is a pivotal task in our work and the main base for
  the fusion of all the different information coming from the three cameras.
  The objective is to compute an homography matrix 
-\begin_inset Formula $^{\pi_{ref}}H_{frame}$
+\begin_inset Formula $^{\pi_{ref}}H_{F}$
 \end_inset
 
- that relates one camera frame to a so called cenital plane 
+ that relates one camera frame 
+\begin_inset Formula $F_{t}$
+\end_inset
+
+ at a time 
+\begin_inset Formula $t$
+\end_inset
+
+, to a so called cenital plane 
 \begin_inset Formula $\pi_{ref}$
 \end_inset
 
 , i.e.
  a bird-eye representation of the scene.
  With this homography matrix we will be able to transform every frame pixel
- to its correspondent position in the cenital plane.
- Frame perspective is so transformed as if it were being viewed from the
+ 
+\begin_inset Formula $F_{t}(x_{1},\,y_{2})$
+\end_inset
+
+ to its correspondent position in the cenital plane 
+\begin_inset Formula $\pi_{ref}(x_{2},\,y_{2})$
+\end_inset
+
+.
+ Frame perspective is so, transformed as if it were being viewed from the
  top.
  The homography process is also important as it enables to project pedestrians
- detections to the cenital plane.
+ detections to the cenital plane with the same proceeding.
 \end_layout
 
 \begin_layout Standard
-The formulation of the generic homography problem is as follows:
+The formulation of the generic homography problem between two cameras and
+ a plane is as follows:
 \end_layout
 
 \begin_layout Standard
@@ -1496,7 +1559,11 @@ We have two cameras
 \end_inset
 
 .
- To do this process Eq 
+ 
+\end_layout
+
+\begin_layout Standard
+To do this process Eq 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:Projection EQ by homography"
@@ -1509,7 +1576,7 @@ reference "eq:Projection EQ by homography"
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-p_{i}(C_{1})=\frac{z_{i}(C_{2})}{z_{i}(C_{1})}K_{1}\cdot H_{C_{2}C_{1}}\cdot K_{C_{2}}^{-1}\cdot p_{i}(C_{2})\label{eq:Projection EQ by homography}
+p_{i}(C_{1})=\frac{z_{i}(C_{2})}{z_{i}(C_{1})}K_{C_{1}}\cdot H_{C_{2}C_{1}}\cdot K_{C_{2}}^{-1}\cdot p_{i}(C_{2})\label{eq:Projection EQ by homography}
 \end{equation}
 
 \end_inset
@@ -1604,7 +1671,7 @@ reference "fig:Camera-and-plane setup"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -1629,7 +1696,8 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Camera and plane setup
+Generic homography problem.
+ Camera and plane setup
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Camera-and-plane setup"
@@ -1652,11 +1720,11 @@ name "fig:Camera-and-plane setup"
 \begin_layout Standard
 In order to compute an homography, a relation between at least 4 points
  in each of the two images should be computed.
- In this case we are trying to create a relationship between a real camera
- frame, and a cenital view plane created by computer.
- This means that there will not be a real correspondence for pixels and
- so it is not possible to use a point descriptor to extract common points
- in both images.
+ In this case a relationship between a real camera frame and a cenital view
+ plane created by computer should be computed.
+ This means that there is not a real correspondence for pixels and so it
+ is not possible to use a point descriptor to extract common points in both
+ images.
  User has to manually select the points that represent the same spatial
  place in both images using the Graphical User Interface and then the algorithm
  will compute the transformation matrix.

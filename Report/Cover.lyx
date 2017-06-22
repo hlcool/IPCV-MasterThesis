@@ -221,7 +221,7 @@ Escuela Politécnica Superior
 \begin_inset Newline newline
 \end_inset
 
- July 2017
+ June 2017
 \end_layout
 
 \begin_layout Standard
@@ -424,7 +424,7 @@ Universidad Autónoma de Madrid
 \begin_inset Newline newline
 \end_inset
 
- July 2017
+ June 2017
 \begin_inset Newline newline
 \end_inset
 
@@ -566,7 +566,47 @@ noindent
 \end_layout
 
 \begin_layout Standard
-The
+The following project has two main objectives.
+ The first one aims to develop a system capable of perform pedestrian detection
+ and semantic segmentation over a multi camera system.
+ The fusion of both disciplines leads to combine pedestrian and semantic
+ information in order to constrain detections.
+ Also, the multi camera system is used to reproject detections from one
+ camera to the others.
+ In addition, statistical data usage of concrete semantic area is also extracted.
+ Second objective is related to the development of a Graphical User Interface
+ (GUI) from which algorithms can be controlled and results can be displayed.
+\end_layout
+
+\begin_layout Standard
+In order to achieve these objectives a state of the art studied has been
+ done.
+ Pedestrian detection approaches have been deeply reviewed including those
+ that need object proposals.
+ Also, recent trends nowadays and next steps in the scope os Pedestrian
+ Detection have been canalized.
+ In addition, actual state of the art regarding contextual information and
+ in concrete semantic segmentation has been studied.
+ Finally, multi camera scenarios have been described.
+\end_layout
+
+\begin_layout Standard
+A multithread application has been developed and analyzed to, as said in
+ the objectives, present results and tune algorithms.
+ 
+\end_layout
+
+\begin_layout Standard
+A new system has been proposed in order to achieve the objectives and perform
+ pedestrian detections under different filtering and fusion conditions.
+ Detectors such as HOG, DPM or PSP-Net have been integrated and a complete
+ semantic segmentation has been performed.
+ Both information has been combined in a common developed frame.
+\end_layout
+
+\begin_layout Standard
+Finally, system performance has been tested in a generated dataset and manually
+ annotated ground truth.
 \end_layout
 
 \begin_layout Section*
@@ -574,7 +614,7 @@ Keywords
 \end_layout
 
 \begin_layout Standard
-Keywords.
+Pedestrian detection, multi Camera, semantic segmentation, cenital plane.
 \end_layout
 
 \begin_layout Standard

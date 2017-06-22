@@ -1304,7 +1304,7 @@ reference "tab:Single threads vs Multi threads"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1467,7 +1467,7 @@ reference "tab:Multithreads PD Computational"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -2312,6 +2312,18 @@ Finally, results concerning statistical usage data will be presented.
 
 \begin_layout Section
 Result Discussion
+\end_layout
+
+\begin_layout Standard
+Application performance.
+\end_layout
+
+\begin_layout Standard
+Pedestrian Detector.
+\end_layout
+
+\begin_layout Standard
+Statistical usage data.
 \end_layout
 
 \end_body
