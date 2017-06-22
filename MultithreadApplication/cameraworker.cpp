@@ -56,6 +56,8 @@ void CameraWorker::preProcessVideo()
 
 void CameraWorker::processVideo()
 {
+    PeopleDetec.StatisticalBlobFile.open("/Users/alex/Desktop/Statistical/Projected Blobs " + to_string(Camera.CameraNumber) + ".txt");
+
     // Main Video Loop
     while (true) {
         // Start the clock for measuring time consumption/frame

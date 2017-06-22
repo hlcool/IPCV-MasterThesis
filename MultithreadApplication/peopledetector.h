@@ -68,6 +68,7 @@ public:
 
     // Statistical Data Usage
     void ExtractDataUsage(int CameraNumber, String FrameNumber, Mat Homography, Mat HomographyBetweenViews);
+    ofstream StatisticalBlobFile;
 };
 
 #endif // PEOPLEDETECTOR_H

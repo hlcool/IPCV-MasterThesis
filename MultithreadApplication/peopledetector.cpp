@@ -698,8 +698,10 @@ void PeopleDetector::SemanticConstraining(vector<Rect> &AllPedestrianVector, int
 
 void PeopleDetector::ExtractDataUsage(int CameraNumber, String FrameNumber, Mat Homography, Mat HomographyBetweenViews)
 {
-    if(AllPedestrianVectorNMS.empty() || Homography.empty() || HomographyBetweenViews.empty())
+    if(AllPedestrianVectorNMS.empty() || Homography.empty() || HomographyBetweenViews.empty()){
+        StatisticalBlobFile << "0" << endl;
         return;
+    }
 
     Mat StatisticalMap = imread("/Users/alex/Desktop/StatisticalMap.png", CV_LOAD_IMAGE_GRAYSCALE);
 
@@ -723,6 +725,8 @@ void PeopleDetector::ExtractDataUsage(int CameraNumber, String FrameNumber, Mat 
         // Extract the projected point
         BottomCenterProjected = VectorAux[0];
 
+        StatisticalBlobFile << BottomCenterProjected.x << " " << BottomCenterProjected.y << " ";
+
         if((BottomCenterProjected.x > 0) && (BottomCenterProjected.y > 0) && (BottomCenterProjected.x < StatisticalMap.cols) && (BottomCenterProjected.y < StatisticalMap.rows)) {
             // Check label of Statistical Map
             MapLabel = StatisticalMap.at<uchar>(cvRound(BottomCenterProjected.y), cvRound(BottomCenterProjected.x));
@@ -740,6 +744,7 @@ void PeopleDetector::ExtractDataUsage(int CameraNumber, String FrameNumber, Mat 
             }
         }
     }
+    StatisticalBlobFile << endl;
     cout << "Frame: " << FrameNumber << ". Camera " << to_string(CameraNumber) << ". " << to_string(FloorCount) << " on the floor. "
          << to_string(DoorCount) << " usign the doors. " << to_string(ChairCount) << " seated on chairs." << endl;
 }

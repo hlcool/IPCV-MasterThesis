@@ -1672,6 +1672,167 @@ name "tab:Multithreads PD Computational"
 \end_layout
 
 \begin_layout Section
+Semantic Segmentation Results
+\end_layout
+
+\begin_layout Standard
+In this Section some results concerning the performance of PSP-Net in out
+ environment are presented.
+ In order to test the algorithm and for the lack of semantic ground truth
+ results should be visually evaluated.
+ For this purpose Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PSP-Net-result-examples"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Camera10954Semantic.jpg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 3text%
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/Results/SemanticResults1.png
+	lyxscale 40
+	width 47text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset VSpace 4text%
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Camera20007Semantic.jpg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 3text%
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/Results/SemanticResults2.png
+	lyxscale 40
+	width 47text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset VSpace 4text%
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Camera30327Semantic.jpg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 3text%
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/Results/SemanticResults3.png
+	lyxscale 40
+	width 47text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset VSpace 4text%
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/SemanticLegend
+	lyxscale 15
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+RGB frames and PSP-Net Semantic segmentation results.
+ From top to bottom: Camera 1, Camera 2, Camera 3.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PSP-Net-result-examples"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 Pedestrian Detection Results
 \end_layout
 
@@ -2301,17 +2462,192 @@ Statistical Usage Data
 \end_layout
 
 \begin_layout Standard
-Finally, results concerning statistical usage data will be presented.
- For this result an additional sequence has been used.
- The results will be presented in one graph for each of the cameras.
- This graph will represent the number of pedestrian using that semantic
- class in each video frame.
- For this experiment we will use the following combination of algorithm
- and system which has resulted the best one in the previous section.
+Finally, results concerning statistical usage data are presented.
+ As said in the previous Chapter, we obtain one graphic per selected semantic
+ area, which in our case are floor, doors and chars due to the mentioned
+ map in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Statistical Semantic Map"
+
+\end_inset
+
+.
+ The obtained curves are displayed both in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Stadistical-Data-Usage Curves"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/StadisticalFloor.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Floor Usage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/StatidisticalDoors.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Doors Usage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Statistical data usage curves in terms of pedestrian number/frames
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Stadistical-Data-Usage Curves"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In addition, some results about the most used areas of the hall have been
+ extracted.
+ The hole area has been divided into regular subareas of fixed size in which
+ pedestrian flow has been measured.
+ By using this method one could have information about the most used paths
+ by people over the scene.
+ Results concerning this process are displayed in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Pedestrians paths usage along the Hall"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/ProbableAreasPath.png
+	lyxscale 30
+	width 85text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Pedestrians paths usage along the Hall
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Pedestrians paths usage along the Hall"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Results are displayed as yellow squares.
+ The more strong the color it means that during the sequence that subregion
+ of the scene has been regularly populated with people.
 \end_layout
 
 \begin_layout Section
-Result Discussion
+Overall Discussion
 \end_layout
 
 \begin_layout Standard

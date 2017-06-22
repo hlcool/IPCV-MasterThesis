@@ -4151,8 +4151,12 @@ Statistical Usage Data
 \begin_layout Standard
 Along this Section we explain the proposed system to extract statistical
  usage data frame by frame given a sequence.
- The aim is to obtain three graphs per data-set recording, this means that
- we will have one graph per camera in which all the statistics will be presented.
+ The aim is to obtain one graph per selected class that measures the amount
+ of people at a moment 
+\begin_inset Formula $t$
+\end_inset
+
+ of time in the determined semantic area during the sequence.
 \end_layout
 
 \begin_layout Standard
@@ -4226,6 +4230,7 @@ As one can observe we have decided to only take into account for this process
  Following the same principle as in the previous Section, pedestrians will
  be projected on to the statistical semantic map and so we will be able
  to know how many people are in each of the designed areas.
+ In addition, 
 \end_layout
 
 \end_body
