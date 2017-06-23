@@ -101,7 +101,7 @@ name "chap:Results"
 During this Chapter all the achieve results are exposed and analyzed.
  Firstly, a brief analysis of the used hardware during the Thesis is done.
  Secondly, in detail, the experiment setup is explained, i.e.
- the generated dataset and ground truth, and the evaluation framework.
+ the generated data-set and ground truth, and the evaluation framework.
  Later, results concerning application performance are presented.
  Finally, the last two sections aim is to present pedestrian detection results
  in term of performance and usage data extraction.
@@ -814,17 +814,17 @@ Experiment Setup
 \begin_layout Standard
 For all the experiments that are going to be analyzed along this Chapter
  the experiment setup should be explained.
- In this section, the generated dataset and ground truth and the proposed
+ In this section, the generated data-set and ground truth and the proposed
  evaluation frame work used to obtain results will be detailed.
 \end_layout
 
 \begin_layout Subsection
-Dataset
+Data-set
 \end_layout
 
 \begin_layout Standard
-As said at the beginning of the Chapter the dataset has been generated in
- the university hall.
+As said at the beginning of the Chapter the data-set has been generated
+ in the university hall.
  The number of available PTZ cameras in the university is three so we have
  been able to record different sequences from three points of view.
  In addition, as explained in the previous Chapter a tour for each camera
@@ -854,7 +854,7 @@ reference "fig:Multi-camera-configuration with panning set up"
 \end_layout
 
 \begin_layout Standard
-The complete dataset consists on a set of three different recordings about
+The complete data-set consists on a set of three different recordings about
  5 minute long from three different days.
  In each of the recordings all the camera sequences are available.
  Figure 
@@ -870,7 +870,7 @@ reference "fig:Dataset example frames"
 \end_layout
 
 \begin_layout Itemize
-Number of videos: 
+Number of videos: 3
 \end_layout
 
 \begin_layout Itemize
@@ -896,20 +896,20 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/Camera13751.jpg
 	lyxscale 40
-	width 40text%
+	width 47text%
 
 \end_inset
 
 
 \begin_inset space \hspace{}
-\length 3text%
+\length 2text%
 \end_inset
 
 
 \begin_inset Graphics
 	filename Images/Results/Camera24379.jpg
 	lyxscale 40
-	width 40text%
+	width 47text%
 
 \end_inset
 
@@ -928,7 +928,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/Camera34404.jpg
 	lyxscale 40
-	width 40text%
+	width 47text%
 
 \end_inset
 
@@ -939,7 +939,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Dataset example frames
+Data-set example frames
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Dataset example frames"
@@ -964,7 +964,7 @@ Ground Truth Generation
 \end_layout
 
 \begin_layout Standard
-We have selected one of the three recordings from the dataset to completely
+We have selected one of the three recordings from the data-set to completely
  evaluate the system.
  In order to do the evaluation ground truth information is needed.
  The video has been manually annotated with 
@@ -990,14 +990,14 @@ target "https://sourceforge.net/projects/via-tool/"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/Proposed System/Via Window.png
 	lyxscale 30
-	width 60text%
+	width 70text%
 
 \end_inset
 
@@ -1044,27 +1044,27 @@ reference "fig:Annotated example frames"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/Proposed System/Via 1.png
 	lyxscale 30
-	width 40text%
+	width 47text%
 
 \end_inset
 
 
 \begin_inset space \hspace{}
-\length 3text%
+\length 2text%
 \end_inset
 
 
 \begin_inset Graphics
 	filename Images/Proposed System/Via 2.png
 	lyxscale 30
-	width 40text%
+	width 47text%
 
 \end_inset
 
@@ -1083,7 +1083,7 @@ status open
 \begin_inset Graphics
 	filename Images/Proposed System/Via 3.png
 	lyxscale 30
-	width 40text%
+	width 47text%
 
 \end_inset
 
@@ -1138,7 +1138,7 @@ Evaluation Framework
 \end_layout
 
 \begin_layout Standard
-Once the dataset recording has been correctly annotated one can proceed
+Once the data-set recording has been correctly annotated one can proceed
  to evaluate the performance of pedestrian detectors.
  In order to evaluate these algorithms precision and recall metrics will
  be used.
@@ -1236,7 +1236,7 @@ IoU(Detection,\,Ground\,Truth)=\frac{OverlapArea(Detection,\,Ground\,Truth)}{Uni
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1304,7 +1304,7 @@ reference "tab:Single threads vs Multi threads"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1467,7 +1467,7 @@ reference "tab:Multithreads PD Computational"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1672,6 +1672,162 @@ name "tab:Multithreads PD Computational"
 \end_layout
 
 \begin_layout Section
+Homography Calculation Results
+\end_layout
+
+\begin_layout Standard
+First results concercing with the proposed system with deal with homographies.
+ As said in the prvious Chapter correctly calculated homographies are essential
+ for the rigth performance of further algorithms.
+ In order to test that homograhies have been correctly done by the manual
+ selection of points views have been projected with its correspondant matrix.
+ In addition, selected points from both the frame and the cenital plane
+ have been overlapped.
+ Some examples can be observed in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Projected views with homography matrices"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Camera 1_Vista7.jpg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 1 View 7
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Camera 2_Vista6.jpg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 2 View 6
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Camera 3_Vista5.jpg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 3 View 5
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Projected views with homography matrices and overlapping of selected points.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Projected views with homography matrices"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 Semantic Segmentation Results
 \end_layout
 
@@ -1694,7 +1850,7 @@ reference "fig:PSP-Net-result-examples"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1800,7 +1956,7 @@ status open
 \begin_inset Graphics
 	filename Images/Results/SemanticLegend
 	lyxscale 15
-	width 50text%
+	width 60text%
 
 \end_inset
 
@@ -2041,6 +2197,142 @@ name "fig:Recall / Precision graphs for mono camera pedestrian detection."
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength
+\backslash
+extrarowheight{7pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Pedestrian Detector
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+F-Score
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+HOG
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DPM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PSP-Net
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+F-Score for or mono camera pedestrian detection.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Multi-Camera
 \end_layout
@@ -2167,6 +2459,142 @@ name "fig:Recall / Precision graphs for multi camera pedestrian detection.-1"
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength
+\backslash
+extrarowheight{7pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Pedestrian Detector
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+F-Score
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+HOG
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DPM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PSP-Net
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+F-Score for or multi camera pedestrian detection.
+ 
 \end_layout
 
 \end_inset
@@ -2318,6 +2746,142 @@ name "fig:Recall / Precision graphs for mono camera pedestrian detection with se
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength
+\backslash
+extrarowheight{7pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Pedestrian Detector
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+F-Score
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+HOG
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DPM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PSP-Net
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+F-Score for or mono camera with semantic constraining pedestrian detection.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Multi-Camera with Semantic Constraining
 \end_layout
@@ -2445,6 +3009,142 @@ name "fig:Recall / Precision graphs for multi camera pedestrian detection with s
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength
+\backslash
+extrarowheight{7pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Pedestrian Detector
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+F-Score
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+HOG
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DPM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PSP-Net
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+F-Score for or multi camera with semantic constraining pedestrian detection.
+ 
 \end_layout
 
 \end_inset
@@ -2648,18 +3348,6 @@ Results are displayed as yellow squares.
 
 \begin_layout Section
 Overall Discussion
-\end_layout
-
-\begin_layout Standard
-Application performance.
-\end_layout
-
-\begin_layout Standard
-Pedestrian Detector.
-\end_layout
-
-\begin_layout Standard
-Statistical usage data.
 \end_layout
 
 \end_body

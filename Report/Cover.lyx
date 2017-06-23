@@ -566,14 +566,15 @@ noindent
 \end_layout
 
 \begin_layout Standard
-The following project has two main objectives.
+The following project has been proposed to achieve two main objectives.
  The first one aims to develop a system capable of perform pedestrian detection
  and semantic segmentation over a multi camera system.
  The fusion of both disciplines leads to combine pedestrian and semantic
  information in order to constrain detections.
  Also, the multi camera system is used to reproject detections from one
- camera to the others.
- In addition, statistical data usage of concrete semantic area is also extracted.
+ camera to the others to improve accuracy.
+ In addition, statistical data usage of concrete semantic areas is also
+ extracted.
  Second objective is related to the development of a Graphical User Interface
  (GUI) from which algorithms can be controlled and results can be displayed.
 \end_layout
@@ -584,15 +585,15 @@ In order to achieve these objectives a state of the art studied has been
  Pedestrian detection approaches have been deeply reviewed including those
  that need object proposals.
  Also, recent trends nowadays and next steps in the scope os Pedestrian
- Detection have been canalized.
+ Detection have been analized.
  In addition, actual state of the art regarding contextual information and
- in concrete semantic segmentation has been studied.
- Finally, multi camera scenarios have been described.
+ in concrete, semantic segmentation has been studied.
+ Finally, multi camera scenarios configurations have been described.
 \end_layout
 
 \begin_layout Standard
-A multithread application has been developed and analyzed to, as said in
- the objectives, present results and tune algorithms.
+A multithread application has been developed and analyzed to, as mentioned
+ before, present results and tune different algorithms.
  
 \end_layout
 
@@ -605,8 +606,8 @@ A new system has been proposed in order to achieve the objectives and perform
 \end_layout
 
 \begin_layout Standard
-Finally, system performance has been tested in a generated dataset and manually
- annotated ground truth.
+Finally, system performance has been tested in a generated dataset with
+ manually annotated ground truth.
 \end_layout
 
 \begin_layout Section*

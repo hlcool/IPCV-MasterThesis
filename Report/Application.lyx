@@ -156,14 +156,14 @@ reference "fig:QT-Window-Designer"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/Developed Application/QT Window Designer.png
 	lyxscale 20
-	width 60text%
+	width 85text%
 
 \end_inset
 
@@ -1129,14 +1129,14 @@ reference "fig:Main-application-window"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/Application/Main Window.png
 	lyxscale 20
-	width 60text%
+	width 85text%
 
 \end_inset
 
@@ -1406,14 +1406,14 @@ ing or to perform multicamera projection.
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/Application/Options Menu.png
 	lyxscale 30
-	width 45text%
+	width 60text%
 
 \end_inset
 
@@ -1567,7 +1567,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Application/Result Display.png
 	lyxscale 40
-	width 70text%
+	width 90text%
 
 \end_inset
 
@@ -1694,7 +1694,7 @@ reference "fig:Hierarchical representation of the code"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1778,7 +1778,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Application/User Version Interface.png
 	lyxscale 15
-	width 60text%
+	width 85text%
 
 \end_inset
 

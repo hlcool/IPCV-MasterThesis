@@ -213,7 +213,7 @@ reference "fig:Image-summary-from datasets"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -539,7 +539,7 @@ reference "fig:Pedestrain-Detector-Example"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1765,14 +1765,14 @@ reference "fig:Scene-parsing-on PSPNet"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/State Of the Art/PSPNet Image.png
 	lyxscale 20
-	width 50text%
+	width 60text%
 
 \end_inset
 
@@ -2517,7 +2517,7 @@ status open
 \begin_inset Graphics
 	filename Images/State Of the Art/ResNet-38 Results.png
 	lyxscale 30
-	width 45text%
+	width 75text%
 
 \end_inset
 
@@ -2540,11 +2540,10 @@ ResNet-38 Algorithm.
 \end_inset
 
 
-\begin_inset space \hspace{}
-\length 4text%
-\end_inset
+\end_layout
 
-
+\begin_layout Plain Layout
+\align center
 \begin_inset Float figure
 wide false
 sideways false
@@ -2555,7 +2554,7 @@ status open
 \begin_inset Graphics
 	filename Images/State Of the Art/PSPNet Results.png
 	lyxscale 30
-	width 45text%
+	width 75text%
 
 \end_inset
 
@@ -2592,7 +2591,7 @@ status open
 \begin_inset Graphics
 	filename Images/State Of the Art/TuSimple_Coarse Results.png
 	lyxscale 30
-	width 45text%
+	width 75text%
 
 \end_inset
 

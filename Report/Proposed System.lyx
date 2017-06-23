@@ -230,7 +230,7 @@ status open
 \begin_inset Graphics
 	filename Images/Proposed System/PSP-Net.png
 	lyxscale 30
-	width 80text%
+	width 100text%
 
 \end_inset
 
@@ -765,7 +765,7 @@ status open
 \begin_inset Graphics
 	filename Images/Proposed System/HoG.jpg
 	lyxscale 60
-	width 60text%
+	width 65text%
 
 \end_inset
 
@@ -858,7 +858,7 @@ status open
 \begin_inset Graphics
 	filename Images/Proposed System/DPM.png
 	lyxscale 20
-	width 70text%
+	width 75text%
 
 \end_inset
 
@@ -1287,7 +1287,7 @@ status open
 \begin_inset Graphics
 	filename Images/Proposed System/Camera Configuration Static.png
 	lyxscale 30
-	width 60text%
+	width 80text%
 
 \end_inset
 
@@ -1336,7 +1336,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Camera 1 Initial View.jpg
 	lyxscale 50
-	width 30text%
+	width 50text%
 
 \end_inset
 
@@ -1368,7 +1368,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Camera 2 Initial View.jpg
 	lyxscale 50
-	width 30text%
+	width 50text%
 
 \end_inset
 
@@ -1404,7 +1404,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Camera 3 Initial View.jpg
 	lyxscale 50
-	width 30text%
+	width 50text%
 
 \end_inset
 
@@ -1763,7 +1763,7 @@ status open
 \begin_inset Graphics
 	filename Images/Proposed System/First Approach CenitalView.png
 	lyxscale 30
-	width 50text%
+	width 75text%
 
 \end_inset
 
@@ -1856,7 +1856,7 @@ status open
 \begin_inset Graphics
 	filename Images/Proposed System/Measured Cenital Plane.png
 	lyxscale 20
-	width 50text%
+	width 75text%
 
 \end_inset
 
@@ -1898,7 +1898,7 @@ status open
 \begin_inset Graphics
 	filename Images/Proposed System/Second Approach Cenital View.png
 	lyxscale 30
-	width 40text%
+	width 75text%
 
 \end_inset
 
@@ -2320,7 +2320,7 @@ reference "fig:Cylinder-estimation-for cenital view projections"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2338,7 +2338,16 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cylinder estimation for camera instance projections
+Cylinder estimation for camera instance projections.
+ Extracted from 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "miguelez2016Deteccion"
+
+\end_inset
+
+.
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Cylinder-estimation-for camera instances projections"
@@ -2362,14 +2371,14 @@ name "fig:Cylinder-estimation-for camera instances projections"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/Proposed System/Cilynder Cenital.png
 	lyxscale 20
-	width 60text%
+	width 80text%
 
 \end_inset
 
@@ -2574,7 +2583,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Gaussian Representation 2.png
 	lyxscale 20
-	width 45text%
+	width 50text%
 
 \end_inset
 
@@ -2614,7 +2623,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Gaussian Representation 1.png
 	lyxscale 20
-	width 45text%
+	width 50text%
 
 \end_inset
 
@@ -2740,7 +2749,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Multi Camera Reprojection/Cam 1.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -2762,11 +2771,6 @@ Camera 1 + Reprojections from 2 and 3
 \end_inset
 
 
-\begin_inset space \hspace{}
-\length 10text%
-\end_inset
-
-
 \begin_inset Float figure
 wide false
 sideways false
@@ -2777,7 +2781,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Multi Camera Reprojection/Cam 2.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -2813,7 +2817,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Multi Camera Reprojection/Cam 3.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -2939,7 +2943,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Semantic Constraining/Cam 1.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -2961,11 +2965,6 @@ Camera 1
 \end_inset
 
 
-\begin_inset space \hspace{}
-\length 10text%
-\end_inset
-
-
 \begin_inset Float figure
 wide false
 sideways false
@@ -2976,7 +2975,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Semantic Constraining/Cam 2.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -3012,7 +3011,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Semantic Constraining/Cam 3.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -3126,7 +3125,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Frame207 RGB.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -3162,7 +3161,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Frame1169 RGB.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -3202,7 +3201,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Frame207 Semantic.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -3238,7 +3237,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Frame1169 Semantic.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -3306,7 +3305,7 @@ reference "eq:Median Temporal Average"
 
 \end_inset
 
-(COMPLETAR ECUACION).
+(FORMULA MEDIAN FILTER?¿?¿?¿).
 \end_layout
 
 \begin_layout Standard
@@ -3357,7 +3356,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/RGB1Median.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -3394,7 +3393,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/RGB2Median.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -3435,7 +3434,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/RGB3Median.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -3509,7 +3508,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Sem1Median.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -3545,7 +3544,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Sem2Median.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -3585,7 +3584,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Sem3Median.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -3697,14 +3696,14 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/Proposed System/CommonSemantic12.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -3715,7 +3714,8 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cameras 1 and 2 
+Cameras 1 and 2.
+ 
 \begin_inset Formula $^{Sem}\pi_{ref-1}\land{}^{Sem}\pi_{ref-2}$
 \end_inset
 
@@ -3730,17 +3730,21 @@ Cameras 1 and 2
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/Proposed System/CommonSemantic23.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -3751,7 +3755,8 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cameras 2 and 3 
+Cameras 2 and 3.
+ 
 \begin_inset Formula $^{Sem}\pi_{ref-2}\land{}^{Sem}\pi_{ref-3}$
 \end_inset
 
@@ -3773,14 +3778,14 @@ Cameras 2 and 3
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/Proposed System/CommonSemantic13.png
 	lyxscale 20
-	width 40text%
+	width 50text%
 
 \end_inset
 
@@ -3791,7 +3796,8 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cameras 3 and 1 
+Cameras 3 and 1.
+  
 \begin_inset Formula $^{Sem}\pi_{ref-3}\land{}^{Sem}\pi_{ref-1}$
 \end_inset
 
@@ -4019,7 +4025,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Intertial Planes.png
 	lyxscale 20
-	width 60text%
+	width 70text%
 
 \end_inset
 
@@ -4093,14 +4099,14 @@ reference "fig:Set of parallel planes"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/Proposed System/k Parallel Planes.png
 	lyxscale 20
-	width 60text%
+	width 70text%
 
 \end_inset
 
@@ -4192,7 +4198,7 @@ status open
 \begin_inset Graphics
 	filename Images/Proposed System/Statistical Map.png
 	lyxscale 20
-	width 60text%
+	width 80text%
 
 \end_inset
 
