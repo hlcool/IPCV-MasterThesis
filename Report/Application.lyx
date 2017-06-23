@@ -1694,12 +1694,12 @@ reference "fig:Hierarchical representation of the code"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Proposed System/Hierarchical class distribution.png
+	filename Images/Application/Hierarchical class distribution.png
 	lyxscale 30
 	width 70text%
 
@@ -1713,12 +1713,6 @@ status collapsed
 
 \begin_layout Plain Layout
 Hierarchical representation of the code.
- 
-\color red
-NO DEFINITIVO.
- FALTA CLASE EVALUACION.
- CAMBIAR LOS COLORES DE PD Y CS
-\color inherit
  
 \begin_inset CommandInset label
 LatexCommand label
