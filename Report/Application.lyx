@@ -98,9 +98,9 @@ name "chap:Developed Application"
 \end_layout
 
 \begin_layout Standard
-Within this Chapter the developed application in terms of software developement
+Within this Chapter the developed application in terms of software development
  will be analyze.
- This application will be the base for the calculation, svisualization and
+ This application will be the base for the calculation, visualization and
  arrangement of the usage statistics from the different areas of interest,
  pedestrian detections and other results.
  As said in Section 
@@ -114,6 +114,8 @@ reference "sec:Objectives"
  constraint.
  The main application environment should be user-friendly to ensure a correct
  and easy usage by the end user.
+ It has been developed completely from scratch for the purpose of this Master
+ Thesis.
 \end_layout
 
 \begin_layout Standard
@@ -1395,7 +1397,7 @@ reference "subsec:Pedestrian-Filtering-and"
  It also enables the user to select the desire pedestrian detection threshold
  as well as the filtering or constraint that is used.
  One can select between regular pedestrian detection, PD with semantic constrain
-ing or to perform multicamera projection.
+ing or to perform multi camera projection.
  In addition mask filtering can be also perform so PD search area is reduced.
  Finally, a check box to display or not ground truth information is available
  too.
@@ -1694,7 +1696,7 @@ reference "fig:Hierarchical representation of the code"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1806,8 +1808,8 @@ name "fig:User version application main window"
 \begin_layout Standard
 As said, conversely to the engineer application the only functionality of
  the main window is to display results and guide information.
- All the options present in the engenieer application for tunning are no
- longer available.
+ All the options present in the engineer application for tuning are no longer
+ available.
 \end_layout
 
 \end_body

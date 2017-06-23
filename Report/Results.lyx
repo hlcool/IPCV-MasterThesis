@@ -149,7 +149,7 @@ reference "fig:Sony-SNC-RZ50P-Pan/Tilt Range"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -996,7 +996,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Proposed System/Via Window.png
+	filename Images/Results/Ground Truth/Via Window.png
 	lyxscale 30
 	width 70text%
 
@@ -1050,7 +1050,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Proposed System/Via 1.png
+	filename Images/Results/Ground Truth/Via 1.png
 	lyxscale 30
 	width 47text%
 
@@ -1063,7 +1063,7 @@ status collapsed
 
 
 \begin_inset Graphics
-	filename Images/Proposed System/Via 2.png
+	filename Images/Results/Ground Truth/Via 2.png
 	lyxscale 30
 	width 47text%
 
@@ -1082,7 +1082,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Proposed System/Via 3.png
+	filename Images/Results/Ground Truth/Via 3.png
 	lyxscale 30
 	width 47text%
 
@@ -1187,8 +1187,9 @@ Precision gives us information about the classification stage, whereas the
 \end_layout
 
 \begin_layout Standard
-In addition F-Score is used in order to combine both Precision and Recall
- in a unique metric measure.
+In addition, to measure performance in a more general process F-Score is
+ used.
+ It combines both Precision and Recall in a unique metric measure.
  Eq 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1300,7 +1301,7 @@ name "fig:Intersection over Union"
 \end_layout
 
 \begin_layout Section
-Application Performance Results 
+Application Performance 
 \end_layout
 
 \begin_layout Standard
@@ -1696,8 +1697,23 @@ name "tab:Multithreads PD Computational"
 
 \end_layout
 
+\begin_layout Subsection
+Application Performance Results Discussion
+\end_layout
+
+\begin_layout Standard
+Looking at Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Single threads vs Multi threads"
+
+\end_inset
+
+ one can easily derive that the speed up of using multithread is clear.
+\end_layout
+
 \begin_layout Section
-Homography Calculation Results
+Homography Calculation 
 \end_layout
 
 \begin_layout Standard
@@ -1722,7 +1738,7 @@ reference "fig:Projected views with homography matrices"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1839,6 +1855,15 @@ Camera 3 View 5
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Projected views with homography matrices
+\end_layout
+
+\end_inset
+
 Projected views with homography matrices and overlapping of selected points.
 \begin_inset CommandInset label
 LatexCommand label
@@ -1857,6 +1882,10 @@ name "fig:Projected views with homography matrices"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+Homography Results Discussion
 \end_layout
 
 \begin_layout Standard
@@ -1882,7 +1911,7 @@ It is important to notice in this results how precision and image quality
 \end_layout
 
 \begin_layout Section
-Semantic Segmentation Results
+Semantic Segmentation 
 \end_layout
 
 \begin_layout Standard
@@ -1909,7 +1938,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/Camera10954Semantic.jpg
+	filename Images/Results/Semantic Results/Camera10954Semantic.jpg
 	lyxscale 30
 	width 50text%
 
@@ -1922,7 +1951,7 @@ status collapsed
 
 
 \begin_inset Graphics
-	filename Images/Results/SemanticResults1.png
+	filename Images/Results/Semantic Results/SemanticResults1.png
 	lyxscale 40
 	width 47text%
 
@@ -1942,7 +1971,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/Camera20007Semantic.jpg
+	filename Images/Results/Semantic Results/Camera20007Semantic.jpg
 	lyxscale 30
 	width 50text%
 
@@ -1955,7 +1984,7 @@ status collapsed
 
 
 \begin_inset Graphics
-	filename Images/Results/SemanticResults2.png
+	filename Images/Results/Semantic Results/SemanticResults2.png
 	lyxscale 40
 	width 47text%
 
@@ -1975,7 +2004,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/Camera30327Semantic.jpg
+	filename Images/Results/Semantic Results/Camera30327Semantic.jpg
 	lyxscale 30
 	width 50text%
 
@@ -1988,7 +2017,7 @@ status collapsed
 
 
 \begin_inset Graphics
-	filename Images/Results/SemanticResults3.png
+	filename Images/Results/Semantic Results/SemanticResults3.png
 	lyxscale 40
 	width 47text%
 
@@ -2021,6 +2050,15 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+RGB frames and PSP-Net Semantic segmentation results
+\end_layout
+
+\end_inset
+
 RGB frames and PSP-Net Semantic segmentation results.
  From top to bottom: Camera 1, Camera 2, Camera 3.
 \begin_inset CommandInset label
@@ -2042,10 +2080,14 @@ name "fig:PSP-Net-result-examples"
 
 \end_layout
 
+\begin_layout Subsection
+Semantic Segmentation Results Discussion
+\end_layout
+
 \begin_layout Standard
 Taking a look to results one can derive that PSP-Net extracts high quality
- resutls in terms of semantic.
- It is noticiable that most of the floor, if it is not occluded as in the
+ results in terms of semantic.
+ It is noticeable that most of the floor, if it is not occluded as in the
  top image from Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2054,14 +2096,14 @@ reference "fig:PSP-Net-result-examples"
 \end_inset
 
  is correctly extracted.
- Pedestrians are also detected altogth perfoamcne in pedestrian detection
- scoope is analyzed in the following section.
+ Pedestrians are also detected although performance in pedestrian detection
+ scope is analyzed in the following section.
 \end_layout
 
 \begin_layout Standard
 However, it is important to point that segmentation is not perfect when
  dealing with difficult illuminations or complicated objects.
- It can be obvserved that columns are not really correctly segmentated.
+ It can be observed that columns are not really correctly segmented.
  There are even some that are mistaken as walls which is a problem for our
  system.
  In addition, crystal doors such as the ones displayed in the top and bottom
@@ -2070,7 +2112,7 @@ However, it is important to point that segmentation is not perfect when
 \end_layout
 
 \begin_layout Section
-Pedestrian Detection Results
+Pedestrian Detection 
 \end_layout
 
 \begin_layout Standard
@@ -2258,6 +2300,15 @@ Camera 3
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Recall / Precision graphs mono camera
+\end_layout
+
+\end_inset
+
 Recall / Precision graphs for mono camera pedestrian detection.
 \begin_inset CommandInset label
 LatexCommand label
@@ -2396,6 +2447,15 @@ Camera 3
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Recall / Precision graphs multiono camera
+\end_layout
+
+\end_inset
+
 Recall / Precision graphs for multi camera pedestrian detection.
 \begin_inset CommandInset label
 LatexCommand label
@@ -2534,6 +2594,15 @@ Camera 3
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Recall / Precision graphs mono camera with semantic
+\end_layout
+
+\end_inset
+
 Recall / Precision graphs for mono camera pedestrian detection with semantic
  constraining.
 \begin_inset CommandInset label
@@ -2673,6 +2742,15 @@ Camera 3
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Recall / Precision graphs multi camera with semantic
+\end_layout
+
+\end_inset
+
 Recall / Precision graphs for multi camera pedestrian detection with semantic
  constraining.
 \begin_inset CommandInset label
@@ -2698,7 +2776,7 @@ name "fig:Recall / Precision graphs for multi camera pedestrian detection with s
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -2941,6 +3019,10 @@ s.
 
 \end_layout
 
+\begin_layout Subsection
+Pedestrian Detection Results Discussion
+\end_layout
+
 \begin_layout Section
 Statistical Usage Data
 \end_layout
@@ -2948,8 +3030,8 @@ Statistical Usage Data
 \begin_layout Standard
 Finally, results concerning statistical usage data are presented.
  As said in the previous Chapter, we obtain one graphic per selected semantic
- area, which in our case are floor, doors and chars due to the mentioned
- map in Figure 
+ area, which in our case are floor and door due to the mentioned map in
+ Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Statistical Semantic Map"
@@ -2983,7 +3065,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/StadisticalFloor.svg
+	filename Images/Results/Stadistics and Pedestrian Path Usage/StadisticalFloor.svg
 	lyxscale 30
 	width 50text%
 
@@ -3015,7 +3097,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/StatidisticalDoors.svg
+	filename Images/Results/Stadistics and Pedestrian Path Usage/StatidisticalDoors.svg
 	lyxscale 30
 	width 50text%
 
@@ -3066,22 +3148,6 @@ name "fig:Stadistical-Data-Usage Curves"
 \end_layout
 
 \begin_layout Standard
-One can observe in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Stadistical-Data-Usage Curves"
-
-\end_inset
-
- that both semantic areas are measured in terms of number of people by frame.
- If one takes a look to the correspondent frame it can be observed that
- there is a correspondence between the period when most people are walking
- through the scene and the peak from the curve.
- Same observation can be made when talking about doors usage.
- 
-\end_layout
-
-\begin_layout Standard
 In addition, some results about the most used areas of the hall have been
  extracted.
  The hole area has been divided into regular subareas of fixed size in which
@@ -3111,9 +3177,17 @@ reference "fig:Pedestrians paths usage along the Hall. 70 pix"
 \end_inset
 
  pixels.
+ A temporal comparison have been with the correspondent frame.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Float figure
 wide false
 sideways false
@@ -3122,9 +3196,9 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/ProbableAreasPath40.png
+	filename Images/Results/Stadistics and Pedestrian Path Usage/Camera21563.jpg
 	lyxscale 30
-	width 85text%
+	width 40text%
 
 \end_inset
 
@@ -3135,6 +3209,301 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+Camera Frame at 
+\begin_inset Formula $t=t_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Stadistics and Pedestrian Path Usage/ProbableAreasPath40-1563.png
+	lyxscale 15
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Usage Map at 
+\begin_inset Formula $t=t_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Stadistics and Pedestrian Path Usage/Camera12689.jpg
+	lyxscale 30
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera Frame at 
+\begin_inset Formula $t=t_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Stadistics and Pedestrian Path Usage/ProbableAreasPath40-2689.png
+	lyxscale 15
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Usage Map at 
+\begin_inset Formula $t=t_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Stadistics and Pedestrian Path Usage/Camera14984.jpg
+	lyxscale 30
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera Frame at 
+\begin_inset Formula $t=t_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Stadistics and Pedestrian Path Usage/ProbableAreasPath40-4984.png
+	lyxscale 15
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Usage Map at 
+\begin_inset Formula $t=t_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Stadistics and Pedestrian Path Usage/Camera36324.jpg
+	lyxscale 30
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera Frame at 
+\begin_inset Formula $t=t_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Stadistics and Pedestrian Path Usage/ProbableAreasPath40-6324.png
+	lyxscale 15
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Usage Map at 
+\begin_inset Formula $t=t_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Pedestrians paths usage along the Hall.
+ Region of 40 pixels.
+\end_layout
+
+\end_inset
+
 Pedestrians paths usage along the Hall.
  Scene has been divided in sub regions of 40 pixels.
 \begin_inset CommandInset label
@@ -3160,14 +3529,21 @@ name "fig:Pedestrians paths usage along the Hall. 40 pix"
 \begin_inset Float figure
 wide false
 sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
 status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/ProbableAreasPath70.png
+	filename Images/Results/Stadistics and Pedestrian Path Usage/Camera21563.jpg
 	lyxscale 30
-	width 85text%
+	width 40text%
 
 \end_inset
 
@@ -3178,6 +3554,301 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+Camera Frame at 
+\begin_inset Formula $t=t_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Stadistics and Pedestrian Path Usage/ProbableAreasPath70-1563.png
+	lyxscale 15
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Usage Map at 
+\begin_inset Formula $t=t_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Stadistics and Pedestrian Path Usage/Camera12689.jpg
+	lyxscale 30
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera Frame at 
+\begin_inset Formula $t=t_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Stadistics and Pedestrian Path Usage/ProbableAreasPath70-2689.png
+	lyxscale 15
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Usage Map at 
+\begin_inset Formula $t=t_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Stadistics and Pedestrian Path Usage/Camera14984.jpg
+	lyxscale 30
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera Frame at 
+\begin_inset Formula $t=t_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Stadistics and Pedestrian Path Usage/ProbableAreasPath70-4984.png
+	lyxscale 15
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Usage Map at 
+\begin_inset Formula $t=t_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Stadistics and Pedestrian Path Usage/Camera36324.jpg
+	lyxscale 30
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera Frame at 
+\begin_inset Formula $t=t_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Stadistics and Pedestrian Path Usage/ProbableAreasPath70-6324.png
+	lyxscale 15
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Usage Map at 
+\begin_inset Formula $t=t_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Pedestrians paths usage along the Hall.
+ Region of 70 pixels.
+\end_layout
+
+\end_inset
+
 Pedestrians paths usage along the Hall.
  Scene has been divided in sub regions of 70 pixels.
 \begin_inset CommandInset label
@@ -3204,6 +3875,49 @@ Results are displayed as yellow squares that measure the amount of pedestrians
  found in that sub region.
  The more strong the color means that pedestrian density over that area
  has been higher than in the neighborhood.
+\end_layout
+
+\begin_layout Subsection
+Statistical Usage Data Results Discussion
+\end_layout
+
+\begin_layout Standard
+One can observe in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Stadistical-Data-Usage Curves"
+
+\end_inset
+
+ that both semantic areas are measured in terms of number of people by frame.
+ If one takes a look to the correspondent frame it can be observed that
+ there is a correspondence between the period when most people are walking
+ through the scene and the peak from the curve.
+ Same observation can be made when talking about doors usage.
+ 
+\end_layout
+
+\begin_layout Standard
+In both Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Pedestrians paths usage along the Hall. 40 pix"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Pedestrians paths usage along the Hall. 70 pix"
+
+\end_inset
+
+ one can observe that most used paths increase accordingly to developed
+ events in the sequence.
+ For that reason when a person enters the building areas surrounding the
+ door get highlighted.
+ In the same manner, when a big pedestrian group walks along the scene all
+ their trajectory is being highlighted.
 \end_layout
 
 \begin_layout Section

@@ -83,7 +83,14 @@ for Frame = 1 : size(Camera1Blobs,1)
     StadisticsCounter(VectorRows(rowfind)-Step+1 : VectorRows(rowfind), VectorCols(colfind) - Step+1 : VectorCols(colfind)) = ...
         StadisticsCounter(VectorRows(rowfind)-Step+1 : VectorRows(rowfind), VectorCols(colfind) - Step+1 : VectorCols(colfind)) + size(colfind,1);
     
-    
+    if((Frame == 2689) || (Frame == 4984) || (Frame == 1563) || (Frame == 6324))
+        StadisticsCounter2 = zeros(size(CenitalMap));
+        StadisticsCounter2(:,:,1) = StadisticsCounter;
+        StadisticsCounter2(:,:,2) = StadisticsCounter;
+        
+        Aux = double(CenitalMap) + StadisticsCounter2.*0.5;
+        imwrite(uint8(Aux), ['ProbableAreasPath' num2str(Step) '-' num2str(Frame) '.png'], 'PNG')
+    end
     %     figure(1)
     %     imagesc(StadisticsCounter)
     %     title(['Frame ' num2str(Frame)])
@@ -148,7 +155,6 @@ for Frame = 1 : size(Camera1Blobs,1)
         end
         
     end
-    
 end
 
 
@@ -176,4 +182,4 @@ Aux = double(CenitalMap) + StadisticsCounter2.*0.5;
 figure
 imshow(uint8(Aux))
 
-imwrite(uint8(Aux), 'ProbableAreasPath.png', 'PNG')
+imwrite(uint8(Aux), ['ProbableAreasPath' num2str(Step) 'Complete.png'], 'PNG')

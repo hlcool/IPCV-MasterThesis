@@ -197,7 +197,7 @@ key "dalal2005histograms"
 
  (collects precise people images both static and moving) are some of the
  many literature data-sets that have been used through the years to train
- different pedestrain detectors.
+ different pedestrian detectors.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -408,7 +408,7 @@ Pedestrian Detection Approaches
 \end_layout
 
 \begin_layout Standard
-Some people detection approaches are presented thorugh the following section.
+Some people detection approaches are presented through the following section.
  The PD State of the Art analysis is divided into three different classification
 s.
  Firstly, pedestrian descriptor and detection scheme is explained.
@@ -539,7 +539,7 @@ reference "fig:Pedestrain-Detector-Example"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -557,6 +557,15 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Generic Pedestrian Detector Example Diagram.
+\end_layout
+
+\end_inset
+
 Generic Pedestrian Detector Example Diagram.
  Adapted from 
 \begin_inset CommandInset citation
@@ -627,7 +636,7 @@ Examples of appearance-based detectors are those that use silhouettes to
  classify people, either from an holistic or part-based basis, or color
  distribution in people.
  However the group of appearance-based PD is mainly covered with approaches
- based on tthe use of Histograms of Oriented Gradients like 
+ based on the use of Histograms of Oriented Gradients like 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dalal2005histograms"
@@ -1574,7 +1583,7 @@ One can describe contextual information as the set of additional circumstances
  or facts that one can extract from a scene besides the target of analysis.
  Generally, this set of circumstances is a wealth of information that is
  not extracted by the image analysis but extracted by humans based on previously
- acquired knowledge during their lifes.
+ acquired knowledge during their life.
  By just taking a look to an outdoor image a human can derive where the
  sky will be, what the weather conditions or which time of the day is.
  Also, by knowing the place the photo was taken, one would imagine which
@@ -2510,7 +2519,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2547,7 +2556,7 @@ ResNet-38 Algorithm.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2584,7 +2593,7 @@ PSPNet Algorithm.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
