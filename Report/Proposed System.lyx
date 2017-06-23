@@ -2108,16 +2108,42 @@ key "alcantarilla2011fast"
 \end_layout
 
 \begin_layout Standard
+AKAZE is a fast multiscale feature detection an description appoarch.
+ It exploits the benefits of nonlinear scale spaces.
+ PRevious approaches suh as KAZE 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "alcantarilla2012kaze"
+
+\end_inset
+
+ or BFSIFT 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wang2012bfsift"
+
+\end_inset
+
+ have a main time consumption drawback in terms of nonlinear scale space
+ creation.
+ However, AKAZE uses recent numerical schemes called Fast Explicit Diffusion
+ (FED) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "weickert2016cyclic,grewenig2010box"
+
+\end_inset
+
+ in order to speed up detections.
+ In addition the use of the Modified-Local Difference Binary (M-LDB) descriptor
+ increases the efficiency of the general apparoach.
+\end_layout
+
+\begin_layout Standard
 AKAZE will detect and describe points of interest in any image and then
  by a brute force comparator in terms of distances we will extract how many
  coincidence we have between a pair of images.
  
-\end_layout
-
-\begin_layout Standard
-
-\color red
-DESCRIPCCION DE AKAZE
 \end_layout
 
 \begin_layout Standard

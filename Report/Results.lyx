@@ -103,6 +103,7 @@ During this Chapter all the achieve results are exposed and analyzed.
  Secondly, in detail, the experiment setup is explained, i.e.
  the generated data-set and ground truth, and the evaluation framework.
  Later, results concerning application performance are presented.
+ Results concerning homography projections are analyzed.
  Finally, the last two sections aim is to present pedestrian detection results
  in term of performance and usage data extraction.
 \end_layout
@@ -1186,6 +1187,30 @@ Precision gives us information about the classification stage, whereas the
 \end_layout
 
 \begin_layout Standard
+In addition F-Score is used in order to combine both Precision and Recall
+ in a unique metric measure.
+ Eq 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:F-Score Measure"
+
+\end_inset
+
+ express the general formula.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+F-Score=\frac{(2\cdot Precision\cdot Recall)}{(Precision+Recall)}\label{eq:F-Score Measure}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 To extract the mentioned metrics we should have a method to compute which
  bounding boxes match with the ground truth.
  In order to achieve this objective Intersection over Union (IoU) or Jaccard
@@ -1676,13 +1701,13 @@ Homography Calculation Results
 \end_layout
 
 \begin_layout Standard
-First results concercing with the proposed system with deal with homographies.
- As said in the prvious Chapter correctly calculated homographies are essential
- for the rigth performance of further algorithms.
- In order to test that homograhies have been correctly done by the manual
- selection of points views have been projected with its correspondant matrix.
- In addition, selected points from both the frame and the cenital plane
- have been overlapped.
+First results concerning with the proposed system with deal with homographies.
+ As said in the previous Chapter correctly calculated homographies are essential
+ for the right performance of further algorithms.
+ In order to test that homographies have been correctly done by the manual
+ selection of points views have been projected with its correspondent matrix.
+ In addition, selected points from both the frame (blue points) and the
+ cenital plane (red points) have been overlapped.
  Some examples can be observed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1723,6 +1748,13 @@ status collapsed
 
 \begin_layout Plain Layout
 Camera 1 View 7
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Projection Camera-1-View 7"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1825,6 +1857,28 @@ name "fig:Projected views with homography matrices"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+As one can observe in the mentioned Figure, homographies are correctly calculate
+d in most of the cases.
+ Blue points are not visible because of the overlapping with the red ones,
+ which means that their correspondence is perfect.
+ However, some small errors can be noticed in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Projection Camera-1-View 7"
+
+\end_inset
+
+ where there exists a displacement between some red points and the blue
+ ones (top of the image).
+\end_layout
+
+\begin_layout Standard
+It is important to notice in this results how precision and image quality
+ is reduce the further the points are from the camera.
+ This is a standard problem when dealing with such homographies.
 \end_layout
 
 \begin_layout Section
@@ -1988,6 +2042,33 @@ name "fig:PSP-Net-result-examples"
 
 \end_layout
 
+\begin_layout Standard
+Taking a look to results one can derive that PSP-Net extracts high quality
+ resutls in terms of semantic.
+ It is noticiable that most of the floor, if it is not occluded as in the
+ top image from Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PSP-Net-result-examples"
+
+\end_inset
+
+ is correctly extracted.
+ Pedestrians are also detected altogth perfoamcne in pedestrian detection
+ scoope is analyzed in the following section.
+\end_layout
+
+\begin_layout Standard
+However, it is important to point that segmentation is not perfect when
+ dealing with difficult illuminations or complicated objects.
+ It can be obvserved that columns are not really correctly segmentated.
+ There are even some that are mistaken as walls which is a problem for our
+ system.
+ In addition, crystal doors such as the ones displayed in the top and bottom
+ images are not correctly distinguish from building and wall labels which
+ is a main issue for further algorithms.
+\end_layout
+
 \begin_layout Section
 Pedestrian Detection Results
 \end_layout
@@ -2111,7 +2192,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/Experiment 1/Camera 1.svg
+	filename Images/Results/Experiment 1/Camera 2.svg
 	lyxscale 30
 	width 50text%
 
@@ -2147,7 +2228,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/Experiment 1/Camera 1.svg
+	filename Images/Results/Experiment 1/Camera 3.svg
 	lyxscale 30
 	width 50text%
 
@@ -2185,142 +2266,6 @@ name "fig:Recall / Precision graphs for mono camera pedestrian detection."
 \end_inset
 
 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-setlength
-\backslash
-extrarowheight{7pt}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="2">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Pedestrian Detector
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-F-Score
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-HOG
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-DPM
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-PSP-Net
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-F-Score for or mono camera pedestrian detection.
- 
 \end_layout
 
 \end_inset
@@ -2471,142 +2416,6 @@ name "fig:Recall / Precision graphs for multi camera pedestrian detection.-1"
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float table
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-setlength
-\backslash
-extrarowheight{7pt}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="2">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Pedestrian Detector
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-F-Score
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-HOG
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-DPM
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-PSP-Net
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-F-Score for or multi camera pedestrian detection.
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 Mono-Camera with Semantic Constraining
 \end_layout
@@ -2734,142 +2543,6 @@ name "fig:Recall / Precision graphs for mono camera pedestrian detection with se
 \end_inset
 
 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-setlength
-\backslash
-extrarowheight{7pt}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="2">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Pedestrian Detector
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-F-Score
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-HOG
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-DPM
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-PSP-Net
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-F-Score for or mono camera with semantic constraining pedestrian detection.
- 
 \end_layout
 
 \end_inset
@@ -3025,7 +2698,7 @@ name "fig:Recall / Precision graphs for multi camera pedestrian detection with s
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -3037,7 +2710,7 @@ status open
 \backslash
 setlength
 \backslash
-extrarowheight{7pt}
+extrarowheight{9pt}
 \end_layout
 
 \end_inset
@@ -3048,12 +2721,15 @@ extrarowheight{7pt}
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="2">
+<lyxtabular version="3" rows="4" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="center" valignment="middle" width="15text%">
+<column alignment="center" valignment="middle" width="15text%">
+<column alignment="center" valignment="middle" width="15text%">
+<column alignment="center" valignment="middle" width="15text%">
+<column alignment="center" valignment="middle" width="15text%">
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3062,18 +2738,45 @@ Pedestrian Detector
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-F-Score
+Mono Camera
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Multi Camera
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mono Camera Semantic
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Multi Camera Semantic
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3082,7 +2785,34 @@ HOG
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3093,7 +2823,7 @@ HOG
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3102,7 +2832,34 @@ DPM
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3113,7 +2870,7 @@ DPM
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3122,7 +2879,34 @@ PSP-Net
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3143,8 +2927,8 @@ PSP-Net
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-F-Score for or multi camera with semantic constraining pedestrian detection.
- 
+F-Score comparison between all the experiments and pedestrian detector appraoche
+s.
 \end_layout
 
 \end_inset
@@ -3282,6 +3066,22 @@ name "fig:Stadistical-Data-Usage Curves"
 \end_layout
 
 \begin_layout Standard
+One can observe in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Stadistical-Data-Usage Curves"
+
+\end_inset
+
+ that both semantic areas are measured in terms of number of people by frame.
+ If one takes a look to the correspondent frame it can be observed that
+ there is a correspondence between the period when most people are walking
+ through the scene and the peak from the curve.
+ Same observation can be made when talking about doors usage.
+ 
+\end_layout
+
+\begin_layout Standard
 In addition, some results about the most used areas of the hall have been
  extracted.
  The hole area has been divided into regular subareas of fixed size in which
@@ -3291,11 +3091,26 @@ In addition, some results about the most used areas of the hall have been
  Results concerning this process are displayed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Pedestrians paths usage along the Hall"
+reference "fig:Pedestrians paths usage along the Hall. 40 pix"
 
 \end_inset
 
-.
+ for a subregion size of 
+\begin_inset Formula $40x40$
+\end_inset
+
+ pixels and in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Pedestrians paths usage along the Hall. 70 pix"
+
+\end_inset
+
+ for a subregion size of 
+\begin_inset Formula $70x70$
+\end_inset
+
+ pixels.
 \end_layout
 
 \begin_layout Standard
@@ -3307,7 +3122,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Proposed System/ProbableAreasPath.png
+	filename Images/Results/ProbableAreasPath40.png
 	lyxscale 30
 	width 85text%
 
@@ -3320,10 +3135,11 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Pedestrians paths usage along the Hall
+Pedestrians paths usage along the Hall.
+ Scene has been divided in sub regions of 40 pixels.
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Pedestrians paths usage along the Hall"
+name "fig:Pedestrians paths usage along the Hall. 40 pix"
 
 \end_inset
 
@@ -3341,9 +3157,53 @@ name "fig:Pedestrians paths usage along the Hall"
 \end_layout
 
 \begin_layout Standard
-Results are displayed as yellow squares.
- The more strong the color it means that during the sequence that subregion
- of the scene has been regularly populated with people.
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/ProbableAreasPath70.png
+	lyxscale 30
+	width 85text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Pedestrians paths usage along the Hall.
+ Scene has been divided in sub regions of 70 pixels.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Pedestrians paths usage along the Hall. 70 pix"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Results are displayed as yellow squares that measure the amount of pedestrians
+ found in that sub region.
+ The more strong the color means that pedestrian density over that area
+ has been higher than in the neighborhood.
 \end_layout
 
 \begin_layout Section

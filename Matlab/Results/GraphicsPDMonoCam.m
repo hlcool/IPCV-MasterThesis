@@ -17,10 +17,10 @@ PSPRecall1 = [0.435956 0.435956 0.422198 0.270736 0.0519567];
 
 figure1 = figure();
 axes1 = axes('Parent',figure1);
-plot(HOGPrecision1, HOGRecall1, '-rx', 'MarkerSize', 10, 'LineWidth', 3)
+plot(HOGPrecision1, HOGRecall1, '-rx', 'MarkerSize', 10, 'LineWidth', 4)
 hold on;
-plot(DPMPrecision1, DPMRecall1, '-b*', 'MarkerSize', 10, 'LineWidth', 3)
-plot(PSPPrecision1, PSPRecall1, '-gx', 'MarkerSize', 10, 'LineWidth', 3)
+plot(DPMPrecision1, DPMRecall1, '-b*', 'MarkerSize', 10, 'LineWidth', 4)
+plot(PSPPrecision1, PSPRecall1, '-gx', 'MarkerSize', 10, 'LineWidth', 4)
 xlim([0 1]);ylim([0 1]);
 xlabel('Precision','FontWeight','bold');
 ylabel('Recall','FontWeight','bold');
@@ -40,10 +40,10 @@ PSPRecall2 = [0.472984 0.472984 0.436638 0.133377 0.0163881];
 
 figure2 = figure();
 axes2 = axes('Parent',figure2);
-plot(HOGPrecision2, HOGRecall2, '-rx', 'MarkerSize', 10, 'LineWidth', 3)
+plot(HOGPrecision2, HOGRecall2, '-rx', 'MarkerSize', 10, 'LineWidth', 4)
 hold on;
-plot(DPMPrecision2, DPMRecall2, '-b*', 'MarkerSize', 10, 'LineWidth', 3)
-plot(PSPPrecision2, PSPRecall2, '-gx', 'MarkerSize', 10, 'LineWidth', 3)
+plot(DPMPrecision2, DPMRecall2, '-b*', 'MarkerSize', 10, 'LineWidth', 4)
+plot(PSPPrecision2, PSPRecall2, '-gx', 'MarkerSize', 10, 'LineWidth', 4)
 xlim([0 1]);ylim([0 1]);
 xlabel('Precision','FontWeight','bold');
 ylabel('Recall','FontWeight','bold');
@@ -63,10 +63,10 @@ PSPRecall3 = [0.582485 0.582485  0.572556 0.388025 0.0796843];
 
 figure3 = figure();
 axes3 = axes('Parent',figure3);
-plot(HOGPrecision3, HOGRecall3, '-rx', 'MarkerSize', 10, 'LineWidth', 3)
+plot(HOGPrecision3, HOGRecall3, '-rx', 'MarkerSize', 10, 'LineWidth', 4)
 hold on;
-plot(DPMPrecision3, DPMRecall3, '-b*', 'MarkerSize', 10, 'LineWidth', 3)
-plot(PSPPrecision3, PSPRecall3, '-gx', 'MarkerSize', 10, 'LineWidth', 3)
+plot(DPMPrecision3, DPMRecall3, '-b*', 'MarkerSize', 10, 'LineWidth', 4)
+plot(PSPPrecision3, PSPRecall3, '-gx', 'MarkerSize', 10, 'LineWidth', 4)
 xlim([0 1]);ylim([0 1]);
 xlabel('Precision','FontWeight','bold');
 ylabel('Recall','FontWeight','bold');
