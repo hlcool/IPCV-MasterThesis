@@ -418,7 +418,7 @@ reference "fig:Flow-chart diagram for the single-thread application"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -525,7 +525,16 @@ footnotesize UI Parameters};
 
 
 \backslash
-node (Camera2) [process, below of=UIIdle, yshift=-0.5cm] {
+node (GetFrame) [process, below of=UIIdle, yshift=-0.5cm] {
+\backslash
+footnotesize Get Frame};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (Camera2) [process, below of=GetFrame, yshift=-0.5cm] {
 \backslash
 footnotesize Camera 2};
 \end_layout
@@ -609,7 +618,14 @@ draw [arrow] (ParamInput) -- (UIIdle);
 
 
 \backslash
-draw [arrow] (UIIdle) |- ([yshift=0.6cm] Camera1.north) -- (Camera1.north);
+draw [arrow] (UIIdle) -- (GetFrame);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (GetFrame) |- ([yshift=0.6cm] Camera1.north) -- (Camera1.north);
 \end_layout
 
 \begin_layout Plain Layout
@@ -644,7 +660,8 @@ draw [arrow] (Display) -- (VideoEnd);
 
 
 \backslash
-draw [arrow] (VideoEnd) -| node[near start, anchor=south]{No}(Camera1);
+draw [arrow] (VideoEnd.west) -- node[anchor=south]{No} ++(-5,0) -- ++(0,5)
+ -- (GetFrame.west);
 \end_layout
 
 \begin_layout Plain Layout
@@ -675,11 +692,6 @@ end{tikzpicture}
 
 \begin_layout Plain Layout
 Flow-chart diagram for the single-thread application.
- 
-\color red
-NO DEFINITIVO
-\color inherit
-
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Flow-chart diagram for the single-thread application"
@@ -767,7 +779,7 @@ In the code two barriers will be available.
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -882,7 +894,16 @@ footnotesize Threads Start};
 
 
 \backslash
-node (Camera2) [process, below of=ThreadStart] {
+node (GetFrame) [startstop, below of = ThreadStart] {
+\backslash
+footnotesize Get New Video Frame};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (Camera2) [process, below of=GetFrame, yshift = -0.5cm] {
 \backslash
 footnotesize Camera 2 Thread};
 \end_layout
@@ -936,9 +957,9 @@ footnotesize Video Finished};
 
 
 \backslash
-node (VideoStop) [startstop, below of=VideoEnd, yshift=-0.7cm] {
+node (VideoStop) [startstop, below of=VideoEnd, yshift=-1cm] {
 \backslash
-footnotesize Video Stops};
+footnotesize Video Processing Stops};
 \end_layout
 
 \begin_layout Plain Layout
@@ -982,21 +1003,28 @@ draw [arrow] (UIIdle) -- (ThreadStart);
 
 
 \backslash
-draw [arrow] (ThreadStart) -| (Camera1);
+draw [arrow] (ThreadStart) -- (GetFrame);
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-draw [arrow] (ThreadStart) -- (Camera2);
+draw [arrow] (GetFrame.south) -- (Camera1.north);
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-draw [arrow] (ThreadStart) -| (Camera3);
+draw [arrow] (GetFrame.south) -- (Camera2.north);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (GetFrame.south) -- (Camera3.north);
 \end_layout
 
 \begin_layout Plain Layout
@@ -1038,24 +1066,8 @@ draw [arrow] (Display) -- (VideoEnd);
 
 
 \backslash
-draw [arrow] (VideoEnd) -| node[near start, anchor=south]{No}([xshift=-1cm]
- Camera1.west) -- (Camera1.west);
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-draw [arrow] (VideoEnd) -| node[near start, anchor=south]{}([xshift=+1cm]
- Camera3.east) -- (Camera3.east);
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-draw [arrow] (VideoEnd) -| node[near start, anchor=south]{No}([xshift=+1.3cm]
- Camera2.east) -- (Camera2.east);
+draw [arrow] (VideoEnd) -| node[near start, anchor=south]{No}([xshift=-5cm]
+ GetFrame.west) -- (GetFrame.west);
 \end_layout
 
 \begin_layout Plain Layout
@@ -1090,11 +1102,6 @@ end{tikzpicture}
 
 \begin_layout Plain Layout
 Flow-chart diagram for the multi-thread application.
- 
-\color red
-NO DEFINITIVO
-\color inherit
-
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Flow-chart diagram for the multi-thread application"

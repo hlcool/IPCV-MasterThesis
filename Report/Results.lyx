@@ -3060,7 +3060,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -3078,7 +3078,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Floor Usage
+Floor usage
 \end_layout
 
 \end_inset
@@ -3092,7 +3092,7 @@ Floor Usage
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -3110,7 +3110,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Doors Usage
+Doors usage
 \end_layout
 
 \end_inset
@@ -3890,10 +3890,12 @@ reference "fig:Stadistical-Data-Usage Curves"
 \end_inset
 
  that both semantic areas are measured in terms of number of people by frame.
- If one takes a look to the correspondent frame it can be observed that
- there is a correspondence between the period when most people are walking
- through the scene and the peak from the curve.
- Same observation can be made when talking about doors usage.
+ If one takes a look to the correspondent frame, displayed at the top of
+ the graph, it can be observed that there is a correspondence between the
+ period when most people are walking through the scene and the peak from
+ the curve.
+ Same observation can be made when talking about doors usage as people passing
+ trough doors are in frame 5000 .
  
 \end_layout
 
@@ -3917,7 +3919,8 @@ reference "fig:Pedestrians paths usage along the Hall. 70 pix"
  For that reason when a person enters the building areas surrounding the
  door get highlighted.
  In the same manner, when a big pedestrian group walks along the scene all
- their trajectory is being highlighted.
+ their trajectory is being highlighted as pedestrian density over that areas
+ is highly increased.
 \end_layout
 
 \begin_layout Section
