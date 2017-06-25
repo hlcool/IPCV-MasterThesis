@@ -98,12 +98,12 @@ name "chap:Proposed-System"
 \end_layout
 
 \begin_layout Standard
-During this Chapter our proposed system will be deeply explained.
+During this Chapter our proposed system is deeply explained.
  We start from the main contextual model generation and pedestrian detectors
  to finally explain the fusion of all the obtained elements in a multi camera
  system with semantic constraints.
  In addition the generation of statistical usage data from semantic areas
- will be proposed.
+ is proposed.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -111,7 +111,7 @@ reference "fig:Proposed-system-flowchart"
 
 \end_inset
 
- represents the flowchart that the application will follow for the computation
+ represents the flowchart that the application follows for the computation
  of the main mentioned algorithms.
 \end_layout
 
@@ -119,7 +119,7 @@ reference "fig:Proposed-system-flowchart"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -171,7 +171,7 @@ name "sec:Contextual-Model-Generation"
 
 \begin_layout Standard
 One of the main objectives in the scope of this work is to perform semantic
- segmentation, wchih as explained in Chapter 
+ segmentation, which as explained in Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:State of the art"
@@ -359,8 +359,18 @@ target "https://github.com/hszhao/PSPNet"
 \color inherit
 comes with a set of three different pre trained 
 \shape italic
-Caffe
+\color blue
+
+\begin_inset CommandInset href
+LatexCommand href
+name "Caffe"
+target "http://caffe.berkeleyvision.org/"
+
+\end_inset
+
+
 \shape default
+\color inherit
  models for three different datasets.
  The main difference between the models for our scope is the environment
  in which the network has been trained.
@@ -430,7 +440,25 @@ reference "tab:Final classes list from ADE20K to use in PSP-Net"
 \begin_inset Float table
 wide false
 sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
 status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength
+\backslash
+extrarowheight{7pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -713,8 +741,8 @@ Pedestrian Detection
 \end_layout
 
 \begin_layout Standard
-Along this section we will present the pedestrian State of the Art detectors
- that have been selected to work in our system.
+Along this section pedestrian State of the Art detectors that have been
+ selected to work in our system are presented.
  Some of them have been chosen due to algorithm simplicity and computational
  cost and others, due to its contrasted performance while working in real
  sequences as we have seen in Chapter 
@@ -725,7 +753,7 @@ reference "chap:State of the art"
 \end_inset
 
 .
- However, one of the main reasons of choosing the following three algorithms
+ However, one of the main reasons of choosing the following five algorithms
  among others in the SoA is the possibility of either having the original
  source code or the practical implementation within an external OpenCV library.
 \end_layout
@@ -739,12 +767,12 @@ Histogram of Oriented Gradients, i.e.
  HOG, is one of the main used detectors along pedestrian detection field.
  This fact is due to it's extremely simplicity in terms of the descriptor
  complexity.
- Pedestrians are described as set of HOG, this means that its shape and
- appearance can be described by a set of gradients and intensities organized
- as orientation histograms.
- These histograms will describe intensity distributions from local gradients
+ Pedestrians are described as set of HOG.
+ This means that its shape and appearance can be described by a set of gradients
+ and intensities organized as orientation histograms.
+ These histograms describe intensity distributions from local gradients
  or border directions.
- This descriptor can be observe graphically in Figure 
+ This descriptor can be observed graphically in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:HOG-Pedestrian-Descriptor"
@@ -801,21 +829,21 @@ Once HOG have been used to describe the person shape, Support Vector Machines
  are used to train a person model and to classify potential candidates as
  people.
  SVM are a data classification method formed by a set of supervised training.
- The aim of this kind of approaches is to produce a model which will be
- able to predict classification labels on a test set based only on the descripto
-rs of the set and the model.
+ The aim of this kind of approaches is to produce a model which is able
+ to predict classification labels on a test set based only on the descriptors
+ of the set and the model.
 \end_layout
 
 \begin_layout Standard
 The idea behind SVM is that training vectors are mapped on to a bigger dimension
 al space in which the data separation, by means of one or many hyperplane,
- will be much easier to divide than in the original dimensional space.
+ is much easier to divide than in the original dimensional space.
 \end_layout
 
 \begin_layout Standard
 The combination between HOG and SVM leads to a fast detector that depending
  on the situation will perform decently, although it has some main drawbacks
- as its lack of occlusion treatment which will not make this algorithm usable
+ as its lack of occlusion treatment which does not make this algorithm usable
  when working with crowded spaces.
 \end_layout
 
@@ -831,7 +859,7 @@ Deformable Part Model
 \begin_layout Standard
 As was mentioned in the previous paragraph one of the main drawbacks when
  working with the simple HOG pedestrian detector is that it describes the
- person model as a hole which will lead, inevitably, to the mentioned occlusion
+ person model as a hole which leads, inevitably, to the mentioned occlusion
  drawbacks.
  Deformable Part Model tries to solve this problem, among others, by defining
  the model as first, a global coarse template, secondly, several higher
@@ -851,7 +879,7 @@ reference "fig:Example-detection-obtained with DPM Person model"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -881,16 +909,18 @@ Example detection obtained with the DPM person model.
 Example detection obtained with the DPM person model.
  From left to right: Original image + detections, global coarse model, part
  templates and spatial model for each part.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Example-detection-obtained with DPM Person model"
-
-\end_inset
-
- 
+ Image extracted from 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "felzenszwalb2010object"
+
+\end_inset
+
+.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Example-detection-obtained with DPM Person model"
 
 \end_inset
 
@@ -1213,7 +1243,7 @@ name "fig:Fast-R-RCNN-architecture"
 \begin_layout Standard
 In this case, both Fast-RCNN detector and MCG object proposal extract are
  implemented within external Matlab libraries and so, should be computed
- offline and introduced to the application.
+ offline and introduced externally to the application.
 \end_layout
 
 \begin_layout Subsection
@@ -1228,8 +1258,7 @@ reference "sec:Contextual-Model-Generation"
 
 \end_inset
 
- PSP-Net working along with ADE20K dataset has been trained to detect people
- as a class.
+ PSP-Net has been trained to detect people as a class.
  In our proposed system we will also use this approach by surrounding pedestrian
 s labels with bounding boxes.
 \end_layout
@@ -1501,7 +1530,7 @@ Homography calculation is a pivotal task in our work and the main base for
  a bird-eye representation of the scene.
  With this homography matrix we will be able to transform every frame pixel
  
-\begin_inset Formula $F_{t}(x_{1},\,y_{2})$
+\begin_inset Formula $F_{t}(x_{1},\,y_{1})$
 \end_inset
 
  to its correspondent position in the cenital plane 
@@ -1664,7 +1693,7 @@ where
 \end_inset
 
  are the camera intrinsic parameters.
- All this variables can be observed in Figure 
+ Generic homography problem for one camera is depicted in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Camera-and-plane setup"
@@ -1721,13 +1750,13 @@ name "fig:Camera-and-plane setup"
 In order to compute an homography, a relation between at least 4 points
  in each of the two images should be computed.
  In this case a relationship between a real camera frame and a cenital view
- plane created by computer should be computed.
+ plane created by computer is needed.
  This means that there is not a real correspondence for pixels and so it
  is not possible to use a point descriptor to extract common points in both
  images.
  User has to manually select the points that represent the same spatial
  place in both images using the Graphical User Interface and then the algorithm
- will compute the transformation matrix.
+ computes the transformation matrix.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1808,9 +1837,9 @@ This cenital plane lacks of details from the scene.
 
 \begin_layout Standard
 For this reason, and driven by bad results, another cenital plane has been
- compute starting from zero.
- In this new approach the scene has been correctly measure by hand and the
- plane has been done with real measures and high floor detail.
+ computed starting from zero.
+ In this new approach the scene has correctly been measured by hand and
+ the plane has been done with real measures and high floor detail.
 \end_layout
 
 \begin_layout Standard
@@ -1835,7 +1864,7 @@ reference "fig:Second cenital plane approach with measures"
 
 \end_inset
 
- and Figure 
+ while Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Second cenital plane approach with camera positions"
@@ -1849,7 +1878,7 @@ reference "fig:Second cenital plane approach with camera positions"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1945,10 +1974,10 @@ reference "fig:Second cenital plane approach with camera positions"
 \end_inset
 
  are outstanding both in floor details and in general construction proportions.
- This detail rise will lead to a much more easy homography selection points
+ This detail rise leads to a much more easy homography selection points
  by the user as it now has more point options to choose and evidentially
  this means that the final homography matrix, and so, all the projections
- will be better accurately talking.
+ are better accurately talking.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1964,16 +1993,27 @@ reference "fig:Initial Camera Views"
 
 \end_inset
 
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Initial Camera Views"
+
+\end_inset
+
  one can easily observe that the vision range compared to the hole scenario
  representation is quite limited due to the low vision range of the cameras.
  The cameras are covering the middle part leaving completely unattended
  the lateral parts of the scenario.
- This approach is a limitation to the project objectives as we will not
- be able to extract a high percentage of the scene semantic.
- The solution for this problem is to include panning movement thanks to
- the PTZ technology in all the cameras from left to right so cameras view
- range is increased and they are no longer focus only in the middle of the
- scene as before.
+ This approach is a limitation to the project objectives as high percentage
+ of the scene semantic remains hidden.
+ 
+\end_layout
+
+\begin_layout Standard
+The solution for this problem is to include panning movement thanks to the
+ PTZ technology in all the cameras from left to right so cameras view range
+ is increased and they are no longer focus only in the middle of the scene
+ as before.
  This leads also to more common and not static areas which the cameras will
  share.
  This solution is presented in the scene diagram in Figure 
@@ -1991,7 +2031,7 @@ reference "fig:Multi-camera-configuration with panning set up"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2039,23 +2079,31 @@ Before including camera panning in the set up, homographies where calculated,
  This means that every camera only had one homography matrix as all its
  sequence was static and all its video frames where projected using the
  same matrix.
- However, when including video panning this simple approach is no longer
+ 
+\end_layout
+
+\begin_layout Standard
+However, when including video panning this simple approach is no longer
  valid as the scene view is constantly changing.
  The ideal solution for this problem would be having one homography matrix
  
-\begin_inset Formula $H$
+\begin_inset Formula $^{\pi_{ref}}H_{Frame}$
 \end_inset
 
  per video frame.
  As the homographies are calculated by the user selecting the points this
  solution is evidentially impossible in terms of usability.
- We propose discretization of the panning tour in which 
+ 
+\end_layout
+
+\begin_layout Standard
+We propose discretization of the panning tour in which 
 \begin_inset Formula $N$
 \end_inset
 
  views are selected from the video sequence.
  This leads to the obtention of an homography codebook in where the user
- will compute a homography matrix 
+ computes a homography matrix 
 \begin_inset Formula $^{\pi_{ref}}H_{View}$
 \end_inset
 
@@ -2064,7 +2112,7 @@ Before including camera panning in the set up, homographies where calculated,
 \end_inset
 
  camera views.
- This codebook of views and homographies will be responsible for projecting
+ This codebook of views and homographies are responsible for projecting
  into the cenital plane the hole video.
 \end_layout
 
@@ -2140,8 +2188,8 @@ key "weickert2016cyclic,grewenig2010box"
 \end_layout
 
 \begin_layout Standard
-AKAZE will detect and describe points of interest in any image and then
- by a brute force comparator in terms of distances we will extract how many
+AKAZE detects and describes points of interest in any image and then by
+ a brute force comparator in terms of point distances we extract how many
  coincidence we have between a pair of images.
  
 \end_layout
@@ -2152,10 +2200,10 @@ It is essential to say, that, as we have to compare the current frame with
 \begin_inset Formula $N$
 \end_inset
 
- views we will have a trade off.
- More views will mean a better space discretization and more overlapping
- between them, however, the computational time will increase exponentially,
- this means that we have to choose the number of views 
+ views there is a trade off.
+ More views means a better space discretization and more overlapping between
+ them, however, the computational time increases exponentially, this means
+ that we have to choose the number of views 
 \begin_inset Formula $N$
 \end_inset
 
@@ -2172,10 +2220,10 @@ y low.
 \begin_layout Standard
 As we said before, the homographies are calculated for each of the views,
  this means, that if a frame is not positioned exactly as a view the homography
- matrix will not project the points correctly, there will be a small error.
- Taking advantage of the calculation of common descriptor between the frame
- and its correspondent view we can solve this problem by calculating automatical
-ly the homography between both images.
+ matrix does not project the points correctly, there will be a small error.
+ Taking advantage of the calculation of common descriptors between the frame
+ and its correspondent view this problem can be solved by calculating automatica
+lly the homography between both images.
  This means that now, to project detections from the current frame to the
  cenital plane two homographies are used.
  First we change the perspective of the original frame to the perspective
@@ -2206,7 +2254,7 @@ reference "fig:View selection process and homography between views computation"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2259,11 +2307,11 @@ Video Sequence Synchronization
 \end_layout
 
 \begin_layout Standard
-One of the main issue when dealing with multi camera systems, and specially,
+One of the main issues when dealing with multi camera systems, and specially,
  those that combine information between the cameras, is that video sequences
  coming from them should be correctly synchronized.
  This is really important because if the same frame number 
-\begin_inset Formula $f$
+\begin_inset Formula $F$
 \end_inset
 
  is not representing the same exact moment in time in the three cameras,
@@ -2275,9 +2323,8 @@ We have synchronized the processed videos using the so called clapperboard
  technique.
  This technique aims to synchronize using concrete events that can be observed
  from all the cameras at the same time.
- By this, we will be able to set a synchronize starting point from where
- the following video frames will be correctly representing the same moment
- in time.
+ By this, we are able to set a synchronize starting point from where the
+ following video frames are correctly representing the same moment in time.
 \end_layout
 
 \begin_layout Subsection
@@ -2292,7 +2339,7 @@ name "subsec:Pedestrian-Filtering-and"
 \end_layout
 
 \begin_layout Standard
-During this Section we will explain how the pedestrian detections are semantic
+During this Section we explain how the pedestrian detections are semantic
  filtered and also how the information between people from the three cameras
  is fusion in the system to increase the general algorithm performance.
 \end_layout
@@ -2314,7 +2361,7 @@ key "miguelez2016Deteccion"
  with the exact position of the detected object due to the camera perspective.
  If this detection error is not corrected when the bounding boxes are projected
  either to another camera instance or to the common cenital plane there
- will be a distance between the represented bounding box and the real object.
+ is a distance between the represented bounding box and the real object.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2322,15 +2369,7 @@ reference "fig:Cylinder-estimation-for camera instances projections"
 
 \end_inset
 
- shows the case for bounding box transference between cameras and Figure
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Cylinder-estimation-for cenital view projections"
-
-\end_inset
-
- for the cenital frame.
+ shows the case for bounding box transference between cameras.
 \end_layout
 
 \begin_layout Standard
@@ -2344,7 +2383,7 @@ status open
 \begin_inset Graphics
 	filename Images/Proposed System/Cylinder estimation between cameras.png
 	lyxscale 20
-	width 50text%
+	width 60text%
 
 \end_inset
 
@@ -2397,7 +2436,7 @@ name "fig:Cylinder-estimation-for camera instances projections"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2445,9 +2484,9 @@ reference "fig:Cylinder-estimation-for camera instances projections"
 
  when the blue bounding boxes are projected from image (a) to image (c)
  they are not correctly on the pedestrian.
- The solution is to compute the cylinder that embrace the square whose side
- is the bounding box (b).
- Once the cylinder is estimated, the person will be hypothetically in the
+ The solution is to compute the cylinder that embraces the square whose
+ side is the bounding box (b).
+ Once the cylinder is estimated, the person will hypothetically be in the
  middle of the cylinder.
  In (c) we can observe that the estimation, if correctly computed has great
  accuracy.
@@ -2464,9 +2503,9 @@ reference "fig:Cylinder-estimation-for cenital view projections"
  the same method is applied but in this case, the bounding box is not projected
  to another camera perspective but to the cenital plane.
  The projection of the bounding box, represented by the green line is not
- in the same position as the center of the cylinder, which will be at the
- end of the purple line.
- The center of the cylinder so, will correspond to a more approximate position
+ in the same position as the center of the cylinder, which is at the end
+ of the purple line.
+ The center of the cylinder so, corresponds to a more approximate position
  of the detected person.
 \end_layout
 
@@ -2477,10 +2516,10 @@ Gaussian Bounding Box Representation
 \begin_layout Standard
 Using also the cylinder representation one can change the way bounding boxes
  are represented in the cenital plane.
- As said before, in the simple cylinder representation pedestrian will be
- represented with two perpendicular lines, however, in this representation
- one does have spatial information about the detection but none about the
- detection accuracy.
+ As said before, in the simple cylinder representation pedestrian are represente
+d with two perpendicular lines, however, in this representation one does
+ have spatial information about the detection but none about the detection
+ accuracy.
  This means that with the two perpendicular lines one can observed where
  the detection has been achieved but not the score associated with this
  detections.
@@ -2489,8 +2528,8 @@ Using also the cylinder representation one can change the way bounding boxes
 \end_layout
 
 \begin_layout Standard
-Every pedestrian detection will be so represented as a Gaussian function
- of the form described in Eq.
+Every pedestrian detection is so, represented as a Gaussian function of
+ the form described in Eq.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2517,7 +2556,7 @@ In this case
 \begin_inset Formula $A$
 \end_inset
 
- will be the amplitude which typically will be 
+ is the amplitude which typically is set to 
 \begin_inset Formula $A=1$
 \end_inset
 
@@ -2525,12 +2564,12 @@ In this case
 \begin_inset Formula $x_{0},\:y_{0}$
 \end_inset
 
- will represent the mean of the gaussian which, in our case, will be the
- center of the cylinder associated to the bounding box and 
+ represent the mean of the gaussian which, in our case, is the center of
+ the cylinder associated to the bounding box and 
 \begin_inset Formula $\sigma_{x},\sigma_{y}$
 \end_inset
 
- which is the standard deviation and in our case will represent the accuracy
+ which is the standard deviation and in our case represents the accuracy
  of the detection.
  
 \end_layout
@@ -2562,17 +2601,17 @@ reference "eq:Score2Deviation"
 \end_layout
 
 \begin_layout Standard
-This Equation has been adapted to the size of the cenital plane.
- This means that detections with higher scores will be represented as a
- narrow gaussian function (Figure 
+This Equation has been adapted to the size of the used cenital plane.
+ This means that detections with higher scores are represented as a narrow
+ gaussian function (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:High-score-detections"
 
 \end_inset
 
-) while lower scores will lead to wide gaussians that will represent a bigger
- area in where one can find that person (Figure 
+) while lower scores lead to wide gaussians that represent a bigger area
+ in where one can find that person (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Low-score-detections"
@@ -2720,30 +2759,40 @@ name "subsec:Pedestrian-Reprojection between cameras"
 When all the pedestrian detections have been projected into the cenital
  plane one can start reprojecting those projections from the cenital plane
  back to the other camera frames.
- This process will have a fundamental important as it will be the process
- from where the pedestrian detector accuracy can be increase by the use
- of the multi-camera system.
- For instance, detections from Cameras 2 and 3 will be reprojected into
- Camera 1.
- Sometimes, those reprojections will not be in the frame because the cameras
- will not be aiming to the same spatial area, however, when the are seeing
- the same spatial space cameras will share those detections.
- Ideally, if the three cameras detect the person reprojection will not be
- necessary, but, if one of them misses the detection, the other two detections,
- by the use of reprojection, will lead to suppress that miss detection.
  
 \end_layout
 
 \begin_layout Standard
-Projected frames from one camera to another will be treat as another detector
+This process has a fundamental importance as it is from where the pedestrian
+ detector accuracy can be increase by the use of the multi-camera system.
+ For instance, detections from Cameras 2 and 3 are reprojected into Camera
+ 1.
+ Sometimes, those reprojections are not in the frame because the cameras
+ are not aiming to the same spatial area, however, when they are seeing
+ the same spatial space cameras share those detections.
+ Ideally, if the three cameras detect the person reprojection could not
+ be necessary, but, if one of them misses the detection, the other two detection
+s, by the use of reprojection, lead to suppress that miss detection.
+ 
+\end_layout
+
+\begin_layout Standard
+Projected frames from one camera to another are treated as another detector
  blob.
  This means that if the detection is accurate enough in the original camera,
- when projected to another frame it will be either joined by a Non-Maximum
- Suppression (NMS) if that camera already has one blob, or maintained as
+ when projected to another frame it could be either joined by a Non-Maximum
+ Suppression (NMS), if that camera has already one blob, or maintained as
  a detection on the person.
- However, if the detection is not accurate enough projection will not be
- on the person and so that blob will lead to a false positive which is the
- main drawback of the method.
+ However, if the detection is not accurate enough, the projection could
+ be not on the person and so that blob leads to a false positive.
+ This can be described as the main drawback of the method.
+\end_layout
+
+\begin_layout Standard
+In addition, when blobs are projected from one frame to another blob height
+ is lost due to the cenital projection.
+ In order to achieve a complete blob once it has been reprojected, aspect
+ ratio is used to, using the width of the blob obtain the height.
 \end_layout
 
 \begin_layout Standard
@@ -2916,7 +2965,7 @@ reference "subsec:Semantic-Fusion-in the Reference Plane"
 
 \end_inset
 
-, in are used to constrain the pedestrian detections to this hypothesis.
+, are used to constrain the pedestrian detections to this hypothesis.
  This process is done based on the cenital plane builded using the cylinder
  estimation explained before.
  The constrain idea is that a bounding box coming from a camera 
@@ -3101,9 +3150,9 @@ Reference and Inertial Homography Planes
 \end_layout
 
 \begin_layout Standard
-During this Section we will explain our proposed method to create both RGB
- and semantic reference planes combining information from all the cameras
- positions.
+During this Section our proposed method to create both RGB and semantic
+ reference planes combining information from all the cameras positions is
+ explained.
  The final objective is to have complete maps in each camera that represent
  the scene.
 \end_layout
@@ -3121,8 +3170,8 @@ reference "fig:View selection process and homography between views computation"
 \end_inset
 
  one can project every video frame into a cenital perspective.
- This way a set of projected RGB and semantic frames for each camera will
- be obtained.
+ This way a set of projected RGB and semantic frames for each camera is
+ obtained.
  Some examples of these images can be observed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3322,8 +3371,8 @@ Once all the video frames are projected we propose to apply a temporal average
 \begin_inset Formula $\pi_{ref-C}$
 \end_inset
 
- for each camera contained in the ground plane will be created by joining
- all the separated projected frames.
+ for each camera contained in the ground plane is created by joining all
+ the separated projected frames.
  This process is detailed in Eq 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3685,11 +3734,11 @@ name "fig:Semantic Median Average"
 \end_layout
 
 \begin_layout Standard
-As one can observe we get smooth semantic and RGB maps from all the hall
- area.
+As one can observe smooth semantic and RGB maps from all the hall area are
+ created.
  It is important to recall that only if the homographies and the ground
- floor are correctly calculated and projected, the base of for instance,
- the columns from all the different cameras should lay in the same spatial
+ floor are correctly calculated and projected, the base of for instance
+ the columns from all the different cameras, should lay in the same spatial
  point in these images.
 \end_layout
 
@@ -3709,17 +3758,17 @@ Once the cenital maps have been extracted one can combine them to create
  semantic fusion in the reference plane.
  The main objective is to obtain common areas, i.e.
  pixels with the same label within two or more cameras.
- This method will allow us to increment the confidence for those pixels
- and so, we can use this information for example, to constrain pedestrians
- detections.
+ This method allows us to increment the confidence for those pixels and
+ so, we can use this information for example, to constrain pedestrians detection
+s.
  As the reference plane is obtained by the homography to the ground plane
  we have only take into account floor pixels to create the common areas,
- as the others will have projection errors that will lead to fusion errors.
+ as the others have projection errors that lead to fusion errors.
 \end_layout
 
 \begin_layout Standard
-First, we have combine pairs of cameras to create three common semantic
- areas that are shown in Figure 
+First, pairs of cameras are combined to create three common semantic areas
+ that are shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Common semantic areas between pair of cameras."
@@ -3885,8 +3934,8 @@ name "fig:Common semantic areas between pair of cameras."
 \begin_layout Standard
 Once pairs of cameras have been combined one can go further and extract
  common areas for the three cameras at the same time.
- Those areas will be pixels with the exact same label for the three cameras
- so its probability to be that class is real high.
+ Those areas are pixels with the exact same label for the three cameras
+ so its probability to be that class is really high.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3969,11 +4018,11 @@ Parametric Homographies Between Inertial Planes
 \begin_layout Standard
 Homography matrices, as explained before, aim to relate floor plane for
  a frame with the cenital view.
- However, everything that is not exactly in the same floor plane is not
- projected properly when the homography matrix is used.
+ However, everything that is not exactly in the same s plane is not projected
+ properly when the homography matrix is used.
  In our work, different semantic are needed to be projected, for instance
  a door.
- Using floor homography only its base is correctly projected.
+ When using floor homography only its base is correctly projected.
  
 \end_layout
 
@@ -3995,8 +4044,12 @@ key "aliakbarpour2016heterogeneous"
 \begin_inset Formula $\pi_{ref-C}$
 \end_inset
 
- one can obtain another matrix that relates the same image frame with a
- parallel plane called inertial plane at a fixed height 
+ is calculated, one can obtain another matrix 
+\begin_inset Formula $^{\pi'}H_{view}$
+\end_inset
+
+ that relates the same image frame with a parallel plane called inertial
+ plane at a fixed height 
 \begin_inset Formula $\Delta t$
 \end_inset
 
@@ -4004,11 +4057,11 @@ key "aliakbarpour2016heterogeneous"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $H_{v}$
+\begin_inset Formula $^{\pi'}H_{view}$
 \end_inset
 
  can be expressed as a function of 
-\begin_inset Formula $H_{v}$
+\begin_inset Formula $^{\pi_{ref-C}}H_{view}$
 \end_inset
 
  and 
@@ -4143,7 +4196,7 @@ reference "fig:Set of parallel planes"
 
 \end_inset
 
-) in which different object sections will be correctly projected.
+) in which different object sections are correctly projected.
  It could lead to a complete semantic map in which all the pixels represent
  semantic areas that have been correctly projected.
 \end_layout
@@ -4231,8 +4284,8 @@ Along this Section we explain the proposed system to extract statistical
 In order to extract usage data the first step is to create a projected common
  semantic map.
  For this task, rather than creating common areas between cameras as done
- for the PD fusion, information for all the cameras have been joined without
- strictly being shared.
+ for the PD constraining, information for all the cameras have been joined
+ without strictly being shared.
  This have been done to preserve as much semantic as possible and so, have
  bigger floor or door areas than if we were more restrictive.
 \end_layout
@@ -4295,10 +4348,23 @@ name "fig:Statistical Semantic Map"
 As one can observe we have decided to only take into account for this process
  floor, doors and chairs, which are the most accurate detections from the
  semantic segmentation.
- Following the same principle as in the previous Section, pedestrians will
- be projected on to the statistical semantic map and so we will be able
- to know how many people are in each of the designed areas.
- In addition, 
+ Following the same principle as in the previous Section, pedestrians are
+ projected on to the statistical semantic map and so one can be able to
+ know how many people are in each of the designed areas.
+ 
+\end_layout
+
+\begin_layout Standard
+In addition, one can divide Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Second cenital plane approach with camera positions"
+
+\end_inset
+
+ into different subregions of fixed size and extract in which of them pedestrian
+s are more likely to be.
+ This process leads to a set of most used paths.
 \end_layout
 
 \end_body

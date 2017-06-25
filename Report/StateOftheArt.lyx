@@ -163,10 +163,10 @@ Nowadays, it can be consider a partially-solved problem.
 \end_layout
 
 \begin_layout Standard
-The complexity related to pedestrian detector lies on the large amount of
- available data-sets with different video and people characteristics including
- challenges such as: as people occlusions, different poses and scales and
- under different illumination conditions.
+The complexity related to PD lies on the large amount of available data-sets
+ with different video and people characteristics including challenges such
+ as: people occlusions, different poses and scales and different illumination
+ conditions.
  Caltech 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -485,8 +485,8 @@ Object detection is defined as the extraction of the possible candidates
 \end_layout
 
 \begin_layout Itemize
-Sliding window: -Also known as- exhaustive search leads to an efficient
- classifier to test, in search of pedestrian, every possible image window.
+Sliding window: -Also known as- exhaustive search leads to a classifier
+ to test, in search of pedestrian, every possible image window.
  Parameters such as window size, or overlapping between them are common
  tuning values that increase or decrease the performance of the detector.
  These methods usually need from 
@@ -1289,7 +1289,7 @@ key "krizhevsky2012imagenet"
  for image classification and Faster R-CNN 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "DBLP:journals/corr/RenHG015"
+key "ren2015faster"
 
 \end_inset
 
@@ -1585,7 +1585,7 @@ One can describe contextual information as the set of additional circumstances
  not extracted by the image analysis but extracted by humans based on previously
  acquired knowledge during their life.
  By just taking a look to an outdoor image a human can derive where the
- sky will be, what the weather conditions or which time of the day is.
+ sky will be, what the weather conditions are or which time of the day is.
  Also, by knowing the place the photo was taken, one would imagine which
  objects are more or less probable to appear in the scene.
 \end_layout
@@ -1603,7 +1603,7 @@ All this set of information that is not extracted from the image analysis
  algorithms.
  We can divide contextual information into two different levels: global
  and local contextual information.
- Besides, we can also further divide contextual information two different
+ Besides, we can also further divide contextual information into two different
  categories offline, and online.
  Finally, semantic information is also analyzed.
 \end_layout
@@ -1614,8 +1614,8 @@ Global
 
 \begin_layout Standard
 Global context considers image detections from the image as a whole.
- For instance, if the context of a scene is known -kitchen- we can use this
- information to search for typical objects in this context -e.g.
+ For instance, if the context of a scene is known -kitchen-, we can use
+ this information to search for typical objects in this context -e.g.
  a stove-.
 \end_layout
 
@@ -1758,8 +1758,8 @@ key "zhao2016pyramid"
 In other words, semantic segmentation has the goal to assign each image
  pixel a high level category label.
  If accurately done, it provides complete semantic understanding, which
- in terms of computer vision, it means that location of an object within
- an image will be known.
+ in terms of computer vision, means that location of an object within an
+ image will be known.
  The result of semantic segmentation is depicted in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2382,7 +2382,7 @@ NetWarp (Anonymous)
 \begin_inset Text
 
 \begin_layout Plain Layout
-Yes
+No
 \end_layout
 
 \end_inset
@@ -2427,7 +2427,7 @@ key "DBLP:journals/corr/WangCYLHHC17"
 \begin_inset Text
 
 \begin_layout Plain Layout
-No
+Yes
 \end_layout
 
 \end_inset
@@ -2481,17 +2481,29 @@ key "krizhevsky2012imagenet"
 \begin_layout Standard
 However, even when using CNNs the main difficulty of scene parsing is related
  to the type of scene and to label variety.
- PSPNet deals with this problems assigning relationships between different
+ 
+\end_layout
+
+\begin_layout Standard
+PSPNet deals with this problems assigning relationships between different
  labels, i.e.
  an airplane is likely to be in runway or flying in the sky while not over
  a road or in the water.
  This relationships reduce slightly the complexity of having large amounts
  of labels to predict and improve the general performance of the algorithm.
- ResNet-38 on the other hand, propose not only to not increase CNNs depth,
+ 
+\end_layout
+
+\begin_layout Standard
+ResNet-38 on the other hand, propose not only to not increase CNNs depth,
  but rather to ensemble many relatively shallow networks to increase performance.
  Their approach also improves usability reducing memory use and sometimes
  even training time.
- Finally, TuSimple_Coarse propose a combination between dense upsampling
+ 
+\end_layout
+
+\begin_layout Standard
+Finally, TuSimple_Coarse propose a combination between dense upsampling
  convolution (DUC) to generate pixel-level prediction and a hybrid dilated
  convolution (HDC) framework.
 \end_layout

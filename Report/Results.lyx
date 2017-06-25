@@ -103,7 +103,7 @@ During this Chapter all the achieve results are exposed and analyzed.
  Secondly, in detail, the experiment setup is explained, i.e.
  the generated data-set and ground truth, and the evaluation framework.
  Later, results concerning application performance are presented.
- Results concerning homography projections are analyzed.
+ Homography projections results are analyzed.
  Finally, the last two sections aim is to present pedestrian detection results
  in term of performance and usage data extraction.
 \end_layout
@@ -132,9 +132,9 @@ Specifically, the camera model used along the project has been the Sony
  SNC-RZ50P PTZ Camera .
  This is a PTZ camera which means that it will be able to Pan, Tilt and
  Zoom all over the scene.
- Precisely this camera will have a pan range of 340 degrees and a tilt range
- of 115 degrees, enabling users to monitor a wide area over the scene if
- the camera is moved (Figure 
+ Precisely this camera has a pan range of 340 degrees and a tilt range of
+ 115 degrees, enabling users to monitor a wide area over the scene if the
+ camera is moved (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Sony-SNC-RZ50P-Pan/Tilt Range"
@@ -197,9 +197,9 @@ reference "tab:Sony-SNC-RZ50P-Specifications"
 \end_inset
 
 .
- In the scope of our work the most important features will be resolution
- and frames per second that will enable us to have more quality in both
- image and video.
+ In the scope of our work the most important features are resolution and
+ frames per second that enable us to have more quality in both image and
+ video.
 \end_layout
 
 \begin_layout Standard
@@ -618,11 +618,11 @@ Camera User Web Interface (GUI)
 \end_layout
 
 \begin_layout Standard
-The camera comes with a built-in web interface that will help us to visualize
+The camera comes with a built-in web interface that helps the user to visualize
  the visual range and set the different parameters that would change the
  camera behavior.
- The most important features that we will be able to tune are described
- as follow:
+ The most important features that users are able to tune are described as
+ follow:
 \end_layout
 
 \begin_layout Itemize
@@ -635,8 +635,8 @@ reference "fig:Visualization and control menu"
 \end_inset
 
 ).
- Changes in this three variables will lead to different visualizations of
- the scene.
+ Changes in this three variables lead to different visualizations of the
+ scene.
 \end_layout
 
 \begin_deeper
@@ -752,7 +752,7 @@ name "fig:Preset-position-setting"
 Tour setting: One could apart from pointing the camera to a static point,
  set it to describe a tour over the scene.
  This process is done by setting at least two different preset positions
- from where the camera will be moving from one to the other at a set speed.
+ from where the camera is moving from one to the other at a set speed.
  The menu to configure this behavior is displayed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -816,7 +816,7 @@ Experiment Setup
 For all the experiments that are going to be analyzed along this Chapter
  the experiment setup should be explained.
  In this section, the generated data-set and ground truth and the proposed
- evaluation frame work used to obtain results will be detailed.
+ evaluation frame work used to obtain results are detailed.
 \end_layout
 
 \begin_layout Subsection
@@ -871,7 +871,7 @@ reference "fig:Dataset example frames"
 \end_layout
 
 \begin_layout Itemize
-Number of videos: 3
+Number of videos per recording: 3
 \end_layout
 
 \begin_layout Itemize
@@ -1127,8 +1127,8 @@ reference "fig:Annotated example frames"
  The selected sequence for evaluation purposes is a mix between easy and
  difficult situations for a pedestrian detector.
  Situations go from people walking alone across the hall, to people pushing
- objects like a wheelchair in addition to big groups of people both inside
- and outside the building where people are always occluded.
+ objects like a wheelchair, in addition to big groups of people both inside
+ and outside the building or others where people are always occluded.
  In general due to image quality in terms of resolution and illumination
  and pedestrian situations the selected sequences are in the medium-high
  range of difficulty for pedestrian detection.
@@ -1141,8 +1141,8 @@ Evaluation Framework
 \begin_layout Standard
 Once the data-set recording has been correctly annotated one can proceed
  to evaluate the performance of pedestrian detectors.
- In order to evaluate these algorithms precision and recall metrics will
- be used.
+ In order to evaluate these algorithms precision and recall metrics are
+ used.
  The calculation of these metrics is defined in Eq.
  
 \begin_inset CommandInset ref
@@ -1181,8 +1181,8 @@ Recall=\frac{\#True\,Positives}{\#True\,Positives+\#False\,Negatives}\label{eq:R
 
 \end_inset
 
-Precision gives us information about the classification stage, whereas the
- second one provides overall system performance information.
+Precision gives us information about the classification stage, whereas recall
+ provides overall system performance information.
  
 \end_layout
 
@@ -1238,8 +1238,8 @@ reference "fig:Intersection over Union"
 
 \end_inset
 
- where one can observe that a almost perfect overlapping between bounding
- boxes does not lead to a high IoU value.
+ where one can see that a almost perfect overlapping between bounding boxes
+ does not lead to a high IoU value.
  For our evaluation framework a detection is consider correct if 
 \begin_inset Formula $IoU(Detection,\,Ground\,Truth)\leq0.5$
 \end_inset
@@ -1305,8 +1305,8 @@ Application Performance
 \end_layout
 
 \begin_layout Standard
-Along this section we will evaluate the application in terms of general
- computational time.
+Along this section evaluation for the application in terms of general computatio
+nal time is done.
 \end_layout
 
 \begin_layout Standard
@@ -1717,7 +1717,7 @@ Homography Calculation
 \end_layout
 
 \begin_layout Standard
-First results concerning with the proposed system with deal with homographies.
+First results concerning with the proposed system deal with homographies.
  As said in the previous Chapter correctly calculated homographies are essential
  for the right performance of further algorithms.
  In order to test that homographies have been correctly done by the manual
@@ -1906,8 +1906,8 @@ reference "fig:Projection Camera-1-View 7"
 
 \begin_layout Standard
 It is important to notice in this results how precision and image quality
- is reduce the further the points are from the camera.
- This is a standard problem when dealing with such homographies.
+ is reduced the further the points are from the camera.
+ This is a standard problem when dealing with such type of homographies.
 \end_layout
 
 \begin_layout Section
@@ -1915,8 +1915,8 @@ Semantic Segmentation
 \end_layout
 
 \begin_layout Standard
-In this Section some results concerning the performance of PSP-Net in out
- environment are presented.
+In this Section some results concerning the performance of PSP-Net in the
+ proposed environment are presented.
  In order to test the algorithm and for the lack of semantic ground truth
  results should be visually evaluated.
  For this purpose Figure 
@@ -1926,7 +1926,7 @@ reference "fig:PSP-Net-result-examples"
 
 \end_inset
 
-.
+ is used.
 \end_layout
 
 \begin_layout Standard
@@ -2095,7 +2095,7 @@ reference "fig:PSP-Net-result-examples"
 
 \end_inset
 
- is correctly extracted.
+, is correctly extracted.
  Pedestrians are also detected although performance in pedestrian detection
  scope is analyzed in the following section.
 \end_layout
@@ -2104,11 +2104,12 @@ reference "fig:PSP-Net-result-examples"
 However, it is important to point that segmentation is not perfect when
  dealing with difficult illuminations or complicated objects.
  It can be observed that columns are not really correctly segmented.
- There are even some that are mistaken as walls which is a problem for our
- system.
+ There are even some that are mistaken as walls or floor.
+ This is one of the main issues for our system as a accurate floor detection
+ is needed.
  In addition, crystal doors such as the ones displayed in the top and bottom
  images are not correctly distinguish from building and wall labels which
- is a main issue for further algorithms.
+ is also a main issue for further statistical data extraction algorithms.
 \end_layout
 
 \begin_layout Section
@@ -2116,14 +2117,13 @@ Pedestrian Detection
 \end_layout
 
 \begin_layout Standard
-During this section results in the context of pedestrian detection will
- be presented.
+During this section results in the context of pedestrian detection are presented.
  We propose a set of four different experiments to test our developed system.
  
 \end_layout
 
 \begin_layout Standard
-The first one, will test all of the previously analyzed pedestrian detections
+The first one, tests all of the previously analyzed pedestrian detections
  working in a mono-camera environment.
  This means that neither information is shared by the cameras nor semantic
  constrains are applied.
@@ -2162,7 +2162,7 @@ Finally, the last test will embrace all the proposed algorithms working
 \end_layout
 
 \begin_layout Standard
-It is important to remind that results will be presented within Recall versus
+It is important to remind that results are presented within Recall versus
  Precision curves.
  In order to create these graphs algorithms have been evaluated in all the
  four test using five different values for the score thresholding 
@@ -2174,7 +2174,7 @@ It is important to remind that results will be presented within Recall versus
 \begin_inset Formula $0,\,0.2,\,0.4,\,0.6,\,0.8$
 \end_inset
 
-) for an algorithm will provide one point of the curve.
+) for an algorithm provides one point of the curve.
  To proceed with this process all the algorithms scores have been normalized
  from its original values using the maximum and minimum scores to the mentioned
  interval.
@@ -2451,7 +2451,7 @@ Camera 3
 status open
 
 \begin_layout Plain Layout
-Recall / Precision graphs multiono camera
+Recall / Precision graphs multi camera
 \end_layout
 
 \end_inset
@@ -3005,7 +3005,16 @@ PSP-Net
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-F-Score comparison between all the experiments and pedestrian detector appraoche
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+F-Score comparison for pedestrian detector approaches.
+\end_layout
+
+\end_inset
+
+F-Score comparison between all the experiments and pedestrian detector approache
 s.
 \end_layout
 
@@ -3030,8 +3039,8 @@ Statistical Usage Data
 \begin_layout Standard
 Finally, results concerning statistical usage data are presented.
  As said in the previous Chapter, we obtain one graphic per selected semantic
- area, which in our case are floor and door due to the mentioned map in
- Figure 
+ area, which in our case are floor and door due to the usage of the mentioned
+ map in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Statistical Semantic Map"
@@ -3053,14 +3062,14 @@ reference "fig:Stadistical-Data-Usage Curves"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3092,7 +3101,7 @@ Floor usage
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3177,14 +3186,14 @@ reference "fig:Pedestrians paths usage along the Hall. 70 pix"
 \end_inset
 
  pixels.
- A temporal comparison have been with the correspondent frame.
+ A temporal comparison have been made with the correspondent frame.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3529,7 +3538,7 @@ name "fig:Pedestrians paths usage along the Hall. 40 pix"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
