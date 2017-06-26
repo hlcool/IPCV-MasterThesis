@@ -218,7 +218,7 @@ filename "StateOftheArt.lyx"
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
-filename "Application.lyx"
+filename "Proposed System.lyx"
 
 \end_inset
 
@@ -228,7 +228,7 @@ filename "Application.lyx"
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
-filename "Proposed System.lyx"
+filename "Application.lyx"
 
 \end_inset
 

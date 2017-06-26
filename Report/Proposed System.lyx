@@ -98,12 +98,12 @@ name "chap:Proposed-System"
 \end_layout
 
 \begin_layout Standard
-During this Chapter our proposed system is deeply explained.
- We start from the main contextual model generation and pedestrian detectors
- to finally explain the fusion of all the obtained elements in a multi camera
- system with semantic constraints.
- In addition the generation of statistical usage data from semantic areas
- is proposed.
+During this Chapter our proposed system is analyzed.
+ We start from the contextual model generation and pedestrian detectors.
+ Then, the fusion of all the obtained elements in a multi camera system
+ with semantic constraints is described.
+ Finally, a case of example which generates statistical usage data from
+ semantic areas is proposed.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -111,8 +111,7 @@ reference "fig:Proposed-system-flowchart"
 
 \end_inset
 
- represents the flowchart that the application follows for the computation
- of the main mentioned algorithms.
+ depicts the flowchart of the proposed method
 \end_layout
 
 \begin_layout Standard
@@ -138,7 +137,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Proposed system flowchart
+Flowchart of the proposed method
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Proposed-system-flowchart"
@@ -171,18 +170,22 @@ name "sec:Contextual-Model-Generation"
 
 \begin_layout Standard
 One of the main objectives in the scope of this work is to perform semantic
- segmentation, which as explained in Chapter 
+ segmentation, which -as explained in Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:State of the art"
 
 \end_inset
 
- means to divide one frame into different semantic areas.
+- targets to divide one frame into different semantic areas.
  The relative position in the scene for elements such as doors, walls, paths,
- and columns are necessary to achieve further objectives such as multi camera
+ and columns is required to achieve further objectives such as multi camera
  pedestrian constraint and statistical data extraction.
- For this complex task the algorithm PSP-Net 
+ 
+\end_layout
+
+\begin_layout Standard
+For this complex task the algorithm PSP-Net 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "zhao2016pyramid"
@@ -198,18 +201,28 @@ reference "chap:State of the art"
 
  is used.
  We choose PSP-Net because at the moment of this work was the one with available
- code achieving the best results.
- The goal for this algorithm as said before, is is to assign each pixel
- in the image a category label achieving by this the location and shape
- for each element.
- 
+ code achieving the best results (see Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Cityscapes Dataset Challenge Results"
+
+\end_inset
+
+).
+ The goal of this algorithm is is to assign each pixel in the image a category
+ label.
+\end_layout
+
+\begin_layout Subsection
+Pyramid Scene Parsing Network
 \end_layout
 
 \begin_layout Standard
-This process is based on a deep Convolutional Neural Network (CNN) called
- Pyramid Scene Parsing Network (PSPNet) which is designed to improve performance
- for open-vocabulary object and stuff identification in complex scene parsing.
- The structure of the network can be observed in Figure 
+It uses a deep Convolutional Neural Network (CNN) called Pyramid Scene Parsing
+ Network (PSPNet).
+ This network is designed to improve performance for open-vocabulary object
+ identification in complex scene parsing.
+ The structure of the network is represented in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Overview-of-the proposed PSPNet"
@@ -261,23 +274,31 @@ name "fig:Overview-of-the proposed PSPNet"
 
 \end_layout
 
+\begin_layout Subsubsection*
+Algorithm Stages
+\end_layout
+
 \begin_layout Standard
-Given the image in 
+The algorithm is divided into different stages:
+\end_layout
+
+\begin_layout Enumerate
+Image in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Overview-of-the proposed PSPNet"
 
 \end_inset
 
-.(a) the first step is to process it through a pre trained CNN called ResNet
- 
+.(a) is processed it through a pre trained CNN called ResNet 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "he2016deep"
 
 \end_inset
 
- to get the full feature map 
+.
+ The objective is to get the full feature map 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Overview-of-the proposed PSPNet"
@@ -293,15 +314,15 @@ reference "fig:Overview-of-the proposed PSPNet"
  
 \end_layout
 
-\begin_layout Standard
-The second step is to apply the main contribution of 
+\begin_layout Enumerate
+Apply the main contribution of 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "zhao2016pyramid"
 
 \end_inset
 
-, which is called the Pyramid Pooling Module 
+, called the Pyramid Pooling Module 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Overview-of-the proposed PSPNet"
@@ -322,10 +343,9 @@ reference "fig:Overview-of-the proposed PSPNet"
  
 \end_layout
 
-\begin_layout Standard
-After the bilinear interpolation upsampling, concatenation layers are used
- to form the final feature representation by fusing the feature map extracted
- in 
+\begin_layout Enumerate
+Concatenation layers are used to form the final feature representation by
+ fusing the feature map extracted in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Overview-of-the proposed PSPNet"
@@ -334,8 +354,12 @@ reference "fig:Overview-of-the proposed PSPNet"
 
 .(b) and the Pyramid Pooling Module output.
  This final feature carries both local and global context information.
- In the end, the representation is fed into a convolutional layer which
- gets the final per-pixel prediction 
+ 
+\end_layout
+
+\begin_layout Enumerate
+The representation is fed into a convolutional layer which gets the final
+ per-pixel prediction 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Overview-of-the proposed PSPNet"
@@ -343,6 +367,10 @@ reference "fig:Overview-of-the proposed PSPNet"
 \end_inset
 
 .(d).
+\end_layout
+
+\begin_layout Subsubsection*
+Semantic Segmentation Particularization
 \end_layout
 
 \begin_layout Standard
@@ -394,6 +422,10 @@ CityScapes: The last dataset defines 19 categories containing both stuff
  driving in the street.
 \end_layout
 
+\begin_layout Subsubsection*
+Model Particularization
+\end_layout
+
 \begin_layout Standard
 As one can observe the three different models represent different object
  categories in different real spaces.
@@ -416,8 +448,12 @@ From the trained indoor models we have to choose between those whose categories
  have classes such as door or wall which are really important for us.
 \end_layout
 
+\begin_layout Subsubsection*
+Selected Model
+\end_layout
+
 \begin_layout Standard
-With this two reasons being taken into account we have selected the model
+With these two reasons being taken into account we have selected the model
  ADE20K because as said, it has elements such as walls, floor, person and
  column in its model.
  However, we consider that most of the 150 label categories will be unused
@@ -742,18 +778,24 @@ Pedestrian Detection
 
 \begin_layout Standard
 Along this section pedestrian State of the Art detectors that have been
- selected to work in our system are presented.
- Some of them have been chosen due to algorithm simplicity and computational
- cost and others, due to its contrasted performance while working in real
- sequences as we have seen in Chapter 
+ integrated in the proposed system are presented.
+ Some of them have been chosen due to their efficiency, whereas some have
+ been chosen due to its contrasted good performance (see Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:State of the art"
 
 \end_inset
 
-.
- However, one of the main reasons of choosing the following five algorithms
+).
+\end_layout
+
+\begin_layout Standard
+Besides, algorithm source code of all the chosen approaches is available.
+\end_layout
+
+\begin_layout Standard
+However, one of the main reasons of choosing the following five algorithms
  among others in the SoA is the possibility of either having the original
  source code or the practical implementation within an external OpenCV library.
 \end_layout
@@ -767,7 +809,15 @@ Histogram of Oriented Gradients, i.e.
  HOG, is one of the main used detectors along pedestrian detection field.
  This fact is due to it's extremely simplicity in terms of the descriptor
  complexity.
- Pedestrians are described as set of HOG.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Person Descriptor
+\end_layout
+
+\begin_layout Standard
+Pedestrians are described as set of HOG.
  This means that its shape and appearance can be described by a set of gradients
  and intensities organized as orientation histograms.
  These histograms describe intensity distributions from local gradients
@@ -824,6 +874,10 @@ name "fig:HOG-Pedestrian-Descriptor"
 
 \end_layout
 
+\begin_layout Subsubsection*
+Model Generation
+\end_layout
+
 \begin_layout Standard
 Once HOG have been used to describe the person shape, Support Vector Machines
  are used to train a person model and to classify potential candidates as
@@ -861,7 +915,15 @@ As was mentioned in the previous paragraph one of the main drawbacks when
  working with the simple HOG pedestrian detector is that it describes the
  person model as a hole which leads, inevitably, to the mentioned occlusion
  drawbacks.
- Deformable Part Model tries to solve this problem, among others, by defining
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Person Descriptor
+\end_layout
+
+\begin_layout Standard
+Deformable Part Model tries to solve this problem, among others, by defining
  the model as first, a global coarse template, secondly, several higher
  resolution part templates and finally a spatial model for the location
  of each part.
@@ -937,6 +999,10 @@ name "fig:Example-detection-obtained with DPM Person model"
 
 \end_layout
 
+\begin_layout Subsubsection*
+Model Generation
+\end_layout
+
 \begin_layout Standard
 Both global and part templates are modeled with histogram of gradient features
  and the model is built by using an improving over SVM called latent SVM.
@@ -944,6 +1010,10 @@ Both global and part templates are modeled with histogram of gradient features
  filter on the window plus the sum over parts of the maximum over placements
  of the part filter score on the resulting sub window minus the deformation
  cost.
+\end_layout
+
+\begin_layout Subsubsection*
+Advantages over other PD Approaches
 \end_layout
 
 \begin_layout Standard
@@ -976,7 +1046,15 @@ Aggregated Channel Features Detector
 \begin_layout Standard
 The basic idea behind ACF detector is to increase other approaches performance
  by the use of many different channels to describe an input image I.
- In Figure 
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Algorithm Stages
+\end_layout
+
+\begin_layout Standard
+In Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:ACF Architecture"
@@ -984,7 +1062,11 @@ reference "fig:ACF Architecture"
 \end_inset
 
  one can observe the working path of the mentioned detector.
- Given an initial image 
+ 
+\end_layout
+
+\begin_layout Enumerate
+Given an initial image 
 \begin_inset Formula $I$
 \end_inset
 
@@ -994,17 +1076,6 @@ reference "fig:ACF Architecture"
 \end_inset
 
 .
- After the computation, every block of pixels in 
-\begin_inset Formula $C$
-\end_inset
-
- is summed and the resulting lower resolution channels are smoothed.
- After a vectorizing process features are single pixel lookups in the aggregated
- channels.
- Boosting trees are then used to learn this features (pixels) in order to
- distinguish people from the background.
- It is quite evidentially that the use of the correct channels leads to
- better results.
  In 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1016,6 +1087,7 @@ key "dollar2014fast"
  pedestrian detection:
 \end_layout
 
+\begin_deeper
 \begin_layout Enumerate
 Normalized gradient magnitude (1 channel).
 \end_layout
@@ -1028,11 +1100,28 @@ Histogram of oriented gradients (6 channels).
 LUV color channels (3 channels).
 \end_layout
 
+\end_deeper
+\begin_layout Enumerate
+After the computation, every block of pixels in 
+\begin_inset Formula $C$
+\end_inset
+
+ is summed and the resulting lower resolution channels are smoothed.
+ 
+\end_layout
+
+\begin_layout Enumerate
+After a vectorizing process features are single pixel lookups in the aggregated
+ channels.
+ Boosting trees are then used to learn this features (pixels) in order to
+ distinguish people from the background.
+\end_layout
+
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1120,6 +1209,10 @@ key "arbelaez2014multiscale"
  grouping method is used.
 \end_layout
 
+\begin_layout Subsubsection*
+Algorithm Improvements over R-CNN
+\end_layout
+
 \begin_layout Standard
 Fast-RCNN method sets its contributions in a several number of innovations
  to improve training and testing speed over its fundamental base R-CNN:
@@ -1141,6 +1234,10 @@ Training can update all network layers.
 No disk storage is required for feature caching.
 \end_layout
 
+\begin_layout Subsubsection*
+Algorithm Architecture
+\end_layout
+
 \begin_layout Standard
 In Figure 
 \begin_inset CommandInset ref
@@ -1152,33 +1249,7 @@ reference "fig:Fast-R-RCNN-architecture"
  one can observe the general Fast R-RCNN architecture.
  The input for the Fast-RCNN network are the entire desired image that one
  wants to process and the set of object proposals.
- The first step in the network is to process the whole image with several
- convolutional and max pooling layers to produce a convolutional feature
- map.
- Then, for every object proposal present in the image, a region of interest
- (ROI) pooling layer extracts a fixed-length feature vector from the feature
- map.
-\end_layout
-
-\begin_layout Standard
-Each feature vector is after, introduced into a sequence of fully connected
- (FC) layers that finally diverge into to output layers.
- The first one produces probabilities estimates over 
-\begin_inset Formula $K$
-\end_inset
-
- object classes.
- The second one outputs four real numbers for each of the 
-\begin_inset Formula $K$
-\end_inset
-
- object classes.
- This set of 4 values encodes the final bounding-box positions for one of
- the objects from the 
-\begin_inset Formula $K$
-\end_inset
-
- classes.
+ Algorithm stages are:
 \end_layout
 
 \begin_layout Standard
@@ -1238,6 +1309,40 @@ name "fig:Fast-R-RCNN-architecture"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Enumerate
+The first step in the network is to process the whole image with several
+ convolutional and max pooling layers to produce a convolutional feature
+ map.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Then, for every object proposal present in the image, a region of interest
+ (ROI) pooling layer extracts a fixed-length feature vector from the feature
+ map.
+\end_layout
+
+\begin_layout Enumerate
+Each feature vector is after, introduced into a sequence of fully connected
+ (FC) layers that finally diverge into to output layers.
+ The first one produces probabilities estimates over 
+\begin_inset Formula $K$
+\end_inset
+
+ object classes.
+ The second one outputs four real numbers for each of the 
+\begin_inset Formula $K$
+\end_inset
+
+ object classes.
+ This set of 4 values encodes the final bounding-box positions for one of
+ the objects from the 
+\begin_inset Formula $K$
+\end_inset
+
+ classes.
 \end_layout
 
 \begin_layout Standard
@@ -1544,6 +1649,10 @@ Homography calculation is a pivotal task in our work and the main base for
  detections to the cenital plane with the same proceeding.
 \end_layout
 
+\begin_layout Subsubsection*
+Generic Homography Problem
+\end_layout
+
 \begin_layout Standard
 The formulation of the generic homography problem between two cameras and
  a plane is as follows:
@@ -1770,8 +1879,15 @@ As said in the introduction of this Section, one of the main objectives
  pedestrian and semantic, into a common plane for all of them.
  To achieve this goal a cenital plane that correctly represents the scene
  is needed.
- The first used approach for the cenital plane can be observe in Figure
  
+\end_layout
+
+\begin_layout Subsubsection*
+First Approach
+\end_layout
+
+\begin_layout Standard
+The first used approach for the cenital plane can be observe in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:First cenital plane approach"
@@ -1833,6 +1949,10 @@ This cenital plane lacks of details from the scene.
  This means that the cenital plane should have enough details so the point
  selection is done correctly by the user and the homography is correctly
  computed.
+\end_layout
+
+\begin_layout Subsubsection*
+Second Approach
 \end_layout
 
 \begin_layout Standard
@@ -2142,6 +2262,10 @@ Due to the creation of the homography codebook we now have to choose between
  matrix.
 \end_layout
 
+\begin_layout Subsubsection*
+AKAZE Point Descriptor
+\end_layout
+
 \begin_layout Standard
 In order to compare two images we have done comparison between points of
  interest.
@@ -2215,6 +2339,10 @@ y low.
 
  to maintain a trade off between projection quality due to the overlap between
  the views and time consumption.
+\end_layout
+
+\begin_layout Subsubsection*
+Intermediate Homogrpahy
 \end_layout
 
 \begin_layout Standard
@@ -2376,14 +2504,14 @@ reference "fig:Cylinder-estimation-for camera instances projections"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/Proposed System/Cylinder estimation between cameras.png
 	lyxscale 20
-	width 60text%
+	width 75text%
 
 \end_inset
 
@@ -4280,6 +4408,10 @@ Along this Section we explain the proposed system to extract statistical
  of time in the determined semantic area during the sequence.
 \end_layout
 
+\begin_layout Subsection
+Statistical Semantic Map Generation
+\end_layout
+
 \begin_layout Standard
 In order to extract usage data the first step is to create a projected common
  semantic map.
@@ -4321,6 +4453,18 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/Statistical Map Legend.png
+	lyxscale 10
+	width 60text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -4344,6 +4488,10 @@ name "fig:Statistical Semantic Map"
 
 \end_layout
 
+\begin_layout Subsection
+Usage Curves and Paths
+\end_layout
+
 \begin_layout Standard
 As one can observe we have decided to only take into account for this process
  floor, doors and chairs, which are the most accurate detections from the
@@ -4364,7 +4512,7 @@ reference "fig:Second cenital plane approach with camera positions"
 
  into different subregions of fixed size and extract in which of them pedestrian
 s are more likely to be.
- This process leads to a set of most used paths.
+ This process leads to a set of most used paths per subregions.
 \end_layout
 
 \end_body

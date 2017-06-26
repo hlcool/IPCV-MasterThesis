@@ -240,7 +240,7 @@ Escuela Politécnica Superior
 \begin_inset Graphics
 	filename Images/Logos/IPCV Logos.png
 	lyxscale 50
-	scale 30
+	width 100text%
 
 \end_inset
 
@@ -330,23 +330,6 @@ ONLINE CONTEXTUAL UPDATING IN MULTI-CAMERA SCENARIOS
 \end_layout
 
 \begin_layout Standard
-\align center
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-vspace*{1cm}
-\end_layout
-
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Standard
 \noindent
 \align center
 
@@ -380,7 +363,7 @@ status open
 
 
 \backslash
-vspace*{1.5cm}
+vspace*{1cm}
 \end_layout
 
 \end_inset
@@ -438,8 +421,9 @@ Universidad Autónoma de Madrid
 \begin_layout Standard
 \noindent
 \align center
-Proyecto parcialmente financiado por el gobierno español bajo el proyecto
- TEC2014-53176-R (HAVideo)
+This work has been partially suported by Ministerio de Economía, Industria
+ y Competitividad of the Spanish Government and Fondo Europeo para el Desarrollo
+ Regional of the European Union under the project TEC2014-53176-R (HAVideo)
 \end_layout
 
 \begin_layout Standard
@@ -449,7 +433,16 @@ Proyecto parcialmente financiado por el gobierno español bajo el proyecto
 \begin_inset Graphics
 	filename Images/Logos/Logotipo_del_Ministerio_de_Economía,_Industria_y_Competitividad.svg.png
 	lyxscale 30
-	width 50text%
+	width 45text%
+	clip
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename Images/Logos/UE.png
+	lyxscale 30
+	width 45text%
 	clip
 
 \end_inset
@@ -566,28 +559,28 @@ noindent
 \end_layout
 
 \begin_layout Standard
-The following project has been proposed to achieve two main objectives.
- The first one aims to develop a system capable of perform pedestrian detection
- and semantic segmentation over a multi camera system.
- The fusion of both disciplines leads to combine pedestrian and semantic
- information in order to constrain detections.
- Also, the multi camera system is used to reproject detections from one
- camera to the others to improve accuracy.
- In addition, statistical data usage of concrete semantic areas is also
- extracted.
- Second objective is related to the development of a Graphical User Interface
- (GUI) from which algorithms can be controlled and results can be displayed.
+This project describes a method to perform pedestrian detection and semantic
+ segmentation in a multi-camera recorded.
+ The fusion of both disciplines leads to a contextually refined pedestrian
+ detection.
+ The multi camera system is used to reproject detections from one camera
+ to the others to improve accuracy.
+ As an use example, statistical data usage of specific semantic areas in
+ the scene is also extracted.
+ For user interaction a Graphical User Interface (GUI) is designed.
+ The GUI allows the user to define the method setup as well as display results
+ in execution time.
 \end_layout
 
 \begin_layout Standard
-In order to achieve these objectives a state of the art study has been done.
- Pedestrian detection approaches are deeply reviewed including those that
- need object proposals.
- Also, recent trends nowadays and next steps in the scope of Pedestrian
- Detection are analyzed.
- In addition, actual state of the art regarding contextual information and
- in concrete, semantic segmentation is studied.
- Finally, multi camera scenarios configurations are described.
+In order to carry these task out a study of the state of the art has been
+ done.
+ Pedestrian detection approaches are reviewed emphasizing in those that
+ rely on object proposals.
+ Also, recent trends in the task of Pedestrian Detection are analyzed.
+ In addition, current state of the art in the extraction of contextual informati
+on and -specifically- on the sue of, semantic segmentation is studied.
+ Finally, multi camera scenarios configurations are also described.
 \end_layout
 
 \begin_layout Standard

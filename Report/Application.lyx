@@ -99,19 +99,10 @@ name "chap:Developed Application"
 
 \begin_layout Standard
 Within this Chapter the developed application in terms of software development
- will be analyze.
- This application will be the base for the calculation, visualization and
- arrangement of the usage statistics from the different areas of interest,
- pedestrian detections and other results.
- As said in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Objectives"
-
-\end_inset
-
- this usage data can be pre-generated or generated ideally under a real-time
- constraint.
+ is described.
+ This application is the base for the integration of pedestrian detection
+ algorithms as well as semantic segmentation and the visualization and arrangeme
+nt of the usage statistics from the different areas of interest.
  The main application environment should be user-friendly to ensure a correct
  and easy usage by the end user.
  It has been developed completely from scratch for the purpose of this Master
@@ -141,9 +132,9 @@ Its cross-platform characteristic which makes it easily portable from one
 \end_layout
 
 \begin_layout Enumerate
-Its application window designer that enables the programmer to design software
- windows by using an interface instead of having to code to create the mentioned
- window and set up all the desired configuration (Figure 
+Its application window designer that allows the programmer to design software
+ windows by using an interface instead of having to create windows by coding
+ (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:QT-Window-Designer"
@@ -165,7 +156,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Developed Application/QT Window Designer.png
 	lyxscale 20
-	width 95text%
+	width 100text%
 
 \end_inset
 
@@ -209,33 +200,45 @@ Its multi-thread capabilities that enables to perform different code segments
 
 \begin_layout Standard
 Due to the complexity of some of the algorithms used in terms of parameter
- tuning and configuration two separate applications have been developed,
- engineer and user version.
+ tuning and configuration, two separate applications have been developed:
+ developer and user version.
  
 \end_layout
 
 \begin_layout Standard
-The first version of the software corresponds to the engineer application.
+The first version of the software corresponds to the developer application.
  As its name says, it is design so it can be used by programmers or engineers
  who generally understand concepts of the algorithms running at the backend
  application.
- This means that all the variable parameters are available for tuning from
- the graphical interface, as well as different detector options and visualizatio
-n.
- 
+ This means that:
+\end_layout
+
+\begin_layout Enumerate
+Variable parameters are available for tuning from the graphical interface.
+\end_layout
+
+\begin_layout Enumerate
+Different pedestrian detectors can be selected.
+\end_layout
+
+\begin_layout Enumerate
+Options and tuning for these algorithms can be done.
+\end_layout
+
+\begin_layout Enumerate
+Results are displayed in different areas.
 \end_layout
 
 \begin_layout Standard
-The final motivation for this version is to achieve high variability and
- tuning in terms of algorithm parameters, however, in order to have good
- performance the user should have basic knowledge about how parameters are
- affecting the software performance.
+This version allows to change parameters and methods online.
+ However, this assumes that the user has basic knowledge on how parameters
+ affect the software performance.
 \end_layout
 
 \begin_layout Standard
-For the engineer application both single-thread and multi-thread versions
- have been developed and are analyzed on the following lines.
- All the code for both approaches is available in the following 
+For the developer application both single-thread and multi-thread versions
+ have been developed and are discussed on the following lines.
+ All the code for both approaches is available in a 
 \color blue
 
 \begin_inset CommandInset href
@@ -249,9 +252,9 @@ target "https://github.com/alexlopezcifuentes/IPCV-MasterThesis/"
 \end_layout
 
 \begin_layout Standard
-During the analysis of the application trough out the Section some flow-charts
+During the analysis of the application trough the Section some flow-charts
  are displayed.
- The used legend in those can be observed in Figure 
+ A common legend for all of them is incuded in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Flow-chart-legend"
@@ -398,12 +401,12 @@ name "fig:Flow-chart-legend"
 \end_layout
 
 \begin_layout Section
-Single-thread Engineer Application
+Single-thread Developer Application
 \end_layout
 
 \begin_layout Standard
-During the first stages of the development and for simplicity sake the applicati
-on has been design and developed to run under a single thread.
+During the first stages of the development and for the sake of simplicity
+ the application has been designed and developed to run under a single thread.
  This means that all the processing has been done sequentially camera by
  camera.
  A simple flow-chart diagram that illustrates the execution path can be
@@ -717,25 +720,25 @@ name "fig:Flow-chart diagram for the single-thread application"
 
 \begin_layout Standard
 This approach has the advantage that all the code is executed in the same
- segment which makes really easy for instance, to share information between
- cameras as they share the same memory segments, however, this design will
- only be valid if the computational effort is minimum.
+ segment which makes really easy , to share information between cameras
+ as they share the same memory segments.
+ However, this design is only be valid if the computational effort is minimum.
  Before displaying any results, all the process for the three cameras should
  be computed one after the other.
  This means that when calculating detections for one camera the others will
  remain idle.
  When working with such a multi-camera system with heavy algorithms running
- as the proposed in our work, the computational time increases exponentially
+ -as in the proposed method- the computational time increases exponentially
  and this design is no longer worthwhile.
 \end_layout
 
 \begin_layout Section
-Multi-thread Engineer Application
+Multi-thread Developer Application
 \end_layout
 
 \begin_layout Standard
-The new and used approach can be observed in the flow-chart displayed in
- Figure 
+Multi-thread Developer approach can be observed in the flow-chart displayed
+ in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Flow-chart diagram for the multi-thread application"
@@ -745,37 +748,37 @@ reference "fig:Flow-chart diagram for the multi-thread application"
 .
  As one can observe, now different threads are running in parallel, one
  for each camera, and so, all the process is no longer done sequentially
- and computing power from the CPU can be much more usable.
+ and computing power of the CPU can be further exploited.
 \end_layout
 
 \begin_layout Standard
-Now, however, as threads are running separately one have to create some
- sort of synchronization between them to keep consistency in the application.
+However, as threads are running separately a synchronization strategy should
+ be included to keep consistency in the application.
  One thread can process a frame faster than another one due to multiple
  external reasons, nevertheless, the application should display the same
- exact frame for all the cameras more over if the information is going to
- be shared between threads.
- In our case the synchronization is perform by the barrier that can be observed
- in diagram 
+ exact frame for all the cameras at the same time.
+ This is specially relevant if results are going to be shared between threads.
+ In our case the synchronization is performed by two barriers -see diagram
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Flow-chart diagram for the multi-thread application"
 
 \end_inset
 
-.
- This barrier will create a meeting point for all the threads that all of
- them must reach before continuing with their execution.
+-.
  
 \end_layout
 
-\begin_layout Standard
-In the code two barriers will be available.
- The first one will ensure that all the threads have perform pedestrian
- detection before sharing those detections between the rest of the threads.
- The second one will be at the end of a frame execution, so threads wait
- to each other before sending results to the main window for representing
- processes.
+\begin_layout Itemize
+The first one ensures that all the threads have performPD before sharing
+ these detections between the rest of the threads.
+ 
+\end_layout
+
+\begin_layout Itemize
+Second barrier creates a meeting point at the end of the frame processing
+ so a thread waits to the others before sending results to the main display.
 \end_layout
 
 \begin_layout Standard
@@ -907,7 +910,7 @@ footnotesize Get New Video Frame};
 
 
 \backslash
-node (Camera2) [process, below of=GetFrame, yshift = -0.5cm] {
+node (Camera2) [process, below of=GetFrame, yshift = -0cm] {
 \backslash
 footnotesize Camera 2 Thread};
 \end_layout
@@ -934,16 +937,52 @@ footnotesize Camera 3 Thread};
 
 
 \backslash
-node (ThreadBarrier) [startstop, below of=Camera2] {
+node (PDBarrier) [startstop, below of=Camera2] {
 \backslash
-footnotesize Thread Barrier / Meeting Point};
+footnotesize PD Barrier / Meeting Point};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-node (Display) [process, below of=ThreadBarrier] {
+node (Camera22) [process, below of=PDBarrier, yshift = -0cm] {
+\backslash
+footnotesize Camera 2 Thread};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (Camera12) [process, left of=Camera22, xshift=-2.7cm] {
+\backslash
+footnotesize Camera 1 Thread};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (Camera32) [process, right of=Camera22, xshift=2.7cm] {
+\backslash
+footnotesize Camera 3 Thread};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (DisplayBarrier) [startstop, below of=Camera22] {
+\backslash
+footnotesize Display Barrier / Meeting Point};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node (Display) [process, below of=DisplayBarrier] {
 \backslash
 footnotesize Display};
 \end_layout
@@ -952,7 +991,7 @@ footnotesize Display};
 
 
 \backslash
-node (VideoEnd) [decision, below of=Display, yshift=-0.5cm] {
+node (VideoEnd) [decision, below of=Display, yshift=-0.2cm] {
 \backslash
 footnotesize Video Finished};
 \end_layout
@@ -961,7 +1000,7 @@ footnotesize Video Finished};
 
 
 \backslash
-node (VideoStop) [startstop, below of=VideoEnd, yshift=-1cm] {
+node (VideoStop) [startstop, below of=VideoEnd, yshift=-0.5cm] {
 \backslash
 footnotesize Video Processing Stops};
 \end_layout
@@ -1035,28 +1074,70 @@ draw [arrow] (GetFrame.south) -- (Camera3.north);
 
 
 \backslash
-draw [arrow] (Camera1) |- (ThreadBarrier);
+draw [arrow] (Camera1) |- (PDBarrier);
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-draw [arrow] (Camera2) -- (ThreadBarrier);
+draw [arrow] (Camera2) -- (PDBarrier);
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-draw [arrow] (Camera3) |- (ThreadBarrier);
+draw [arrow] (Camera3) |- (PDBarrier);
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-draw [arrow] (ThreadBarrier) -- (Display);
+draw [arrow] (PDBarrier.south) -- (Camera12.north);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (PDBarrier.south) -- (Camera22.north);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (PDBarrier.south) -- (Camera32.north);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (Camera12) |- (DisplayBarrier);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (Camera22) -- (DisplayBarrier);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (Camera32) |- (DisplayBarrier);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [arrow] (DisplayBarrier) -- (Display);
 \end_layout
 
 \begin_layout Plain Layout
@@ -1125,6 +1206,10 @@ name "fig:Flow-chart diagram for the multi-thread application"
 
 \end_layout
 
+\begin_layout Subsection
+Main Application Window
+\end_layout
+
 \begin_layout Standard
 Main application window is shown in Figure 
 \begin_inset CommandInset ref
@@ -1180,25 +1265,42 @@ name "fig:Main-application-window"
 
 \end_layout
 
-\begin_layout Enumerate
-Application menu bar.
+\begin_layout Subsubsection
+Application Menu Bar
 \end_layout
 
-\begin_deeper
 \begin_layout Standard
-In this menu we will have the main application actions.
- From here the user can open a new video sequence, compute the set of needed
- homographies for the algorithms or close the program.
- The application also provides a help searcher and an external information
- window.
- This set of functions can be seen in Figure 
+In the menu depict in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Application-menu-bar"
 
 \end_inset
 
-.
+ the main application actions are contained.
+ From here the user can:
+\end_layout
+
+\begin_layout Enumerate
+Open a new video sequence.
+\end_layout
+
+\begin_layout Enumerate
+Compute the set of needed homographies for the integrated algorithms.
+\end_layout
+
+\begin_layout Enumerate
+Close the application.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Search through the help searcher.
+\end_layout
+
+\begin_layout Enumerate
+Open the external information window.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1376,42 +1478,110 @@ name "fig:Application-menu-bar"
 
 \end_layout
 
-\end_deeper
-\begin_layout Enumerate
-Options menu.
+\begin_layout Subsubsection
+Options Menu
 \end_layout
 
-\begin_deeper
 \begin_layout Standard
-The options box (Figure 
+The options box (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Options Menu"
 
 \end_inset
 
-) in the application will contain all the possible parameters that can be
- tuned during the execution of the program.
+) in the application contains all the possible parameters that can be tuned
+ during the execution of the program.
  From here algorithms can be changed in real time so there is no need to
- restart the running before changing some parameter.
- The user can select among various pedestrian detectors such as PSP-Net
- detector, DPM, ACF or even Fast-RCNN as well as the type of representation
- that one wants for these detections, lines or gaussians which will be explained
- in Section 
+ restart the execution before changing some parameter.
+ From here user can change:
+\end_layout
+
+\begin_layout Itemize
+Pedestrian detectors.
+ The user can select among the following ones:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+PSP-Net detector
+\end_layout
+
+\begin_layout Itemize
+HOG
+\end_layout
+
+\begin_layout Itemize
+DPM
+\end_layout
+
+\begin_layout Itemize
+ACF 
+\end_layout
+
+\begin_layout Itemize
+Fast-RCNN
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Different representation methods for PD detections as explained in Section
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Pedestrian-Filtering-and"
 
 \end_inset
 
-.
- It also enables the user to select the desire pedestrian detection threshold
- as well as the filtering or constraint that is used.
- One can select between regular pedestrian detection, PD with semantic constrain
-ing or to perform multi camera projection.
- In addition mask filtering can be also perform so PD search area is reduced.
- Finally, a check box to display or not ground truth information is available
- too.
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Lines
+\end_layout
+
+\begin_layout Itemize
+Gaussians
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+It also enables the user to select the threshold for PD algorithms.
+\end_layout
+
+\begin_layout Itemize
+Filtering or constraint explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Pedestrian-Filtering-and"
+
+\end_inset
+
+ can also be changed.
+ The available options are:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Classical PD
+\end_layout
+
+\begin_layout Itemize
+PD with semantic constraining.
+\end_layout
+
+\begin_layout Itemize
+PD with multi camera reprojection.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Mask filtering option to perform PD over a limited area.
+\end_layout
+
+\begin_layout Itemize
+Ground truth check box to display or not ground truth information.
 \end_layout
 
 \begin_layout Standard
@@ -1457,14 +1627,12 @@ name "fig:Options Menu"
 
 \end_layout
 
-\end_deeper
-\begin_layout Enumerate
+\begin_layout Subsubsection
 Information Display
 \end_layout
 
-\begin_deeper
 \begin_layout Standard
-Along this text box some guide information will be provided to the user.
+Along this text box status information is provided to the user.
  Messages such as 
 \begin_inset Quotes eld
 \end_inset
@@ -1544,21 +1712,19 @@ name "fig:Information-Display"
 
 \end_layout
 
-\end_deeper
-\begin_layout Enumerate
+\begin_layout Subsubsection
 Results Display
 \end_layout
 
-\begin_deeper
 \begin_layout Standard
 This is the main display area in the application in which all the visual
  results are presented.
- We have three separate windows for each of the used camera as well as one
- more display window for the cenital plane.
- Here the camera frames with its pedestrian detection or/and ground truth
- will be shown and all the projected semantic can be observed on the cenital
+ We have three separate windows for each of the used cameras as well as
+ one more display window for the cenital plane.
+ Here the camera frames and associated detections and/or ground truth are
+ shown: Besides all the projected semantic can be observed on the cenital
  frame.
- An example of its performance is presented in Figure 
+ An example is depicted in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Results Display Area"
@@ -1611,77 +1777,144 @@ name "fig:Results Display Area"
 
 \end_layout
 
-\end_deeper
 \begin_layout Subsection
 Classes Distribution
 \end_layout
 
 \begin_layout Standard
-In terms of C++ blocks the application has been divided into several classes
- for a better code design and easier understanding.
- Their functions will be explained in the following lines:
+In terms of C++ basic units the application has been divided into several
+ classes for a better code design and to ease code comprehension / interpretatio
+n.
 \end_layout
 
 \begin_layout Itemize
-MainWindow.
- This class corresponds to the main interface window and main application
+
+\series bold
+MainWindow
+\series default
+: This class corresponds to the main interface window and main application
  thread.
- It is the base for all the further processing as everything will be inherit
+ It is the base for all the further processing as everything is inherited
  from this class.
- The functions that are done by this class are creating file open dialogs,
- setting up and start all the camera threads, update all the algorithms
- configurations with values from the UI and displaying results through the
- CVImageWidget class.
- It is also responsible of the information sharing between threads.
+ The reason for that is that 
+\series bold
+MainWindow
+\series default
+ class is used to create threads and sharing procedures between them.
+ Associated functions for this class are:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Creating file open dialogs.
 \end_layout
 
 \begin_layout Itemize
-AboutWindow.
- Class that execute the second available information window.
- This instance will display general information about the application and
- its developers.
+Setting up and start all the camera threads.
 \end_layout
 
 \begin_layout Itemize
-CameraWorker.
- Main class for all the execution in each of the cameras.
- CameraWorker class is linked with a unique thread that will process all
- the algorithms inside.
- It has CameraStream, PeopleDetector, Evaluation and Barrier classes declared
- within it to distribute the processing.
+Update all the algorithms configurations from the UI.
 \end_layout
 
 \begin_layout Itemize
-CameraStream.
- This class will perform all the functions that has to deal with the video
- processing except pedestrian detection.
- The main reading loop, homographies and semantic projections are computed
- in this class.
+Displaying results through the CVImageWidget class.
 \end_layout
 
 \begin_layout Itemize
-PeopleDetector.
- Main class to perform everything with respect to pedestrian detection.
- All the algorithms to detect, project and draw pedestrian either on the
- camera frame or the cenital plane are from this class.
+Sharing information between threads.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+AboutWindow
+\series default
+: Class that execute the second available information window.
+ This instance displays general application information.
 \end_layout
 
 \begin_layout Itemize
-Evaluation: Here ground truth is read and also the evaluation between system
- pedestrian detection and ground truth information is performed.
+
+\series bold
+CameraWorker
+\series default
+: Main class for all the execution in each of the cameras.
+ 
+\series bold
+CameraWorker
+\series default
+ class is linked with a unique thread that will process all the algorithms
+ inside.
+ It has 
+\series bold
+CameraStream
+\series default
+, 
+\series bold
+PeopleDetector
+\series default
+, 
+\series bold
+Evaluation
+\series default
+ and 
+\series bold
+Barrier
+\series default
+ classes declared within it to distribute the processing.
 \end_layout
 
 \begin_layout Itemize
-Barrier.
- This class implements everything that has to deal with thread synchronization.
- It is declared in Main Window and passed by arguments to the thread so
- each of them has the same exact barrier to perform the synchronization.
+
+\series bold
+CameraStream
+\series default
+: This class includes all the functions that are related to video processing
+ except PD: The main reading loop, homographies and semantic projections.
 \end_layout
 
 \begin_layout Itemize
-CVImageWidget.
- Display representation class that deals with all the process to finally
- paint OpenCV Mat images into a QT main window interface Widget.
+
+\series bold
+PeopleDetector
+\series default
+: Main class to carry PD out.
+ All the functions to detect, project and draw results either on the camera
+ frame or on the cenital plane are in this class.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Evaluation
+\series default
+: Here ground truth is read and also the evaluation between system pedestrian
+ detection and ground truth information is performed.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Barrier
+\series default
+: This class deals with thread synchronization.
+ It is declared in 
+\series bold
+MainWindow
+\series default
+ and passed by arguments to the thread so each of them has the same exact
+ barrier object to perform the synchronization.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+CVImageWidget
+\series default
+: Display representation class that deals with all the processes to draw
+ OpenCV Mat images into the QT main window interface Widget.
 \end_layout
 
 \begin_layout Standard
@@ -1692,13 +1925,65 @@ reference "fig:Hierarchical representation of the code"
 
 \end_inset
 
- a hierarchical representation of how the different classes are related
- in the code is presented.
- As on can observe everything is under the heritage of the main window.
- Here we have the three camera worker threads which have inside the same
- barrier, and each of them a camera stream, a people detector and a evaluator.
- In addition, main window will also be the parent of the extra about window
- and the CVImageWidget.
+ a hierarchical representation of how the different classes are arranged
+ is presented.
+ As one can observe everything is under the heritage of the 
+\series bold
+\shape italic
+MainWindow
+\series default
+\shape default
+ object.
+ Here we have three 
+\series bold
+\shape italic
+CameraWorker
+\series default
+\shape default
+ threads include the 
+\series bold
+\shape italic
+barrier
+\series default
+\shape default
+ object, and three 
+\series bold
+\shape italic
+CameraStream
+\series default
+\shape default
+, 
+\series bold
+\shape italic
+PeopleDetector
+\series default
+\shape default
+ and 
+\series bold
+\shape italic
+Evaluator
+\series default
+\shape default
+ -one for each one-.
+ In addition, 
+\series bold
+\shape italic
+MainWindow
+\series default
+\shape default
+ instantiates also 
+\series bold
+\shape italic
+AboutWindow
+\series default
+\shape default
+ and 
+\series bold
+\shape italic
+CVImageWidget
+\series default
+\shape default
+ objects.
 \end_layout
 
 \begin_layout Standard
@@ -1712,7 +1997,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Application/Hierarchical class distribution.png
 	lyxscale 30
-	width 70text%
+	width 100text%
 
 \end_inset
 
@@ -1749,14 +2034,22 @@ Multi-thread User Application
 \end_layout
 
 \begin_layout Standard
-On the contrary to the analyzed version, the second developed application
- is focus on general users.
+On the contrary to the discussed version, the second developed application
+ is focused on general users.
  This version only allows to load the video files and display results.
  All the parameters are set by default so the user does not have to fine
- tuning any of them making the usage and the general perception of the applicati
-on much more simple and easy.
- This method ensures that achieved results are the best ones that the proposed
- system can obtain and it is the best approach to display demos.
+ tune any of them.
+ This turns the usage and the general perception of the application much
+ more simple and easy.
+ Default setup is parametrized as the best observed configuration in the
+ experiment (see Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Results"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Standard
@@ -1768,7 +2061,7 @@ reference "fig:User version application main window"
 \end_inset
 
  displays the general application window where we can observe the difference
- with the Engineer version.
+ with the developer version.
 \end_layout
 
 \begin_layout Standard
@@ -1814,10 +2107,10 @@ name "fig:User version application main window"
 \end_layout
 
 \begin_layout Standard
-As said, conversely to the engineer application the only functionality of
- the main window is to display results and guide information.
- All the options presented in the engineer application for tuning are no
- longer available.
+Conversely to the developer application, the only functionality of the main
+ window is to display results and guide information.
+ All the options presented in the developer application for parameter setup
+ are no longer available.
 \end_layout
 
 \end_body
