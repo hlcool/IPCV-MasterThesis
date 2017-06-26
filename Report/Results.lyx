@@ -2143,7 +2143,7 @@ The first one, tests all of the previously analyzed pedestrian detections
 \end_layout
 
 \begin_layout Standard
-We will follow testing the algorithms in a multi-camera setup.
+We follow testing the algorithms in a multi-camera setup.
  As explained in 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2151,13 +2151,13 @@ reference "subsec:Pedestrian-Reprojection between cameras"
 
 \end_inset
 
- detections from cameras will be projected into the others to try to achieve
+ detections from cameras are projected into the others to try to achieve
  better results than in a mono-camera scenario.
  
 \end_layout
 
 \begin_layout Standard
-Thirdly, we will analyze people detection again in a mono camera environment
+Thirdly, we analyze people detection again in a mono camera environment
  but this time, applying semantic constraining as proposed in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2169,8 +2169,8 @@ reference "subsec:Pedestrian-Semantic-Constraining"
 \end_layout
 
 \begin_layout Standard
-Finally, the last test will embrace all the proposed algorithms working
- within the multi-camera setup and applying semantic constrains.
+Finally, the last test embraces all the proposed algorithms working within
+ the multi-camera setup and applying semantic constrains.
 \end_layout
 
 \begin_layout Standard
@@ -2393,7 +2393,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/Experiment 2/Camera 1.svg
+	filename Images/Results/Experiment 2/Camera 2.svg
 	lyxscale 30
 	width 50text%
 
@@ -2429,7 +2429,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/Experiment 2/Camera 1.svg
+	filename Images/Results/Experiment 2/Camera 3.svg
 	lyxscale 30
 	width 50text%
 
@@ -2471,7 +2471,7 @@ Recall / Precision graphs multi camera
 Recall / Precision graphs for multi camera pedestrian detection.
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Recall / Precision graphs for multi camera pedestrian detection.-1"
+name "fig:Recall / Precision graphs for multi camera pedestrian detection"
 
 \end_inset
 
@@ -2540,7 +2540,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/Experiment 3/Camera 1.svg
+	filename Images/Results/Experiment 3/Camera 2.svg
 	lyxscale 30
 	width 50text%
 
@@ -2576,7 +2576,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/Experiment 3/Camera 1.svg
+	filename Images/Results/Experiment 3/Camera 3.svg
 	lyxscale 30
 	width 50text%
 
@@ -2688,7 +2688,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/Experiment 4/Camera 1.svg
+	filename Images/Results/Experiment 4/Camera 2.svg
 	lyxscale 30
 	width 50text%
 
@@ -2724,7 +2724,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/Experiment 4/Camera 1.svg
+	filename Images/Results/Experiment 4/Camera 3.svg
 	lyxscale 30
 	width 50text%
 
@@ -2785,10 +2785,24 @@ name "fig:Recall / Precision graphs for multi camera pedestrian detection with s
 \end_layout
 
 \begin_layout Standard
+In order to compare numerically all the experiments with the PD approaches
+ a F-Score results have been obtained and are presented in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:F-Score table"
+
+\end_inset
+
+.
+ For this Table the best F-Score metric among all the threshold for a experiment
+ and a detector has been chosen.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -2899,6 +2913,8 @@ Camera 1
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 0.26
 \end_layout
 
@@ -2917,7 +2933,7 @@ Camera 1
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+0.1537
 \end_layout
 
 \end_inset
@@ -2974,6 +2990,8 @@ Camera 2
 
 \begin_layout Plain Layout
 
+\series bold
+0.14
 \end_layout
 
 \end_inset
@@ -3011,6 +3029,8 @@ Camera 3
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 0.28
 \end_layout
 
@@ -3029,7 +3049,7 @@ Camera 3
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+0.2294
 \end_layout
 
 \end_inset
@@ -3087,6 +3107,8 @@ Camera 1
 
 \begin_layout Plain Layout
 
+\series bold
+0.39
 \end_layout
 
 \end_inset
@@ -3143,6 +3165,8 @@ Camera 2
 
 \begin_layout Plain Layout
 
+\series bold
+0.23
 \end_layout
 
 \end_inset
@@ -3199,6 +3223,8 @@ Camera 3
 
 \begin_layout Plain Layout
 
+\series bold
+0.34
 \end_layout
 
 \end_inset
@@ -3237,6 +3263,8 @@ Camera 1
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 0.50
 \end_layout
 
@@ -3255,7 +3283,7 @@ Camera 1
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+0.45
 \end_layout
 
 \end_inset
@@ -3293,6 +3321,8 @@ Camera 2
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 0.44
 \end_layout
 
@@ -3311,7 +3341,7 @@ Camera 2
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+0.30
 \end_layout
 
 \end_inset
@@ -3368,6 +3398,9 @@ Camera 3
 
 \begin_layout Plain Layout
 
+\series bold
+\color red
+0.56
 \end_layout
 
 \end_inset
@@ -3404,6 +3437,13 @@ F-Score comparison for pedestrian detector approaches.
 
 F-Score comparison between all the experiments and pedestrian detector approache
 s.
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:F-Score table"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3420,15 +3460,84 @@ s.
 Pedestrian Detection Results Discussion
 \end_layout
 
+\begin_layout Standard
+If one analyzes Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Recall / Precision graphs for mono camera pedestrian detection."
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Recall / Precision graphs for multi camera pedestrian detection"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Recall / Precision graphs for mono camera pedestrian detection with semantic constraining"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Recall / Precision graphs for multi camera pedestrian detection with semantic constraining."
+
+\end_inset
+
+ it is easily observable that PSP-Net outperforms DPM and HOG in every experimen
+t and in all the cameras.
+ This is quite logical as algorithms based on CNNs usually perform better
+ than classical PD approaches.
+\end_layout
+
+\begin_layout Standard
+However, if one focus the analysis on the general performance of the system,
+ taking into account both PD fusion and constraining we have to center the
+ attention to Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:F-Score table"
+
+\end_inset
+
+.
+ Here algorithms are compared in terms of F-Score which represents a global
+ perfomance measure.
+ 
+\end_layout
+
+\begin_layout Standard
+In the Table, better results for each algorithm and camera are marked as
+ bold numbers and the best obtained result is marked in red color.
+ 
+\end_layout
+
+\begin_layout Standard
+If we take a look at HOG descriptor two of the three better results are
+ obtained using the regular HOG in separate cameras.
+ Only Camera 2 with semantic constrain seems to outperform just by a small
+ F-Score regular detector.
+\end_layout
+
+\begin_layout Standard
+PSP-Net presents the same effect where only camera 3 gets a better result
+ using semantic.
+ 
+\end_layout
+
 \begin_layout Section
 Statistical Usage Data
 \end_layout
 
 \begin_layout Standard
 Finally, results concerning statistical usage data are presented.
- As said in the previous Chapter, we obtain one graphic per selected semantic
- area, which in our case are floor and door due to the usage of the mentioned
- map in Figure 
+ One graphic per selected semantic area is obtained, which in our case are
+ floor and door due to the usage of the mentioned map in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Statistical Semantic Map"
@@ -3436,6 +3545,7 @@ reference "fig:Statistical Semantic Map"
 \end_inset
 
 .
+ Curves represent pedestrian density per frame in the selected recording.
  The obtained curves are displayed both in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3450,7 +3560,7 @@ reference "fig:Stadistical-Data-Usage Curves"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -3462,7 +3572,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/Stadistics and Pedestrian Path Usage/StadisticalFloor.svg
+	filename Images/Results/Stadistics and Pedestrian Path Usage/Floor/StadisticalFloor.svg
 	lyxscale 30
 	width 50text%
 
@@ -3494,7 +3604,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/Stadistics and Pedestrian Path Usage/StatidisticalDoors.svg
+	filename Images/Results/Stadistics and Pedestrian Path Usage/Doors/StatidisticalDoors.svg
 	lyxscale 30
 	width 50text%
 
@@ -3547,8 +3657,8 @@ name "fig:Stadistical-Data-Usage Curves"
 \begin_layout Standard
 In addition, some results about the most used areas of the hall have been
  extracted.
- The hole area has been divided into regular subareas of fixed size in which
- pedestrian flow has been measured.
+ The hole area has been divided into regular sub regions of fixed size in
+ which pedestrian flow has been measured.
  By using this method one could have information about the most used paths
  by people over the scene.
  Results concerning this process are displayed in Figure 
@@ -3581,14 +3691,14 @@ reference "fig:Pedestrians paths usage along the Hall. 70 pix"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -3596,6 +3706,7 @@ status collapsed
 	filename Images/Results/Stadistics and Pedestrian Path Usage/Camera21563.jpg
 	lyxscale 30
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -3624,7 +3735,7 @@ Camera Frame at
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -3632,6 +3743,7 @@ status collapsed
 	filename Images/Results/Stadistics and Pedestrian Path Usage/ProbableAreasPath40-1563.png
 	lyxscale 15
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -4270,8 +4382,8 @@ name "fig:Pedestrians paths usage along the Hall. 70 pix"
 \begin_layout Standard
 Results are displayed as yellow squares that measure the amount of pedestrians
  found in that sub region.
- The more strong the color means that pedestrian density over that area
- has been higher than in the neighborhood.
+ The more strong the color appears in the image it means that pedestrian
+ density over that area has been higher than in the neighborhood.
 \end_layout
 
 \begin_layout Subsection

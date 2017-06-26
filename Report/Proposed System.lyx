@@ -1364,8 +1364,8 @@ reference "sec:Contextual-Model-Generation"
 \end_inset
 
  PSP-Net has been trained to detect people as a class.
- In our proposed system we will also use this approach by surrounding pedestrian
-s labels with bounding boxes.
+ In our proposed system we also use this approach by encapsulating connected
+ components and pixels labeled as pedestrians.
 \end_layout
 
 \begin_layout Section
@@ -1374,9 +1374,9 @@ Fusion and Filtering
 
 \begin_layout Standard
 Once the semantic model and pedestrian detections are obtained the next
- step is to combine the information coming from different camera sources
- into a common plane.
- This is done in a process called fusion and filtering.
+ step is to combine the information from different camera sources and project
+ detections onto a common plane.
+ We call this process fusion and filtering.
 \end_layout
 
 \begin_layout Subsection
@@ -1384,10 +1384,8 @@ Multi-camera Scenario
 \end_layout
 
 \begin_layout Standard
-Our system is developed in a multi-camera scenario.
- This is the essential setup to fusion information.
- This means that we are able to observe the scene from different point of
- views.
+Our system runs on a multi-camera scenario, hence, the scene can be observed
+ from different point of views.
  In Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1414,7 +1412,7 @@ reference "fig:Initial Camera Views"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1587,14 +1585,7 @@ name "fig:Initial Camera Views"
 \end_layout
 
 \begin_layout Standard
-As said in Chapter 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "chap:State of the art"
-
-\end_inset
-
- working with a multi-camera scenario has some advantages.
+Analyzing a multi-camera scenario has some advantages.
  One can see in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1605,7 +1596,6 @@ reference "fig:Initial Camera Views"
  we can observe the same scene area from three different points of views,
  which means that for instance, detections from one camera can be used to
  detect in other camera or even refine the available detections.
- 
 \end_layout
 
 \begin_layout Subsubsection
@@ -1633,7 +1623,7 @@ Homography calculation is a pivotal task in our work and the main base for
 
 , i.e.
  a bird-eye representation of the scene.
- With this homography matrix we will be able to transform every frame pixel
+ With this homography matrix we are able to transform every frame pixel
  
 \begin_inset Formula $F_{t}(x_{1},\,y_{1})$
 \end_inset
@@ -1642,217 +1632,62 @@ Homography calculation is a pivotal task in our work and the main base for
 \begin_inset Formula $\pi_{ref}(x_{2},\,y_{2})$
 \end_inset
 
+, i.e.
+ from 
+\begin_inset Formula $2D\rightarrow\text{3D}$
+\end_inset
+
 .
- Frame perspective is so, transformed as if it were being viewed from the
+ This process is done by Eq 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Homography Equation"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+P_{i}=\lambda\cdot{}^{\pi_{ref}}H_{F}\cdot p_{i}\label{eq:Homography Equation}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is a scale factor, 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+ is the subset of points from 
+\begin_inset Formula $\pi_{ref}$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+ is the subset of points of 
+\begin_inset Formula $F$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Frame perspective is so, transformed as if it were being viewed from the
  top.
  The homography process is also important as it enables to project pedestrians
  detections to the cenital plane with the same proceeding.
-\end_layout
-
-\begin_layout Subsubsection*
-Generic Homography Problem
-\end_layout
-
-\begin_layout Standard
-The formulation of the generic homography problem between two cameras and
- a plane is as follows:
-\end_layout
-
-\begin_layout Standard
-We have two cameras 
-\begin_inset Formula $C_{1}$
-\end_inset
-
- and 
-\begin_inset Formula $C_{2}$
-\end_inset
-
- looking at the same exact points 
-\begin_inset Formula $P_{i}$
-\end_inset
-
- in a plane.
- One wants to pass from the projection 
-\begin_inset Formula $p_{i}(C_{2})=\left(u_{i}(C_{2});\,v_{i}(C_{2});\,1\right)$
-\end_inset
-
- of 
-\begin_inset Formula $P_{i}$
-\end_inset
-
- in 
-\begin_inset Formula $C_{2}$
-\end_inset
-
- to the projection 
-\begin_inset Formula $P_{i}$
-\end_inset
-
- in 
-\begin_inset Formula $C_{1}$
-\end_inset
-
- defined as 
-\begin_inset Formula $p_{i}(C_{1})=\left(u_{i}(C_{1});\,v_{i}(C_{1});\,1\right)$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Standard
-To do this process Eq 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:Projection EQ by homography"
-
-\end_inset
-
- should be computed.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-p_{i}(C_{1})=\frac{z_{i}(C_{2})}{z_{i}(C_{1})}K_{C_{1}}\cdot H_{C_{2}C_{1}}\cdot K_{C_{2}}^{-1}\cdot p_{i}(C_{2})\label{eq:Projection EQ by homography}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-where 
-\begin_inset Formula $z_{i}(C_{1})$
-\end_inset
-
- and 
-\begin_inset Formula $z_{i}(b)$
-\end_inset
-
- are the z coordinates of P in each camera frame and where homography matrix
- 
-\begin_inset Formula $H_{C_{2}C_{1}}$
-\end_inset
-
- is defined as in Eq 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:Homography Matrix"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-H_{C_{2}C_{1}}=R-\frac{tn^{T}}{d}\label{eq:Homography Matrix}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-where 
-\begin_inset Formula $R$
-\end_inset
-
- is the rotation matrix by which 
-\begin_inset Formula $C_{2}$
-\end_inset
-
- is rotated in relation to 
-\begin_inset Formula $C_{1}$
-\end_inset
-
-.
- 
-\begin_inset Formula $t$
-\end_inset
-
- is the translation vector from 
-\begin_inset Formula $C_{1}$
-\end_inset
-
- to 
-\begin_inset Formula $C_{2}$
-\end_inset
-
-.
- 
-\begin_inset Formula $n$
-\end_inset
-
- and 
-\begin_inset Formula $d$
-\end_inset
-
- are the normal vector and the distance to the plane respectively and finally
- 
-\begin_inset Formula $K_{a}$
-\end_inset
-
- and 
-\begin_inset Formula $K_{b}$
-\end_inset
-
- are the camera intrinsic parameters.
- Generic homography problem for one camera is depicted in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Camera-and-plane setup"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Images/Proposed System/Homography setup.svg
-	lyxscale 70
-	width 60text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Generic homography problem.
- Camera and plane setup
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Camera-and-plane setup"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -1873,24 +1708,19 @@ Cenital Plan Design
 \end_layout
 
 \begin_layout Standard
-As said in the introduction of this Section, one of the main objectives
- of the work is to project the extracted detections from the three cameras,
- i.e.
- pedestrian and semantic, into a common plane for all of them.
- To achieve this goal a cenital plane that correctly represents the scene
- is needed.
- 
-\end_layout
-
-\begin_layout Subsubsection*
-First Approach
-\end_layout
-
-\begin_layout Standard
-The first used approach for the cenital plane can be observe in Figure 
+In order to share detections between cameras a common plane is needed.
+ For the proposed system the plane depict in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:First cenital plane approach"
+reference "fig:Cenital plane with camera positions."
+
+\end_inset
+
+ has been used.
+ The complete creation of the plane is detailed in Appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Cenital Plane Design Append"
 
 \end_inset
 
@@ -1901,146 +1731,7 @@ reference "fig:First cenital plane approach"
 \begin_inset Float figure
 wide false
 sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Images/Proposed System/First Approach CenitalView.png
-	lyxscale 30
-	width 75text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-First cenital plane approach
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:First cenital plane approach"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-This cenital plane lacks of details from the scene.
- The information about the details of the scenario is minimum and also,
- the scene proportions are not correct.
- To compute a correct homography between the camera frame and the cenital
- plane we should be able to identify the same scene points in both images
- in the ground plane.
- This means that the cenital plane should have enough details so the point
- selection is done correctly by the user and the homography is correctly
- computed.
-\end_layout
-
-\begin_layout Subsubsection*
-Second Approach
-\end_layout
-
-\begin_layout Standard
-For this reason, and driven by bad results, another cenital plane has been
- computed starting from zero.
- In this new approach the scene has correctly been measured by hand and
- the plane has been done with real measures and high floor detail.
-\end_layout
-
-\begin_layout Standard
-For correctly drawing the plane 
-\color blue
-
-\begin_inset CommandInset href
-LatexCommand href
-name "AutoCAD 2017"
-target "https://www.autodesk.es/products/autocad/overview"
-
-\end_inset
-
-
-\color inherit
- software has been used.
- The second plane approach with all the manual measures extracted from the
- real scene superposed can be seen in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Second cenital plane approach with measures"
-
-\end_inset
-
- while Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Second cenital plane approach with camera positions"
-
-\end_inset
-
- represents the final cenital map with the correct camera positions.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
 status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Images/Proposed System/Measured Cenital Plane.png
-	lyxscale 20
-	width 75text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Second cenital plane approach with real measures
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Second cenital plane approach with measures"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
 
 \begin_layout Plain Layout
 \align center
@@ -2058,10 +1749,10 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Second cenital plane approach with camera positions
+Cenital plane with camera positions.
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Second cenital plane approach with camera positions"
+name "fig:Cenital plane with camera positions."
 
 \end_inset
 
@@ -2079,25 +1770,9 @@ name "fig:Second cenital plane approach with camera positions"
 \end_layout
 
 \begin_layout Standard
-It is easily observable that differences between Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:First cenital plane approach"
-
-\end_inset
-
- and 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Second cenital plane approach with camera positions"
-
-\end_inset
-
- are outstanding both in floor details and in general construction proportions.
- This detail rise leads to a much more easy homography selection points
- by the user as it now has more point options to choose and evidentially
- this means that the final homography matrix, and so, all the projections
- are better accurately talking.
+This plane, due to its high amount of scene details allows the user to correctly
+ select common points between it and a camera frame for the homography calculati
+on.
 \end_layout
 
 \begin_layout Subsubsection
@@ -2263,7 +1938,7 @@ Due to the creation of the homography codebook we now have to choose between
 \end_layout
 
 \begin_layout Subsubsection*
-AKAZE Point Descriptor
+Images Comparison
 \end_layout
 
 \begin_layout Standard
@@ -2276,39 +1951,14 @@ key "alcantarilla2011fast"
 
 \end_inset
 
- has been used for this task.
-\end_layout
-
-\begin_layout Standard
-AKAZE is a fast multi scale feature detection an description approach.
- It exploits the benefits of nonlinear scale spaces.
- Previous approaches such as KAZE 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "alcantarilla2012kaze"
+ has been used for this task (AKAZE is explained in Appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:AKAZE append"
 
 \end_inset
 
- or BFSIFT 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "wang2012bfsift"
-
-\end_inset
-
- have a main time consumption drawback in terms of nonlinear scale space
- creation.
- However, AKAZE uses recent numerical schemes called Fast Explicit Diffusion
- (FED) 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "weickert2016cyclic,grewenig2010box"
-
-\end_inset
-
- in order to speed up detections.
- In addition the use of the Modified-Local Difference Binary (M-LDB) descriptor
- increases the efficiency of the general approach.
+).
 \end_layout
 
 \begin_layout Standard
@@ -2342,7 +1992,7 @@ y low.
 \end_layout
 
 \begin_layout Subsubsection*
-Intermediate Homogrpahy
+Intermediate Homography
 \end_layout
 
 \begin_layout Standard
@@ -3274,7 +2924,7 @@ name "fig:Pedestrain semantic constraining"
 \end_layout
 
 \begin_layout Section
-Reference and Inertial Homography Planes
+Reference RGB and Semantic Planes
 \end_layout
 
 \begin_layout Standard
@@ -4139,260 +3789,6 @@ As we can observe, due to the multi camera setup and some scene occlusions
  all of them.
 \end_layout
 
-\begin_layout Subsection
-Parametric Homographies Between Inertial Planes
-\end_layout
-
-\begin_layout Standard
-Homography matrices, as explained before, aim to relate floor plane for
- a frame with the cenital view.
- However, everything that is not exactly in the same s plane is not projected
- properly when the homography matrix is used.
- In our work, different semantic are needed to be projected, for instance
- a door.
- When using floor homography only its base is correctly projected.
- 
-\end_layout
-
-\begin_layout Standard
-In 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "aliakbarpour2016heterogeneous"
-
-\end_inset
-
- a solution to this problem is proposed.
- The general idea is to create a multilayer reconstruction.
- Once the homography matrix 
-\begin_inset Formula $^{\pi_{ref-C}}H_{view}$
-\end_inset
-
- that relates the image view with the reference frame 
-\begin_inset Formula $\pi_{ref-C}$
-\end_inset
-
- is calculated, one can obtain another matrix 
-\begin_inset Formula $^{\pi'}H_{view}$
-\end_inset
-
- that relates the same image frame with a parallel plane called inertial
- plane at a fixed height 
-\begin_inset Formula $\Delta t$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $^{\pi'}H_{view}$
-\end_inset
-
- can be expressed as a function of 
-\begin_inset Formula $^{\pi_{ref-C}}H_{view}$
-\end_inset
-
- and 
-\begin_inset Formula $\Delta h$
-\end_inset
-
- as described in Eq 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:Inertial Planes Equation"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-^{\pi'}H_{v}^{-1}(\Delta h)={}^{\pi}H_{v}^{-1}+\Delta hP\mathbf{\hat{\mathbf{k}}}^{T},\label{eq:Inertial Planes Equation}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-where 
-\begin_inset Formula $P=[u_{0}\,v_{0}\,1]^{T}$
-\end_inset
-
- is the principal point of camera 
-\begin_inset Formula $C$
-\end_inset
-
- and 
-\begin_inset Formula $\mathbf{\hat{k}}$
-\end_inset
-
- is the unit vector of the 
-\begin_inset Formula $Z$
-\end_inset
-
- axis.
-\end_layout
-
-\begin_layout Standard
-All this process is described in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Extending-homography-for planes parallels"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Images/Proposed System/Intertial Planes.png
-	lyxscale 20
-	width 70text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-Extending homography for parallel planes.
-\end_layout
-
-\end_inset
-
-Extending homography for planes parallel to 
-\begin_inset Formula $π_{ref}$
-\end_inset
-
-.
- 
-\begin_inset Formula $^{\pi_{ref}}H_{V}$
-\end_inset
-
- is the available homography between camera view and reference plane 
-\begin_inset Formula $\pi_{ref}$
-\end_inset
-
- either semantic or RGB.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Extending-homography-for planes parallels"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-By this process, ideally a number 
-\begin_inset Formula $k$
-\end_inset
-
- of planes could be generate (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Set of parallel planes"
-
-\end_inset
-
-) in which different object sections are correctly projected.
- It could lead to a complete semantic map in which all the pixels represent
- semantic areas that have been correctly projected.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Images/Proposed System/k Parallel Planes.png
-	lyxscale 20
-	width 70text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-Set of inertial planes
-\end_layout
-
-\end_inset
-
-Set of 
-\begin_inset Formula $k$
-\end_inset
-
- inertial planes 
-\begin_inset Formula $\pi_{k}$
-\end_inset
-
- .
- Each inertial plane is separated from the other by the same 
-\begin_inset Formula $\Delta h$
-\end_inset
-
- height
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Set of parallel planes"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
 Statistical Usage Data
 \end_layout
@@ -4506,7 +3902,7 @@ As one can observe we have decided to only take into account for this process
 In addition, one can divide Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Second cenital plane approach with camera positions"
+reference "fig:Second cenital plane approach with camera positions. Anex"
 
 \end_inset
 

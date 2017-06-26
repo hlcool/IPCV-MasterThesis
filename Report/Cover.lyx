@@ -513,6 +513,128 @@ thispagestyle{empty}
 \end_layout
 
 \begin_layout Chapter*
+Resumen
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{
+\backslash
+numberline{}{R
+\end_layout
+
+\end_inset
+
+esumen
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+noindent
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Este proyecto describe un método para realizar detección de personas y segmentac
+ión semántica en un escenario multicámara.
+ La fusión de estas dos disciplinas lleva a detecciones de personas contextualme
+nte refinadas.
+ El entorno multicámara es usada para reprojectar detecciones de una cámara
+ a otra y mejorar la precisión.
+ Como ejemplo de uso, datos estadísticos de uso de áreas semánticas concretas
+ en la escena serán también extraídos.
+ Para lograr una interacción con el usuario una Interfaz de Usuario Grafica
+ ha sido diseñada.
+ Esta interfaz permitirá al usuario definir el entorno de detección de personas,
+ así como mostrar resultados en tiempo de ejecución.
+\end_layout
+
+\begin_layout Standard
+Para poder llevar a cabo estas tareas un estudio del estado del arte ha
+ sido realizado.
+ Un análisis de los detectores de personas ha sido realizado, haciendo énfasis
+ en aquellos que utilizan propuestas de objetos.
+ Además, nuevos métodos en el entorno de la detección de personas han sido
+ analizados.
+ El estado del arte actual sobre la extracción de información contextual,
+ y en concreto, en el uso de la segmentación semántica ha sido estudiado.
+ Finalmente, escenarios con configuración multicámara han sido descritos.
+\end_layout
+
+\begin_layout Standard
+Para presentar los resultados y configurar los diferentes algoritmos una
+ aplicación multihilo ha sido diseñada y desarrollada.
+\end_layout
+
+\begin_layout Standard
+Un nuevo sistema ha sido propuesto para lograr los objetivos arriba mencionados
+ y para lograr detecciones de persona bajo diferentes condiciones de filtrado.
+ Detectores como HOG, DPM, o PSP-Net han sido integrados y segmentación
+ semántica ha sido realizada.
+ Ambas fuentes de información han sido combinadas en un entorno común.
+\end_layout
+
+\begin_layout Standard
+Finalmente, el rendimiento del sistema ha sido probado en un data-set generado
+ y manualmente anotado para generar ground truth.
+\end_layout
+
+\begin_layout Section*
+Palabras Clave
+\end_layout
+
+\begin_layout Standard
+Detección de personas, multi cámaras, segmentación semántica, plano cenital.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter*
 Abstract
 \end_layout
 
@@ -560,7 +682,7 @@ noindent
 
 \begin_layout Standard
 This project describes a method to perform pedestrian detection and semantic
- segmentation in a multi-camera recorded.
+ segmentation in a multi-camera recorded scenario.
  The fusion of both disciplines leads to a contextually refined pedestrian
  detection.
  The multi camera system is used to reproject detections from one camera
@@ -573,7 +695,7 @@ This project describes a method to perform pedestrian detection and semantic
 \end_layout
 
 \begin_layout Standard
-In order to carry these task out a study of the state of the art has been
+In order to carry these tasks out a study of the state of the art has been
  done.
  Pedestrian detection approaches are reviewed emphasizing in those that
  rely on object proposals.
