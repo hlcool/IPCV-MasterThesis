@@ -1321,9 +1321,9 @@ reference "tab:Single threads vs Multi threads"
 
 \end_inset
 
- one can observer the difference in term of seconds per frame and frame
- per second for the same video sequence and the same pedestrian detector
- approach.
+ one can observe the difference in term of seconds per frame and frame per
+ second for the same video sequence and the same pedestrian detector approach
+ (HOG).
 \end_layout
 
 \begin_layout Standard
@@ -1401,7 +1401,7 @@ Single-Thread
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+3.8 s
 \end_layout
 
 \end_inset
@@ -1410,7 +1410,7 @@ Single-Thread
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+0.26 fps
 \end_layout
 
 \end_inset
@@ -1430,7 +1430,7 @@ Multi-Thread
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+0.7 s
 \end_layout
 
 \end_inset
@@ -1439,7 +1439,7 @@ Multi-Thread
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+1.42 fps
 \end_layout
 
 \end_inset
@@ -1564,7 +1564,7 @@ HOG
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+0.737 s
 \end_layout
 
 \end_inset
@@ -1573,7 +1573,7 @@ HOG
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+1.35 fps
 \end_layout
 
 \end_inset
@@ -1593,7 +1593,7 @@ ACF
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+1.642 s
 \end_layout
 
 \end_inset
@@ -1602,7 +1602,7 @@ ACF
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+0.60 fps
 \end_layout
 
 \end_inset
@@ -1622,7 +1622,7 @@ DPM
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+1.062 s
 \end_layout
 
 \end_inset
@@ -1631,7 +1631,7 @@ DPM
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+0.94 fps
 \end_layout
 
 \end_inset
@@ -1651,7 +1651,7 @@ PSP-Net (Offline)
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+0.624 s
 \end_layout
 
 \end_inset
@@ -1660,7 +1660,7 @@ PSP-Net (Offline)
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+1.60 fps
 \end_layout
 
 \end_inset
@@ -1710,18 +1710,27 @@ reference "tab:Single threads vs Multi threads"
 \end_inset
 
  one can easily derive that the speed up of using multithread is clear.
- The difference in using threads implies that in the same amount of time
- three frames are extracted in comparisson to one in the single thread applicati
-on.
+ The difference in using threads implies that in the amount of time the
+ single thread application is obtaining results for three frames the multi-threa
+d application has been executed almost 
+\begin_inset Formula $5.5$
+\end_inset
+
+ times.
  This is a huge improvement in the computational time.
 \end_layout
 
 \begin_layout Standard
-In terms of pedestrain detection taking a look a the table one can easily
+In terms of pedestrian detection taking a look a the table one can easily
  observe that PSP-Net is the one which runs faster.
  However, its offline computation makes it evidentially the fastest.
  Comparing those which are truly computed online HOG is the one that performs
- faster.
+ faster followed by DPM and ACF.
+\end_layout
+
+\begin_layout Standard
+Nevertheless it is noticeable that even the slowest PD approach performs
+ faster than HOG in the single-thread application.
 \end_layout
 
 \begin_layout Section
@@ -2802,7 +2811,7 @@ reference "tab:F-Score table"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -3437,6 +3446,8 @@ F-Score comparison for pedestrian detector approaches.
 
 F-Score comparison between all the experiments and pedestrian detector approache
 s.
+ Best result for an approach in a camera marked as bold.
+ Best result of the table marked as bold red.
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:F-Score table"
@@ -3493,12 +3504,14 @@ reference "fig:Recall / Precision graphs for multi camera pedestrian detection w
 t and in all the cameras.
  This is quite logical as algorithms based on CNNs usually perform better
  than classical PD approaches.
+ However, none of the detectors are getting excellent results in the testing
+ sequence.
 \end_layout
 
 \begin_layout Standard
-However, if one focus the analysis on the general performance of the system,
- taking into account both PD fusion and constraining we have to center the
- attention to Table 
+If one focus the analysis on the system general performance, taking into
+ account both PD fusion and constraining we have to center the attention
+ to Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:F-Score table"
@@ -3507,53 +3520,248 @@ reference "tab:F-Score table"
 
 .
  Here algorithms are compared in terms of F-Score which represents a global
- perfomance measure.
+ performance measure.
  
 \end_layout
 
 \begin_layout Standard
-In the Table, better results for each algorithm and camera are marked as
- bold numbers and the best obtained result is marked in red color.
- 
-\end_layout
-
-\begin_layout Standard
-If we take a look at HOG descriptor two of the three better results are
- obtained using the regular HOG in separate cameras.
+If we take a look at HOG descriptor two out of the three better results
+ are obtained using the regular HOG.
  Only Camera 2 with semantic constrain seems to outperform just by a small
- F-Score regular detector.
+ F-Score the regular detector.
+ PSP-Net presents the same effect where only camera 3 gets a better result
+ using semantic.
+ However, DPM using semantic segmentation outperforms in every camera the
+ scores obtained with regular DPM.
+ This means that the inclusion of semantic information increases DPM performance.
 \end_layout
 
 \begin_layout Standard
-PSP-Net presents the same effect where only camera 3 gets a better result
- using semantic.
+The reason why HOG and PSP-Net are not improved could be due to the number
+ of extracted detections.
+ Both approaches, although their scores have been normalized to the 
+\begin_inset Formula $[0,\,1]$
+\end_inset
+
+ interval, extract good results even with the lowest threshold.
+ This is totally contrary to DPM detector, which extract much more detections.
+ (See Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Differences-in-number of detections"
+
+\end_inset
+
+for visual results).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/5 DPM.png
+	lyxscale 40
+	width 30text%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/Results/5 HOG.png
+	lyxscale 40
+	width 30text%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/Results/5 PSP.png
+	lyxscale 40
+	width 30text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Differences in number of detections for 
+\begin_inset Formula $Threshold=0$
+\end_inset
+
+ and same 
+\begin_inset Formula $t$
+\end_inset
+
+ .
+ From left to right.
+ DPM detector, HOG Detector, PSP-Net Detector.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Differences-in-number of detections"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This means, that if detections are already accurate and due to our common
+ semantic maps, they lay on some of the floor holes, detections are suppressed.
+ This leads to obtaining a worse performance than using the regular detector.
+ In order words, false positives laying in areas different than floor should
+ be higher than those wrongly suppressed detections if semantic constraining
+ is to be considered worthwhile.
+\end_layout
+
+\begin_layout Standard
+In addition, as depicted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Annotated example frames"
+
+\end_inset
+
+ ground truth has been made so every pedestrian is annotated in the sequence.
+ This is a problem when using semantic constraining as every detection in
+ that outside area is suppressed as is not inside the hall.
+ Furthermore, PSP-Net as one can observe in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Misclassification-of-people in semantic"
+
+\end_inset
+
+ does not obtain pedestrian detections when analyzing people outside the
+ building which could be one of the reasons of its poor performance.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Pedestrian Outside.jpg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 3text%
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/Results/SemanticProblem Door.png
+	lyxscale 40
+	width 47text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Misclassification of people in semantic segmentation.
+ Camera 3.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Misclassification-of-people in semantic"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If we now focus on the performance of the multi camera system when dealing
+ with reprojections of pedestrian Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:F-Score table"
+
+\end_inset
+
+ shows that is not properly working.
+ In both experiments in which reprojection is used (second and fourth experiment
+s) worse results than even the regular detectors are obtained.
+ This could be due to two reasons:
+\end_layout
+
+\begin_layout Enumerate
+The projection from one frame to another has some error.
+ This can be because of the homography calculation or pedestrian detection
+ errors.
  
 \end_layout
 
-\begin_layout Section
-Statistical Usage Data
+\begin_deeper
+\begin_layout Standard
+In the first case if one homography is not accurate enough projection have
+ small errors that translated to distances in the cenital plane could be
+ a high displacement.
+ 
 \end_layout
 
 \begin_layout Standard
-Finally, results concerning statistical usage data are presented.
- One graphic per selected semantic area is obtained, which in our case are
- floor and door due to the usage of the mentioned map in Figure 
+The second case is related to pedestrian detection errors.
+ If a person is accurately detected but, the bounding box does not surround
+ entirely the person, the reprojection is not accurate.
+ This effect can be observed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Statistical Semantic Map"
+reference "fig:Pedestrian-detection-error."
 
 \end_inset
 
-.
- Curves represent pedestrian density per frame in the selected recording.
- The obtained curves are displayed both in Figure 
+, in which the detection is correct but feet are not in the bounding box.
+ This leads to a spatial difference between the cylinder center estimation
+ and the actual person (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Stadistical-Data-Usage Curves"
+reference "fig:Pedestrain detection error in camera 2"
 
 \end_inset
 
-.
+).
+ 
 \end_layout
 
 \begin_layout Standard
@@ -3572,9 +3780,9 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/Stadistics and Pedestrian Path Usage/Floor/StadisticalFloor.svg
-	lyxscale 30
-	width 50text%
+	filename Images/Results/PedestrianNoFeet.png
+	lyxscale 40
+	width 47text%
 
 \end_inset
 
@@ -3585,7 +3793,9 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Floor usage
+Camera 1.
+ Red circle corresponds to ground truth and green one corresponds to the
+ actual cylinder estimation.
 \end_layout
 
 \end_inset
@@ -3604,9 +3814,9 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Images/Results/Stadistics and Pedestrian Path Usage/Doors/StatidisticalDoors.svg
-	lyxscale 30
-	width 50text%
+	filename Images/Results/PedestrianNoFeetProjected.png
+	lyxscale 40
+	width 47text%
 
 \end_inset
 
@@ -3617,27 +3827,276 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Doors usage
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Statistical data usage curves in terms of pedestrian number/frames
+Camera 2.
+ White circle represents reprojection from Camera 1.
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Stadistical-Data-Usage Curves"
+name "fig:Pedestrain detection error in camera 2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Pedestrian detection error leads to a reprojection displacement.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Pedestrian-detection-error."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+When reprojecting as explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Pedestrian-Reprojection between cameras"
+
+\end_inset
+
+ blob height is lost and reconstructed with an aspect ratio.
+ This process could lead to examples as the ones in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Pedestrian reprojection error due to heigth"
+
+\end_inset
+
+.
+ Projections are in the end reconstructed as really small or big blobs.
+ This means that reprojections are not combined with the original detection
+ from the camera and they produce a false positive.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/ReprojectionSmall.png
+	lyxscale 40
+	width 47text%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/Results/ReprojectionBig.png
+	lyxscale 40
+	width 47text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Pedestrian reprojection error due to height.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Pedestrian reprojection error due to heigth"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Statistical Usage Data
+\end_layout
+
+\begin_layout Standard
+Finally, results concerning statistical usage data are presented.
+ One graphic per selected semantic area is obtained, which in our case are
+ floor and door due to limitations of the mentioned map in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Statistical Semantic Map"
+
+\end_inset
+
+.
+ Curves represent pedestrian density per frame in the used recording.
+ The obtained curves are displayed in Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Floor-usage-graph"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Doors-usage-graph"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Stadistics and Pedestrian Path Usage/Floor/GraphImages.png
+	lyxscale 5
+	width 90text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Floor usage graph
+\end_layout
+
+\end_inset
+
+Floor usage graph.
+ From left to right in camera frames: 
+\begin_inset Formula $t_{1}=1594$
+\end_inset
+
+, 
+\begin_inset Formula $t_{2}=4877$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{3}=6228$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Floor-usage-graph"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Stadistics and Pedestrian Path Usage/Doors/GraphImages.png
+	lyxscale 5
+	width 90text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Doors usage graph
+\end_layout
+
+\end_inset
+
+Doors usage graph.
+ From left to right in camera frames: 
+\begin_inset Formula $t_{1}=1541$
+\end_inset
+
+, 
+\begin_inset Formula $t_{2}=2808$
+\end_inset
+
+, 
+\begin_inset Formula $t_{3}=3569$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{4}=5091$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Doors-usage-graph"
 
 \end_inset
 
@@ -3657,7 +4116,7 @@ name "fig:Stadistical-Data-Usage Curves"
 \begin_layout Standard
 In addition, some results about the most used areas of the hall have been
  extracted.
- The hole area has been divided into regular sub regions of fixed size in
+ All the scene has been divided into regular sub regions of fixed size in
  which pedestrian flow has been measured.
  By using this method one could have information about the most used paths
  by people over the scene.
@@ -3684,21 +4143,28 @@ reference "fig:Pedestrians paths usage along the Hall. 70 pix"
 \end_inset
 
  pixels.
- A temporal comparison have been made with the correspondent frame.
+\end_layout
+
+\begin_layout Standard
+Results are displayed as yellow squares that measure the amount of pedestrians
+ found in that sub region.
+ The more strong the color appears in the image it means that pedestrian
+ density over that area has been higher than in the neighborhood.
+ A temporal comparison has been made with the correspondent frame.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3717,7 +4183,8 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Camera Frame at 
+Camera 2 .
+ Frame at 
 \begin_inset Formula $t=t_{0}$
 \end_inset
 
@@ -3735,7 +4202,7 @@ Camera Frame at
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3784,6 +4251,7 @@ status collapsed
 	filename Images/Results/Stadistics and Pedestrian Path Usage/Camera12689.jpg
 	lyxscale 30
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -3794,7 +4262,8 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Camera Frame at 
+Camera 1.
+ Frame at 
 \begin_inset Formula $t=t_{1}$
 \end_inset
 
@@ -3820,6 +4289,7 @@ status collapsed
 	filename Images/Results/Stadistics and Pedestrian Path Usage/ProbableAreasPath40-2689.png
 	lyxscale 15
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -3860,6 +4330,7 @@ status collapsed
 	filename Images/Results/Stadistics and Pedestrian Path Usage/Camera14984.jpg
 	lyxscale 30
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -3870,7 +4341,8 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Camera Frame at 
+Camera 1.
+ Frame at 
 \begin_inset Formula $t=t_{2}$
 \end_inset
 
@@ -3896,6 +4368,7 @@ status collapsed
 	filename Images/Results/Stadistics and Pedestrian Path Usage/ProbableAreasPath40-4984.png
 	lyxscale 15
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -3936,6 +4409,7 @@ status collapsed
 	filename Images/Results/Stadistics and Pedestrian Path Usage/Camera36324.jpg
 	lyxscale 30
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -3946,7 +4420,8 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Camera Frame at 
+Camera 3.
+ Frame at 
 \begin_inset Formula $t=t_{3}$
 \end_inset
 
@@ -3972,6 +4447,7 @@ status collapsed
 	filename Images/Results/Stadistics and Pedestrian Path Usage/ProbableAreasPath40-6324.png
 	lyxscale 15
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -4008,7 +4484,7 @@ status open
 
 \begin_layout Plain Layout
 Pedestrians paths usage along the Hall.
- Region of 40 pixels.
+ Region of 40 pixels
 \end_layout
 
 \end_inset
@@ -4053,6 +4529,7 @@ status collapsed
 	filename Images/Results/Stadistics and Pedestrian Path Usage/Camera21563.jpg
 	lyxscale 30
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -4063,7 +4540,8 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Camera Frame at 
+Camera 2.
+ Frame at 
 \begin_inset Formula $t=t_{0}$
 \end_inset
 
@@ -4089,6 +4567,7 @@ status collapsed
 	filename Images/Results/Stadistics and Pedestrian Path Usage/ProbableAreasPath70-1563.png
 	lyxscale 15
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -4129,6 +4608,7 @@ status collapsed
 	filename Images/Results/Stadistics and Pedestrian Path Usage/Camera12689.jpg
 	lyxscale 30
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -4139,7 +4619,8 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Camera Frame at 
+Camera 1.
+ Frame at 
 \begin_inset Formula $t=t_{1}$
 \end_inset
 
@@ -4165,6 +4646,7 @@ status collapsed
 	filename Images/Results/Stadistics and Pedestrian Path Usage/ProbableAreasPath70-2689.png
 	lyxscale 15
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -4205,6 +4687,7 @@ status collapsed
 	filename Images/Results/Stadistics and Pedestrian Path Usage/Camera14984.jpg
 	lyxscale 30
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -4215,7 +4698,8 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Camera Frame at 
+Camera 1.
+ Frame at 
 \begin_inset Formula $t=t_{2}$
 \end_inset
 
@@ -4241,6 +4725,7 @@ status collapsed
 	filename Images/Results/Stadistics and Pedestrian Path Usage/ProbableAreasPath70-4984.png
 	lyxscale 15
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -4281,6 +4766,7 @@ status collapsed
 	filename Images/Results/Stadistics and Pedestrian Path Usage/Camera36324.jpg
 	lyxscale 30
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -4291,7 +4777,8 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Camera Frame at 
+Camera 3.
+ Frame at 
 \begin_inset Formula $t=t_{3}$
 \end_inset
 
@@ -4317,6 +4804,7 @@ status collapsed
 	filename Images/Results/Stadistics and Pedestrian Path Usage/ProbableAreasPath70-6324.png
 	lyxscale 15
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -4353,7 +4841,7 @@ status open
 
 \begin_layout Plain Layout
 Pedestrians paths usage along the Hall.
- Region of 70 pixels.
+ Region of 70 pixels
 \end_layout
 
 \end_inset
@@ -4379,33 +4867,61 @@ name "fig:Pedestrians paths usage along the Hall. 70 pix"
 
 \end_layout
 
-\begin_layout Standard
-Results are displayed as yellow squares that measure the amount of pedestrians
- found in that sub region.
- The more strong the color appears in the image it means that pedestrian
- density over that area has been higher than in the neighborhood.
-\end_layout
-
 \begin_layout Subsection
 Statistical Usage Data Results Discussion
 \end_layout
 
 \begin_layout Standard
-One can observe in Figure 
+One can observe in Figures 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Stadistical-Data-Usage Curves"
+reference "fig:Floor-usage-graph"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Doors-usage-graph"
 
 \end_inset
 
  that both semantic areas are measured in terms of number of people by frame.
  If one takes a look to the correspondent frame, displayed at the top of
- the graph, it can be observed that there is a correspondence between the
- period when most people are walking through the scene and the peak from
- the curve.
+ the graph, it can be observed that there is a correspondence between periods
+ when most people are walking through the scene and the different peaks
+ from the curve.
+ It is important to notice, that also in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Floor-usage-graph"
+
+\end_inset
+
+ at 
+\begin_inset Formula $t_{2}=4877$
+\end_inset
+
+ we are not getting an accurate measure due to the small blob and also due
+ to the group detection as a hole.
  Same observation can be made when talking about doors usage as people passing
- trough doors are in frame 5000 .
- 
+ trough doors are in frames 
+\begin_inset Formula $t_{1}=1541$
+\end_inset
+
+, 
+\begin_inset Formula $t_{2}=2808$
+\end_inset
+
+, 
+\begin_inset Formula $t_{3}=3569$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{4}=5091$
+\end_inset
+
+ approximately.
 \end_layout
 
 \begin_layout Standard
@@ -4423,8 +4939,8 @@ reference "fig:Pedestrians paths usage along the Hall. 70 pix"
 
 \end_inset
 
- one can observe that most used paths increase accordingly to developed
- events in the sequence.
+ it is observable that most used paths increase accordingly pedestrian flow
+ in the sequence.
  For that reason when a person enters the building areas surrounding the
  door get highlighted.
  In the same manner, when a big pedestrian group walks along the scene all
