@@ -119,9 +119,9 @@ Motivation
 \end_layout
 
 \begin_layout Standard
-Nowadays, we live surrounded by electronic devices which objective is to
- ensure the safety and security of the global population and to ease our
- lives on everyday tasks.
+Nowadays, we live surrounded by electronic devices which claimed objective
+ is to ensure the safety and security of the global population and to ease
+ our lives on everyday tasks.
  These range from biometric systems 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -131,9 +131,8 @@ key "jain1999multimodal"
 
  to all kind of different electrical sensors, including video surveillance
  cameras.
- These cameras are the ones that are of real interest when developing Image
- Processing and Computer Vision algorithms in the video surveillance scope
- 
+ These cameras are the ones that are of real interest when developing Computer
+ Vision algorithms in the scope of video surveillance 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "wang2013intelligent"
@@ -145,8 +144,8 @@ key "wang2013intelligent"
 \end_layout
 
 \begin_layout Standard
-The combination of these veins of research could lead to the automation
- of high-level human semantic tasks such as people detection 
+The combination of these veins of research may lead to the automation of
+ high-level human semantic tasks such as people detection 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dollar2012pedestrian"
@@ -175,20 +174,19 @@ key "zhao2016pyramid"
 \end_layout
 
 \begin_layout Standard
-Usually, mentioned video surveillance systems could be focus either on the
- analysis of a single-camera point of view, which will lead to a simple
- scenario in which the potential actions/events to detect will be observed
- from a single point in the scene or, on the analysis of a multi-camera
- setup.
- This last configuration will arise multiple benefits when analyzing big
- spaces as it will provide the user different views of the scene disambiguating
- occluded areas in the mono-camera views.
+Usually, video surveillance systems are focused either on the analysis of
+ a single-camera point of view -which will lead to a simple scenario in
+ which the potential actions/events to detect will be observed from a single
+ point in the scene- or, on the analysis of a multi-camera setup.
+ This last configuration may provide multiple benefits when analyzing big
+ spaces as it provides to the user different views of the scene, disambiguating
+ occluded areas the mono-camera views.
 \end_layout
 
 \begin_layout Standard
 Among Computer Vision applications running on a multi-camera scenario, a
  pivotal field of research is the analysis of public spaces.
- These are often crowd-populated scenarios which analysis requires the combinati
+ These are often crowd populated scenarios which analysis requires the combinati
 on of the data obtained by all recording cameras.
  It is of real interest to analyze people behavior patterns 
 \begin_inset CommandInset citation
@@ -199,7 +197,7 @@ key "mazzon2013multi,turner2002encoding,scovanner2009learning"
 
  and temporal usage of a given area in large-scale scenarios such as shopping
  malls, universities and, generally, public-use buildings.
- Analysis range from the extraction of statistical measures of behavior
+ Analysis ranges from the extraction of statistical measures of behavior
  to the detection of anomalous unexpected events 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -226,18 +224,19 @@ name "sec:Objectives"
 
 \begin_layout Standard
 The main objective of this thesis is to extract contextual descriptions
- from a large-scale populated scenario while extracting temporal statistical
- usage data from relevant scene spaces using multiple cameras.
- This should be supported with a Graphical User Interface application.
+ from a large-scale populated multi camera scenario.
+ A potential application of this task is illustrated by the extraction of
+ temporal statistical usage data from relevant areas in the scene.
+ The whole solution needs to be controlled through the use of a Graphical
+ User Interface application.
  
 \end_layout
 
 \begin_layout Standard
-To fulfill this objective, this work will embrace two different blocks of
- objectives that will complement each other.
- The first one will have to do with the design of a graphical user interface
- (GUI) whereas the second block will deal with algorithm and research-related
- objectives.
+To fulfill this objective, this work embraces two different blocks of objectives
+ that complement each other.
+ The first one targets the design of a graphical user interface (GUI), The
+ second block deals with algorithm and research-related objectives.
 \end_layout
 
 \begin_layout Subsection*
@@ -245,10 +244,8 @@ Graphical User Interface
 \end_layout
 
 \begin_layout Standard
-The main user interface should be able to visualize and dynamically arrange
- -under a user-friendly environment-statistics from different areas of interest
- in a public space either pre-generated or generated under a real-time constrain
-t.
+The GUI should be able to visualize and dynamically arrange -under a user-friend
+ly environment-statistics from different areas of interest in a public space.
 \end_layout
 
 \begin_layout Subsection*
@@ -261,7 +258,7 @@ The algorithm related objectives are:
 
 \begin_layout Enumerate
 To integrate a semantic segmentation algorithm to perform contextual element
- analysis in video sequences.
+ in video sequences.
  The objective is to detect, classify and determine the spatial extend on
  each frame of the video of relevant elements such as doors, chairs, corridors
  and floor areas.
@@ -270,9 +267,7 @@ To integrate a semantic segmentation algorithm to perform contextual element
 
 \begin_deeper
 \begin_layout Enumerate
-Identify the current state of all these elements in each of the processed
- cameras.
- The state should distinguish between visible and occluded.
+Combine semantic information coming from different cameras.
 \end_layout
 
 \begin_layout Enumerate
@@ -282,20 +277,20 @@ Identify the usage rate of some important elements of the scene measured
 
 \end_deeper
 \begin_layout Enumerate
-To integrate state-of-the-art people detection algorithms results per view.
+To globally integrate state-of-the-art pedestrian detection algorithms results
+ per view.
  To this aim, we need to:
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
-Create a fusion mechanism to take advantage of the multi-camera scenario.
- The results from all the cameras are projected to a common space and combined
- such that by result’s refinement the individual detector performances are
- increased.
+Create a pedestrian detector fusion mechanism to take advantage of the multi-cam
+era scenario.
+ 
 \end_layout
 
 \begin_layout Enumerate
-Increase people detection algorithms performance by the use of semantic
+Increase pedestrian detection algorithms performance by the use of semantic
  constraining information to suppress false detections.
 \end_layout
 
@@ -382,6 +377,10 @@ reference "chap:Conclusions"
 .
  Conclusions and Future Work.
  
+\end_layout
+
+\begin_layout Itemize
+Appendices 
 \end_layout
 
 \begin_layout Itemize

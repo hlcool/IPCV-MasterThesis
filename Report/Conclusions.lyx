@@ -100,18 +100,58 @@ Conclusions
 \end_layout
 
 \begin_layout Standard
-Cuando hay cambios de iluminacion bruscos la seleccion de vistas falla.
+This master thesis has presented a system capable of performing pedestrian
+ detection and semantic segmentation over a multi camera setup at the Escuela
+ Politecnica Superior, Universidad Autonoma de Madrid (Spain).
+ Different pedestrian detection approaches such as HOG, DPM, ACF or Fast-RCNN
+ and a semantic segmentation algorithm, PSP-Net, have been selected among
+ others from a complete study of the state of the art.
 \end_layout
 
 \begin_layout Standard
-Debido a fallos del detector las projeccciones no se corresponden exactamente
- con la persona.
+A complete system to perform pedestrian fusion and filtering has been proposed.
+ Information from three cameras are combined into a common cenital plane
+ by the use of homographies.
+ This process allows PD to be shared and reprojected from one camera to
+ another.
+ In addition, common multi camera semantic information has been used to
+ constraint PD detections.
 \end_layout
 
 \begin_layout Standard
-Debido a las perspectivas, las reprojecciones de personas en otros frames
- tienen un ancho minimo y al applicar la fomrula para la altura, está, sale
- muy pequeña.
+Statistical data usage from different semantic areas has been extracted.
+ Also, pedestrian paths in terms of density have been computed based on
+ some semantic information such as floor paths and doors.
+\end_layout
+
+\begin_layout Standard
+In order to control and tune algorithms a multi thread application has been
+ developed under QT Developing environment.
+ It has a Graphical User Interface that sets the base for a user-friendly
+ interaction between the user and the software.
+ This application also allows the user to represent and visualize all the
+ extracted results.
+\end_layout
+
+\begin_layout Standard
+All the system has been tested in a manually annotated recording obtaining
+ performance results for homography calculation, PD approaches under different
+ environments and semantic areas statistical usage data.
+ During these tests semantic constraining has improved DPM approach, however
+ algorithms such as HOG or PSP-Net have obtained worse results than the
+ normal detector.
+ In the same manner, multi camera fusion has not been able to increase performan
+ce for any of the algorithms.
+ Problems related to pedestrian reprojection between cameras combined with
+ PD errors lead to an increase in the number of false positive and so, in
+ performance decreased.
+\end_layout
+
+\begin_layout Standard
+Statistical data usage has been almost perfectly extracted, having exact
+ frames in which semantic areas are used.
+ In addition, semantic paths have been obtained with high precision in spatial
+ and temporally terms.
 \end_layout
 
 \begin_layout Section
@@ -124,14 +164,14 @@ Taking into account actual state of the art, obtained results and extracted
 \end_layout
 
 \begin_layout Standard
-In term of application and software development some improvements are proposed
+In terms of application and software development some improvements are proposed
  to be done.
  Nowadays, heavy computational work is achieve almost in real time by the
- use of graphic cards.
- GPU computation should be implemented in the scoope of this work.
- Many of the used method are also developed with GPU functionalities and
- the inclusion of this kind of speed-up could lead to better and faster
- results.
+ use of graphical cards.
+ GPU computation should be implemented in the scope of this work.
+ Many of the used methods are also implemented with GPU computation functionalit
+ies and the inclusion of this kind of speed-up could lead to better and
+ faster results.
 \end_layout
 
 \begin_layout Standard
@@ -144,22 +184,21 @@ reference "subsec:View-Selection"
 \end_inset
 
 .
- However, as said in Conclusions when high illumination changes occur this
- process fails.
+ However, when high illumination changes occur this process fails.
  We propose to fix this problem by the use of camera spatial positions.
  With this information exact same position for each of the views can be
- obtained and so, they can be updated during the video sequence in order
- to adapt to illumination changes.
+ obtained periodically and so, they can be updated during the video sequence
+ in order to adapt to illumination changes.
 \end_layout
 
 \begin_layout Standard
-One of the main problems discussed in the conclusions section is that when
- pedestrians are reprojected the blob height is lost.
+One of the main problems discussed in the results section is that when pedestria
+ns are reprojected the blob height is lost.
  Due to this, there are some frames that have small detections compared
  to the person size.
  To correctly reproject the blob we propose as future work to use real distances
- between camera and bounding box to finally obtain the real height for the
- blob.
+ between camera and pedestrian detection to finally obtain an approximation
+ to the real height for the blob.
 \end_layout
 
 \end_body

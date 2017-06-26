@@ -1729,7 +1729,7 @@ In terms of pedestrian detection taking a look a the table one can easily
 \end_layout
 
 \begin_layout Standard
-Nevertheless it is noticeable that even the slowest PD approach performs
+Nevertheless, it is noticeable that even the slowest PD approach performs
  faster than HOG in the single-thread application.
 \end_layout
 
@@ -3559,7 +3559,7 @@ for visual results).
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -3593,6 +3593,15 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Differences in number of detections for PD approaches
+\end_layout
+
+\end_inset
+
 Differences in number of detections for 
 \begin_inset Formula $Threshold=0$
 \end_inset
@@ -3901,7 +3910,7 @@ reference "fig:Pedestrian reprojection error due to heigth"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center

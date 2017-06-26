@@ -1491,7 +1491,21 @@ key "krizhevsky2012imagenet"
 
 \end_inset
 
- for image classification, Fast-RCN, Faster R-CNN 
+ for image classification, CompACT 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/corr/CaiSV15"
+
+\end_inset
+
+, Fast-RCN 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "girshick2015fast"
+
+\end_inset
+
+, Faster R-CNN 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ren2015faster"
@@ -1652,6 +1666,18 @@ The impact area of an object -in contextual terms- is defined as a set of
  aim to correctly define the area that surrounds an object to precisely
  detect other object instances.
  
+\end_layout
+
+\begin_layout Standard
+In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "torralba2001detecting"
+
+\end_inset
+
+ the inclusion of local contextual regions such as facial bounding contour
+ are used to improve face detection performance.
 \end_layout
 
 \begin_layout Subsection
