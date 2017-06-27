@@ -240,6 +240,7 @@ reference "fig:Image-summary-from datasets"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -257,6 +258,7 @@ status collapsed
 	filename Images/State Of the Art/Caltech Dataset.jpg
 	lyxscale 80
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -296,6 +298,7 @@ status collapsed
 	filename Images/State Of the Art/ETHZ Dataset.png
 	lyxscale 30
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -339,6 +342,7 @@ status collapsed
 	filename Images/State Of the Art/TUD Campus Dataset.png
 	lyxscale 30
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -378,6 +382,7 @@ status collapsed
 	filename Images/State Of the Art/Inria Dataset.png
 	lyxscale 20
 	width 40text%
+	height 20theight%
 
 \end_inset
 
@@ -745,7 +750,7 @@ http://www-vpu.eps.uam.es/DS/PDbm/results.html
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1578,10 +1583,6 @@ reference "tab:Pedestrian-detection-performance"
  where Faster R-CNN outperforms every other approach.
 \end_layout
 
-\begin_layout Standard
-METER MAS
-\end_layout
-
 \begin_layout Subsection
 Next Steps Towards Generic PD
 \end_layout
@@ -1874,6 +1875,7 @@ ng semantic areas.
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -1993,6 +1995,7 @@ reference "tab:Cityscapes Dataset Challenge Results"
 
 \begin_layout Standard
 \begin_inset Float table
+placement H
 wide false
 sideways false
 status collapsed
@@ -2235,6 +2238,7 @@ name "tab:Cityscapes-Dataset-Class Definitions"
 
 \begin_layout Standard
 \begin_inset Float table
+placement H
 wide false
 sideways false
 status collapsed

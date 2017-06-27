@@ -126,6 +126,7 @@ status collapsed
 	filename Images/Proposed System/System FlowChart.svg
 	lyxscale 30
 	width 100text%
+	height 100theight%
 
 \end_inset
 
@@ -882,7 +883,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/HoG.jpg
 	lyxscale 60
-	width 65text%
+	width 75text%
 
 \end_inset
 
@@ -1002,12 +1003,12 @@ status collapsed
 status open
 
 \begin_layout Plain Layout
-Example detection obtained with the DPM person model
+Detection example obtained with the DPM person model
 \end_layout
 
 \end_inset
 
-Example detection obtained with the DPM person model.
+Detection example obtained with the DPM person model.
  From left to right: Original image + detections, global coarse model, part
  templates and spatial model for each part.
  Image extracted from 
@@ -1463,6 +1464,7 @@ reference "fig:Initial Camera Views"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -1472,7 +1474,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Camera Configuration Static.png
 	lyxscale 30
-	width 80text%
+	width 100text%
 
 \end_inset
 
@@ -1504,10 +1506,25 @@ name "fig:Multi-camera-configuration"
 \end_layout
 
 \begin_layout Standard
+Analyzing a multi-camera scenario has some advantages.
+ One can see in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Initial Camera Views"
+
+\end_inset
+
+ we can observe the same scene area from three different points of views,
+ which means that for instance, detections from one camera can be used to
+ detect in other camera or even refine the available detections.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1635,20 +1652,6 @@ name "fig:Initial Camera Views"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Analyzing a multi-camera scenario has some advantages.
- One can see in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Initial Camera Views"
-
-\end_inset
-
- we can observe the same scene area from three different points of views,
- which means that for instance, detections from one camera can be used to
- detect in other camera or even refine the available detections.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1789,6 +1792,7 @@ reference "chap:Cenital Plane Design Append"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -2102,6 +2106,7 @@ reference "fig:View selection process and homography between views computation"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -2224,6 +2229,7 @@ reference "fig:Cylinder-estimation-for camera instances projections"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -2233,7 +2239,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Cylinder estimation between cameras.png
 	lyxscale 20
-	width 75text%
+	width 70text%
 
 \end_inset
 
@@ -2283,48 +2289,6 @@ name "fig:Cylinder-estimation-for camera instances projections"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Images/Proposed System/Cilynder Cenital.png
-	lyxscale 20
-	width 80text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Cylinder estimation for cenital view projections
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Cylinder-estimation-for cenital view projections"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 As we can observe in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2357,6 +2321,49 @@ reference "fig:Cylinder-estimation-for cenital view projections"
  of the purple line.
  The center of the cylinder so, corresponds to a more approximate position
  of the detected person.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Proposed System/Cilynder Cenital.png
+	lyxscale 20
+	width 85text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cylinder estimation for cenital view projections
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Cylinder-estimation-for cenital view projections"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -2469,22 +2476,15 @@ reference "fig:Low-score-detections"
 \end_inset
 
 ).
- Some Gaussians examples depending on the scores can be observed in Figure
  
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Gaussian-representation-examples"
-
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2633,9 +2633,9 @@ Projected frames from one camera to another are treated as another detector
  when projected to another frame it could be either joined by a Non-Maximum
  Suppression (NMS), if that camera has already one blob, or maintained as
  a detection on the person.
- However, if the detection is not accurate enough, the projection could
- be not on the person and so that blob leads to a false positive.
- This can be described as the main drawback of the method.
+ However, if the detection is not accurate enough, the projection may not
+ be on the person and so, that blob leads to a false positive.
+ This is the main drawback of the method.
 \end_layout
 
 \begin_layout Standard
@@ -2658,6 +2658,7 @@ reference "fig:Pedestrain reprojection into other cameras"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -2674,7 +2675,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Multi Camera Reprojection/Cam 1.png
 	lyxscale 20
-	width 50text%
+	width 49text%
 
 \end_inset
 
@@ -2706,7 +2707,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Multi Camera Reprojection/Cam 2.png
 	lyxscale 20
-	width 50text%
+	width 49text%
 
 \end_inset
 
@@ -2742,7 +2743,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Multi Camera Reprojection/Cam 3.png
 	lyxscale 20
-	width 50text%
+	width 49text%
 
 \end_inset
 
@@ -2859,6 +2860,7 @@ reference "fig:Pedestrain semantic constraining"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -2981,8 +2983,7 @@ Pedestrian semantic constraining examples
 \end_inset
 
 Pedestrian semantic constraining.
- Blobs that are not in the right semantic area are just displayed by a circle
- and text label.
+ Blobs not floor semantic area are just displayed by a circle and text label.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Pedestrain semantic constraining"
@@ -3026,8 +3027,8 @@ reference "fig:View selection process and homography between views computation"
 
 \end_inset
 
- one can project every video frame into a cenital perspective.
- This way a set of projected RGB and semantic frames for each camera is
+ one can project any video frame into a cenital perspective.
+ By this, a set of projected RGB and semantic frames for each camera is
  obtained.
  Some examples of these images can be observed in Figure 
 \begin_inset CommandInset ref
@@ -3222,14 +3223,14 @@ name "fig:RGB-and-semantic projected"
 \end_layout
 
 \begin_layout Standard
-Once all the video frames are projected we propose to apply a temporal average
- through a median filter for the three cameras separately.
+Once all the video frames are projected a temporal average tis applied through
+ a median filter for the three cameras separately.
  By this method a reference plane 
 \begin_inset Formula $\pi_{ref-C}$
 \end_inset
 
  for each camera contained in the ground plane is created by joining all
- the separated projected frames.
+ the projected frames.
  Given a set of pixels 
 \begin_inset Formula $P(x_{0},\,y_{0},\,N)$
 \end_inset
@@ -3249,7 +3250,7 @@ reference "eq:Median Temporal Average"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -3448,6 +3449,7 @@ name "fig:RGB Median Average"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement t
 wide false
 sideways false
 status open
@@ -3654,7 +3656,7 @@ reference "fig:Common semantic areas between pair of cameras."
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3679,7 +3681,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cameras 1 and 2.
+Cam 1 and 2.
  
 \begin_inset Formula $^{Sem}\pi_{ref-1}\land{}^{Sem}\pi_{ref-2}$
 \end_inset
@@ -3695,10 +3697,6 @@ Cameras 1 and 2.
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-\align center
 \begin_inset Float figure
 wide false
 sideways false
@@ -3720,7 +3718,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cameras 2 and 3.
+Cam 2 and 3.
  
 \begin_inset Formula $^{Sem}\pi_{ref-2}\land{}^{Sem}\pi_{ref-3}$
 \end_inset
@@ -3761,7 +3759,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cameras 3 and 1.
+Cam 3 and 1.
   
 \begin_inset Formula $^{Sem}\pi_{ref-3}\land{}^{Sem}\pi_{ref-1}$
 \end_inset
@@ -3830,7 +3828,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/CommonSemanticAllCameras.png
 	lyxscale 20
-	width 60text%
+	width 80text%
 
 \end_inset
 
@@ -3926,16 +3924,17 @@ reference "fig:Statistical Semantic Map"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/Proposed System/Statistical Map.png
 	lyxscale 20
-	width 80text%
+	width 100text%
 
 \end_inset
 

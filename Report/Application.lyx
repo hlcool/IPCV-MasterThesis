@@ -321,6 +321,7 @@ reference "fig:Flow-chart-legend"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -473,6 +474,27 @@ reference "fig:Flow-chart diagram for the single-thread application"
 \end_inset
 
  .
+\end_layout
+
+\begin_layout Standard
+This approach has the advantage that all the code is executed in the same
+ memory segment.
+ This makes really simple, for instance, to share information between cameras.
+ This design is however, only valid if the computational effort is minimum.
+ All the process for the three cameras should be computed one after the
+ other which means that when calculating detections for one camera, the
+ others remain idle.
+ When working with such a multi-camera system with heavy algorithms running
+ 
+\begin_inset Formula $-$
+\end_inset
+
+as in the proposed method
+\begin_inset Formula $-$
+\end_inset
+
+ the computational time increases exponentially and this design is no longer
+ worthwhile.
 \end_layout
 
 \begin_layout Standard
@@ -771,87 +793,6 @@ name "fig:Flow-chart diagram for the single-thread application"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-This approach has the advantage that all the code is executed in the same
- memory segment.
- This makes really easy, for instance, to share information between cameras.
- This design is however, only valid if the computational effort is minimum.
- All the process for the three cameras should be computed one after the
- other which means that when calculating detections for one camera, the
- others remain idle.
- When working with such a multi-camera system with heavy algorithms running
- 
-\begin_inset Formula $-$
-\end_inset
-
-as in the proposed method
-\begin_inset Formula $-$
-\end_inset
-
- the computational time increases exponentially and this design is no longer
- worthwhile.
-\end_layout
-
-\begin_layout Section
-Multi-thread Developer Application
-\end_layout
-
-\begin_layout Standard
-Multi-thread Developer approach can be observed in the flow-chart displayed
- in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Flow-chart diagram for the multi-thread application"
-
-\end_inset
-
-.
- Now different threads are running in parallel, one for each camera, and
- so, all the process is no longer done sequentially and computing power
- of the CPU can be further exploited.
-\end_layout
-
-\begin_layout Standard
-However, as threads are running separately a synchronization strategy should
- be included to keep consistency in the application.
- 
-\end_layout
-
-\begin_layout Standard
-One thread can process a frame faster than another one due to multiple external
- reasons, nevertheless, the application should display the same exact frame
- for all the cameras at the same time.
- This is specially relevant if results are going to be shared between threads.
- In our case the synchronization is performed by two barriers 
-\begin_inset Formula $-$
-\end_inset
-
-see diagram 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Flow-chart diagram for the multi-thread application"
-
-\end_inset
-
-
-\begin_inset Formula $-$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Itemize
-The first one ensures that all the threads have perform PD before sharing
- these detections to the rest of the threads.
- 
-\end_layout
-
-\begin_layout Itemize
-Second barrier creates a meeting point at the end of the frame processing
- so a thread waits to the others before sending results to the main display.
 \end_layout
 
 \begin_layout Standard
@@ -1279,6 +1220,66 @@ name "fig:Flow-chart diagram for the multi-thread application"
 
 \end_layout
 
+\begin_layout Section
+Multi-thread Developer Application
+\end_layout
+
+\begin_layout Standard
+Multi-thread Developer approach can be observed in the flow-chart displayed
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Flow-chart diagram for the multi-thread application"
+
+\end_inset
+
+.
+ Now different threads are running in parallel, one for each camera, and
+ so, all the process is no longer done sequentially and computing power
+ of the CPU can be further exploited.
+\end_layout
+
+\begin_layout Standard
+However, as threads are running separately a synchronization strategy should
+ be included to keep consistency in the application.
+ 
+\end_layout
+
+\begin_layout Standard
+One thread can process a frame faster than another one due to multiple external
+ reasons, nevertheless, the application should display the same exact frame
+ for all the cameras at the same time.
+ This is specially relevant if results are going to be shared between threads.
+ In our case the synchronization is performed by two barriers 
+\begin_inset Formula $-$
+\end_inset
+
+see diagram 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Flow-chart diagram for the multi-thread application"
+
+\end_inset
+
+
+\begin_inset Formula $-$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+The first one ensures that all the threads have perform PD before sharing
+ these detections to the rest of the threads.
+ 
+\end_layout
+
+\begin_layout Itemize
+Second barrier creates a meeting point at the end of the frame processing
+ so a thread waits to the others before sending results to the main display.
+\end_layout
+
 \begin_layout Subsection
 Main Application Window
 \end_layout
@@ -1307,7 +1308,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Application/Main Window.png
 	lyxscale 20
-	width 85text%
+	width 100text%
 
 \end_inset
 
@@ -1396,6 +1397,7 @@ status collapsed
 	filename Images/Application/File Submenu.png
 	lyxscale 60
 	width 45text%
+	height 7theight%
 
 \end_inset
 
@@ -1406,7 +1408,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-File Submenu
+File submenu
 \end_layout
 
 \end_inset
@@ -1431,7 +1433,8 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Application/Help Submenu.png
 	lyxscale 60
-	width 55text%
+	width 45text%
+	height 7theight%
 
 \end_inset
 
@@ -1442,7 +1445,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Help Submenu
+Help submenu
 \end_layout
 
 \end_inset
@@ -1482,7 +1485,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-File open dialog.
+Open file dialog
 \end_layout
 
 \end_inset
@@ -1503,7 +1506,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Application/About Window.png
 	lyxscale 30
-	width 35text%
+	width 47text%
 
 \end_inset
 
@@ -2086,16 +2089,17 @@ CVImageWidget
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/Application/Hierarchical class distribution.png
 	lyxscale 30
-	width 100text%
+	width 90text%
 
 \end_inset
 
@@ -2163,6 +2167,7 @@ reference "fig:User version application main window"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement t
 wide false
 sideways false
 status collapsed

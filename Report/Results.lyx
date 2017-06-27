@@ -628,7 +628,7 @@ name "tab:Sony-SNC-RZ50P-Specifications"
 \end_layout
 
 \begin_layout Subsection
-Camera User Web Interface (GUI)
+Camera User Web Interface
 \end_layout
 
 \begin_layout Standard
@@ -4051,7 +4051,7 @@ reference "fig:Pedestrian reprojection error due to heigth"
  As can be observed in both frames two reprojections from other cameras
  are present however, one of them has not been combined.
  This means that reprojections not correctly combined with the original
- detection from the camera  produce a false positive.
+ detection from the camera produce a false positive.
 \end_layout
 
 \begin_deeper
@@ -4059,7 +4059,7 @@ reference "fig:Pedestrian reprojection error due to heigth"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
