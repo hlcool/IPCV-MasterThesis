@@ -225,7 +225,7 @@ reference "fig:Second cenital plane approach with camera positions. Anex"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -268,7 +268,7 @@ name "fig:Second cenital plane approach with measures. Anex"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -331,7 +331,7 @@ reference "fig:Second cenital plane approach with camera positions. Anex"
 \end_layout
 
 \begin_layout Chapter
-AKAZE
+AKAZE Point Descriptor
 \begin_inset CommandInset label
 LatexCommand label
 name "chap:AKAZE append"
@@ -534,7 +534,7 @@ status collapsed
 status open
 
 \begin_layout Plain Layout
-Extending homography for parallel planes.
+Extending homography for parallel planes
 \end_layout
 
 \end_inset

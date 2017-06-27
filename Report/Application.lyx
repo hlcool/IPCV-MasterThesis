@@ -753,7 +753,7 @@ end{tikzpicture}
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Flow-chart diagram for the single-thread application.
+Flow-chart diagram for the single-thread application
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Flow-chart diagram for the single-thread application"
@@ -1259,7 +1259,7 @@ end{tikzpicture}
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Flow-chart diagram for the multi-thread application.
+Flow-chart diagram for the multi-thread application
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Flow-chart diagram for the multi-thread application"
@@ -1318,7 +1318,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Main application window.
+Main application window
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Main-application-window"
@@ -1680,7 +1680,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Options Menu.
+Options Menu
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Options Menu"
@@ -2106,8 +2106,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Hierarchical representation of the code.
- 
+Hierarchical representation of the code 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Hierarchical representation of the code"
@@ -2184,7 +2183,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-User version application main window.
+User version application main window
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:User version application main window"

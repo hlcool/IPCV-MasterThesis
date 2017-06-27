@@ -2380,7 +2380,7 @@ Recall / Precision graphs mono camera
 
 \end_inset
 
-Recall / Precision graphs for mono camera pedestrian detection.
+Recall / Precision graphs for mono camera pedestrian detection
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Recall / Precision graphs for mono camera pedestrian detection."
@@ -2528,7 +2528,7 @@ Recall / Precision graphs multi camera
 
 \end_inset
 
-Recall / Precision graphs for multi camera pedestrian detection.
+Recall / Precision graphs for multi camera pedestrian detection
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Recall / Precision graphs for multi camera pedestrian detection"
@@ -2677,7 +2677,7 @@ Recall / Precision graphs mono camera with semantic constraint
 \end_inset
 
 Recall / Precision graphs for mono camera pedestrian detection with semantic
- constraining.
+ constraining
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Recall / Precision graphs for mono camera pedestrian detection with semantic constraining"
@@ -2826,7 +2826,7 @@ Recall / Precision graphs multi camera with semantic constraint
 \end_inset
 
 Recall / Precision graphs for multi camera pedestrian detection with semantic
- constraining.
+ constraining
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Recall / Precision graphs for multi camera pedestrian detection with semantic constraining."
@@ -3493,7 +3493,7 @@ Camera 3
 status open
 
 \begin_layout Plain Layout
-F-Score comparison for pedestrian detector approaches.
+F-Score comparison for pedestrian detector approaches
 \end_layout
 
 \end_inset
@@ -3848,7 +3848,7 @@ status collapsed
 
 \begin_layout Plain Layout
 Misclassification of people in semantic segmentation.
- Camera 3.
+ Camera 3
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Misclassification-of-people in semantic"
@@ -4014,8 +4014,7 @@ name "fig:Pedestrain detection error in camera 2"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Pedestrian detection error leads to a reprojection displacement.
- 
+Pedestrian detection error leads to a reprojection displacement 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Pedestrian-detection-error."
@@ -4049,8 +4048,10 @@ reference "fig:Pedestrian reprojection error due to heigth"
 .
  Projections are finally reconstructed as small or big blobs if blob width
  is small or big respectively.
- This means that reprojections are not correctly combined with the original
- detection from the camera and they produce a false positive.
+ As can be observed in both frames two reprojections from other cameras
+ are present however, one of them has not been combined.
+ This means that reprojections not correctly combined with the original
+ detection from the camera  produce a false positive.
 \end_layout
 
 \begin_deeper
@@ -4058,7 +4059,7 @@ reference "fig:Pedestrian reprojection error due to heigth"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -4084,7 +4085,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Pedestrian reprojection error due to height.
+Pedestrian reprojection error due to height
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Pedestrian reprojection error due to heigth"

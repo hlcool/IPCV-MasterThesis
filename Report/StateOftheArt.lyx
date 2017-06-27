@@ -412,7 +412,7 @@ key "dalal2005histograms"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Examples images of PD data-sets.
+Examples images of PD data-sets
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Image-summary-from datasets"
@@ -726,7 +726,7 @@ target "http://www-vpu.eps.uam.es/DS/PDbm/results.html"
 
 
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1247,7 +1247,7 @@ Average AUC
 status open
 
 \begin_layout Plain Layout
-Pedestrian Detection Performance.
+Pedestrian Detection Performance
 \end_layout
 
 \end_inset
@@ -1898,7 +1898,7 @@ status collapsed
 status open
 
 \begin_layout Plain Layout
-Semantic segmentation on ADE20K data-set.
+Semantic segmentation on ADE20K data-set
 \end_layout
 
 \end_inset
@@ -2237,7 +2237,7 @@ name "tab:Cityscapes-Dataset-Class Definitions"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -2792,8 +2792,7 @@ name "fig:PSPNet-Algorithm-1"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Semantic Segmentation result examples on Cityscapes Data-set.
- 
+Semantic Segmentation result examples on Cityscapes Data-set 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Semantic-Segmentation-results"

@@ -561,28 +561,29 @@ noindent
 \begin_layout Standard
 Este proyecto describe un método para realizar detección de personas y segmentac
 ión semántica en un escenario multicámara.
- La fusión de estas dos disciplinas lleva a detecciones de personas contextualme
-nte refinadas.
- El entorno multicámara es usado para reproyectar detecciones de una cámara
- a otra y mejorar la precisión.
+ La fusión de estas dos disciplinas tendrá como resultado a detecciones
+ de personas contextualmente refinadas.
+ Se ha usado un entorno multicámara para reproyectar detecciones de una
+ cámara a otra y mejorar la precisión.
  Como ejemplo de uso, datos estadísticos de áreas semánticas concretas en
- la escena han sido también extraídos.
+ la escena han sido igualmente extraídos.
  Para lograr una interacción completa con el usuario se ha diseñado una
- Interfaz de Usuario Gráfica.
- Esta interfaz permitirá al usuario definir el entorno de detección de personas,
- así como mostrar resultados en tiempo real de ejecución.
+ Interfaz de Usuario Gráfica qué permitirá al usuario definir el entorno
+ de detección de personas, así como mostrar resultados en tiempo real de
+ ejecución.
 \end_layout
 
 \begin_layout Standard
-Para poder llevar a cabo estas tareas un estudio del estado del arte ha
- sido realizado.
- Se ha analizado los diferentes detectores de personas, haciendo énfasis
+Para poder llevar a cabo estos objetivos un estudio del estado del arte
+ ha sido realizado.
+ Se han analizado los diferentes detectores de personas, haciendo énfasis
  en aquellos que utilizan propuestas de objetos.
  Además, se han estudiado nuevos métodos en el entorno de la detección de
- personas tales como las nuevas redes neuronales.
+ personas tales como las redes neuronales.
  Se ha revisado el estado del arte actual sobre la extracción de información
  contextual, y en concreto, en el uso de la segmentación semántica.
- Finalmente, los escenarios con configuración multicámara han sido descritos.
+ Finalmente, los escenarios con configuración multicámara con sus ventajas
+ y desventajas han sido descritos.
 \end_layout
 
 \begin_layout Standard
@@ -591,8 +592,8 @@ Para presentar los resultados y configurar los diferentes algoritmos se
 \end_layout
 
 \begin_layout Standard
-Un nuevo sistema ha sido propuesto para lograr los objetivos mencionados
- y para lograr detecciones de persona bajo diferentes condiciones de filtrado.
+Para lograr los objetivos mencionados, se ha propuesto un nuevo sistema
+ que realiza detección de personas bajo diferentes condiciones de filtrado.
  Se han integrado en el sistema detectores como HOG, DPM, o PSP-Net y además
  se ha realizado segmentación semántica.
  Ambas fuentes de información han sido combinadas en un entorno común representa
@@ -601,7 +602,8 @@ do mediante un plano cenital de la escena.
 
 \begin_layout Standard
 Finalmente, el rendimiento del sistema ha sido probado en un data-set generado
- y manualmente anotado para generar graficas de rendimiento.
+ y manualmente anotado para generar graficas de rendimiento y estadísticos
+ de uso.
 \end_layout
 
 \begin_layout Section*

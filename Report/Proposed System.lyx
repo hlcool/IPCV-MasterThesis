@@ -245,7 +245,7 @@ reference "fig:Overview-of-the proposed PSPNet"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1002,7 +1002,7 @@ status collapsed
 status open
 
 \begin_layout Plain Layout
-Example detection obtained with the DPM person model.
+Example detection obtained with the DPM person model
 \end_layout
 
 \end_inset
@@ -1131,7 +1131,7 @@ status collapsed
 status open
 
 \begin_layout Plain Layout
-Aggregated Channel Features architecture.
+Aggregated Channel Features architecture
 \end_layout
 
 \end_inset
@@ -1321,7 +1321,7 @@ status collapsed
 status open
 
 \begin_layout Plain Layout
-Fast-RCNN architecture.
+Fast-RCNN architecture
 \end_layout
 
 \end_inset
@@ -1809,7 +1809,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cenital plane with camera positions.
+Cenital plane with camera positions
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Cenital plane with camera positions."
@@ -1904,7 +1904,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Multi-camera configuration with panning set up
+Multi-camera configuration with panning setup
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Multi-camera-configuration with panning set up"
@@ -2126,7 +2126,7 @@ status collapsed
 status open
 
 \begin_layout Plain Layout
-View selection process and homography calculation.
+View selection process and homography calculation
 \end_layout
 
 \end_inset
@@ -2304,7 +2304,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cylinder estimation for cenital view projections.
+Cylinder estimation for cenital view projections
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Cylinder-estimation-for cenital view projections"
@@ -2574,7 +2574,7 @@ name "fig:Low-score-detections"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Gaussian representation examples.
+Gaussian representation examples
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Gaussian-representation-examples"
@@ -2770,8 +2770,7 @@ Camera 3 + Reprojections from 1 and 2
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Pedestrian detection reprojection.
- 
+Pedestrian detection reprojection
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Pedestrain reprojection into other cameras"
@@ -2976,7 +2975,7 @@ Camera 3
 status open
 
 \begin_layout Plain Layout
-Pedestrian semantic constraining examples.
+Pedestrian semantic constraining examples
 \end_layout
 
 \end_inset
@@ -3202,7 +3201,7 @@ Semantic Projected
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-RGB and semantic frames projected.
+RGB and semantic frames projected
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:RGB-and-semantic projected"
@@ -3784,7 +3783,7 @@ Cameras 3 and 1.
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Common semantic areas between pair of cameras.
+Common semantic areas between pair of cameras
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Common semantic areas between pair of cameras."
@@ -3929,7 +3928,7 @@ reference "fig:Statistical Semantic Map"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3959,7 +3958,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Statistical semantic map.
+Statistical semantic map
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Statistical Semantic Map"
