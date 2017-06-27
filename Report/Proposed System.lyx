@@ -111,7 +111,7 @@ reference "fig:Proposed-system-flowchart"
 
 \end_inset
 
- depicts the flowchart of the proposed method
+ depicts the flowchart of the proposed method.
 \end_layout
 
 \begin_layout Standard
@@ -170,14 +170,22 @@ name "sec:Contextual-Model-Generation"
 
 \begin_layout Standard
 One of the main objectives in the scope of this work is to perform semantic
- segmentation, which -as explained in Chapter 
+ segmentation, which 
+\begin_inset Formula $-$
+\end_inset
+
+as explained in Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:State of the art"
 
 \end_inset
 
-- targets to divide one frame into different semantic areas.
+
+\begin_inset Formula $-$
+\end_inset
+
+targets to divide one frame into different semantic areas.
  The relative position in the scene for elements such as doors, walls, paths,
  and columns is required to achieve further objectives such as multi camera
  pedestrian constraint and statistical data extraction.
@@ -234,6 +242,7 @@ reference "fig:Overview-of-the proposed PSPNet"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -383,16 +392,41 @@ target "https://github.com/hszhao/PSPNet"
 
 \end_inset
 
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\color blue
+https://github.com/hszhao/PSPNet
+\end_layout
+
+\end_inset
+
  
 \color inherit
 comes with a set of three different pre trained 
-\shape italic
 \color blue
 
 \begin_inset CommandInset href
 LatexCommand href
 name "Caffe"
 target "http://caffe.berkeleyvision.org/"
+
+\end_inset
+
+
+\shape italic
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\color blue
+http://caffe.berkeleyvision.org/
+\end_layout
 
 \end_inset
 
@@ -456,7 +490,11 @@ Selected Model
 Considering these two reasons, we have selected the model ADE20K because
  as said, it has elements such as walls, floor, person and column in its
  model.
- However, we consider that most of the 150 label categories will be unused
+ 
+\end_layout
+
+\begin_layout Standard
+However, we consider that most of the 150 label categories will be unused
  in our procedure, so, the number of classes from the model has been reduced
  to the 21 classes of our interest.
  Position and scores for those objects are the only ones obtained.
@@ -474,6 +512,7 @@ reference "tab:Final classes list from ADE20K to use in PSP-Net"
 
 \begin_layout Standard
 \begin_inset Float table
+placement H
 wide false
 sideways false
 status collapsed
@@ -836,7 +875,7 @@ reference "fig:HOG-Pedestrian-Descriptor"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1065,60 +1104,9 @@ reference "fig:ACF Architecture"
  
 \end_layout
 
-\begin_layout Enumerate
-Given an initial image 
-\begin_inset Formula $I$
-\end_inset
-
-, several channels are computed.
- This channels are named 
-\begin_inset Formula $C=\Omega(I)$
-\end_inset
-
-.
- In 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "dollar2014fast"
-
-\end_inset
-
- a set of 10 channels are used to achieve state-of-the-art performance in
- pedestrian detection:
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Normalized gradient magnitude (1 channel).
-\end_layout
-
-\begin_layout Enumerate
-Histogram of oriented gradients (6 channels).
-\end_layout
-
-\begin_layout Enumerate
-LUV color channels (3 channels).
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-After the computation, every block of pixels in 
-\begin_inset Formula $C$
-\end_inset
-
- is summed and the resulting lower resolution channels are smoothed.
- 
-\end_layout
-
-\begin_layout Enumerate
-After a vectorizing process features are single pixel lookups in the aggregated
- channels.
- Boosting trees are then used to learn this features (pixels) in order to
- distinguish people from the background.
-\end_layout
-
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -1176,6 +1164,58 @@ name "fig:ACF Architecture"
 
 \end_layout
 
+\begin_layout Enumerate
+Given an initial image 
+\begin_inset Formula $I$
+\end_inset
+
+, several channels are computed.
+ This channels are named 
+\begin_inset Formula $C=\Omega(I)$
+\end_inset
+
+.
+ In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dollar2014fast"
+
+\end_inset
+
+ a set of 10 channels are used to achieve state-of-the-art performance in
+ pedestrian detection:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Normalized gradient magnitude (1 channel).
+\end_layout
+
+\begin_layout Enumerate
+Histogram of oriented gradients (6 channels).
+\end_layout
+
+\begin_layout Enumerate
+LUV color channels (3 channels).
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+After the computation, every block of pixels in 
+\begin_inset Formula $C$
+\end_inset
+
+ is summed and the resulting lower resolution channels are smoothed.
+ 
+\end_layout
+
+\begin_layout Enumerate
+After a vectorizing process features are single pixel lookups in the aggregated
+ channels.
+ Boosting trees are then used to learn this features (pixels) in order to
+ distinguish people from the background.
+\end_layout
+
 \begin_layout Subsection
 Fast Region-Based Convolutional Network
 \end_layout
@@ -1191,7 +1231,10 @@ reference "chap:State of the art"
 \end_inset
 
  it is not only a pedestrian detector but an algorithm for object detection.
- In 
+\end_layout
+
+\begin_layout Standard
+In 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Object-Proposals"
@@ -1242,11 +1285,11 @@ Algorithm Architecture
 In Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Fast-R-RCNN-architecture"
+reference "fig:Fast-RCNN-architecture"
 
 \end_inset
 
- one can observe the general Fast R-RCNN architecture.
+ one can observe the general Fast-RCNN architecture.
  The input for the Fast-RCNN network are the entire desired image that one
  wants to process and the set of object proposals.
  Algorithm stages are:
@@ -1278,12 +1321,12 @@ status collapsed
 status open
 
 \begin_layout Plain Layout
-Fast R-RCNN architecture.
+Fast-RCNN architecture.
 \end_layout
 
 \end_inset
 
-Fast R-RCNN architecture.
+Fast-RCNN architecture.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1294,7 +1337,7 @@ key "girshick2015fast"
 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Fast-R-RCNN-architecture"
+name "fig:Fast-RCNN-architecture"
 
 \end_inset
 
@@ -1327,17 +1370,26 @@ Then, for every object proposal present in the image, a region of interest
 \begin_layout Enumerate
 Each feature vector is after, introduced into a sequence of fully connected
  (FC) layers that finally diverge into to output layers.
- The first one produces probabilities estimates over 
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+The first one produces probabilities estimates over 
 \begin_inset Formula $K$
 \end_inset
 
  object classes.
- The second one outputs four real numbers for each of the 
+ 
+\end_layout
+
+\begin_layout Standard
+The second one outputs four real numbers for each of the 
 \begin_inset Formula $K$
 \end_inset
 
  object classes.
- This set of 4 values encodes the final bounding-box positions for one of
+ This set of 4 values encodes the final bounding box positions for one of
  the objects from the 
 \begin_inset Formula $K$
 \end_inset
@@ -1345,6 +1397,7 @@ Each feature vector is after, introduced into a sequence of fully connected
  classes.
 \end_layout
 
+\end_deeper
 \begin_layout Standard
 In this case, both Fast-RCNN detector and MCG object proposal extract are
  implemented within external Matlab libraries and so, should be computed
@@ -1605,7 +1658,11 @@ Cenital Plane Homography
 \begin_layout Standard
 Homography calculation is a pivotal task in our work and the main base for
  the fusion of all the different information coming from the three cameras.
- The objective is to compute an homography matrix 
+ 
+\end_layout
+
+\begin_layout Standard
+The objective is to compute an homography matrix 
 \begin_inset Formula $^{\pi_{ref}}H_{F}$
 \end_inset
 
@@ -1623,8 +1680,11 @@ Homography calculation is a pivotal task in our work and the main base for
 
 , i.e.
  a bird-eye representation of the scene.
- With this homography matrix we are able to transform every frame pixel
  
+\end_layout
+
+\begin_layout Standard
+With this homography matrix we are able to transform every frame pixel 
 \begin_inset Formula $F_{t}(x_{1},\,y_{1})$
 \end_inset
 
@@ -1983,7 +2043,11 @@ It is essential to say, that, as we have to compare the current frame with
 
  so it represents correctly the space and keeps the computational time relativel
 y low.
- In our proposed system we have choose 
+ 
+\end_layout
+
+\begin_layout Standard
+In our proposed system we have choose 
 \begin_inset Formula $N=9$
 \end_inset
 
@@ -1999,7 +2063,11 @@ Intermediate Homography
 As we said before, the homographies are calculated for each of the views,
  this means, that if a frame is not positioned exactly as a view the homography
  matrix does not project the points correctly, there will be a small error.
- Taking advantage of the calculation of common descriptors between the frame
+ 
+\end_layout
+
+\begin_layout Standard
+Taking advantage of the calculation of common descriptors between the frame
  and its correspondent view this problem can be solved by calculating automatica
 lly the homography between both images.
  This means that now, to project detections from the current frame to the
@@ -2012,7 +2080,11 @@ lly the homography between both images.
 .
  This process ensures that the used perspective is the same one as the one
  that was used previously to compute the homography.
- Finally, the frame and its new perspective are projected to the cenital
+ 
+\end_layout
+
+\begin_layout Standard
+Finally, the frame and its new perspective are projected to the cenital
  plane by means of 
 \begin_inset Formula $^{\pi_{ref}}H_{View}$
 \end_inset
@@ -2733,8 +2805,12 @@ name "subsec:Pedestrian-Semantic-Constraining"
 \begin_layout Standard
 Once all the detections have been reprojected into all the cameras one can
  use semantic information in order to filter false positives detections
- in weird scene areas .
- Ideally people are always walking on the floor so the common floor areas
+ in not correct semantic scene areas.
+ 
+\end_layout
+
+\begin_layout Standard
+Ideally people are always walking on the floor so the common floor areas
  between pairs of cameras, whose calculation is deeply explained Section
  
 \begin_inset CommandInset ref
@@ -2746,7 +2822,11 @@ reference "subsec:Semantic-Fusion-in the Reference Plane"
 , are used to constrain the pedestrian detections to this hypothesis.
  This process is done based on the cenital plane builded using the cylinder
  estimation explained before.
- The constrain idea is that a bounding box coming from a camera 
+ 
+\end_layout
+
+\begin_layout Standard
+The constrain idea is that a bounding box coming from a camera 
 \begin_inset Formula $C_{1}$
 \end_inset
 
@@ -3151,20 +3231,35 @@ Once all the video frames are projected we propose to apply a temporal average
 
  for each camera contained in the ground plane is created by joining all
  the separated projected frames.
- This process is detailed in Eq 
+ Given a set of pixels 
+\begin_inset Formula $P(x_{0},\,y_{0},\,N)$
+\end_inset
+
+ from the same spatial position 
+\begin_inset Formula $(x_{0},y_{0})$
+\end_inset
+
+ from 
+\begin_inset Formula $N$
+\end_inset
+
+ different projected images one can define median filter as in Eq 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:Median Temporal Average"
 
 \end_inset
 
-(FORMULA MEDIAN FILTER?¿?¿?¿).
+
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-\pi_{ref-C}=\sum_{i=1}^{nFrames}Projected_{i}\label{eq:Median Temporal Average}
+P(\widetilde{x_{0}},\:\widetilde{y_{0}})=\begin{cases}
+P_{(N+1)/2} & if\,N\,is\,odd\\
+\frac{1}{2}(P_{N/2}+P_{1+N/2}) & if\,N\,is\,even
+\end{cases}\label{eq:Median Temporal Average}
 \end{equation}
 
 \end_inset
