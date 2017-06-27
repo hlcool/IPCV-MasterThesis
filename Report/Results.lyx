@@ -98,14 +98,14 @@ name "chap:Results"
 \end_layout
 
 \begin_layout Standard
-During this Chapter all the achieve results are exposed and analyzed.
+During this Chapter all the achieved results are exposed and analyzed.
  Firstly, a brief analysis of the used hardware during the Thesis is done.
  Secondly, in detail, the experiment setup is explained, i.e.
- the generated data-set and ground truth, and the evaluation framework.
+ the generated data-set, ground truth, and the evaluation framework.
  Later, results concerning application performance are presented.
  Homography projections results are analyzed.
- Finally, the last two sections aim is to present pedestrian detection results
- in term of performance and usage data extraction.
+ Finally, the last two sections, aim is to present pedestrian detection
+ results in term of performance and usage data extraction.
 \end_layout
 
 \begin_layout Section
@@ -116,8 +116,8 @@ Used Hardware
 The project has been developed in the Escuela Politécnica Superior (Universidad
  Autónoma de Madrid).
  Due to this fact, the testing environment has been the hall of the mentioned
- engineering school which has a setup of three different Internet Protocol
- Cameras (IP Cameras).
+ engineering school which has a setup of three Internet Protocol Cameras
+ (IP Cameras).
  This type of cameras can send and receive data via a computer network and
  Internet which allows the user to set the configuration and receive frames
  from the cameras.
@@ -129,9 +129,9 @@ Camera Specifications
 
 \begin_layout Standard
 Specifically, the camera model used along the project has been the Sony
- SNC-RZ50P PTZ Camera .
- This is a PTZ camera which means that it will be able to Pan, Tilt and
- Zoom all over the scene.
+ SNC-RZ50P PTZ Camera.
+ This is a PTZ camera which means that is able to Pan, Tilt and Zoom all
+ over the scene.
  Precisely this camera has a pan range of 340 degrees and a tilt range of
  115 degrees, enabling users to monitor a wide area over the scene if the
  camera is moved (Figure 
@@ -207,7 +207,7 @@ reference "tab:Sony-SNC-RZ50P-Specifications"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -471,6 +471,8 @@ Image
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Image size (H x V)
 \end_layout
 
@@ -480,6 +482,8 @@ Image size (H x V)
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 640 x 480, 320 x 240, 160 x 120
 \end_layout
 
@@ -529,6 +533,8 @@ JPEG, MPEG-4, H.264
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Maximum frame rate
 \end_layout
 
@@ -538,6 +544,8 @@ Maximum frame rate
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 JPEG/MPEG-4
 \end_layout
 
@@ -547,6 +555,8 @@ JPEG/MPEG-4
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 25 fps (640 x 480)
 \end_layout
 
@@ -567,6 +577,8 @@ JPEG/MPEG-4
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 H.264
 \end_layout
 
@@ -576,6 +588,8 @@ H.264
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 8 fps (640 x 480)
 \end_layout
 
@@ -749,8 +763,7 @@ name "fig:Preset-position-setting"
 
 \end_deeper
 \begin_layout Itemize
-Tour setting: One could apart from pointing the camera to a static point,
- set it to describe a tour over the scene.
+Tour setting: One can set the camera to describe a tour over the scene.
  This process is done by setting at least two different preset positions
  from where the camera is moving from one to the other at a set speed.
  The menu to configure this behavior is displayed in Figure 
@@ -815,8 +828,8 @@ Experiment Setup
 \begin_layout Standard
 For all the experiments that are going to be analyzed along this Chapter
  the experiment setup should be explained.
- In this section, the generated data-set and ground truth and the proposed
- evaluation frame work used to obtain results are detailed.
+ In this section, the generated data-set, ground truth and the proposed
+ evaluation framework used to obtain results are detailed.
 \end_layout
 
 \begin_layout Subsection
@@ -824,14 +837,10 @@ Data-set
 \end_layout
 
 \begin_layout Standard
-As said at the beginning of the Chapter the data-set has been generated
- in the university hall.
- The number of available PTZ cameras in the university is three so we have
- been able to record different sequences from three points of view.
- In addition, as explained in the previous Chapter a tour for each camera
- has been set so they move from left to right only changing position in
- the X/horizontal axis and not in the Y/vertical direction because of the
- reasons presented in Chapter 
+Data-set has been generated in the university hall.
+ A tour for each camera has been set so they move from left to right only
+ changing position in the X/horizontal axis and not in the Y/vertical direction
+ because of the reasons presented in Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:Proposed-System"
@@ -967,7 +976,11 @@ Ground Truth Generation
 \begin_layout Standard
 We have selected one of the three recordings from the data-set to completely
  evaluate the system.
- In order to do the evaluation ground truth information is needed.
+ 
+\end_layout
+
+\begin_layout Standard
+In order to do the evaluation ground truth information is needed.
  The video has been manually annotated with 
 \color blue
 
@@ -979,10 +992,22 @@ target "https://sourceforge.net/projects/via-tool/"
 \end_inset
 
 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\color blue
+https://sourceforge.net/projects/via-tool/
+\end_layout
+
+\end_inset
+
+
 \color inherit
  to generate real pedestrian bounding boxes.
- This software allows the user to generate XML files with position and type
- of bounding box through the hole sequences.
+ This software allows the user to generate XML files with bounding boxes
+ positions through the whole sequences.
  The recording consists on three different videos of 8300 frames, which
  means that the total number of manually annotated frames has been 25.200.
 \end_layout
@@ -998,7 +1023,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/Ground Truth/Via Window.png
 	lyxscale 30
-	width 70text%
+	width 80text%
 
 \end_inset
 
@@ -1124,14 +1149,18 @@ reference "fig:Annotated example frames"
 \end_inset
 
 .
- The selected sequence for evaluation purposes is a mix between easy and
- difficult situations for a pedestrian detector.
- Situations go from people walking alone across the hall, to people pushing
+ The selected sequence for evaluation purposes is a mixture between easy
+ and complex situations for a pedestrian detector.
+ 
+\end_layout
+
+\begin_layout Standard
+Situations go from people walking alone across the hall, to people pushing
  objects like a wheelchair, in addition to big groups of people both inside
- and outside the building or others where people are always occluded.
+ and outside the building.
  In general due to image quality in terms of resolution and illumination
- and pedestrian situations the selected sequences are in the medium-high
- range of difficulty for pedestrian detection.
+ and pedestrian situations the selected sequence is in the medium-high range
+ of difficulty for pedestrian detection.
 \end_layout
 
 \begin_layout Subsection
@@ -1197,7 +1226,7 @@ reference "eq:F-Score Measure"
 
 \end_inset
 
- express the general formula.
+ express the general metric expression.
 \end_layout
 
 \begin_layout Standard
@@ -1240,7 +1269,11 @@ reference "fig:Intersection over Union"
 
  where one can see that a almost perfect overlapping between bounding boxes
  does not lead to a high IoU value.
- For our evaluation framework a detection is consider correct if 
+ 
+\end_layout
+
+\begin_layout Standard
+For our evaluation framework a detection is consider correct if 
 \begin_inset Formula $IoU(Detection,\,Ground\,Truth)\leq0.5$
 \end_inset
 
@@ -1260,6 +1293,7 @@ IoU(Detection,\,Ground\,Truth)=\frac{OverlapArea(Detection,\,Ground\,Truth)}{Uni
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -1310,10 +1344,9 @@ nal time is done.
 \end_layout
 
 \begin_layout Standard
-Firstly, results concerning single thread and multi thread application are
- exposed.
- All the computations to extract and visualize pedestrian detections are
- measured.
+Firstly, results concerning differences between single thread and multi
+ thread applications are exposed.
+ Measures have been obtained by using the same sequence and the same PD.
  In Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1328,9 +1361,10 @@ reference "tab:Single threads vs Multi threads"
 
 \begin_layout Standard
 \begin_inset Float table
+placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1430,6 +1464,8 @@ Multi-Thread
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 0.7 s
 \end_layout
 
@@ -1439,6 +1475,8 @@ Multi-Thread
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 1.42 fps
 \end_layout
 
@@ -1491,9 +1529,10 @@ reference "tab:Multithreads PD Computational"
 
 \begin_layout Standard
 \begin_inset Float table
+placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1642,6 +1681,8 @@ DPM
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 PSP-Net (Offline)
 \end_layout
 
@@ -1651,6 +1692,8 @@ PSP-Net (Offline)
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 0.624 s
 \end_layout
 
@@ -1660,6 +1703,8 @@ PSP-Net (Offline)
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 1.60 fps
 \end_layout
 
@@ -1709,10 +1754,10 @@ reference "tab:Single threads vs Multi threads"
 
 \end_inset
 
- one can easily derive that the speed up of using multithread is clear.
- The difference in using threads implies that in the amount of time the
- single thread application is obtaining results for three frames the multi-threa
-d application has been executed almost 
+, one can easily derive that the speed up of using multithreads is clear.
+ This difference implies that in the amount of time the single thread applicatio
+n obtains results for three frames, the multi-thread application has been
+ executed almost 
 \begin_inset Formula $5.5$
 \end_inset
 
@@ -1721,16 +1766,16 @@ d application has been executed almost
 \end_layout
 
 \begin_layout Standard
-In terms of pedestrian detection taking a look a the table one can easily
- observe that PSP-Net is the one which runs faster.
+In terms of pedestrian detection comparison, taking a look a the table one
+ can easily observe that PSP-Net is the one which runs faster.
  However, its offline computation makes it evidentially the fastest.
- Comparing those which are truly computed online HOG is the one that performs
+ Comparing those which are truly computed online, HOG is the one that performs
  faster followed by DPM and ACF.
 \end_layout
 
 \begin_layout Standard
-Nevertheless, it is noticeable that even the slowest PD approach performs
- faster than HOG in the single-thread application.
+Nevertheless, it is noticeable that even the slowest PD multi thread approach,
+ performs faster than HOG in the single-thread application.
 \end_layout
 
 \begin_layout Section
@@ -1739,12 +1784,12 @@ Homography Calculation
 
 \begin_layout Standard
 First results concerning with the proposed system deal with homographies.
- As said in the previous Chapter correctly calculated homographies are essential
- for the right performance of further algorithms.
+ Correctly calculated homographies are essential for the right performance
+ of further algorithms.
  In order to test that homographies have been correctly done by the manual
- selection of points views have been projected with its correspondent matrix.
+ selection of points, views have been projected with its correspondent matrix.
  In addition, selected points from both the frame (blue points) and the
- cenital plane (red points) have been overlapped.
+ cenital plane (red points) have been overlapped in the same image.
  Some examples can be observed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1880,12 +1925,12 @@ Camera 3 View 5
 status open
 
 \begin_layout Plain Layout
-Projected views with homography matrices
+Projected views with points
 \end_layout
 
 \end_inset
 
-Projected views with homography matrices and overlapping of selected points.
+Projected views with overlapping of selected points.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Projected views with homography matrices"
@@ -1926,7 +1971,7 @@ reference "fig:Projection Camera-1-View 7"
 \end_layout
 
 \begin_layout Standard
-It is important to notice in this results how precision and image quality
+It is important to notice in this results, how precision and image quality
  is reduced the further the points are from the camera.
  This is a standard problem when dealing with such type of homographies.
 \end_layout
@@ -2117,20 +2162,19 @@ reference "fig:PSP-Net-result-examples"
 \end_inset
 
 , is correctly extracted.
- Pedestrians are also detected although performance in pedestrian detection
- scope is analyzed in the following section.
+ 
 \end_layout
 
 \begin_layout Standard
 However, it is important to point that segmentation is not perfect when
- dealing with difficult illuminations or complicated objects.
- It can be observed that columns are not really correctly segmented.
- There are even some that are mistaken as walls or floor.
- This is one of the main issues for our system as a accurate floor detection
+ dealing with difficult illumination cases or complex objects.
+ It can be observed that columns are not correctly segmented.
+ Some of them are misclassified as walls or floor.
+ This is one of the main issues for our system as an accurate floor detection
  is needed.
  In addition, crystal doors such as the ones displayed in the top and bottom
- images are not correctly distinguish from building and wall labels which
- is also a main issue for further statistical data extraction algorithms.
+ images, are not correctly distinguish from building and wall labels which
+ could also be a main issue for further statistical data extraction algorithms.
 \end_layout
 
 \begin_layout Section
@@ -2139,13 +2183,14 @@ Pedestrian Detection
 
 \begin_layout Standard
 During this section results in the context of pedestrian detection are presented.
- We propose a set of four different experiments to test our developed system.
- 
+ For this results HOG, DPM and PSP-Net algorithms have been selected to
+ test.
+ We propose a set of four different experiments to measure performance of
+ our developed system.
 \end_layout
 
 \begin_layout Standard
-The first one, tests all of the previously analyzed pedestrian detections
- working in a mono-camera environment.
+The first one, tests pedestrian detections working in a mono-camera environment.
  This means that neither information is shared by the cameras nor semantic
  constrains are applied.
  
@@ -2174,19 +2219,19 @@ reference "subsec:Pedestrian-Semantic-Constraining"
 
 \end_inset
 
- for all the detections.
+.
 \end_layout
 
 \begin_layout Standard
 Finally, the last test embraces all the proposed algorithms working within
- the multi-camera setup and applying semantic constrains.
+ the multi-camera reprojection setup and applying semantic constraints.
 \end_layout
 
 \begin_layout Standard
 It is important to remind that results are presented within Recall versus
  Precision curves.
  In order to create these graphs algorithms have been evaluated in all the
- four test using five different values for the score thresholding 
+ four test using five different values from the score thresholding 
 \begin_inset Formula $[0,1]$
 \end_inset
 
@@ -2195,10 +2240,14 @@ It is important to remind that results are presented within Recall versus
 \begin_inset Formula $0,\,0.2,\,0.4,\,0.6,\,0.8$
 \end_inset
 
-) for an algorithm provides one point of the curve.
- To proceed with this process all the algorithms scores have been normalized
- from its original values using the maximum and minimum scores to the mentioned
- interval.
+) for an algorithm in a test, provides one point of the curve.
+ 
+\end_layout
+
+\begin_layout Standard
+To proceed with this process all the algorithms scores have been normalized
+ from its original values to the mentioned interval.
+ Maximum and minimum scores have been used for this purpose.
  In order to obtain scores distributions for all the detectors a train sequence
  has been used.
 \end_layout
@@ -2209,6 +2258,7 @@ Mono-Camera
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -2356,6 +2406,7 @@ Multi-Camera
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -2503,6 +2554,7 @@ Mono-Camera with Semantic Constraining
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -2651,6 +2703,7 @@ Multi-Camera with Semantic Constraining
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -2795,7 +2848,7 @@ name "fig:Recall / Precision graphs for multi camera pedestrian detection with s
 
 \begin_layout Standard
 In order to compare numerically all the experiments with the PD approaches
- a F-Score results have been obtained and are presented in Table 
+ F-Score results have been obtained and presented in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:F-Score table"
@@ -2803,12 +2856,13 @@ reference "tab:F-Score table"
 \end_inset
 
 .
- For this Table the best F-Score metric among all the threshold for a experiment
- and a detector has been chosen.
+ For this Table the best F-Score metric for a PD in a particular experiment
+ has been chosen.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float table
+placement H
 wide false
 sideways false
 status collapsed
@@ -3447,7 +3501,7 @@ F-Score comparison for pedestrian detector approaches.
 F-Score comparison between all the experiments and pedestrian detector approache
 s.
  Best result for an approach in a camera marked as bold.
- Best result of the table marked as bold red.
+ Best result of the table marked as red bold.
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:F-Score table"
@@ -3469,6 +3523,10 @@ name "tab:F-Score table"
 
 \begin_layout Subsection
 Pedestrian Detection Results Discussion
+\end_layout
+
+\begin_layout Subsubsection*
+General PD Performance
 \end_layout
 
 \begin_layout Standard
@@ -3504,8 +3562,20 @@ reference "fig:Recall / Precision graphs for multi camera pedestrian detection w
 t and in all the cameras.
  This is quite logical as algorithms based on CNNs usually perform better
  than classical PD approaches.
- However, none of the detectors are getting excellent results in the testing
+ 
+\end_layout
+
+\begin_layout Standard
+However, none of the detectors are getting excellent results in the testing
  sequence.
+ Ideal results should lead to high recall and low precision values when
+ low threshold are chosen and on the other hand, low recall and high precision
+ values when the highest thresholds are used.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Semantic Constraining Performance
 \end_layout
 
 \begin_layout Standard
@@ -3525,15 +3595,16 @@ reference "tab:F-Score table"
 \end_layout
 
 \begin_layout Standard
-If we take a look at HOG descriptor two out of the three better results
- are obtained using the regular HOG.
+If we take a look at HOG descriptor two out of the three best results are
+ obtained using raw HOG.
  Only Camera 2 with semantic constrain seems to outperform just by a small
- F-Score the regular detector.
+ F-Score the raw detector.
  PSP-Net presents the same effect where only camera 3 gets a better result
- using semantic.
- However, DPM using semantic segmentation outperforms in every camera the
- scores obtained with regular DPM.
- This means that the inclusion of semantic information increases DPM performance.
+ using semantic constraining.
+ However, DPM using semantic filtering outperforms in every camera the scores
+ obtained with raw DPM.
+ This means that the inclusion of semantic information leads to and increase
+ in DPM performance.
 \end_layout
 
 \begin_layout Standard
@@ -3544,7 +3615,11 @@ The reason why HOG and PSP-Net are not improved could be due to the number
 \end_inset
 
  interval, extract good results even with the lowest threshold.
- This is totally contrary to DPM detector, which extract much more detections.
+ This is totally contrary to DPM detector, in which, using 
+\begin_inset Formula $Th=0$
+\end_inset
+
+ a high number of detections are obtained.
  (See Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3552,7 +3627,7 @@ reference "fig:Differences-in-number of detections"
 
 \end_inset
 
-for visual results).
+ for visual results).
 \end_layout
 
 \begin_layout Standard
@@ -3563,26 +3638,102 @@ status open
 
 \begin_layout Plain Layout
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Images/Results/5 DPM.png
 	lyxscale 40
-	width 30text%
+	width 40text%
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+DPM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Images/Results/5 HOG.png
 	lyxscale 40
-	width 30text%
+	width 40text%
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+HOG
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Images/Results/5 PSP.png
 	lyxscale 40
-	width 30text%
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+PSP-Net
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -3603,16 +3754,14 @@ Differences in number of detections for PD approaches
 \end_inset
 
 Differences in number of detections for 
-\begin_inset Formula $Threshold=0$
+\begin_inset Formula $Th=0$
 \end_inset
 
  and same 
 \begin_inset Formula $t$
 \end_inset
 
- .
- From left to right.
- DPM detector, HOG Detector, PSP-Net Detector.
+.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Differences-in-number of detections"
@@ -3635,7 +3784,7 @@ name "fig:Differences-in-number of detections"
 \begin_layout Standard
 This means, that if detections are already accurate and due to our common
  semantic maps, they lay on some of the floor holes, detections are suppressed.
- This leads to obtaining a worse performance than using the regular detector.
+ This leads to obtaining a worse performance than using the raw detector.
  In order words, false positives laying in areas different than floor should
  be higher than those wrongly suppressed detections if semantic constraining
  is to be considered worthwhile.
@@ -3650,9 +3799,9 @@ reference "fig:Annotated example frames"
 \end_inset
 
  ground truth has been made so every pedestrian is annotated in the sequence.
- This is a problem when using semantic constraining as every detection in
- that outside area is suppressed as is not inside the hall.
- Furthermore, PSP-Net as one can observe in Figure 
+ This is a problem when using semantic constraining as every detection placed
+ at the outside is suppressed for not being inside the hall.
+ Furthermore, PSP-Net as is depict in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Misclassification-of-people in semantic"
@@ -3719,9 +3868,13 @@ name "fig:Misclassification-of-people in semantic"
 
 \end_layout
 
+\begin_layout Subsubsection*
+Multi Camera Reprojection System Performance
+\end_layout
+
 \begin_layout Standard
 If we now focus on the performance of the multi camera system when dealing
- with reprojections of pedestrian Table 
+ with reprojections of pedestrian, Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:F-Score table"
@@ -3743,7 +3896,7 @@ The projection from one frame to another has some error.
 
 \begin_deeper
 \begin_layout Standard
-In the first case if one homography is not accurate enough projection have
+In the first case if one homography is not accurate enough projections have
  small errors that translated to distances in the cenital plane could be
  a high displacement.
  
@@ -3884,14 +4037,8 @@ name "fig:Pedestrian-detection-error."
 
 \end_deeper
 \begin_layout Enumerate
-When reprojecting as explained in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Pedestrian-Reprojection between cameras"
-
-\end_inset
-
- blob height is lost and reconstructed with an aspect ratio.
+When reprojecting detections, blob height is lost and further reconstructed
+ with respect to an aspect ratio.
  This process could lead to examples as the ones in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3900,9 +4047,10 @@ reference "fig:Pedestrian reprojection error due to heigth"
 \end_inset
 
 .
- Projections are in the end reconstructed as really small or big blobs.
- This means that reprojections are not combined with the original detection
- from the camera and they produce a false positive.
+ Projections are finally reconstructed as small or big blobs if blob width
+ is small or big respectively.
+ This means that reprojections are not correctly combined with the original
+ detection from the camera and they produce a false positive.
 \end_layout
 
 \begin_deeper

@@ -100,11 +100,20 @@ name "chap:Developed Application"
 \begin_layout Standard
 Within this Chapter the developed application in terms of software development
  is described.
- This application is the base for the integration of pedestrian detection
- algorithms as well as semantic segmentation and the visualization and arrangeme
-nt of the usage statistics from the different areas of interest.
- The main application environment should be user-friendly to ensure a correct
- and easy usage by the end user.
+ 
+\end_layout
+
+\begin_layout Standard
+This application is the base for the integration of pedestrian detection
+ algorithms as well as semantic segmentation.
+ Visualization and arrangement of the usage statistics from the different
+ areas of interest is also done by the software.
+ 
+\end_layout
+
+\begin_layout Standard
+Application environment should be user-friendly to ensure a correct and
+ easy usage by the end user.
  It has been developed completely from scratch for the purpose of this Master
  Thesis.
 \end_layout
@@ -116,7 +125,19 @@ The application has been developed under
 \begin_inset CommandInset href
 LatexCommand href
 name "QT Creator"
-target "QT Creator"
+target "https://www.qt.io/"
+
+\end_inset
+
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\color blue
+https://www.qt.io/
+\end_layout
 
 \end_inset
 
@@ -189,8 +210,31 @@ name "fig:QT-Window-Designer"
 
 \end_deeper
 \begin_layout Enumerate
-The possibility to add OpenCV libraries to the project as well as independent
- external libraries.
+The possibility to add 
+\color blue
+
+\begin_inset CommandInset href
+LatexCommand href
+name "OpenCV"
+target "http://opencv.org/"
+
+\end_inset
+
+
+\color inherit
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\color blue
+http://opencv.org/
+\end_layout
+
+\end_inset
+
+ libraries to the project as well as independent external libraries.
 \end_layout
 
 \begin_layout Enumerate
@@ -199,7 +243,7 @@ Its multi-thread capabilities that enables to perform different code segments
 \end_layout
 
 \begin_layout Standard
-Due to the complexity of some of the algorithms used in terms of parameter
+Due to the complexity of some of the algorithms used, in terms of parameter
  tuning and configuration, two separate applications have been developed:
  developer and user version.
  
@@ -207,9 +251,8 @@ Due to the complexity of some of the algorithms used in terms of parameter
 
 \begin_layout Standard
 The first version of the software corresponds to the developer application.
- As its name says, it is design so it can be used by programmers or engineers
- who generally understand concepts of the algorithms running at the backend
- application.
+ It is design so it can be used by programmers or engineers who generally
+ understand concepts of the algorithms running at the backend application.
  This means that:
 \end_layout
 
@@ -248,13 +291,25 @@ target "https://github.com/alexlopezcifuentes/IPCV-MasterThesis/"
 
 \end_inset
 
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\color blue
+https://github.com/alexlopezcifuentes/IPCV-MasterThesis/
+\end_layout
+
+\end_inset
+
 .
 \end_layout
 
 \begin_layout Standard
 During the analysis of the application trough the Section some flow-charts
  are displayed.
- A common legend for all of them is incuded in Figure 
+ A common legend for all of them is included in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Flow-chart-legend"
@@ -720,16 +775,23 @@ name "fig:Flow-chart diagram for the single-thread application"
 
 \begin_layout Standard
 This approach has the advantage that all the code is executed in the same
- segment which makes really easy , to share information between cameras
- as they share the same memory segments.
- However, this design is only be valid if the computational effort is minimum.
- Before displaying any results, all the process for the three cameras should
- be computed one after the other.
- This means that when calculating detections for one camera the others will
- remain idle.
+ memory segment.
+ This makes really easy, for instance, to share information between cameras.
+ This design is however, only valid if the computational effort is minimum.
+ All the process for the three cameras should be computed one after the
+ other which means that when calculating detections for one camera, the
+ others remain idle.
  When working with such a multi-camera system with heavy algorithms running
- -as in the proposed method- the computational time increases exponentially
- and this design is no longer worthwhile.
+ 
+\begin_inset Formula $-$
+\end_inset
+
+as in the proposed method
+\begin_inset Formula $-$
+\end_inset
+
+ the computational time increases exponentially and this design is no longer
+ worthwhile.
 \end_layout
 
 \begin_layout Section
@@ -746,33 +808,44 @@ reference "fig:Flow-chart diagram for the multi-thread application"
 \end_inset
 
 .
- As one can observe, now different threads are running in parallel, one
- for each camera, and so, all the process is no longer done sequentially
- and computing power of the CPU can be further exploited.
+ Now different threads are running in parallel, one for each camera, and
+ so, all the process is no longer done sequentially and computing power
+ of the CPU can be further exploited.
 \end_layout
 
 \begin_layout Standard
 However, as threads are running separately a synchronization strategy should
  be included to keep consistency in the application.
- One thread can process a frame faster than another one due to multiple
- external reasons, nevertheless, the application should display the same
- exact frame for all the cameras at the same time.
- This is specially relevant if results are going to be shared between threads.
- In our case the synchronization is performed by two barriers -see diagram
  
+\end_layout
+
+\begin_layout Standard
+One thread can process a frame faster than another one due to multiple external
+ reasons, nevertheless, the application should display the same exact frame
+ for all the cameras at the same time.
+ This is specially relevant if results are going to be shared between threads.
+ In our case the synchronization is performed by two barriers 
+\begin_inset Formula $-$
+\end_inset
+
+see diagram 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Flow-chart diagram for the multi-thread application"
 
 \end_inset
 
--.
+
+\begin_inset Formula $-$
+\end_inset
+
+.
  
 \end_layout
 
 \begin_layout Itemize
-The first one ensures that all the threads have performPD before sharing
- these detections between the rest of the threads.
+The first one ensures that all the threads have perform PD before sharing
+ these detections to the rest of the threads.
  
 \end_layout
 
@@ -1533,7 +1606,7 @@ reference "subsec:Pedestrian-Filtering-and"
 
 \end_inset
 
-
+:
 \end_layout
 
 \begin_deeper
@@ -1547,11 +1620,11 @@ Gaussians
 
 \end_deeper
 \begin_layout Itemize
-It also enables the user to select the threshold for PD algorithms.
+Enables the user to select the threshold for PD algorithms.
 \end_layout
 
 \begin_layout Itemize
-Filtering or constraint explained in Section 
+PD Filtering or constraint as explained in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Pedestrian-Filtering-and"
@@ -1564,7 +1637,7 @@ reference "subsec:Pedestrian-Filtering-and"
 
 \begin_deeper
 \begin_layout Itemize
-Classical PD
+Raw PD
 \end_layout
 
 \begin_layout Itemize
@@ -1657,8 +1730,8 @@ DPM Pedestrian Detector is now in use
 \begin_inset Quotes erd
 \end_inset
 
- will appear during the execution of the application so the user can obtain
- some information about what to do, or what algorithm is in use.
+ appear during the execution of the application so the user can obtain some
+ information about what to do, or what algorithm is in use.
  This can be observed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1719,8 +1792,12 @@ Results Display
 \begin_layout Standard
 This is the main display area in the application in which all the visual
  results are presented.
- We have three separate windows for each of the used cameras as well as
- one more display window for the cenital plane.
+ 
+\end_layout
+
+\begin_layout Standard
+We have three separate windows for each of the used cameras as well as one
+ more display window for the cenital plane.
  Here the camera frames and associated detections and/or ground truth are
  shown: Besides all the projected semantic can be observed on the cenital
  frame.
@@ -1831,7 +1908,7 @@ Sharing information between threads.
 \series bold
 AboutWindow
 \series default
-: Class that execute the second available information window.
+: Class that executes the second available information window.
  This instance displays general application information.
 \end_layout
 
@@ -1845,8 +1922,7 @@ CameraWorker
 \series bold
 CameraWorker
 \series default
- class is linked with a unique thread that will process all the algorithms
- inside.
+ class is linked with a unique thread that process all the algorithms inside.
  It has 
 \series bold
 CameraStream
@@ -1872,9 +1948,23 @@ Barrier
 CameraStream
 \series default
 : This class includes all the functions that are related to video processing
- except PD: The main reading loop, homographies and semantic projections.
+ except PD: 
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+Main sequence reading loop.
+\end_layout
+
+\begin_layout Itemize
+Homographies calculations
+\end_layout
+
+\begin_layout Itemize
+Semantic projections.
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 
 \series bold
@@ -1925,7 +2015,7 @@ reference "fig:Hierarchical representation of the code"
 
 \end_inset
 
- a hierarchical representation of how the different classes are arranged
+ a hierarchical representation of how the different objects are arranged
  is presented.
  As one can observe everything is under the heritage of the 
 \series bold
@@ -1940,7 +2030,7 @@ MainWindow
 CameraWorker
 \series default
 \shape default
- threads include the 
+ threads that include the 
 \series bold
 \shape italic
 barrier
@@ -1964,7 +2054,15 @@ PeopleDetector
 Evaluator
 \series default
 \shape default
- -one for each one-.
+ 
+\begin_inset Formula $-$
+\end_inset
+
+one for each one
+\begin_inset Formula $-$
+\end_inset
+
+.
  In addition, 
 \series bold
 \shape italic
@@ -2042,7 +2140,7 @@ On the contrary to the discussed version, the second developed application
  This turns the usage and the general perception of the application much
  more simple and easy.
  Default setup is parametrized as the best observed configuration in the
- experiment (see Chapter 
+ results (see Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:Results"
