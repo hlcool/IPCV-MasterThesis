@@ -173,29 +173,61 @@ key "dollar2009pedestrian"
 
 \end_inset
 
- -recorded on a vehicle in an urban environment-, ETHZ 
+ 
+\begin_inset Formula $-$
+\end_inset
+
+recorded on a vehicle in an urban environment
+\begin_inset Formula $-$
+\end_inset
+
+, ETHZ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ess2007depth"
 
 \end_inset
 
- -recorded from a chariot which moves through pedestrian paths-, TUD 
+ 
+\begin_inset Formula $-$
+\end_inset
+
+recorded from a chariot which moves through pedestrian paths
+\begin_inset Formula $-$
+\end_inset
+
+, TUD 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "wojek2009multi"
 
 \end_inset
 
- -static camera in a crossing campus scene- or INRIA 
+ 
+\begin_inset Formula $-$
+\end_inset
+
+static camera in a crossing campus scene
+\begin_inset Formula $-$
+\end_inset
+
+ or INRIA 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dalal2005histograms"
 
 \end_inset
 
- -collects precise people images both static and moving- are some of the
- PD data-sets that have been proposed through the years to trainPD.
+ 
+\begin_inset Formula $-$
+\end_inset
+
+collects precise people images both static and moving
+\begin_inset Formula $-$
+\end_inset
+
+ are some of the PD data-sets that have been proposed through the years
+ to train PD.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -406,10 +438,9 @@ Classical Pedestrian Detection Approaches
 
 \begin_layout Standard
 Several PD in this State of the Art are arranged under three different topics.
- First, pedestrian descriptor and detection schemes are explained.
- Second, the person model and the algorithms to detect potential objects
- are studied.
- Third, new trends in PD are briefly introduced.
+ First, different pedestrian descriptor schemes are explained.
+ Second, person detection approaches are studied.
+ Finally, various approaches to define person model are analyzed.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -417,10 +448,10 @@ Person Description
 \end_layout
 
 \begin_layout Standard
-An organization of existing PD approaches based on the descriptor and detection
- schemes may start with the Histograms of Oriented Gradients (HOG), which
- in combination with linear Support Vectors Machine (SVM) have been mainly
- used to describe pedestrian shape 
+An organization of existing PD approaches based on the descriptor may start
+ with the Histograms of Oriented Gradients (HOG), which in combination with
+ linear Support Vectors Machine (SVM) have been mainly used to describe
+ pedestrian shape 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dalal2005histograms"
@@ -440,7 +471,8 @@ key "felzenszwalb2008discriminatively"
 \end_layout
 
 \begin_layout Standard
-Among clinical Aggregate Channel Features 
+Others PD approaches are based on the use of the Aggregate Channel Features
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "dollar2014fast"
@@ -465,15 +497,23 @@ key "garcia2015people"
 
 \end_inset
 
- object detection is defined as the extraction of the potential object candidate
-s to be a person from a scene.
+ object detection is defined as the extraction of potential object candidates
+ to be a person from a scene.
  Mainly object detections algorithms are:
 \end_layout
 
 \begin_layout Itemize
-Sliding window: -also known as- exhaustive search: uses an efficient classifier
- to test every possible image window.
- Parameters such as window size, or overlapping between them are common
+Sliding window 
+\begin_inset Formula $-$
+\end_inset
+
+also known as
+\begin_inset Formula $-$
+\end_inset
+
+ exhaustive search: uses an efficient classifier to test every possible
+ image window.
+ Parameters such as window size, or overlapping between them, are common
  tuning values that increase or decrease the performance of the detector.
  These methods usually need from 
 \begin_inset Formula $10^{4}$
@@ -495,9 +535,8 @@ Segmentation: Uses segmentation as a preliminary step for PD.
  of the image.
  Alternatively, color segmentation based on color skin detection can be
  used to restrict people search.
- By all means, segmentation severally reduces person directly produces those
- scene candidates to be a person and so the computational time is highly
- decreased.
+ By all means, segmentation severally reduces person candidates reducing
+ the computational time.
 \end_layout
 
 \begin_layout Itemize
@@ -526,7 +565,7 @@ reference "fig:Pedestrain-Detector-Example"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -606,8 +645,8 @@ key "garcia2015people"
 \begin_layout Itemize
 Based on appearance: Most of the available detectors in the State of the
  Art use appearance information to define the person model.
- In this group of person models one can differentiate two approaches to
- describe the shape of a person.
+ In this group one can differentiate two approaches to describe the shape
+ of a person.
 \end_layout
 
 \begin_deeper
@@ -623,7 +662,7 @@ Part-based: Rely on more complex characteristics where a person is defined
 \begin_layout Standard
 Examples of appearance-based detectors are those that use silhouettes to
  classify people, either from an holistic or a part-based basis, or color
- distribution in people.
+ distribution.
 \end_layout
 
 \end_deeper
@@ -641,7 +680,7 @@ key "cutler2000robust"
 
 \end_inset
 
- detections are based on a periodic motion analysis.
+, detections are based on a periodic motion analysis.
  
 \end_layout
 
@@ -675,7 +714,31 @@ reference "tab:Pedestrian-detection-performance"
 \end_inset
 
 .
- 
+ See 
+\color blue
+
+\begin_inset CommandInset href
+LatexCommand href
+name "VPU Website"
+target "http://www-vpu.eps.uam.es/DS/PDbm/results.html"
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+
+\color blue
+http://www-vpu.eps.uam.es/DS/PDbm/results.html
+\end_layout
+
+\end_inset
+
+
+\color inherit
+ for the complete table.
 \end_layout
 
 \begin_layout Standard
@@ -1199,20 +1262,6 @@ key "garcia2015pdbm"
 
  (selected approaches).
  Metric for this evaluation is the average AUC.
- This metric measures the area under a Recall Over Precision curve.
- See 
-\color blue
-
-\begin_inset CommandInset href
-LatexCommand href
-name "VPU Website"
-target "http://www-vpu.eps.uam.es/DS/PDbm/results.html"
-
-\end_inset
-
-
-\color inherit
- for the complete table.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -1235,6 +1284,11 @@ name "tab:Pedestrian-detection-performance"
 
 \begin_layout Subsection
 Recent Trends in Pedestrian Detection
+\end_layout
+
+\begin_layout Standard
+During this section recent PD trends in terms of person detection and descriptio
+n are presented.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1281,8 +1335,8 @@ Object proposals approaches perform a complete search over an image to detect
 \end_layout
 
 \begin_layout Standard
-In general, object proposal approaches reduce pedestrian candidates respect
- to sliding-window like algorithms and generally outperform segmentation
+In general, object proposal approaches reduce pedestrian candidates with
+ respect to sliding-window like algorithms and generally outperform segmentation
  based methods.
  This advantages lead to a higher object recall and more efficient detection
  processes.
@@ -1290,7 +1344,7 @@ In general, object proposal approaches reduce pedestrian candidates respect
  include Faster R-CNN 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "DBLP:journals/corr/RenHG015"
+key "ren2015faster"
 
 \end_inset
 
@@ -1505,7 +1559,7 @@ key "girshick2015fast"
 
 \end_inset
 
-, Faster R-CNN 
+ or Faster R-CNN 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ren2015faster"
@@ -1581,9 +1635,9 @@ Contextual Information
 \begin_layout Standard
 One can describe contextual information as the set of additional circumstances
  or facts that can be extracted from a scene besides the target of analysis.
- Generally, this set of circumstances is a wealth of information that is
- not extracted by the image analysis but key evidences for humans, which
- acquired this knowledge during their life.
+ Generally, this set of circumstances is a source of information that is
+ not extracted by machine applications but constitutes key evidences for
+ humans, which acquired this knowledge during their life.
  By just taking a look to an outdoor image a human can derive where the
  sky will be, what the weather conditions are or which time of the day is.
  Also, by knowing the place where a video was recorded, one would imagine
@@ -1593,9 +1647,8 @@ One can describe contextual information as the set of additional circumstances
 \begin_layout Standard
 Dealing with computer vision disciplines, contextual information sources
  also include camera information (such as position, configuration, distance
- to an object and camera motion).
- The set of objects that one could detect in the scene and the number of
- available cameras.
+ to an object and camera motion), the set of objects that one could detect
+ in the scene and the number of available cameras.
 \end_layout
 
 \begin_layout Standard
@@ -1603,8 +1656,15 @@ One can divide contextual information into two different levels: global
  and local .
  Besides, we can also divide contextual information into two different categorie
 s: offline, and online.
- Finally, we focus on a set of specific methods to extract context -semantic
- segmentation–.
+ Finally, we focus on a set of specific methods to extract context 
+\begin_inset Formula $-$
+\end_inset
+
+semantic segmentation
+\begin_inset Formula $–$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -1613,9 +1673,25 @@ Global Context
 
 \begin_layout Standard
 Global context considers descriptions from an image as a whole.
- For instance, if the context of a scene is known -kitchen-, we can use
- this information to search for typical objects in this context -e.g.
- a stove-.
+ For instance, if the context of a scene is known 
+\begin_inset Formula $-$
+\end_inset
+
+kitchen
+\begin_inset Formula $-$
+\end_inset
+
+, we can use this information to search for typical objects in this context
+ 
+\begin_inset Formula $-$
+\end_inset
+
+e.g.
+ a stove
+\begin_inset Formula $-$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1660,8 +1736,15 @@ On the contrary, local context refers to contextual information related
 \end_layout
 
 \begin_layout Standard
-The impact area of an object -in contextual terms- is defined as a set of
- neighboring objects, patches or even pixels.
+The impact area of an object 
+\begin_inset Formula $-$
+\end_inset
+
+in contextual terms
+\begin_inset Formula $-$
+\end_inset
+
+ is defined as a set of neighboring objects, patches or even pixels.
  Algorithms dealing with the extraction of local contextual information
  aim to correctly define the area that surrounds an object to precisely
  detect other object instances.
@@ -1767,9 +1850,15 @@ key "zhao2016pyramid"
 
 \begin_layout Standard
 Semantic segmentation targets to assign each image pixel a high-level label.
- If accurately performed, it provides fully semantic understanding -which
- in terms of Computer Vision-, means that the location of an object within
- an image is known.
+ If accurately performed, it provides fully semantic understanding 
+\begin_inset Formula $-$
+\end_inset
+
+which in terms of Computer Vision
+\begin_inset Formula $-$
+\end_inset
+
+, means that the location of an object within an image is known.
  A potential result of a semantic segmentation method is depicted in Figure
  
 \begin_inset CommandInset ref
@@ -1849,8 +1938,8 @@ name "fig:Scene-parsing-on PSPNet"
 \end_layout
 
 \begin_layout Standard
-Semantic segmentation is a recent trend and nowadays, it remains a significant
- challenge for the computer vision community.
+Semantic segmentation is a recent trend and nowadays, and so, it remains
+ a significant challenge for the computer vision community.
  Due to its short-life term there is not yet a complete survey available
  in which algorithms are deeply analyzed and compared.
  However, there are a set of benchmark where developers can upload their
@@ -2148,7 +2237,7 @@ name "tab:Cityscapes-Dataset-Class Definitions"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -2307,6 +2396,8 @@ key "zhao2016pyramid"
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Yes
 \end_layout
 
@@ -2352,6 +2443,8 @@ key "wu2016wider"
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Yes
 \end_layout
 
@@ -2435,6 +2528,8 @@ key "DBLP:journals/corr/WangCYLHHC17"
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Yes
 \end_layout
 
@@ -2508,7 +2603,7 @@ key "krizhevsky2012imagenet"
 \end_layout
 
 \begin_layout Standard
-However, even when using CNNs the main difficulty of scene parsing is related
+However, even when using CNNs, the main difficulty of scene parsing is related
  to the type of scene and to label variety.
  
 \end_layout
@@ -2728,7 +2823,15 @@ ce problems.
  One can define a multi-camera scenario as a space that has more than one
  video camera recording.
  Ideally, the recordings for the different cameras are temporally aligned
- -synchronized-.
+ 
+\begin_inset Formula $-$
+\end_inset
+
+synchronized
+\begin_inset Formula $-$
+\end_inset
+
+.
  Having 
 \begin_inset Formula $N$
 \end_inset
@@ -2804,8 +2907,23 @@ The main disadvantage when dealing with multi-camera systems is the exponential
 
 \begin_layout Standard
 Besides, the use of multiple cameras entail two additional tasks: the temporal
- alignment of the views -synchronization- and the spatial arrangement of
- the different views -homographies-.
+ alignment of the views 
+\begin_inset Formula $-$
+\end_inset
+
+synchronization
+\begin_inset Formula $-$
+\end_inset
+
+ and the spatial arrangement of the different views 
+\begin_inset Formula $-$
+\end_inset
+
+homographies
+\begin_inset Formula $-$
+\end_inset
+
+.
 \end_layout
 
 \end_deeper

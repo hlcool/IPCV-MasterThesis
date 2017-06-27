@@ -563,44 +563,45 @@ Este proyecto describe un método para realizar detección de personas y segment
 ión semántica en un escenario multicámara.
  La fusión de estas dos disciplinas lleva a detecciones de personas contextualme
 nte refinadas.
- El entorno multicámara es usada para reprojectar detecciones de una cámara
+ El entorno multicámara es usado para reproyectar detecciones de una cámara
  a otra y mejorar la precisión.
- Como ejemplo de uso, datos estadísticos de uso de áreas semánticas concretas
- en la escena serán también extraídos.
- Para lograr una interacción con el usuario una Interfaz de Usuario Grafica
- ha sido diseñada.
+ Como ejemplo de uso, datos estadísticos de áreas semánticas concretas en
+ la escena han sido también extraídos.
+ Para lograr una interacción completa con el usuario se ha diseñado una
+ Interfaz de Usuario Gráfica.
  Esta interfaz permitirá al usuario definir el entorno de detección de personas,
- así como mostrar resultados en tiempo de ejecución.
+ así como mostrar resultados en tiempo real de ejecución.
 \end_layout
 
 \begin_layout Standard
 Para poder llevar a cabo estas tareas un estudio del estado del arte ha
  sido realizado.
- Un análisis de los detectores de personas ha sido realizado, haciendo énfasis
+ Se ha analizado los diferentes detectores de personas, haciendo énfasis
  en aquellos que utilizan propuestas de objetos.
- Además, nuevos métodos en el entorno de la detección de personas han sido
- analizados.
- El estado del arte actual sobre la extracción de información contextual,
- y en concreto, en el uso de la segmentación semántica ha sido estudiado.
- Finalmente, escenarios con configuración multicámara han sido descritos.
+ Además, se han estudiado nuevos métodos en el entorno de la detección de
+ personas tales como las nuevas redes neuronales.
+ Se ha revisado el estado del arte actual sobre la extracción de información
+ contextual, y en concreto, en el uso de la segmentación semántica.
+ Finalmente, los escenarios con configuración multicámara han sido descritos.
 \end_layout
 
 \begin_layout Standard
-Para presentar los resultados y configurar los diferentes algoritmos una
- aplicación multihilo ha sido diseñada y desarrollada.
+Para presentar los resultados y configurar los diferentes algoritmos se
+ ha diseñado y desarrollado una aplicación multihilo.
 \end_layout
 
 \begin_layout Standard
-Un nuevo sistema ha sido propuesto para lograr los objetivos arriba mencionados
+Un nuevo sistema ha sido propuesto para lograr los objetivos mencionados
  y para lograr detecciones de persona bajo diferentes condiciones de filtrado.
- Detectores como HOG, DPM, o PSP-Net han sido integrados y segmentación
- semántica ha sido realizada.
- Ambas fuentes de información han sido combinadas en un entorno común.
+ Se han integrado en el sistema detectores como HOG, DPM, o PSP-Net y además
+ se ha realizado segmentación semántica.
+ Ambas fuentes de información han sido combinadas en un entorno común representa
+do mediante un plano cenital de la escena.
 \end_layout
 
 \begin_layout Standard
 Finalmente, el rendimiento del sistema ha sido probado en un data-set generado
- y manualmente anotado para generar ground truth.
+ y manualmente anotado para generar graficas de rendimiento.
 \end_layout
 
 \begin_layout Section*

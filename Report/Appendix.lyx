@@ -97,9 +97,8 @@ name "chap:Cenital Plane Design Append"
 \end_layout
 
 \begin_layout Standard
-As said in the introduction of this Section, one of the main objectives
- of the work is to project the extracted detections from the three cameras,
- i.e.
+One of the main objectives of the work is to project extracted detections
+ from the three cameras, i.e.
  pedestrian and semantic, into a common plane for all of them.
  To achieve this goal a cenital plane that correctly represents the scene
  is needed.
@@ -111,7 +110,8 @@ First Approach
 \end_layout
 
 \begin_layout Standard
-The first used approach for the cenital plane can be observe in Figure 
+The first used approach to represent the cenital plane is depict in Figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:First cenital plane approach. Anex"
@@ -123,6 +123,7 @@ reference "fig:First cenital plane approach. Anex"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -168,7 +169,7 @@ This cenital plane lacks of details from the scene.
  The information about the details of the scenario is minimum and also,
  the scene proportions are not correct.
  To compute a correct homography between the camera frame and the cenital
- plane we should be able to identify the same scene points in both images
+ plane one should be able to identify the same scene points in both images
  in the ground plane.
  This means that the cenital plane should have enough details so the point
  selection is done correctly by the user and the homography is correctly
@@ -180,8 +181,8 @@ Second Approach
 \end_layout
 
 \begin_layout Standard
-For this reason, and driven by bad results, another cenital plane has been
- computed starting from zero.
+For this reason, and driven by bad results in terms of projections, another
+ cenital plane has been computed starting from zero.
  In this new approach the scene has correctly been measured by hand and
  the plane has been done with real measures and high floor detail.
 \end_layout
@@ -201,14 +202,15 @@ target "https://www.autodesk.es/products/autocad/overview"
 \color inherit
  software has been used.
  The second plane approach with all the manual measures extracted from the
- real scene superposed can be seen in Figure 
+ real scene can be seen in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Second cenital plane approach with measures. Anex"
 
 \end_inset
 
- while Figure 
+.
+ Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Second cenital plane approach with camera positions. Anex"
@@ -220,16 +222,17 @@ reference "fig:Second cenital plane approach with camera positions. Anex"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/Proposed System/Measured Cenital Plane.png
 	lyxscale 20
-	width 75text%
+	width 80text%
 
 \end_inset
 
@@ -262,9 +265,10 @@ name "fig:Second cenital plane approach with measures. Anex"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -319,9 +323,11 @@ reference "fig:Second cenital plane approach with camera positions. Anex"
 
  are outstanding both in floor details and in general construction proportions.
  This detail rise leads to a much more easy homography selection points
- by the user as it now has more point options to choose and evidentially
- this means that the final homography matrix, and so, all the projections
- are better accurately talking.
+ by the user.
+ This is due to the high amount of point options to choose from the new
+ cenital map.
+ Evidentially this means that the final homography matrix, and so, all the
+ projections computed by it, have better accuracy.
 \end_layout
 
 \begin_layout Chapter
@@ -336,9 +342,20 @@ name "chap:AKAZE append"
 \end_layout
 
 \begin_layout Standard
-AKAZE is a fast multi scale feature detection an description approach.
+AKAZE detector and descriptor 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "alcantarilla2011fast"
+
+\end_inset
+
+ is a fast multi scale feature detection an description approach.
  It exploits the benefits of nonlinear scale spaces.
- Previous approaches such as KAZE 
+ 
+\end_layout
+
+\begin_layout Standard
+Previous approaches such as KAZE 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "alcantarilla2012kaze"
@@ -354,7 +371,11 @@ key "wang2012bfsift"
 
  have a main time consumption drawback in terms of nonlinear scale space
  creation.
- However, AKAZE uses recent numerical schemes called Fast Explicit Diffusion
+ 
+\end_layout
+
+\begin_layout Standard
+Nevertheless, AKAZE uses recent numerical schemes called Fast Explicit Diffusion
  (FED) 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -362,9 +383,18 @@ key "weickert2016cyclic,grewenig2010box"
 
 \end_inset
 
- in order to speed up detections.
- In addition the use of the Modified-Local Difference Binary (M-LDB) descriptor
- increases the efficiency of the general approach.
+ in order to build any kind of discretization scheme in a much more faster
+ speed.
+ These FED schemes are embedded in a pyramidal framework in order to achieve
+ the speedup in terms of features detector.
+\end_layout
+
+\begin_layout Standard
+In addition the use of the Modified-Local Difference Binary (M-LDB) descriptor
+ which is described as highly efficient.
+ It exploits gradient and intensity information from the nonlinear scale
+ space.
+ In addition, M-LDB is both scale and rotation invariant.
 \end_layout
 
 \begin_layout Chapter
@@ -372,13 +402,14 @@ Parametric Homographies Between Inertial Planes
 \end_layout
 
 \begin_layout Standard
-Homography matrices, as explained before, aim to relate floor plane for
- a frame with the cenital view.
- However, everything that is not exactly in the same s plane is not projected
- properly when the homography matrix is used.
+Homography matrices, as explained during the Thesis, aim to relate the floor
+ plane present in a frame with the cenital view.
+ However, everything that is not exactly in the same plane as the floor
+ is not projected properly when the homography matrix is used.
  In our work, different semantic are needed to be projected, for instance
  a door.
- When using floor homography only its base is correctly projected.
+ When using floor homography only its base is correctly projected, whereas
+ the rest of it is disfigured.
  
 \end_layout
 
@@ -478,6 +509,7 @@ reference "fig:Extending-homography-for planes parallels"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -520,7 +552,7 @@ Extending homography for planes parallel to
 \begin_inset Formula $\pi_{ref}$
 \end_inset
 
- either semantic or RGB.
+ .
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Extending-homography-for planes parallels"
@@ -559,6 +591,7 @@ reference "fig:Set of parallel planes"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed

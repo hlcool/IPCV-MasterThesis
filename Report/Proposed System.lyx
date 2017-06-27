@@ -453,9 +453,9 @@ Selected Model
 \end_layout
 
 \begin_layout Standard
-With these two reasons being taken into account we have selected the model
- ADE20K because as said, it has elements such as walls, floor, person and
- column in its model.
+Considering these two reasons, we have selected the model ADE20K because
+ as said, it has elements such as walls, floor, person and column in its
+ model.
  However, we consider that most of the 150 label categories will be unused
  in our procedure, so, the number of classes from the model has been reduced
  to the 21 classes of our interest.
@@ -1013,7 +1013,7 @@ Both global and part templates are modeled with histogram of gradient features
 \end_layout
 
 \begin_layout Subsubsection*
-Advantages over other PD Approaches
+Advantages over alternative PD Approaches
 \end_layout
 
 \begin_layout Standard
@@ -1938,7 +1938,7 @@ Due to the creation of the homography codebook we now have to choose between
 \end_layout
 
 \begin_layout Subsubsection*
-Images Comparison
+Inter-image Comparison
 \end_layout
 
 \begin_layout Standard
@@ -2288,7 +2288,7 @@ reference "fig:Cylinder-estimation-for cenital view projections"
 \end_layout
 
 \begin_layout Subsubsection
-Gaussian Bounding Box Representation
+Gaussian Representation of Bounding Boxes
 \end_layout
 
 \begin_layout Standard
@@ -2720,7 +2720,7 @@ name "fig:Pedestrain reprojection into other cameras"
 \end_layout
 
 \begin_layout Subsubsection
-Pedestrian Semantic Constraining
+Semantic Constraining of Pedestrian Detections
 \begin_inset CommandInset label
 LatexCommand label
 name "subsec:Pedestrian-Semantic-Constraining"

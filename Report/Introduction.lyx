@@ -244,8 +244,15 @@ Graphical User Interface
 \end_layout
 
 \begin_layout Standard
-The GUI should be able to visualize and dynamically arrange -under a user-friend
-ly environment-statistics from different areas of interest in a public space.
+The GUI should be able to visualize and dynamically arrange 
+\begin_inset Formula $-$
+\end_inset
+
+under a user-friendly environment
+\begin_inset Formula $-$
+\end_inset
+
+ statistics from different areas of interest in a public space.
 \end_layout
 
 \begin_layout Subsection*

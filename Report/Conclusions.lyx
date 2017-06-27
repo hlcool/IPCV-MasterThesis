@@ -100,7 +100,7 @@ Conclusions
 \end_layout
 
 \begin_layout Standard
-This master thesis has presented a system capable of performing pedestrian
+This master thesis has described a system capable of performing pedestrian
  detection and semantic segmentation over a multi camera setup at the Escuela
  Politecnica Superior, Universidad Autonoma de Madrid (Spain).
  Different pedestrian detection approaches such as HOG, DPM, ACF or Fast-RCNN
@@ -139,9 +139,9 @@ All the system has been tested in a manually annotated recording obtaining
  environments and semantic areas statistical usage data.
  During these tests semantic constraining has improved DPM approach, however
  algorithms such as HOG or PSP-Net have obtained worse results than the
- normal detector.
- In the same manner, multi camera fusion has not been able to increase performan
-ce for any of the algorithms.
+ raw detector.
+ Similarly, multi-camera fusion has not been able to increase performance
+ for any of the algorithms.
  Problems related to pedestrian reprojection between cameras combined with
  PD errors lead to an increase in the number of false positive and so, in
  performance decreased.
@@ -159,8 +159,8 @@ Future Work
 \end_layout
 
 \begin_layout Standard
-Taking into account actual state of the art, obtained results and extracted
- conclusions one can set the stage for future work.
+Considering current state of the art, obtained results and extracted conclusions
+ one can set the stage for future work.
 \end_layout
 
 \begin_layout Standard
