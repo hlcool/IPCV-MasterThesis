@@ -4111,16 +4111,16 @@ Statistical Usage Data
 
 \begin_layout Standard
 Finally, results concerning statistical usage data are presented.
- One graphic per selected semantic area is obtained, which in our case are
- floor and door due to limitations of the mentioned map in Figure 
+ One graphic per selected semantic area is obtained.
+ In our case and due to the mentioned limitations of the map in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Statistical Semantic Map"
 
 \end_inset
 
-.
- Curves represent pedestrian density per frame in the used recording.
+ floor and doors semantic areas have been chosen.
+ Curves represent pedestrian density per frame in the recording.
  The obtained curves are displayed in Figures 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -4277,7 +4277,11 @@ In addition, some results about the most used areas of the hall have been
  which pedestrian flow has been measured.
  By using this method one could have information about the most used paths
  by people over the scene.
- Results concerning this process are displayed in Figure 
+ 
+\end_layout
+
+\begin_layout Standard
+Results concerning this process are displayed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Pedestrians paths usage along the Hall. 40 pix"
@@ -4303,8 +4307,7 @@ reference "fig:Pedestrians paths usage along the Hall. 70 pix"
 \end_layout
 
 \begin_layout Standard
-Results are displayed as yellow squares that measure the amount of pedestrians
- found in that sub region.
+Yellow squares represent the amount of pedestrians found in that sub region.
  The more strong the color appears in the image it means that pedestrian
  density over that area has been higher than in the neighborhood.
  A temporal comparison has been made with the correspondent frame.
@@ -5056,13 +5059,21 @@ reference "fig:Floor-usage-graph"
 \end_inset
 
  at 
+\begin_inset Formula $t_{1}=1594$
+\end_inset
+
+ and 
 \begin_inset Formula $t_{2}=4877$
 \end_inset
 
- we are not getting an accurate measure due to the small blob and also due
- to the group detection as a hole.
- Same observation can be made when talking about doors usage as people passing
- trough doors are in frames 
+ we are not getting an accurate measure due to the small blobs detected,
+ and also due to the group detection as a whole.
+ 
+\end_layout
+
+\begin_layout Standard
+When talking about the doors usage one can observe that there is people
+ passing trough doors are in frames 
 \begin_inset Formula $t_{1}=1541$
 \end_inset
 
@@ -5107,6 +5118,54 @@ reference "fig:Pedestrians paths usage along the Hall. 70 pix"
 
 \begin_layout Section
 Overall Discussion
+\end_layout
+
+\begin_layout Standard
+Taking into account all the presented results one can observe that some
+ proposed algorithms from the system are performing correctly while others
+ need to be improved.
+\end_layout
+
+\begin_layout Standard
+Homography calculation is accurately enough for the purpose of the system.
+ We observed that almost all the homographies were correctly computed and
+ the small errors do not lead to further problems in algorithms.
+\end_layout
+
+\begin_layout Standard
+Semantic segmentation using PSP-Net has some main drawbacks when dealing
+ with columns or doors segmentation.
+ In the first case, when misclassifying columns, sometimes, leads to a false
+ floor label.
+ This means that finally, when creating the semantic reference plane 
+\begin_inset Formula $\pi_{ref}$
+\end_inset
+
+ some floor areas are really columns.
+ Doors errors in some specific frames could lead to not obtaining door areas,
+ however, when combining all the sequence frames by the temporal median
+ filter this problem is solved as depict in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Statistical Semantic Map"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Moving to performance in terms of pedestrian detection above results show
+ that multi cameras reprojection is not working properly in any of the tested
+ approaches.
+ However, semantic constraining performs promising when dealing with algorithms
+ that need some filtering due to the high amount of extracted blobs.
+ 
+\end_layout
+
+\begin_layout Standard
+Finally, semantic usage extraction performs good although errors from PD
+ are trespassed to these results and so, they are influence by PD.
 \end_layout
 
 \end_body
