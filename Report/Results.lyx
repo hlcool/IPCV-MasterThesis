@@ -109,7 +109,7 @@ During this Chapter all the achieved results are exposed and analyzed.
 \end_layout
 
 \begin_layout Section
-Used Hardware
+Recording Hardware
 \end_layout
 
 \begin_layout Standard
@@ -132,9 +132,9 @@ Specifically, the camera model used along the project has been the Sony
  SNC-RZ50P PTZ Camera.
  This is a PTZ camera which means that is able to Pan, Tilt and Zoom all
  over the scene.
- Precisely this camera has a pan range of 340 degrees and a tilt range of
- 115 degrees, enabling users to monitor a wide area over the scene if the
- camera is moved (Figure 
+ This camera has a pan range of 340 degrees and a tilt range of 115 degrees,
+ enabling users to monitor a wide area over the scene if the camera is moved
+ (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Sony-SNC-RZ50P-Pan/Tilt Range"
@@ -188,7 +188,7 @@ name "fig:Sony-SNC-RZ50P-Pan/Tilt Range"
 \end_layout
 
 \begin_layout Standard
-The complete and relevant specifications from the cameras are detailed in
+The complete and relevant specifications of the cameras are detailed in
  Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -197,9 +197,10 @@ reference "tab:Sony-SNC-RZ50P-Specifications"
 \end_inset
 
 .
- In the scope of our work the most important features are resolution and
- frames per second that enable us to have more quality in both image and
- video.
+ In the scope of our work the most important features are the frame resolution
+ and the number of frames per second.
+ The highest resolution and highest frame rate profiles have been chosen
+ to operate on the best quality available scenario.
 \end_layout
 
 \begin_layout Standard
@@ -207,7 +208,7 @@ reference "tab:Sony-SNC-RZ50P-Specifications"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -765,7 +766,8 @@ name "fig:Preset-position-setting"
 \begin_layout Itemize
 Tour setting: One can set the camera to describe a tour over the scene.
  This process is done by setting at least two different preset positions
- from where the camera is moving from one to the other at a set speed.
+ from where the camera is moving from one to the other at a also configurable
+ set speed.
  The menu to configure this behavior is displayed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -822,14 +824,13 @@ name "fig:Tour setting menu"
 
 \end_deeper
 \begin_layout Section
-Experiment Setup
+Experimental Setup
 \end_layout
 
 \begin_layout Standard
-For all the experiments that are going to be analyzed along this Chapter
- the experiment setup should be explained.
- In this section, the generated data-set, ground truth and the proposed
- evaluation framework used to obtain results are detailed.
+In this section, the generated data-set, ground truth and the proposed evaluatio
+n framework used to obtain results are detailed.
+ All these factors apply to all the performed experiments.
 \end_layout
 
 \begin_layout Subsection
@@ -840,10 +841,10 @@ Data-set
 Data-set has been generated in the university hall.
  A tour for each camera has been set so they move from left to right only
  changing position in the X/horizontal axis and not in the Y/vertical direction
- because of the reasons presented in Chapter 
+ because of the reasons presented in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "chap:Proposed-System"
+reference "subsec:Camera-Panning"
 
 \end_inset
 
@@ -851,32 +852,26 @@ reference "chap:Proposed-System"
 \end_layout
 
 \begin_layout Standard
-Both settings are configured as previously displayed in the diagram of Figure
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Multi-camera-configuration with panning set up"
-
+The complete data-set consists on a set of three different scenarios of
+ about 5 minute long recorded on three different days.
+ In each of the scenarios sequences for all the cameras have been obtained
+\begin_inset Formula $-$
 \end_inset
 
-.
- 
-\end_layout
-
-\begin_layout Standard
-The complete data-set consists on a set of three different recordings about
- 5 minute long from three different days.
- In each of the recordings all the camera sequences are available.
- Figure 
+i.e.
+ 3 videos for each sequence, one for each camera (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Dataset example frames"
 
 \end_inset
 
- shows some example of them.
- The technical characteristics of the videos are the detailed in the following
- lines:
+ for an example)
+\begin_inset Formula $-$
+\end_inset
+
+.
+ The technical characteristics of the videos are:
 \end_layout
 
 \begin_layout Itemize
@@ -892,7 +887,7 @@ Frame rate: 23.976 fps.
 \end_layout
 
 \begin_layout Itemize
-Format: MPEG Video.
+Video Format: MPEG Video (Version 2) (Main@High).
 \end_layout
 
 \begin_layout Standard
@@ -949,7 +944,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Data-set example frames
+Data-set example frames for a recorded scenario
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Dataset example frames"
@@ -974,96 +969,28 @@ Ground Truth Generation
 \end_layout
 
 \begin_layout Standard
-We have selected one of the three recordings from the data-set to completely
- evaluate the system.
+We have selected one of the three scenarios to fully evaluate the proposed
+ system.
  
 \end_layout
 
 \begin_layout Standard
-In order to do the evaluation ground truth information is needed.
- The video has been manually annotated with 
-\color blue
-
-\begin_inset CommandInset href
-LatexCommand href
-name "Via Annotation Tool"
-target "https://sourceforge.net/projects/via-tool/"
-
-\end_inset
-
-
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-
-\color blue
-https://sourceforge.net/projects/via-tool/
-\end_layout
-
-\end_inset
-
-
-\color inherit
- to generate real pedestrian bounding boxes.
- This software allows the user to generate XML files with bounding boxes
- positions through the whole sequences.
- The recording consists on three different videos of 8300 frames, which
- means that the total number of manually annotated frames has been 25.200.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Images/Results/Ground Truth/Via Window.png
-	lyxscale 30
-	width 80text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Via Annotation Tool software main window
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Via Annotation Tool software"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-In Figure 
+The selected sequence for evaluation purposes is a mixture between easy
+ and complex situations for a pedestrian detector.
+ Situations range from people walking alone across the hall, to people pushing
+ objects like a wheelchair.
+ The scenario also includes big groups of people both inside and outside
+ the building.
+ In general due to image quality in terms of resolution and illumination
+ and pedestrian situations the selected sequence is in the medium-high range
+ of complexity for pedestrian detection (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Annotated example frames"
 
 \end_inset
 
- annotated frames for the recording in different video situations can be
- observed.
+ for examples frames of the selected scenario).
 \end_layout
 
 \begin_layout Standard
@@ -1141,36 +1068,92 @@ name "fig:Annotated example frames"
 \end_layout
 
 \begin_layout Standard
-As one can observe in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Annotated example frames"
+In order to carry the evaluation out ground truth information is needed.
+ The video has been manually annotated with 
+\color blue
+
+\begin_inset CommandInset href
+LatexCommand href
+name "Via Annotation Tool"
+target "https://sourceforge.net/projects/via-tool/"
 
 \end_inset
 
-.
- The selected sequence for evaluation purposes is a mixture between easy
- and complex situations for a pedestrian detector.
- 
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\color blue
+https://sourceforge.net/projects/via-tool/
+\end_layout
+
+\end_inset
+
+
+\color inherit
+ to generate pedestrian bounding boxes.
+ This software allows the user to generate XML files with bounding boxes
+ positions for the complete sequences.
+ The scenario is composed of three different videos of 8300 frames, which
+ means that the total number of manually annotated frames is 25.200.
 \end_layout
 
 \begin_layout Standard
-Situations go from people walking alone across the hall, to people pushing
- objects like a wheelchair, in addition to big groups of people both inside
- and outside the building.
- In general due to image quality in terms of resolution and illumination
- and pedestrian situations the selected sequence is in the medium-high range
- of difficulty for pedestrian detection.
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/Ground Truth/Via Window.png
+	lyxscale 30
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Via Annotation Tool software main window
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Via Annotation Tool software"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 Evaluation Framework
 \end_layout
 
+\begin_layout Subsubsection*
+Evaluation Metrics
+\end_layout
+
 \begin_layout Standard
-Once the data-set recording has been correctly annotated one can proceed
+Once the data-set scenario has been correctly annotated one can proceed
  to evaluate the performance of pedestrian detectors.
- In order to evaluate these algorithms precision and recall metrics are
+ In order to evaluate these algorithms Precision and Recall metrics are
  used.
  The calculation of these metrics is defined in Eq.
  
@@ -1210,9 +1193,7 @@ Recall=\frac{\#True\,Positives}{\#True\,Positives+\#False\,Negatives}\label{eq:R
 
 \end_inset
 
-Precision gives us information about the classification stage, whereas recall
- provides overall system performance information.
- 
+
 \end_layout
 
 \begin_layout Standard
@@ -1240,9 +1221,13 @@ F-Score=\frac{(2\cdot Precision\cdot Recall)}{(Precision+Recall)}\label{eq:F-Sco
 
 \end_layout
 
+\begin_layout Subsubsection*
+Bounding-Box Comparison
+\end_layout
+
 \begin_layout Standard
-To extract the mentioned metrics we should have a method to compute which
- bounding boxes match with the ground truth.
+To extract these metrics we should have a method to compute which bounding
+ boxes match with the ground truth.
  In order to achieve this objective Intersection over Union (IoU) or Jaccard
  metric has been selected.
  IoU is computed as in Eq 
@@ -1258,8 +1243,15 @@ reference "eq:Intersection over Union"
 \end_layout
 
 \begin_layout Standard
-This means that even if the bounding boxes overlap perfectly, but the union
- area of them is high, IoU metric will have a small value.
+This means that even if the bounding boxes overlap perfectly 
+\begin_inset Formula $-$
+\end_inset
+
+one lies completely inside the other
+\begin_inset Formula $-$
+\end_inset
+
+, but the union area of them is high, IoU metric will have a small value.
  This effect can be observed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1267,7 +1259,7 @@ reference "fig:Intersection over Union"
 
 \end_inset
 
- where one can see that a almost perfect overlapping between bounding boxes
+ where one can see that an almost perfect overlapping between bounding boxes
  does not lead to a high IoU value.
  
 \end_layout
@@ -1335,451 +1327,16 @@ name "fig:Intersection over Union"
 \end_layout
 
 \begin_layout Section
-Application Performance 
+Homography and Semantic Segmentation
 \end_layout
 
 \begin_layout Standard
-Along this section evaluation for the application in terms of general computatio
-nal time is done.
-\end_layout
-
-\begin_layout Standard
-Firstly, results concerning differences between single thread and multi
- thread applications are exposed.
- Measures have been obtained by using the same sequence and the same PD.
- In Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Single threads vs Multi threads"
-
-\end_inset
-
- one can observe the difference in term of seconds per frame and frame per
- second for the same video sequence and the same pedestrian detector approach
- (HOG).
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-placement H
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-setlength
-\backslash
-extrarowheight{7pt}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="3" columns="3">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Seconds/Frame
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-FPS
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Single-Thread
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-3.8 s
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.26 fps
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Multi-Thread
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-0.7 s
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-1.42 fps
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Comparison between the use of single thread or multi threads
-\begin_inset CommandInset label
-LatexCommand label
-name "tab:Single threads vs Multi threads"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-In addition, all the PD are compared when evaluated in the multi thread
- environment with the same video sequence.
- This results can be seen in Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Multithreads PD Computational"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-placement H
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-setlength
-\backslash
-extrarowheight{7pt}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="3">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Seconds/Frame
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-FPS
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-HOG
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.737 s
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.35 fps
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-ACF
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.642 s
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.60 fps
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-DPM
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.062 s
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.94 fps
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-PSP-Net (Offline)
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-0.624 s
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-1.60 fps
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Comparison between the use of single thread or multi threads
-\begin_inset CommandInset label
-LatexCommand label
-name "tab:Multithreads PD Computational"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
+Durign thi Section qualitative results regarding homography and semantic
+ segmentation calculation are presented.
 \end_layout
 
 \begin_layout Subsection
-Application Performance Results Discussion
-\end_layout
-
-\begin_layout Standard
-Looking at Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Single threads vs Multi threads"
-
-\end_inset
-
-, one can easily derive that the speed up of using multithreads is clear.
- This difference implies that in the amount of time the single thread applicatio
-n obtains results for three frames, the multi-thread application has been
- executed almost 
-\begin_inset Formula $5.5$
-\end_inset
-
- times.
- This is a huge improvement in the computational time.
-\end_layout
-
-\begin_layout Standard
-In terms of pedestrian detection comparison, taking a look a the table one
- can easily observe that PSP-Net is the one which runs faster.
- However, its offline computation makes it evidentially the fastest.
- Comparing those which are truly computed online, HOG is the one that performs
- faster followed by DPM and ACF.
-\end_layout
-
-\begin_layout Standard
-Nevertheless, it is noticeable that even the slowest PD multi thread approach,
- performs faster than HOG in the single-thread application.
-\end_layout
-
-\begin_layout Section
-Homography Calculation 
+Homography
 \end_layout
 
 \begin_layout Standard
@@ -1950,13 +1507,15 @@ name "fig:Projected views with homography matrices"
 
 \end_layout
 
-\begin_layout Subsection
-Homography Results Discussion
-\end_layout
-
 \begin_layout Standard
-As one can observe in the mentioned Figure, homographies are correctly calculate
-d in most of the cases.
+Qualitative results in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Projection Camera-1-View 7"
+
+\end_inset
+
+ suggest that homographies are accurate enough in most the cases.
  Blue points are not visible because of the overlapping with the red ones,
  which means that their correspondence is perfect.
  However, some small errors can be noticed in Figure 
@@ -1973,26 +1532,28 @@ reference "fig:Projection Camera-1-View 7"
 \begin_layout Standard
 It is important to notice in this results, how precision and image quality
  is reduced the further the points are from the camera.
+ It can be observed in the blurred image parts of the images.
  This is a standard problem when dealing with such type of homographies.
 \end_layout
 
-\begin_layout Section
-Semantic Segmentation 
+\begin_layout Subsection
+Semantic Segmentation
 \end_layout
 
 \begin_layout Standard
-In this Section some results concerning the performance of PSP-Net in the
- proposed environment are presented.
- In order to test the algorithm and for the lack of semantic ground truth
- results should be visually evaluated.
- For this purpose Figure 
+In this Section qualitative results regarding the performance of PSP-Net
+ in the proposed scenario are presented.
+ In order to test the algorithm and for the lack of ground-truth annotations
+ for the semantic segmentation, we include in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:PSP-Net-result-examples"
 
 \end_inset
 
- is used.
+ , illustrative examples of common problems that should be qualitatively
+ evaluated.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -2146,10 +1707,6 @@ name "fig:PSP-Net-result-examples"
 
 \end_layout
 
-\begin_layout Subsection
-Semantic Segmentation Results Discussion
-\end_layout
-
 \begin_layout Standard
 Taking a look to results one can derive that PSP-Net extracts high quality
  results in terms of semantic.
@@ -2166,7 +1723,7 @@ reference "fig:PSP-Net-result-examples"
 \end_layout
 
 \begin_layout Standard
-However, it is important to point that segmentation is not perfect when
+However, it is important to point out that segmentation is not perfect when
  dealing with difficult illumination cases or complex objects.
  It can be observed that columns are not correctly segmented.
  Some of them are misclassified as walls or floor.
@@ -2182,54 +1739,21 @@ Pedestrian Detection
 \end_layout
 
 \begin_layout Standard
-During this section results in the context of pedestrian detection are presented.
- For this results HOG, DPM and PSP-Net algorithms have been selected to
- test.
- We propose a set of four different experiments to measure performance of
- our developed system.
-\end_layout
-
-\begin_layout Standard
-The first one, tests pedestrian detections working in a mono-camera environment.
- This means that neither information is shared by the cameras nor semantic
- constrains are applied.
+During this section results of PD approaches are presented.
+ HOG, DPM and PSP-Net algorithms are chosen for evaluation.
+ However, the ACF algorithm is also integrated in the application and offline
+ generated results for the Fast-RCNN can be also load on the application.
  
 \end_layout
 
 \begin_layout Standard
-We follow testing the algorithms in a multi-camera setup.
- As explained in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Pedestrian-Reprojection between cameras"
-
-\end_inset
-
- detections from cameras are projected into the others to try to achieve
- better results than in a mono-camera scenario.
- 
+We propose a set of four different experiments to measure the overall performanc
+e of the developed system and the contribution to PD of each of the designed
+ modules.
 \end_layout
 
 \begin_layout Standard
-Thirdly, we analyze people detection again in a mono camera environment
- but this time, applying semantic constraining as proposed in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Pedestrian-Semantic-Constraining"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Finally, the last test embraces all the proposed algorithms working within
- the multi-camera reprojection setup and applying semantic constraints.
-\end_layout
-
-\begin_layout Standard
-It is important to remind that results are presented within Recall versus
- Precision curves.
+Results are presented within Recall versus Precision curves.
  In order to create these graphs algorithms have been evaluated in all the
  four test using five different values from the score thresholding 
 \begin_inset Formula $[0,1]$
@@ -2246,14 +1770,33 @@ It is important to remind that results are presented within Recall versus
 
 \begin_layout Standard
 To proceed with this process all the algorithms scores have been normalized
- from its original values to the mentioned interval.
+ from its original values to the 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+ interval.
  Maximum and minimum scores have been used for this purpose.
- In order to obtain scores distributions for all the detectors a train sequence
- has been used.
+ In order to obtain scores extrema for all the detectors a train sequence
+ selected from the data-set has been used.
 \end_layout
 
-\begin_layout Subsection
-Mono-Camera
+\begin_layout Subsection*
+Mono-Camera Environment
+\end_layout
+
+\begin_layout Standard
+Tests pedestrian detections working only in a mono-camera environment.
+ This means that neither information is shared by the cameras nor semantic
+ constrains are applied.
+ This experiment measures performance of raw detectors.
+ Results are presented in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Recall / Precision graphs for mono camera pedestrian detection."
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2400,8 +1943,29 @@ name "fig:Recall / Precision graphs for mono camera pedestrian detection."
 
 \end_layout
 
-\begin_layout Subsection
-Multi-Camera
+\begin_layout Subsection*
+Multi-Camera Environment
+\end_layout
+
+\begin_layout Standard
+Algorithms are tested in a multi-camera setup.
+ As explained in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Pedestrian-Reprojection between cameras"
+
+\end_inset
+
+ detections from cameras are reprojected and combine onto other cameras
+ .
+ Results are presented in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Recall / Precision graphs for multi camera pedestrian detection"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2548,8 +2112,28 @@ name "fig:Recall / Precision graphs for multi camera pedestrian detection"
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 Mono-Camera with Semantic Constraining
+\end_layout
+
+\begin_layout Standard
+People detection are analyzed again in a mono camera environment but this
+ time, applying semantic constraining as explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Semantic-Filtering"
+
+\end_inset
+
+.
+ Results are presented in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Recall / Precision graphs for mono camera pedestrian detection with semantic constraining"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2697,8 +2281,21 @@ name "fig:Recall / Precision graphs for mono camera pedestrian detection with se
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 Multi-Camera with Semantic Constraining
+\end_layout
+
+\begin_layout Standard
+Finally, the last test embraces all the proposed algorithms running within
+ the multi-camera reprojection setup and applying semantic constraints.
+ Results are presented in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Recall / Precision graphs for multi camera pedestrian detection with semantic constraining."
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2846,9 +2443,13 @@ name "fig:Recall / Precision graphs for multi camera pedestrian detection with s
 
 \end_layout
 
+\begin_layout Subsection*
+Overall Comparison
+\end_layout
+
 \begin_layout Standard
-In order to compare numerically all the experiments with the PD approaches
- F-Score results have been obtained and presented in Table 
+In order to compare numerically all the the PD approaches in different experimen
+ts F-Score results have been obtained and presented in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:F-Score table"
@@ -2856,7 +2457,7 @@ reference "tab:F-Score table"
 \end_inset
 
 .
- For this Table the best F-Score metric for a PD in a particular experiment
+ For this Table the best F-Score metric for a PD for each particular experiment
  has been chosen.
 \end_layout
 
@@ -3500,8 +3101,8 @@ F-Score comparison for pedestrian detector approaches
 
 F-Score comparison between all the experiments and pedestrian detector approache
 s.
- Best result for an approach in a camera marked as bold.
- Best result of the table marked as red bold.
+ Best results for an approach in each camera is in bold.
+ Best overall result is in red.
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:F-Score table"
@@ -3566,8 +3167,7 @@ t and in all the cameras.
 \end_layout
 
 \begin_layout Standard
-However, none of the detectors are getting excellent results in the testing
- sequence.
+However, none of the detectors yields adequate results for the test sequence.
  Ideal results should lead to high recall and low precision values when
  low threshold are chosen and on the other hand, low recall and high precision
  values when the highest thresholds are used.
@@ -3575,13 +3175,13 @@ However, none of the detectors are getting excellent results in the testing
 \end_layout
 
 \begin_layout Subsubsection*
-Semantic Constraining Performance
+Effect of Semantic Constraining
 \end_layout
 
 \begin_layout Standard
-If one focus the analysis on the system general performance, taking into
- account both PD fusion and constraining we have to center the attention
- to Table 
+If one focus the analysis on the system general performance, considering
+ both PD fusion and constraining we have to center the attention to Table
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:F-Score table"
@@ -3597,19 +3197,18 @@ reference "tab:F-Score table"
 \begin_layout Standard
 If we take a look at HOG descriptor two out of the three best results are
  obtained using raw HOG.
- Only Camera 2 with semantic constrain seems to outperform just by a small
- F-Score the raw detector.
+ Only Camera 2 with semantic constrain marginally outperforms F-Score of
+ the raw detector.
  PSP-Net presents the same effect where only camera 3 gets a better result
  using semantic constraining.
- However, DPM using semantic filtering outperforms in every camera the scores
- obtained with raw DPM.
- This means that the inclusion of semantic information leads to and increase
- in DPM performance.
+ However, DPM using semantic filtering outperforms the scores obtained with
+ raw DPM for every camera, suggesting that the inclusion of semantic information
+ leads to and increase in DPM performance.
 \end_layout
 
 \begin_layout Standard
-The reason why HOG and PSP-Net are not improved could be due to the number
- of extracted detections.
+In our opinion, HOG and PSP-Net do not appear to benefit from semantic segmentat
+ion due to their lower number of detection with respect to DPM.
  Both approaches, although their scores have been normalized to the 
 \begin_inset Formula $[0,\,1]$
 \end_inset
@@ -3801,7 +3400,7 @@ reference "fig:Annotated example frames"
  ground truth has been made so every pedestrian is annotated in the sequence.
  This is a problem when using semantic constraining as every detection placed
  at the outside is suppressed for not being inside the hall.
- Furthermore, PSP-Net as is depict in Figure 
+ Furthermore, PSP-Net as is depicted in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Misclassification-of-people in semantic"
@@ -3809,7 +3408,7 @@ reference "fig:Misclassification-of-people in semantic"
 \end_inset
 
  does not obtain pedestrian detections when analyzing people outside the
- building which could be one of the reasons of its poor performance.
+ building which could be one of the reasons of its low performance.
 \end_layout
 
 \begin_layout Standard
@@ -3888,23 +3487,7 @@ s) worse results than even the regular detectors are obtained.
 \end_layout
 
 \begin_layout Enumerate
-The projection from one frame to another has some error.
- This can be because of the homography calculation or pedestrian detection
- errors.
- 
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-In the first case if one homography is not accurate enough projections have
- small errors that translated to distances in the cenital plane could be
- a high displacement.
- 
-\end_layout
-
-\begin_layout Standard
-The second case is related to pedestrian detection errors.
- If a person is accurately detected but, the bounding box does not surround
+If a person is accurately detected but, the bounding box does not surround
  entirely the person, the reprojection is not accurate.
  This effect can be observed in Figure 
 \begin_inset CommandInset ref
@@ -3926,11 +3509,12 @@ reference "fig:Pedestrain detection error in camera 2"
  
 \end_layout
 
+\begin_deeper
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -4121,7 +3705,7 @@ reference "fig:Statistical Semantic Map"
 \end_inset
 
  floor and doors semantic areas have been chosen.
- Curves represent pedestrian density per frame in the recording.
+ Curves represent pedestrian density per frame in the scenario.
  The obtained curves are displayed in Figures 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -5115,6 +4699,372 @@ reference "fig:Pedestrians paths usage along the Hall. 70 pix"
  In the same manner, when a big pedestrian group walks along the scene all
  their trajectory is being highlighted as pedestrian density over that areas
  is highly increased.
+\end_layout
+
+\begin_layout Section
+Application Performance 
+\end_layout
+
+\begin_layout Standard
+Along this section we describe the experiments concerning the application
+ efficiency.
+\end_layout
+
+\begin_layout Standard
+Firstly, results concerning differences between the single thread and the
+ multi thread applications are exposed.
+ Measures have been obtained by using the same sequence and the same PD
+ algorithms.
+ In Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Single threads vs Multi threads"
+
+\end_inset
+
+ one can observe the difference in terms frame per second for the same video
+ sequence and the same pedestrian detector approach (HOG).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength
+\backslash
+extrarowheight{7pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+FPS
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Single-Thread
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.26 fps
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Multi-Thread
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1.42 fps
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison between the use of single thread or multi threads
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Single threads vs Multi threads"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In addition, all the PD are compared when evaluated in the multi thread
+ environment with the same video sequence.
+ This results can be seen in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Multithreads PD Computational"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength
+\backslash
+extrarowheight{7pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+FPS
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+HOG
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.35 fps
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ACF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.60 fps
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DPM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.94 fps
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+PSP-Net (Offline)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1.60 fps
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison between the use of single thread or multi threads
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Multithreads PD Computational"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Application Performance Results Discussion
+\end_layout
+
+\begin_layout Standard
+Looking at Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Single threads vs Multi threads"
+
+\end_inset
+
+, one can easily derive that the speed up of using multithreads is clear.
+ This difference implies that in the amount of time the single thread applicatio
+n obtains results for three frames, the multi-thread application has been
+ executed almost 
+\begin_inset Formula $5.5$
+\end_inset
+
+ times.
+ This is a huge improvement in the computational time.
+\end_layout
+
+\begin_layout Standard
+In terms of pedestrian detection comparison, taking a look a the table one
+ can easily observe that PSP-Net is the one which runs faster.
+ However, its offline computation makes it evidentially the fastest.
+ Comparing those which are truly computed online, HOG is the one that performs
+ faster followed by DPM and ACF.
+\end_layout
+
+\begin_layout Standard
+Nevertheless, it is noticeable that even the slowest PD multi thread approach,
+ performs faster than HOG in the single-thread application.
 \end_layout
 
 \begin_layout Section

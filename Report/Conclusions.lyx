@@ -201,5 +201,11 @@ ns are reprojected the blob height is lost.
  to the real height for the blob.
 \end_layout
 
+\begin_layout Standard
+Finally, we propose to use the Gaussian representation of bounding boxes
+ to perform pedestrian fusion over the cenital plane instead of doing it
+ on the camera frames.
+\end_layout
+
 \end_body
 \end_document

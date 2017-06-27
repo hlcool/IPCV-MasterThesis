@@ -2020,7 +2020,54 @@ reference "fig:Hierarchical representation of the code"
 
  a hierarchical representation of how the different objects are arranged
  is presented.
- As one can observe everything is under the heritage of the 
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Application/Hierarchical class distribution.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Hierarchical representation of the code 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Hierarchical representation of the code"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As one can observe everything is under the heritage of the 
 \series bold
 \shape italic
 MainWindow
@@ -2036,7 +2083,7 @@ CameraWorker
  threads that include the 
 \series bold
 \shape italic
-barrier
+Barrier
 \series default
 \shape default
  object, and three 
@@ -2087,49 +2134,6 @@ CVImageWidget
  objects.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Images/Application/Hierarchical class distribution.png
-	lyxscale 30
-	width 90text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Hierarchical representation of the code 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Hierarchical representation of the code"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
 Multi-thread User Application
 \end_layout
@@ -2166,8 +2170,15 @@ reference "fig:User version application main window"
 \end_layout
 
 \begin_layout Standard
+Conversely to the developer application, the only functionality of the main
+ window is to display results and guide information.
+ All the options presented in the developer application for parameter setup
+ are no longer available.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
-placement t
+placement H
 wide false
 sideways false
 status collapsed
@@ -2177,7 +2188,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Application/User Version Interface.png
 	lyxscale 15
-	width 85text%
+	width 100text%
 
 \end_inset
 
@@ -2206,13 +2217,6 @@ name "fig:User version application main window"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Conversely to the developer application, the only functionality of the main
- window is to display results and guide information.
- All the options presented in the developer application for parameter setup
- are no longer available.
 \end_layout
 
 \end_body
