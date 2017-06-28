@@ -102,7 +102,7 @@ Conclusions
 \begin_layout Standard
 This master thesis has described a system capable of performing pedestrian
  detection and semantic segmentation over a multi camera setup at the Escuela
- Politecnica Superior, Universidad Autonoma de Madrid (Spain).
+ Politécnica Superior, Universidad Autonoma de Madrid (Spain).
  Different pedestrian detection approaches such as HOG, DPM, ACF or Fast-RCNN
  and a semantic segmentation algorithm, PSP-Net, have been selected among
  others from a complete study of the state of the art.
@@ -110,7 +110,7 @@ This master thesis has described a system capable of performing pedestrian
 
 \begin_layout Standard
 A complete system to perform pedestrian fusion and filtering has been proposed.
- Information from three cameras are combined into a common cenital plane
+ Information from three cameras is combined into a common cenital plane
  by the use of homographies.
  This process allows PD to be shared and reprojected from one camera to
  another.
@@ -121,7 +121,7 @@ A complete system to perform pedestrian fusion and filtering has been proposed.
 \begin_layout Standard
 Statistical data usage from different semantic areas has been extracted.
  Also, pedestrian paths in terms of density have been computed based on
- some semantic information such as floor paths and doors.
+ the scene division in a regular grid.
 \end_layout
 
 \begin_layout Standard
@@ -138,20 +138,20 @@ All the system has been tested in a manually annotated recording obtaining
  performance results for homography calculation, PD approaches under different
  environments and semantic areas statistical usage data.
  During these tests semantic constraining has improved DPM approach, however
- algorithms such as HOG or PSP-Net have obtained worse results than the
- raw detector.
+ HOG or PSP-Net algorithms constraint with semantic maps have obtained worse
+ results than the raw detector.
  Similarly, multi-camera fusion has not been able to increase performance
  for any of the algorithms.
  Problems related to pedestrian reprojection between cameras combined with
  PD errors lead to an increase in the number of false positive and so, in
- performance decreased.
+ performance decrease.
 \end_layout
 
 \begin_layout Standard
 Statistical data usage has been almost perfectly extracted, having exact
  frames in which semantic areas are used.
- In addition, semantic paths have been obtained with high precision in spatial
- and temporally terms.
+ In addition, semantic density paths have been obtained with high precision
+ in spatial and temporally terms.
 \end_layout
 
 \begin_layout Section
@@ -166,24 +166,23 @@ Considering current state of the art, obtained results and extracted conclusions
 \begin_layout Standard
 In terms of application and software development some improvements are proposed
  to be done.
- Nowadays, heavy computational work is achieve almost in real time by the
+ Nowadays, heavy computational work is achieved almost in real time by the
  use of graphical cards.
- GPU computation should be implemented in the scope of this work.
+ GPU computation may be implemented in the scope of this work.
  Many of the used methods are also implemented with GPU computation functionalit
-ies and the inclusion of this kind of speed-up could lead to better and
- faster results.
+ies and the inclusion of this kind of speed-up may result in a improvement
+ in the system efficiency.
 \end_layout
 
 \begin_layout Standard
-In other term, the proposed system bases all its performance in the correct
- view selection as explained in Section 
+Furthermore, the view selection scheme described in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:View-Selection"
 
 \end_inset
 
-.
+ has a substantial impact on the method's performance.
  However, when high illumination changes occur this process fails.
  We propose to fix this problem by the use of camera spatial positions.
  With this information exact same position for each of the views can be
@@ -202,9 +201,14 @@ ns are reprojected the blob height is lost.
 \end_layout
 
 \begin_layout Standard
+Regarding results, other data-sets scenarios may be evaluated and ACF and
+ Fast-RCNN detectors may need to be included in the tests.
+\end_layout
+
+\begin_layout Standard
 Finally, we propose to use the Gaussian representation of bounding boxes
- to perform pedestrian fusion over the cenital plane instead of doing it
- on the camera frames.
+ to perform pedestrian fusion over the cenital plane instead of performing
+ it on the camera frames.
 \end_layout
 
 \end_body

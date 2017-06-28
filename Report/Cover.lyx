@@ -209,7 +209,7 @@ Supervisor: Jesús Bescós Cano
 
 \series bold
 \size large
-Departamento de Tecnología Electrónica y de las Comunicaciones
+Electronics Technology and Communications Department
 \begin_inset Newline newline
 \end_inset
 
@@ -395,7 +395,7 @@ Video Processing and Understanding Lab
 \begin_inset Newline newline
 \end_inset
 
-Departamento de Ingeniería Informática
+Informatics Engineering Department
 \begin_inset Newline newline
 \end_inset
 
@@ -559,18 +559,18 @@ noindent
 \end_layout
 
 \begin_layout Standard
-Este proyecto describe un método para realizar detección de personas y segmentac
-ión semántica en un escenario multicámara.
- La fusión de estas dos disciplinas tendrá como resultado a detecciones
- de personas contextualmente refinadas.
+Este proyecto describe un sistema para realizar detección de personas y
+ segmentación semántica en un escenario multicámara.
+ La fusión de estas dos disciplinas tendrá como resultado detecciones de
+ personas contextualmente filtradas.
  Se ha usado un entorno multicámara para reproyectar detecciones de una
- cámara a otra y mejorar la precisión.
+ cámara a otra.
  Como ejemplo de uso, datos estadísticos de áreas semánticas concretas en
  la escena han sido igualmente extraídos.
  Para lograr una interacción completa con el usuario se ha diseñado una
- Interfaz de Usuario Gráfica qué permitirá al usuario definir el entorno
- de detección de personas, así como mostrar resultados en tiempo real de
- ejecución.
+ Interfaz de Usuario Gráfica a partir de una aplicación multihilo qué permitirá
+ al usuario definir el entorno de detección de personas, así como mostrar
+ resultados en tiempo real de ejecución.
 \end_layout
 
 \begin_layout Standard
@@ -587,15 +587,10 @@ Para poder llevar a cabo estos objetivos un estudio del estado del arte
 \end_layout
 
 \begin_layout Standard
-Para presentar los resultados y configurar los diferentes algoritmos se
- ha diseñado y desarrollado una aplicación multihilo.
-\end_layout
-
-\begin_layout Standard
 Para lograr los objetivos mencionados, se ha propuesto un nuevo sistema
  que realiza detección de personas bajo diferentes condiciones de filtrado.
- Se han integrado en el sistema detectores como HOG, DPM, o PSP-Net y además
- se ha realizado segmentación semántica.
+ Se han integrado en el sistema detectores como HOG, DPM, ACF, Fast-RCNN
+ o PSP-Net y además se ha realizado segmentación semántica.
  Ambas fuentes de información han sido combinadas en un entorno común representa
 do mediante un plano cenital de la escena.
 \end_layout
@@ -684,15 +679,16 @@ noindent
 \end_layout
 
 \begin_layout Standard
-This project describes a method to perform pedestrian detection and semantic
+This project describes a system to perform pedestrian detection and semantic
  segmentation in a multi-camera recorded scenario.
- The fusion of both disciplines leads to a contextually refined pedestrian
+ The fusion of both disciplines leads to contextually filtered pedestrian
  detection.
  The multi camera system is used to reproject detections from one camera
- to the others to improve accuracy.
+ to the others.
  As an use example, statistical data usage of specific semantic areas in
  the scene is also extracted.
- For user interaction a Graphical User Interface (GUI) is designed.
+ For user interaction a Graphical User Interface (GUI) based on a multithread
+ application has been designed.
  The GUI allows the user to define the method setup as well as display results
  in execution time.
 \end_layout
@@ -704,21 +700,15 @@ In order to carry these tasks out a study of the state of the art has been
  rely on object proposals.
  Also, recent trends in the task of Pedestrian Detection are analyzed.
  In addition, current state of the art in the extraction of contextual informati
-on and -specifically- on the sue of, semantic segmentation is studied.
+on and -specifically- on the use of, semantic segmentation is studied.
  Finally, multi camera scenarios configurations are also described.
-\end_layout
-
-\begin_layout Standard
-A multithread application has been developed and analyzed to, as mentioned
- before, present results and tune different algorithms.
- 
 \end_layout
 
 \begin_layout Standard
 A new system has been proposed in order to achieve the objectives and perform
  pedestrian detections under different filtering and fusion conditions.
- Detectors such as HOG, DPM or PSP-Net have been integrated and a complete
- semantic segmentation has been performed.
+ Detectors such as HOG, DPM, ACF, Fast-RCNN or PSP-Net have been integrated
+ and a complete semantic segmentation has been performed.
  Both information has been combined in a common developed frame.
 \end_layout
 

@@ -131,8 +131,8 @@ key "jain1999multimodal"
 
  to all kind of different electrical sensors, including video surveillance
  cameras.
- These cameras are the ones that are of real interest when developing Computer
- Vision algorithms in the scope of video surveillance 
+ These cameras are of real interest when developing Computer Vision algorithms
+ in the scope of video surveillance 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "wang2013intelligent"
@@ -175,12 +175,19 @@ key "zhao2016pyramid"
 
 \begin_layout Standard
 Usually, video surveillance systems are focused either on the analysis of
- a single-camera point of view -which will lead to a simple scenario in
- which the potential actions/events to detect will be observed from a single
- point in the scene- or, on the analysis of a multi-camera setup.
+ a single-camera point of view 
+\begin_inset Formula $-$
+\end_inset
+
+which leads to a simple scenario in which the potential actions/events to
+ detect are observed from a single point in the scene
+\begin_inset Formula $-$
+\end_inset
+
+ or, on the analysis of a multi-camera setup.
  This last configuration may provide multiple benefits when analyzing big
- spaces as it provides to the user different views of the scene, disambiguating
- occluded areas the mono-camera views.
+ spaces as it provides to user different views of the scene, disambiguating
+ occluded areas in the mono-camera views.
 \end_layout
 
 \begin_layout Standard
@@ -235,8 +242,8 @@ The main objective of this thesis is to extract contextual descriptions
 \begin_layout Standard
 To fulfill this objective, this work embraces two different blocks of objectives
  that complement each other.
- The first one targets the design of a graphical user interface (GUI), The
- second block deals with algorithm and research-related objectives.
+ The first one targets the design of a graphical user interface (GUI).
+ The second block deals with algorithm and research-related objectives.
 \end_layout
 
 \begin_layout Subsection*

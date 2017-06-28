@@ -158,7 +158,7 @@ Nowadays, it can be consider a partially-solved problem.
  Although there are excellent PD in the literature, there is no algorithm
  able to effectively perform PD on a generic scenario.
  This is the main reason why PD is still one of the most researched areas
- in computer vision.
+ in Computer Vision.
 \end_layout
 
 \begin_layout Standard
@@ -1584,7 +1584,7 @@ reference "tab:Pedestrian-detection-performance"
 \end_layout
 
 \begin_layout Subsection
-Next Steps Towards Generic PD
+Next Steps Towards Generic Pedestrian Detection
 \end_layout
 
 \begin_layout Standard
@@ -2700,7 +2700,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2737,7 +2737,7 @@ ResNet-38 Algorithm.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2774,7 +2774,7 @@ PSPNet Algorithm.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
