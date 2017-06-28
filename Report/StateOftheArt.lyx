@@ -1980,6 +1980,18 @@ target "https://www.cityscapes-dataset.com/"
 \end_inset
 
 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\color blue
+https://www.cityscapes-dataset.com/
+\end_layout
+
+\end_inset
+
+
 \color inherit
  are depict in Table 
 \begin_inset CommandInset ref
@@ -2322,7 +2334,7 @@ target "http://www.motovis.com/"
 
 \end_inset
 
- 
+
 \color inherit
 (Anonymous)
 \end_layout
@@ -2551,6 +2563,15 @@ Yes
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Cityscapes Data-set Challenge Results
+\end_layout
+
+\end_inset
+
 Cityscapes Data-set Challenge Results (Intersection over Union metric)
 \begin_inset CommandInset label
 LatexCommand label
@@ -2672,21 +2693,21 @@ reference "fig:Semantic-Segmentation-results"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/State Of the Art/ResNet-38 Results.png
 	lyxscale 30
-	width 75text%
+	width 90text%
 
 \end_inset
 
@@ -2716,14 +2737,14 @@ ResNet-38 Algorithm.
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/State Of the Art/PSPNet Results.png
 	lyxscale 30
-	width 75text%
+	width 90text%
 
 \end_inset
 
@@ -2753,14 +2774,14 @@ PSPNet Algorithm.
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/State Of the Art/TuSimple_Coarse Results.png
 	lyxscale 30
-	width 75text%
+	width 90text%
 
 \end_inset
 

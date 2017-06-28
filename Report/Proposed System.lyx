@@ -883,7 +883,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/HoG.jpg
 	lyxscale 60
-	width 75text%
+	width 80text%
 
 \end_inset
 
@@ -988,7 +988,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/DPM.png
 	lyxscale 20
-	width 75text%
+	width 80text%
 
 \end_inset
 
@@ -1307,7 +1307,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Fast RCNN.png
 	lyxscale 10
-	width 70text%
+	width 80text%
 
 \end_inset
 
@@ -1818,7 +1818,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Proposed System/Second Approach Cenital View.png
 	lyxscale 30
-	width 75text%
+	width 100text%
 
 \end_inset
 
@@ -3300,14 +3300,14 @@ reference "fig:Cylinder-estimation-for cenital view projections"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Images/Proposed System/Cilynder Cenital.png
 	lyxscale 20
-	width 85text%
+	width 90text%
 
 \end_inset
 

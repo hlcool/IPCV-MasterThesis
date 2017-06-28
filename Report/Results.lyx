@@ -99,13 +99,16 @@ name "chap:Results"
 
 \begin_layout Standard
 During this Chapter all the achieved results are exposed and analyzed.
- Firstly, a brief analysis of the used hardware during the Thesis is done.
- Secondly, in detail, the experiment setup is explained, i.e.
+ First, a brief analysis of the recording hardware used during the Thesis
+ is done.
+ Second, in detail, the experiment setup is explained, i.e.
  the generated data-set, ground truth, and the evaluation framework.
- Later, results concerning application performance are presented.
- Homography projections results are analyzed.
- Finally, the last two sections, aim is to present pedestrian detection
- results in term of performance and usage data extraction.
+ Later, qualitative results concerning homography projections and semantic
+ segmentation are presented.
+ Pedestrian detection results in term of performance are also extracted.
+ Usage data extraction, and specifically, usage curves and most used paths
+ are analyzed.
+ Finally, results concerning application performance are presented.
 \end_layout
 
 \begin_layout Section
@@ -834,14 +837,14 @@ n framework used to obtain results are detailed.
 \end_layout
 
 \begin_layout Subsection
-Data-set
+Data-Set
 \end_layout
 
 \begin_layout Standard
 Data-set has been generated in the university hall.
- A tour for each camera has been set so they move from left to right only
- changing position in the X/horizontal axis and not in the Y/vertical direction
- because of the reasons presented in Section 
+ A tour for each camera has been set so they move only changing position
+ in the X/horizontal axis and not in the Y/vertical direction.
+ Reasons concerning camera panning were presented in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Camera-Panning"
@@ -853,8 +856,13 @@ reference "subsec:Camera-Panning"
 
 \begin_layout Standard
 The complete data-set consists on a set of three different scenarios of
- about 5 minute long recorded on three different days.
+ 
+\begin_inset Formula $5-8$
+\end_inset
+
+ minutes long recorded on three different days.
  In each of the scenarios sequences for all the cameras have been obtained
+ 
 \begin_inset Formula $-$
 \end_inset
 
@@ -1095,7 +1103,7 @@ https://sourceforge.net/projects/via-tool/
 \color inherit
  to generate pedestrian bounding boxes.
  This software allows the user to generate XML files with bounding boxes
- positions for the complete sequences.
+ positions for complete sequences.
  The scenario is composed of three different videos of 8300 frames, which
  means that the total number of manually annotated frames is 25.200.
 \end_layout
@@ -1243,6 +1251,17 @@ reference "eq:Intersection over Union"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+IoU(Detection,\,Ground\,Truth)=\frac{OverlapArea(Detection,\,Ground\,Truth)}{UnionArea(Detection,\,Ground\,Truth)}\label{eq:Intersection over Union}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 This means that even if the bounding boxes overlap perfectly 
 \begin_inset Formula $-$
 \end_inset
@@ -1259,28 +1278,26 @@ reference "fig:Intersection over Union"
 
 \end_inset
 
- where one can see that an almost perfect overlapping between bounding boxes
- does not lead to a high IoU value.
- 
+.
 \end_layout
 
 \begin_layout Standard
 For our evaluation framework a detection is consider correct if 
-\begin_inset Formula $IoU(Detection,\,Ground\,Truth)\leq0.5$
-\end_inset
-
- which is the usually metric value selected in the State of the Art.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{equation}
-IoU(Detection,\,Ground\,Truth)=\frac{OverlapArea(Detection,\,Ground\,Truth)}{UnionArea(Detection,\,Ground\,Truth)}\label{eq:Intersection over Union}
-\end{equation}
+\[
+IoU(Detection,\,Ground\,Truth)\leq0.5
+\]
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+which is the usually selected metric value in the State of the Art.
 \end_layout
 
 \begin_layout Standard
@@ -1327,21 +1344,20 @@ name "fig:Intersection over Union"
 \end_layout
 
 \begin_layout Section
-Homography and Semantic Segmentation
+Homography and Semantic Segmentation 
 \end_layout
 
 \begin_layout Standard
-Durign thi Section qualitative results regarding homography and semantic
+During this Section qualitative results regarding homography and semantic
  segmentation calculation are presented.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 Homography
 \end_layout
 
 \begin_layout Standard
-First results concerning with the proposed system deal with homographies.
- Correctly calculated homographies are essential for the right performance
+Correctly calculated homographies are essential for the right performance
  of further algorithms.
  In order to test that homographies have been correctly done by the manual
  selection of points, views have been projected with its correspondent matrix.
@@ -1515,10 +1531,10 @@ reference "fig:Projection Camera-1-View 7"
 
 \end_inset
 
- suggest that homographies are accurate enough in most the cases.
+ suggest that homographies are accurate enough in almost all the cases.
  Blue points are not visible because of the overlapping with the red ones,
  which means that their correspondence is perfect.
- However, some small errors can be noticed in Figure 
+ However, one small errors can be noticed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Projection Camera-1-View 7"
@@ -1530,13 +1546,13 @@ reference "fig:Projection Camera-1-View 7"
 \end_layout
 
 \begin_layout Standard
-It is important to notice in this results, how precision and image quality
- is reduced the further the points are from the camera.
+It is important to highlight, how precision and image quality is reduced
+ the further the points are from the camera.
  It can be observed in the blurred image parts of the images.
  This is a standard problem when dealing with such type of homographies.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsection*
 Semantic Segmentation
 \end_layout
 
@@ -1710,8 +1726,8 @@ name "fig:PSP-Net-result-examples"
 \begin_layout Standard
 Taking a look to results one can derive that PSP-Net extracts high quality
  results in terms of semantic.
- It is noticeable that most of the floor, if it is not occluded as in the
- top image from Figure 
+ It is noticeable that most of the floor, if it is not occluded by some
+ scene element, as in the top image from Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:PSP-Net-result-examples"
@@ -1723,12 +1739,12 @@ reference "fig:PSP-Net-result-examples"
 \end_layout
 
 \begin_layout Standard
-However, it is important to point out that segmentation is not perfect when
+It is also important to point out that segmentation is not perfect when
  dealing with difficult illumination cases or complex objects.
  It can be observed that columns are not correctly segmented.
  Some of them are misclassified as walls or floor.
  This is one of the main issues for our system as an accurate floor detection
- is needed.
+ is needed for constraining pedestrian detections.
  In addition, crystal doors such as the ones displayed in the top and bottom
  images, are not correctly distinguish from building and wall labels which
  could also be a main issue for further statistical data extraction algorithms.
@@ -1785,9 +1801,9 @@ Mono-Camera Environment
 \end_layout
 
 \begin_layout Standard
-Tests pedestrian detections working only in a mono-camera environment.
+Here pedestrian detections are tested working only in a mono-camera environment.
  This means that neither information is shared by the cameras nor semantic
- constrains are applied.
+ constrains are applied to detections.
  This experiment measures performance of raw detectors.
  Results are presented in Figure 
 \begin_inset CommandInset ref
@@ -1956,7 +1972,7 @@ reference "subsec:Pedestrian-Reprojection between cameras"
 
 \end_inset
 
- detections from cameras are reprojected and combine onto other cameras
+ detections from cameras are reprojected and combined onto other cameras
  .
  Results are presented in Figure 
 \begin_inset CommandInset ref
@@ -2466,7 +2482,7 @@ reference "tab:F-Score table"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -3162,16 +3178,29 @@ reference "fig:Recall / Precision graphs for multi camera pedestrian detection w
  it is easily observable that PSP-Net outperforms DPM and HOG in every experimen
 t and in all the cameras.
  This is quite logical as algorithms based on CNNs usually perform better
- than classical PD approaches.
+ than classical PD approaches (see Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:State of the art"
+
+\end_inset
+
+).
  
 \end_layout
 
 \begin_layout Standard
 However, none of the detectors yields adequate results for the test sequence.
  Ideal results should lead to high recall and low precision values when
- low threshold are chosen and on the other hand, low recall and high precision
- values when the highest thresholds are used.
  
+\begin_inset Formula $Th\simeq0$
+\end_inset
+
+ and on the other hand, low recall and high precision values when 
+\begin_inset Formula $Th\simeq1$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -3179,9 +3208,9 @@ Effect of Semantic Constraining
 \end_layout
 
 \begin_layout Standard
-If one focus the analysis on the system general performance, considering
- both PD fusion and constraining we have to center the attention to Table
- 
+If one focus the analysis on the general system performance, considering
+ the effect of semantic constraining we have to center the attention to
+ Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:F-Score table"
@@ -3189,8 +3218,6 @@ reference "tab:F-Score table"
 \end_inset
 
 .
- Here algorithms are compared in terms of F-Score which represents a global
- performance measure.
  
 \end_layout
 
@@ -3204,6 +3231,150 @@ If we take a look at HOG descriptor two out of the three best results are
  However, DPM using semantic filtering outperforms the scores obtained with
  raw DPM for every camera, suggesting that the inclusion of semantic information
  leads to and increase in DPM performance.
+ This effect can also be observed when Precision and Recall values for DPM
+ detector in two different experiments are depicted in the same Recall/Precision
+ graph (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Recall / precision graphs for DPM"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/DPM Detector/Camera1.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/DPM Detector/Camera2.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Results/DPM Detector/Camera3.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Recall / Precision curves for DPM in different experiments
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Recall / precision graphs for DPM"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3233,7 +3404,7 @@ reference "fig:Differences-in-number of detections"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3381,12 +3552,19 @@ name "fig:Differences-in-number of detections"
 \end_layout
 
 \begin_layout Standard
-This means, that if detections are already accurate and due to our common
- semantic maps, they lay on some of the floor holes, detections are suppressed.
+This means, that if detections are already accurate and and due to our common
+ semantic maps, they lay on some of the floor holes from Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Statistical Semantic Map"
+
+\end_inset
+
+, detections are suppressed.
  This leads to obtaining a worse performance than using the raw detector.
- In order words, false positives laying in areas different than floor should
- be higher than those wrongly suppressed detections if semantic constraining
- is to be considered worthwhile.
+ In order words, semantic constraining is to be consider worthwhile if the
+ number of false positives laying in areas different than floor is higher
+ than the number of those wrongly suppressed detections.
 \end_layout
 
 \begin_layout Standard
@@ -3482,7 +3660,7 @@ reference "tab:F-Score table"
 
  shows that is not properly working.
  In both experiments in which reprojection is used (second and fourth experiment
-s) worse results than even the regular detectors are obtained.
+s) worse results than even the raw detectors are obtained.
  This could be due to two reasons:
 \end_layout
 
@@ -3514,7 +3692,7 @@ reference "fig:Pedestrain detection error in camera 2"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -3539,9 +3717,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Camera 1.
- Red circle corresponds to ground truth and green one corresponds to the
- actual cylinder estimation.
+Camera 1
 \end_layout
 
 \end_inset
@@ -3573,8 +3749,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Camera 2.
- White circle represents reprojection from Camera 1.
+Camera 2
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Pedestrain detection error in camera 2"
@@ -3598,7 +3773,19 @@ name "fig:Pedestrain detection error in camera 2"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Pedestrian detection error leads to a reprojection displacement 
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Pedestrian detection error leads to a reprojection displacement
+\end_layout
+
+\end_inset
+
+Pedestrian detection error leads to a reprojection displacement.
+ Camera 1: Red circle corresponds to correct cylinder and green one corresponds
+ to the actual estimation.
+ Camera 2: White circle represents reprojection from Camera 1.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Pedestrian-detection-error."
@@ -3630,8 +3817,8 @@ reference "fig:Pedestrian reprojection error due to heigth"
 \end_inset
 
 .
- Projections are finally reconstructed as small or big blobs if blob width
- is small or big respectively.
+ Projections are finally reconstructed as small or big blobs if width is
+ small or big respectively.
  As can be observed in both frames two reprojections from other cameras
  are present however, one of them has not been combined.
  This means that reprojections not correctly combined with the original
@@ -3695,18 +3882,35 @@ Statistical Usage Data
 \end_layout
 
 \begin_layout Standard
-Finally, results concerning statistical usage data are presented.
- One graphic per selected semantic area is obtained.
- In our case and due to the mentioned limitations of the map in Figure 
+In this Section we present a couple of simple applications that exploits
+ the extraction of statistical usage data.
+\end_layout
+
+\begin_layout Subsection
+Experiment 1
+\end_layout
+
+\begin_layout Standard
+We propose to illustrate usage curves on two different semantic areas: 
+\shape italic
+doors
+\shape default
+ and 
+\shape italic
+floor
+\shape default
+.
+ The choice has been made regarding the limitations of the map in Figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Statistical Semantic Map"
 
 \end_inset
 
- floor and doors semantic areas have been chosen.
- Curves represent pedestrian density per frame in the scenario.
- The obtained curves are displayed in Figures 
+.
+ On each semantic area one pedestrian density per frame graphic is obtainedThe
+ obtained curves are displayed in Figures 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Floor-usage-graph"
@@ -3853,6 +4057,91 @@ name "fig:Doors-usage-graph"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+Experiment 1 Results Discussion
+\end_layout
+
+\begin_layout Standard
+Observing Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Floor-usage-graph"
+
+\end_inset
+
+ and taking a look to the correspondent frame, displayed at the top of the
+ graph, it can be observed that there is a correspondence between periods
+ when most people are walking through the scene and the different peaks
+ from the curve.
+ This means that promising results in this area are obtained.
+ Nevertheless, Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Floor-usage-graph"
+
+\end_inset
+
+ at 
+\begin_inset Formula $t_{1}=1594$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{2}=4877$
+\end_inset
+
+ shows that we are not getting an accurate measure at 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{2}$
+\end_inset
+
+ due to false positive detections, and also due to the group detection as
+ a whole.
+ 
+\end_layout
+
+\begin_layout Standard
+Regarding the
+\shape italic
+ doors
+\shape default
+ usage one can observe that there a relation between people passing trough
+ 
+\shape italic
+doors
+\shape default
+ in approximately frames 
+\begin_inset Formula $t_{1}=1541$
+\end_inset
+
+, 
+\begin_inset Formula $t_{2}=2808$
+\end_inset
+
+, 
+\begin_inset Formula $t_{3}=3569$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{4}=5091$
+\end_inset
+
+ and curve peaks in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Doors-usage-graph"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Experiment 2
 \end_layout
 
 \begin_layout Standard
@@ -4613,68 +4902,7 @@ name "fig:Pedestrians paths usage along the Hall. 70 pix"
 \end_layout
 
 \begin_layout Subsection
-Statistical Usage Data Results Discussion
-\end_layout
-
-\begin_layout Standard
-One can observe in Figures 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Floor-usage-graph"
-
-\end_inset
-
- and 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Doors-usage-graph"
-
-\end_inset
-
- that both semantic areas are measured in terms of number of people by frame.
- If one takes a look to the correspondent frame, displayed at the top of
- the graph, it can be observed that there is a correspondence between periods
- when most people are walking through the scene and the different peaks
- from the curve.
- It is important to notice, that also in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Floor-usage-graph"
-
-\end_inset
-
- at 
-\begin_inset Formula $t_{1}=1594$
-\end_inset
-
- and 
-\begin_inset Formula $t_{2}=4877$
-\end_inset
-
- we are not getting an accurate measure due to the small blobs detected,
- and also due to the group detection as a whole.
- 
-\end_layout
-
-\begin_layout Standard
-When talking about the doors usage one can observe that there is people
- passing trough doors are in frames 
-\begin_inset Formula $t_{1}=1541$
-\end_inset
-
-, 
-\begin_inset Formula $t_{2}=2808$
-\end_inset
-
-, 
-\begin_inset Formula $t_{3}=3569$
-\end_inset
-
- and 
-\begin_inset Formula $t_{4}=5091$
-\end_inset
-
- approximately.
+Experiment 2 Results Discussion
 \end_layout
 
 \begin_layout Standard

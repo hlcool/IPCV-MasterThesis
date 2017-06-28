@@ -284,7 +284,7 @@ Identify the usage rate of some important elements of the scene measured
 
 \end_deeper
 \begin_layout Enumerate
-To globally integrate state-of-the-art pedestrian detection algorithms results
+To globally integrate state of the art pedestrian detection algorithms results
  per view.
  To this aim, we need to:
 \end_layout
@@ -292,7 +292,7 @@ To globally integrate state-of-the-art pedestrian detection algorithms results
 \begin_deeper
 \begin_layout Enumerate
 Create a pedestrian detector fusion mechanism to take advantage of the multi-cam
-era scenario.
+era scenario sharing detections from one camera to the others.
  
 \end_layout
 
