@@ -159,7 +159,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/IPCamera Pan:Tilt.png
 	lyxscale 20
-	width 65text%
+	width 75text%
 
 \end_inset
 
@@ -900,6 +900,7 @@ Video Format: MPEG Video (Version 2) (Main@High).
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -1002,7 +1003,41 @@ reference "fig:Annotated example frames"
 \end_layout
 
 \begin_layout Standard
+In order to carry the evaluation out ground truth information is needed.
+ The video has been manually annotated with 
+\color blue
+
+\begin_inset CommandInset href
+LatexCommand href
+name "Via Annotation Tool"
+target "https://sourceforge.net/projects/via-tool/"
+
+\end_inset
+
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\color blue
+https://sourceforge.net/projects/via-tool/
+\end_layout
+
+\end_inset
+
+
+\color inherit
+ to generate pedestrian bounding boxes.
+ This software allows the user to generate XML files with bounding boxes
+ positions for complete sequences.
+ The scenario is composed of three different videos of 8300 frames, which
+ means that the total number of manually annotated frames is 25.200.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -1076,39 +1111,6 @@ name "fig:Annotated example frames"
 \end_layout
 
 \begin_layout Standard
-In order to carry the evaluation out ground truth information is needed.
- The video has been manually annotated with 
-\color blue
-
-\begin_inset CommandInset href
-LatexCommand href
-name "Via Annotation Tool"
-target "https://sourceforge.net/projects/via-tool/"
-
-\end_inset
-
-
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-
-\color blue
-https://sourceforge.net/projects/via-tool/
-\end_layout
-
-\end_inset
-
-
-\color inherit
- to generate pedestrian bounding boxes.
- This software allows the user to generate XML files with bounding boxes
- positions for complete sequences.
- The scenario is composed of three different videos of 8300 frames, which
- means that the total number of manually annotated frames is 25.200.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -1119,7 +1121,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/Ground Truth/Via Window.png
 	lyxscale 30
-	width 80text%
+	width 100text%
 
 \end_inset
 
@@ -1282,25 +1284,6 @@ reference "fig:Intersection over Union"
 \end_layout
 
 \begin_layout Standard
-For our evaluation framework a detection is consider correct if 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-IoU(Detection,\,Ground\,Truth)\leq0.5
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-which is the usually selected metric value in the State of the Art.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
@@ -1343,6 +1326,25 @@ name "fig:Intersection over Union"
 
 \end_layout
 
+\begin_layout Standard
+For our evaluation framework a detection is consider correct if 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+IoU(Detection,\,Ground\,Truth)\leq0.5
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+which is the usually selected metric value in the State of the Art.
+\end_layout
+
 \begin_layout Section
 Homography and Semantic Segmentation 
 \end_layout
@@ -1374,7 +1376,37 @@ reference "fig:Projected views with homography matrices"
 \end_layout
 
 \begin_layout Standard
+Qualitative results in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Projection Camera-1-View 7"
+
+\end_inset
+
+ suggest that homographies are accurate enough in almost all the cases.
+ Blue points are not visible because of the overlapping with the red ones,
+ which means that their correspondence is perfect.
+ However, one small errors can be noticed in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Projection Camera-1-View 7"
+
+\end_inset
+
+ where there exists a displacement between some red points and the blue
+ ones (top of the image).
+\end_layout
+
+\begin_layout Standard
+It is important to highlight, how precision and image quality is reduced
+ the further the points are from the camera.
+ It can be observed in the blurred image parts of the images.
+ This is a standard problem when dealing with such type of homographies.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -1523,35 +1555,6 @@ name "fig:Projected views with homography matrices"
 
 \end_layout
 
-\begin_layout Standard
-Qualitative results in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Projection Camera-1-View 7"
-
-\end_inset
-
- suggest that homographies are accurate enough in almost all the cases.
- Blue points are not visible because of the overlapping with the red ones,
- which means that their correspondence is perfect.
- However, one small errors can be noticed in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Projection Camera-1-View 7"
-
-\end_inset
-
- where there exists a displacement between some red points and the blue
- ones (top of the image).
-\end_layout
-
-\begin_layout Standard
-It is important to highlight, how precision and image quality is reduced
- the further the points are from the camera.
- It can be observed in the blurred image parts of the images.
- This is a standard problem when dealing with such type of homographies.
-\end_layout
-
 \begin_layout Subsection*
 Semantic Segmentation
 \end_layout
@@ -1573,7 +1576,35 @@ reference "fig:PSP-Net-result-examples"
 \end_layout
 
 \begin_layout Standard
+Taking a look to results one can derive that PSP-Net extracts high quality
+ results in terms of semantic.
+ It is noticeable that most of the floor, if it is not occluded by some
+ scene element, as in the top image from Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PSP-Net-result-examples"
+
+\end_inset
+
+, is correctly extracted.
+ 
+\end_layout
+
+\begin_layout Standard
+It is also important to point out that segmentation is not perfect when
+ dealing with difficult illumination cases or complex objects.
+ It can be observed that columns are not correctly segmented.
+ Some of them are misclassified as walls or floor.
+ This is one of the main issues for our system as an accurate floor detection
+ is needed for constraining pedestrian detections.
+ In addition, crystal doors such as the ones displayed in the top and bottom
+ images, are not correctly distinguish from building and wall labels which
+ could also be a main issue for further statistical data extraction algorithms.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -1723,33 +1754,6 @@ name "fig:PSP-Net-result-examples"
 
 \end_layout
 
-\begin_layout Standard
-Taking a look to results one can derive that PSP-Net extracts high quality
- results in terms of semantic.
- It is noticeable that most of the floor, if it is not occluded by some
- scene element, as in the top image from Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:PSP-Net-result-examples"
-
-\end_inset
-
-, is correctly extracted.
- 
-\end_layout
-
-\begin_layout Standard
-It is also important to point out that segmentation is not perfect when
- dealing with difficult illumination cases or complex objects.
- It can be observed that columns are not correctly segmented.
- Some of them are misclassified as walls or floor.
- This is one of the main issues for our system as an accurate floor detection
- is needed for constraining pedestrian detections.
- In addition, crystal doors such as the ones displayed in the top and bottom
- images, are not correctly distinguish from building and wall labels which
- could also be a main issue for further statistical data extraction algorithms.
-\end_layout
-
 \begin_layout Section
 Pedestrian Detection 
 \end_layout
@@ -1781,11 +1785,7 @@ Results are presented within Recall versus Precision curves.
 \end_inset
 
 ) for an algorithm in a test, provides one point of the curve.
- 
-\end_layout
-
-\begin_layout Standard
-To proceed with this process all the algorithms scores have been normalized
+ To proceed with this process all the algorithms scores have been normalized
  from its original values to the 
 \begin_inset Formula $[0,1]$
 \end_inset
@@ -1815,12 +1815,78 @@ reference "fig:Recall / Precision graphs for mono camera pedestrian detection."
 .
 \end_layout
 
+\begin_layout Subsection*
+Multi-Camera Environment
+\end_layout
+
+\begin_layout Standard
+Algorithms are tested in a multi-camera setup.
+ As explained in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Pedestrian-Reprojection between cameras"
+
+\end_inset
+
+ detections from cameras are reprojected and combined onto other cameras
+ .
+ Results are presented in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Recall / Precision graphs for multi camera pedestrian detection"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Mono-Camera Environment with Semantic Constraining
+\end_layout
+
+\begin_layout Standard
+People detection are analyzed again in a mono camera environment but this
+ time, applying semantic constraining as explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Semantic-Filtering"
+
+\end_inset
+
+.
+ Results are presented in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Recall / Precision graphs for mono camera pedestrian detection with semantic constraining"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Multi-Camera Environment with Semantic Constraining
+\end_layout
+
+\begin_layout Standard
+Finally, the last test embraces all the proposed algorithms running within
+ the multi-camera reprojection setup and applying semantic constraints.
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Recall / Precision graphs for multi camera pedestrian detection with semantic constraining."
+
+\end_inset
+
+)
+\end_layout
+
 \begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1834,7 +1900,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/Experiment 1/Camera 1.svg
 	lyxscale 30
-	width 50text%
+	width 47text%
 
 \end_inset
 
@@ -1866,7 +1932,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/Experiment 1/Camera 2.svg
 	lyxscale 30
-	width 50text%
+	width 47text%
 
 \end_inset
 
@@ -1902,7 +1968,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/Experiment 1/Camera 3.svg
 	lyxscale 30
-	width 50text%
+	width 47text%
 
 \end_inset
 
@@ -1959,37 +2025,12 @@ name "fig:Recall / Precision graphs for mono camera pedestrian detection."
 
 \end_layout
 
-\begin_layout Subsection*
-Multi-Camera Environment
-\end_layout
-
-\begin_layout Standard
-Algorithms are tested in a multi-camera setup.
- As explained in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Pedestrian-Reprojection between cameras"
-
-\end_inset
-
- detections from cameras are reprojected and combined onto other cameras
- .
- Results are presented in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Recall / Precision graphs for multi camera pedestrian detection"
-
-\end_inset
-
-.
-\end_layout
-
 \begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2003,7 +2044,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/Experiment 2/Camera 1.svg
 	lyxscale 30
-	width 50text%
+	width 47text%
 
 \end_inset
 
@@ -2035,7 +2076,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/Experiment 2/Camera 2.svg
 	lyxscale 30
-	width 50text%
+	width 47text%
 
 \end_inset
 
@@ -2071,7 +2112,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/Experiment 2/Camera 3.svg
 	lyxscale 30
-	width 50text%
+	width 47text%
 
 \end_inset
 
@@ -2128,36 +2169,12 @@ name "fig:Recall / Precision graphs for multi camera pedestrian detection"
 
 \end_layout
 
-\begin_layout Subsection*
-Mono-Camera with Semantic Constraining
-\end_layout
-
-\begin_layout Standard
-People detection are analyzed again in a mono camera environment but this
- time, applying semantic constraining as explained in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Semantic-Filtering"
-
-\end_inset
-
-.
- Results are presented in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Recall / Precision graphs for mono camera pedestrian detection with semantic constraining"
-
-\end_inset
-
-.
-\end_layout
-
 \begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2171,7 +2188,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/Experiment 3/Camera 1.svg
 	lyxscale 30
-	width 50text%
+	width 47text%
 
 \end_inset
 
@@ -2203,7 +2220,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/Experiment 3/Camera 2.svg
 	lyxscale 30
-	width 50text%
+	width 47text%
 
 \end_inset
 
@@ -2239,7 +2256,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/Experiment 3/Camera 3.svg
 	lyxscale 30
-	width 50text%
+	width 47text%
 
 \end_inset
 
@@ -2276,8 +2293,7 @@ Recall / Precision graphs mono camera with semantic constraint
 
 \end_inset
 
-Recall / Precision graphs for mono camera pedestrian detection with semantic
- constraining
+Recall / Precision graphs for mono camera with semantic constraining
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Recall / Precision graphs for mono camera pedestrian detection with semantic constraining"
@@ -2297,29 +2313,12 @@ name "fig:Recall / Precision graphs for mono camera pedestrian detection with se
 
 \end_layout
 
-\begin_layout Subsection*
-Multi-Camera with Semantic Constraining
-\end_layout
-
-\begin_layout Standard
-Finally, the last test embraces all the proposed algorithms running within
- the multi-camera reprojection setup and applying semantic constraints.
- Results are presented in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Recall / Precision graphs for multi camera pedestrian detection with semantic constraining."
-
-\end_inset
-
-.
-\end_layout
-
 \begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2333,7 +2332,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/Experiment 4/Camera 1.svg
 	lyxscale 30
-	width 50text%
+	width 47text%
 
 \end_inset
 
@@ -2365,7 +2364,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/Experiment 4/Camera 2.svg
 	lyxscale 30
-	width 50text%
+	width 47text%
 
 \end_inset
 
@@ -2401,7 +2400,7 @@ status collapsed
 \begin_inset Graphics
 	filename Images/Results/Experiment 4/Camera 3.svg
 	lyxscale 30
-	width 50text%
+	width 47text%
 
 \end_inset
 
@@ -2438,8 +2437,7 @@ Recall / Precision graphs multi camera with semantic constraint
 
 \end_inset
 
-Recall / Precision graphs for multi camera pedestrian detection with semantic
- constraining
+Recall / Precision graphs for multi camera with semantic constraining
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Recall / Precision graphs for multi camera pedestrian detection with semantic constraining."
@@ -2482,7 +2480,7 @@ reference "tab:F-Score table"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -3931,7 +3929,7 @@ reference "fig:Doors-usage-graph"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -3995,7 +3993,7 @@ name "fig:Floor-usage-graph"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -4959,7 +4957,7 @@ reference "tab:Single threads vs Multi threads"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -4987,11 +4985,11 @@ extrarowheight{7pt}
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <row>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Programming Approach 
 \end_layout
 
 \end_inset
@@ -5097,7 +5095,7 @@ reference "tab:Multithreads PD Computational"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -5125,11 +5123,11 @@ extrarowheight{7pt}
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <row>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Pedestrian Detector
 \end_layout
 
 \end_inset
