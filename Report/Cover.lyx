@@ -582,8 +582,8 @@ Para poder llevar a cabo estos objetivos un estudio del estado del arte
  personas tales como las redes neuronales.
  Se ha revisado el estado del arte actual sobre la extracción de información
  contextual, y en concreto, en el uso de la segmentación semántica.
- Finalmente, los escenarios con configuración multicámara con sus ventajas
- y desventajas han sido descritos.
+ Finalmente, las ventajas y desventajas de los escenarios con configuración
+ multicámara se han descrito.
 \end_layout
 
 \begin_layout Standard
@@ -700,8 +700,16 @@ In order to carry these tasks out a study of the state of the art has been
  rely on object proposals.
  Also, recent trends in the task of Pedestrian Detection are analyzed.
  In addition, current state of the art in the extraction of contextual informati
-on and -specifically- on the use of, semantic segmentation is studied.
- Finally, multi camera scenarios configurations are also described.
+on and 
+\begin_inset Formula $-$
+\end_inset
+
+specifically
+\begin_inset Formula $-$
+\end_inset
+
+ on the use of, semantic segmentation is studied.
+ Finally, multi-camera scenarios are also described.
 \end_layout
 
 \begin_layout Standard
@@ -779,6 +787,47 @@ status collapsed
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+En primer lugar, dar las gracias a mi tutor Marcos.
+ Como durante el TFG, su continua ayuda a lo largo de este proyecto ha sido
+ incalculable.
+ Gracias por dejarme trabajar contigo de nuevo en el proyecto que más quería
+ y por estar siempre disponible para cualquier problema.
+ Ha sido todo un placer.
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+Gracias a todos esos compañeros de carrera que ahora más que nunca están
+ presentes en el día a día y que han hecho que todos estos meses de duro
+ trabajo sean más llevaderos.
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+Sin olvidar tampoco a todo el grupo del IPCV.
+ Gente extrajera desconocida qué a base de convivencia y vivencias se han
+ convertido en lo que es ya una gran familia que no olvidaré nunca.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+Por último, mencionar a Elena, la persona que me ha animado continuamente
+ y que ha hecho geniales estos dos últimos años.
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+Gracias a todos.
 \end_layout
 
 \begin_layout Standard

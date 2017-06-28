@@ -1351,7 +1351,7 @@ Application Menu Bar
 \end_layout
 
 \begin_layout Standard
-In the menu depict in Figure 
+In the menu depicted in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Application-menu-bar"
@@ -2162,18 +2162,14 @@ reference "chap:Results"
 \end_inset
 
 ).
-\end_layout
-
-\begin_layout Standard
-Figure 
+ Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:User version application main window"
 
 \end_inset
 
- displays the general application window where we can observe the difference
- with the developer version.
+ displays the general user application window.
 \end_layout
 
 \begin_layout Standard

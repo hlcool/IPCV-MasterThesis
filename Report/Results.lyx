@@ -1272,7 +1272,7 @@ one lies completely inside the other
 \begin_inset Formula $-$
 \end_inset
 
-, but the union area of them is high, IoU metric will have a small value.
+, but the union area of them is high, IoU metric has a small value.
  This effect can be observed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1361,8 +1361,9 @@ Homography
 \begin_layout Standard
 Correctly calculated homographies are essential for the right performance
  of further algorithms.
- In order to test that homographies have been correctly done by the manual
- selection of points, views have been projected with its correspondent matrix.
+ In order to test that homographies have been correctly achieved by the
+ manual selection of points, views have been projected with its correspondent
+ matrix.
  In addition, selected points from both the frame (blue points) and the
  cenital plane (red points) have been overlapped in the same image.
  Some examples can be observed in Figure 
@@ -1386,15 +1387,15 @@ reference "fig:Projection Camera-1-View 7"
  suggest that homographies are accurate enough in almost all the cases.
  Blue points are not visible because of the overlapping with the red ones,
  which means that their correspondence is perfect.
- However, one small errors can be noticed in Figure 
+ However, one small error can be noticed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Projection Camera-1-View 7"
 
 \end_inset
 
- where there exists a displacement between some red points and the blue
- ones (top of the image).
+ where there exists a displacement between the red point and the blue one
+ (top of the image).
 \end_layout
 
 \begin_layout Standard
@@ -1560,18 +1561,17 @@ Semantic Segmentation
 \end_layout
 
 \begin_layout Standard
-In this Section qualitative results regarding the performance of PSP-Net
- in the proposed scenario are presented.
+In this Section results regarding the performance of PSP-Net in the proposed
+ scenario are presented.
  In order to test the algorithm and for the lack of ground-truth annotations
- for the semantic segmentation, we include in Figure 
+ for semantic segmentation, we include in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:PSP-Net-result-examples"
 
 \end_inset
 
- , illustrative examples of common problems that should be qualitatively
- evaluated.
+ illustrative examples of common problems that should be qualitatively evaluated.
  
 \end_layout
 
@@ -1759,10 +1759,10 @@ Pedestrian Detection
 \end_layout
 
 \begin_layout Standard
-During this section results of PD approaches are presented.
+During this section results concerning PD approaches are presented.
  HOG, DPM and PSP-Net algorithms are chosen for evaluation.
  However, the ACF algorithm is also integrated in the application and offline
- generated results for the Fast-RCNN can be also load on the application.
+ generated results from Fast-RCNN can be also load in the application.
  
 \end_layout
 
@@ -1774,8 +1774,8 @@ e of the developed system and the contribution to PD of each of the designed
 
 \begin_layout Standard
 Results are presented within Recall versus Precision curves.
- In order to create these graphs algorithms have been evaluated in all the
- four test using five different values from the score thresholding 
+ In order to create these graphs, algorithms have been evaluated in all
+ the four test using five different values from the score thresholding 
 \begin_inset Formula $[0,1]$
 \end_inset
 
@@ -2462,8 +2462,8 @@ Overall Comparison
 \end_layout
 
 \begin_layout Standard
-In order to compare numerically all the the PD approaches in different experimen
-ts F-Score results have been obtained and presented in Table 
+In order to compare numerically all the PD approaches in different experiments
+ F-Score results have been obtained and presented in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:F-Score table"
@@ -2611,7 +2611,7 @@ Camera 1
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.1537
+0.15
 \end_layout
 
 \end_inset
@@ -2727,7 +2727,7 @@ Camera 3
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.2294
+0.22
 \end_layout
 
 \end_inset
@@ -3199,6 +3199,8 @@ However, none of the detectors yields adequate results for the test sequence.
 \end_inset
 
 .
+ This poor results may be influenced by the sequence difficulty and the
+ complete ground truth.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -3206,9 +3208,9 @@ Effect of Semantic Constraining
 \end_layout
 
 \begin_layout Standard
-If one focus the analysis on the general system performance, considering
- the effect of semantic constraining we have to center the attention to
- Table 
+If one focus the analysis on the general system performance, and specifically,
+ considering the effect of semantic constraining we have to center the attention
+ to Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:F-Score table"
@@ -3377,7 +3379,7 @@ name "fig:Recall / precision graphs for DPM"
 
 \begin_layout Standard
 In our opinion, HOG and PSP-Net do not appear to benefit from semantic segmentat
-ion due to their lower number of detection with respect to DPM.
+ion due to their lower number of detections with respect to DPM.
  Both approaches, although their scores have been normalized to the 
 \begin_inset Formula $[0,\,1]$
 \end_inset
@@ -3550,7 +3552,7 @@ name "fig:Differences-in-number of detections"
 \end_layout
 
 \begin_layout Standard
-This means, that if detections are already accurate and and due to our common
+This means, that if detections are already accurate and due to our common
  semantic maps, they lay on some of the floor holes from Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3562,7 +3564,7 @@ reference "fig:Statistical Semantic Map"
  This leads to obtaining a worse performance than using the raw detector.
  In order words, semantic constraining is to be consider worthwhile if the
  number of false positives laying in areas different than floor is higher
- than the number of those wrongly suppressed detections.
+ than the number of wrongly suppressed detections.
 \end_layout
 
 \begin_layout Standard
@@ -3663,8 +3665,8 @@ s) worse results than even the raw detectors are obtained.
 \end_layout
 
 \begin_layout Enumerate
-If a person is accurately detected but, the bounding box does not surround
- entirely the person, the reprojection is not accurate.
+If a person is detected but, the bounding box does not surround entirely
+ the person, the reprojection is not accurate.
  This effect can be observed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3806,7 +3808,7 @@ name "fig:Pedestrian-detection-error."
 \end_deeper
 \begin_layout Enumerate
 When reprojecting detections, blob height is lost and further reconstructed
- with respect to an aspect ratio.
+ with respect to a fixed aspect ratio.
  This process could lead to examples as the ones in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3817,14 +3819,21 @@ reference "fig:Pedestrian reprojection error due to heigth"
 .
  Projections are finally reconstructed as small or big blobs if width is
  small or big respectively.
- As can be observed in both frames two reprojections from other cameras
- are present however, one of them has not been combined.
+ Two reprojections from other cameras are present however, one of them has
+ not been combined.
  This means that reprojections not correctly combined with the original
  detection from the camera produce a false positive.
 \end_layout
 
 \begin_deeper
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Float figure
 wide false
 sideways false
@@ -3840,10 +3849,51 @@ status collapsed
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Images/Results/ReprojectionBig.png
 	lyxscale 40
 	width 47text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Camera 3
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -3907,8 +3957,8 @@ reference "fig:Statistical Semantic Map"
 \end_inset
 
 .
- On each semantic area one pedestrian density per frame graphic is obtainedThe
- obtained curves are displayed in Figures 
+ On each semantic area one pedestrian density per frame graphic is obtained.
+ The obtained curves are displayed in Figures 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Floor-usage-graph"
@@ -3929,7 +3979,7 @@ reference "fig:Doors-usage-graph"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3993,7 +4043,7 @@ name "fig:Floor-usage-graph"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -4069,10 +4119,10 @@ reference "fig:Floor-usage-graph"
 
 \end_inset
 
- and taking a look to the correspondent frame, displayed at the top of the
- graph, it can be observed that there is a correspondence between periods
- when most people are walking through the scene and the different peaks
- from the curve.
+ and considering the correspondent frame, displayed at the top of the graph,
+ it can be observed that there is a correspondence between periods when
+ most people are walking through the scene and the different peaks from
+ the curve.
  This means that promising results in this area are obtained.
  Nevertheless, Figure 
 \begin_inset CommandInset ref
@@ -4107,8 +4157,8 @@ Regarding the
 \shape italic
  doors
 \shape default
- usage one can observe that there a relation between people passing trough
- 
+ usage one can observe that there an accurate relation between people passing
+ trough 
 \shape italic
 doors
 \shape default
@@ -4147,13 +4197,7 @@ In addition, some results about the most used areas of the hall have been
  extracted.
  All the scene has been divided into regular sub regions of fixed size in
  which pedestrian flow has been measured.
- By using this method one could have information about the most used paths
- by people over the scene.
- 
-\end_layout
-
-\begin_layout Standard
-Results concerning this process are displayed in Figure 
+ Results concerning this process are displayed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Pedestrians paths usage along the Hall. 40 pix"
@@ -4932,8 +4976,8 @@ Application Performance
 \end_layout
 
 \begin_layout Standard
-Along this section we describe the experiments concerning the application
- efficiency.
+Along this section the experiments concerning the application efficiency
+ are described.
 \end_layout
 
 \begin_layout Standard
@@ -4957,7 +5001,7 @@ reference "tab:Single threads vs Multi threads"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -5095,7 +5139,7 @@ reference "tab:Multithreads PD Computational"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -5306,7 +5350,7 @@ Taking into account all the presented results one can observe that some
 \begin_layout Standard
 Homography calculation is accurately enough for the purpose of the system.
  We observed that almost all the homographies were correctly computed and
- the small errors do not lead to further problems in algorithms.
+ thee only one small error does not lead to further problems in algorithms.
 \end_layout
 
 \begin_layout Standard
@@ -5318,10 +5362,10 @@ Semantic segmentation using PSP-Net has some main drawbacks when dealing
 \begin_inset Formula $\pi_{ref}$
 \end_inset
 
- some floor areas are really columns.
+ some floor areas truly columns.
  Doors errors in some specific frames could lead to not obtaining door areas,
  however, when combining all the sequence frames by the temporal median
- filter this problem is solved as depict in Figure 
+ filter this problem is solved as depicted in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Statistical Semantic Map"
@@ -5336,13 +5380,19 @@ Moving to performance in terms of pedestrian detection above results show
  that multi cameras reprojection is not working properly in any of the tested
  approaches.
  However, semantic constraining performs promising when dealing with algorithms
- that need some filtering due to the high amount of extracted blobs.
+ that need some extra filtering due to the high amount of extracted blobs.
  
 \end_layout
 
 \begin_layout Standard
-Finally, semantic usage extraction performs good although errors from PD
- are trespassed to these results and so, they are influence by PD.
+Semantic usage extraction, in terms of both usage curves and density paths,
+ performs good although errors from PD are trespassed to these results and
+ so, they are influence by PD.
+\end_layout
+
+\begin_layout Standard
+Finally, application performance results completely supports the multithread
+ application developing due to the high speedup.
 \end_layout
 
 \end_body
