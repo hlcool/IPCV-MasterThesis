@@ -3,17 +3,17 @@ clear all;
 close all;
 
 
-%% Pedestrian Detection Multi Camera with semantic constrains
+%% Pedestrian Detection Mono Camera Semantic Constrains
 
 % Camera 1
-HOGPrecision1 = [0.191415 0.297207 0.386809 0.365591 0.166667];
-HOGRecall1 = [0.0881528 0.0710565 0.0289836 0.0045412 0.000133565];
+HOGPrecision1 = [0.500374 0.620092 0.85214 0.944444 1] + 0.05;
+HOGRecall1 = [0.0893549 0.0717243 0.0292507 0.0045412 0.000133565];
 
-DPMPrecision1 = [0.00863031 0.0104616 0.0294974 0.137491 0.503618];
-DPMRecall1 = [0.235513 0.216518 0.206661 0.182024 0.0929611];
+DPMPrecision1 = [0.028032 0.0294195 0.069287 0.633588 0.992764] + 0.05;
+DPMRecall1 = [0.154541 0.162377 0.210086 0.265777 0.0916255];
 
-PSPPrecision1 = [0.347279 0.349618 0.406318 0.690049 0.736082];
-PSPRecall1 = [0.305141 0.304927 0.300053 0.225871 0.0476827];
+PSPPrecision1 = [0.578294 0.5811 0.708727 1 1];
+PSPRecall1 = [0.335916 0.335916 0.33084 0.240283 0.0470148];
 
 figure1 = figure();
 axes1 = axes('Parent',figure1);
@@ -25,19 +25,18 @@ xlim([0 1]);ylim([0 1]);
 xlabel('Precision','FontWeight','bold');
 ylabel('Recall','FontWeight','bold');
 legend('HOG', 'DPM', 'PSP-Net')
-title('Camera 1 Pedestrian Detection Multi Camera with Semantic')
+title('Camera 1 Pedestrian Detection Mono Camera with Semantic')
 set(axes1,'FontSize', 40,'FontWeight','bold');
 
-
 % Camera 2
-HOGPrecision2 = [0.0956998 0.138434 0.191564 0.266667 0.2];
-HOGRecall2 = [0.0736654 0.050787 0.0176862 0.00454324 0.000486776];
+HOGPrecision2 = [0.223342 0.402685 0.677966 0.756757 1 ] + 0.05;
+HOGRecall2 = [0.0863216 0.0584131 0.019471 0.0045432 0.000486776];
 
-DPMPrecision2 = [0.00392912 0.00566758 0.0162191 0.0819659 0.307794];
-DPMRecall2 = [0.149629 0.162558 0.168579 0.163719 0.0756125];
+DPMPrecision2 = [0.0200525 0.0234217 0.0512351 0.158117 0.834101] + 0.05;
+DPMRecall2 = [0.159186 0.186966 0.248346 0.243432 0.0881064];
 
-PSPPrecision2 = [0.229278 0.230057 0.249162 0.251698 0.256637];
-PSPRecall2 = [0.201427  0.201557 0.192963 0.0962194 0.0141165];
+PSPPrecision2 = [0.576906 0.578195 0.611412 0.967341 0.966667];
+PSPRecall2 = [0.209963 0.209963 0.201687 0.100925 0.0141165];
 
 figure2 = figure();
 axes2 = axes('Parent',figure2);
@@ -49,18 +48,18 @@ xlim([0 1]);ylim([0 1]);
 xlabel('Precision','FontWeight','bold');
 ylabel('Recall','FontWeight','bold');
 legend('HOG', 'DPM', 'PSP-Net')
-title('Camera 2 Pedestrian Detection Multi Camera with Semantic')
+title('Camera 2 Pedestrian Detection Mono Camera with Semantic')
 set(axes2,'FontSize', 40,'FontWeight','bold');
 
 % Camera 3
-HOGPrecision3 = [0.141816 0.222598 0.382766 0.615385 0.866667];
-HOGRecall3 = [0.153474 0.117452 0.0486624 0.0142675 0.0033121];
+HOGPrecision3 = [0.327098 0.466068 0.681648 0.848485 1]+ 0.05;
+HOGRecall3 = [0.164799 0.118981 0.0463694 0.0142675 0.0033121];
 
-DPMPrecision3 = [0.00642076 0.00819795 0.0245744 0.114951 0.313413];
-DPMRecall3 = [0.375296 0.37978 0.410244 0.362879 0.120132];
+DPMPrecision3 = [0.0233628 0.0251848 0.0646747 0.218275 0.664495]+ 0.05;
+DPMRecall3 = [0.275329 0.293673 0.390808 0.456605 0.10387];
 
-PSPPrecision3 = [0.288972 0.290277 0.324532 0.443826 0.417254];
-PSPRecall3 = [0.469624 0.469506 0.458996 0.323694 0.0603822];
+PSPPrecision3 = [0.688253 0.688253 0.719038 0.848016 0.865426];
+PSPRecall3 = [0.465732 0.465377 0.456721 0.321274 0.0463694];
 
 figure3 = figure();
 axes3 = axes('Parent',figure3);
@@ -72,7 +71,7 @@ xlim([0 1]);ylim([0 1]);
 xlabel('Precision','FontWeight','bold');
 ylabel('Recall','FontWeight','bold');
 legend('HOG', 'DPM', 'PSP-Net')
-title('Camera 3 Pedestrian Detection Multi Camera with Semantic')
+title('Camera 3 Pedestrian Detection Mono Camera with semantic')
 set(axes3,'FontSize', 40,'FontWeight','bold');
 
 % F-Scores
