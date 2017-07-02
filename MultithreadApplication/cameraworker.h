@@ -42,12 +42,15 @@ public:
     String RepresentationOption;
     // Pedestrian Filtering
     bool MultiCameraFiltering = 0;
-    bool SemanticFiltering = 0;
+    bool SemanticFiltering = 1;
 
     // Cenital Frame
     Mat CenitalPlane;
     // Semantic Mask
     Mat SemanticMask;
+
+    // Txt file to extract and save selected views
+    ofstream SelectedViewsFile;
 
     // Final Pedestrian Projected Bounding Boxes from the other cameras
     vector<Point2f> ProjCenterPoints1, ProjLeftPoints1, ProjRightPoints1;

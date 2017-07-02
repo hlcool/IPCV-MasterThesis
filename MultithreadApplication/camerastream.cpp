@@ -7,6 +7,10 @@
 #include <numeric>
 #include <iostream>
 #include <stdlib.h>
+#include <cstdlib>
+#include <cstdio>
+#include <vector>
+#include <list>
 #include <boost/lexical_cast.hpp>
 #include <opencv2/opencv.hpp>
 #include "opencv2/imgproc/imgproc.hpp"
@@ -329,7 +333,6 @@ void CameraStream::ViewSelection(vector<Mat> HomographyVector)
 {
     // Compare Actual Frame with all the frames used to extract homographies with AKAZE
     // Extract number of correspondant view to index the homography vectors
-    int ViewIndex;
     int NMatches;
     vector<Point2f> GoodMatchesPoints1, GoodMatchesPoints2;
     vector<Point2f> GoodMatchesPoints1Def, GoodMatchesPoints2Def;
@@ -360,11 +363,11 @@ void CameraStream::ViewSelection(vector<Mat> HomographyVector)
     auto MaxNMatches = SortedNMatches.at(NViews-1);
 
     // Extract maximum positon
-    ViewIndex = find(VectorNMaches.begin(), VectorNMaches.end(), MaxNMatches) - VectorNMaches.begin();
+    SelectedView = find(VectorNMaches.begin(), VectorNMaches.end(), MaxNMatches) - VectorNMaches.begin();
 
     // Get the maximum view points for the homography
-    GoodMatchesPoints1Def = VectorGoodMatches1[ViewIndex];
-    GoodMatchesPoints2Def = VectorGoodMatches2[ViewIndex];
+    GoodMatchesPoints1Def = VectorGoodMatches1[SelectedView];
+    GoodMatchesPoints2Def = VectorGoodMatches2[SelectedView];
 
     if (GoodMatchesPoints1Def.size() > 4){
         // Number of match points between images when selecting homography is more than 4 so we can compute
@@ -378,7 +381,98 @@ void CameraStream::ViewSelection(vector<Mat> HomographyVector)
         // Convert ActualSemFrame with the computed homography to be similar to the semantic image from the view
         warpPerspective(ActualSemFrame, ActualSemFrame, HomographyBetweenViews, ActualSemFrame.size());
     }
-    Homography = HomographyVector[ViewIndex];
+    Homography = HomographyVector[SelectedView];
+}
+
+void CameraStream::ViewSelectionFromTXT(vector<Mat> HomographyVector, String FrameNumber)
+{
+    String ViewsPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/SelectedViews" + to_string(CameraNumber) + ".txt";
+    ifstream input(ViewsPath);
+
+    if (!input) {
+        // The file does not exists
+        cout << "The file containing the FastRCNN blobs does not exist" << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    // Auxiliary variables to store the information
+    string AuxString;
+    int Counter = 0;
+    int LineCounter = 0;
+
+    HomographyBetweenViews = Mat::zeros(3, 3, CV_64FC1);
+
+    // Start decoding the file
+    while (input >> AuxString){
+        switch(Counter)
+        {
+        case 0:
+            // Case for frame number
+            if (LineCounter == atoi(FrameNumber.c_str())){
+                // Convert ActualSemFrame with the computed homography to be similar to the semantic image from the view
+                warpPerspective(ActualSemFrame, ActualSemFrame, HomographyBetweenViews, ActualSemFrame.size());
+                return;
+            }
+            LineCounter++;
+            Counter++;
+            break;
+        case 1:
+            // Case for Selected View
+            SelectedView = atoi(AuxString.c_str());
+            Counter++;
+            break;
+        case 2:
+            // Case for Homography(0,0)
+            HomographyBetweenViews.at<double>(0,0) = atof(AuxString.c_str());
+            Counter++;
+            break;
+        case 3:
+            // Case for Homography(0,1)
+            HomographyBetweenViews.at<double>(0,1) = atof(AuxString.c_str());
+            Counter++;
+            break;
+        case 4:
+            // Case for Homography(0,2)
+            HomographyBetweenViews.at<double>(0,2) = atof(AuxString.c_str());
+            Counter++;
+            break;
+        case 5:
+            // Case for Homography(1,0)
+            HomographyBetweenViews.at<double>(1,0) = atof(AuxString.c_str());
+            Counter++;
+            break;
+        case 6:
+            // Case for Homography(1,1)
+            HomographyBetweenViews.at<double>(1,1) = atof(AuxString.c_str());
+            Counter++;
+            break;
+        case 7:
+            // Case for Homography(1,2)
+            HomographyBetweenViews.at<double>(1,2) = atof(AuxString.c_str());
+            Counter++;
+            break;
+        case 8:
+            // Case for Homography(2,0)
+            HomographyBetweenViews.at<double>(2,0) = atof(AuxString.c_str());
+            Counter++;
+            break;
+        case 9:
+            // Case for Homography(2,1)
+            HomographyBetweenViews.at<double>(2,1) = atof(AuxString.c_str());
+            Counter++;
+            break;
+        case 10:
+            // Case for Homography(2,2)
+            HomographyBetweenViews.at<double>(2,2) = atof(AuxString.c_str());
+            Homography = HomographyVector[SelectedView];
+
+            Counter++;
+
+            // Restart the couter to read frame
+            Counter = 0;
+            break;
+        }
+    }
 }
 
 void CameraStream::saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber, Mat ImageWarping)
@@ -737,8 +831,8 @@ void CameraStream::Akaze(Mat Image1, vector<KeyPoint> kpts1, Mat desc1, Mat Imag
     vector<KeyPoint> kpts2;
     Mat desc2;
 
-    akazeDescriptor->setNOctaves(2);
-    akazeDescriptor->setNOctaveLayers(1);
+    akazeDescriptor->setNOctaves(4);
+    akazeDescriptor->setNOctaveLayers(2);
     akazeDescriptor->detectAndCompute(Image2, noArray(), kpts2, desc2);
 
     //  ------------------  //

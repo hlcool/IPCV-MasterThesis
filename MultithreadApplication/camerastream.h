@@ -47,8 +47,10 @@ public:
     vector<Mat> CameraViewsVector;
     vector<Mat> HomographyVector;
     Mat Homography;
+    int SelectedView;
     void computeHomography();
     void ViewSelection(vector<Mat> HomographyVector);
+    void ViewSelectionFromTXT(vector<Mat> HomographyVector, String FrameNumber);
     void saveWarpImages(Mat ActualFrame, Mat Homography, String FrameNumber, Mat ImageWarping);
 
     // Semantic Projection

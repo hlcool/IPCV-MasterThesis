@@ -38,6 +38,8 @@ void CameraWorker::preProcessVideo()
     Evaluate.EvaluationFile.open("/Users/alex/IPCV-MasterThesis/MultithreadApplication/Evaluation Stats Camera " + to_string(Camera.CameraNumber) + ".txt");
     Evaluate.EvaluationFile << "Frame   GroundTruth Elements   TruePositives  False Positives  Number of Detections   False Negatives    Precision           Recall" << endl;
 
+    SelectedViewsFile.open("/Users/alex/IPCV-MasterThesis/MultithreadApplication/SelectedViews" + to_string(Camera.CameraNumber) + ".txt");
+
     // Compute camera homographies
     Camera.computeHomography();
 
@@ -76,6 +78,7 @@ void CameraWorker::processVideo()
             emit frameFinished(Camera.ActualFrame, CenitalPlaneImage, Camera.CameraNumber);
             // Close time consumption file
             VideoStatsFile.close();
+            SelectedViewsFile.close();
             Evaluate.EvaluationFile.close();
             exit(EXIT_FAILURE);
             break;
@@ -109,9 +112,25 @@ void CameraWorker::processVideo()
         //   HOMOGRAPHY & VIEW SELECTION  //
         // ------------------------------ //
         if(MultiCameraFiltering || SemanticFiltering){
-            Camera.ViewSelection(Camera.HomographyVector);
+
+            //Camera.ViewSelection(Camera.HomographyVector);
+            /*
+            SelectedViewsFile << FrameNumber << "       " << Camera.SelectedView << "       " <<
+                                 std::fixed << std::setprecision(20) <<
+                                 Camera.HomographyBetweenViews.at<double>(0,0) << " " << Camera.HomographyBetweenViews.at<double>(0,1) << " "  <<
+                                 Camera.HomographyBetweenViews.at<double>(0,2) << " " << Camera.HomographyBetweenViews.at<double>(1,0) << " "  <<
+                                 Camera.HomographyBetweenViews.at<double>(1,1) << " " << Camera.HomographyBetweenViews.at<double>(1,2) << " "  <<
+                                 Camera.HomographyBetweenViews.at<double>(2,0) << " " << Camera.HomographyBetweenViews.at<double>(2,1) << " "  <<
+                                 Camera.HomographyBetweenViews.at<double>(2,2) <<  endl;
+            */
+
+            Camera.ViewSelectionFromTXT(Camera.HomographyVector, FrameNumber);
+
             Mat ImageWarping = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
             Camera.saveWarpImages(Camera.ActualFrame, Camera.Homography, FrameNumber, ImageWarping);
+
+            //if(Camera.CameraNumber == 1)
+                //cout << Camera.HomographyBetweenViews << endl;
         }
 
         // ----------------------- //
@@ -157,7 +176,7 @@ void CameraWorker::processVideo()
         //             DATA USAGE             //
         // ---------------------------------- //
         if(MultiCameraFiltering || SemanticFiltering){
-                PeopleDetec.ExtractDataUsage(Camera.CameraNumber, FrameNumber, Camera.Homography, Camera.HomographyBetweenViews);
+            PeopleDetec.ExtractDataUsage(Camera.CameraNumber, FrameNumber, Camera.Homography, Camera.HomographyBetweenViews);
         }
 
         // ---------------------------------- //
