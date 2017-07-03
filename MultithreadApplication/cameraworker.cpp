@@ -112,9 +112,9 @@ void CameraWorker::processVideo()
         //   HOMOGRAPHY & VIEW SELECTION  //
         // ------------------------------ //
         if(MultiCameraFiltering || SemanticFiltering){
-
-            //Camera.ViewSelection(Camera.HomographyVector);
             /*
+            Camera.ViewSelection(Camera.HomographyVector);
+
             SelectedViewsFile << FrameNumber << "       " << Camera.SelectedView << "       " <<
                                  std::fixed << std::setprecision(20) <<
                                  Camera.HomographyBetweenViews.at<double>(0,0) << " " << Camera.HomographyBetweenViews.at<double>(0,1) << " "  <<
@@ -125,12 +125,8 @@ void CameraWorker::processVideo()
             */
 
             Camera.ViewSelectionFromTXT(Camera.HomographyVector, FrameNumber);
-
             Mat ImageWarping = Mat::zeros(CenitalPlaneImage.rows, CenitalPlaneImage.cols, CenitalPlaneImage.type());
             Camera.saveWarpImages(Camera.ActualFrame, Camera.Homography, FrameNumber, ImageWarping);
-
-            //if(Camera.CameraNumber == 1)
-                //cout << Camera.HomographyBetweenViews << endl;
         }
 
         // ----------------------- //

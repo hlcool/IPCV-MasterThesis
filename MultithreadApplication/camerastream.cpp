@@ -831,8 +831,8 @@ void CameraStream::Akaze(Mat Image1, vector<KeyPoint> kpts1, Mat desc1, Mat Imag
     vector<KeyPoint> kpts2;
     Mat desc2;
 
-    akazeDescriptor->setNOctaves(4);
-    akazeDescriptor->setNOctaveLayers(2);
+    akazeDescriptor->setNOctaves(2);
+    akazeDescriptor->setNOctaveLayers(1);
     akazeDescriptor->detectAndCompute(Image2, noArray(), kpts2, desc2);
 
     //  ------------------  //
