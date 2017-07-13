@@ -4,7 +4,7 @@ close all;
 
 for Camera = 1 : 3
     
-    XML = xml2struct(['Camera ' num2str(Camera) ' File.xml']);
+    XML = xml2struct(['Camera ' num2str(Camera) ' File Sin.xml']);
     
     Blobs = XML.DOCANALYSIS.TRAJECTORYSET.TRAJECTORY;
     

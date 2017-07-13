@@ -391,7 +391,7 @@ void CameraStream::ViewSelectionFromTXT(vector<Mat> HomographyVector, String Fra
 
     if (!input) {
         // The file does not exists
-        cout << "The file containing the FastRCNN blobs does not exist" << endl;
+        cout << "The file containing the selected views does not exist" << endl;
         exit(EXIT_FAILURE);
     }
 

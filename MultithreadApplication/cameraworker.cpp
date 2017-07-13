@@ -194,12 +194,19 @@ void CameraWorker::processVideo()
         // ------------------------------------------- //
         //        FRAME RESIZE AND FRAME NUMBER        //
         // ------------------------------------------- //
+        //String PathAux = "/Users/alex/Desktop/Statistical/Camera " + to_string(Camera.CameraNumber) + "/" + FrameNumber + ".png";
+        //imwrite(PathAux, Camera.ActualFrame);
         // Resize the frames accordingly to the widgets size
-        cv::resize(Camera.ActualFrame, Camera.ActualFrame, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
+        Mat ActualFrameAux, CenitalPlaneAux, CenitalPlaneImageAux;
+
+        cv::resize(Camera.ActualFrame, ActualFrameAux, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
         if(MultiCameraFiltering || SemanticFiltering){
-            cv::resize(CenitalPlane, CenitalPlane, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
-            cv::resize(CenitalPlaneImage, CenitalPlaneImage, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
+            cv::resize(CenitalPlane, CenitalPlaneAux, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
+            cv::resize(CenitalPlaneImage, CenitalPlaneImageAux, {WidgetWidth, WidgetHeight}, INTER_LANCZOS4);
         }
+        Camera.ActualFrame = ActualFrameAux;
+        CenitalPlane = CenitalPlaneAux;
+        CenitalPlaneImage = CenitalPlaneImageAux;
 
         // Write frame number on the camera frame
         putText(Camera.ActualFrame, FrameNumber, Point(15, 15), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255));

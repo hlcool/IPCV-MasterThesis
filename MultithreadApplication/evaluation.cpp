@@ -20,12 +20,12 @@ using namespace std;
 
 void Evaluation::GTTextParser(int CameraNumber, vector<Rect> &GroundTruthVector, String FrameNumber)
 {
-    String GTPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Camera" + to_string(CameraNumber) + "GT.txt";
+    String GTPath = "/Users/alex/Desktop/TFM Videos/Sincronizados/Recording 5/Ground-Truth/Camera" + to_string(CameraNumber) + "GT.txt";
     ifstream input(GTPath);
 
     if (!input) {
         // The file does not exists
-        cout << "The file containing the FastRCNN blobs does not exist" << endl;
+        cout << "The file containing the GT blobs does not exist" << endl;
         exit(EXIT_FAILURE);
     }
 

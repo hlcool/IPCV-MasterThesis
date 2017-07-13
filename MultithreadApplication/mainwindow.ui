@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1361</width>
+    <width>1364</width>
     <height>871</height>
    </rect>
   </property>
@@ -1164,6 +1164,9 @@
               <property name="text">
                <string>Semantic</string>
               </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
            </layout>
@@ -1181,7 +1184,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1361</width>
+     <width>1364</width>
      <height>22</height>
     </rect>
    </property>
