@@ -74,7 +74,7 @@ public:
     void extractPDMask(Mat ActualSemFrame);
     void extractFGBlobs(Mat fgmask, string CBOption);
     void non_max_suppresion(const vector<Rect> &srcRects, vector<Rect> &resRects);
-    void non_max_suppresion_scores(const vector<Rect> &srcRects, const vector<double> &scores, vector<Rect> &resRects);
+    void non_max_suppresion_scores(const vector<Rect> &srcRects, const vector<double> &srcScores, vector<Rect> &resRects, vector<double> &resScores);
     void ExtractFGImages(Mat ActualFrame, vector<Rect> FGBlobs);
 
     // AKAZE

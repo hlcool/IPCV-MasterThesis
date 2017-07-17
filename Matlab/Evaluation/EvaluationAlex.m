@@ -4,18 +4,19 @@ close all;
 clc;
 
 video_dir = '/Users/alex/IPCV-MasterThesis/Matlab/Evaluation/Video';
-PD_algorithm = {'FastRCNN', 'PSPNet'};
+PD_algorithm = {'FastRCNN'};
 video_names = {'Camera1', 'Camera2', 'Camera3'};
 
 for k = 1 : size(PD_algorithm,2)
     
     % Threshold vector
-    thresholds = linspace(0,1,10);
+    thresholds = linspace(0, 1, 30);
     
     % General matrices
     Precision = zeros(size(thresholds,2), size(video_names,2));
-    Recall = zeros(size(thresholds,2), size(video_names,2));
-    F1Score = zeros(size(video_names,2));
+    Recall    = zeros(size(thresholds,2), size(video_names,2));
+    F1Score   = zeros(size(thresholds,2), size(video_names,2));
+    
     fp = zeros(size(thresholds,2), size(video_names,2));
     tp = zeros(size(thresholds,2), size(video_names,2));
     fn = zeros(size(thresholds,2), size(video_names,2));
@@ -61,7 +62,7 @@ for k = 1 : size(PD_algorithm,2)
         % Vectors for the actual curve
         PrecisionGraph = [0 Precision(:,i)'];
         RecallGraph = [Recall(1,i) Recall(:,i)'];
-        FScore = 2*(PrecisionGraph.*RecallGraph)./(PrecisionGraph+RecallGraph);
+        FScore = 2 * (PrecisionGraph .* RecallGraph) ./ (PrecisionGraph + RecallGraph);
         
         aux = 0;
         ejey = RecallGraph;
@@ -69,8 +70,8 @@ for k = 1 : size(PD_algorithm,2)
         ejex = fliplr(ejex);
         ejey = fliplr(ejey);
         
-        for n = 1:size((ejex),2)-1
-            aux = aux+((ejey(n)+ejey(n+1)))/2*(ejex(n+1)-ejex(n));
+        for n = 1 : size((ejex), 2) - 1
+            aux = aux + ((ejey(n) + ejey(n+1))) / 2 * (ejex(n + 1) - ejex(n));
         end
         AUC(i) = aux;
         
@@ -83,9 +84,11 @@ for k = 1 : size(PD_algorithm,2)
         ylabel('Precision')
         title([PD_algorithm{k} ' Precision/Recall'])
         legend('Camera 1', 'Camera 2', 'Camera 3')
-        
-        AUC_mean_1 = mean(AUC)
     end
+    disp(['Camera 1 AUC: ' num2str(AUC(1))]);
+    disp(['Camera 2 AUC: ' num2str(AUC(2))]);
+    disp(['Camera 3 AUC: ' num2str(AUC(3))]);
+    
     % Saving
     % save(sprintf('%s_%.2f_ams2_gtvoc_nms2.mat',model_name_out{k},threshold), 'AUC_dtdp', 'AUC_dtdp_mean_1', 'F1Score_dtdp', 'Precision_dtdp', 'Recall_dtdp', 'fp_dtdp', 'fscore_dtdt', 'precision_dtdp', 'recall_dtdp', 'threshols', 'threshols', 'tp_dtdp','fn_dtdp');
 end

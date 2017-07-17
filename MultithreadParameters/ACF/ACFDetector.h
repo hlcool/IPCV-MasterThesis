@@ -33,7 +33,7 @@ public:
     }
 
     ACFDetector() {
-        ReadModel("/Users/alex/Desktop/MultithreadParameters/ACF/INRIA_ACF.xml");
+        ReadModel("/Users/alex/IPCV-MasterThesis/MultithreadParameters/ACF/INRIA_ACF.xml");
     }
     virtual ~ACFDetector();
 

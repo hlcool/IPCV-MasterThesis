@@ -910,23 +910,25 @@ void CameraStream::non_max_suppresion(const vector<Rect> &srcRects, vector<Rect>
     }
 }
 
-void CameraStream::non_max_suppresion_scores(const vector<Rect> &srcRects, const vector<double> &scores, vector<Rect> &resRects)
+void CameraStream::non_max_suppresion_scores(const vector<Rect> &srcRects, const vector<double> &srcScores, vector<Rect> &resRects, vector<double> &resScores)
 {
     resRects.clear();
+    resScores.clear();
+
     const size_t size = srcRects.size();
     if (!size)
         return;
+
+    assert(srcRects.size() == srcScores.size());
 
     float thresh = 0.2;
     float minScoresSum = 0.15;
     int neighbors = 0;
 
-    assert(srcRects.size() == scores.size());
-
-    // Sort the bounding boxes by the detection score
+    // Sort the bounding boxes by the detection score. Higher score first
     multimap<float, size_t> idxs;
     for (size_t i = 0; i < size; ++i){
-        idxs.insert(pair<float, size_t>(scores[i], i));
+        idxs.insert(pair<float, size_t>(srcScores[i], i));
     }
 
     // keep looping while some indexes still remain in the indexes list
@@ -934,6 +936,7 @@ void CameraStream::non_max_suppresion_scores(const vector<Rect> &srcRects, const
         // grab the last rectangle
         auto lastElem = --end(idxs);
         const Rect& rect1 = srcRects[lastElem->second];
+        const double& score1 = srcScores[lastElem->second];
 
         int neigborsCount = 0;
         float scoresSum = lastElem->first;
@@ -959,7 +962,9 @@ void CameraStream::non_max_suppresion_scores(const vector<Rect> &srcRects, const
             }
         }
         if (neigborsCount >= neighbors && scoresSum >= minScoresSum){
+            // Save bounding box and score if conditions are fulfilled
             resRects.push_back(rect1);
+            resScores.push_back(score1);
         }
     }
 }

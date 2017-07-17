@@ -60,29 +60,23 @@ void CameraWorker::preProcessVideo()
     }
 
     if(SemanticFiltering & MultiCameraFiltering){
-        EvalPath = "/Users/alex/Desktop/MultithreadParameters/Ficheros/4MultiSemantic/" + CBOption + "/Evaluation Stats Camera " + to_string(Camera.CameraNumber) + "-" + to_string(PeopleDetec.Threshold)  + ".txt";
+        EvalPath = "/Users/alex/IPCV-MasterThesis/MultithreadParameters/Ficheros/4MultiSemantic/" + CBOption + "/Evaluation Stats Camera " + to_string(Camera.CameraNumber) + "-" + to_string(PeopleDetec.Threshold)  + ".txt";
     }
     else if(MultiCameraFiltering){
-        EvalPath = "/Users/alex/Desktop/MultithreadParameters/Ficheros/2Multi/" + CBOption + "/Evaluation Stats Camera " + to_string(Camera.CameraNumber) + "-" + to_string(PeopleDetec.Threshold)  + ".txt";
+        EvalPath = "/Users/alex/IPCV-MasterThesis/MultithreadParameters/Ficheros/2Multi/" + CBOption + "/Evaluation Stats Camera " + to_string(Camera.CameraNumber) + "-" + to_string(PeopleDetec.Threshold)  + ".txt";
     }
     else if(SemanticFiltering){
-        EvalPath = "/Users/alex/Desktop/MultithreadParameters/Ficheros/3Semantic/" + CBOption + "/Evaluation Stats Camera " + to_string(Camera.CameraNumber) + "-" + to_string(PeopleDetec.Threshold)  + ".txt";
+        EvalPath = "/Users/alex/IPCV-MasterThesis/MultithreadParameters/Ficheros/3Semantic/" + CBOption + "/Evaluation Stats Camera " + to_string(Camera.CameraNumber) + "-" + to_string(PeopleDetec.Threshold)  + ".txt";
     }
     else{
-        EvalPath = "/Users/alex/Desktop/MultithreadParameters/Ficheros/1Raw/" + CBOption + "/Evaluation Stats Camera " + to_string(Camera.CameraNumber) + "-" + to_string(PeopleDetec.Threshold) + ".txt";
-    }
-
-    if(Camera.CameraNumber == 1){
-        cout << "EVALUATION PATH:" << endl;
-        cout << EvalPath << endl;
-        cout << endl;
+        EvalPath = "/Users/alex/IPCV-MasterThesis/MultithreadParameters/Ficheros/1Raw/" + CBOption + "/Evaluation Stats Camera " + to_string(Camera.CameraNumber) + "-" + to_string(PeopleDetec.Threshold) + ".txt";
     }
 
     // Open video file
     Camera.VideoOpenning(Camera.InputPath);
 
     // Create and open the statistics file
-    VideoStatsFile.open("/Users/alex/Desktop/MultithreadParameters/VideoProcessingStats" + to_string(Camera.CameraNumber) + ".txt");
+    VideoStatsFile.open("/Users/alex/IPCV-MasterThesis/MultithreadParameters/VideoProcessingStats" + to_string(Camera.CameraNumber) + ".txt");
     VideoStatsFile << "Frame  Computational Time" << endl;
 
     // Create and open the statistics file
@@ -191,8 +185,7 @@ void CameraWorker::processVideo()
         }
 
         // Non Maximum supression betwen blobs from all the cameras
-        //Camera.non_max_suppresion(PeopleDetec.AllPedestrianVector, PeopleDetec.AllPedestrianVectorNMS);
-        Camera.non_max_suppresion_scores(PeopleDetec.AllPedestrianVector, PeopleDetec.AllPedestrianVectorScore, PeopleDetec.AllPedestrianVectorNMS);
+        Camera.non_max_suppresion_scores(PeopleDetec.AllPedestrianVector, PeopleDetec.AllPedestrianVectorScore, PeopleDetec.AllPedestrianVectorNMS, PeopleDetec.AllPedestrianVectorScoreNMS);
 
         // Filter Pedestrian Detections that are not correcly placed within the semantic (floor)
         //if(SemanticFiltering)
@@ -201,7 +194,7 @@ void CameraWorker::processVideo()
         // -------------------- //
         //     BLOBS SAVING     //
         // -------------------- //
-        PeopleDetec.blobSavingTXT(PeopleDetec.AllPedestrianVector, PeopleDetec.AllPedestrianVectorScore, FrameNumber, Camera.CameraNumber);
+        PeopleDetec.blobSavingTXT(PeopleDetec.AllPedestrianVectorNMS, PeopleDetec.AllPedestrianVectorScoreNMS, FrameNumber, Camera.CameraNumber);
 
         // ---------------------------------- //
         //             EVALUATION             //
