@@ -1,0 +1,14470 @@
+[Video Information]
+Title:
+
+Date:
+12/06/2017 16:02:47
+Description:
+
+Annotator:
+
+Video filename:
+C:\Users\alexl\Desktop\Version Final\Camara 3\Camera 3.mpg
+Video Descriptors filename:
+
+Video Descriptors (0):
+
+
+[Region Information]
+Object Number #1
+Region Description:
+Region 01
+Start Frame:0
+End Frame:122
+Region Descriptors (0):
+Region frames data
+Frames: 0 to 1
+x: 219
+y: 79
+width: 49
+height: 169
+
+Frames: 2 to 3
+x: 226
+y: 79
+width: 49
+height: 169
+
+Frame: 4
+x: 230
+y: 77
+width: 49
+height: 169
+
+Frame: 5
+x: 230
+y: 80
+width: 49
+height: 169
+
+Frames: 6 to 7
+x: 232
+y: 79
+width: 49
+height: 169
+
+Frames: 8 to 10
+x: 241
+y: 79
+width: 49
+height: 169
+
+Frame: 11
+x: 246
+y: 79
+width: 49
+height: 169
+
+Frame: 12
+x: 249
+y: 79
+width: 49
+height: 169
+
+Frames: 13 to 14
+x: 250
+y: 79
+width: 49
+height: 169
+
+Frame: 15
+x: 252
+y: 79
+width: 49
+height: 169
+
+Frame: 16
+x: 255
+y: 78
+width: 49
+height: 169
+
+Frame: 17
+x: 258
+y: 77
+width: 49
+height: 169
+
+Frame: 18
+x: 262
+y: 77
+width: 49
+height: 169
+
+Frame: 19
+x: 263
+y: 77
+width: 49
+height: 169
+
+Frame: 20
+x: 266
+y: 77
+width: 49
+height: 169
+
+Frame: 21
+x: 268
+y: 79
+width: 49
+height: 169
+
+Frame: 22
+x: 268
+y: 77
+width: 49
+height: 169
+
+Frames: 23 to 24
+x: 273
+y: 79
+width: 49
+height: 169
+
+Frames: 25 to 26
+x: 274
+y: 79
+width: 49
+height: 169
+
+Frames: 27 to 28
+x: 282
+y: 79
+width: 46
+height: 169
+
+Frame: 29
+x: 283
+y: 77
+width: 46
+height: 169
+
+Frame: 30
+x: 287
+y: 77
+width: 46
+height: 169
+
+Frame: 31
+x: 290
+y: 78
+width: 46
+height: 169
+
+Frame: 32
+x: 294
+y: 78
+width: 46
+height: 169
+
+Frame: 33
+x: 297
+y: 77
+width: 46
+height: 169
+
+Frame: 34
+x: 294
+y: 79
+width: 46
+height: 169
+
+Frame: 35
+x: 302
+y: 78
+width: 44
+height: 169
+
+Frames: 36 to 37
+x: 304
+y: 77
+width: 44
+height: 169
+
+Frame: 38
+x: 308
+y: 79
+width: 44
+height: 169
+
+Frames: 39 to 40
+x: 312
+y: 78
+width: 44
+height: 169
+
+Frame: 41
+x: 316
+y: 78
+width: 44
+height: 169
+
+Frames: 42 to 43
+x: 323
+y: 78
+width: 44
+height: 169
+
+Frames: 44 to 49
+x: 333
+y: 78
+width: 44
+height: 169
+
+Frames: 50 to 51
+x: 340
+y: 78
+width: 44
+height: 169
+
+Frame: 52
+x: 342
+y: 78
+width: 44
+height: 169
+
+Frame: 53
+x: 345
+y: 78
+width: 44
+height: 169
+
+Frames: 54 to 55
+x: 351
+y: 77
+width: 44
+height: 169
+
+Frame: 56
+x: 357
+y: 77
+width: 44
+height: 169
+
+Frames: 57 to 59
+x: 362
+y: 77
+width: 44
+height: 169
+
+Frame: 60
+x: 364
+y: 77
+width: 44
+height: 169
+
+Frame: 61
+x: 367
+y: 77
+width: 44
+height: 169
+
+Frame: 62
+x: 375
+y: 79
+width: 44
+height: 169
+
+Frame: 63
+x: 373
+y: 79
+width: 44
+height: 169
+
+Frame: 64
+x: 374
+y: 79
+width: 44
+height: 169
+
+Frame: 65
+x: 379
+y: 78
+width: 44
+height: 169
+
+Frames: 66 to 67
+x: 383
+y: 78
+width: 44
+height: 169
+
+Frame: 68
+x: 387
+y: 79
+width: 44
+height: 169
+
+Frames: 69 to 70
+x: 395
+y: 79
+width: 44
+height: 169
+
+Frame: 71
+x: 400
+y: 80
+width: 44
+height: 169
+
+Frames: 72 to 73
+x: 402
+y: 82
+width: 44
+height: 169
+
+Frames: 74 to 75
+x: 407
+y: 80
+width: 44
+height: 169
+
+Frame: 76
+x: 409
+y: 80
+width: 44
+height: 169
+
+Frame: 77
+x: 411
+y: 79
+width: 44
+height: 169
+
+Frame: 78
+x: 414
+y: 79
+width: 44
+height: 169
+
+Frame: 79
+x: 420
+y: 80
+width: 44
+height: 169
+
+Frame: 80
+x: 423
+y: 80
+width: 44
+height: 169
+
+Frame: 81
+x: 425
+y: 80
+width: 44
+height: 169
+
+Frame: 82
+x: 426
+y: 79
+width: 44
+height: 169
+
+Frame: 83
+x: 429
+y: 78
+width: 44
+height: 169
+
+Frame: 84
+x: 435
+y: 78
+width: 49
+height: 169
+
+Frame: 85
+x: 437
+y: 78
+width: 49
+height: 169
+
+Frame: 86
+x: 441
+y: 79
+width: 49
+height: 169
+
+Frames: 87 to 88
+x: 444
+y: 79
+width: 49
+height: 169
+
+Frame: 89
+x: 449
+y: 77
+width: 49
+height: 169
+
+Frames: 90 to 91
+x: 453
+y: 75
+width: 49
+height: 169
+
+Frames: 92 to 93
+x: 458
+y: 75
+width: 60
+height: 169
+
+Frame: 94
+x: 459
+y: 75
+width: 60
+height: 169
+
+Frame: 95
+x: 469
+y: 74
+width: 60
+height: 169
+
+Frame: 96
+x: 475
+y: 72
+width: 60
+height: 169
+
+Frame: 97
+x: 470
+y: 72
+width: 72
+height: 169
+
+Frame: 98
+x: 477
+y: 72
+width: 72
+height: 161
+
+Frame: 99
+x: 488
+y: 73
+width: 72
+height: 158
+
+Frame: 100
+x: 487
+y: 73
+width: 73
+height: 158
+
+Frame: 101
+x: 500
+y: 73
+width: 63
+height: 158
+
+Frame: 102
+x: 504
+y: 73
+width: 63
+height: 158
+
+Frame: 103
+x: 507
+y: 72
+width: 63
+height: 158
+
+Frame: 104
+x: 517
+y: 70
+width: 63
+height: 158
+
+Frames: 105 to 106
+x: 527
+y: 70
+width: 53
+height: 158
+
+Frame: 107
+x: 537
+y: 68
+width: 53
+height: 158
+
+Frame: 108
+x: 548
+y: 67
+width: 53
+height: 158
+
+Frame: 109
+x: 548
+y: 66
+width: 53
+height: 158
+
+Frames: 110 to 111
+x: 557
+y: 67
+width: 53
+height: 158
+
+Frame: 112
+x: 563
+y: 67
+width: 53
+height: 158
+
+Frame: 113
+x: 566
+y: 68
+width: 53
+height: 158
+
+Frames: 114 to 115
+x: 575
+y: 68
+width: 53
+height: 158
+
+Frame: 116
+x: 582
+y: 67
+width: 53
+height: 158
+
+Frame: 117
+x: 585
+y: 66
+width: 53
+height: 158
+
+Frame: 118
+x: 589
+y: 66
+width: 53
+height: 158
+
+Frame: 119
+x: 604
+y: 65
+width: 41
+height: 158
+
+Frame: 120
+x: 613
+y: 65
+width: 32
+height: 158
+
+Frames: 121 to 122
+x: 613
+y: 65
+width: 32
+height: 145
+
+Object Number #2
+Region Description:
+Region 02
+Start Frame:1883
+End Frame:1929
+Region Descriptors (0):
+Region frames data
+Frame: 1883
+x: -1
+y: -1
+width: 20
+height: 26
+
+Frame: 1884
+x: 2
+y: -2
+width: 20
+height: 26
+
+Frame: 1885
+x: 6
+y: -2
+width: 20
+height: 26
+
+Frames: 1886 to 1887
+x: 10
+y: -2
+width: 20
+height: 26
+
+Frames: 1888 to 1889
+x: 20
+y: -2
+width: 20
+height: 26
+
+Frame: 1890
+x: 23
+y: -2
+width: 20
+height: 26
+
+Frame: 1891
+x: 25
+y: -2
+width: 20
+height: 26
+
+Frames: 1892 to 1893
+x: 32
+y: -2
+width: 20
+height: 26
+
+Frame: 1894
+x: 35
+y: -2
+width: 20
+height: 26
+
+Frames: 1895 to 1896
+x: 40
+y: -2
+width: 20
+height: 26
+
+Frame: 1897
+x: 55
+y: -3
+width: 20
+height: 26
+
+Frames: 1898 to 1901
+x: 56
+y: -3
+width: 20
+height: 26
+
+Frame: 1902
+x: 60
+y: -3
+width: 20
+height: 26
+
+Frame: 1903
+x: 67
+y: -3
+width: 20
+height: 26
+
+Frame: 1904
+x: 69
+y: -3
+width: 20
+height: 26
+
+Frame: 1905
+x: 78
+y: -3
+width: 20
+height: 26
+
+Frame: 1906
+x: 80
+y: -3
+width: 20
+height: 26
+
+Frame: 1907
+x: 86
+y: -3
+width: 20
+height: 26
+
+Frame: 1908
+x: 87
+y: -3
+width: 20
+height: 26
+
+Frame: 1909
+x: 96
+y: -3
+width: 20
+height: 26
+
+Frame: 1910
+x: 99
+y: -3
+width: 20
+height: 26
+
+Frame: 1911
+x: 102
+y: -3
+width: 20
+height: 26
+
+Frame: 1912
+x: 104
+y: -3
+width: 20
+height: 26
+
+Frames: 1913 to 1915
+x: 116
+y: -3
+width: 20
+height: 26
+
+Frame: 1916
+x: 120
+y: -5
+width: 20
+height: 26
+
+Frame: 1917
+x: 121
+y: -6
+width: 20
+height: 26
+
+Frames: 1918 to 1919
+x: 128
+y: -6
+width: 20
+height: 26
+
+Frame: 1920
+x: 134
+y: -6
+width: 20
+height: 26
+
+Frame: 1921
+x: 137
+y: -6
+width: 20
+height: 26
+
+Frames: 1922 to 1924
+x: 144
+y: -5
+width: 20
+height: 26
+
+Frame: 1925
+x: 147
+y: -3
+width: 20
+height: 26
+
+Frame: 1926
+x: 147
+y: -4
+width: 20
+height: 26
+
+Frame: 1927
+x: 150
+y: -4
+width: 20
+height: 26
+
+Frame: 1928
+x: 156
+y: -4
+width: 20
+height: 26
+
+Frame: 1929
+x: 158
+y: -6
+width: 20
+height: 26
+
+Object Number #3
+Region Description:
+Region 03
+Start Frame:2382
+End Frame:2509
+Region Descriptors (0):
+Region frames data
+Frame: 2382
+x: -4
+y: 266
+width: 30
+height: 199
+
+Frame: 2383
+x: -4
+y: 265
+width: 30
+height: 199
+
+Frame: 2384
+x: -2
+y: 264
+width: 30
+height: 199
+
+Frame: 2385
+x: 0
+y: 264
+width: 30
+height: 199
+
+Frame: 2386
+x: 1
+y: 264
+width: 30
+height: 199
+
+Frames: 2387 to 2388
+x: -2
+y: 264
+width: 33
+height: 199
+
+Frames: 2389 to 2391
+x: -2
+y: 248
+width: 52
+height: 197
+
+Frame: 2392
+x: -2
+y: 249
+width: 52
+height: 197
+
+Frames: 2393 to 2394
+x: 5
+y: 245
+width: 52
+height: 197
+
+Frame: 2395
+x: 5
+y: 243
+width: 52
+height: 197
+
+Frame: 2396
+x: 5
+y: 242
+width: 52
+height: 197
+
+Frames: 2397 to 2398
+x: -11
+y: 222
+width: 68
+height: 217
+
+Frames: 2399 to 2404
+x: -11
+y: 222
+width: 81
+height: 217
+
+Frame: 2405
+x: -10
+y: 222
+width: 81
+height: 217
+
+Frame: 2406
+x: -4
+y: 222
+width: 81
+height: 217
+
+Frame: 2407
+x: -1
+y: 219
+width: 81
+height: 217
+
+Frames: 2408 to 2410
+x: 6
+y: 219
+width: 99
+height: 196
+
+Frame: 2411
+x: 11
+y: 219
+width: 99
+height: 196
+
+Frames: 2412 to 2413
+x: 13
+y: 219
+width: 99
+height: 196
+
+Frames: 2414 to 2416
+x: 23
+y: 220
+width: 93
+height: 196
+
+Frame: 2417
+x: 29
+y: 219
+width: 93
+height: 196
+
+Frames: 2418 to 2419
+x: 34
+y: 217
+width: 93
+height: 196
+
+Frame: 2420
+x: 38
+y: 215
+width: 93
+height: 196
+
+Frame: 2421
+x: 39
+y: 214
+width: 93
+height: 196
+
+Frame: 2422
+x: 42
+y: 214
+width: 93
+height: 196
+
+Frame: 2423
+x: 46
+y: 217
+width: 93
+height: 196
+
+Frame: 2424
+x: 50
+y: 217
+width: 93
+height: 196
+
+Frame: 2425
+x: 54
+y: 216
+width: 93
+height: 196
+
+Frame: 2426
+x: 56
+y: 216
+width: 93
+height: 196
+
+Frames: 2427 to 2428
+x: 64
+y: 212
+width: 93
+height: 196
+
+Frame: 2429
+x: 69
+y: 210
+width: 93
+height: 196
+
+Frame: 2430
+x: 89
+y: 210
+width: 97
+height: 263
+
+Frame: 2431
+x: 101
+y: 209
+width: 97
+height: 263
+
+Frame: 2432
+x: 107
+y: 208
+width: 97
+height: 263
+
+Frame: 2433
+x: 110
+y: 208
+width: 97
+height: 263
+
+Frame: 2434
+x: 113
+y: 208
+width: 97
+height: 263
+
+Frame: 2435
+x: 121
+y: 208
+width: 97
+height: 263
+
+Frame: 2436
+x: 123
+y: 208
+width: 97
+height: 263
+
+Frame: 2437
+x: 126
+y: 208
+width: 97
+height: 263
+
+Frame: 2438
+x: 138
+y: 208
+width: 97
+height: 263
+
+Frames: 2439 to 2440
+x: 142
+y: 208
+width: 97
+height: 263
+
+Frame: 2441
+x: 160
+y: 208
+width: 97
+height: 263
+
+Frame: 2442
+x: 165
+y: 209
+width: 97
+height: 263
+
+Frame: 2443
+x: 179
+y: 209
+width: 97
+height: 263
+
+Frames: 2444 to 2445
+x: 180
+y: 209
+width: 97
+height: 263
+
+Frame: 2446
+x: 185
+y: 209
+width: 97
+height: 263
+
+Frame: 2447
+x: 190
+y: 209
+width: 97
+height: 263
+
+Frames: 2448 to 2449
+x: 193
+y: 209
+width: 97
+height: 263
+
+Frames: 2450 to 2451
+x: 204
+y: 208
+width: 97
+height: 263
+
+Frame: 2452
+x: 213
+y: 209
+width: 97
+height: 263
+
+Frame: 2453
+x: 218
+y: 209
+width: 97
+height: 263
+
+Frames: 2454 to 2455
+x: 231
+y: 209
+width: 97
+height: 263
+
+Frame: 2456
+x: 237
+y: 210
+width: 97
+height: 263
+
+Frame: 2457
+x: 251
+y: 211
+width: 97
+height: 263
+
+Frames: 2458 to 2459
+x: 258
+y: 205
+width: 97
+height: 263
+
+Frame: 2460
+x: 261
+y: 204
+width: 97
+height: 263
+
+Frames: 2461 to 2462
+x: 266
+y: 204
+width: 97
+height: 263
+
+Frames: 2463 to 2464
+x: 273
+y: 204
+width: 97
+height: 263
+
+Frame: 2465
+x: 274
+y: 204
+width: 97
+height: 263
+
+Frame: 2466
+x: 279
+y: 204
+width: 97
+height: 263
+
+Frame: 2467
+x: 280
+y: 204
+width: 97
+height: 263
+
+Frame: 2468
+x: 285
+y: 204
+width: 97
+height: 263
+
+Frame: 2469
+x: 290
+y: 199
+width: 84
+height: 278
+
+Frame: 2470
+x: 295
+y: 200
+width: 84
+height: 278
+
+Frames: 2471 to 2472
+x: 299
+y: 200
+width: 84
+height: 278
+
+Frames: 2473 to 2475
+x: 305
+y: 200
+width: 84
+height: 278
+
+Frame: 2476
+x: 307
+y: 200
+width: 84
+height: 278
+
+Frames: 2477 to 2478
+x: 310
+y: 200
+width: 84
+height: 278
+
+Frames: 2479 to 2480
+x: 311
+y: 201
+width: 84
+height: 278
+
+Frame: 2481
+x: 305
+y: 201
+width: 84
+height: 278
+
+Frame: 2482
+x: 310
+y: 201
+width: 84
+height: 278
+
+Frames: 2483 to 2486
+x: 313
+y: 201
+width: 84
+height: 278
+
+Frames: 2487 to 2489
+x: 307
+y: 201
+width: 84
+height: 278
+
+Frame: 2490
+x: 302
+y: 201
+width: 84
+height: 278
+
+Frames: 2491 to 2492
+x: 301
+y: 201
+width: 84
+height: 278
+
+Frame: 2493
+x: 299
+y: 201
+width: 84
+height: 278
+
+Frame: 2494
+x: 292
+y: 201
+width: 84
+height: 278
+
+Frame: 2495
+x: 288
+y: 201
+width: 84
+height: 278
+
+Frames: 2496 to 2497
+x: 288
+y: 200
+width: 84
+height: 278
+
+Frame: 2498
+x: 286
+y: 198
+width: 84
+height: 278
+
+Frame: 2499
+x: 281
+y: 196
+width: 84
+height: 278
+
+Frames: 2500 to 2501
+x: 277
+y: 196
+width: 84
+height: 278
+
+Frame: 2502
+x: 272
+y: 195
+width: 84
+height: 278
+
+Frame: 2503
+x: 268
+y: 195
+width: 84
+height: 278
+
+Frames: 2504 to 2506
+x: 267
+y: 193
+width: 84
+height: 278
+
+Frames: 2507 to 2508
+x: 266
+y: 192
+width: 84
+height: 278
+
+Frame: 2509
+x: 258
+y: 186
+width: 84
+height: 278
+
+Object Number #4
+Region Description:
+Region 04
+Start Frame:2510
+End Frame:2625
+Region Descriptors (0):
+Region frames data
+Frame: 2510
+x: 263
+y: 186
+width: 89
+height: 271
+
+Frame: 2511
+x: 257
+y: 187
+width: 89
+height: 271
+
+Frame: 2512
+x: 252
+y: 188
+width: 89
+height: 271
+
+Frame: 2513
+x: 251
+y: 187
+width: 89
+height: 271
+
+Frame: 2514
+x: 251
+y: 185
+width: 89
+height: 271
+
+Frames: 2515 to 2517
+x: 247
+y: 184
+width: 89
+height: 271
+
+Frame: 2518
+x: 243
+y: 184
+width: 89
+height: 271
+
+Frame: 2519
+x: 240
+y: 184
+width: 89
+height: 271
+
+Frame: 2520
+x: 233
+y: 183
+width: 89
+height: 271
+
+Frame: 2521
+x: 233
+y: 182
+width: 89
+height: 271
+
+Frame: 2522
+x: 233
+y: 179
+width: 89
+height: 271
+
+Frame: 2523
+x: 229
+y: 179
+width: 89
+height: 271
+
+Frame: 2524
+x: 222
+y: 178
+width: 89
+height: 271
+
+Frame: 2525
+x: 219
+y: 178
+width: 89
+height: 271
+
+Frame: 2526
+x: 212
+y: 175
+width: 89
+height: 271
+
+Frame: 2527
+x: 204
+y: 175
+width: 89
+height: 271
+
+Frame: 2528
+x: 203
+y: 175
+width: 89
+height: 271
+
+Frame: 2529
+x: 196
+y: 175
+width: 89
+height: 271
+
+Frame: 2530
+x: 193
+y: 175
+width: 89
+height: 271
+
+Frame: 2531
+x: 190
+y: 176
+width: 89
+height: 271
+
+Frame: 2532
+x: 185
+y: 177
+width: 89
+height: 271
+
+Frame: 2533
+x: 184
+y: 177
+width: 89
+height: 271
+
+Frame: 2534
+x: 183
+y: 177
+width: 89
+height: 271
+
+Frame: 2535
+x: 179
+y: 177
+width: 89
+height: 271
+
+Frames: 2536 to 2537
+x: 174
+y: 176
+width: 89
+height: 271
+
+Frame: 2538
+x: 170
+y: 175
+width: 89
+height: 271
+
+Frames: 2539 to 2540
+x: 169
+y: 174
+width: 89
+height: 271
+
+Frame: 2541
+x: 164
+y: 173
+width: 89
+height: 271
+
+Frame: 2542
+x: 162
+y: 172
+width: 89
+height: 271
+
+Frame: 2543
+x: 161
+y: 171
+width: 89
+height: 271
+
+Frame: 2544
+x: 160
+y: 171
+width: 89
+height: 271
+
+Frames: 2545 to 2546
+x: 158
+y: 171
+width: 89
+height: 271
+
+Frame: 2547
+x: 151
+y: 171
+width: 89
+height: 271
+
+Frame: 2548
+x: 147
+y: 169
+width: 89
+height: 271
+
+Frame: 2549
+x: 142
+y: 169
+width: 89
+height: 271
+
+Frame: 2550
+x: 137
+y: 169
+width: 89
+height: 271
+
+Frame: 2551
+x: 134
+y: 169
+width: 89
+height: 271
+
+Frame: 2552
+x: 133
+y: 169
+width: 89
+height: 271
+
+Frames: 2553 to 2554
+x: 128
+y: 169
+width: 89
+height: 271
+
+Frame: 2555
+x: 125
+y: 169
+width: 89
+height: 271
+
+Frame: 2556
+x: 122
+y: 169
+width: 89
+height: 271
+
+Frame: 2557
+x: 115
+y: 169
+width: 89
+height: 271
+
+Frame: 2558
+x: 114
+y: 169
+width: 89
+height: 271
+
+Frame: 2559
+x: 113
+y: 164
+width: 89
+height: 271
+
+Frames: 2560 to 2562
+x: 113
+y: 164
+width: 85
+height: 271
+
+Frames: 2563 to 2564
+x: 111
+y: 159
+width: 85
+height: 271
+
+Frame: 2565
+x: 108
+y: 159
+width: 85
+height: 271
+
+Frames: 2566 to 2567
+x: 101
+y: 160
+width: 85
+height: 271
+
+Frame: 2568
+x: 92
+y: 160
+width: 85
+height: 271
+
+Frames: 2569 to 2570
+x: 87
+y: 160
+width: 85
+height: 271
+
+Frame: 2571
+x: 83
+y: 160
+width: 85
+height: 271
+
+Frames: 2572 to 2575
+x: 82
+y: 160
+width: 85
+height: 271
+
+Frame: 2576
+x: 79
+y: 160
+width: 85
+height: 271
+
+Frame: 2577
+x: 67
+y: 161
+width: 85
+height: 271
+
+Frames: 2578 to 2580
+x: 65
+y: 162
+width: 85
+height: 271
+
+Frames: 2581 to 2583
+x: 64
+y: 162
+width: 85
+height: 271
+
+Frame: 2584
+x: 53
+y: 161
+width: 85
+height: 271
+
+Frame: 2585
+x: 45
+y: 161
+width: 85
+height: 271
+
+Frames: 2586 to 2592
+x: 43
+y: 161
+width: 85
+height: 271
+
+Frame: 2593
+x: 39
+y: 161
+width: 85
+height: 271
+
+Frame: 2594
+x: 38
+y: 161
+width: 85
+height: 271
+
+Frame: 2595
+x: 32
+y: 161
+width: 85
+height: 271
+
+Frames: 2596 to 2597
+x: 30
+y: 159
+width: 85
+height: 271
+
+Frame: 2598
+x: 29
+y: 159
+width: 85
+height: 271
+
+Frame: 2599
+x: 26
+y: 159
+width: 85
+height: 271
+
+Frame: 2600
+x: 13
+y: 159
+width: 85
+height: 271
+
+Frame: 2601
+x: 11
+y: 159
+width: 85
+height: 271
+
+Frames: 2602 to 2604
+x: 6
+y: 162
+width: 85
+height: 271
+
+Frames: 2605 to 2611
+x: 5
+y: 163
+width: 85
+height: 271
+
+Frame: 2612
+x: 1
+y: 164
+width: 85
+height: 271
+
+Frame: 2613
+x: -6
+y: 166
+width: 85
+height: 271
+
+Frame: 2614
+x: -13
+y: 166
+width: 85
+height: 271
+
+Frame: 2615
+x: -15
+y: 166
+width: 85
+height: 271
+
+Frame: 2616
+x: -17
+y: 166
+width: 85
+height: 271
+
+Frames: 2617 to 2620
+x: -18
+y: 166
+width: 85
+height: 271
+
+Frame: 2621
+x: -19
+y: 166
+width: 85
+height: 271
+
+Frame: 2622
+x: -25
+y: 169
+width: 85
+height: 271
+
+Frame: 2623
+x: -29
+y: 171
+width: 85
+height: 271
+
+Frame: 2624
+x: -34
+y: 171
+width: 85
+height: 271
+
+Frame: 2625
+x: -39
+y: 171
+width: 85
+height: 271
+
+Object Number #5
+Region Description:
+Region 05
+Start Frame:2552
+End Frame:2572
+Region Descriptors (0):
+Region frames data
+Frames: 2552 to 2553
+x: -12
+y: 200
+width: 118
+height: 260
+
+Frame: 2554
+x: -20
+y: 201
+width: 118
+height: 260
+
+Frames: 2555 to 2556
+x: -23
+y: 202
+width: 118
+height: 260
+
+Frame: 2557
+x: -29
+y: 206
+width: 118
+height: 260
+
+Frame: 2558
+x: -30
+y: 207
+width: 118
+height: 260
+
+Frame: 2559
+x: -37
+y: 211
+width: 118
+height: 260
+
+Frame: 2560
+x: -39
+y: 211
+width: 118
+height: 260
+
+Frames: 2561 to 2564
+x: -40
+y: 211
+width: 118
+height: 260
+
+Frame: 2565
+x: -42
+y: 209
+width: 118
+height: 260
+
+Frame: 2566
+x: -47
+y: 209
+width: 118
+height: 260
+
+Frames: 2567 to 2568
+x: -50
+y: 208
+width: 118
+height: 260
+
+Frame: 2569
+x: -52
+y: 208
+width: 118
+height: 260
+
+Frame: 2570
+x: -60
+y: 208
+width: 118
+height: 260
+
+Frame: 2571
+x: -66
+y: 208
+width: 118
+height: 260
+
+Frame: 2572
+x: -68
+y: 208
+width: 118
+height: 260
+
+Object Number #6
+Region Description:
+Region 06
+Start Frame:2664
+End Frame:2895
+Region Descriptors (0):
+Region frames data
+Frames: 2664 to 2668
+x: 407
+y: 37
+width: 39
+height: 74
+
+Frame: 2669
+x: 405
+y: 37
+width: 39
+height: 74
+
+Frame: 2670
+x: 400
+y: 37
+width: 39
+height: 74
+
+Frames: 2671 to 2672
+x: 398
+y: 37
+width: 39
+height: 74
+
+Frames: 2673 to 2677
+x: 394
+y: 37
+width: 39
+height: 74
+
+Frame: 2678
+x: 393
+y: 37
+width: 39
+height: 74
+
+Frames: 2679 to 2680
+x: 390
+y: 38
+width: 39
+height: 74
+
+Frame: 2681
+x: 389
+y: 38
+width: 39
+height: 74
+
+Frame: 2682
+x: 386
+y: 38
+width: 39
+height: 74
+
+Frame: 2683
+x: 384
+y: 38
+width: 39
+height: 74
+
+Frame: 2684
+x: 381
+y: 38
+width: 39
+height: 74
+
+Frames: 2685 to 2688
+x: 380
+y: 38
+width: 39
+height: 74
+
+Frame: 2689
+x: 377
+y: 38
+width: 39
+height: 74
+
+Frames: 2690 to 2691
+x: 375
+y: 38
+width: 39
+height: 74
+
+Frames: 2692 to 2693
+x: 370
+y: 38
+width: 39
+height: 74
+
+Frame: 2694
+x: 367
+y: 39
+width: 39
+height: 74
+
+Frames: 2695 to 2701
+x: 364
+y: 40
+width: 39
+height: 74
+
+Frame: 2702
+x: 358
+y: 40
+width: 39
+height: 74
+
+Frames: 2703 to 2704
+x: 355
+y: 40
+width: 39
+height: 74
+
+Frame: 2705
+x: 352
+y: 40
+width: 39
+height: 74
+
+Frames: 2706 to 2708
+x: 343
+y: 42
+width: 39
+height: 74
+
+Frames: 2709 to 2713
+x: 343
+y: 40
+width: 39
+height: 74
+
+Frame: 2714
+x: 341
+y: 39
+width: 39
+height: 74
+
+Frame: 2715
+x: 334
+y: 42
+width: 39
+height: 74
+
+Frames: 2716 to 2721
+x: 332
+y: 44
+width: 39
+height: 74
+
+Frames: 2722 to 2723
+x: 331
+y: 44
+width: 39
+height: 74
+
+Frame: 2724
+x: 326
+y: 45
+width: 39
+height: 74
+
+Frames: 2725 to 2726
+x: 321
+y: 46
+width: 39
+height: 74
+
+Frames: 2727 to 2730
+x: 317
+y: 47
+width: 39
+height: 74
+
+Frames: 2731 to 2732
+x: 316
+y: 47
+width: 39
+height: 74
+
+Frame: 2733
+x: 314
+y: 47
+width: 39
+height: 74
+
+Frame: 2734
+x: 311
+y: 47
+width: 39
+height: 74
+
+Frames: 2735 to 2736
+x: 309
+y: 47
+width: 39
+height: 74
+
+Frames: 2737 to 2740
+x: 305
+y: 47
+width: 39
+height: 74
+
+Frames: 2741 to 2742
+x: 304
+y: 47
+width: 39
+height: 74
+
+Frame: 2743
+x: 302
+y: 47
+width: 39
+height: 74
+
+Frame: 2744
+x: 300
+y: 47
+width: 39
+height: 74
+
+Frame: 2745
+x: 298
+y: 47
+width: 39
+height: 74
+
+Frame: 2746
+x: 293
+y: 47
+width: 39
+height: 74
+
+Frame: 2747
+x: 290
+y: 47
+width: 39
+height: 74
+
+Frames: 2748 to 2754
+x: 284
+y: 47
+width: 39
+height: 74
+
+Frame: 2755
+x: 282
+y: 47
+width: 39
+height: 74
+
+Frame: 2756
+x: 280
+y: 47
+width: 39
+height: 74
+
+Frame: 2757
+x: 279
+y: 47
+width: 39
+height: 74
+
+Frames: 2758 to 2759
+x: 277
+y: 46
+width: 39
+height: 74
+
+Frame: 2760
+x: 275
+y: 46
+width: 39
+height: 74
+
+Frame: 2761
+x: 275
+y: 46
+width: 39
+height: 81
+
+Frame: 2762
+x: 272
+y: 46
+width: 39
+height: 81
+
+Frame: 2763
+x: 265
+y: 46
+width: 39
+height: 81
+
+Frame: 2764
+x: 261
+y: 46
+width: 39
+height: 81
+
+Frame: 2765
+x: 258
+y: 46
+width: 39
+height: 81
+
+Frame: 2766
+x: 252
+y: 46
+width: 39
+height: 81
+
+Frames: 2767 to 2769
+x: 242
+y: 46
+width: 39
+height: 81
+
+Frame: 2770
+x: 240
+y: 46
+width: 39
+height: 81
+
+Frame: 2771
+x: 235
+y: 46
+width: 39
+height: 81
+
+Frame: 2772
+x: 231
+y: 46
+width: 39
+height: 81
+
+Frames: 2773 to 2774
+x: 228
+y: 46
+width: 39
+height: 81
+
+Frame: 2775
+x: 228
+y: 47
+width: 39
+height: 81
+
+Frames: 2776 to 2778
+x: 226
+y: 48
+width: 39
+height: 81
+
+Frames: 2779 to 2780
+x: 225
+y: 49
+width: 39
+height: 81
+
+Frame: 2781
+x: 220
+y: 49
+width: 39
+height: 81
+
+Frame: 2782
+x: 212
+y: 49
+width: 39
+height: 81
+
+Frames: 2783 to 2796
+x: 210
+y: 49
+width: 39
+height: 81
+
+Frames: 2797 to 2805
+x: 197
+y: 49
+width: 39
+height: 81
+
+Frames: 2806 to 2807
+x: 198
+y: 48
+width: 39
+height: 81
+
+Frames: 2808 to 2813
+x: 200
+y: 48
+width: 39
+height: 81
+
+Frames: 2814 to 2826
+x: 191
+y: 48
+width: 39
+height: 81
+
+Frames: 2827 to 2836
+x: 184
+y: 48
+width: 39
+height: 81
+
+Frame: 2837
+x: 181
+y: 48
+width: 39
+height: 81
+
+Frame: 2838
+x: 179
+y: 51
+width: 39
+height: 81
+
+Frames: 2839 to 2840
+x: 178
+y: 53
+width: 39
+height: 81
+
+Frame: 2841
+x: 178
+y: 57
+width: 39
+height: 81
+
+Frames: 2842 to 2845
+x: 178
+y: 51
+width: 39
+height: 87
+
+Frame: 2846
+x: 174
+y: 51
+width: 39
+height: 87
+
+Frame: 2847
+x: 173
+y: 51
+width: 39
+height: 87
+
+Frames: 2848 to 2852
+x: 170
+y: 51
+width: 39
+height: 87
+
+Frame: 2853
+x: 170
+y: 52
+width: 39
+height: 87
+
+Frame: 2854
+x: 171
+y: 53
+width: 39
+height: 87
+
+Frames: 2855 to 2860
+x: 171
+y: 54
+width: 39
+height: 87
+
+Frames: 2861 to 2862
+x: 165
+y: 54
+width: 39
+height: 93
+
+Frame: 2863
+x: 159
+y: 53
+width: 39
+height: 93
+
+Frames: 2864 to 2865
+x: 160
+y: 55
+width: 39
+height: 93
+
+Frames: 2866 to 2867
+x: 160
+y: 61
+width: 39
+height: 93
+
+Frames: 2868 to 2869
+x: 161
+y: 60
+width: 39
+height: 93
+
+Frames: 2870 to 2886
+x: 161
+y: 54
+width: 39
+height: 99
+
+Frame: 2887
+x: 162
+y: 58
+width: 39
+height: 99
+
+Frame: 2888
+x: 161
+y: 59
+width: 39
+height: 99
+
+Frame: 2889
+x: 159
+y: 59
+width: 39
+height: 99
+
+Frames: 2890 to 2895
+x: 158
+y: 59
+width: 39
+height: 99
+
+Object Number #7
+Region Description:
+Region 07
+Start Frame:2948
+End Frame:2955
+Region Descriptors (0):
+Region frames data
+Frames: 2948 to 2949
+x: 193
+y: 65
+width: 28
+height: 65
+
+Frames: 2950 to 2955
+x: 190
+y: 64
+width: 28
+height: 65
+
+Object Number #8
+Region Description:
+Region 08
+Start Frame:2980
+End Frame:3057
+Region Descriptors (0):
+Region frames data
+Frames: 2980 to 2984
+x: 222
+y: 72
+width: 35
+height: 91
+
+Frame: 2985
+x: 216
+y: 72
+width: 41
+height: 127
+
+Frame: 2986
+x: 218
+y: 72
+width: 41
+height: 127
+
+Frames: 2987 to 2991
+x: 219
+y: 72
+width: 41
+height: 127
+
+Frame: 2992
+x: 221
+y: 72
+width: 41
+height: 127
+
+Frames: 2993 to 2997
+x: 223
+y: 72
+width: 41
+height: 127
+
+Frame: 2998
+x: 224
+y: 72
+width: 41
+height: 127
+
+Frame: 2999
+x: 230
+y: 75
+width: 41
+height: 127
+
+Frame: 3000
+x: 232
+y: 75
+width: 41
+height: 127
+
+Frame: 3001
+x: 236
+y: 75
+width: 41
+height: 127
+
+Frames: 3002 to 3006
+x: 254
+y: 75
+width: 41
+height: 127
+
+Frame: 3007
+x: 263
+y: 76
+width: 41
+height: 127
+
+Frame: 3008
+x: 264
+y: 77
+width: 41
+height: 127
+
+Frame: 3009
+x: 270
+y: 77
+width: 41
+height: 127
+
+Frame: 3010
+x: 271
+y: 78
+width: 41
+height: 127
+
+Frame: 3011
+x: 276
+y: 78
+width: 41
+height: 127
+
+Frame: 3012
+x: 278
+y: 78
+width: 41
+height: 127
+
+Frames: 3013 to 3014
+x: 285
+y: 79
+width: 41
+height: 127
+
+Frame: 3015
+x: 286
+y: 80
+width: 41
+height: 127
+
+Frame: 3016
+x: 295
+y: 80
+width: 41
+height: 127
+
+Frame: 3017
+x: 300
+y: 82
+width: 41
+height: 127
+
+Frame: 3018
+x: 294
+y: 80
+width: 48
+height: 135
+
+Frame: 3019
+x: 293
+y: 81
+width: 48
+height: 135
+
+Frame: 3020
+x: 295
+y: 81
+width: 48
+height: 135
+
+Frame: 3021
+x: 302
+y: 81
+width: 48
+height: 135
+
+Frames: 3022 to 3023
+x: 306
+y: 81
+width: 48
+height: 135
+
+Frame: 3024
+x: 315
+y: 85
+width: 48
+height: 135
+
+Frame: 3025
+x: 328
+y: 85
+width: 48
+height: 135
+
+Frames: 3026 to 3027
+x: 330
+y: 85
+width: 48
+height: 135
+
+Frame: 3028
+x: 333
+y: 83
+width: 48
+height: 135
+
+Frames: 3029 to 3030
+x: 335
+y: 79
+width: 48
+height: 135
+
+Frame: 3031
+x: 335
+y: 74
+width: 48
+height: 135
+
+Frame: 3032
+x: 335
+y: 72
+width: 48
+height: 135
+
+Frames: 3033 to 3034
+x: 333
+y: 74
+width: 48
+height: 135
+
+Frames: 3035 to 3037
+x: 326
+y: 67
+width: 54
+height: 146
+
+Frame: 3038
+x: 333
+y: 67
+width: 54
+height: 146
+
+Frame: 3039
+x: 335
+y: 67
+width: 54
+height: 146
+
+Frames: 3040 to 3042
+x: 340
+y: 67
+width: 54
+height: 146
+
+Frames: 3043 to 3045
+x: 341
+y: 67
+width: 54
+height: 146
+
+Frame: 3046
+x: 346
+y: 67
+width: 54
+height: 146
+
+Frames: 3047 to 3048
+x: 350
+y: 67
+width: 54
+height: 146
+
+Frames: 3049 to 3050
+x: 351
+y: 67
+width: 54
+height: 146
+
+Frame: 3051
+x: 354
+y: 67
+width: 54
+height: 146
+
+Frames: 3052 to 3057
+x: 355
+y: 67
+width: 54
+height: 146
+
+Object Number #9
+Region Description:
+Region 09
+Start Frame:3064
+End Frame:3086
+Region Descriptors (0):
+Region frames data
+Frames: 3064 to 3069
+x: 394
+y: 72
+width: 32
+height: 156
+
+Frame: 3070
+x: 381
+y: 72
+width: 45
+height: 156
+
+Frame: 3071
+x: 395
+y: 73
+width: 45
+height: 156
+
+Frame: 3072
+x: 392
+y: 73
+width: 45
+height: 156
+
+Frames: 3073 to 3076
+x: 396
+y: 73
+width: 45
+height: 156
+
+Frame: 3077
+x: 377
+y: 73
+width: 69
+height: 156
+
+Frame: 3078
+x: 379
+y: 73
+width: 69
+height: 156
+
+Frame: 3079
+x: 383
+y: 73
+width: 69
+height: 156
+
+Frame: 3080
+x: 384
+y: 73
+width: 69
+height: 156
+
+Frame: 3081
+x: 407
+y: 73
+width: 48
+height: 156
+
+Frames: 3082 to 3086
+x: 406
+y: 73
+width: 48
+height: 156
+
+Object Number #10
+Region Description:
+Region 10
+Start Frame:3121
+End Frame:3208
+Region Descriptors (0):
+Region frames data
+Frames: 3121 to 3123
+x: 487
+y: 69
+width: 45
+height: 154
+
+Frames: 3124 to 3125
+x: 488
+y: 68
+width: 45
+height: 154
+
+Frame: 3126
+x: 489
+y: 68
+width: 45
+height: 154
+
+Frames: 3127 to 3129
+x: 488
+y: 71
+width: 61
+height: 154
+
+Frame: 3130
+x: 496
+y: 71
+width: 61
+height: 154
+
+Frame: 3131
+x: 498
+y: 71
+width: 61
+height: 154
+
+Frame: 3132
+x: 500
+y: 70
+width: 61
+height: 154
+
+Frames: 3133 to 3135
+x: 506
+y: 70
+width: 61
+height: 154
+
+Frames: 3136 to 3142
+x: 510
+y: 66
+width: 61
+height: 154
+
+Frame: 3143
+x: 513
+y: 66
+width: 61
+height: 154
+
+Frame: 3144
+x: 516
+y: 66
+width: 61
+height: 154
+
+Frames: 3145 to 3146
+x: 521
+y: 66
+width: 61
+height: 154
+
+Frame: 3147
+x: 525
+y: 66
+width: 61
+height: 154
+
+Frames: 3148 to 3151
+x: 529
+y: 66
+width: 61
+height: 154
+
+Frames: 3152 to 3154
+x: 530
+y: 66
+width: 61
+height: 154
+
+Frame: 3155
+x: 536
+y: 66
+width: 61
+height: 154
+
+Frame: 3156
+x: 538
+y: 66
+width: 61
+height: 154
+
+Frames: 3157 to 3161
+x: 543
+y: 64
+width: 61
+height: 154
+
+Frame: 3162
+x: 544
+y: 64
+width: 61
+height: 154
+
+Frame: 3163
+x: 545
+y: 64
+width: 61
+height: 154
+
+Frame: 3164
+x: 547
+y: 62
+width: 61
+height: 154
+
+Frame: 3165
+x: 549
+y: 61
+width: 61
+height: 154
+
+Frames: 3166 to 3173
+x: 550
+y: 59
+width: 61
+height: 154
+
+Frames: 3174 to 3177
+x: 551
+y: 59
+width: 61
+height: 154
+
+Frame: 3178
+x: 557
+y: 56
+width: 61
+height: 154
+
+Frame: 3179
+x: 558
+y: 56
+width: 61
+height: 154
+
+Frame: 3180
+x: 559
+y: 56
+width: 61
+height: 154
+
+Frames: 3181 to 3184
+x: 563
+y: 56
+width: 61
+height: 154
+
+Frame: 3185
+x: 565
+y: 56
+width: 61
+height: 154
+
+Frame: 3186
+x: 566
+y: 56
+width: 61
+height: 154
+
+Frames: 3187 to 3194
+x: 568
+y: 54
+width: 61
+height: 140
+
+Frame: 3195
+x: 570
+y: 53
+width: 61
+height: 140
+
+Frames: 3196 to 3199
+x: 573
+y: 53
+width: 61
+height: 140
+
+Frame: 3200
+x: 577
+y: 48
+width: 61
+height: 140
+
+Frame: 3201
+x: 587
+y: 48
+width: 51
+height: 140
+
+Frames: 3202 to 3203
+x: 584
+y: 48
+width: 51
+height: 140
+
+Frames: 3204 to 3208
+x: 584
+y: 47
+width: 51
+height: 140
+
+Object Number #11
+Region Description:
+Region 11
+Start Frame:2756
+End Frame:2952
+Region Descriptors (0):
+Region frames data
+Frame: 2756
+x: 253
+y: 399
+width: 100
+height: 85
+
+Frame: 2757
+x: 253
+y: 373
+width: 100
+height: 111
+
+Frames: 2758 to 2759
+x: 255
+y: 370
+width: 100
+height: 112
+
+Frame: 2760
+x: 258
+y: 360
+width: 100
+height: 112
+
+Frame: 2761
+x: 234
+y: 359
+width: 138
+height: 122
+
+Frame: 2762
+x: 239
+y: 360
+width: 138
+height: 122
+
+Frame: 2763
+x: 241
+y: 344
+width: 138
+height: 122
+
+Frame: 2764
+x: 240
+y: 332
+width: 138
+height: 122
+
+Frames: 2765 to 2766
+x: 207
+y: 332
+width: 192
+height: 149
+
+Frames: 2767 to 2768
+x: 207
+y: 325
+width: 192
+height: 149
+
+Frame: 2769
+x: 206
+y: 315
+width: 192
+height: 149
+
+Frame: 2770
+x: 193
+y: 311
+width: 192
+height: 188
+
+Frame: 2771
+x: 194
+y: 308
+width: 192
+height: 188
+
+Frame: 2772
+x: 188
+y: 298
+width: 192
+height: 188
+
+Frame: 2773
+x: 186
+y: 299
+width: 192
+height: 188
+
+Frames: 2774 to 2775
+x: 188
+y: 286
+width: 192
+height: 188
+
+Frames: 2776 to 2777
+x: 178
+y: 281
+width: 192
+height: 235
+
+Frame: 2778
+x: 178
+y: 273
+width: 192
+height: 235
+
+Frame: 2779
+x: 178
+y: 271
+width: 192
+height: 235
+
+Frame: 2780
+x: 173
+y: 266
+width: 192
+height: 235
+
+Frames: 2781 to 2782
+x: 196
+y: 263
+width: 144
+height: 235
+
+Frames: 2783 to 2784
+x: 197
+y: 257
+width: 144
+height: 235
+
+Frame: 2785
+x: 194
+y: 257
+width: 144
+height: 235
+
+Frame: 2786
+x: 187
+y: 254
+width: 144
+height: 235
+
+Frame: 2787
+x: 192
+y: 254
+width: 144
+height: 235
+
+Frame: 2788
+x: 191
+y: 243
+width: 144
+height: 235
+
+Frame: 2789
+x: 191
+y: 241
+width: 144
+height: 235
+
+Frames: 2790 to 2791
+x: 189
+y: 233
+width: 144
+height: 247
+
+Frame: 2792
+x: 188
+y: 233
+width: 144
+height: 247
+
+Frame: 2793
+x: 181
+y: 227
+width: 136
+height: 288
+
+Frames: 2794 to 2795
+x: 175
+y: 227
+width: 136
+height: 288
+
+Frame: 2796
+x: 174
+y: 217
+width: 136
+height: 288
+
+Frame: 2797
+x: 173
+y: 217
+width: 136
+height: 288
+
+Frame: 2798
+x: 171
+y: 217
+width: 136
+height: 288
+
+Frame: 2799
+x: 168
+y: 215
+width: 136
+height: 288
+
+Frame: 2800
+x: 161
+y: 211
+width: 136
+height: 288
+
+Frame: 2801
+x: 160
+y: 206
+width: 136
+height: 288
+
+Frame: 2802
+x: 159
+y: 202
+width: 136
+height: 288
+
+Frame: 2803
+x: 157
+y: 198
+width: 136
+height: 288
+
+Frame: 2804
+x: 156
+y: 195
+width: 136
+height: 288
+
+Frames: 2805 to 2807
+x: 156
+y: 194
+width: 136
+height: 288
+
+Frame: 2808
+x: 146
+y: 185
+width: 136
+height: 288
+
+Frames: 2809 to 2814
+x: 145
+y: 184
+width: 136
+height: 288
+
+Frame: 2815
+x: 144
+y: 177
+width: 136
+height: 288
+
+Frame: 2816
+x: 143
+y: 170
+width: 136
+height: 288
+
+Frame: 2817
+x: 143
+y: 157
+width: 136
+height: 288
+
+Frame: 2818
+x: 138
+y: 162
+width: 136
+height: 288
+
+Frames: 2819 to 2821
+x: 138
+y: 164
+width: 136
+height: 288
+
+Frames: 2822 to 2823
+x: 138
+y: 164
+width: 111
+height: 288
+
+Frame: 2824
+x: 134
+y: 162
+width: 111
+height: 288
+
+Frame: 2825
+x: 133
+y: 159
+width: 111
+height: 288
+
+Frames: 2826 to 2827
+x: 130
+y: 153
+width: 111
+height: 288
+
+Frame: 2828
+x: 126
+y: 153
+width: 111
+height: 288
+
+Frame: 2829
+x: 120
+y: 149
+width: 111
+height: 288
+
+Frame: 2830
+x: 118
+y: 140
+width: 111
+height: 288
+
+Frame: 2831
+x: 118
+y: 137
+width: 111
+height: 288
+
+Frame: 2832
+x: 119
+y: 135
+width: 111
+height: 288
+
+Frame: 2833
+x: 121
+y: 145
+width: 111
+height: 278
+
+Frame: 2834
+x: 123
+y: 142
+width: 111
+height: 278
+
+Frames: 2835 to 2836
+x: 123
+y: 131
+width: 111
+height: 278
+
+Frame: 2837
+x: 120
+y: 130
+width: 111
+height: 278
+
+Frame: 2838
+x: 118
+y: 130
+width: 111
+height: 278
+
+Frame: 2839
+x: 117
+y: 130
+width: 111
+height: 278
+
+Frame: 2840
+x: 111
+y: 129
+width: 111
+height: 278
+
+Frames: 2841 to 2843
+x: 119
+y: 137
+width: 87
+height: 252
+
+Frame: 2844
+x: 113
+y: 135
+width: 87
+height: 252
+
+Frames: 2845 to 2846
+x: 112
+y: 133
+width: 87
+height: 252
+
+Frame: 2847
+x: 112
+y: 132
+width: 87
+height: 252
+
+Frame: 2848
+x: 109
+y: 130
+width: 87
+height: 252
+
+Frame: 2849
+x: 106
+y: 128
+width: 87
+height: 252
+
+Frame: 2850
+x: 103
+y: 127
+width: 87
+height: 252
+
+Frame: 2851
+x: 102
+y: 122
+width: 87
+height: 252
+
+Frame: 2852
+x: 99
+y: 120
+width: 87
+height: 252
+
+Frame: 2853
+x: 98
+y: 119
+width: 87
+height: 252
+
+Frame: 2854
+x: 95
+y: 113
+width: 87
+height: 252
+
+Frames: 2855 to 2856
+x: 91
+y: 111
+width: 87
+height: 252
+
+Frames: 2857 to 2859
+x: 90
+y: 110
+width: 87
+height: 252
+
+Frames: 2860 to 2862
+x: 84
+y: 117
+width: 82
+height: 237
+
+Frame: 2863
+x: 83
+y: 116
+width: 82
+height: 237
+
+Frame: 2864
+x: 79
+y: 107
+width: 82
+height: 237
+
+Frame: 2865
+x: 79
+y: 103
+width: 82
+height: 237
+
+Frame: 2866
+x: 79
+y: 99
+width: 82
+height: 237
+
+Frame: 2867
+x: 75
+y: 98
+width: 82
+height: 237
+
+Frames: 2868 to 2869
+x: 72
+y: 98
+width: 82
+height: 237
+
+Frame: 2870
+x: 69
+y: 109
+width: 82
+height: 237
+
+Frame: 2871
+x: 69
+y: 108
+width: 82
+height: 237
+
+Frames: 2872 to 2873
+x: 69
+y: 105
+width: 82
+height: 237
+
+Frame: 2874
+x: 66
+y: 104
+width: 82
+height: 237
+
+Frames: 2875 to 2877
+x: 66
+y: 100
+width: 75
+height: 226
+
+Frame: 2878
+x: 65
+y: 99
+width: 75
+height: 226
+
+Frames: 2879 to 2881
+x: 52
+y: 99
+width: 75
+height: 226
+
+Frames: 2882 to 2885
+x: 47
+y: 105
+width: 75
+height: 226
+
+Frame: 2886
+x: 46
+y: 95
+width: 75
+height: 226
+
+Frame: 2887
+x: 40
+y: 101
+width: 75
+height: 209
+
+Frames: 2888 to 2889
+x: 42
+y: 101
+width: 75
+height: 209
+
+Frame: 2890
+x: 43
+y: 99
+width: 75
+height: 209
+
+Frame: 2891
+x: 40
+y: 98
+width: 75
+height: 209
+
+Frame: 2892
+x: 24
+y: 101
+width: 75
+height: 209
+
+Frame: 2893
+x: 32
+y: 97
+width: 75
+height: 209
+
+Frame: 2894
+x: 40
+y: 90
+width: 75
+height: 209
+
+Frame: 2895
+x: 34
+y: 92
+width: 75
+height: 209
+
+Frame: 2896
+x: 26
+y: 99
+width: 75
+height: 209
+
+Frame: 2897
+x: 26
+y: 98
+width: 75
+height: 209
+
+Frame: 2898
+x: 23
+y: 81
+width: 75
+height: 209
+
+Frame: 2899
+x: 22
+y: 83
+width: 75
+height: 209
+
+Frames: 2900 to 2901
+x: 21
+y: 103
+width: 75
+height: 209
+
+Frames: 2902 to 2903
+x: 20
+y: 92
+width: 75
+height: 209
+
+Frame: 2904
+x: 19
+y: 90
+width: 75
+height: 209
+
+Frames: 2905 to 2906
+x: 15
+y: 96
+width: 75
+height: 198
+
+Frame: 2907
+x: 13
+y: 97
+width: 75
+height: 198
+
+Frame: 2908
+x: 7
+y: 97
+width: 75
+height: 198
+
+Frame: 2909
+x: 6
+y: 96
+width: 75
+height: 198
+
+Frame: 2910
+x: 6
+y: 95
+width: 75
+height: 198
+
+Frame: 2911
+x: 6
+y: 93
+width: 75
+height: 198
+
+Frame: 2912
+x: 6
+y: 90
+width: 75
+height: 198
+
+Frame: 2913
+x: 6
+y: 88
+width: 75
+height: 198
+
+Frame: 2914
+x: 0
+y: 86
+width: 75
+height: 198
+
+Frame: 2915
+x: -2
+y: 86
+width: 75
+height: 198
+
+Frame: 2916
+x: -2
+y: 85
+width: 75
+height: 198
+
+Frames: 2917 to 2919
+x: -7
+y: 80
+width: 75
+height: 198
+
+Frames: 2920 to 2921
+x: -10
+y: 80
+width: 75
+height: 198
+
+Frame: 2922
+x: -12
+y: 80
+width: 75
+height: 198
+
+Frame: 2923
+x: -17
+y: 81
+width: 75
+height: 198
+
+Frame: 2924
+x: -22
+y: 81
+width: 75
+height: 198
+
+Frames: 2925 to 2926
+x: -22
+y: 82
+width: 75
+height: 198
+
+Frames: 2927 to 2928
+x: -22
+y: 76
+width: 75
+height: 198
+
+Frames: 2929 to 2930
+x: -21
+y: 75
+width: 75
+height: 198
+
+Frame: 2931
+x: -22
+y: 75
+width: 75
+height: 198
+
+Frames: 2932 to 2933
+x: -24
+y: 75
+width: 75
+height: 198
+
+Frame: 2934
+x: -25
+y: 72
+width: 75
+height: 198
+
+Frame: 2935
+x: -26
+y: 71
+width: 75
+height: 198
+
+Frame: 2936
+x: -28
+y: 68
+width: 75
+height: 198
+
+Frames: 2937 to 2939
+x: -28
+y: 74
+width: 62
+height: 191
+
+Frame: 2940
+x: -34
+y: 72
+width: 62
+height: 191
+
+Frames: 2941 to 2942
+x: -37
+y: 69
+width: 62
+height: 191
+
+Frame: 2943
+x: -37
+y: 64
+width: 62
+height: 191
+
+Frames: 2944 to 2946
+x: -36
+y: 63
+width: 62
+height: 191
+
+Frames: 2947 to 2952
+x: -36
+y: 61
+width: 62
+height: 191
+
+Object Number #12
+Region Description:
+Region 12
+Start Frame:3023
+End Frame:3031
+Region Descriptors (0):
+Region frames data
+Frames: 3023 to 3024
+x: 78
+y: 61
+width: 35
+height: 154
+
+Frame: 3025
+x: 77
+y: 61
+width: 35
+height: 154
+
+Frame: 3026
+x: 77
+y: 58
+width: 35
+height: 154
+
+Frame: 3027
+x: 78
+y: 57
+width: 35
+height: 154
+
+Frames: 3028 to 3029
+x: 72
+y: 43
+width: 35
+height: 154
+
+Frames: 3030 to 3031
+x: 63
+y: 36
+width: 35
+height: 154
+
+Object Number #13
+Region Description:
+Region 13
+Start Frame:3062
+End Frame:3156
+Region Descriptors (0):
+Region frames data
+Frames: 3062 to 3067
+x: 89
+y: 42
+width: 39
+height: 111
+
+Frames: 3068 to 3069
+x: 90
+y: 41
+width: 43
+height: 133
+
+Frames: 3070 to 3082
+x: 92
+y: 40
+width: 43
+height: 133
+
+Frame: 3083
+x: 97
+y: 40
+width: 43
+height: 133
+
+Frame: 3084
+x: 98
+y: 40
+width: 43
+height: 133
+
+Frame: 3085
+x: 100
+y: 40
+width: 43
+height: 133
+
+Frames: 3086 to 3089
+x: 103
+y: 40
+width: 43
+height: 133
+
+Frame: 3090
+x: 106
+y: 40
+width: 43
+height: 133
+
+Frames: 3091 to 3098
+x: 107
+y: 40
+width: 43
+height: 133
+
+Frames: 3099 to 3101
+x: 111
+y: 43
+width: 43
+height: 133
+
+Frames: 3102 to 3103
+x: 112
+y: 44
+width: 43
+height: 133
+
+Frames: 3104 to 3105
+x: 113
+y: 43
+width: 43
+height: 133
+
+Frame: 3106
+x: 115
+y: 41
+width: 43
+height: 133
+
+Frames: 3107 to 3113
+x: 117
+y: 40
+width: 43
+height: 133
+
+Frames: 3114 to 3115
+x: 118
+y: 40
+width: 43
+height: 133
+
+Frames: 3116 to 3118
+x: 119
+y: 40
+width: 43
+height: 133
+
+Frames: 3119 to 3125
+x: 124
+y: 37
+width: 43
+height: 133
+
+Frame: 3126
+x: 125
+y: 36
+width: 43
+height: 133
+
+Frames: 3127 to 3133
+x: 126
+y: 36
+width: 43
+height: 133
+
+Frames: 3134 to 3135
+x: 128
+y: 36
+width: 43
+height: 133
+
+Frames: 3136 to 3137
+x: 129
+y: 35
+width: 43
+height: 133
+
+Frame: 3138
+x: 130
+y: 35
+width: 43
+height: 133
+
+Frames: 3139 to 3144
+x: 131
+y: 35
+width: 43
+height: 133
+
+Frame: 3145
+x: 133
+y: 34
+width: 43
+height: 133
+
+Frames: 3146 to 3153
+x: 136
+y: 31
+width: 43
+height: 133
+
+Frames: 3154 to 3156
+x: 136
+y: 30
+width: 43
+height: 133
+
+Object Number #14
+Region Description:
+Region 14
+Start Frame:3191
+End Frame:3200
+Region Descriptors (0):
+Region frames data
+Frames: 3191 to 3195
+x: 163
+y: 31
+width: 29
+height: 119
+
+Frame: 3196
+x: 154
+y: 30
+width: 29
+height: 119
+
+Frames: 3197 to 3200
+x: 150
+y: 30
+width: 29
+height: 119
+
+Object Number #15
+Region Description:
+Region 15
+Start Frame:3255
+End Frame:3404
+Region Descriptors (0):
+Region frames data
+Frames: 3255 to 3262
+x: 171
+y: 33
+width: 39
+height: 116
+
+Frame: 3263
+x: 169
+y: 32
+width: 39
+height: 116
+
+Frames: 3264 to 3265
+x: 164
+y: 32
+width: 39
+height: 116
+
+Frames: 3266 to 3268
+x: 164
+y: 42
+width: 39
+height: 116
+
+Frames: 3269 to 3288
+x: 160
+y: 34
+width: 45
+height: 124
+
+Frames: 3289 to 3290
+x: 154
+y: 43
+width: 45
+height: 124
+
+Frame: 3291
+x: 154
+y: 42
+width: 45
+height: 124
+
+Frames: 3292 to 3294
+x: 151
+y: 42
+width: 45
+height: 124
+
+Frames: 3295 to 3296
+x: 149
+y: 42
+width: 45
+height: 124
+
+Frames: 3297 to 3298
+x: 148
+y: 42
+width: 45
+height: 124
+
+Frame: 3299
+x: 146
+y: 42
+width: 45
+height: 124
+
+Frames: 3300 to 3305
+x: 142
+y: 45
+width: 45
+height: 124
+
+Frames: 3306 to 3310
+x: 140
+y: 46
+width: 45
+height: 124
+
+Frame: 3311
+x: 140
+y: 49
+width: 45
+height: 124
+
+Frame: 3312
+x: 139
+y: 54
+width: 45
+height: 124
+
+Frames: 3313 to 3315
+x: 139
+y: 56
+width: 45
+height: 124
+
+Frames: 3316 to 3319
+x: 139
+y: 57
+width: 45
+height: 124
+
+Frames: 3320 to 3321
+x: 123
+y: 48
+width: 61
+height: 158
+
+Frame: 3322
+x: 120
+y: 48
+width: 61
+height: 158
+
+Frame: 3323
+x: 119
+y: 48
+width: 61
+height: 158
+
+Frame: 3324
+x: 119
+y: 51
+width: 61
+height: 158
+
+Frames: 3325 to 3326
+x: 116
+y: 55
+width: 61
+height: 158
+
+Frames: 3327 to 3331
+x: 114
+y: 52
+width: 61
+height: 158
+
+Frames: 3332 to 3333
+x: 113
+y: 52
+width: 61
+height: 158
+
+Frames: 3334 to 3335
+x: 110
+y: 54
+width: 61
+height: 158
+
+Frames: 3336 to 3339
+x: 108
+y: 58
+width: 61
+height: 158
+
+Frame: 3340
+x: 102
+y: 58
+width: 61
+height: 158
+
+Frames: 3341 to 3342
+x: 100
+y: 58
+width: 61
+height: 158
+
+Frame: 3343
+x: 98
+y: 58
+width: 61
+height: 158
+
+Frames: 3344 to 3345
+x: 96
+y: 58
+width: 61
+height: 169
+
+Frame: 3346
+x: 92
+y: 57
+width: 61
+height: 169
+
+Frame: 3347
+x: 90
+y: 61
+width: 61
+height: 169
+
+Frame: 3348
+x: 88
+y: 64
+width: 61
+height: 169
+
+Frame: 3349
+x: 83
+y: 69
+width: 61
+height: 169
+
+Frame: 3350
+x: 80
+y: 70
+width: 61
+height: 169
+
+Frame: 3351
+x: 76
+y: 69
+width: 61
+height: 169
+
+Frames: 3352 to 3353
+x: 76
+y: 67
+width: 61
+height: 169
+
+Frames: 3354 to 3356
+x: 75
+y: 70
+width: 61
+height: 169
+
+Frames: 3357 to 3358
+x: 70
+y: 71
+width: 61
+height: 169
+
+Frames: 3359 to 3360
+x: 62
+y: 70
+width: 61
+height: 169
+
+Frames: 3361 to 3364
+x: 57
+y: 72
+width: 61
+height: 169
+
+Frames: 3365 to 3366
+x: 56
+y: 73
+width: 61
+height: 169
+
+Frames: 3367 to 3368
+x: 50
+y: 74
+width: 61
+height: 169
+
+Frames: 3369 to 3370
+x: 48
+y: 77
+width: 61
+height: 169
+
+Frames: 3371 to 3372
+x: 45
+y: 77
+width: 62
+height: 187
+
+Frame: 3373
+x: 41
+y: 80
+width: 62
+height: 187
+
+Frames: 3374 to 3375
+x: 39
+y: 82
+width: 62
+height: 187
+
+Frame: 3376
+x: 35
+y: 84
+width: 62
+height: 187
+
+Frames: 3377 to 3378
+x: 33
+y: 87
+width: 62
+height: 187
+
+Frame: 3379
+x: 30
+y: 91
+width: 62
+height: 187
+
+Frame: 3380
+x: 27
+y: 94
+width: 62
+height: 187
+
+Frame: 3381
+x: 26
+y: 94
+width: 62
+height: 187
+
+Frame: 3382
+x: 23
+y: 94
+width: 62
+height: 187
+
+Frame: 3383
+x: 19
+y: 95
+width: 62
+height: 187
+
+Frame: 3384
+x: 19
+y: 96
+width: 62
+height: 187
+
+Frame: 3385
+x: 16
+y: 96
+width: 62
+height: 187
+
+Frames: 3386 to 3387
+x: 15
+y: 87
+width: 62
+height: 200
+
+Frame: 3388
+x: 12
+y: 87
+width: 62
+height: 200
+
+Frame: 3389
+x: 5
+y: 87
+width: 62
+height: 200
+
+Frame: 3390
+x: 2
+y: 88
+width: 62
+height: 200
+
+Frame: 3391
+x: 1
+y: 91
+width: 62
+height: 200
+
+Frame: 3392
+x: -1
+y: 97
+width: 62
+height: 200
+
+Frames: 3393 to 3395
+x: -2
+y: 98
+width: 68
+height: 215
+
+Frame: 3396
+x: -5
+y: 98
+width: 68
+height: 215
+
+Frame: 3397
+x: -8
+y: 102
+width: 68
+height: 215
+
+Frames: 3398 to 3399
+x: -8
+y: 107
+width: 68
+height: 215
+
+Frame: 3400
+x: -12
+y: 107
+width: 68
+height: 215
+
+Frame: 3401
+x: -20
+y: 107
+width: 68
+height: 215
+
+Frames: 3402 to 3403
+x: -31
+y: 121
+width: 68
+height: 215
+
+Frame: 3404
+x: -36
+y: 127
+width: 68
+height: 215
+
+Object Number #16
+Region Description:
+Region 16
+Start Frame:3798
+End Frame:3815
+Region Descriptors (0):
+Region frames data
+Frames: 3798 to 3800
+x: 8
+y: 65
+width: 57
+height: 183
+
+Frame: 3801
+x: 20
+y: 65
+width: 57
+height: 183
+
+Frame: 3802
+x: 29
+y: 65
+width: 57
+height: 183
+
+Frame: 3803
+x: 39
+y: 66
+width: 57
+height: 183
+
+Frame: 3804
+x: 45
+y: 68
+width: 57
+height: 183
+
+Frame: 3805
+x: 48
+y: 68
+width: 57
+height: 183
+
+Frame: 3806
+x: 59
+y: 68
+width: 57
+height: 183
+
+Frame: 3807
+x: 68
+y: 66
+width: 57
+height: 183
+
+Frame: 3808
+x: 73
+y: 64
+width: 57
+height: 183
+
+Frame: 3809
+x: 78
+y: 64
+width: 57
+height: 183
+
+Frame: 3810
+x: 86
+y: 65
+width: 57
+height: 183
+
+Frame: 3811
+x: 89
+y: 65
+width: 57
+height: 183
+
+Frame: 3812
+x: 94
+y: 65
+width: 57
+height: 183
+
+Frame: 3813
+x: 101
+y: 65
+width: 57
+height: 183
+
+Frames: 3814 to 3815
+x: 114
+y: 64
+width: 57
+height: 183
+
+Object Number #17
+Region Description:
+Region 17
+Start Frame:3843
+End Frame:3883
+Region Descriptors (0):
+Region frames data
+Frames: 3843 to 3844
+x: 344
+y: 75
+width: 60
+height: 159
+
+Frame: 3845
+x: 349
+y: 74
+width: 60
+height: 159
+
+Frame: 3846
+x: 359
+y: 74
+width: 60
+height: 159
+
+Frame: 3847
+x: 363
+y: 70
+width: 60
+height: 159
+
+Frame: 3848
+x: 381
+y: 67
+width: 60
+height: 159
+
+Frame: 3849
+x: 381
+y: 67
+width: 60
+height: 163
+
+Frame: 3850
+x: 385
+y: 66
+width: 60
+height: 163
+
+Frame: 3851
+x: 391
+y: 66
+width: 60
+height: 163
+
+Frame: 3852
+x: 392
+y: 66
+width: 60
+height: 163
+
+Frame: 3853
+x: 399
+y: 66
+width: 60
+height: 163
+
+Frame: 3854
+x: 405
+y: 66
+width: 60
+height: 163
+
+Frame: 3855
+x: 409
+y: 67
+width: 60
+height: 163
+
+Frame: 3856
+x: 420
+y: 67
+width: 60
+height: 163
+
+Frame: 3857
+x: 427
+y: 67
+width: 60
+height: 163
+
+Frame: 3858
+x: 441
+y: 67
+width: 60
+height: 163
+
+Frame: 3859
+x: 445
+y: 66
+width: 60
+height: 163
+
+Frame: 3860
+x: 452
+y: 66
+width: 60
+height: 163
+
+Frame: 3861
+x: 456
+y: 65
+width: 60
+height: 163
+
+Frame: 3862
+x: 459
+y: 64
+width: 60
+height: 163
+
+Frame: 3863
+x: 461
+y: 64
+width: 60
+height: 163
+
+Frame: 3864
+x: 477
+y: 65
+width: 60
+height: 163
+
+Frame: 3865
+x: 486
+y: 65
+width: 60
+height: 163
+
+Frame: 3866
+x: 494
+y: 65
+width: 60
+height: 163
+
+Frame: 3867
+x: 512
+y: 67
+width: 60
+height: 163
+
+Frame: 3868
+x: 517
+y: 67
+width: 60
+height: 163
+
+Frame: 3869
+x: 521
+y: 67
+width: 60
+height: 163
+
+Frame: 3870
+x: 529
+y: 67
+width: 60
+height: 163
+
+Frame: 3871
+x: 534
+y: 66
+width: 60
+height: 163
+
+Frame: 3872
+x: 542
+y: 65
+width: 60
+height: 163
+
+Frame: 3873
+x: 555
+y: 61
+width: 60
+height: 163
+
+Frame: 3874
+x: 566
+y: 59
+width: 60
+height: 163
+
+Frame: 3875
+x: 568
+y: 59
+width: 60
+height: 163
+
+Frame: 3876
+x: 576
+y: 62
+width: 60
+height: 163
+
+Frames: 3877 to 3878
+x: 577
+y: 62
+width: 60
+height: 163
+
+Frame: 3879
+x: 580
+y: 62
+width: 60
+height: 163
+
+Frame: 3880
+x: 581
+y: 62
+width: 60
+height: 163
+
+Frame: 3881
+x: 585
+y: 62
+width: 60
+height: 163
+
+Frames: 3882 to 3883
+x: 590
+y: 59
+width: 60
+height: 163
+
+Object Number #18
+Region Description:
+Region 18
+Start Frame:3837
+End Frame:3858
+Region Descriptors (0):
+Region frames data
+Frame: 3837
+x: -5
+y: 96
+width: 57
+height: 194
+
+Frames: 3838 to 3842
+x: 10
+y: 93
+width: 57
+height: 194
+
+Frame: 3843
+x: 21
+y: 92
+width: 57
+height: 194
+
+Frame: 3844
+x: 33
+y: 87
+width: 57
+height: 194
+
+Frame: 3845
+x: 34
+y: 87
+width: 57
+height: 194
+
+Frame: 3846
+x: 44
+y: 86
+width: 57
+height: 194
+
+Frame: 3847
+x: 52
+y: 84
+width: 57
+height: 194
+
+Frame: 3848
+x: 62
+y: 82
+width: 57
+height: 194
+
+Frame: 3849
+x: 70
+y: 79
+width: 57
+height: 194
+
+Frame: 3850
+x: 73
+y: 78
+width: 57
+height: 194
+
+Frame: 3851
+x: 78
+y: 78
+width: 57
+height: 194
+
+Frame: 3852
+x: 84
+y: 76
+width: 57
+height: 194
+
+Frame: 3853
+x: 85
+y: 75
+width: 57
+height: 194
+
+Frame: 3854
+x: 87
+y: 73
+width: 57
+height: 194
+
+Frame: 3855
+x: 91
+y: 73
+width: 57
+height: 194
+
+Frame: 3856
+x: 101
+y: 73
+width: 57
+height: 194
+
+Frame: 3857
+x: 109
+y: 71
+width: 57
+height: 194
+
+Frame: 3858
+x: 114
+y: 69
+width: 57
+height: 194
+
+Object Number #19
+Region Description:
+Region 19
+Start Frame:3865
+End Frame:3887
+Region Descriptors (0):
+Region frames data
+Frames: 3865 to 3866
+x: 173
+y: 76
+width: 43
+height: 171
+
+Frame: 3867
+x: 186
+y: 76
+width: 43
+height: 171
+
+Frame: 3868
+x: 189
+y: 76
+width: 43
+height: 171
+
+Frame: 3869
+x: 190
+y: 76
+width: 43
+height: 171
+
+Frame: 3870
+x: 199
+y: 76
+width: 43
+height: 171
+
+Frame: 3871
+x: 207
+y: 75
+width: 43
+height: 171
+
+Frame: 3872
+x: 217
+y: 74
+width: 43
+height: 171
+
+Frame: 3873
+x: 227
+y: 74
+width: 43
+height: 171
+
+Frame: 3874
+x: 233
+y: 71
+width: 43
+height: 171
+
+Frame: 3875
+x: 239
+y: 68
+width: 43
+height: 171
+
+Frame: 3876
+x: 246
+y: 66
+width: 43
+height: 171
+
+Frames: 3877 to 3878
+x: 251
+y: 64
+width: 43
+height: 171
+
+Frame: 3879
+x: 259
+y: 64
+width: 43
+height: 171
+
+Frame: 3880
+x: 260
+y: 64
+width: 43
+height: 171
+
+Frame: 3881
+x: 261
+y: 64
+width: 43
+height: 171
+
+Frame: 3882
+x: 266
+y: 64
+width: 43
+height: 171
+
+Frame: 3883
+x: 273
+y: 64
+width: 43
+height: 171
+
+Frame: 3884
+x: 279
+y: 64
+width: 43
+height: 171
+
+Frames: 3885 to 3887
+x: 293
+y: 64
+width: 43
+height: 171
+
+Object Number #20
+Region Description:
+Region 20
+Start Frame:3945
+End Frame:4105
+Region Descriptors (0):
+Region frames data
+Frames: 3945 to 3946
+x: -12
+y: 104
+width: 79
+height: 186
+
+Frame: 3947
+x: 10
+y: 104
+width: 79
+height: 186
+
+Frames: 3948 to 3949
+x: 11
+y: 104
+width: 79
+height: 186
+
+Frame: 3950
+x: 15
+y: 104
+width: 79
+height: 186
+
+Frame: 3951
+x: 26
+y: 104
+width: 79
+height: 186
+
+Frame: 3952
+x: 35
+y: 104
+width: 79
+height: 186
+
+Frame: 3953
+x: 49
+y: 104
+width: 79
+height: 186
+
+Frame: 3954
+x: 53
+y: 104
+width: 79
+height: 186
+
+Frame: 3955
+x: 58
+y: 104
+width: 79
+height: 186
+
+Frame: 3956
+x: 64
+y: 104
+width: 79
+height: 186
+
+Frame: 3957
+x: 66
+y: 102
+width: 79
+height: 186
+
+Frame: 3958
+x: 71
+y: 102
+width: 79
+height: 186
+
+Frame: 3959
+x: 81
+y: 100
+width: 79
+height: 186
+
+Frame: 3960
+x: 90
+y: 98
+width: 79
+height: 186
+
+Frame: 3961
+x: 93
+y: 98
+width: 79
+height: 186
+
+Frame: 3962
+x: 104
+y: 101
+width: 79
+height: 186
+
+Frame: 3963
+x: 108
+y: 101
+width: 79
+height: 186
+
+Frame: 3964
+x: 112
+y: 99
+width: 79
+height: 186
+
+Frame: 3965
+x: 113
+y: 96
+width: 79
+height: 186
+
+Frames: 3966 to 3967
+x: 121
+y: 94
+width: 79
+height: 186
+
+Frame: 3968
+x: 134
+y: 93
+width: 79
+height: 186
+
+Frames: 3969 to 3970
+x: 146
+y: 93
+width: 66
+height: 190
+
+Frame: 3971
+x: 149
+y: 92
+width: 66
+height: 190
+
+Frame: 3972
+x: 162
+y: 91
+width: 66
+height: 190
+
+Frame: 3973
+x: 164
+y: 91
+width: 66
+height: 190
+
+Frame: 3974
+x: 171
+y: 90
+width: 66
+height: 190
+
+Frame: 3975
+x: 176
+y: 90
+width: 66
+height: 190
+
+Frame: 3976
+x: 180
+y: 90
+width: 66
+height: 190
+
+Frame: 3977
+x: 187
+y: 90
+width: 66
+height: 190
+
+Frame: 3978
+x: 196
+y: 90
+width: 66
+height: 190
+
+Frame: 3979
+x: 205
+y: 92
+width: 66
+height: 190
+
+Frame: 3980
+x: 220
+y: 92
+width: 66
+height: 190
+
+Frame: 3981
+x: 224
+y: 92
+width: 66
+height: 190
+
+Frame: 3982
+x: 225
+y: 92
+width: 66
+height: 190
+
+Frame: 3983
+x: 227
+y: 92
+width: 66
+height: 190
+
+Frame: 3984
+x: 237
+y: 91
+width: 66
+height: 190
+
+Frame: 3985
+x: 246
+y: 91
+width: 66
+height: 190
+
+Frames: 3986 to 3988
+x: 252
+y: 91
+width: 66
+height: 190
+
+Frame: 3989
+x: 253
+y: 91
+width: 66
+height: 190
+
+Frames: 3990 to 3991
+x: 256
+y: 91
+width: 66
+height: 190
+
+Frame: 3992
+x: 259
+y: 91
+width: 66
+height: 190
+
+Frame: 3993
+x: 271
+y: 91
+width: 66
+height: 190
+
+Frame: 3994
+x: 280
+y: 92
+width: 66
+height: 190
+
+Frame: 3995
+x: 281
+y: 92
+width: 66
+height: 190
+
+Frame: 3996
+x: 301
+y: 92
+width: 66
+height: 190
+
+Frame: 3997
+x: 301
+y: 93
+width: 66
+height: 190
+
+Frame: 3998
+x: 302
+y: 93
+width: 66
+height: 190
+
+Frame: 3999
+x: 307
+y: 92
+width: 66
+height: 190
+
+Frames: 4000 to 4001
+x: 309
+y: 92
+width: 66
+height: 190
+
+Frame: 4002
+x: 319
+y: 94
+width: 66
+height: 190
+
+Frame: 4003
+x: 325
+y: 94
+width: 66
+height: 190
+
+Frame: 4004
+x: 332
+y: 95
+width: 66
+height: 190
+
+Frame: 4005
+x: 335
+y: 95
+width: 66
+height: 190
+
+Frame: 4006
+x: 344
+y: 95
+width: 66
+height: 190
+
+Frame: 4007
+x: 348
+y: 95
+width: 66
+height: 190
+
+Frame: 4008
+x: 349
+y: 95
+width: 66
+height: 190
+
+Frame: 4009
+x: 364
+y: 95
+width: 66
+height: 190
+
+Frames: 4010 to 4011
+x: 371
+y: 95
+width: 66
+height: 190
+
+Frame: 4012
+x: 373
+y: 95
+width: 66
+height: 190
+
+Frame: 4013
+x: 377
+y: 94
+width: 66
+height: 190
+
+Frame: 4014
+x: 378
+y: 94
+width: 66
+height: 190
+
+Frame: 4015
+x: 392
+y: 98
+width: 66
+height: 190
+
+Frames: 4016 to 4017
+x: 394
+y: 98
+width: 66
+height: 190
+
+Frames: 4018 to 4019
+x: 393
+y: 97
+width: 66
+height: 190
+
+Frame: 4020
+x: 398
+y: 97
+width: 66
+height: 190
+
+Frame: 4021
+x: 407
+y: 97
+width: 66
+height: 190
+
+Frame: 4022
+x: 411
+y: 97
+width: 66
+height: 190
+
+Frame: 4023
+x: 417
+y: 97
+width: 66
+height: 190
+
+Frame: 4024
+x: 425
+y: 97
+width: 66
+height: 190
+
+Frame: 4025
+x: 427
+y: 98
+width: 66
+height: 190
+
+Frames: 4026 to 4027
+x: 431
+y: 98
+width: 66
+height: 190
+
+Frames: 4028 to 4031
+x: 432
+y: 98
+width: 66
+height: 190
+
+Frame: 4032
+x: 436
+y: 97
+width: 66
+height: 190
+
+Frame: 4033
+x: 443
+y: 97
+width: 66
+height: 190
+
+Frames: 4034 to 4035
+x: 445
+y: 97
+width: 66
+height: 190
+
+Frame: 4036
+x: 451
+y: 97
+width: 66
+height: 190
+
+Frames: 4037 to 4038
+x: 453
+y: 97
+width: 66
+height: 190
+
+Frame: 4039
+x: 461
+y: 98
+width: 66
+height: 190
+
+Frames: 4040 to 4041
+x: 462
+y: 98
+width: 66
+height: 190
+
+Frame: 4042
+x: 466
+y: 98
+width: 66
+height: 190
+
+Frames: 4043 to 4047
+x: 467
+y: 98
+width: 66
+height: 190
+
+Frame: 4048
+x: 468
+y: 98
+width: 66
+height: 190
+
+Frame: 4049
+x: 475
+y: 98
+width: 66
+height: 190
+
+Frame: 4050
+x: 482
+y: 99
+width: 66
+height: 190
+
+Frame: 4051
+x: 488
+y: 100
+width: 66
+height: 190
+
+Frames: 4052 to 4053
+x: 490
+y: 100
+width: 66
+height: 190
+
+Frames: 4054 to 4056
+x: 497
+y: 100
+width: 66
+height: 190
+
+Frames: 4057 to 4059
+x: 499
+y: 100
+width: 66
+height: 190
+
+Frames: 4060 to 4063
+x: 500
+y: 100
+width: 66
+height: 190
+
+Frame: 4064
+x: 501
+y: 100
+width: 66
+height: 190
+
+Frame: 4065
+x: 510
+y: 100
+width: 66
+height: 190
+
+Frame: 4066
+x: 522
+y: 100
+width: 66
+height: 190
+
+Frame: 4067
+x: 523
+y: 100
+width: 66
+height: 190
+
+Frame: 4068
+x: 528
+y: 100
+width: 66
+height: 190
+
+Frames: 4069 to 4070
+x: 533
+y: 100
+width: 66
+height: 190
+
+Frame: 4071
+x: 534
+y: 100
+width: 66
+height: 190
+
+Frame: 4072
+x: 536
+y: 100
+width: 66
+height: 190
+
+Frames: 4073 to 4075
+x: 537
+y: 100
+width: 66
+height: 190
+
+Frames: 4076 to 4078
+x: 540
+y: 100
+width: 66
+height: 190
+
+Frame: 4079
+x: 545
+y: 100
+width: 66
+height: 190
+
+Frame: 4080
+x: 546
+y: 100
+width: 66
+height: 190
+
+Frame: 4081
+x: 552
+y: 100
+width: 66
+height: 190
+
+Frames: 4082 to 4083
+x: 557
+y: 100
+width: 66
+height: 190
+
+Frames: 4084 to 4086
+x: 563
+y: 100
+width: 66
+height: 190
+
+Frame: 4087
+x: 571
+y: 102
+width: 66
+height: 190
+
+Frames: 4088 to 4089
+x: 573
+y: 102
+width: 66
+height: 190
+
+Frame: 4090
+x: 575
+y: 104
+width: 66
+height: 190
+
+Frames: 4091 to 4093
+x: 579
+y: 105
+width: 66
+height: 190
+
+Frame: 4094
+x: 585
+y: 106
+width: 66
+height: 190
+
+Frame: 4095
+x: 587
+y: 106
+width: 66
+height: 190
+
+Frames: 4096 to 4099
+x: 589
+y: 106
+width: 66
+height: 190
+
+Frame: 4100
+x: 596
+y: 107
+width: 66
+height: 190
+
+Frame: 4101
+x: 599
+y: 107
+width: 66
+height: 190
+
+Frame: 4102
+x: 600
+y: 108
+width: 66
+height: 190
+
+Frame: 4103
+x: 605
+y: 110
+width: 66
+height: 190
+
+Frames: 4104 to 4105
+x: 608
+y: 110
+width: 66
+height: 190
+
+Object Number #21
+Region Description:
+Region 21
+Start Frame:4230
+End Frame:4303
+Region Descriptors (0):
+Region frames data
+Frame: 4230
+x: 9
+y: 36
+width: 52
+height: 110
+
+Frame: 4231
+x: 14
+y: 36
+width: 52
+height: 110
+
+Frames: 4232 to 4233
+x: 23
+y: 37
+width: 52
+height: 110
+
+Frame: 4234
+x: 25
+y: 37
+width: 52
+height: 110
+
+Frame: 4235
+x: 25
+y: 36
+width: 52
+height: 110
+
+Frames: 4236 to 4237
+x: 25
+y: 35
+width: 52
+height: 110
+
+Frames: 4238 to 4239
+x: 26
+y: 34
+width: 52
+height: 110
+
+Frame: 4240
+x: 33
+y: 38
+width: 52
+height: 110
+
+Frame: 4241
+x: 39
+y: 38
+width: 52
+height: 110
+
+Frame: 4242
+x: 39
+y: 39
+width: 52
+height: 110
+
+Frame: 4243
+x: 45
+y: 39
+width: 52
+height: 110
+
+Frame: 4244
+x: 49
+y: 37
+width: 52
+height: 110
+
+Frame: 4245
+x: 49
+y: 33
+width: 52
+height: 110
+
+Frame: 4246
+x: 61
+y: 33
+width: 52
+height: 110
+
+Frame: 4247
+x: 62
+y: 32
+width: 52
+height: 110
+
+Frame: 4248
+x: 62
+y: 31
+width: 52
+height: 110
+
+Frames: 4249 to 4252
+x: 62
+y: 31
+width: 53
+height: 101
+
+Frame: 4253
+x: 71
+y: 32
+width: 53
+height: 101
+
+Frame: 4254
+x: 77
+y: 32
+width: 53
+height: 101
+
+Frame: 4255
+x: 81
+y: 30
+width: 53
+height: 101
+
+Frame: 4256
+x: 90
+y: 26
+width: 53
+height: 101
+
+Frame: 4257
+x: 91
+y: 26
+width: 53
+height: 101
+
+Frame: 4258
+x: 94
+y: 27
+width: 53
+height: 101
+
+Frames: 4259 to 4260
+x: 97
+y: 27
+width: 53
+height: 101
+
+Frame: 4261
+x: 102
+y: 27
+width: 53
+height: 101
+
+Frames: 4262 to 4263
+x: 107
+y: 29
+width: 39
+height: 97
+
+Frame: 4264
+x: 118
+y: 34
+width: 39
+height: 97
+
+Frame: 4265
+x: 119
+y: 34
+width: 39
+height: 97
+
+Frame: 4266
+x: 120
+y: 31
+width: 39
+height: 97
+
+Frame: 4267
+x: 129
+y: 30
+width: 39
+height: 97
+
+Frames: 4268 to 4269
+x: 132
+y: 30
+width: 39
+height: 97
+
+Frames: 4270 to 4271
+x: 135
+y: 30
+width: 39
+height: 97
+
+Frame: 4272
+x: 135
+y: 29
+width: 39
+height: 97
+
+Frame: 4273
+x: 139
+y: 28
+width: 39
+height: 97
+
+Frames: 4274 to 4275
+x: 142
+y: 23
+width: 39
+height: 97
+
+Frame: 4276
+x: 146
+y: 23
+width: 39
+height: 97
+
+Frame: 4277
+x: 152
+y: 22
+width: 39
+height: 97
+
+Frame: 4278
+x: 156
+y: 21
+width: 39
+height: 97
+
+Frame: 4279
+x: 161
+y: 20
+width: 39
+height: 97
+
+Frames: 4280 to 4281
+x: 169
+y: 17
+width: 39
+height: 97
+
+Frame: 4282
+x: 185
+y: 17
+width: 39
+height: 97
+
+Frames: 4283 to 4290
+x: 186
+y: 17
+width: 39
+height: 97
+
+Frames: 4291 to 4293
+x: 199
+y: 20
+width: 39
+height: 97
+
+Frames: 4294 to 4296
+x: 203
+y: 19
+width: 39
+height: 97
+
+Frame: 4297
+x: 210
+y: 16
+width: 39
+height: 97
+
+Frame: 4298
+x: 215
+y: 16
+width: 39
+height: 97
+
+Frame: 4299
+x: 216
+y: 16
+width: 39
+height: 97
+
+Frames: 4300 to 4302
+x: 217
+y: 16
+width: 39
+height: 97
+
+Frame: 4303
+x: 229
+y: 16
+width: 39
+height: 97
+
+Object Number #22
+Region Description:
+Region 22
+Start Frame:4404
+End Frame:4552
+Region Descriptors (0):
+Region frames data
+Frames: 4404 to 4405
+x: -8
+y: 125
+width: 69
+height: 253
+
+Frames: 4406 to 4410
+x: 3
+y: 125
+width: 69
+height: 253
+
+Frames: 4411 to 4412
+x: 3
+y: 150
+width: 69
+height: 228
+
+Frame: 4413
+x: 7
+y: 150
+width: 69
+height: 228
+
+Frames: 4414 to 4415
+x: 14
+y: 150
+width: 69
+height: 228
+
+Frame: 4416
+x: 16
+y: 148
+width: 69
+height: 228
+
+Frame: 4417
+x: 16
+y: 145
+width: 69
+height: 228
+
+Frames: 4418 to 4419
+x: 17
+y: 145
+width: 69
+height: 228
+
+Frames: 4420 to 4426
+x: 21
+y: 145
+width: 69
+height: 228
+
+Frame: 4427
+x: 27
+y: 145
+width: 69
+height: 228
+
+Frame: 4428
+x: 34
+y: 145
+width: 69
+height: 228
+
+Frames: 4429 to 4431
+x: 38
+y: 145
+width: 69
+height: 228
+
+Frame: 4432
+x: 38
+y: 146
+width: 69
+height: 228
+
+Frame: 4433
+x: 45
+y: 150
+width: 69
+height: 228
+
+Frame: 4434
+x: 47
+y: 151
+width: 69
+height: 228
+
+Frames: 4435 to 4436
+x: 56
+y: 156
+width: 69
+height: 228
+
+Frame: 4437
+x: 58
+y: 156
+width: 69
+height: 228
+
+Frame: 4438
+x: 64
+y: 159
+width: 69
+height: 228
+
+Frame: 4439
+x: 65
+y: 160
+width: 69
+height: 228
+
+Frame: 4440
+x: 68
+y: 159
+width: 69
+height: 228
+
+Frames: 4441 to 4443
+x: 73
+y: 157
+width: 69
+height: 228
+
+Frames: 4444 to 4448
+x: 80
+y: 157
+width: 61
+height: 228
+
+Frame: 4449
+x: 86
+y: 157
+width: 61
+height: 228
+
+Frame: 4450
+x: 94
+y: 157
+width: 61
+height: 228
+
+Frame: 4451
+x: 96
+y: 157
+width: 61
+height: 228
+
+Frames: 4452 to 4453
+x: 97
+y: 156
+width: 61
+height: 228
+
+Frames: 4454 to 4455
+x: 97
+y: 170
+width: 61
+height: 228
+
+Frame: 4456
+x: 98
+y: 170
+width: 61
+height: 228
+
+Frames: 4457 to 4460
+x: 99
+y: 169
+width: 61
+height: 228
+
+Frame: 4461
+x: 100
+y: 169
+width: 61
+height: 228
+
+Frame: 4462
+x: 105
+y: 169
+width: 61
+height: 228
+
+Frames: 4463 to 4465
+x: 107
+y: 169
+width: 61
+height: 228
+
+Frames: 4466 to 4467
+x: 107
+y: 164
+width: 61
+height: 228
+
+Frame: 4468
+x: 111
+y: 167
+width: 61
+height: 228
+
+Frame: 4469
+x: 114
+y: 168
+width: 61
+height: 228
+
+Frames: 4470 to 4471
+x: 116
+y: 163
+width: 67
+height: 227
+
+Frames: 4472 to 4473
+x: 115
+y: 163
+width: 67
+height: 227
+
+Frames: 4474 to 4475
+x: 123
+y: 163
+width: 67
+height: 227
+
+Frame: 4476
+x: 122
+y: 161
+width: 67
+height: 227
+
+Frame: 4477
+x: 120
+y: 161
+width: 67
+height: 227
+
+Frame: 4478
+x: 117
+y: 160
+width: 67
+height: 227
+
+Frames: 4479 to 4484
+x: 112
+y: 159
+width: 67
+height: 227
+
+Frame: 4485
+x: 111
+y: 159
+width: 67
+height: 227
+
+Frames: 4486 to 4488
+x: 110
+y: 159
+width: 67
+height: 227
+
+Frame: 4489
+x: 108
+y: 160
+width: 67
+height: 227
+
+Frame: 4490
+x: 107
+y: 161
+width: 67
+height: 227
+
+Frames: 4491 to 4493
+x: 107
+y: 162
+width: 67
+height: 227
+
+Frames: 4494 to 4498
+x: 107
+y: 163
+width: 67
+height: 227
+
+Frame: 4499
+x: 101
+y: 164
+width: 67
+height: 227
+
+Frames: 4500 to 4509
+x: 100
+y: 163
+width: 67
+height: 227
+
+Frame: 4510
+x: 96
+y: 163
+width: 67
+height: 227
+
+Frame: 4511
+x: 93
+y: 163
+width: 67
+height: 227
+
+Frames: 4512 to 4513
+x: 92
+y: 163
+width: 67
+height: 227
+
+Frames: 4514 to 4516
+x: 72
+y: 162
+width: 67
+height: 102
+
+Frame: 4517
+x: 72
+y: 163
+width: 67
+height: 102
+
+Frame: 4518
+x: 61
+y: 162
+width: 67
+height: 102
+
+Frame: 4519
+x: 58
+y: 162
+width: 67
+height: 102
+
+Frame: 4520
+x: 49
+y: 160
+width: 67
+height: 102
+
+Frame: 4521
+x: 48
+y: 160
+width: 67
+height: 102
+
+Frame: 4522
+x: 46
+y: 158
+width: 67
+height: 102
+
+Frame: 4523
+x: 45
+y: 158
+width: 67
+height: 102
+
+Frame: 4524
+x: 44
+y: 158
+width: 67
+height: 102
+
+Frame: 4525
+x: 41
+y: 157
+width: 67
+height: 102
+
+Frame: 4526
+x: 34
+y: 156
+width: 67
+height: 102
+
+Frames: 4527 to 4528
+x: 34
+y: 155
+width: 67
+height: 102
+
+Frame: 4529
+x: 27
+y: 155
+width: 67
+height: 102
+
+Frame: 4530
+x: 21
+y: 155
+width: 67
+height: 102
+
+Frames: 4531 to 4532
+x: 20
+y: 156
+width: 67
+height: 102
+
+Frames: 4533 to 4534
+x: 16
+y: 156
+width: 67
+height: 102
+
+Frames: 4535 to 4536
+x: 11
+y: 164
+width: 73
+height: 71
+
+Frame: 4537
+x: 9
+y: 164
+width: 73
+height: 71
+
+Frame: 4538
+x: 7
+y: 164
+width: 73
+height: 71
+
+Frame: 4539
+x: 5
+y: 164
+width: 73
+height: 71
+
+Frame: 4540
+x: 4
+y: 164
+width: 73
+height: 71
+
+Frame: 4541
+x: -2
+y: 167
+width: 73
+height: 71
+
+Frames: 4542 to 4544
+x: -4
+y: 167
+width: 73
+height: 71
+
+Frame: 4545
+x: -11
+y: 167
+width: 73
+height: 71
+
+Frames: 4546 to 4547
+x: -15
+y: 170
+width: 73
+height: 71
+
+Frame: 4548
+x: -20
+y: 170
+width: 73
+height: 71
+
+Frame: 4549
+x: -23
+y: 170
+width: 73
+height: 71
+
+Frame: 4550
+x: -27
+y: 170
+width: 73
+height: 71
+
+Frames: 4551 to 4552
+x: -29
+y: 170
+width: 73
+height: 71
+
+Object Number #23
+Region Description:
+Region 23
+Start Frame:4415
+End Frame:4549
+Region Descriptors (0):
+Region frames data
+Frames: 4415 to 4417
+x: -19
+y: 177
+width: 83
+height: 267
+
+Frames: 4418 to 4421
+x: -12
+y: 176
+width: 83
+height: 267
+
+Frame: 4422
+x: -8
+y: 176
+width: 83
+height: 267
+
+Frame: 4423
+x: 4
+y: 176
+width: 83
+height: 267
+
+Frame: 4424
+x: 5
+y: 176
+width: 83
+height: 267
+
+Frames: 4425 to 4426
+x: 6
+y: 176
+width: 83
+height: 267
+
+Frame: 4427
+x: 7
+y: 176
+width: 83
+height: 267
+
+Frame: 4428
+x: 8
+y: 173
+width: 83
+height: 267
+
+Frame: 4429
+x: 8
+y: 171
+width: 83
+height: 267
+
+Frames: 4430 to 4431
+x: 12
+y: 174
+width: 83
+height: 267
+
+Frame: 4432
+x: 14
+y: 174
+width: 83
+height: 267
+
+Frames: 4433 to 4434
+x: 17
+y: 174
+width: 83
+height: 267
+
+Frame: 4435
+x: 19
+y: 174
+width: 83
+height: 267
+
+Frames: 4436 to 4437
+x: 26
+y: 174
+width: 83
+height: 267
+
+Frame: 4438
+x: 30
+y: 174
+width: 83
+height: 267
+
+Frame: 4439
+x: 36
+y: 172
+width: 83
+height: 267
+
+Frame: 4440
+x: 40
+y: 173
+width: 83
+height: 267
+
+Frame: 4441
+x: 45
+y: 174
+width: 83
+height: 267
+
+Frames: 4442 to 4445
+x: 51
+y: 175
+width: 83
+height: 267
+
+Frames: 4446 to 4447
+x: 47
+y: 176
+width: 83
+height: 267
+
+Frame: 4448
+x: 49
+y: 179
+width: 83
+height: 267
+
+Frames: 4449 to 4453
+x: 50
+y: 180
+width: 83
+height: 267
+
+Frame: 4454
+x: 47
+y: 188
+width: 83
+height: 267
+
+Frames: 4455 to 4456
+x: 47
+y: 189
+width: 83
+height: 267
+
+Frame: 4457
+x: 49
+y: 198
+width: 83
+height: 267
+
+Frames: 4458 to 4459
+x: 50
+y: 201
+width: 83
+height: 267
+
+Frames: 4460 to 4461
+x: 53
+y: 197
+width: 83
+height: 267
+
+Frame: 4462
+x: 56
+y: 197
+width: 83
+height: 267
+
+Frame: 4463
+x: 63
+y: 194
+width: 83
+height: 267
+
+Frame: 4464
+x: 64
+y: 194
+width: 83
+height: 267
+
+Frame: 4465
+x: 68
+y: 194
+width: 83
+height: 267
+
+Frame: 4466
+x: 69
+y: 194
+width: 83
+height: 267
+
+Frame: 4467
+x: 71
+y: 194
+width: 83
+height: 267
+
+Frame: 4468
+x: 77
+y: 193
+width: 83
+height: 267
+
+Frame: 4469
+x: 83
+y: 193
+width: 83
+height: 267
+
+Frames: 4470 to 4490
+x: 86
+y: 190
+width: 83
+height: 267
+
+Frame: 4491
+x: 84
+y: 190
+width: 83
+height: 267
+
+Frames: 4492 to 4504
+x: 79
+y: 189
+width: 83
+height: 267
+
+Frames: 4505 to 4508
+x: 70
+y: 189
+width: 83
+height: 267
+
+Frame: 4509
+x: 68
+y: 189
+width: 83
+height: 267
+
+Frame: 4510
+x: 65
+y: 189
+width: 83
+height: 267
+
+Frames: 4511 to 4512
+x: 60
+y: 192
+width: 83
+height: 267
+
+Frames: 4513 to 4516
+x: 51
+y: 192
+width: 83
+height: 267
+
+Frames: 4517 to 4518
+x: 49
+y: 191
+width: 83
+height: 267
+
+Frame: 4519
+x: 48
+y: 191
+width: 83
+height: 267
+
+Frame: 4520
+x: 44
+y: 195
+width: 83
+height: 267
+
+Frame: 4521
+x: 42
+y: 195
+width: 83
+height: 267
+
+Frame: 4522
+x: 38
+y: 195
+width: 83
+height: 267
+
+Frame: 4523
+x: 37
+y: 192
+width: 83
+height: 267
+
+Frame: 4524
+x: 37
+y: 189
+width: 83
+height: 267
+
+Frame: 4525
+x: 37
+y: 190
+width: 83
+height: 267
+
+Frame: 4526
+x: 34
+y: 194
+width: 83
+height: 267
+
+Frame: 4527
+x: 29
+y: 194
+width: 83
+height: 267
+
+Frames: 4528 to 4529
+x: 26
+y: 195
+width: 83
+height: 267
+
+Frame: 4530
+x: 24
+y: 195
+width: 83
+height: 267
+
+Frame: 4531
+x: 22
+y: 194
+width: 83
+height: 267
+
+Frame: 4532
+x: 22
+y: 192
+width: 83
+height: 267
+
+Frame: 4533
+x: 19
+y: 190
+width: 83
+height: 267
+
+Frame: 4534
+x: 13
+y: 190
+width: 83
+height: 267
+
+Frames: 4535 to 4536
+x: 8
+y: 190
+width: 83
+height: 267
+
+Frames: 4537 to 4539
+x: 5
+y: 190
+width: 83
+height: 267
+
+Frame: 4540
+x: 4
+y: 190
+width: 83
+height: 267
+
+Frame: 4541
+x: -3
+y: 190
+width: 83
+height: 267
+
+Frames: 4542 to 4543
+x: -9
+y: 189
+width: 83
+height: 267
+
+Frame: 4544
+x: -13
+y: 189
+width: 83
+height: 267
+
+Frames: 4545 to 4549
+x: -16
+y: 189
+width: 83
+height: 267
+
+Object Number #24
+Region Description:
+Region 24
+Start Frame:4865
+End Frame:5166
+Region Descriptors (0):
+Region frames data
+Frame: 4865
+x: 606
+y: 113
+width: 38
+height: 199
+
+Frames: 4866 to 4867
+x: 605
+y: 112
+width: 38
+height: 199
+
+Frame: 4868
+x: 604
+y: 112
+width: 38
+height: 199
+
+Frames: 4869 to 4873
+x: 600
+y: 112
+width: 38
+height: 199
+
+Frame: 4874
+x: 579
+y: 112
+width: 59
+height: 199
+
+Frames: 4875 to 4880
+x: 576
+y: 113
+width: 59
+height: 199
+
+Frames: 4881 to 4882
+x: 567
+y: 114
+width: 59
+height: 199
+
+Frame: 4883
+x: 566
+y: 113
+width: 59
+height: 199
+
+Frame: 4884
+x: 565
+y: 113
+width: 59
+height: 199
+
+Frame: 4885
+x: 563
+y: 111
+width: 59
+height: 199
+
+Frame: 4886
+x: 561
+y: 111
+width: 59
+height: 199
+
+Frames: 4887 to 4888
+x: 554
+y: 110
+width: 59
+height: 199
+
+Frame: 4889
+x: 552
+y: 108
+width: 59
+height: 199
+
+Frame: 4890
+x: 547
+y: 108
+width: 59
+height: 199
+
+Frame: 4891
+x: 547
+y: 107
+width: 59
+height: 199
+
+Frames: 4892 to 4894
+x: 539
+y: 108
+width: 59
+height: 199
+
+Frames: 4895 to 4896
+x: 535
+y: 108
+width: 59
+height: 199
+
+Frame: 4897
+x: 534
+y: 108
+width: 59
+height: 199
+
+Frame: 4898
+x: 531
+y: 108
+width: 59
+height: 199
+
+Frames: 4899 to 4900
+x: 524
+y: 108
+width: 59
+height: 199
+
+Frame: 4901
+x: 523
+y: 108
+width: 59
+height: 199
+
+Frames: 4902 to 4903
+x: 520
+y: 107
+width: 59
+height: 199
+
+Frame: 4904
+x: 518
+y: 104
+width: 59
+height: 199
+
+Frames: 4905 to 4906
+x: 515
+y: 100
+width: 59
+height: 201
+
+Frame: 4907
+x: 513
+y: 100
+width: 59
+height: 201
+
+Frame: 4908
+x: 506
+y: 100
+width: 59
+height: 201
+
+Frames: 4909 to 4911
+x: 497
+y: 99
+width: 59
+height: 201
+
+Frame: 4912
+x: 496
+y: 98
+width: 59
+height: 201
+
+Frame: 4913
+x: 496
+y: 96
+width: 59
+height: 201
+
+Frame: 4914
+x: 492
+y: 96
+width: 59
+height: 201
+
+Frame: 4915
+x: 488
+y: 96
+width: 59
+height: 201
+
+Frame: 4916
+x: 486
+y: 96
+width: 59
+height: 201
+
+Frame: 4917
+x: 482
+y: 96
+width: 59
+height: 201
+
+Frame: 4918
+x: 481
+y: 95
+width: 59
+height: 201
+
+Frame: 4919
+x: 478
+y: 95
+width: 59
+height: 201
+
+Frame: 4920
+x: 474
+y: 96
+width: 59
+height: 201
+
+Frames: 4921 to 4925
+x: 470
+y: 100
+width: 59
+height: 201
+
+Frame: 4926
+x: 466
+y: 99
+width: 59
+height: 201
+
+Frame: 4927
+x: 464
+y: 99
+width: 59
+height: 201
+
+Frame: 4928
+x: 458
+y: 97
+width: 59
+height: 201
+
+Frames: 4929 to 4930
+x: 451
+y: 99
+width: 59
+height: 201
+
+Frame: 4931
+x: 450
+y: 96
+width: 59
+height: 201
+
+Frames: 4932 to 4933
+x: 449
+y: 93
+width: 59
+height: 201
+
+Frames: 4934 to 4936
+x: 442
+y: 93
+width: 59
+height: 201
+
+Frame: 4937
+x: 437
+y: 93
+width: 59
+height: 201
+
+Frames: 4938 to 4939
+x: 436
+y: 93
+width: 59
+height: 201
+
+Frame: 4940
+x: 435
+y: 93
+width: 59
+height: 201
+
+Frame: 4941
+x: 427
+y: 92
+width: 59
+height: 201
+
+Frame: 4942
+x: 423
+y: 92
+width: 59
+height: 201
+
+Frames: 4943 to 4948
+x: 417
+y: 93
+width: 59
+height: 201
+
+Frame: 4949
+x: 412
+y: 94
+width: 59
+height: 201
+
+Frame: 4950
+x: 410
+y: 94
+width: 59
+height: 201
+
+Frame: 4951
+x: 406
+y: 94
+width: 59
+height: 201
+
+Frame: 4952
+x: 398
+y: 94
+width: 59
+height: 201
+
+Frames: 4953 to 4954
+x: 397
+y: 94
+width: 59
+height: 201
+
+Frames: 4955 to 4957
+x: 396
+y: 94
+width: 59
+height: 201
+
+Frame: 4958
+x: 392
+y: 97
+width: 59
+height: 201
+
+Frame: 4959
+x: 391
+y: 100
+width: 59
+height: 201
+
+Frames: 4960 to 4963
+x: 391
+y: 99
+width: 59
+height: 201
+
+Frame: 4964
+x: 387
+y: 98
+width: 59
+height: 201
+
+Frame: 4965
+x: 386
+y: 98
+width: 59
+height: 201
+
+Frames: 4966 to 4968
+x: 377
+y: 100
+width: 59
+height: 201
+
+Frames: 4969 to 4974
+x: 369
+y: 100
+width: 59
+height: 201
+
+Frame: 4975
+x: 367
+y: 100
+width: 59
+height: 201
+
+Frames: 4976 to 4977
+x: 360
+y: 100
+width: 59
+height: 201
+
+Frames: 4978 to 4996
+x: 354
+y: 100
+width: 59
+height: 201
+
+Frames: 4997 to 5007
+x: 347
+y: 101
+width: 59
+height: 201
+
+Frames: 5008 to 5009
+x: 344
+y: 98
+width: 59
+height: 201
+
+Frame: 5010
+x: 337
+y: 89
+width: 59
+height: 201
+
+Frames: 5011 to 5013
+x: 340
+y: 89
+width: 59
+height: 201
+
+Frames: 5014 to 5016
+x: 337
+y: 88
+width: 59
+height: 201
+
+Frame: 5017
+x: 325
+y: 86
+width: 59
+height: 201
+
+Frame: 5018
+x: 321
+y: 82
+width: 59
+height: 201
+
+Frame: 5019
+x: 319
+y: 75
+width: 59
+height: 201
+
+Frames: 5020 to 5021
+x: 312
+y: 74
+width: 59
+height: 201
+
+Frame: 5022
+x: 309
+y: 75
+width: 59
+height: 201
+
+Frame: 5023
+x: 306
+y: 78
+width: 59
+height: 201
+
+Frames: 5024 to 5025
+x: 306
+y: 79
+width: 59
+height: 201
+
+Frames: 5026 to 5027
+x: 304
+y: 79
+width: 59
+height: 201
+
+Frame: 5028
+x: 301
+y: 79
+width: 59
+height: 201
+
+Frames: 5029 to 5030
+x: 294
+y: 80
+width: 59
+height: 201
+
+Frames: 5031 to 5033
+x: 288
+y: 81
+width: 59
+height: 201
+
+Frames: 5034 to 5035
+x: 284
+y: 80
+width: 59
+height: 201
+
+Frames: 5036 to 5041
+x: 274
+y: 80
+width: 59
+height: 201
+
+Frame: 5042
+x: 270
+y: 79
+width: 59
+height: 201
+
+Frame: 5043
+x: 267
+y: 77
+width: 59
+height: 201
+
+Frames: 5044 to 5045
+x: 262
+y: 73
+width: 59
+height: 201
+
+Frame: 5046
+x: 259
+y: 73
+width: 59
+height: 201
+
+Frame: 5047
+x: 258
+y: 73
+width: 59
+height: 201
+
+Frame: 5048
+x: 257
+y: 73
+width: 59
+height: 201
+
+Frame: 5049
+x: 246
+y: 78
+width: 59
+height: 201
+
+Frame: 5050
+x: 244
+y: 78
+width: 59
+height: 201
+
+Frame: 5051
+x: 240
+y: 80
+width: 59
+height: 201
+
+Frames: 5052 to 5055
+x: 233
+y: 82
+width: 59
+height: 201
+
+Frame: 5056
+x: 232
+y: 82
+width: 59
+height: 201
+
+Frame: 5057
+x: 226
+y: 82
+width: 59
+height: 201
+
+Frame: 5058
+x: 222
+y: 82
+width: 59
+height: 201
+
+Frames: 5059 to 5060
+x: 219
+y: 82
+width: 59
+height: 201
+
+Frames: 5061 to 5064
+x: 218
+y: 82
+width: 59
+height: 201
+
+Frames: 5065 to 5066
+x: 217
+y: 82
+width: 59
+height: 201
+
+Frame: 5067
+x: 216
+y: 81
+width: 59
+height: 201
+
+Frame: 5068
+x: 207
+y: 80
+width: 59
+height: 201
+
+Frame: 5069
+x: 203
+y: 80
+width: 59
+height: 201
+
+Frame: 5070
+x: 202
+y: 79
+width: 59
+height: 201
+
+Frame: 5071
+x: 198
+y: 79
+width: 59
+height: 201
+
+Frame: 5072
+x: 197
+y: 79
+width: 59
+height: 201
+
+Frames: 5073 to 5075
+x: 196
+y: 79
+width: 59
+height: 201
+
+Frame: 5076
+x: 191
+y: 79
+width: 59
+height: 201
+
+Frame: 5077
+x: 187
+y: 79
+width: 59
+height: 201
+
+Frame: 5078
+x: 183
+y: 79
+width: 59
+height: 201
+
+Frame: 5079
+x: 180
+y: 79
+width: 59
+height: 201
+
+Frames: 5080 to 5081
+x: 177
+y: 79
+width: 59
+height: 201
+
+Frames: 5082 to 5087
+x: 174
+y: 79
+width: 59
+height: 201
+
+Frame: 5088
+x: 169
+y: 79
+width: 59
+height: 201
+
+Frame: 5089
+x: 162
+y: 79
+width: 59
+height: 201
+
+Frame: 5090
+x: 157
+y: 79
+width: 59
+height: 201
+
+Frame: 5091
+x: 150
+y: 79
+width: 59
+height: 201
+
+Frame: 5092
+x: 142
+y: 77
+width: 59
+height: 201
+
+Frames: 5093 to 5097
+x: 146
+y: 77
+width: 59
+height: 201
+
+Frames: 5098 to 5099
+x: 140
+y: 77
+width: 59
+height: 201
+
+Frame: 5100
+x: 137
+y: 77
+width: 59
+height: 201
+
+Frame: 5101
+x: 135
+y: 77
+width: 59
+height: 201
+
+Frame: 5102
+x: 133
+y: 77
+width: 59
+height: 201
+
+Frame: 5103
+x: 130
+y: 78
+width: 59
+height: 201
+
+Frame: 5104
+x: 127
+y: 78
+width: 59
+height: 201
+
+Frames: 5105 to 5106
+x: 124
+y: 78
+width: 59
+height: 201
+
+Frames: 5107 to 5108
+x: 121
+y: 78
+width: 59
+height: 201
+
+Frame: 5109
+x: 113
+y: 78
+width: 59
+height: 201
+
+Frame: 5110
+x: 109
+y: 78
+width: 59
+height: 201
+
+Frame: 5111
+x: 108
+y: 78
+width: 59
+height: 201
+
+Frame: 5112
+x: 107
+y: 78
+width: 59
+height: 201
+
+Frames: 5113 to 5115
+x: 105
+y: 78
+width: 59
+height: 201
+
+Frame: 5116
+x: 104
+y: 78
+width: 59
+height: 201
+
+Frames: 5117 to 5118
+x: 103
+y: 78
+width: 59
+height: 201
+
+Frame: 5119
+x: 94
+y: 78
+width: 59
+height: 201
+
+Frame: 5120
+x: 92
+y: 78
+width: 59
+height: 201
+
+Frame: 5121
+x: 87
+y: 79
+width: 59
+height: 201
+
+Frame: 5122
+x: 84
+y: 80
+width: 59
+height: 201
+
+Frame: 5123
+x: 78
+y: 82
+width: 59
+height: 201
+
+Frame: 5124
+x: 76
+y: 82
+width: 59
+height: 201
+
+Frame: 5125
+x: 75
+y: 82
+width: 59
+height: 201
+
+Frame: 5126
+x: 74
+y: 82
+width: 59
+height: 201
+
+Frame: 5127
+x: 73
+y: 82
+width: 59
+height: 201
+
+Frames: 5128 to 5129
+x: 69
+y: 82
+width: 59
+height: 201
+
+Frame: 5130
+x: 68
+y: 82
+width: 59
+height: 201
+
+Frame: 5131
+x: 61
+y: 82
+width: 59
+height: 201
+
+Frame: 5132
+x: 56
+y: 82
+width: 59
+height: 201
+
+Frame: 5133
+x: 51
+y: 82
+width: 59
+height: 201
+
+Frames: 5134 to 5137
+x: 50
+y: 82
+width: 59
+height: 201
+
+Frame: 5138
+x: 46
+y: 83
+width: 59
+height: 201
+
+Frame: 5139
+x: 41
+y: 83
+width: 59
+height: 201
+
+Frame: 5140
+x: 40
+y: 83
+width: 59
+height: 201
+
+Frame: 5141
+x: 32
+y: 83
+width: 59
+height: 201
+
+Frames: 5142 to 5144
+x: 23
+y: 83
+width: 59
+height: 201
+
+Frames: 5145 to 5149
+x: 18
+y: 84
+width: 59
+height: 201
+
+Frame: 5150
+x: 14
+y: 84
+width: 59
+height: 201
+
+Frame: 5151
+x: 8
+y: 84
+width: 59
+height: 201
+
+Frames: 5152 to 5153
+x: 4
+y: 85
+width: 59
+height: 201
+
+Frames: 5154 to 5155
+x: 3
+y: 85
+width: 59
+height: 201
+
+Frame: 5156
+x: 1
+y: 85
+width: 59
+height: 201
+
+Frame: 5157
+x: -3
+y: 85
+width: 59
+height: 201
+
+Frame: 5158
+x: -4
+y: 86
+width: 59
+height: 201
+
+Frames: 5159 to 5160
+x: -9
+y: 92
+width: 59
+height: 201
+
+Frame: 5161
+x: -9
+y: 91
+width: 59
+height: 201
+
+Frames: 5162 to 5163
+x: -9
+y: 88
+width: 59
+height: 201
+
+Frame: 5164
+x: -11
+y: 88
+width: 59
+height: 201
+
+Frame: 5165
+x: -12
+y: 88
+width: 59
+height: 201
+
+Frame: 5166
+x: -20
+y: 90
+width: 59
+height: 201
+
+Object Number #25
+Region Description:
+Region 25
+Start Frame:4839
+End Frame:4925
+Region Descriptors (0):
+Region frames data
+Frame: 4839
+x: 602
+y: 74
+width: 44
+height: 165
+
+Frame: 4840
+x: 599
+y: 74
+width: 44
+height: 165
+
+Frame: 4841
+x: 586
+y: 73
+width: 44
+height: 165
+
+Frames: 4842 to 4843
+x: 581
+y: 71
+width: 44
+height: 165
+
+Frame: 4844
+x: 577
+y: 71
+width: 44
+height: 165
+
+Frame: 4845
+x: 573
+y: 70
+width: 44
+height: 165
+
+Frame: 4846
+x: 570
+y: 70
+width: 44
+height: 165
+
+Frame: 4847
+x: 562
+y: 69
+width: 44
+height: 165
+
+Frames: 4848 to 4849
+x: 558
+y: 68
+width: 44
+height: 165
+
+Frame: 4850
+x: 554
+y: 68
+width: 44
+height: 165
+
+Frames: 4851 to 4852
+x: 546
+y: 67
+width: 44
+height: 165
+
+Frame: 4853
+x: 545
+y: 67
+width: 44
+height: 165
+
+Frame: 4854
+x: 543
+y: 67
+width: 44
+height: 165
+
+Frame: 4855
+x: 541
+y: 67
+width: 44
+height: 165
+
+Frame: 4856
+x: 522
+y: 65
+width: 44
+height: 165
+
+Frame: 4857
+x: 520
+y: 65
+width: 44
+height: 165
+
+Frame: 4858
+x: 512
+y: 64
+width: 44
+height: 78
+
+Frame: 4859
+x: 506
+y: 62
+width: 44
+height: 78
+
+Frames: 4860 to 4864
+x: 492
+y: 60
+width: 44
+height: 78
+
+Frame: 4865
+x: 486
+y: 60
+width: 44
+height: 78
+
+Frame: 4866
+x: 481
+y: 60
+width: 44
+height: 78
+
+Frame: 4867
+x: 476
+y: 62
+width: 44
+height: 78
+
+Frame: 4868
+x: 471
+y: 64
+width: 44
+height: 78
+
+Frames: 4869 to 4870
+x: 470
+y: 64
+width: 44
+height: 78
+
+Frame: 4871
+x: 467
+y: 64
+width: 44
+height: 78
+
+Frame: 4872
+x: 464
+y: 64
+width: 44
+height: 78
+
+Frame: 4873
+x: 462
+y: 64
+width: 44
+height: 78
+
+Frame: 4874
+x: 456
+y: 64
+width: 44
+height: 78
+
+Frame: 4875
+x: 446
+y: 63
+width: 44
+height: 78
+
+Frames: 4876 to 4877
+x: 445
+y: 63
+width: 44
+height: 78
+
+Frame: 4878
+x: 434
+y: 63
+width: 44
+height: 78
+
+Frame: 4879
+x: 433
+y: 63
+width: 44
+height: 78
+
+Frame: 4880
+x: 422
+y: 64
+width: 44
+height: 78
+
+Frame: 4881
+x: 417
+y: 64
+width: 44
+height: 78
+
+Frame: 4882
+x: 415
+y: 64
+width: 44
+height: 78
+
+Frame: 4883
+x: 409
+y: 65
+width: 44
+height: 78
+
+Frame: 4884
+x: 407
+y: 65
+width: 44
+height: 78
+
+Frame: 4885
+x: 393
+y: 65
+width: 44
+height: 78
+
+Frame: 4886
+x: 389
+y: 67
+width: 44
+height: 78
+
+Frame: 4887
+x: 385
+y: 67
+width: 44
+height: 78
+
+Frame: 4888
+x: 384
+y: 67
+width: 44
+height: 78
+
+Frame: 4889
+x: 380
+y: 67
+width: 44
+height: 78
+
+Frame: 4890
+x: 367
+y: 66
+width: 44
+height: 78
+
+Frame: 4891
+x: 366
+y: 66
+width: 44
+height: 78
+
+Frame: 4892
+x: 358
+y: 66
+width: 44
+height: 78
+
+Frame: 4893
+x: 354
+y: 65
+width: 44
+height: 78
+
+Frame: 4894
+x: 342
+y: 64
+width: 44
+height: 78
+
+Frame: 4895
+x: 333
+y: 64
+width: 44
+height: 78
+
+Frame: 4896
+x: 330
+y: 64
+width: 44
+height: 78
+
+Frame: 4897
+x: 327
+y: 63
+width: 44
+height: 78
+
+Frame: 4898
+x: 319
+y: 63
+width: 44
+height: 78
+
+Frames: 4899 to 4900
+x: 318
+y: 63
+width: 44
+height: 78
+
+Frame: 4901
+x: 304
+y: 63
+width: 44
+height: 78
+
+Frame: 4902
+x: 301
+y: 63
+width: 44
+height: 78
+
+Frame: 4903
+x: 295
+y: 63
+width: 44
+height: 78
+
+Frame: 4904
+x: 288
+y: 63
+width: 44
+height: 78
+
+Frame: 4905
+x: 287
+y: 63
+width: 44
+height: 78
+
+Frame: 4906
+x: 283
+y: 63
+width: 44
+height: 78
+
+Frames: 4907 to 4908
+x: 271
+y: 63
+width: 44
+height: 78
+
+Frame: 4909
+x: 267
+y: 63
+width: 44
+height: 78
+
+Frame: 4910
+x: 260
+y: 63
+width: 44
+height: 78
+
+Frame: 4911
+x: 258
+y: 63
+width: 44
+height: 78
+
+Frame: 4912
+x: 254
+y: 64
+width: 44
+height: 78
+
+Frame: 4913
+x: 250
+y: 64
+width: 44
+height: 78
+
+Frames: 4914 to 4915
+x: 244
+y: 64
+width: 44
+height: 78
+
+Frame: 4916
+x: 241
+y: 64
+width: 44
+height: 78
+
+Frame: 4917
+x: 237
+y: 64
+width: 44
+height: 78
+
+Frame: 4918
+x: 234
+y: 64
+width: 44
+height: 78
+
+Frame: 4919
+x: 231
+y: 63
+width: 44
+height: 78
+
+Frame: 4920
+x: 225
+y: 61
+width: 44
+height: 78
+
+Frame: 4921
+x: 219
+y: 60
+width: 44
+height: 78
+
+Frame: 4922
+x: 214
+y: 60
+width: 44
+height: 78
+
+Frame: 4923
+x: 208
+y: 60
+width: 44
+height: 78
+
+Frame: 4924
+x: 203
+y: 60
+width: 44
+height: 78
+
+Frame: 4925
+x: 201
+y: 60
+width: 44
+height: 78
+
+Object Number #26
+Region Description:
+Region 26
+Start Frame:4843
+End Frame:4924
+Region Descriptors (0):
+Region frames data
+Frames: 4843 to 4844
+x: 609
+y: 94
+width: 48
+height: 174
+
+Frames: 4845 to 4846
+x: 592
+y: 93
+width: 48
+height: 174
+
+Frame: 4847
+x: 583
+y: 93
+width: 48
+height: 174
+
+Frame: 4848
+x: 581
+y: 93
+width: 48
+height: 174
+
+Frame: 4849
+x: 579
+y: 93
+width: 48
+height: 174
+
+Frame: 4850
+x: 572
+y: 93
+width: 48
+height: 174
+
+Frame: 4851
+x: 564
+y: 93
+width: 48
+height: 174
+
+Frame: 4852
+x: 561
+y: 93
+width: 48
+height: 174
+
+Frame: 4853
+x: 553
+y: 89
+width: 48
+height: 174
+
+Frame: 4854
+x: 548
+y: 88
+width: 48
+height: 174
+
+Frame: 4855
+x: 547
+y: 88
+width: 48
+height: 174
+
+Frame: 4856
+x: 533
+y: 88
+width: 48
+height: 174
+
+Frame: 4857
+x: 526
+y: 88
+width: 48
+height: 174
+
+Frame: 4858
+x: 525
+y: 88
+width: 48
+height: 174
+
+Frame: 4859
+x: 520
+y: 88
+width: 48
+height: 174
+
+Frame: 4860
+x: 514
+y: 88
+width: 48
+height: 174
+
+Frame: 4861
+x: 511
+y: 88
+width: 48
+height: 174
+
+Frame: 4862
+x: 506
+y: 88
+width: 48
+height: 174
+
+Frame: 4863
+x: 491
+y: 88
+width: 48
+height: 174
+
+Frame: 4864
+x: 484
+y: 88
+width: 48
+height: 174
+
+Frame: 4865
+x: 479
+y: 88
+width: 48
+height: 174
+
+Frame: 4866
+x: 471
+y: 89
+width: 48
+height: 174
+
+Frame: 4867
+x: 470
+y: 89
+width: 48
+height: 174
+
+Frame: 4868
+x: 468
+y: 89
+width: 48
+height: 174
+
+Frame: 4869
+x: 455
+y: 89
+width: 48
+height: 174
+
+Frame: 4870
+x: 454
+y: 89
+width: 48
+height: 174
+
+Frames: 4871 to 4873
+x: 442
+y: 88
+width: 48
+height: 174
+
+Frame: 4874
+x: 440
+y: 88
+width: 48
+height: 174
+
+Frames: 4875 to 4876
+x: 435
+y: 92
+width: 48
+height: 174
+
+Frame: 4877
+x: 429
+y: 91
+width: 48
+height: 174
+
+Frame: 4878
+x: 420
+y: 90
+width: 48
+height: 174
+
+Frame: 4879
+x: 416
+y: 89
+width: 48
+height: 174
+
+Frame: 4880
+x: 414
+y: 89
+width: 48
+height: 174
+
+Frame: 4881
+x: 409
+y: 88
+width: 48
+height: 174
+
+Frame: 4882
+x: 405
+y: 88
+width: 48
+height: 174
+
+Frame: 4883
+x: 403
+y: 88
+width: 48
+height: 174
+
+Frame: 4884
+x: 394
+y: 87
+width: 48
+height: 174
+
+Frame: 4885
+x: 388
+y: 87
+width: 48
+height: 174
+
+Frame: 4886
+x: 378
+y: 87
+width: 48
+height: 174
+
+Frame: 4887
+x: 369
+y: 85
+width: 48
+height: 174
+
+Frames: 4888 to 4889
+x: 368
+y: 85
+width: 48
+height: 174
+
+Frame: 4890
+x: 365
+y: 85
+width: 48
+height: 174
+
+Frame: 4891
+x: 362
+y: 84
+width: 48
+height: 174
+
+Frame: 4892
+x: 348
+y: 85
+width: 48
+height: 174
+
+Frame: 4893
+x: 330
+y: 86
+width: 48
+height: 174
+
+Frame: 4894
+x: 329
+y: 86
+width: 48
+height: 174
+
+Frame: 4895
+x: 328
+y: 86
+width: 48
+height: 174
+
+Frame: 4896
+x: 318
+y: 84
+width: 48
+height: 174
+
+Frames: 4897 to 4898
+x: 316
+y: 81
+width: 48
+height: 174
+
+Frame: 4899
+x: 312
+y: 80
+width: 48
+height: 174
+
+Frame: 4900
+x: 309
+y: 80
+width: 48
+height: 174
+
+Frame: 4901
+x: 303
+y: 80
+width: 48
+height: 174
+
+Frame: 4902
+x: 290
+y: 78
+width: 48
+height: 174
+
+Frame: 4903
+x: 286
+y: 78
+width: 48
+height: 174
+
+Frame: 4904
+x: 280
+y: 77
+width: 48
+height: 174
+
+Frames: 4905 to 4907
+x: 276
+y: 77
+width: 48
+height: 174
+
+Frames: 4908 to 4910
+x: 261
+y: 77
+width: 48
+height: 174
+
+Frame: 4911
+x: 245
+y: 75
+width: 48
+height: 174
+
+Frame: 4912
+x: 242
+y: 75
+width: 48
+height: 174
+
+Frame: 4913
+x: 235
+y: 75
+width: 48
+height: 174
+
+Frames: 4914 to 4916
+x: 250
+y: 77
+width: 48
+height: 174
+
+Frame: 4917
+x: 246
+y: 77
+width: 48
+height: 174
+
+Frame: 4918
+x: 243
+y: 77
+width: 48
+height: 174
+
+Frame: 4919
+x: 237
+y: 77
+width: 48
+height: 174
+
+Frame: 4920
+x: 229
+y: 77
+width: 48
+height: 174
+
+Frame: 4921
+x: 222
+y: 77
+width: 48
+height: 174
+
+Frame: 4922
+x: 220
+y: 78
+width: 48
+height: 174
+
+Frame: 4923
+x: 218
+y: 78
+width: 48
+height: 174
+
+Frame: 4924
+x: 217
+y: 78
+width: 48
+height: 174
+
+Object Number #27
+Region Description:
+Region 27
+Start Frame:4857
+End Frame:4905
+Region Descriptors (0):
+Region frames data
+Frames: 4857 to 4858
+x: 607
+y: 62
+width: 42
+height: 55
+
+Frame: 4859
+x: 600
+y: 61
+width: 42
+height: 55
+
+Frame: 4860
+x: 598
+y: 60
+width: 42
+height: 55
+
+Frame: 4861
+x: 591
+y: 59
+width: 42
+height: 55
+
+Frame: 4862
+x: 583
+y: 58
+width: 42
+height: 55
+
+Frame: 4863
+x: 580
+y: 58
+width: 42
+height: 55
+
+Frame: 4864
+x: 574
+y: 58
+width: 42
+height: 55
+
+Frames: 4865 to 4866
+x: 568
+y: 58
+width: 42
+height: 55
+
+Frame: 4867
+x: 562
+y: 57
+width: 42
+height: 55
+
+Frame: 4868
+x: 554
+y: 57
+width: 42
+height: 55
+
+Frame: 4869
+x: 552
+y: 57
+width: 42
+height: 55
+
+Frame: 4870
+x: 547
+y: 57
+width: 42
+height: 55
+
+Frame: 4871
+x: 539
+y: 57
+width: 42
+height: 55
+
+Frame: 4872
+x: 535
+y: 57
+width: 42
+height: 55
+
+Frame: 4873
+x: 528
+y: 57
+width: 42
+height: 55
+
+Frame: 4874
+x: 521
+y: 59
+width: 42
+height: 55
+
+Frame: 4875
+x: 517
+y: 59
+width: 42
+height: 55
+
+Frame: 4876
+x: 511
+y: 59
+width: 42
+height: 55
+
+Frame: 4877
+x: 507
+y: 59
+width: 42
+height: 55
+
+Frame: 4878
+x: 502
+y: 59
+width: 42
+height: 55
+
+Frame: 4879
+x: 494
+y: 59
+width: 42
+height: 55
+
+Frame: 4880
+x: 489
+y: 59
+width: 42
+height: 55
+
+Frame: 4881
+x: 473
+y: 59
+width: 42
+height: 55
+
+Frame: 4882
+x: 468
+y: 59
+width: 42
+height: 55
+
+Frame: 4883
+x: 459
+y: 59
+width: 42
+height: 55
+
+Frame: 4884
+x: 451
+y: 60
+width: 42
+height: 55
+
+Frame: 4885
+x: 447
+y: 60
+width: 42
+height: 55
+
+Frame: 4886
+x: 446
+y: 60
+width: 42
+height: 55
+
+Frame: 4887
+x: 443
+y: 59
+width: 42
+height: 55
+
+Frame: 4888
+x: 442
+y: 58
+width: 42
+height: 55
+
+Frame: 4889
+x: 436
+y: 57
+width: 42
+height: 55
+
+Frame: 4890
+x: 432
+y: 57
+width: 42
+height: 55
+
+Frame: 4891
+x: 426
+y: 56
+width: 42
+height: 55
+
+Frame: 4892
+x: 421
+y: 55
+width: 42
+height: 55
+
+Frame: 4893
+x: 418
+y: 53
+width: 42
+height: 55
+
+Frame: 4894
+x: 415
+y: 52
+width: 42
+height: 55
+
+Frame: 4895
+x: 403
+y: 54
+width: 42
+height: 55
+
+Frame: 4896
+x: 400
+y: 54
+width: 42
+height: 55
+
+Frames: 4897 to 4898
+x: 397
+y: 55
+width: 42
+height: 55
+
+Frame: 4899
+x: 395
+y: 55
+width: 42
+height: 55
+
+Frame: 4900
+x: 391
+y: 55
+width: 42
+height: 55
+
+Frame: 4901
+x: 388
+y: 55
+width: 42
+height: 55
+
+Frame: 4902
+x: 381
+y: 55
+width: 42
+height: 55
+
+Frame: 4903
+x: 374
+y: 55
+width: 42
+height: 55
+
+Frame: 4904
+x: 355
+y: 55
+width: 42
+height: 55
+
+Frame: 4905
+x: 357
+y: 49
+width: 42
+height: 55
+
+Object Number #28
+Region Description:
+Region 28
+Start Frame:4856
+End Frame:4944
+Region Descriptors (0):
+Region frames data
+Frames: 4856 to 4858
+x: 583
+y: 91
+width: 56
+height: 170
+
+Frame: 4859
+x: 573
+y: 90
+width: 56
+height: 170
+
+Frame: 4860
+x: 570
+y: 90
+width: 56
+height: 170
+
+Frame: 4861
+x: 567
+y: 89
+width: 56
+height: 170
+
+Frame: 4862
+x: 566
+y: 88
+width: 56
+height: 170
+
+Frame: 4863
+x: 558
+y: 86
+width: 56
+height: 170
+
+Frame: 4864
+x: 552
+y: 84
+width: 56
+height: 170
+
+Frame: 4865
+x: 545
+y: 84
+width: 56
+height: 170
+
+Frame: 4866
+x: 537
+y: 85
+width: 56
+height: 170
+
+Frame: 4867
+x: 535
+y: 85
+width: 56
+height: 170
+
+Frame: 4868
+x: 532
+y: 85
+width: 56
+height: 170
+
+Frame: 4869
+x: 526
+y: 85
+width: 56
+height: 170
+
+Frame: 4870
+x: 522
+y: 85
+width: 56
+height: 170
+
+Frame: 4871
+x: 512
+y: 85
+width: 56
+height: 170
+
+Frame: 4872
+x: 505
+y: 85
+width: 56
+height: 170
+
+Frame: 4873
+x: 503
+y: 85
+width: 56
+height: 170
+
+Frame: 4874
+x: 492
+y: 84
+width: 56
+height: 170
+
+Frame: 4875
+x: 490
+y: 84
+width: 56
+height: 170
+
+Frame: 4876
+x: 485
+y: 83
+width: 56
+height: 170
+
+Frame: 4877
+x: 479
+y: 82
+width: 56
+height: 170
+
+Frame: 4878
+x: 476
+y: 82
+width: 56
+height: 170
+
+Frame: 4879
+x: 471
+y: 82
+width: 56
+height: 170
+
+Frame: 4880
+x: 461
+y: 84
+width: 56
+height: 170
+
+Frame: 4881
+x: 445
+y: 84
+width: 56
+height: 170
+
+Frames: 4882 to 4884
+x: 439
+y: 84
+width: 56
+height: 170
+
+Frame: 4885
+x: 436
+y: 84
+width: 56
+height: 170
+
+Frame: 4886
+x: 429
+y: 84
+width: 56
+height: 170
+
+Frames: 4887 to 4888
+x: 428
+y: 84
+width: 56
+height: 170
+
+Frame: 4889
+x: 423
+y: 84
+width: 56
+height: 170
+
+Frames: 4890 to 4891
+x: 418
+y: 84
+width: 56
+height: 170
+
+Frame: 4892
+x: 408
+y: 82
+width: 56
+height: 170
+
+Frame: 4893
+x: 397
+y: 80
+width: 56
+height: 170
+
+Frame: 4894
+x: 389
+y: 80
+width: 56
+height: 170
+
+Frames: 4895 to 4897
+x: 384
+y: 80
+width: 56
+height: 170
+
+Frame: 4898
+x: 383
+y: 80
+width: 56
+height: 170
+
+Frame: 4899
+x: 374
+y: 79
+width: 56
+height: 170
+
+Frame: 4900
+x: 371
+y: 77
+width: 56
+height: 170
+
+Frame: 4901
+x: 366
+y: 76
+width: 56
+height: 170
+
+Frame: 4902
+x: 357
+y: 76
+width: 56
+height: 170
+
+Frame: 4903
+x: 351
+y: 76
+width: 56
+height: 170
+
+Frame: 4904
+x: 350
+y: 76
+width: 56
+height: 170
+
+Frames: 4905 to 4906
+x: 342
+y: 77
+width: 56
+height: 170
+
+Frame: 4907
+x: 333
+y: 77
+width: 56
+height: 170
+
+Frame: 4908
+x: 331
+y: 76
+width: 56
+height: 170
+
+Frame: 4909
+x: 325
+y: 76
+width: 56
+height: 170
+
+Frame: 4910
+x: 321
+y: 76
+width: 56
+height: 170
+
+Frame: 4911
+x: 319
+y: 76
+width: 56
+height: 170
+
+Frame: 4912
+x: 316
+y: 75
+width: 56
+height: 170
+
+Frame: 4913
+x: 308
+y: 73
+width: 56
+height: 170
+
+Frame: 4914
+x: 302
+y: 72
+width: 56
+height: 170
+
+Frame: 4915
+x: 299
+y: 72
+width: 56
+height: 170
+
+Frame: 4916
+x: 290
+y: 71
+width: 56
+height: 170
+
+Frame: 4917
+x: 287
+y: 71
+width: 56
+height: 170
+
+Frame: 4918
+x: 283
+y: 72
+width: 56
+height: 170
+
+Frame: 4919
+x: 281
+y: 72
+width: 56
+height: 170
+
+Frame: 4920
+x: 272
+y: 76
+width: 56
+height: 170
+
+Frame: 4921
+x: 269
+y: 77
+width: 56
+height: 170
+
+Frame: 4922
+x: 262
+y: 77
+width: 56
+height: 170
+
+Frame: 4923
+x: 253
+y: 77
+width: 56
+height: 170
+
+Frames: 4924 to 4925
+x: 253
+y: 77
+width: 56
+height: 77
+
+Frame: 4926
+x: 241
+y: 77
+width: 56
+height: 77
+
+Frame: 4927
+x: 238
+y: 77
+width: 56
+height: 77
+
+Frame: 4928
+x: 228
+y: 77
+width: 56
+height: 77
+
+Frame: 4929
+x: 223
+y: 77
+width: 56
+height: 77
+
+Frame: 4930
+x: 215
+y: 77
+width: 56
+height: 77
+
+Frame: 4931
+x: 209
+y: 77
+width: 56
+height: 77
+
+Frame: 4932
+x: 203
+y: 78
+width: 56
+height: 77
+
+Frame: 4933
+x: 200
+y: 78
+width: 56
+height: 77
+
+Frames: 4934 to 4935
+x: 194
+y: 78
+width: 56
+height: 77
+
+Frame: 4936
+x: 193
+y: 78
+width: 56
+height: 77
+
+Frame: 4937
+x: 186
+y: 80
+width: 56
+height: 77
+
+Frame: 4938
+x: 183
+y: 80
+width: 56
+height: 77
+
+Frame: 4939
+x: 180
+y: 80
+width: 56
+height: 77
+
+Frame: 4940
+x: 175
+y: 80
+width: 56
+height: 77
+
+Frames: 4941 to 4943
+x: 171
+y: 79
+width: 56
+height: 77
+
+Frame: 4944
+x: 165
+y: 79
+width: 56
+height: 77
+
+Object Number #29
+Region Description:
+Region 29
+Start Frame:4871
+End Frame:4947
+Region Descriptors (0):
+Region frames data
+Frame: 4871
+x: 565
+y: 102
+width: 51
+height: 159
+
+Frame: 4872
+x: 565
+y: 101
+width: 51
+height: 159
+
+Frame: 4873
+x: 564
+y: 94
+width: 51
+height: 159
+
+Frame: 4874
+x: 556
+y: 97
+width: 51
+height: 159
+
+Frame: 4875
+x: 552
+y: 98
+width: 51
+height: 159
+
+Frame: 4876
+x: 549
+y: 100
+width: 51
+height: 159
+
+Frame: 4877
+x: 540
+y: 103
+width: 51
+height: 159
+
+Frame: 4878
+x: 535
+y: 103
+width: 51
+height: 159
+
+Frame: 4879
+x: 529
+y: 102
+width: 51
+height: 159
+
+Frame: 4880
+x: 517
+y: 98
+width: 51
+height: 159
+
+Frame: 4881
+x: 509
+y: 97
+width: 51
+height: 159
+
+Frame: 4882
+x: 508
+y: 97
+width: 51
+height: 159
+
+Frame: 4883
+x: 495
+y: 98
+width: 51
+height: 159
+
+Frame: 4884
+x: 484
+y: 100
+width: 51
+height: 159
+
+Frame: 4885
+x: 480
+y: 100
+width: 51
+height: 159
+
+Frame: 4886
+x: 477
+y: 100
+width: 51
+height: 159
+
+Frame: 4887
+x: 475
+y: 100
+width: 51
+height: 159
+
+Frame: 4888
+x: 473
+y: 100
+width: 51
+height: 159
+
+Frame: 4889
+x: 466
+y: 99
+width: 51
+height: 159
+
+Frame: 4890
+x: 461
+y: 97
+width: 51
+height: 159
+
+Frame: 4891
+x: 456
+y: 93
+width: 51
+height: 159
+
+Frame: 4892
+x: 446
+y: 99
+width: 51
+height: 159
+
+Frame: 4893
+x: 440
+y: 100
+width: 51
+height: 159
+
+Frame: 4894
+x: 438
+y: 100
+width: 51
+height: 159
+
+Frame: 4895
+x: 430
+y: 99
+width: 51
+height: 159
+
+Frame: 4896
+x: 425
+y: 98
+width: 51
+height: 159
+
+Frame: 4897
+x: 421
+y: 98
+width: 51
+height: 159
+
+Frame: 4898
+x: 411
+y: 98
+width: 51
+height: 159
+
+Frames: 4899 to 4900
+x: 408
+y: 96
+width: 51
+height: 159
+
+Frame: 4901
+x: 402
+y: 96
+width: 51
+height: 159
+
+Frame: 4902
+x: 400
+y: 96
+width: 51
+height: 159
+
+Frame: 4903
+x: 389
+y: 96
+width: 51
+height: 159
+
+Frame: 4904
+x: 384
+y: 96
+width: 51
+height: 159
+
+Frame: 4905
+x: 369
+y: 97
+width: 51
+height: 159
+
+Frame: 4906
+x: 361
+y: 97
+width: 51
+height: 159
+
+Frame: 4907
+x: 353
+y: 97
+width: 51
+height: 159
+
+Frame: 4908
+x: 349
+y: 97
+width: 51
+height: 159
+
+Frame: 4909
+x: 344
+y: 97
+width: 51
+height: 159
+
+Frame: 4910
+x: 337
+y: 97
+width: 51
+height: 159
+
+Frame: 4911
+x: 334
+y: 97
+width: 51
+height: 159
+
+Frame: 4912
+x: 330
+y: 97
+width: 51
+height: 159
+
+Frame: 4913
+x: 329
+y: 97
+width: 51
+height: 159
+
+Frame: 4914
+x: 324
+y: 97
+width: 51
+height: 159
+
+Frame: 4915
+x: 317
+y: 96
+width: 51
+height: 159
+
+Frames: 4916 to 4917
+x: 308
+y: 96
+width: 51
+height: 159
+
+Frame: 4918
+x: 304
+y: 96
+width: 51
+height: 159
+
+Frame: 4919
+x: 298
+y: 96
+width: 51
+height: 159
+
+Frames: 4920 to 4921
+x: 284
+y: 96
+width: 51
+height: 159
+
+Frame: 4922
+x: 281
+y: 96
+width: 51
+height: 159
+
+Frames: 4923 to 4924
+x: 256
+y: 99
+width: 51
+height: 159
+
+Frame: 4925
+x: 254
+y: 99
+width: 51
+height: 159
+
+Frame: 4926
+x: 253
+y: 99
+width: 51
+height: 159
+
+Frame: 4927
+x: 242
+y: 97
+width: 51
+height: 159
+
+Frame: 4928
+x: 237
+y: 96
+width: 51
+height: 159
+
+Frame: 4929
+x: 230
+y: 96
+width: 51
+height: 159
+
+Frame: 4930
+x: 223
+y: 96
+width: 51
+height: 159
+
+Frame: 4931
+x: 221
+y: 96
+width: 51
+height: 159
+
+Frame: 4932
+x: 214
+y: 96
+width: 51
+height: 159
+
+Frames: 4933 to 4934
+x: 209
+y: 96
+width: 51
+height: 159
+
+Frame: 4935
+x: 207
+y: 96
+width: 51
+height: 159
+
+Frame: 4936
+x: 197
+y: 96
+width: 51
+height: 159
+
+Frame: 4937
+x: 191
+y: 96
+width: 51
+height: 159
+
+Frame: 4938
+x: 188
+y: 96
+width: 51
+height: 159
+
+Frame: 4939
+x: 187
+y: 96
+width: 51
+height: 159
+
+Frame: 4940
+x: 181
+y: 96
+width: 51
+height: 159
+
+Frame: 4941
+x: 178
+y: 95
+width: 51
+height: 159
+
+Frame: 4942
+x: 177
+y: 95
+width: 51
+height: 159
+
+Frame: 4943
+x: 176
+y: 95
+width: 51
+height: 159
+
+Frames: 4944 to 4946
+x: 168
+y: 95
+width: 51
+height: 159
+
+Frame: 4947
+x: 155
+y: 96
+width: 51
+height: 159
+
+Object Number #30
+Region Description:
+Region 30
+Start Frame:5167
+End Frame:5297
+Region Descriptors (0):
+Region frames data
+Frame: 5167
+x: 604
+y: 58
+width: 52
+height: 159
+
+Frame: 5168
+x: 602
+y: 58
+width: 52
+height: 159
+
+Frame: 5169
+x: 596
+y: 58
+width: 52
+height: 159
+
+Frame: 5170
+x: 594
+y: 58
+width: 52
+height: 159
+
+Frames: 5171 to 5172
+x: 592
+y: 63
+width: 52
+height: 159
+
+Frame: 5173
+x: 588
+y: 64
+width: 52
+height: 159
+
+Frame: 5174
+x: 586
+y: 69
+width: 52
+height: 159
+
+Frame: 5175
+x: 581
+y: 70
+width: 52
+height: 159
+
+Frames: 5176 to 5177
+x: 578
+y: 72
+width: 52
+height: 159
+
+Frames: 5178 to 5180
+x: 572
+y: 60
+width: 62
+height: 172
+
+Frame: 5181
+x: 570
+y: 63
+width: 62
+height: 172
+
+Frame: 5182
+x: 566
+y: 69
+width: 62
+height: 172
+
+Frame: 5183
+x: 562
+y: 69
+width: 62
+height: 172
+
+Frame: 5184
+x: 549
+y: 72
+width: 62
+height: 172
+
+Frames: 5185 to 5186
+x: 545
+y: 76
+width: 62
+height: 172
+
+Frame: 5187
+x: 540
+y: 79
+width: 62
+height: 172
+
+Frames: 5188 to 5189
+x: 537
+y: 83
+width: 62
+height: 172
+
+Frames: 5190 to 5191
+x: 532
+y: 66
+width: 67
+height: 191
+
+Frame: 5192
+x: 529
+y: 66
+width: 67
+height: 191
+
+Frame: 5193
+x: 519
+y: 70
+width: 67
+height: 191
+
+Frames: 5194 to 5195
+x: 510
+y: 78
+width: 67
+height: 191
+
+Frame: 5196
+x: 507
+y: 79
+width: 67
+height: 191
+
+Frame: 5197
+x: 505
+y: 82
+width: 67
+height: 191
+
+Frame: 5198
+x: 504
+y: 83
+width: 67
+height: 191
+
+Frame: 5199
+x: 497
+y: 86
+width: 67
+height: 191
+
+Frame: 5200
+x: 494
+y: 86
+width: 67
+height: 191
+
+Frame: 5201
+x: 492
+y: 86
+width: 67
+height: 191
+
+Frame: 5202
+x: 488
+y: 86
+width: 67
+height: 191
+
+Frame: 5203
+x: 472
+y: 93
+width: 67
+height: 191
+
+Frame: 5204
+x: 473
+y: 89
+width: 67
+height: 191
+
+Frame: 5205
+x: 473
+y: 84
+width: 67
+height: 191
+
+Frame: 5206
+x: 473
+y: 90
+width: 67
+height: 191
+
+Frame: 5207
+x: 473
+y: 96
+width: 67
+height: 191
+
+Frame: 5208
+x: 468
+y: 97
+width: 67
+height: 191
+
+Frame: 5209
+x: 466
+y: 101
+width: 67
+height: 191
+
+Frame: 5210
+x: 465
+y: 101
+width: 67
+height: 191
+
+Frame: 5211
+x: 455
+y: 107
+width: 67
+height: 191
+
+Frames: 5212 to 5213
+x: 453
+y: 91
+width: 95
+height: 209
+
+Frame: 5214
+x: 446
+y: 91
+width: 95
+height: 209
+
+Frames: 5215 to 5216
+x: 440
+y: 93
+width: 95
+height: 209
+
+Frame: 5217
+x: 431
+y: 94
+width: 95
+height: 209
+
+Frame: 5218
+x: 427
+y: 103
+width: 95
+height: 209
+
+Frames: 5219 to 5220
+x: 423
+y: 109
+width: 95
+height: 209
+
+Frame: 5221
+x: 417
+y: 118
+width: 95
+height: 209
+
+Frame: 5222
+x: 415
+y: 121
+width: 95
+height: 209
+
+Frames: 5223 to 5225
+x: 414
+y: 124
+width: 95
+height: 209
+
+Frame: 5226
+x: 413
+y: 113
+width: 95
+height: 220
+
+Frame: 5227
+x: 410
+y: 116
+width: 95
+height: 220
+
+Frame: 5228
+x: 408
+y: 122
+width: 95
+height: 220
+
+Frame: 5229
+x: 406
+y: 122
+width: 95
+height: 220
+
+Frame: 5230
+x: 387
+y: 129
+width: 95
+height: 220
+
+Frame: 5231
+x: 385
+y: 140
+width: 95
+height: 220
+
+Frame: 5232
+x: 380
+y: 143
+width: 95
+height: 220
+
+Frame: 5233
+x: 377
+y: 146
+width: 95
+height: 220
+
+Frame: 5234
+x: 385
+y: 118
+width: 108
+height: 251
+
+Frame: 5235
+x: 383
+y: 117
+width: 108
+height: 251
+
+Frame: 5236
+x: 375
+y: 119
+width: 108
+height: 251
+
+Frame: 5237
+x: 373
+y: 119
+width: 108
+height: 251
+
+Frame: 5238
+x: 368
+y: 127
+width: 108
+height: 251
+
+Frame: 5239
+x: 361
+y: 141
+width: 108
+height: 251
+
+Frame: 5240
+x: 360
+y: 151
+width: 108
+height: 251
+
+Frame: 5241
+x: 349
+y: 158
+width: 108
+height: 251
+
+Frames: 5242 to 5243
+x: 358
+y: 135
+width: 107
+height: 286
+
+Frame: 5244
+x: 349
+y: 136
+width: 107
+height: 286
+
+Frame: 5245
+x: 345
+y: 140
+width: 107
+height: 286
+
+Frame: 5246
+x: 345
+y: 143
+width: 107
+height: 286
+
+Frame: 5247
+x: 341
+y: 146
+width: 107
+height: 286
+
+Frame: 5248
+x: 337
+y: 147
+width: 107
+height: 286
+
+Frame: 5249
+x: 336
+y: 148
+width: 107
+height: 286
+
+Frame: 5250
+x: 336
+y: 151
+width: 107
+height: 286
+
+Frame: 5251
+x: 336
+y: 171
+width: 107
+height: 286
+
+Frame: 5252
+x: 336
+y: 177
+width: 107
+height: 286
+
+Frame: 5253
+x: 333
+y: 158
+width: 123
+height: 297
+
+Frame: 5254
+x: 332
+y: 162
+width: 123
+height: 297
+
+Frame: 5255
+x: 329
+y: 165
+width: 123
+height: 297
+
+Frame: 5256
+x: 324
+y: 177
+width: 123
+height: 297
+
+Frame: 5257
+x: 327
+y: 172
+width: 123
+height: 297
+
+Frame: 5258
+x: 322
+y: 179
+width: 123
+height: 297
+
+Frame: 5259
+x: 322
+y: 180
+width: 123
+height: 297
+
+Frame: 5260
+x: 321
+y: 180
+width: 123
+height: 297
+
+Frame: 5261
+x: 321
+y: 184
+width: 123
+height: 297
+
+Frame: 5262
+x: 320
+y: 200
+width: 123
+height: 297
+
+Frame: 5263
+x: 320
+y: 201
+width: 123
+height: 297
+
+Frame: 5264
+x: 320
+y: 203
+width: 123
+height: 297
+
+Frame: 5265
+x: 317
+y: 220
+width: 123
+height: 297
+
+Frames: 5266 to 5267
+x: 322
+y: 229
+width: 123
+height: 297
+
+Frame: 5268
+x: 323
+y: 230
+width: 123
+height: 297
+
+Frame: 5269
+x: 328
+y: 233
+width: 123
+height: 297
+
+Frames: 5270 to 5271
+x: 329
+y: 228
+width: 123
+height: 297
+
+Frame: 5272
+x: 328
+y: 228
+width: 123
+height: 297
+
+Frame: 5273
+x: 325
+y: 235
+width: 123
+height: 297
+
+Frame: 5274
+x: 331
+y: 256
+width: 123
+height: 297
+
+Frame: 5275
+x: 332
+y: 260
+width: 123
+height: 297
+
+Frame: 5276
+x: 330
+y: 264
+width: 123
+height: 297
+
+Frame: 5277
+x: 327
+y: 275
+width: 123
+height: 297
+
+Frames: 5278 to 5280
+x: 327
+y: 282
+width: 123
+height: 297
+
+Frame: 5281
+x: 332
+y: 293
+width: 123
+height: 297
+
+Frame: 5282
+x: 320
+y: 277
+width: 152
+height: 206
+
+Frame: 5283
+x: 318
+y: 277
+width: 152
+height: 206
+
+Frame: 5284
+x: 312
+y: 284
+width: 152
+height: 206
+
+Frame: 5285
+x: 313
+y: 286
+width: 152
+height: 206
+
+Frame: 5286
+x: 319
+y: 296
+width: 152
+height: 206
+
+Frame: 5287
+x: 339
+y: 319
+width: 152
+height: 206
+
+Frame: 5288
+x: 345
+y: 324
+width: 152
+height: 206
+
+Frame: 5289
+x: 365
+y: 345
+width: 152
+height: 206
+
+Frame: 5290
+x: 366
+y: 347
+width: 152
+height: 206
+
+Frame: 5291
+x: 360
+y: 349
+width: 152
+height: 206
+
+Frame: 5292
+x: 361
+y: 358
+width: 152
+height: 206
+
+Frame: 5293
+x: 364
+y: 364
+width: 152
+height: 206
+
+Frame: 5294
+x: 365
+y: 366
+width: 152
+height: 206
+
+Frame: 5295
+x: 370
+y: 373
+width: 152
+height: 206
+
+Frame: 5296
+x: 390
+y: 389
+width: 152
+height: 206
+
+Frame: 5297
+x: 392
+y: 391
+width: 152
+height: 206
+
+Object Number #31
+Region Description:
+Region 31
+Start Frame:5226
+End Frame:5358
+Region Descriptors (0):
+Region frames data
+Frames: 5226 to 5227
+x: 552
+y: 203
+width: 92
+height: 280
+
+Frame: 5228
+x: 551
+y: 197
+width: 92
+height: 280
+
+Frame: 5229
+x: 566
+y: 173
+width: 76
+height: 312
+
+Frame: 5230
+x: 565
+y: 170
+width: 76
+height: 312
+
+Frames: 5231 to 5232
+x: 564
+y: 169
+width: 76
+height: 312
+
+Frames: 5233 to 5234
+x: 564
+y: 166
+width: 76
+height: 312
+
+Frame: 5235
+x: 563
+y: 164
+width: 76
+height: 312
+
+Frames: 5236 to 5237
+x: 561
+y: 161
+width: 76
+height: 312
+
+Frame: 5238
+x: 561
+y: 158
+width: 76
+height: 312
+
+Frames: 5239 to 5240
+x: 538
+y: 133
+width: 103
+height: 329
+
+Frame: 5241
+x: 530
+y: 131
+width: 103
+height: 329
+
+Frames: 5242 to 5243
+x: 522
+y: 127
+width: 103
+height: 329
+
+Frame: 5244
+x: 515
+y: 125
+width: 103
+height: 329
+
+Frames: 5245 to 5246
+x: 505
+y: 119
+width: 103
+height: 329
+
+Frame: 5247
+x: 499
+y: 114
+width: 103
+height: 329
+
+Frame: 5248
+x: 490
+y: 103
+width: 103
+height: 329
+
+Frame: 5249
+x: 489
+y: 95
+width: 103
+height: 329
+
+Frame: 5250
+x: 487
+y: 92
+width: 103
+height: 329
+
+Frame: 5251
+x: 486
+y: 87
+width: 103
+height: 329
+
+Frames: 5252 to 5253
+x: 468
+y: 102
+width: 115
+height: 298
+
+Frame: 5254
+x: 463
+y: 100
+width: 115
+height: 298
+
+Frame: 5255
+x: 462
+y: 98
+width: 115
+height: 298
+
+Frame: 5256
+x: 459
+y: 94
+width: 115
+height: 298
+
+Frames: 5257 to 5259
+x: 452
+y: 84
+width: 115
+height: 298
+
+Frame: 5260
+x: 443
+y: 83
+width: 115
+height: 298
+
+Frame: 5261
+x: 433
+y: 79
+width: 115
+height: 298
+
+Frame: 5262
+x: 430
+y: 75
+width: 115
+height: 298
+
+Frame: 5263
+x: 421
+y: 73
+width: 115
+height: 298
+
+Frames: 5264 to 5265
+x: 432
+y: 85
+width: 86
+height: 258
+
+Frame: 5266
+x: 427
+y: 85
+width: 86
+height: 258
+
+Frame: 5267
+x: 424
+y: 85
+width: 86
+height: 258
+
+Frame: 5268
+x: 412
+y: 81
+width: 86
+height: 258
+
+Frames: 5269 to 5270
+x: 411
+y: 81
+width: 86
+height: 258
+
+Frame: 5271
+x: 400
+y: 81
+width: 86
+height: 258
+
+Frames: 5272 to 5273
+x: 388
+y: 77
+width: 86
+height: 258
+
+Frame: 5274
+x: 383
+y: 74
+width: 86
+height: 258
+
+Frame: 5275
+x: 379
+y: 69
+width: 86
+height: 258
+
+Frame: 5276
+x: 379
+y: 68
+width: 86
+height: 258
+
+Frame: 5277
+x: 374
+y: 62
+width: 86
+height: 258
+
+Frames: 5278 to 5280
+x: 365
+y: 57
+width: 86
+height: 258
+
+Frame: 5281
+x: 364
+y: 55
+width: 86
+height: 258
+
+Frame: 5282
+x: 364
+y: 54
+width: 86
+height: 258
+
+Frame: 5283
+x: 363
+y: 54
+width: 86
+height: 258
+
+Frame: 5284
+x: 358
+y: 52
+width: 86
+height: 258
+
+Frame: 5285
+x: 341
+y: 64
+width: 79
+height: 218
+
+Frames: 5286 to 5287
+x: 340
+y: 64
+width: 79
+height: 218
+
+Frame: 5288
+x: 336
+y: 64
+width: 79
+height: 218
+
+Frame: 5289
+x: 331
+y: 61
+width: 79
+height: 218
+
+Frame: 5290
+x: 329
+y: 60
+width: 79
+height: 218
+
+Frame: 5291
+x: 328
+y: 60
+width: 79
+height: 218
+
+Frame: 5292
+x: 320
+y: 56
+width: 79
+height: 218
+
+Frames: 5293 to 5294
+x: 315
+y: 54
+width: 79
+height: 218
+
+Frame: 5295
+x: 309
+y: 51
+width: 79
+height: 218
+
+Frame: 5296
+x: 305
+y: 50
+width: 79
+height: 218
+
+Frame: 5297
+x: 302
+y: 48
+width: 79
+height: 218
+
+Frame: 5298
+x: 292
+y: 43
+width: 79
+height: 218
+
+Frame: 5299
+x: 289
+y: 42
+width: 79
+height: 218
+
+Frame: 5300
+x: 288
+y: 41
+width: 79
+height: 218
+
+Frame: 5301
+x: 284
+y: 41
+width: 79
+height: 218
+
+Frames: 5302 to 5306
+x: 269
+y: 35
+width: 79
+height: 218
+
+Frame: 5307
+x: 269
+y: 33
+width: 79
+height: 218
+
+Frame: 5308
+x: 264
+y: 29
+width: 79
+height: 218
+
+Frame: 5309
+x: 263
+y: 28
+width: 79
+height: 218
+
+Frame: 5310
+x: 251
+y: 41
+width: 73
+height: 193
+
+Frames: 5311 to 5312
+x: 249
+y: 41
+width: 73
+height: 193
+
+Frame: 5313
+x: 247
+y: 41
+width: 73
+height: 193
+
+Frame: 5314
+x: 244
+y: 39
+width: 73
+height: 193
+
+Frame: 5315
+x: 243
+y: 39
+width: 73
+height: 193
+
+Frame: 5316
+x: 238
+y: 38
+width: 73
+height: 193
+
+Frames: 5317 to 5318
+x: 231
+y: 38
+width: 73
+height: 193
+
+Frame: 5319
+x: 228
+y: 38
+width: 73
+height: 193
+
+Frame: 5320
+x: 220
+y: 34
+width: 73
+height: 193
+
+Frames: 5321 to 5323
+x: 218
+y: 32
+width: 73
+height: 193
+
+Frame: 5324
+x: 219
+y: 38
+width: 69
+height: 177
+
+Frames: 5325 to 5327
+x: 216
+y: 38
+width: 69
+height: 177
+
+Frame: 5328
+x: 213
+y: 38
+width: 69
+height: 177
+
+Frames: 5329 to 5330
+x: 212
+y: 37
+width: 69
+height: 177
+
+Frame: 5331
+x: 209
+y: 37
+width: 69
+height: 177
+
+Frames: 5332 to 5335
+x: 209
+y: 36
+width: 69
+height: 177
+
+Frame: 5336
+x: 208
+y: 36
+width: 55
+height: 159
+
+Frame: 5337
+x: 204
+y: 36
+width: 55
+height: 159
+
+Frame: 5338
+x: 203
+y: 36
+width: 55
+height: 159
+
+Frames: 5339 to 5341
+x: 202
+y: 35
+width: 55
+height: 159
+
+Frame: 5342
+x: 202
+y: 34
+width: 55
+height: 159
+
+Frame: 5343
+x: 202
+y: 31
+width: 55
+height: 159
+
+Frame: 5344
+x: 200
+y: 28
+width: 55
+height: 159
+
+Frames: 5345 to 5346
+x: 199
+y: 27
+width: 55
+height: 159
+
+Frames: 5347 to 5349
+x: 196
+y: 26
+width: 55
+height: 159
+
+Frame: 5350
+x: 193
+y: 26
+width: 55
+height: 159
+
+Frame: 5351
+x: 193
+y: 25
+width: 55
+height: 159
+
+Frame: 5352
+x: 191
+y: 22
+width: 55
+height: 159
+
+Frames: 5353 to 5355
+x: 190
+y: 22
+width: 55
+height: 159
+
+Frame: 5356
+x: 190
+y: 21
+width: 55
+height: 159
+
+Frames: 5357 to 5358
+x: 190
+y: 20
+width: 55
+height: 159
+
+Object Number #32
+Region Description:
+Region 32
+Start Frame:5655
+End Frame:5739
+Region Descriptors (0):
+Region frames data
+Frames: 5655 to 5657
+x: -3
+y: 64
+width: 38
+height: 166
+
+Frame: 5658
+x: 8
+y: 60
+width: 38
+height: 166
+
+Frame: 5659
+x: 17
+y: 58
+width: 38
+height: 166
+
+Frame: 5660
+x: 20
+y: 58
+width: 38
+height: 166
+
+Frame: 5661
+x: 21
+y: 58
+width: 38
+height: 166
+
+Frames: 5662 to 5664
+x: 29
+y: 62
+width: 59
+height: 166
+
+Frame: 5665
+x: 33
+y: 61
+width: 59
+height: 166
+
+Frame: 5666
+x: 49
+y: 61
+width: 59
+height: 166
+
+Frame: 5667
+x: 53
+y: 61
+width: 59
+height: 166
+
+Frame: 5668
+x: 62
+y: 60
+width: 59
+height: 166
+
+Frame: 5669
+x: 74
+y: 59
+width: 59
+height: 166
+
+Frame: 5670
+x: 79
+y: 59
+width: 59
+height: 166
+
+Frame: 5671
+x: 84
+y: 58
+width: 59
+height: 166
+
+Frame: 5672
+x: 94
+y: 58
+width: 59
+height: 166
+
+Frame: 5673
+x: 103
+y: 58
+width: 59
+height: 166
+
+Frames: 5674 to 5675
+x: 113
+y: 58
+width: 59
+height: 166
+
+Frame: 5676
+x: 120
+y: 57
+width: 59
+height: 166
+
+Frame: 5677
+x: 122
+y: 57
+width: 59
+height: 166
+
+Frame: 5678
+x: 129
+y: 57
+width: 59
+height: 166
+
+Frame: 5679
+x: 135
+y: 56
+width: 59
+height: 166
+
+Frame: 5680
+x: 148
+y: 56
+width: 59
+height: 166
+
+Frame: 5681
+x: 156
+y: 56
+width: 59
+height: 166
+
+Frame: 5682
+x: 158
+y: 56
+width: 59
+height: 166
+
+Frame: 5683
+x: 159
+y: 56
+width: 59
+height: 166
+
+Frame: 5684
+x: 168
+y: 56
+width: 59
+height: 166
+
+Frame: 5685
+x: 172
+y: 56
+width: 59
+height: 166
+
+Frames: 5686 to 5688
+x: 183
+y: 56
+width: 59
+height: 159
+
+Frame: 5689
+x: 191
+y: 56
+width: 59
+height: 159
+
+Frames: 5690 to 5691
+x: 205
+y: 56
+width: 59
+height: 159
+
+Frame: 5692
+x: 220
+y: 55
+width: 59
+height: 159
+
+Frame: 5693
+x: 226
+y: 55
+width: 59
+height: 159
+
+Frame: 5694
+x: 233
+y: 55
+width: 59
+height: 159
+
+Frame: 5695
+x: 246
+y: 53
+width: 59
+height: 159
+
+Frame: 5696
+x: 250
+y: 51
+width: 59
+height: 159
+
+Frame: 5697
+x: 254
+y: 50
+width: 59
+height: 159
+
+Frame: 5698
+x: 262
+y: 50
+width: 59
+height: 159
+
+Frame: 5699
+x: 267
+y: 50
+width: 59
+height: 159
+
+Frame: 5700
+x: 268
+y: 50
+width: 59
+height: 159
+
+Frame: 5701
+x: 276
+y: 50
+width: 59
+height: 159
+
+Frames: 5702 to 5703
+x: 289
+y: 50
+width: 59
+height: 159
+
+Frame: 5704
+x: 295
+y: 50
+width: 59
+height: 159
+
+Frame: 5705
+x: 296
+y: 50
+width: 59
+height: 159
+
+Frame: 5706
+x: 301
+y: 49
+width: 59
+height: 159
+
+Frames: 5707 to 5708
+x: 304
+y: 48
+width: 59
+height: 159
+
+Frame: 5709
+x: 311
+y: 48
+width: 59
+height: 159
+
+Frames: 5710 to 5712
+x: 325
+y: 55
+width: 55
+height: 143
+
+Frame: 5713
+x: 333
+y: 53
+width: 55
+height: 143
+
+Frame: 5714
+x: 338
+y: 52
+width: 55
+height: 143
+
+Frame: 5715
+x: 347
+y: 52
+width: 55
+height: 143
+
+Frame: 5716
+x: 358
+y: 52
+width: 55
+height: 143
+
+Frames: 5717 to 5718
+x: 370
+y: 52
+width: 55
+height: 143
+
+Frame: 5719
+x: 371
+y: 52
+width: 55
+height: 143
+
+Frame: 5720
+x: 376
+y: 52
+width: 55
+height: 143
+
+Frame: 5721
+x: 379
+y: 51
+width: 55
+height: 143
+
+Frame: 5722
+x: 380
+y: 51
+width: 55
+height: 143
+
+Frames: 5723 to 5724
+x: 386
+y: 47
+width: 55
+height: 143
+
+Frame: 5725
+x: 395
+y: 47
+width: 55
+height: 143
+
+Frame: 5726
+x: 397
+y: 47
+width: 55
+height: 143
+
+Frame: 5727
+x: 400
+y: 47
+width: 55
+height: 143
+
+Frame: 5728
+x: 410
+y: 47
+width: 55
+height: 143
+
+Frames: 5729 to 5731
+x: 420
+y: 46
+width: 55
+height: 143
+
+Frames: 5732 to 5733
+x: 429
+y: 45
+width: 55
+height: 143
+
+Frame: 5734
+x: 430
+y: 45
+width: 55
+height: 143
+
+Frame: 5735
+x: 435
+y: 45
+width: 55
+height: 143
+
+Frame: 5736
+x: 447
+y: 42
+width: 45
+height: 143
+
+Frame: 5737
+x: 461
+y: 46
+width: 30
+height: 143
+
+Frames: 5738 to 5739
+x: 461
+y: 46
+width: 36
+height: 143
+
+Object Number #33
+Region Description:
+Region 33
+Start Frame:6215
+End Frame:6653
+Region Descriptors (0):
+Region frames data
+Frame: 6215
+x: -1
+y: 42
+width: 48
+height: 126
+
+Frame: 6216
+x: 3
+y: 42
+width: 48
+height: 126
+
+Frame: 6217
+x: 8
+y: 40
+width: 48
+height: 126
+
+Frame: 6218
+x: 14
+y: 40
+width: 48
+height: 126
+
+Frames: 6219 to 6220
+x: 15
+y: 40
+width: 48
+height: 126
+
+Frames: 6221 to 6223
+x: 15
+y: 39
+width: 48
+height: 126
+
+Frame: 6224
+x: 17
+y: 38
+width: 48
+height: 126
+
+Frames: 6225 to 6226
+x: 24
+y: 38
+width: 48
+height: 126
+
+Frame: 6227
+x: 28
+y: 38
+width: 48
+height: 126
+
+Frames: 6228 to 6229
+x: 30
+y: 38
+width: 48
+height: 126
+
+Frames: 6230 to 6232
+x: 38
+y: 37
+width: 48
+height: 126
+
+Frame: 6233
+x: 40
+y: 36
+width: 48
+height: 126
+
+Frames: 6234 to 6235
+x: 43
+y: 36
+width: 48
+height: 126
+
+Frames: 6236 to 6238
+x: 54
+y: 35
+width: 48
+height: 126
+
+Frame: 6239
+x: 55
+y: 35
+width: 48
+height: 126
+
+Frame: 6240
+x: 60
+y: 35
+width: 48
+height: 126
+
+Frame: 6241
+x: 62
+y: 35
+width: 48
+height: 126
+
+Frame: 6242
+x: 72
+y: 35
+width: 48
+height: 126
+
+Frames: 6243 to 6246
+x: 73
+y: 35
+width: 48
+height: 126
+
+Frame: 6247
+x: 77
+y: 36
+width: 48
+height: 126
+
+Frame: 6248
+x: 79
+y: 36
+width: 48
+height: 126
+
+Frame: 6249
+x: 83
+y: 35
+width: 48
+height: 126
+
+Frame: 6250
+x: 87
+y: 35
+width: 48
+height: 126
+
+Frame: 6251
+x: 88
+y: 34
+width: 48
+height: 126
+
+Frame: 6252
+x: 91
+y: 34
+width: 48
+height: 126
+
+Frame: 6253
+x: 93
+y: 34
+width: 48
+height: 126
+
+Frame: 6254
+x: 96
+y: 34
+width: 48
+height: 126
+
+Frames: 6255 to 6258
+x: 98
+y: 34
+width: 48
+height: 126
+
+Frame: 6259
+x: 99
+y: 34
+width: 48
+height: 126
+
+Frame: 6260
+x: 102
+y: 34
+width: 48
+height: 126
+
+Frame: 6261
+x: 105
+y: 34
+width: 48
+height: 126
+
+Frame: 6262
+x: 106
+y: 34
+width: 48
+height: 126
+
+Frame: 6263
+x: 108
+y: 34
+width: 48
+height: 126
+
+Frames: 6264 to 6265
+x: 110
+y: 34
+width: 48
+height: 126
+
+Frame: 6266
+x: 112
+y: 34
+width: 48
+height: 126
+
+Frame: 6267
+x: 123
+y: 37
+width: 48
+height: 126
+
+Frame: 6268
+x: 126
+y: 38
+width: 48
+height: 126
+
+Frame: 6269
+x: 127
+y: 38
+width: 48
+height: 126
+
+Frame: 6270
+x: 129
+y: 38
+width: 48
+height: 126
+
+Frame: 6271
+x: 131
+y: 38
+width: 48
+height: 126
+
+Frame: 6272
+x: 135
+y: 38
+width: 48
+height: 126
+
+Frame: 6273
+x: 136
+y: 38
+width: 48
+height: 126
+
+Frame: 6274
+x: 141
+y: 38
+width: 48
+height: 126
+
+Frame: 6275
+x: 146
+y: 36
+width: 48
+height: 126
+
+Frame: 6276
+x: 149
+y: 35
+width: 48
+height: 126
+
+Frame: 6277
+x: 152
+y: 35
+width: 48
+height: 126
+
+Frames: 6278 to 6279
+x: 155
+y: 34
+width: 48
+height: 126
+
+Frame: 6280
+x: 156
+y: 34
+width: 48
+height: 126
+
+Frame: 6281
+x: 161
+y: 32
+width: 48
+height: 126
+
+Frame: 6282
+x: 164
+y: 32
+width: 48
+height: 126
+
+Frame: 6283
+x: 166
+y: 32
+width: 48
+height: 126
+
+Frame: 6284
+x: 169
+y: 31
+width: 48
+height: 126
+
+Frames: 6285 to 6286
+x: 172
+y: 31
+width: 48
+height: 126
+
+Frame: 6287
+x: 176
+y: 31
+width: 48
+height: 126
+
+Frames: 6288 to 6293
+x: 180
+y: 31
+width: 48
+height: 126
+
+Frame: 6294
+x: 182
+y: 31
+width: 48
+height: 126
+
+Frame: 6295
+x: 188
+y: 31
+width: 48
+height: 126
+
+Frame: 6296
+x: 190
+y: 31
+width: 48
+height: 126
+
+Frame: 6297
+x: 191
+y: 31
+width: 48
+height: 126
+
+Frame: 6298
+x: 194
+y: 31
+width: 48
+height: 126
+
+Frame: 6299
+x: 201
+y: 31
+width: 48
+height: 126
+
+Frames: 6300 to 6303
+x: 206
+y: 31
+width: 48
+height: 126
+
+Frames: 6304 to 6305
+x: 208
+y: 31
+width: 48
+height: 126
+
+Frame: 6306
+x: 213
+y: 31
+width: 48
+height: 126
+
+Frame: 6307
+x: 219
+y: 31
+width: 48
+height: 126
+
+Frames: 6308 to 6313
+x: 226
+y: 32
+width: 48
+height: 126
+
+Frames: 6314 to 6316
+x: 237
+y: 31
+width: 45
+height: 120
+
+Frame: 6317
+x: 246
+y: 33
+width: 45
+height: 120
+
+Frames: 6318 to 6319
+x: 247
+y: 33
+width: 45
+height: 120
+
+Frame: 6320
+x: 249
+y: 33
+width: 45
+height: 120
+
+Frames: 6321 to 6322
+x: 254
+y: 32
+width: 45
+height: 120
+
+Frames: 6323 to 6325
+x: 263
+y: 33
+width: 45
+height: 120
+
+Frames: 6326 to 6332
+x: 270
+y: 34
+width: 45
+height: 120
+
+Frame: 6333
+x: 271
+y: 34
+width: 45
+height: 120
+
+Frame: 6334
+x: 277
+y: 34
+width: 45
+height: 120
+
+Frame: 6335
+x: 281
+y: 34
+width: 45
+height: 120
+
+Frame: 6336
+x: 289
+y: 34
+width: 45
+height: 120
+
+Frame: 6337
+x: 290
+y: 34
+width: 45
+height: 120
+
+Frame: 6338
+x: 294
+y: 34
+width: 45
+height: 120
+
+Frames: 6339 to 6341
+x: 300
+y: 34
+width: 45
+height: 120
+
+Frames: 6342 to 6569
+x: 306
+y: 35
+width: 45
+height: 120
+
+Frame: 6570
+x: 305
+y: 35
+width: 45
+height: 120
+
+Frames: 6571 to 6572
+x: 303
+y: 35
+width: 45
+height: 120
+
+Frame: 6573
+x: 302
+y: 35
+width: 45
+height: 120
+
+Frame: 6574
+x: 300
+y: 35
+width: 45
+height: 120
+
+Frame: 6575
+x: 297
+y: 35
+width: 45
+height: 120
+
+Frame: 6576
+x: 296
+y: 35
+width: 45
+height: 120
+
+Frames: 6577 to 6578
+x: 291
+y: 36
+width: 45
+height: 120
+
+Frame: 6579
+x: 288
+y: 36
+width: 45
+height: 120
+
+Frame: 6580
+x: 286
+y: 36
+width: 45
+height: 120
+
+Frame: 6581
+x: 282
+y: 36
+width: 45
+height: 120
+
+Frame: 6582
+x: 279
+y: 36
+width: 45
+height: 120
+
+Frame: 6583
+x: 277
+y: 36
+width: 45
+height: 120
+
+Frame: 6584
+x: 274
+y: 36
+width: 45
+height: 120
+
+Frame: 6585
+x: 269
+y: 36
+width: 45
+height: 120
+
+Frames: 6586 to 6587
+x: 268
+y: 36
+width: 45
+height: 120
+
+Frame: 6588
+x: 266
+y: 36
+width: 45
+height: 120
+
+Frame: 6589
+x: 263
+y: 36
+width: 45
+height: 120
+
+Frame: 6590
+x: 259
+y: 35
+width: 45
+height: 120
+
+Frame: 6591
+x: 255
+y: 35
+width: 45
+height: 120
+
+Frame: 6592
+x: 252
+y: 35
+width: 45
+height: 120
+
+Frame: 6593
+x: 251
+y: 35
+width: 45
+height: 120
+
+Frame: 6594
+x: 241
+y: 35
+width: 45
+height: 120
+
+Frame: 6595
+x: 231
+y: 35
+width: 45
+height: 120
+
+Frame: 6596
+x: 224
+y: 35
+width: 45
+height: 120
+
+Frames: 6597 to 6598
+x: 218
+y: 35
+width: 45
+height: 120
+
+Frame: 6599
+x: 215
+y: 35
+width: 45
+height: 120
+
+Frame: 6600
+x: 214
+y: 35
+width: 45
+height: 120
+
+Frame: 6601
+x: 208
+y: 35
+width: 45
+height: 120
+
+Frame: 6602
+x: 203
+y: 35
+width: 45
+height: 120
+
+Frames: 6603 to 6604
+x: 186
+y: 32
+width: 45
+height: 120
+
+Frames: 6605 to 6607
+x: 185
+y: 32
+width: 45
+height: 120
+
+Frame: 6608
+x: 179
+y: 32
+width: 45
+height: 120
+
+Frames: 6609 to 6613
+x: 170
+y: 32
+width: 45
+height: 120
+
+Frame: 6614
+x: 165
+y: 32
+width: 45
+height: 120
+
+Frame: 6615
+x: 162
+y: 32
+width: 45
+height: 120
+
+Frames: 6616 to 6617
+x: 160
+y: 32
+width: 45
+height: 120
+
+Frame: 6618
+x: 156
+y: 32
+width: 45
+height: 120
+
+Frames: 6619 to 6623
+x: 149
+y: 32
+width: 45
+height: 120
+
+Frames: 6624 to 6625
+x: 145
+y: 31
+width: 45
+height: 120
+
+Frame: 6626
+x: 143
+y: 31
+width: 45
+height: 120
+
+Frame: 6627
+x: 141
+y: 31
+width: 45
+height: 120
+
+Frame: 6628
+x: 136
+y: 31
+width: 45
+height: 120
+
+Frame: 6629
+x: 133
+y: 31
+width: 45
+height: 120
+
+Frame: 6630
+x: 127
+y: 31
+width: 45
+height: 120
+
+Frames: 6631 to 6639
+x: 125
+y: 31
+width: 45
+height: 120
+
+Frames: 6640 to 6642
+x: 123
+y: 31
+width: 45
+height: 120
+
+Frame: 6643
+x: 122
+y: 30
+width: 45
+height: 120
+
+Frames: 6644 to 6650
+x: 118
+y: 25
+width: 45
+height: 120
+
+Frames: 6651 to 6653
+x: 115
+y: 28
+width: 45
+height: 120
+
+Object Number #34
+Region Description:
+Region 34
+Start Frame:6466
+End Frame:6554
+Region Descriptors (0):
+Region frames data
+Frames: 6466 to 6467
+x: 610
+y: 75
+width: 45
+height: 142
+
+Frame: 6468
+x: 608
+y: 74
+width: 45
+height: 142
+
+Frame: 6469
+x: 607
+y: 73
+width: 45
+height: 142
+
+Frame: 6470
+x: 605
+y: 73
+width: 45
+height: 142
+
+Frames: 6471 to 6472
+x: 602
+y: 73
+width: 45
+height: 142
+
+Frame: 6473
+x: 599
+y: 73
+width: 45
+height: 142
+
+Frames: 6474 to 6478
+x: 597
+y: 73
+width: 45
+height: 142
+
+Frame: 6479
+x: 593
+y: 72
+width: 45
+height: 142
+
+Frame: 6480
+x: 588
+y: 72
+width: 45
+height: 142
+
+Frame: 6481
+x: 587
+y: 70
+width: 45
+height: 142
+
+Frame: 6482
+x: 583
+y: 67
+width: 45
+height: 142
+
+Frame: 6483
+x: 577
+y: 67
+width: 45
+height: 142
+
+Frame: 6484
+x: 573
+y: 67
+width: 45
+height: 142
+
+Frame: 6485
+x: 567
+y: 66
+width: 45
+height: 142
+
+Frame: 6486
+x: 562
+y: 66
+width: 45
+height: 142
+
+Frames: 6487 to 6488
+x: 558
+y: 64
+width: 45
+height: 142
+
+Frames: 6489 to 6490
+x: 545
+y: 64
+width: 45
+height: 142
+
+Frame: 6491
+x: 541
+y: 64
+width: 45
+height: 142
+
+Frame: 6492
+x: 538
+y: 60
+width: 45
+height: 142
+
+Frame: 6493
+x: 534
+y: 54
+width: 45
+height: 142
+
+Frame: 6494
+x: 524
+y: 55
+width: 45
+height: 142
+
+Frame: 6495
+x: 521
+y: 55
+width: 45
+height: 142
+
+Frame: 6496
+x: 520
+y: 54
+width: 45
+height: 142
+
+Frames: 6497 to 6499
+x: 518
+y: 51
+width: 45
+height: 142
+
+Frame: 6500
+x: 511
+y: 50
+width: 45
+height: 142
+
+Frames: 6501 to 6502
+x: 509
+y: 49
+width: 45
+height: 142
+
+Frame: 6503
+x: 499
+y: 49
+width: 45
+height: 142
+
+Frame: 6504
+x: 496
+y: 51
+width: 45
+height: 142
+
+Frames: 6505 to 6507
+x: 491
+y: 51
+width: 45
+height: 142
+
+Frames: 6508 to 6509
+x: 477
+y: 51
+width: 45
+height: 142
+
+Frame: 6510
+x: 476
+y: 51
+width: 45
+height: 142
+
+Frame: 6511
+x: 473
+y: 51
+width: 45
+height: 142
+
+Frame: 6512
+x: 469
+y: 51
+width: 45
+height: 142
+
+Frame: 6513
+x: 468
+y: 50
+width: 45
+height: 142
+
+Frame: 6514
+x: 463
+y: 50
+width: 45
+height: 142
+
+Frame: 6515
+x: 458
+y: 50
+width: 45
+height: 142
+
+Frame: 6516
+x: 454
+y: 50
+width: 45
+height: 142
+
+Frame: 6517
+x: 453
+y: 50
+width: 45
+height: 142
+
+Frame: 6518
+x: 452
+y: 50
+width: 45
+height: 142
+
+Frame: 6519
+x: 450
+y: 50
+width: 45
+height: 142
+
+Frames: 6520 to 6521
+x: 443
+y: 50
+width: 45
+height: 142
+
+Frame: 6522
+x: 440
+y: 48
+width: 45
+height: 142
+
+Frames: 6523 to 6524
+x: 430
+y: 46
+width: 45
+height: 142
+
+Frame: 6525
+x: 422
+y: 45
+width: 45
+height: 142
+
+Frame: 6526
+x: 419
+y: 45
+width: 45
+height: 142
+
+Frame: 6527
+x: 413
+y: 45
+width: 45
+height: 142
+
+Frame: 6528
+x: 398
+y: 48
+width: 42
+height: 131
+
+Frames: 6529 to 6530
+x: 399
+y: 50
+width: 42
+height: 131
+
+Frame: 6531
+x: 398
+y: 51
+width: 42
+height: 131
+
+Frame: 6532
+x: 391
+y: 51
+width: 42
+height: 131
+
+Frame: 6533
+x: 390
+y: 50
+width: 42
+height: 131
+
+Frame: 6534
+x: 384
+y: 48
+width: 42
+height: 131
+
+Frame: 6535
+x: 382
+y: 47
+width: 42
+height: 131
+
+Frame: 6536
+x: 379
+y: 47
+width: 42
+height: 131
+
+Frame: 6537
+x: 375
+y: 44
+width: 42
+height: 131
+
+Frame: 6538
+x: 370
+y: 42
+width: 42
+height: 131
+
+Frame: 6539
+x: 365
+y: 42
+width: 42
+height: 131
+
+Frame: 6540
+x: 360
+y: 42
+width: 42
+height: 131
+
+Frames: 6541 to 6542
+x: 354
+y: 42
+width: 42
+height: 131
+
+Frame: 6543
+x: 352
+y: 42
+width: 42
+height: 131
+
+Frame: 6544
+x: 348
+y: 41
+width: 42
+height: 131
+
+Frame: 6545
+x: 346
+y: 41
+width: 42
+height: 131
+
+Frame: 6546
+x: 336
+y: 40
+width: 42
+height: 131
+
+Frame: 6547
+x: 333
+y: 40
+width: 42
+height: 131
+
+Frame: 6548
+x: 331
+y: 40
+width: 42
+height: 131
+
+Frame: 6549
+x: 320
+y: 35
+width: 42
+height: 131
+
+Frame: 6550
+x: 313
+y: 35
+width: 42
+height: 131
+
+Frame: 6551
+x: 307
+y: 34
+width: 42
+height: 131
+
+Frame: 6552
+x: 305
+y: 34
+width: 42
+height: 131
+
+Frame: 6553
+x: 304
+y: 35
+width: 42
+height: 131
+
+Frame: 6554
+x: 310
+y: 37
+width: 42
+height: 131
+
+Object Number #35
+Region Description:
+Region 35
+Start Frame:6570
+End Frame:6605
+Region Descriptors (0):
+Region frames data
+Frame: 6570
+x: 250
+y: 52
+width: 33
+height: 105
+
+Frames: 6571 to 6573
+x: 251
+y: 53
+width: 33
+height: 105
+
+Frame: 6574
+x: 245
+y: 52
+width: 33
+height: 105
+
+Frame: 6575
+x: 244
+y: 50
+width: 33
+height: 105
+
+Frame: 6576
+x: 237
+y: 50
+width: 33
+height: 105
+
+Frames: 6577 to 6579
+x: 232
+y: 49
+width: 33
+height: 105
+
+Frames: 6580 to 6581
+x: 230
+y: 49
+width: 33
+height: 105
+
+Frame: 6582
+x: 229
+y: 49
+width: 33
+height: 105
+
+Frames: 6583 to 6584
+x: 227
+y: 49
+width: 33
+height: 105
+
+Frames: 6585 to 6587
+x: 211
+y: 49
+width: 33
+height: 105
+
+Frame: 6588
+x: 209
+y: 49
+width: 33
+height: 105
+
+Frame: 6589
+x: 207
+y: 49
+width: 33
+height: 105
+
+Frame: 6590
+x: 204
+y: 49
+width: 33
+height: 105
+
+Frame: 6591
+x: 198
+y: 48
+width: 33
+height: 105
+
+Frames: 6592 to 6593
+x: 194
+y: 48
+width: 33
+height: 105
+
+Frame: 6594
+x: 193
+y: 48
+width: 33
+height: 105
+
+Frame: 6595
+x: 189
+y: 48
+width: 33
+height: 105
+
+Frame: 6596
+x: 186
+y: 48
+width: 33
+height: 105
+
+Frame: 6597
+x: 179
+y: 48
+width: 33
+height: 105
+
+Frame: 6598
+x: 170
+y: 48
+width: 33
+height: 105
+
+Frame: 6599
+x: 161
+y: 48
+width: 33
+height: 105
+
+Frame: 6600
+x: 152
+y: 48
+width: 33
+height: 105
+
+Frames: 6601 to 6602
+x: 151
+y: 48
+width: 33
+height: 105
+
+Frame: 6603
+x: 148
+y: 48
+width: 33
+height: 105
+
+Frame: 6604
+x: 147
+y: 48
+width: 33
+height: 105
+
+Frame: 6605
+x: 134
+y: 48
+width: 33
+height: 105
+
+Object Number #36
+Region Description:
+Region 36
+Start Frame:6557
+End Frame:6603
+Region Descriptors (0):
+Region frames data
+Frame: 6557
+x: 603
+y: 140
+width: 38
+height: 186
+
+Frame: 6558
+x: 564
+y: 139
+width: 74
+height: 196
+
+Frame: 6559
+x: 556
+y: 140
+width: 74
+height: 196
+
+Frame: 6560
+x: 553
+y: 139
+width: 74
+height: 196
+
+Frame: 6561
+x: 546
+y: 139
+width: 74
+height: 196
+
+Frame: 6562
+x: 536
+y: 138
+width: 74
+height: 196
+
+Frame: 6563
+x: 529
+y: 138
+width: 74
+height: 196
+
+Frame: 6564
+x: 520
+y: 137
+width: 74
+height: 196
+
+Frame: 6565
+x: 510
+y: 136
+width: 74
+height: 196
+
+Frame: 6566
+x: 501
+y: 136
+width: 74
+height: 196
+
+Frame: 6567
+x: 484
+y: 136
+width: 74
+height: 196
+
+Frame: 6568
+x: 464
+y: 137
+width: 74
+height: 196
+
+Frame: 6569
+x: 453
+y: 137
+width: 74
+height: 196
+
+Frame: 6570
+x: 452
+y: 137
+width: 74
+height: 196
+
+Frames: 6571 to 6572
+x: 441
+y: 137
+width: 74
+height: 196
+
+Frame: 6573
+x: 420
+y: 136
+width: 74
+height: 196
+
+Frame: 6574
+x: 410
+y: 136
+width: 74
+height: 196
+
+Frame: 6575
+x: 406
+y: 136
+width: 74
+height: 196
+
+Frame: 6576
+x: 389
+y: 136
+width: 74
+height: 196
+
+Frame: 6577
+x: 369
+y: 137
+width: 74
+height: 196
+
+Frame: 6578
+x: 368
+y: 137
+width: 74
+height: 196
+
+Frame: 6579
+x: 353
+y: 134
+width: 74
+height: 196
+
+Frame: 6580
+x: 334
+y: 133
+width: 74
+height: 196
+
+Frame: 6581
+x: 325
+y: 136
+width: 74
+height: 196
+
+Frame: 6582
+x: 311
+y: 139
+width: 74
+height: 196
+
+Frame: 6583
+x: 306
+y: 139
+width: 74
+height: 196
+
+Frames: 6584 to 6585
+x: 293
+y: 139
+width: 74
+height: 202
+
+Frame: 6586
+x: 267
+y: 138
+width: 74
+height: 202
+
+Frame: 6587
+x: 256
+y: 138
+width: 74
+height: 202
+
+Frame: 6588
+x: 238
+y: 138
+width: 74
+height: 202
+
+Frame: 6589
+x: 231
+y: 138
+width: 74
+height: 202
+
+Frame: 6590
+x: 220
+y: 138
+width: 74
+height: 202
+
+Frame: 6591
+x: 198
+y: 136
+width: 74
+height: 202
+
+Frame: 6592
+x: 173
+y: 136
+width: 74
+height: 202
+
+Frame: 6593
+x: 154
+y: 137
+width: 74
+height: 202
+
+Frame: 6594
+x: 126
+y: 137
+width: 74
+height: 202
+
+Frame: 6595
+x: 97
+y: 137
+width: 74
+height: 202
+
+Frame: 6596
+x: 62
+y: 136
+width: 74
+height: 202
+
+Frame: 6597
+x: 40
+y: 136
+width: 74
+height: 202
+
+Frame: 6598
+x: 25
+y: 136
+width: 74
+height: 202
+
+Frame: 6599
+x: 10
+y: 136
+width: 74
+height: 202
+
+Frame: 6600
+x: 4
+y: 136
+width: 74
+height: 202
+
+Frame: 6601
+x: 10
+y: 140
+width: 81
+height: 226
+
+Frame: 6602
+x: -3
+y: 141
+width: 81
+height: 226
+
+Frame: 6603
+x: -26
+y: 143
+width: 81
+height: 226
+
+Object Number #37
+Region Description:
+Region 37
+Start Frame:6555
+End Frame:6635
+Region Descriptors (0):
+Region frames data
+Frame: 6555
+x: 365
+y: 51
+width: 34
+height: 99
+
+Frame: 6556
+x: 372
+y: 50
+width: 34
+height: 99
+
+Frames: 6557 to 6560
+x: 364
+y: 50
+width: 34
+height: 99
+
+Frame: 6561
+x: 360
+y: 50
+width: 34
+height: 99
+
+Frame: 6562
+x: 353
+y: 49
+width: 34
+height: 99
+
+Frame: 6563
+x: 346
+y: 49
+width: 34
+height: 99
+
+Frame: 6564
+x: 341
+y: 48
+width: 34
+height: 99
+
+Frame: 6565
+x: 338
+y: 48
+width: 34
+height: 99
+
+Frames: 6566 to 6568
+x: 332
+y: 48
+width: 34
+height: 99
+
+Frame: 6569
+x: 329
+y: 48
+width: 34
+height: 99
+
+Frame: 6570
+x: 327
+y: 46
+width: 34
+height: 99
+
+Frames: 6571 to 6573
+x: 325
+y: 46
+width: 34
+height: 99
+
+Frame: 6574
+x: 324
+y: 46
+width: 34
+height: 99
+
+Frame: 6575
+x: 323
+y: 46
+width: 34
+height: 99
+
+Frames: 6576 to 6577
+x: 317
+y: 46
+width: 34
+height: 99
+
+Frame: 6578
+x: 309
+y: 48
+width: 34
+height: 99
+
+Frames: 6579 to 6584
+x: 300
+y: 48
+width: 34
+height: 99
+
+Frame: 6585
+x: 299
+y: 48
+width: 34
+height: 99
+
+Frame: 6586
+x: 294
+y: 48
+width: 34
+height: 99
+
+Frame: 6587
+x: 292
+y: 48
+width: 34
+height: 99
+
+Frame: 6588
+x: 287
+y: 48
+width: 34
+height: 99
+
+Frame: 6589
+x: 286
+y: 48
+width: 34
+height: 99
+
+Frame: 6590
+x: 282
+y: 48
+width: 34
+height: 99
+
+Frames: 6591 to 6593
+x: 280
+y: 48
+width: 34
+height: 99
+
+Frame: 6594
+x: 277
+y: 48
+width: 34
+height: 99
+
+Frame: 6595
+x: 272
+y: 48
+width: 34
+height: 99
+
+Frame: 6596
+x: 267
+y: 48
+width: 34
+height: 99
+
+Frame: 6597
+x: 263
+y: 48
+width: 34
+height: 99
+
+Frame: 6598
+x: 255
+y: 48
+width: 34
+height: 99
+
+Frame: 6599
+x: 251
+y: 48
+width: 34
+height: 99
+
+Frame: 6600
+x: 241
+y: 48
+width: 34
+height: 99
+
+Frame: 6601
+x: 237
+y: 48
+width: 34
+height: 99
+
+Frame: 6602
+x: 235
+y: 48
+width: 34
+height: 99
+
+Frame: 6603
+x: 228
+y: 48
+width: 34
+height: 99
+
+Frame: 6604
+x: 227
+y: 48
+width: 34
+height: 99
+
+Frame: 6605
+x: 225
+y: 48
+width: 34
+height: 99
+
+Frame: 6606
+x: 217
+y: 48
+width: 34
+height: 99
+
+Frame: 6607
+x: 214
+y: 48
+width: 34
+height: 99
+
+Frame: 6608
+x: 213
+y: 48
+width: 34
+height: 99
+
+Frame: 6609
+x: 209
+y: 48
+width: 34
+height: 99
+
+Frames: 6610 to 6611
+x: 208
+y: 48
+width: 34
+height: 99
+
+Frame: 6612
+x: 207
+y: 48
+width: 34
+height: 99
+
+Frames: 6613 to 6620
+x: 200
+y: 48
+width: 34
+height: 99
+
+Frame: 6621
+x: 198
+y: 49
+width: 34
+height: 99
+
+Frame: 6622
+x: 197
+y: 50
+width: 34
+height: 99
+
+Frame: 6623
+x: 194
+y: 50
+width: 34
+height: 99
+
+Frame: 6624
+x: 192
+y: 50
+width: 34
+height: 99
+
+Frame: 6625
+x: 190
+y: 50
+width: 34
+height: 99
+
+Frame: 6626
+x: 189
+y: 50
+width: 34
+height: 99
+
+Frame: 6627
+x: 184
+y: 50
+width: 34
+height: 99
+
+Frames: 6628 to 6629
+x: 178
+y: 49
+width: 34
+height: 99
+
+Frames: 6630 to 6631
+x: 175
+y: 46
+width: 34
+height: 99
+
+Frame: 6632
+x: 174
+y: 45
+width: 34
+height: 99
+
+Frame: 6633
+x: 170
+y: 45
+width: 34
+height: 99
+
+Frames: 6634 to 6635
+x: 167
+y: 45
+width: 34
+height: 99
+
+Object Number #38
+Region Description:
+Region 38
+Start Frame:8289
+End Frame:8420
+Region Descriptors (0):
+Region frames data
+Frames: 8289 to 8290
+x: -8
+y: 56
+width: 37
+height: 116
+
+Frame: 8291
+x: 7
+y: 56
+width: 37
+height: 116
+
+Frames: 8292 to 8293
+x: 11
+y: 56
+width: 37
+height: 116
+
+Frame: 8294
+x: 9
+y: 56
+width: 37
+height: 116
+
+Frames: 8295 to 8298
+x: 6
+y: 56
+width: 37
+height: 116
+
+Frame: 8299
+x: 12
+y: 53
+width: 37
+height: 116
+
+Frames: 8300 to 8301
+x: 15
+y: 53
+width: 37
+height: 116
+
+Frames: 8302 to 8303
+x: 18
+y: 53
+width: 37
+height: 116
+
+Frames: 8304 to 8306
+x: 21
+y: 53
+width: 37
+height: 116
+
+Frame: 8307
+x: 25
+y: 53
+width: 37
+height: 116
+
+Frame: 8308
+x: 30
+y: 53
+width: 37
+height: 116
+
+Frame: 8309
+x: 38
+y: 53
+width: 37
+height: 116
+
+Frame: 8310
+x: 42
+y: 53
+width: 37
+height: 116
+
+Frame: 8311
+x: 47
+y: 50
+width: 37
+height: 116
+
+Frames: 8312 to 8314
+x: 51
+y: 50
+width: 37
+height: 116
+
+Frame: 8315
+x: 59
+y: 50
+width: 37
+height: 116
+
+Frame: 8316
+x: 60
+y: 50
+width: 37
+height: 116
+
+Frames: 8317 to 8318
+x: 63
+y: 50
+width: 37
+height: 116
+
+Frame: 8319
+x: 64
+y: 50
+width: 37
+height: 116
+
+Frame: 8320
+x: 68
+y: 49
+width: 37
+height: 116
+
+Frames: 8321 to 8324
+x: 69
+y: 49
+width: 37
+height: 116
+
+Frame: 8325
+x: 73
+y: 49
+width: 37
+height: 116
+
+Frame: 8326
+x: 76
+y: 49
+width: 37
+height: 116
+
+Frame: 8327
+x: 80
+y: 50
+width: 37
+height: 116
+
+Frame: 8328
+x: 85
+y: 50
+width: 37
+height: 116
+
+Frame: 8329
+x: 89
+y: 51
+width: 37
+height: 116
+
+Frame: 8330
+x: 92
+y: 51
+width: 37
+height: 116
+
+Frames: 8331 to 8380
+x: 93
+y: 51
+width: 37
+height: 116
+
+Frame: 8381
+x: 90
+y: 51
+width: 37
+height: 116
+
+Frame: 8382
+x: 84
+y: 51
+width: 37
+height: 116
+
+Frame: 8383
+x: 81
+y: 51
+width: 37
+height: 116
+
+Frames: 8384 to 8387
+x: 80
+y: 51
+width: 37
+height: 116
+
+Frame: 8388
+x: 78
+y: 51
+width: 37
+height: 116
+
+Frame: 8389
+x: 67
+y: 51
+width: 37
+height: 116
+
+Frames: 8390 to 8394
+x: 59
+y: 51
+width: 37
+height: 116
+
+Frame: 8395
+x: 54
+y: 52
+width: 37
+height: 116
+
+Frame: 8396
+x: 53
+y: 52
+width: 37
+height: 116
+
+Frame: 8397
+x: 52
+y: 52
+width: 37
+height: 116
+
+Frame: 8398
+x: 48
+y: 52
+width: 37
+height: 116
+
+Frame: 8399
+x: 44
+y: 52
+width: 37
+height: 116
+
+Frame: 8400
+x: 41
+y: 53
+width: 37
+height: 116
+
+Frame: 8401
+x: 39
+y: 54
+width: 37
+height: 116
+
+Frame: 8402
+x: 38
+y: 54
+width: 37
+height: 116
+
+Frame: 8403
+x: 35
+y: 54
+width: 37
+height: 116
+
+Frame: 8404
+x: 33
+y: 54
+width: 37
+height: 116
+
+Frames: 8405 to 8407
+x: 30
+y: 54
+width: 37
+height: 116
+
+Frame: 8408
+x: 25
+y: 54
+width: 37
+height: 116
+
+Frame: 8409
+x: 20
+y: 54
+width: 37
+height: 116
+
+Frames: 8410 to 8411
+x: 11
+y: 54
+width: 37
+height: 116
+
+Frames: 8412 to 8413
+x: 10
+y: 54
+width: 37
+height: 116
+
+Frame: 8414
+x: 9
+y: 53
+width: 37
+height: 116
+
+Frame: 8415
+x: 8
+y: 53
+width: 37
+height: 116
+
+Frame: 8416
+x: 6
+y: 53
+width: 37
+height: 116
+
+Frame: 8417
+x: -2
+y: 53
+width: 37
+height: 116
+
+Frames: 8418 to 8420
+x: -9
+y: 54
+width: 37
+height: 116
+
+Object Number #39
+Region Description:
+Region 39
+Start Frame:8299
+End Frame:8412
+Region Descriptors (0):
+Region frames data
+Frames: 8299 to 8300
+x: -1
+y: 57
+width: 28
+height: 76
+
+Frame: 8301
+x: 2
+y: 57
+width: 28
+height: 76
+
+Frames: 8302 to 8303
+x: 6
+y: 57
+width: 28
+height: 76
+
+Frame: 8304
+x: 7
+y: 57
+width: 28
+height: 76
+
+Frames: 8305 to 8307
+x: 15
+y: 57
+width: 28
+height: 76
+
+Frame: 8308
+x: 20
+y: 57
+width: 28
+height: 76
+
+Frame: 8309
+x: 22
+y: 56
+width: 28
+height: 76
+
+Frame: 8310
+x: 24
+y: 56
+width: 28
+height: 76
+
+Frame: 8311
+x: 29
+y: 56
+width: 28
+height: 76
+
+Frames: 8312 to 8313
+x: 31
+y: 56
+width: 28
+height: 76
+
+Frame: 8314
+x: 34
+y: 54
+width: 28
+height: 76
+
+Frames: 8315 to 8316
+x: 38
+y: 54
+width: 28
+height: 76
+
+Frames: 8317 to 8319
+x: 49
+y: 53
+width: 28
+height: 76
+
+Frame: 8320
+x: 51
+y: 53
+width: 28
+height: 76
+
+Frames: 8321 to 8391
+x: 54
+y: 51
+width: 28
+height: 76
+
+Frame: 8392
+x: 48
+y: 50
+width: 28
+height: 76
+
+Frame: 8393
+x: 39
+y: 50
+width: 28
+height: 76
+
+Frames: 8394 to 8397
+x: 38
+y: 49
+width: 28
+height: 76
+
+Frame: 8398
+x: 35
+y: 49
+width: 28
+height: 76
+
+Frame: 8399
+x: 33
+y: 49
+width: 28
+height: 76
+
+Frame: 8400
+x: 32
+y: 50
+width: 28
+height: 76
+
+Frame: 8401
+x: 27
+y: 50
+width: 28
+height: 76
+
+Frame: 8402
+x: 20
+y: 51
+width: 28
+height: 76
+
+Frame: 8403
+x: 18
+y: 51
+width: 28
+height: 76
+
+Frames: 8404 to 8408
+x: 10
+y: 56
+width: 28
+height: 76
+
+Frame: 8409
+x: 10
+y: 55
+width: 28
+height: 76
+
+Frame: 8410
+x: 3
+y: 55
+width: 28
+height: 76
+
+Frames: 8411 to 8412
+x: -5
+y: 55
+width: 28
+height: 76
+
+Object Number #40
+Region Description:
+Region 40
+Start Frame:8314
+End Frame:8407
+Region Descriptors (0):
+Region frames data
+Frames: 8314 to 8317
+x: -2
+y: 93
+width: 42
+height: 68
+
+Frame: 8318
+x: 2
+y: 93
+width: 42
+height: 68
+
+Frames: 8319 to 8321
+x: 4
+y: 93
+width: 42
+height: 68
+
+Frames: 8322 to 8323
+x: 8
+y: 93
+width: 42
+height: 68
+
+Frames: 8324 to 8325
+x: 14
+y: 93
+width: 42
+height: 68
+
+Frame: 8326
+x: 25
+y: 96
+width: 42
+height: 68
+
+Frames: 8327 to 8328
+x: 25
+y: 97
+width: 42
+height: 68
+
+Frame: 8329
+x: 26
+y: 96
+width: 42
+height: 68
+
+Frames: 8330 to 8331
+x: 29
+y: 93
+width: 42
+height: 68
+
+Frame: 8332
+x: 38
+y: 93
+width: 42
+height: 68
+
+Frames: 8333 to 8335
+x: 56
+y: 93
+width: 42
+height: 68
+
+Frames: 8336 to 8339
+x: 57
+y: 91
+width: 42
+height: 68
+
+Frame: 8340
+x: 61
+y: 91
+width: 42
+height: 68
+
+Frames: 8341 to 8342
+x: 65
+y: 91
+width: 42
+height: 68
+
+Frame: 8343
+x: 71
+y: 91
+width: 42
+height: 68
+
+Frames: 8344 to 8345
+x: 72
+y: 90
+width: 42
+height: 68
+
+Frame: 8346
+x: 70
+y: 90
+width: 42
+height: 68
+
+Frame: 8347
+x: 68
+y: 89
+width: 42
+height: 68
+
+Frames: 8348 to 8350
+x: 61
+y: 89
+width: 42
+height: 68
+
+Frames: 8351 to 8353
+x: 58
+y: 89
+width: 42
+height: 68
+
+Frames: 8354 to 8375
+x: 60
+y: 87
+width: 42
+height: 68
+
+Frame: 8376
+x: 48
+y: 86
+width: 42
+height: 68
+
+Frame: 8377
+x: 46
+y: 86
+width: 42
+height: 68
+
+Frame: 8378
+x: 43
+y: 86
+width: 42
+height: 68
+
+Frames: 8379 to 8380
+x: 42
+y: 86
+width: 42
+height: 68
+
+Frame: 8381
+x: 37
+y: 86
+width: 42
+height: 68
+
+Frame: 8382
+x: 26
+y: 90
+width: 42
+height: 68
+
+Frames: 8383 to 8386
+x: 19
+y: 90
+width: 42
+height: 68
+
+Frames: 8387 to 8392
+x: 13
+y: 90
+width: 42
+height: 68
+
+Frames: 8393 to 8395
+x: 11
+y: 90
+width: 42
+height: 68
+
+Frames: 8396 to 8397
+x: 5
+y: 94
+width: 42
+height: 68
+
+Frames: 8398 to 8400
+x: 4
+y: 94
+width: 42
+height: 68
+
+Frame: 8401
+x: 2
+y: 94
+width: 42
+height: 68
+
+Frames: 8402 to 8403
+x: -2
+y: 94
+width: 42
+height: 68
+
+Frame: 8404
+x: -3
+y: 94
+width: 42
+height: 68
+
+Frame: 8405
+x: -9
+y: 94
+width: 42
+height: 68
+
+Frames: 8406 to 8407
+x: -14
+y: 94
+width: 42
+height: 68
+
+
