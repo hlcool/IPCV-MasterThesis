@@ -538,7 +538,7 @@ void PeopleDetector::ReprojectionFusion(vector<Point2f> ProjCenterPoints, vector
     }
 }
 
-void PeopleDetector::SemanticConstraining(vector<Rect> &AllPedestrianVector, int CameraNumber, Mat &ActualFrame, Mat Homography, Mat HomographyBetweenViews)
+void PeopleDetector::SemanticConstraining(vector<Rect> &AllPedestrianVector, vector<double> &AllPedestrianVectorScore, int CameraNumber, Mat &ActualFrame, Mat Homography, Mat HomographyBetweenViews)
 {
     Mat CommonImage1, CommonImage2;
 
@@ -604,6 +604,7 @@ void PeopleDetector::SemanticConstraining(vector<Rect> &AllPedestrianVector, int
     for(int k = 0; k < SupressedIndices.size(); k++){
         int Index = SupressedIndices[k];
         AllPedestrianVector.erase(AllPedestrianVector.begin() + Index);
+        AllPedestrianVectorScore.erase(AllPedestrianVectorScore.begin() + Index);
     }
 }
 

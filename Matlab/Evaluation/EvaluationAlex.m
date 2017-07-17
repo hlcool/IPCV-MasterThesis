@@ -4,13 +4,14 @@ close all;
 clc;
 
 video_dir = '/Users/alex/IPCV-MasterThesis/Matlab/Evaluation/Video';
-PD_algorithm = {'FastRCNN'};
+Experiment = '3Semantic';
+PD_algorithm = {'PSPNet'};
 video_names = {'Camera1', 'Camera2', 'Camera3'};
 
 for k = 1 : size(PD_algorithm,2)
     
     % Threshold vector
-    thresholds = linspace(0, 1, 30);
+    thresholds = linspace(0, 1, 50);
     
     % General matrices
     Precision = zeros(size(thresholds,2), size(video_names,2));
@@ -30,7 +31,7 @@ for k = 1 : size(PD_algorithm,2)
         
         % Files paths
         filename_gt = sprintf('%s/Pedestrian Detections/Camera%dGT.txt', video_dir, i);
-        filename_1 = sprintf('%s/Pedestrian Detections/BoundingBoxes %s %d.idl', video_dir, PD_algorithm{k}, i);
+        filename_1 = sprintf('%s/Pedestrian Detections/%s/BoundingBoxes %s %d.idl', video_dir, Experiment, PD_algorithm{k}, i);
         
         for j = 1 : size(thresholds,2)
             if j == 1
@@ -39,9 +40,9 @@ for k = 1 : size(PD_algorithm,2)
                 [Blobs_total_people, Scores_total_people] = ReadPDBlobs(filename_1, video_names{i}, processing_mask);
                 
                 % Score histogram representation
-                figure(k + 20)
+                figure(k + 20);
                 subplot(3, 1, i)
-                histogram(Scores_total_people,30)
+                histogram(Scores_total_people, 30)
                 xlim([0 1]);
                 title([PD_algorithm{k} ' Score histogram ' video_names{i}])
             end
@@ -56,7 +57,7 @@ for k = 1 : size(PD_algorithm,2)
             
             % Extract measures
             [Blobs, Precision(j,i), Recall(j,i), F1Score(j,i), labels, scores, tp(j,i), fp(j,i), tn, fn(j,i), num_blobs_gt_out(i)] = PeopleDetectionEval(GTBlobs, PDBlobs, num_frames);
-            display(['Algoritmo: ' PD_algorithm{k} ' - ' video_names{i} ' - Threshold: ' num2str(j) '/' num2str(size(thresholds,2))]);
+            display(['Algoritmo: ' Experiment ' ' PD_algorithm{k} ' - ' video_names{i} ' - Threshold: ' num2str(j) '/' num2str(size(thresholds,2))]);
         end
         
         % Vectors for the actual curve
@@ -76,13 +77,13 @@ for k = 1 : size(PD_algorithm,2)
         AUC(i) = aux;
         
         % Representation of curves
-        figure(k)
-        plot(RecallGraph, PrecisionGraph)
+        figure(k);
+        plot(RecallGraph, PrecisionGraph, 'LineWidth', 2)
         hold on
         axis([0 1 0 1])
         xlabel('Recall')
         ylabel('Precision')
-        title([PD_algorithm{k} ' Precision/Recall'])
+        title([Experiment ' ' PD_algorithm{k} ' Precision/Recall'])
         legend('Camera 1', 'Camera 2', 'Camera 3')
     end
     disp(['Camera 1 AUC: ' num2str(AUC(1))]);

@@ -27,7 +27,8 @@ CameraWorker::~CameraWorker(){}
 
 void CameraWorker::preProcessVideo()
 {
-    String EvalPath;
+    String EvalPath, DetectionsPath;
+
     if(Camera.CameraNumber == 1){
         cout << endl;
         cout << endl;
@@ -61,15 +62,19 @@ void CameraWorker::preProcessVideo()
 
     if(SemanticFiltering & MultiCameraFiltering){
         EvalPath = "/Users/alex/IPCV-MasterThesis/MultithreadParameters/Ficheros/4MultiSemantic/" + CBOption + "/Evaluation Stats Camera " + to_string(Camera.CameraNumber) + "-" + to_string(PeopleDetec.Threshold)  + ".txt";
+        DetectionsPath = "/Users/alex/IPCV-MasterThesis/Matlab/Evaluation/Video/Pedestrian Detections/4MultiSemantic/BoundingBoxes "+ CBOption + " " + to_string(Camera.CameraNumber) + ".idl";
     }
     else if(MultiCameraFiltering){
         EvalPath = "/Users/alex/IPCV-MasterThesis/MultithreadParameters/Ficheros/2Multi/" + CBOption + "/Evaluation Stats Camera " + to_string(Camera.CameraNumber) + "-" + to_string(PeopleDetec.Threshold)  + ".txt";
+        DetectionsPath = "/Users/alex/IPCV-MasterThesis/Matlab/Evaluation/Video/Pedestrian Detections/2Multi/BoundingBoxes "+ CBOption + " " + to_string(Camera.CameraNumber) + ".idl";
     }
     else if(SemanticFiltering){
         EvalPath = "/Users/alex/IPCV-MasterThesis/MultithreadParameters/Ficheros/3Semantic/" + CBOption + "/Evaluation Stats Camera " + to_string(Camera.CameraNumber) + "-" + to_string(PeopleDetec.Threshold)  + ".txt";
+        DetectionsPath = "/Users/alex/IPCV-MasterThesis/Matlab/Evaluation/Video/Pedestrian Detections/3Semantic/BoundingBoxes "+ CBOption + " " + to_string(Camera.CameraNumber) + ".idl";
     }
     else{
         EvalPath = "/Users/alex/IPCV-MasterThesis/MultithreadParameters/Ficheros/1Raw/" + CBOption + "/Evaluation Stats Camera " + to_string(Camera.CameraNumber) + "-" + to_string(PeopleDetec.Threshold) + ".txt";
+        DetectionsPath = "/Users/alex/IPCV-MasterThesis/Matlab/Evaluation/Video/Pedestrian Detections/1Raw/BoundingBoxes "+ CBOption + " " + to_string(Camera.CameraNumber) + ".idl";
     }
 
     // Open video file
@@ -84,7 +89,7 @@ void CameraWorker::preProcessVideo()
     Evaluate.EvaluationFile << "Frame   GroundTruth Elements   TruePositives  False Positives  Number of Detections   False Negatives    Precision           Recall" << endl;
 
     // Create and open bounding boxes file
-    PeopleDetec.BoundingBoxesFile.open("/Users/alex/IPCV-MasterThesis/Matlab/Evaluation/Video/Pedestrian Detections/BoundingBoxes "+ CBOption + " " + to_string(Camera.CameraNumber) + ".idl");
+    PeopleDetec.BoundingBoxesFile.open(DetectionsPath);
 
     // Compute camera homographies
     Camera.computeHomography();
@@ -188,8 +193,8 @@ void CameraWorker::processVideo()
         Camera.non_max_suppresion_scores(PeopleDetec.AllPedestrianVector, PeopleDetec.AllPedestrianVectorScore, PeopleDetec.AllPedestrianVectorNMS, PeopleDetec.AllPedestrianVectorScoreNMS);
 
         // Filter Pedestrian Detections that are not correcly placed within the semantic (floor)
-        //if(SemanticFiltering)
-            //PeopleDetec.SemanticConstraining(PeopleDetec.AllPedestrianVectorNMS, Camera.CameraNumber, Camera.ActualFrame, Camera.Homography, Camera.HomographyBetweenViews);
+        if(SemanticFiltering)
+            PeopleDetec.SemanticConstraining(PeopleDetec.AllPedestrianVectorNMS, PeopleDetec.AllPedestrianVectorScoreNMS, Camera.CameraNumber, Camera.ActualFrame, Camera.Homography, Camera.HomographyBetweenViews);
 
         // -------------------- //
         //     BLOBS SAVING     //
